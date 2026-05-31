@@ -82,9 +82,9 @@ template <typename t>
 void printvector(vector<t> v) {
 	std::cout << "[ ";
 	for (auto &k : v) {
-		std::cout << k << ", ";
+		std::cout << k << " ";
 	}
-	std::cout << " ]" << std::endl;
+	std::cout << "]" << std::endl;
 }
 
 

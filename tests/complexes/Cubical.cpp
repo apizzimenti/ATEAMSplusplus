@@ -5,9 +5,7 @@
 using namespace std;
 
 int main() {
-	vector<int> corners = {3,3,3};
+	vector<int> corners = {4,4,4};
 	Cubical C(corners, true);
-	cout << C.kind << endl;
-	cout << C.periodic << endl;
 	return 0;
 }

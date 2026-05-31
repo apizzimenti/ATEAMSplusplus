@@ -7,8 +7,8 @@ project(ATEAMS++
 	LANGUAGES C CXX
 )
 
-# Do this instead of requiring c++20, since we need (llvm) clang for this to work.
-add_compile_options(-std=c++20 -fexperimental-library)
+# Do this instead of requiring c++23, since we need (llvm) clang for this to work.
+add_compile_options(-std=c++23 -fexperimental-library)
 
 # Require a bunch of packages.
 find_package(PkgConfig REQUIRED)
@@ -32,6 +32,15 @@ target_include_directories(ATEAMS++ PUBLIC include)
 target_include_directories(ATEAMS++ PRIVATE src)
 
 
-# Add an executable just for the fun.
-add_executable(main tests/main.cpp)
-target_link_libraries(main PRIVATE ATEAMS++)
+# Tests.
+enable_testing()
+
+# Complexes.
+add_executable(complexes.Cubical tests/complexes/Cubical.cpp)
+target_link_libraries(complexes.Cubical PRIVATE ATEAMS++)
+
+add_test(
+	NAME complexes.Cubical
+	COMMAND $<TARGET_FILE:complexes.Cubical>
+)
+
