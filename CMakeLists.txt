@@ -8,7 +8,7 @@ project(ATEAMS++
 )
 
 # Do this instead of requiring c++23, since we need (llvm) clang for this to work.
-add_compile_options(-std=c++23 -fexperimental-library)
+add_compile_options(-std=c++23)
 
 # Require a bunch of packages.
 find_package(PkgConfig REQUIRED)

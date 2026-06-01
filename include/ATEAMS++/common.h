@@ -88,6 +88,22 @@ void printvector(vector<t> v) {
 }
 
 
+template <typename MapStorage>
+void printvectormap(MapStorage m) {
+	std::cout << "{ ";
+	for (const auto& [k, v] : m) {
+		std::cout << "[ ";
+		for (auto &p : k) {
+			std::cout << p << " ";
+		}
+		std::cout << "]";
+		
+		std::cout << ": " << (int)v << ", ";
+	}
+	std::cout << " }" << std::endl;
+}
+
+
 #include "libraries/SparseRREF/sparse_mat.h"
 
 typedef SparseRREF::sparse_mat<data_t, index_t> ZpMatrix;

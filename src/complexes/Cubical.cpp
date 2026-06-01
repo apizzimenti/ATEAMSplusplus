@@ -1,40 +1,37 @@
 
 #include "ATEAMS++/complexes/Cubical.h"
+#include "ATEAMS++/util.h"
 
 #include <cmath>
 #include <algorithm>
+#include <ranges>
 
 using namespace std;
 
-/**
- * Gets lexigraphic-order combinations of elements of a vector.
- */
+
 template <typename T>
-void comb(vector<T> in, vector<vector<T>> &combs, vector<T> &active, int r, int cursor, int depth) {
-	for (int i=cursor; i<in.size()-(r-depth-1); i++) {
-		active[depth] = in[i];
-		if (depth < r-1) comb(in, combs, active, r, i+1, depth+1);
-		else combs.push_back(active);
+void _surrounds(vector<T> anchor, vector<vector<T>> &points, vector<T> &active, int depth) {
+	for (int f=0; f<2; f++) {
+		active[depth] = anchor[depth]+f;
+		if (depth < anchor.size()-1) _surrounds(anchor, points, active, depth+1);
+		else points.push_back(active);
 	}
 }
 
-template <typename T>
-vector<vector<T>> combinations(vector<int> in, int r) {
-	vector<vector<T>> c;
-	vector<T> active(r);
-	comb(in, c, active, r, 0, 0);
 
-	return c;
+template <typename T>
+vector<vector<T>> surrounds(vector<T> anchor) {
+	vector<vector<T>> points;
+	vector<T> active(anchor.size());
+	_surrounds(anchor, points, active, 0);
+
+	return points;
 }
 
 
 /**
  * Creates (the boundary matrices of) a D-dimensional Hamming cube.
  */
-
-typedef uint16_t bitstring;
-typedef vector<vector<vector<bitstring>>> HammingCube;
-
 HammingCube hamming(int D) {
 	// All cells in the complex.
 	HammingCube complex(D+1);
@@ -86,8 +83,6 @@ HammingCube hamming(int D) {
 }
 
 
-typedef vector<vector<vector<int>>> HammingCubeBoundary;
-
 /**
  * Creates flat boundary matrices for a HammingCube.
  */
@@ -118,18 +113,123 @@ HammingCubeBoundary hammingBoundary(HammingCube cube) {
 	return Boundary;
 }
 
+
+typedef map<vector<int>,int> indexer;
+
+vector<indexer> protoCubicalLattice(vector<int> corners, HammingCube Cube, HammingCubeBoundary Boundary, bool periodic) {
+	vector<indexer> proto(corners.size()+1);
+
+	// Get the "axes" of the space.
+	vector<vector<int>> axes;
+	for (auto l : corners) {
+		vector<int> axis(l);
+		iota(begin(axis), end(axis), 0);
+		axes.push_back(axis);
+	}
+
+	// Get all the corner points.
+	vector<vector<int>> coordinates = product<int>(axes);
+
+	// For each corner point, figure out its surrounding points, then determine
+	// faces/edges/etc. If we're using periodic boundary conditions, we need to
+	// re-set any coordinate that contains a boundary point to its corresponding
+	// opposite point.
+	for (int i=0; i < coordinates.size(); i++) {
+		HammingCubeBoundary localBoundary(proto.size());
+
+		// Get the anchor (bottom-left) point of the cube, and find the indices
+		// of the points surrounding it in lexicographic order.
+		vector<int> anchor = coordinates[i];
+		vector<vector<int>> localVertices = surrounds<int>(anchor);
+		vector<int> localIndices(localVertices.size());
+
+		for (int j=0; j<localVertices.size(); j++) {
+			// With periodic boundary conditions, scan the vertices to check
+			// whether it's a "boundary" point.
+			if (periodic) {
+				for (int k=0; k<localVertices[j].size(); k++) {
+					if (localVertices[j][k] == corners[k]) localVertices[j][k] = 0;
+				}
+			}
+
+			// Insert the points if they haven't been inserted yet.
+			proto[0].try_emplace(localVertices[j], proto[0].size());
+			localIndices[j] = proto[0][localVertices[j]];
+		}
+
+		localBoundary[0] = localVertices;
+
+		vector<vector<int>> localEdges;
+
+		// Now, given local indices, we can create edges and insert into the
+		// prototype boundary.
+		for (auto edge : Boundary[1]) {
+			vector<int> localEdge(2);
+			for (int j=0; j<edge.size(); j++) localEdge[j] = proto[0][localVertices[edge[j]]];
+
+			proto[1].try_emplace(localEdge, proto[1].size());
+			localEdges.push_back(localEdge);
+		}
+
+		localBoundary[1] = localEdges;
+
+		// From here, repeat a similar process, working up in dimension.
+		for (int d=1; d<proto.size(); d++) {
+			vector<vector<int>> canonicalBoundary = Boundary[d];
+			vector<vector<int>> localCellBoundary;
+
+			for (auto b : canonicalBoundary) {
+				vector<int> localCell(b.size());
+				for (int j=0; j<b.size(); j++) localCell[j] = proto[d-1][localBoundary[d-1][b[j]]];
+
+				proto[d].try_emplace(localCell, proto[d].size());
+				localCellBoundary.push_back(localCell);
+			}
+
+			localBoundary[d] = localCellBoundary;
+		}
+	}
+
+	return proto;
+}
+
+
+Lattice cubicalLattice(vector<indexer> proto) {
+	Lattice cubical(proto.size());
+
+	// Each of the boundaries should be in the proto-boundary, with an
+	// assigned index.
+	for (int d=1; d<proto.size(); d++) {
+		int count = proto[d].size();
+		cubical[d] = vector<vector<int>>(count);
+
+		for (auto &[b, i] : proto[d]) {
+			cubical[d][i] = b;
+		}
+	}
+
+	// Fill in the vertices, since they're otherwise indexed by coordinates.
+	vector<vector<int>> vertices(proto[0].size());
+	for (int i=0; i<vertices.size(); i++) vertices[i] = {i};
+	cubical[0] = vertices;
+
+	return cubical;
+}
+
+
 Cubical::Cubical(vector<int> corners, bool periodic=true) {
 	this->corners = corners;
 	this->periodic = periodic;
 
 	// Create a Hamming cube of the appropriate dimension.
 	HammingCube cube = hamming(corners.size());
-	HammingCubeBoundary boundary = hammingBoundary(cube);
+	HammingCubeBoundary cubeBoundary = hammingBoundary(cube);
 
-	for (auto dimension : boundary) {
-		for (auto cells : dimension) {
-			printvector(cells);
-		}
-		cout << endl;
-	}
+	// Compute the proto-boundary (which includes a vertex map), and get the
+	// flat boundary matrices for each dimension.
+	vector<indexer> protoBoundary = protoCubicalLattice(corners, cube, cubeBoundary, periodic);
+	Lattice Boundary = cubicalLattice(protoBoundary);
+
+	// Get cell counts.
+	for (int d=0; d<Boundary.size(); d++) this->Cells.push_back(Boundary[d].size());
 }

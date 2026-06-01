@@ -13,4 +13,12 @@ class Cubical: public Complex {
 		Cubical(vector<int> corners, bool periodic);	// constructor
 };
 
+
+// Type declarations for cubical complexes.
+typedef uint16_t bitstring;
+typedef vector<vector<vector<bitstring>>> HammingCube;
+
+typedef vector<vector<vector<int>>> HammingCubeBoundary;
+typedef HammingCubeBoundary Lattice;
+
 #endif
