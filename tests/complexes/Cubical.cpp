@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-	vector<int> corners = {10,10,10,10};
-	Cubical C(corners, true);
+	vector<int> corners = {3,3};
+	Cubical C(corners, 3, true);
 	return 0;
 }

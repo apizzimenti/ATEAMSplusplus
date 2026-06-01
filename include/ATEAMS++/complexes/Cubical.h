@@ -10,7 +10,7 @@ class Cubical: public Complex {
 		string kind = "cubical";						// what kind of complex is this?
 		vector<int> corners;							// "corners" of the lattice.
 
-		Cubical(vector<int> corners, bool periodic);	// constructor
+		Cubical(vector<int> corners, int F, bool periodic);	// constructor
 };
 
 

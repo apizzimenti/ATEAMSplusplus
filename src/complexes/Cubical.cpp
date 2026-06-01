@@ -217,9 +217,40 @@ Lattice cubicalLattice(vector<indexer> proto) {
 }
 
 
-Cubical::Cubical(vector<int> corners, bool periodic=true) {
+ZpMatrices sparseBoundaryMatrices(Lattice L, int F) {
+	ZpMatrices Boundary(L.size());
+
+	for (int d=L.size()-1; d > 0; d--) {
+		// Get the dimensions of the matrix; instantiate.
+		int M = L[d-1].size(), N = L[d].size();
+		ZpMatrix B(M,N);
+
+		// Fill in the values.
+		for (int col=0; col < L[d].size(); col++) {
+			for (int i=0; i < L[d][col].size(); i++) {
+				int row = L[d][col][i];
+				ZpVector& matrow = B.rows[row];
+				matrow.push_back(
+					(index_t)col,
+					(data_t)((bool)(i%2) ? F-1 : 1)
+				);
+			}
+		}
+
+		// Push the matrix to the collection.
+		B.compress();
+		Boundary[d] = B;
+	}
+
+	return Boundary;
+}
+
+Cubical::Cubical(vector<int> corners, int F, bool periodic=true) {
 	this->corners = corners;
 	this->periodic = periodic;
+	
+	const Zp GFp(SparseRREF::FIELD_Fp, F);
+	this->F = GFp;
 
 	// Create a Hamming cube of the appropriate dimension.
 	HammingCube cube = hamming(corners.size());
@@ -228,8 +259,16 @@ Cubical::Cubical(vector<int> corners, bool periodic=true) {
 	// Compute the proto-boundary (which includes a vertex map), and get the
 	// flat boundary matrices for each dimension.
 	vector<indexer> protoBoundary = protoCubicalLattice(corners, cube, cubeBoundary, periodic);
-	Lattice Boundary = cubicalLattice(protoBoundary);
+	Lattice L = cubicalLattice(protoBoundary);
 
 	// Get cell counts.
-	for (int d=0; d<Boundary.size(); d++) this->Cells.push_back(Boundary[d].size());
+	for (int d=0; d<L.size(); d++) this->Cells.push_back(L[d].size());
+
+	// Get the sparse (co)boundary matrices.
+	this->Boundary.Matrices = sparseBoundaryMatrices(L, F);
+	this->Coboundary.Matrices = ZpMatrices(this->Boundary.Matrices.size());
+
+	for (int d=0; d<this->Boundary.Matrices.size(); d++) {
+		this->Coboundary.Matrices[d] = this->Boundary.Matrices[d].transpose();
+	}
 }

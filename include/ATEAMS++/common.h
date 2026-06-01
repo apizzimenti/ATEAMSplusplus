@@ -2,11 +2,6 @@
 #ifndef ATEAMS_COMMON_H
 #define ATEAMS_COMMON_H
 
-class ATEAMS {
-	public:
-		void print();
-};
-
 
 #include <set>
 #include <vector>
@@ -19,37 +14,6 @@ class ATEAMS {
 
 using namespace std;
 
-
-// Typedefs for SparseRREF (used in Sampling and Persistence).
-typedef unsigned long ulong;
-typedef uint32_t index_t;
-typedef ulong data_t;
-
-// Type for indices and type for data; for now, we use unsigned 32-bit ints for
-// indices (since we're never negative) and signed chars for data (since our
-// fields are never that big).
-typedef int32_t INDEXTYPE;
-typedef char DATATYPE;
-
-// Standard sets, indices
-typedef set<INDEXTYPE> Set;
-typedef map<INDEXTYPE,INDEXTYPE> Map;
-typedef vector<INDEXTYPE> Index;
-
-// Arithmetic.
-typedef vector<DATATYPE> Lookup;
-typedef vector<Lookup> Table;
-
-// Persistence pairs; these are literally just pairs of ints.
-typedef vector<Index> PersistencePairs;
-
-// Matrices.
-typedef map<INDEXTYPE,DATATYPE> Column;
-typedef vector<Column> BoundaryMatrix;
-typedef vector<Index> FlatBoundaryMatrix;
-
-typedef vector<Column> Basis;
-typedef vector<Basis> Bases;
 
 // Utility functions for suppressing output to stderr (specifically because SpaSM
 // outputs diagnostic information at every step!).
@@ -105,6 +69,10 @@ void printvectormap(MapStorage m) {
 
 
 #include "libraries/SparseRREF/sparse_mat.h"
+
+typedef unsigned long ulong;
+typedef uint32_t index_t;
+typedef ulong data_t;
 
 typedef SparseRREF::sparse_mat<data_t, index_t> ZpMatrix;
 typedef SparseRREF::sparse_vec<data_t, index_t> ZpVector;
