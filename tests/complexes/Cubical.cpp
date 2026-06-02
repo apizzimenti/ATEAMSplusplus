@@ -1,11 +1,13 @@
 
-#include "ATEAMS++/complexes/Cubical.h"
+#include <ATEAMS++/complexes/Cubical.h>
 #include <iostream>
 
+using namespace ATEAMS;
 using namespace std;
 
 int main() {
 	vector<int> corners = {3,3};
-	Cubical C(corners, 3, true);
+	Cubical C(corners, true);
+	
 	return 0;
 }
