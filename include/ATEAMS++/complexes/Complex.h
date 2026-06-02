@@ -1,44 +1,40 @@
 
-#ifndef ATEAMS_COMPLEX_H
-#define ATEAMS_COMPLEX_H
+#ifndef ATEAMS_COMPLEXES_COMPLEX_H
+#define ATEAMS_COMPLEXES_COMPLEX_H
 
 #include "ATEAMS++/common.h"
 
-using namespace std;
+#include <vector>
+#include <string>
 
 
-class Complex {
-	public:
-		// IO
-		static void toFile(string filename);
-		static void fromFile(string filename);
+namespace ATEAMS {
+	// Boundary data.
+	struct BoundaryData {
+		ZpMatrices Matrices;		// vector of sparse boundary matrices;
+		ZpVectors Basis;			// vector of sparse vectors (cycle basis);
+		ZpMatrix Full;				// flattened full boundary matrix.
+		std::vector<int> breaks;	// indices of .Full where dimensions change.
+	};
 
-		// Boundary data.
-		struct BoundaryData {
-			ZpMatrices Matrices;		// vector of sparse boundary matrices;
-			ZpVectors Basis;			// vector of sparse vectors (cycle basis);
-			ZpMatrix Full;				// flattened full boundary matrix.
-			vector<int> breaks;			// indices of .Full where dimensions change.
-		};
+	class Complex {
+		public:
+			// IO
+			static void toFile(std::string filename);
+			static void fromFile(std::string filename);
 
-		BoundaryData Boundary;
+			// Build boundary matrices.
+			virtual void constructBoundaryMatrices(Zp F) = 0;
 
-		// Coboundary data.
-		struct CoboundaryData {
-			ZpMatrices Matrices;		// vector of sparse coboundary matrices;
-			ZpVectors Basis;			// vector of sparse covectors (cocycle basis);
-			ZpMatrix Full;				// flattened full coboundary matrix.
-			vector<int> breaks;			// indices of .Full where dimensions change.
-		};
+			BoundaryData Boundary;			// (Co)boundary information.
+			BoundaryData Coboundary;
 
-		CoboundaryData Coboundary;
+			// Diagnostic info?
+			std::vector<int> Cells;				// counts cells per dimension
+			bool periodic;					// is this complex periodic?
 
-		// Diagnostic info?
-		vector<int> Cells;				// counts cells per dimension
-		bool periodic;					// is this complex periodic?
-		
-		// Field, since we need this to build the matrices.
-		Zp F;
-};
+			virtual ~Complex() = default;
+	};
+}
 
 #endif

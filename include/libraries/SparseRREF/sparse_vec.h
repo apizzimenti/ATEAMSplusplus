@@ -36,7 +36,7 @@ namespace SparseRREF {
 
 	// we assume that vec and src are sorted, and the result is also sorted
 	template <typename index_t>
-	static int snmod_vec_add_mul(
+	inline static int snmod_vec_add_mul(
 		snmod_vec<index_t>& vec, const snmod_vec<index_t>& src,
 		const ulong a, const field_t& F) {
 		if (src.nnz() == 0)
@@ -275,7 +275,7 @@ namespace SparseRREF {
 	}
 
 	template <typename index_t>
-	char* snmod_vec_from_binary(sparse_vec<ulong, index_t>& vec, const char* buffer) {
+	inline char* snmod_vec_from_binary(sparse_vec<ulong, index_t>& vec, const char* buffer) {
 		constexpr auto ratio_i = sizeof(index_t) / sizeof(char);
 		constexpr auto ratio_e = sizeof(ulong) / sizeof(char);
 		ulong nnz;

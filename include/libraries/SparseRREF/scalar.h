@@ -366,13 +366,13 @@ namespace Flint {
 	template <builtin_number T, Flint_type S> S operator/(const T r, const S& c) { return (r == 1 ? c.inv() : S(r) / c); }
 	template <typename T, Flint_type S> S pow(const S& c, const T& r) { return c.pow(r); }
 
-	rat_t operator/(const int_t& r, const int_t& c) {
+	inline rat_t operator/(const int_t& r, const int_t& c) {
 		rat_t result;
 		fmpq_set_fmpz_frac(&result._data, &r._data, &c._data);
 		return result;
 	}
 
-	std::pair<int_t, int_t> quotient_remainder(const int_t& a, const int_t& b) {
+	inline std::pair<int_t, int_t> quotient_remainder(const int_t& a, const int_t& b) {
 		int_t q, r;
 		fmpz_fdiv_qr(&q._data, &r._data, &a._data, &b._data);
 		return { q, r };
@@ -381,55 +381,55 @@ namespace Flint {
 
 	// other functions
 
-	int_t factorial(const ulong n) {
+	inline int_t factorial(const ulong n) {
 		int_t result;
 		fmpz_fac_ui(&result._data, n);
 		return result;
 	}
 
-	int_t binomial(const ulong a, const ulong b) {
+	inline int_t binomial(const ulong a, const ulong b) {
 		int_t result;
 		fmpz_bin_uiui(&result._data, a, b);
 		return result;
 	}
 
-	int rational_reconstruct(rat_t& q, const int_t& a, const int_t& mod) {
+	inline int rational_reconstruct(rat_t& q, const int_t& a, const int_t& mod) {
 		return  fmpq_reconstruct_fmpz(&q._data, &a._data, &mod._data);
 	}
 
 	//  Jacobi symbol (a/n), n is positive
-	int jacobi(const int_t& a, const int_t& n) {
+	inline int jacobi(const int_t& a, const int_t& n) {
 		return fmpz_jacobi(&a._data, &n._data);
 	}
 
 	// GCD & LCM
 
-	int_t GCD(const int_t& a, ulong b) {
+	inline int_t GCD(const int_t& a, ulong b) {
 		int_t result;
 		fmpz_gcd_ui(&result._data, &a._data, b);
 		return result;
 	}
 
-	int_t GCD(const int_t& a, const int_t& b) {
+	inline int_t GCD(const int_t& a, const int_t& b) {
 		int_t result;
 		fmpz_gcd(&result._data, &a._data, &b._data);
 		return result;
 	}
 
-	int_t LCM(const int_t& a, const int_t& b) {
+	inline int_t LCM(const int_t& a, const int_t& b) {
 		int_t result;
 		fmpz_lcm(&result._data, &a._data, &b._data);
 		return result;
 	}
 
 	// CRT
-	int_t CRT(const int_t& r1, const int_t& m1, ulong r2, ulong m2) {
+	inline int_t CRT(const int_t& r1, const int_t& m1, ulong r2, ulong m2) {
 		int_t result;
 		fmpz_CRT_ui(&result._data, &r1._data, &m1._data, r2, m2, 0);
 		return result;
 	}
 
-	int_t CRT(const int_t& r1, const int_t& m1, const int_t& r2, const int_t& m2) {
+	inline int_t CRT(const int_t& r1, const int_t& m1, const int_t& r2, const int_t& m2) {
 		int_t result;
 		fmpz_CRT(&result._data, &r1._data, &m1._data, (fmpz*)&r2._data, (fmpz*)&m2._data, 0);
 		return result;

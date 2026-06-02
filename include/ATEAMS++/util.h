@@ -9,8 +9,6 @@
 #include <iostream>
 #include <thread>
 
-using namespace std;
-
 int getch_key() {
 	char buf = 0;
 	struct termios old = {};
@@ -47,27 +45,6 @@ void key_listener(std::atomic<bool>& stop_flag) {
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	}
-}
-
-
-
-template <typename T>
-void _product(vector<vector<T>> sets, vector<vector<T>> &c, vector<T> &active, int depth) {
-	for (int i=0; i<sets[depth].size(); i++) {
-		active[depth] = sets[depth][i];
-		if (depth < sets.size()-1) _product(sets, c, active, depth+1);
-		else c.push_back(active);
-	}
-}
-
-
-template <typename T>
-vector<vector<T>> product(vector<vector<T>> sets) {
-	vector<vector<T>> c;
-	vector<T> active(sets.size());
-	_product<T>(sets, c, active, 0);
-
-	return c;
 }
 
 #endif

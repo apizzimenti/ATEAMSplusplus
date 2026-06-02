@@ -195,7 +195,7 @@ namespace SparseRREF {
 		return result;
 	}
 
-	uint64_t string_to_ull(std::string_view sv) {
+	inline uint64_t string_to_ull(std::string_view sv) {
 		uint64_t result;
 		auto [ptr, ec] = std::from_chars(sv.data(), sv.data() + sv.size(), result);
 		if (ec != std::errc()) {
@@ -204,7 +204,7 @@ namespace SparseRREF {
 		return result;
 	}
 
-	void ustr_write(const std::filesystem::path file, const std::vector<uint8_t>& str) {
+	inline void ustr_write(const std::filesystem::path file, const std::vector<uint8_t>& str) {
 		std::ofstream ofs(file, std::ios::binary);
 		if (!ofs.is_open()) {
 			std::cerr << "Error: u8str_write: file not open." << std::endl;
@@ -264,7 +264,7 @@ namespace SparseRREF {
 	}
 
 	// mulit for
-	void multi_for(
+	inline void multi_for(
 		const std::vector<size_t>& start, 
 		const std::vector<size_t>& end, 
 		const std::function<void(std::vector<size_t>&)> func) {
@@ -468,7 +468,7 @@ namespace SparseRREF {
 		return perm;
 	}
 
-	std::vector<size_t> perm_inverse(const std::vector<size_t>& perm) {
+	inline std::vector<size_t> perm_inverse(const std::vector<size_t>& perm) {
 		size_t n = perm.size();
 		std::vector<size_t> result(n);
 		for (size_t i = 0; i < n; i++)
@@ -476,7 +476,7 @@ namespace SparseRREF {
 		return result;
 	}
 
-	std::vector<size_t> random_perm(size_t n) {
+	inline std::vector<size_t> random_perm(size_t n) {
 		auto permutation = perm_init(n);
 
 		std::random_device rd;
@@ -486,7 +486,7 @@ namespace SparseRREF {
 		return permutation;
 	}
 
-	bool is_identity_perm(const std::vector<size_t>& perm) {
+	inline bool is_identity_perm(const std::vector<size_t>& perm) {
 		size_t n = perm.size();
 		for (size_t i = 0; i < n; i++) {
 			if (perm[i] != i)
@@ -496,7 +496,7 @@ namespace SparseRREF {
 	}
 
 	template <typename T>
-	void permute(const std::vector<size_t>& P, T* A, size_t block_size = 1) {
+	inline void permute(const std::vector<size_t>& P, T* A, size_t block_size = 1) {
 		// If P is already sorted, no need to permute
 		if (std::is_sorted(P.begin(), P.end())) {
 			return;
@@ -601,7 +601,7 @@ namespace SparseRREF {
 		}
 	};
 
-	bool mmap_file(const char* path, MMapFile& out) {
+	inline bool mmap_file(const char* path, MMapFile& out) {
 #if defined(_WIN32)
 		out.hFile = CreateFileA(path, GENERIC_READ, FILE_SHARE_READ, nullptr,
 			OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);

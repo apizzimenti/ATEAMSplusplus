@@ -82,7 +82,7 @@ namespace WXF_PARSER {
 		uint8_t, uint16_t, uint32_t, uint64_t,
 		float, double, bool>;
 
-	NumberType select_type(int index) {
+	inline NumberType select_type(int index) {
 		switch (index) {
 		case 0: return int8_t(0);
 		case 1: return int16_t(0);
@@ -710,7 +710,7 @@ namespace WXF_PARSER {
 		}
 	};
 
-	void node_to_ustr(std::vector<uint8_t>& res, const std::vector<TOKEN>& tokens, const ExprNode& node) {
+	inline void node_to_ustr(std::vector<uint8_t>& res, const std::vector<TOKEN>& tokens, const ExprNode& node) {
 		auto& token = tokens[node.index];
 
 		switch (node.type) {
@@ -790,7 +790,7 @@ namespace WXF_PARSER {
 		//}
 	};
 
-	ExprTree MakeExprTree(Parser& parser) {
+	inline ExprTree MakeExprTree(Parser& parser) {
 		ExprTree tree;
 		if (parser.err != 0)
 			return tree;
@@ -883,25 +883,25 @@ namespace WXF_PARSER {
 		return tree;
 	}
 
-	ExprTree MakeExprTree(const uint8_t* str, const size_t len) {
+	inline ExprTree MakeExprTree(const uint8_t* str, const size_t len) {
 		Parser parser(str, len);
 		parser.parseExpr();
 		return MakeExprTree(parser);
 	}
 
-	ExprTree MakeExprTree(const std::vector<uint8_t>& str) {
+	inline ExprTree MakeExprTree(const std::vector<uint8_t>& str) {
 		Parser parser(str);
 		parser.parseExpr();
 		return MakeExprTree(parser);
 	}
 
-	ExprTree MakeExprTree(const std::string_view str) {
+	inline ExprTree MakeExprTree(const std::string_view str) {
 		Parser parser(reinterpret_cast<const uint8_t*>(str.data()), str.size());
 		parser.parseExpr();
 		return MakeExprTree(parser);
 	}
 
-	ExprTree MakeExprTree(const std::filesystem::path filename) {
+	inline ExprTree MakeExprTree(const std::filesystem::path filename) {
 		if (!std::filesystem::exists(filename)) {
 			std::cerr << "Error: File does not exist!" << std::endl;
 			return ExprTree();

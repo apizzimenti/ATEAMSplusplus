@@ -2235,7 +2235,7 @@ namespace SparseRREF {
 	}
 
 	
-	static std::pair<char*, char*> snmod_mat_to_binary(sparse_mat<ulong>& mat) {
+	static inline std::pair<char*, char*> snmod_mat_to_binary(sparse_mat<ulong>& mat) {
 		auto ratio_i = sizeof(slong) / sizeof(char);
 		auto ratio_e = sizeof(ulong) / sizeof(char);
 		auto nnz = mat.nnz();
@@ -2250,7 +2250,7 @@ namespace SparseRREF {
 	}
 
 	
-	sparse_mat<ulong> snmod_mat_from_binary(char* buffer) {
+	inline sparse_mat<ulong> snmod_mat_from_binary(char* buffer) {
 		auto ratio_i = sizeof(slong) / sizeof(char);
 		auto ratio_e = sizeof(ulong) / sizeof(char);
 		char* ptr = buffer;

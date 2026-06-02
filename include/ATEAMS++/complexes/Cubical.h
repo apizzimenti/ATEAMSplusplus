@@ -1,24 +1,32 @@
 
-#ifndef ATEAMS_COMPLEX_CUBICAL_H
-#define ATEAMS_COMPLEX_CUBICAL_H
+#ifndef ATEAMS_COMPLEXES_CUBICAL_H
+#define ATEAMS_COMPLEXES_CUBICAL_H
 
-#include "ATEAMS++/common.h"
 #include "ATEAMS++/complexes/Complex.h"
 
-class Cubical: public Complex {
-	public:
-		string kind = "cubical";						// what kind of complex is this?
-		vector<int> corners;							// "corners" of the lattice.
+#include <vector>
+#include <string>
+#include <map>
 
-		Cubical(vector<int> corners, int F, bool periodic);	// constructor
-};
+namespace ATEAMS {
+	class Cubical: public Complex {
+		public:
+			std::string kind = "cubical";							// what kind of complex is this?
+			std::vector<int> corners;								// "corners" of the lattice.
+
+			Cubical(std::vector<int> corners, bool periodic);		// constructor
+
+			void constructBoundaryMatrices(Zp F) override;		// construct boundary matrices.
+	};
 
 
-// Type declarations for cubical complexes.
-typedef uint16_t bitstring;
-typedef vector<vector<vector<bitstring>>> HammingCube;
+	// Type declarations used only for constructing cubical complexes.
+	typedef uint16_t bitstring;
+	typedef std::vector<std::vector<std::vector<bitstring>>> HammingCube;
 
-typedef vector<vector<vector<int>>> HammingCubeBoundary;
-typedef HammingCubeBoundary Lattice;
+	typedef std::vector<std::vector<std::vector<int>>> HammingCubeBoundary;
+	typedef HammingCubeBoundary Lattice;
+	typedef std::map<std::vector<int>,int> indexer;
+}
 
 #endif
