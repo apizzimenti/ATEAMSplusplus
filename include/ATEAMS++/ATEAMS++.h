@@ -4,4 +4,7 @@
 
 namespace ATEAMS { };
 
+#include "ATEAMS++/complexes/complexes.h"
+#include "ATEAMS++/models/models.h"
+
 #endif

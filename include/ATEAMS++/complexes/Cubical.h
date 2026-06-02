@@ -2,6 +2,7 @@
 #ifndef ATEAMS_COMPLEXES_CUBICAL_H
 #define ATEAMS_COMPLEXES_CUBICAL_H
 
+#include "ATEAMS++/common.h"
 #include "ATEAMS++/complexes/Complex.h"
 
 #include <vector>

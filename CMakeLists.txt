@@ -7,8 +7,12 @@ project(ATEAMS++
 	LANGUAGES C CXX
 )
 
-# Do this instead of requiring c++23, since we need (llvm) clang for this to work.
-add_compile_options(-std=c++23)
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# # Do this instead of requiring c++23, since we need (llvm) clang for this to work.
+# add_compile_options(-fexperimental-library)
 
 # Require a bunch of packages.
 find_package(PkgConfig REQUIRED)
@@ -22,14 +26,15 @@ pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 # Add the library.
 add_library(ATEAMS++ SHARED
 	src/complexes/Cubical.cpp
+	src/models/SwendsenWang.cpp
 )
 
 set(ATEAMS++ PROPERTIES VERSION ${PROJECT_VERSION})
-# set_target_properties(ATEAMS++ PROPERTIES PUBLIC_HEADER include/ATEAMS++/ATEAMS++.h)
+set_target_properties(ATEAMS++ PROPERTIES PUBLIC_HEADER include/ATEAMS++/ATEAMS++.h)
 
 target_link_libraries(ATEAMS++ PUBLIC PkgConfig::FLINT)
 target_include_directories(ATEAMS++ PUBLIC include)
-target_include_directories(ATEAMS++ PRIVATE src)
+target_include_directories(ATEAMS++ PUBLIC src)
 
 
 # Tests.
@@ -42,5 +47,15 @@ target_link_libraries(complexes.Cubical PRIVATE ATEAMS++)
 add_test(
 	NAME complexes.Cubical
 	COMMAND $<TARGET_FILE:complexes.Cubical>
+)
+
+
+# Models.
+add_executable(models.SwendsenWang tests/models/SwendsenWang.cpp)
+target_link_libraries(models.SwendsenWang PRIVATE ATEAMS++)
+
+add_test(
+	NAME models.SwendsenWang
+	COMMAND $<TARGET_FILE:models.SwendsenWang>
 )
 
