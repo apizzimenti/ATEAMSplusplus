@@ -8,9 +8,10 @@
 namespace ATEAMS {
 	struct ModelParameters {
 		int dimension;
+		bool _DEBUG = false;
 	};
 
-	struct ModelState { };
+	struct ModelState {};
 
 
 	class Model {

@@ -1,10 +1,13 @@
 
+#include "ATEAMS++/util.h"
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/models/SwendsenWang.h"
+#include "ATEAMS++/arithmetic/kernel.h"
 #include "libraries/SparseRREF/sparse_mat.h"
 
 #include <random>
 #include <algorithm>
+#include <cassert>
 
 using namespace ATEAMS;
 using namespace std;
@@ -18,6 +21,13 @@ ZpVector SwendsenWang::sample(int t) {
 	double T = this->parameters.temperatureFunction(t);
 	double p = 1-exp(T);
 
+	// If we're debugging, check that the inclusion probability is actually within
+	// acceptable parameters.
+	if (this->parameters._DEBUG) {
+		cerr << std::format("verifying 0 ≤ {} ≤ 1", p) << endl;
+		assert((0 <= p) && (p <= 1));
+	}
+
 	// Perform independent Bernoulli trials over each (d-1)-cell to decide whether
 	// it gets included in the computation. We do this by performing a (sparse!) matrix
 	// multiplication, then checking which of the entries are zero.
@@ -30,28 +40,59 @@ ZpVector SwendsenWang::sample(int t) {
 	);
 	coefficients.compress();
 
-	// The zero entries are those that do *not* show up in the array of .indices.
-	// TODO it's unclear whether this is efficient at all!! Probably isn't, so
-	// should change.
+	// The zero entries are those that don't show up in the indices, so we
+	// automatically exclude these.
 	int N = this->complex->Cells[d];
-	vector<int> include(N);
-	iota(begin(include), end(include), 0);
-
+	set<size_t> exclude;
+	
 	if (coefficients.size() > 0) {
-		for (int i=0; i < coefficients.size(); i++) {
-			include.erase(remove(include.begin(), include.end(), coefficients.indices[i]), include.end());
-		}
+		for (int e=0; e < coefficients.size(); e++) exclude.insert((size_t)e);
 	}
 
-	// Now, get a submatrix view
+	// We then iterate over the remaining indices and flip a weighted coin (i.e.
+	// perform a density-p Bernoulli trial) to decide whether to keep that
+	// particular row (corresponding to a d-cell on which the current cochain
+	// evaluates to 0).
+	for (int i=0; i<N; i++) {
+		if (this->unituniform(this->RNG) > p) exclude.insert(i);
+	}
 
-	ZpVector r;
+	// Now, sample from the kernel.
+	ZpVector sample = submatrixKernelSample(
+		this->complex->Coboundary.Matrices[d],	// full coboundary matrix
+		this->field,							// field
+		exclude,								// rows to exclude
+		this->intuniform,						// uniform random over field
+		this->RNG,								// RNG
+		this->parameters._DEBUG					// debugging
+	);
 
-	return r;
+	// If we're debugging, check whether we actually sampled from the kernel.
+	if (this->parameters._DEBUG) {
+		// Copy and pare down the coboundary matrix.
+		ZpMatrix cbd = this->complex->Coboundary.Matrices[d];
+		for (auto i : exclude) cbd[i].zero();
+		cbd.clear_zero_row();
+		cbd.compress();
+
+		// Multiply, and check whether there's anything in the resulting vector;
+		// there shouldn't be (i.e. it should have size 0).
+		ZpVector outcome = sparse_mat_dot_sparse_vec<data_t, index_t>(
+			cbd,
+			sample,
+			this->field
+		);
+
+		assert(outcome.size() < 1);
+	}
+
+	this->state.cochain = sample;
+	
+	return sample;
 }
 
 /**
- * Creates an initial cochain of all zeros.
+ * Creates an initial cochain of randoms (in the appropriate range).
  */
 void SwendsenWang::initial() {
 	size_t dimension = this->parameters.dimension-1;
@@ -87,7 +128,7 @@ SwendsenWang::SwendsenWang(Complex* complex, SwendsenWangParameters parameters)
 
 	// Initialize a random number generator.
 	std::random_device rd;
-	this->RNG = std::mt19937_64(rd());
+	this->RNG = std::mt19937(rd());
 	this->unituniform = std::uniform_real_distribution<double>(0,1);
 	this->intuniform = std::uniform_int_distribution<int>(0,this->parameters.field);
 }

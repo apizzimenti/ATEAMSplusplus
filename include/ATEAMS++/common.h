@@ -41,6 +41,16 @@ void printmap(MapStorage m) {
 	std::cout << " }" << std::endl;
 }
 
+// Helper method for printing `set`s.'
+template <typename t>
+void printset(std::set<t> A) {
+	std::cout << "{ ";
+	for (const auto& a : A) {
+		std::cout << (int)a << ", ";
+	}
+	std::cout << " }" << std::endl;
+}
+
 // Helper method for printing `vector`s.
 template <typename t>
 void printvector(std::vector<t> v) {
@@ -76,6 +86,8 @@ typedef SparseRREF::sparse_mat<data_t, index_t> ZpMatrix;
 typedef SparseRREF::sparse_mat_subview<data_t, index_t> ZpSubmatrix;
 typedef SparseRREF::sparse_vec<data_t, index_t> ZpVector;
 typedef SparseRREF::field_t Zp;
+
+typedef SparseRREF::pivot_t<index_t> ZpPivot;
 
 typedef std::vector<ZpMatrix> ZpMatrices;
 typedef std::vector<ZpVector> ZpVectors;

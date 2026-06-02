@@ -6,5 +6,6 @@ namespace ATEAMS { };
 
 #include "ATEAMS++/complexes/complexes.h"
 #include "ATEAMS++/models/models.h"
+#include "ATEAMS++/arithmetic/arithmetic.h"
 
 #endif

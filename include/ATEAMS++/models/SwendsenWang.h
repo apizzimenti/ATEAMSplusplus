@@ -9,7 +9,6 @@
 
 namespace ATEAMS {
 	struct SwendsenWangParameters : ModelParameters {
-		bool _DEBUG = false;
 		int field = 2;
 		std::function<double(int)> temperatureFunction;
 	};
@@ -37,7 +36,7 @@ namespace ATEAMS {
 			void delegateComputation();
 
 			// random number generation
-			std::mt19937_64 RNG;
+			std::mt19937 RNG;
 			std::uniform_real_distribution<double> unituniform;
 			std::uniform_int_distribution<int> intuniform;
 	};

@@ -9,7 +9,7 @@
 #include <iostream>
 #include <thread>
 
-int getch_key() {
+inline int getch_key() {
 	char buf = 0;
 	struct termios old = {};
 	if (tcgetattr(STDIN_FILENO, &old) < 0) return -1;
@@ -35,7 +35,7 @@ int getch_key() {
 }
 
 
-void key_listener(std::atomic<bool>& stop_flag) {
+inline void key_listener(std::atomic<bool>& stop_flag) {
 	while (!stop_flag) {
 		int c = getch_key();
 		if (c == 17) { // Ctrl+Q
@@ -46,5 +46,6 @@ void key_listener(std::atomic<bool>& stop_flag) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	}
 }
+
 
 #endif

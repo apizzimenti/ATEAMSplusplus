@@ -11,8 +11,9 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+
 # # Do this instead of requiring c++23, since we need (llvm) clang for this to work.
-# add_compile_options(-fexperimental-library)
+add_compile_options(-g -O3)
 
 # Require a bunch of packages.
 find_package(PkgConfig REQUIRED)
@@ -25,6 +26,7 @@ pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 
 # Add the library.
 add_library(ATEAMS++ SHARED
+	src/arithmetic/kernel.cpp
 	src/complexes/Cubical.cpp
 	src/models/SwendsenWang.cpp
 )
