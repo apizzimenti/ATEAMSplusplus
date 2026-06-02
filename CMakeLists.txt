@@ -18,8 +18,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(PkgConfig REQUIRED)
 find_package(OpenMP REQUIRED)
 
-pkg_check_modules(GIVARO REQUIRED IMPORTED_TARGET givaro)
-pkg_check_modules(FFLAS_FFPACK REQUIRED IMPORTED_TARGET fflas-ffpack)
+# pkg_check_modules(GIVARO REQUIRED IMPORTED_TARGET givaro)
+# pkg_check_modules(FFLAS_FFPACK REQUIRED IMPORTED_TARGET fflas-ffpack)
 pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 
 

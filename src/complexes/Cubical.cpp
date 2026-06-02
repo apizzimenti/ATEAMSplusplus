@@ -1,12 +1,34 @@
 
 #include "ATEAMS++/complexes/Cubical.h"
-#include "ATEAMS++/util.h"
 
 #include <cmath>
 #include <algorithm>
 #include <ranges>
+#include <vector>
 
 using namespace std;
+using namespace ATEAMS;
+
+namespace ATEAMS {
+	template <typename T>
+	void _product(vector<vector<T>> sets, vector<vector<T>> &c, vector<T> &active, int depth) {
+		for (int i=0; i<sets[depth].size(); i++) {
+			active[depth] = sets[depth][i];
+			if (depth < sets.size()-1) _product(sets, c, active, depth+1);
+			else c.push_back(active);
+		}
+	}
+
+
+	template <typename T>
+	vector<vector<T>> product(vector<vector<T>> sets) {
+		vector<vector<T>> c;
+		vector<T> active(sets.size());
+		_product<T>(sets, c, active, 0);
+
+		return c;
+	}
+} // namespace ATEAMS, since these may also be defined elsewhere
 
 
 template <typename T>
@@ -113,9 +135,10 @@ HammingCubeBoundary hammingBoundary(HammingCube cube) {
 	return Boundary;
 }
 
-
-typedef map<vector<int>,int> indexer;
-
+/**
+ * Creates a vector of indexers --- std::maps that take vectors to indices --- to
+ * construct the full boundary matrix.
+ */
 vector<indexer> protoCubicalLattice(vector<int> corners, HammingCube Cube, HammingCubeBoundary Boundary, bool periodic) {
 	vector<indexer> proto(corners.size()+1);
 
@@ -128,7 +151,7 @@ vector<indexer> protoCubicalLattice(vector<int> corners, HammingCube Cube, Hammi
 	}
 
 	// Get all the corner points.
-	vector<vector<int>> coordinates = product<int>(axes);
+	vector<vector<int>> coordinates = ATEAMS::product<int>(axes);
 
 	// For each corner point, figure out its surrounding points, then determine
 	// faces/edges/etc. If we're using periodic boundary conditions, we need to
@@ -193,7 +216,9 @@ vector<indexer> protoCubicalLattice(vector<int> corners, HammingCube Cube, Hammi
 	return proto;
 }
 
-
+/**
+ * From a proto-boundary (a vector of indexers), construct the full boundary.
+ */
 Lattice cubicalLattice(vector<indexer> proto) {
 	Lattice cubical(proto.size());
 
@@ -217,8 +242,12 @@ Lattice cubicalLattice(vector<indexer> proto) {
 }
 
 
-ZpMatrices sparseBoundaryMatrices(Lattice L, int F) {
+/**
+ * Using the full (flat) boundary matrices, make SparseRREF matrices.
+ */
+ZpMatrices sparseBoundaryMatrices(Lattice L, Zp F) {
 	ZpMatrices Boundary(L.size());
+	int mod = (int)F.mod.n;
 
 	for (int d=L.size()-1; d > 0; d--) {
 		// Get the dimensions of the matrix; instantiate.
@@ -232,7 +261,7 @@ ZpMatrices sparseBoundaryMatrices(Lattice L, int F) {
 				ZpVector& matrow = B.rows[row];
 				matrow.push_back(
 					(index_t)col,
-					(data_t)((bool)(i%2) ? F-1 : 1)
+					(data_t)((bool)(i%2) ? mod-1 : 1)
 				);
 			}
 		}
@@ -245,30 +274,39 @@ ZpMatrices sparseBoundaryMatrices(Lattice L, int F) {
 	return Boundary;
 }
 
-Cubical::Cubical(vector<int> corners, int F, bool periodic=true) {
-	this->corners = corners;
-	this->periodic = periodic;
-	
-	const Zp GFp(SparseRREF::FIELD_Fp, F);
-	this->F = GFp;
-
+/**
+ * Constructs boundary matrices over the specified field. The field does NOT
+ * become a property of the Complex. Moreover, this removes the necessity for
+ * doing any of these computations until someone(/thing) actually needs them.
+ */
+void Cubical::constructBoundaryMatrices(Zp F) {
 	// Create a Hamming cube of the appropriate dimension.
-	HammingCube cube = hamming(corners.size());
+	HammingCube cube = hamming(this->corners.size());
 	HammingCubeBoundary cubeBoundary = hammingBoundary(cube);
 
 	// Compute the proto-boundary (which includes a vertex map), and get the
 	// flat boundary matrices for each dimension.
-	vector<indexer> protoBoundary = protoCubicalLattice(corners, cube, cubeBoundary, periodic);
+	vector<indexer> protoBoundary = protoCubicalLattice(corners, cube, cubeBoundary, this->periodic);
 	Lattice L = cubicalLattice(protoBoundary);
 
 	// Get cell counts.
-	for (int d=0; d<L.size(); d++) this->Cells.push_back(L[d].size());
+	for (int d=0; d < L.size(); d++) this->Cells.push_back(L[d].size());
 
 	// Get the sparse (co)boundary matrices.
 	this->Boundary.Matrices = sparseBoundaryMatrices(L, F);
 	this->Coboundary.Matrices = ZpMatrices(this->Boundary.Matrices.size());
 
-	for (int d=0; d<this->Boundary.Matrices.size(); d++) {
+	for (int d=0; d < this->Boundary.Matrices.size(); d++) {
 		this->Coboundary.Matrices[d] = this->Boundary.Matrices[d].transpose();
+		this->Coboundary.Matrices[d].compress();
 	}
+}
+
+
+/**
+ * Default constructor.
+ */
+Cubical::Cubical(vector<int> corners, bool periodic=true) {
+	this->corners = corners;
+	this->periodic = periodic;
 }

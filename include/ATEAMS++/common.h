@@ -73,6 +73,7 @@ typedef uint32_t index_t;
 typedef ulong data_t;
 
 typedef SparseRREF::sparse_mat<data_t, index_t> ZpMatrix;
+typedef SparseRREF::sparse_mat_subview<data_t, index_t> ZpSubmatrix;
 typedef SparseRREF::sparse_vec<data_t, index_t> ZpVector;
 typedef SparseRREF::field_t Zp;
 
@@ -102,6 +103,5 @@ void printSparseRREFmat(Matrix A) {
 		std::cout << std::endl;
 	}
 }
-
 
 #endif
