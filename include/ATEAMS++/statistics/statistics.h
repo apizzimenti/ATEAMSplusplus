@@ -6,7 +6,7 @@
 #include "ATEAMS++/statistics/Chain.h"
 
 namespace ATEAMS {
-	/** Statistical support. */
+	/** @brief Statistical support. */
 	namespace statistics { };
 }
 

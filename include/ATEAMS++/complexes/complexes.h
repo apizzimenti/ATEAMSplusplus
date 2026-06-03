@@ -6,9 +6,7 @@
 #include "ATEAMS++/complexes/Cubical.h"
 
 namespace ATEAMS {
-	/**
-	 * Data structures representing topological complexes.
-	 */
+	/** @brief Data structures representing topological complexes. */
 	namespace complexes { };
 };
 
