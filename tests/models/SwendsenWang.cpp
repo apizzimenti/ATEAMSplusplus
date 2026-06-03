@@ -13,10 +13,9 @@ int main() {
 	complexes::Cubical C(corners, true);
 
 	models::SwendsenWangParameters params;
-	params.field = 3;
+	params.field = 11;
 	params.temperatureFunction = statistics::selfdual(params.field);
 	params.dimension = 2;
-	params.DEBUG = true;
 
 	models::SwendsenWang SW(&C, params);
 	SW.initialize();
@@ -24,7 +23,7 @@ int main() {
 	ATEAMS::arithmetic::ThreadOptions options;
 	std::thread listener = options.spinUp();
 	
-	for (int i=0; i < 100; i++) {
+	for (int i=0; i < 1000; i++) {
 		SW.sample(i, options);
 	}
 
