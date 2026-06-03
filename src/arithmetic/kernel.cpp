@@ -5,11 +5,10 @@
 #include "libraries/SparseRREF/sparse_mat.h"
 
 using namespace std;
+using namespace ATEAMS;
 
-/**
- * Creates a random linear combination of the columns of the kernel passed to it.
- */
-ZpVector ATEAMS::randomLinearCombination(
+
+ZpVector arithmetic::randomLinearCombination(
 	ZpMatrix kernel,
 	const Zp& F,
 	std::uniform_int_distribution<int>& intuniform,
@@ -24,27 +23,15 @@ ZpVector ATEAMS::randomLinearCombination(
 }
 
 
-/**
- * Given a coboundary matrix and a list of rows to exclude, samples a uniform
- * random element of the kernel of the coboundary matrix with those rows excluded.
- */
-ZpVector ATEAMS::submatrixKernelSample(
+ZpVector arithmetic::submatrixKernelSample(
 	ZpMatrix coboundary,
 	const Zp& F,
 	set<size_t> exclude,
 	std::uniform_int_distribution<int>& intuniform,
 	std::mt19937& RNG,
-	bool _DEBUG
+	arithmetic::ThreadOptions& options,
+	bool DEBUG
 ) {
-	// FLINT memory stuff.
-	Flint::set_memory_functions();
-	SparseRREF::rref_option_t opt;
-	opt->pool.reset();
-	opt->method = 0;
-
-	// Listen for the "abort" event.
-	std::thread listener(key_listener, ref(opt->abort));
-
 	// Shrink the coboundary matrix to the appropriate size.
 	for (auto i : exclude) coboundary[i].zero();
 	coboundary.clear_zero_row(); // TODO check the performance of this!
@@ -53,18 +40,13 @@ ZpVector ATEAMS::submatrixKernelSample(
 	vector<vector<ZpPivot>> pivots;
 
 	// RREF (i.e. find the pivots for) the subcoboundary matrix.
-	if (_DEBUG) cerr << std::format("RREFing {}x{} coboundary matrix", coboundary.nrow, coboundary.ncol) << endl;
-	pivots = SparseRREF::sparse_mat_rref<data_t, index_t>(coboundary, F, opt);
+	if (DEBUG) cerr << std::format("RREFing {}x{} coboundary matrix", coboundary.nrow, coboundary.ncol) << endl;
+	pivots = SparseRREF::sparse_mat_rref<data_t, index_t>(coboundary, F, options.opt);
 
 	// Find a kernel for the subcoboundary matrix.
-	if (_DEBUG) cerr << std::format("computing kernel of {}x{} coboundary matrix", coboundary.nrow, coboundary.ncol) << endl;
-	ZpMatrix kernel = SparseRREF::sparse_mat_rref_kernel<data_t, index_t>(coboundary, pivots, F, opt);
-
-	// Spin down FLINT memory stuff.
-	opt->abort = true;
-	Flint::clear_cache();
-	listener.join();
+	if (DEBUG) cerr << std::format("computing kernel of {}x{} coboundary matrix", coboundary.nrow, coboundary.ncol) << endl;
+	ZpMatrix kernel = SparseRREF::sparse_mat_rref_kernel<data_t, index_t>(coboundary, pivots, F, options.opt);
 
 	// Return a random linear combination of the columns.
-	return ATEAMS::randomLinearCombination(kernel, F, intuniform, RNG);
+	return arithmetic::randomLinearCombination(kernel, F, intuniform, RNG);
 }

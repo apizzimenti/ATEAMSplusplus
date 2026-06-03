@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2024 Zhenjie Li (Li, Zhenjie)
+	Copyright (C) 2024-2025 Zhenjie Li (Li, Zhenjie)
 
 	This file is part of SparseRREF. The SparseRREF is free software:
 	you can redistribute it and/or modify it under the terms of the MIT
@@ -12,12 +12,12 @@
 #include <algorithm>
 #include <array>
 #include <bit>
-#include <charconv> 
+#include <charconv>
 #include <chrono>
 #include <climits>
 #include <cmath>
 #include <cstring>
-#include <execution> 
+#include <execution>
 #include <filesystem>
 #include <fstream>
 #include <iomanip>
@@ -28,13 +28,13 @@
 #include <queue>
 #include <random>
 #include <ranges>
-#include <set>
 #include <span>
 #include <sstream>
 #include <string>
 #include <tuple>
 #include <unordered_set>
 #include <vector>
+#include <variant>
 
 #include "thread_pool.hpp"
 
@@ -57,7 +57,10 @@
 
 namespace SparseRREF {
 	// version
-	static const char version[] = "v0.3.4";
+	static const char version[] = "v0.3.6";
+	static const int version_major = 0;
+	static const int version_minor = 3;
+	static const int version_patch = 6;
 
 	enum SPARSE_FILE_TYPE {
 		SPARSE_FILE_TYPE_PLAIN,
@@ -110,6 +113,38 @@ namespace SparseRREF {
 	}
 #endif
 
+	// memory info
+#ifdef USE_MIMALLOC
+	struct memory_info_t {
+		size_t elapsed_msecs;
+		size_t user_msecs;
+		size_t system_msecs;
+		size_t current_rss;
+		size_t peak_rss;
+		size_t current_commit;
+		size_t peak_commit;
+		size_t page_faults;
+	};
+
+	inline memory_info_t get_memory_info() {
+		memory_info_t info;
+		mi_process_info(
+			&info.elapsed_msecs,
+			&info.user_msecs,
+			&info.system_msecs,
+			&info.current_rss,
+			&info.peak_rss,
+			&info.current_commit,
+			&info.peak_commit,
+			&info.page_faults);
+		return info;
+	}
+
+	inline void reset_memory_info() {
+		mi_stats_reset();
+	}
+#endif
+
 	template <typename T>
 	void s_copy(T* des, const T* ini, const size_t size) {
 		if (des == ini)
@@ -117,11 +152,9 @@ namespace SparseRREF {
 		std::copy(ini, ini + size, des);
 	}
 
-	// thread
-	using thread_pool = BS::thread_pool<>; // thread pool
-	inline size_t thread_id() {
-		return BS::this_thread::get_index().value();
-	}
+	// thread pool
+	using thread_pool = BS::thread_pool<>;
+	inline size_t thread_id() { return BS::this_thread::get_index().value(); }
 
 	// rref_option
 	// method 0: right and left search
@@ -140,15 +173,9 @@ namespace SparseRREF {
 	};
 	using rref_option_t = rref_option[1];
 
-	inline size_t ctz(uint64_t x) {
-		return std::countr_zero(x);
-	}
-	inline size_t clz(uint64_t x) {
-		return std::countl_zero(x);
-	}
-	inline size_t popcount(uint64_t x) {
-		return std::popcount(x);
-	}
+	inline size_t ctz(uint64_t x) { return std::countr_zero(x); }
+	inline size_t clz(uint64_t x) { return std::countl_zero(x); }
+	inline size_t popcount(uint64_t x) { return std::popcount(x); }
 
 	template <typename T>
 	inline uint8_t minimal_signed_bits(T x) noexcept {
@@ -166,23 +193,25 @@ namespace SparseRREF {
 		return 3; // for uint64_t
 	}
 
+	// define a special sval for index types, used for flags
 	template <typename T> requires (std::is_integral_v<T>)
-	constexpr T index_sval() { 
+		constexpr T index_sval() {
 		if constexpr (std::is_signed_v<T>) {
 			return (T)(-1);
-		} else {
+		}
+		else {
 			return std::numeric_limits<T>::max();
 		}
 	}
 
 	// string
-	inline void DeleteSpaces(std::string& str) {
+	inline void delete_space(std::string& str) {
 		str.erase(std::remove_if(str.begin(), str.end(),
 			[](unsigned char x) { return std::isspace(x); }),
 			str.end());
 	}
 
-	inline std::vector<std::string> SplitString(const std::string& s, const std::string delim) {
+	inline std::vector<std::string> split_string(const std::string& s, const std::string delim) {
 		size_t start = 0;
 		size_t end = s.find(delim);
 		std::vector<std::string> result;
@@ -207,7 +236,7 @@ namespace SparseRREF {
 	inline void ustr_write(const std::filesystem::path file, const std::vector<uint8_t>& str) {
 		std::ofstream ofs(file, std::ios::binary);
 		if (!ofs.is_open()) {
-			std::cerr << "Error: u8str_write: file not open." << std::endl;
+			std::cerr << "Error: ustr_write: file not open." << std::endl;
 			return;
 		}
 		ofs.write((const char*)str.data(), str.size());
@@ -228,7 +257,7 @@ namespace SparseRREF {
 	}
 
 	// some algorithms
-	template <typename T> std::vector<T> difference(std::vector<T> l) {
+	template <typename T> std::vector<T> difference(const std::vector<T>& l) {
 		std::vector<T> result;
 		for (size_t i = 1; i < l.size(); i++) {
 			result.push_back(l[i] - l[i - 1]);
@@ -264,10 +293,11 @@ namespace SparseRREF {
 	}
 
 	// mulit for
-	inline void multi_for(
-		const std::vector<size_t>& start, 
-		const std::vector<size_t>& end, 
-		const std::function<void(std::vector<size_t>&)> func) {
+	template <typename Func>
+	void multi_for(
+		const std::vector<size_t>& start,
+		const std::vector<size_t>& end,
+		Func&& func) {
 
 		if (start.size() != end.size()) {
 			std::cerr << "Error: start and end size not match." << std::endl;
@@ -281,7 +311,7 @@ namespace SparseRREF {
 			func(index);
 
 			for (int i = nt - 1; i > -2; i--) {
-				if (i == -1) 
+				if (i == -1)
 					return;
 				index[i]++;
 				if (index[i] < end[i])
@@ -312,35 +342,47 @@ namespace SparseRREF {
 			std::fill(data.begin(), data.end(), 0);
 		}
 
-		void resize(size_t size) {
+		void resize(const size_t size) {
 			data.resize(size / 64 + 1);
 			clear();
 		}
 
-		bit_array(size_t size) {
+		bit_array(const size_t size) {
 			resize(size);
 			clear();
 		}
 
-		void insert(size_t val) {
+		void insert(const size_t val) {
 			auto idx = val >> 6;
 			auto pos = val & 63;
 			data[idx] |= mask_table[pos];
 		}
 
-		bool test(size_t val) const {
+		bool test(const size_t val) const {
 			auto idx = val >> 6;
 			auto pos = val & 63;
 			return data[idx] & mask_table[pos];
 		}
 
-		void erase(size_t val) {
+		void erase(const size_t val) {
 			auto idx = val >> 6;
 			auto pos = val & 63;
 			data[idx] &= ~mask_table[pos];
 		}
 
-		bool operator[](size_t idx) const {
+		void xor_insert(const size_t val) {
+			auto idx = val >> 6;
+			auto pos = val & 63;
+			data[idx] ^= mask_table[pos];
+		}
+
+		void set(const size_t val, const bool b) {
+			auto idx = val >> 6;
+			auto pos = val & 63;
+			data[idx] = (data[idx] & ~mask_table[pos]) | (uint64_t(b) << pos);
+		}
+
+		bool operator[](const size_t idx) const {
 			return test(idx);
 		}
 
@@ -496,7 +538,7 @@ namespace SparseRREF {
 	}
 
 	template <typename T>
-	inline void permute(const std::vector<size_t>& P, T* A, size_t block_size = 1) {
+	void permute(const std::vector<size_t>& P, T* A, size_t block_size = 1) {
 		// If P is already sorted, no need to permute
 		if (std::is_sorted(P.begin(), P.end())) {
 			return;
@@ -510,7 +552,7 @@ namespace SparseRREF {
 					continue;
 
 				size_t j = i;
-				for (size_t k = 0; k < block_size; ++k) 
+				for (size_t k = 0; k < block_size; ++k)
 					temp_block[k] = std::move(A[j * block_size + k]);
 
 				while (!visited[j]) {
@@ -635,6 +677,23 @@ namespace SparseRREF {
 #endif
 	}
 
+	inline std::vector<uint8_t> file_to_ustr(const std::filesystem::path filename) {
+		if (!std::filesystem::exists(filename)) {
+			std::cerr << "Error: File does not exist!" << std::endl;
+			return std::vector<uint8_t>();
+		}
+		std::ifstream file(filename, std::ios::binary | std::ios::ate);
+		std::streamsize size = file.tellg();
+		file.seekg(0, std::ios::beg);
+
+		std::vector<uint8_t> buffer(size);
+		if (!file.read((char*)buffer.data(), size)) {
+			std::cerr << "Failed to read file!" << std::endl;
+			return std::vector<uint8_t>();
+		}
+
+		return buffer;
+	}
 
 } // namespace SparseRREF
 

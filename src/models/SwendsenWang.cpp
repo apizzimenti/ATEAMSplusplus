@@ -12,18 +12,15 @@
 using namespace ATEAMS;
 using namespace std;
 
-/**
- * Samples from the conditional distribution f ~ PLGT(- | P), where P is a
- * subcomplex of the ambient complex on which f is a cocycle. 
- */
-ZpVector SwendsenWang::sample(int t) {
+
+ZpVector models::SwendsenWang::sample(int t, arithmetic::ThreadOptions& options) {
 	// Compute the temperature and probability of including particular (d-1)-cells.
 	double T = this->parameters.temperatureFunction(t);
 	double p = 1-exp(T);
 
 	// If we're debugging, check that the inclusion probability is actually within
 	// acceptable parameters.
-	if (this->parameters._DEBUG) {
+	if (this->parameters.DEBUG) {
 		cerr << std::format("verifying 0 ≤ {} ≤ 1", p) << endl;
 		assert((0 <= p) && (p <= 1));
 	}
@@ -58,17 +55,18 @@ ZpVector SwendsenWang::sample(int t) {
 	}
 
 	// Now, sample from the kernel.
-	ZpVector sample = submatrixKernelSample(
+	ZpVector sample = arithmetic::submatrixKernelSample(
 		this->complex->Coboundary.Matrices[d],	// full coboundary matrix
 		this->field,							// field
 		exclude,								// rows to exclude
 		this->intuniform,						// uniform random over field
 		this->RNG,								// RNG
-		this->parameters._DEBUG					// debugging
+		options,
+		this->parameters.DEBUG					// debugging
 	);
 
 	// If we're debugging, check whether we actually sampled from the kernel.
-	if (this->parameters._DEBUG) {
+	if (this->parameters.DEBUG) {
 		// Copy and pare down the coboundary matrix.
 		ZpMatrix cbd = this->complex->Coboundary.Matrices[d];
 		for (auto i : exclude) cbd[i].zero();
@@ -87,14 +85,12 @@ ZpVector SwendsenWang::sample(int t) {
 	}
 
 	this->state.cochain = sample;
-	
+
 	return sample;
 }
 
-/**
- * Creates an initial cochain of randoms (in the appropriate range).
- */
-void SwendsenWang::initial() {
+
+void models::SwendsenWang::initialize() {
 	size_t dimension = this->parameters.dimension-1;
 	int N = this->complex->Cells[dimension];
 
@@ -107,17 +103,13 @@ void SwendsenWang::initial() {
 	this->state.cochain = cochain;
 }
 
-/**
- * Sets an initial cochain from the provided vector.
- */
-void SwendsenWang::initial(ZpVector c) {
+
+void models::SwendsenWang::initialize(ZpVector c) {
 	this->state.cochain = c;
 }
 
-/**
- * Default constructor.
- */
-SwendsenWang::SwendsenWang(Complex* complex, SwendsenWangParameters parameters)
+
+models::SwendsenWang::SwendsenWang(complexes::Complex* complex, SwendsenWangParameters parameters)
 	: field(Zp(SparseRREF::FIELD_Fp, parameters.field))
 {
 	this->parameters = parameters;

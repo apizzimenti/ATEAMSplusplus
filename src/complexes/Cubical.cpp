@@ -8,7 +8,9 @@
 
 using namespace std;
 using namespace ATEAMS;
+using namespace ATEAMS::complexes;
 
+/** @cond */
 namespace ATEAMS {
 	template <typename T>
 	void _product(vector<vector<T>> sets, vector<vector<T>> &c, vector<T> &active, int depth) {
@@ -182,19 +184,20 @@ vector<indexer> protoCubicalLattice(vector<int> corners, HammingCube Cube, Hammi
 
 		localBoundary[0] = localVertices;
 
-		vector<vector<int>> localEdges;
+		// pretty sure this is superflous
+		// vector<vector<int>> localEdges;
 
-		// Now, given local indices, we can create edges and insert into the
-		// prototype boundary.
-		for (auto edge : Boundary[1]) {
-			vector<int> localEdge(2);
-			for (int j=0; j<edge.size(); j++) localEdge[j] = proto[0][localVertices[edge[j]]];
+		// // Now, given local indices, we can create edges and insert into the
+		// // prototype boundary.
+		// for (auto edge : Boundary[1]) {
+		// 	vector<int> localEdge(2);
+		// 	for (int j=0; j<edge.size(); j++) localEdge[j] = proto[0][localVertices[edge[j]]];
 
-			proto[1].try_emplace(localEdge, proto[1].size());
-			localEdges.push_back(localEdge);
-		}
+		// 	proto[1].try_emplace(localEdge, proto[1].size());
+		// 	localEdges.push_back(localEdge);
+		// }
 
-		localBoundary[1] = localEdges;
+		// localBoundary[1] = localEdges;
 
 		// From here, repeat a similar process, working up in dimension.
 		for (int d=1; d<proto.size(); d++) {
@@ -274,11 +277,9 @@ ZpMatrices sparseBoundaryMatrices(Lattice L, Zp F) {
 	return Boundary;
 }
 
-/**
- * Constructs boundary matrices over the specified field. The field does NOT
- * become a property of the Complex. Moreover, this removes the necessity for
- * doing any of these computations until someone(/thing) actually needs them.
- */
+/** @endcond */
+
+
 void Cubical::constructBoundaryMatrices(Zp F) {
 	// Create a Hamming cube of the appropriate dimension.
 	HammingCube cube = hamming(this->corners.size());
@@ -303,9 +304,6 @@ void Cubical::constructBoundaryMatrices(Zp F) {
 }
 
 
-/**
- * Default constructor.
- */
 Cubical::Cubical(vector<int> corners, bool periodic=true) {
 	this->corners = corners;
 	this->periodic = periodic;

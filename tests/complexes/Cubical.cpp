@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
 	vector<int> corners = {3,3};
-	Cubical C(corners, true);
+	complexes::Cubical C(corners, true);
 	
 	return 0;
 }

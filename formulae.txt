@@ -1,0 +1,2 @@
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\ker}{\mathrm{ker}}

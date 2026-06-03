@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2024 Zhenjie Li (Li, Zhenjie)
+	Copyright (C) 2024-2025 Zhenjie Li (Li, Zhenjie)
 
 	This file is part of SparseRREF. The SparseRREF is free software:
 	you can redistribute it and/or modify it under the terms of the MIT
@@ -11,72 +11,8 @@
 #define SPARSE_MAT_H
 
 #include "sparse_vec.h"
-#include "wxf_support.h"
 
 namespace SparseRREF {
-	template <typename T, typename S, typename index_t>
-	void sparse_mat_transpose_replace(
-		sparse_mat<S, index_t>& tranmat, const sparse_mat_subview<T, index_t> submat,
-		thread_pool* pool = nullptr) {
-		tranmat.zero();
-
-		const auto& mat = *submat.mat_ptr;
-
-		if (submat.rows.size() == 0 || mat.nrow == 0 || mat.ncol == 0)
-			return;
-
-		std::vector<size_t> rows;
-		if (submat.rows[0] > mat.nrow) // full view
-			rows = perm_init(mat.nrow);
-		else 
-			rows = submat.rows;
-
-		if (pool == nullptr) {
-			for (size_t i = 0; i < rows.size(); i++) {
-				for (size_t j = 0; j < mat[rows[i]].nnz(); j++) {
-					auto col = mat[rows[i]](j);
-					if constexpr (std::is_same_v<S, T>) {
-						tranmat[col].push_back(rows[i], mat[rows[i]][j]);
-					}
-					else if constexpr (std::is_same_v<S, bool>) {
-						tranmat[col].push_back(rows[i], true);
-					}
-				}
-			}
-			return;
-		}
-		
-		size_t mtx_size;
-		if (pool->get_thread_count() > 16)
-			mtx_size = 65536;
-		else
-			mtx_size = (size_t)1 << pool->get_thread_count();
-		std::vector<std::mutex> mtxes(mtx_size);
-
-		pool->detach_loop(0, rows.size(), [&](size_t i) {
-			for (size_t j = 0; j < mat[rows[i]].nnz(); j++) {
-				auto col = mat[rows[i]](j);
-				std::lock_guard<std::mutex> lock(mtxes[col % mtx_size]);
-				if constexpr (std::is_same_v<S, T>) {
-					tranmat[col].push_back(rows[i], mat[rows[i]][j]);
-				}
-				else if constexpr (std::is_same_v<S, bool>) {
-					tranmat[col].push_back(rows[i], true);
-				}
-			}
-			});
-		pool->wait();
-	}
-
-	template <typename T, typename S, typename index_t>
-	void sparse_mat_transpose_replace(
-		sparse_mat<S, index_t>& tranmat, const sparse_mat<T, index_t>& submat,
-		thread_pool* pool = nullptr) {
-
-		sparse_mat_transpose_replace(tranmat, sparse_mat_subview<T, index_t>(submat), pool);
-	}
-
-	// rref staffs
 
 	// first look for rows with only one nonzero value and eliminate them
 	// we assume that mat is canonical, i.e. each index is sorted
@@ -118,7 +54,62 @@ namespace SparseRREF {
 			}
 			if (is_changed) {
 				mat[i].canonicalize();
-				mat[i].reserve(mat[i].nnz());
+			}
+			});
+
+		for (auto [a, b] : pivlist)
+			donelist[a] = b;
+
+		opt->pool.wait();
+
+		return localcounter;
+	}
+
+	template <typename index_t>
+	size_t eliminate_row_with_one_nnz(sparse_mat_subview<bool, index_t> mat, std::vector<index_t>& donelist,
+		rref_option_t opt) {
+		auto localcounter = 0;
+		std::unordered_map<size_t, index_t> pivlist;
+		bit_array collist(mat.ncol());
+		for (size_t a = 0; a < mat.nrow(); a++) {
+			size_t i = mat(a);
+			if (donelist[i] != index_sval<index_t>())
+				continue;
+			if (mat[i].nnz() == 1) {
+				if (!collist[mat[i](0)]) {
+					localcounter++;
+					pivlist[i] = mat[i](0);
+					collist.insert(mat[i](0));
+				}
+			}
+		}
+
+		if (localcounter == 0)
+			return localcounter;
+
+		constexpr index_t sv = index_sval<index_t>();
+
+		opt->pool.detach_loop(0, mat.nrow(), [&](size_t i) {
+			auto row = mat(i);
+			bool is_changed = false;
+			for (size_t j = 0; j < mat[i].nnz(); j++) {
+				if (collist[mat[i](j)]) {
+					if (!(pivlist.contains(row) && pivlist[row] == mat[i](j))) {
+						mat[i](j) = sv; // mark as deleted
+						is_changed = true;
+					}
+				}
+			}
+			if (is_changed) {
+				size_t new_nnz = 0;
+				for (size_t j = 0; j < mat[i].nnz(); j++) {
+					if (mat[i](j) != sv) {
+						if (new_nnz != j)
+							mat[i](new_nnz) = mat[i](j);
+						new_nnz++;
+					}
+				}
+				mat[i].resize(new_nnz);
 			}
 			});
 
@@ -131,7 +122,7 @@ namespace SparseRREF {
 	}
 
 	template <typename T, typename index_t>
-	size_t eliminate_row_with_one_nnz(sparse_mat<T,index_t>& mat, std::vector<index_t>& donelist,
+	size_t eliminate_row_with_one_nnz(sparse_mat<T, index_t>& mat, std::vector<index_t>& donelist,
 		rref_option_t opt) {
 		return eliminate_row_with_one_nnz(sparse_mat_subview<T, index_t>(mat), donelist, opt);
 	}
@@ -169,7 +160,7 @@ namespace SparseRREF {
 			if (opt->abort)
 				return count;
 
-		} while (localcounter > 0 && depth < max_depth && localcounter > 10);
+		} while (localcounter > 0 && depth < max_depth && localcounter * 1000 > count);
 		return count;
 	}
 
@@ -183,7 +174,7 @@ namespace SparseRREF {
 	// if the col_weight is negative, we do not choose it
 	template <typename T, typename index_t>
 	std::vector<pivot_t<index_t>> pivots_search(
-		const sparse_mat<T, index_t>& mat, const sparse_mat<bool, index_t>& tranmat,
+		const sparse_mat<T, index_t>& mat, const std::vector<sparse_mat<bool, index_t>>& tranmat_vec,
 		const std::vector<size_t>& leftrows, const std::vector<index_t>& leftcols,
 		const std::function<int64_t(int64_t)>& col_weight = [](int64_t i) { return i; }) {
 
@@ -191,9 +182,16 @@ namespace SparseRREF {
 		std::unordered_set<index_t> dict;
 		dict.reserve((size_t)4096);
 
+		std::vector<size_t> tranmat_nnz(mat.ncol, 0);
+		for (auto& tranmat : tranmat_vec) {
+			for (index_t col = 0; col < tranmat.nrow; col++) {
+				tranmat_nnz[col] += tranmat[col].nnz();
+			}
+		}
+
 		// leftlook first
 		for (auto col : leftcols) {
-			if (tranmat[col].nnz() == 0)
+			if (tranmat_nnz[col] == 0)
 				continue;
 			// negative weight means that we do not want to select this column
 			if (col_weight(col) < 0)
@@ -203,20 +201,24 @@ namespace SparseRREF {
 			size_t mnnz = SIZE_MAX;
 			bool flag = true;
 
-			for (auto r : tranmat[col].index_span()) {
-				flag = (dict.count(r) == 0);
+			for (auto& tranmat : tranmat_vec) {
+				for (auto r : tranmat[col].index_span()) {
+					flag = (dict.count(r) == 0);
+					if (!flag)
+						break;
+					size_t newnnz = mat[r].nnz();
+					if (newnnz < mnnz) {
+						row = r;
+						mnnz = newnnz;
+					}
+					// make the result stable
+					else if (newnnz == mnnz) {
+						if (r < row)
+							row = r;
+					}
+				}
 				if (!flag)
 					break;
-				size_t newnnz = mat[r].nnz();
-				if (newnnz < mnnz) {
-					row = r;
-					mnnz = newnnz;
-				}
-				// make the result stable
-				else if (newnnz == mnnz) {
-					if (r < row)
-						row = r;
-				}
 			}
 			if (!flag)
 				continue;
@@ -244,12 +246,12 @@ namespace SparseRREF {
 				flag = (dict.count(c) == 0);
 				if (!flag)
 					break;
-				if (tranmat[c].nnz() < mnnz) {
-					mnnz = tranmat[c].nnz();
+				if (tranmat_nnz[c] < mnnz) {
+					mnnz = tranmat_nnz[c];
 					col = c;
 				}
 				// make the result stable
-				else if (tranmat[c].nnz() == mnnz) {
+				else if (tranmat_nnz[c] == mnnz) {
 					if (col_weight(c) < col_weight(col))
 						col = c;
 					else if (col_weight(c) == col_weight(col) && c < col)
@@ -349,7 +351,7 @@ namespace SparseRREF {
 				}
 			}
 			if (!flag)
-				continue; 
+				continue;
 			if (mnnz != SIZE_MAX) {
 				pivots.emplace_back(row, col);
 				r_dict.insert(row);
@@ -366,42 +368,47 @@ namespace SparseRREF {
 
 	// upper solver : ordering = -1
 	// lower solver : ordering = 1
+	// tranmat in this version is precomputed
 	template <typename T, typename index_t>
-	void triangular_solver(sparse_mat<T, index_t>& mat, 
+	void triangular_solver(sparse_mat<T, index_t>& mat,
+		const sparse_mat<bool, index_t>& tranmat,
 		const std::vector<pivot_t<index_t>>& pivots,
 		const field_t& F, rref_option_t opt, int ordering) {
 		bool verbose = opt->verbose;
 		auto printstep = opt->print_step;
 		auto& pool = opt->pool;
 
-		std::vector<std::vector<index_t>> tranmat(mat.ncol);
-
-		// we only need to compute the transpose of the submatrix involving pivots
-
-		for (auto& [r, c] : pivots) {
-			for (auto [ind, val] : mat[r]) {
-				if (val == 0)
-					continue;
-				tranmat[ind].push_back(r);
-			}
-		}
+		bit_array rowlist(mat.nrow);
+		for (auto [r, c] : pivots)
+			rowlist.insert(r);
 
 		size_t count = 0;
 		size_t nthreads = pool.get_thread_count();
+		std::vector<index_t> thecol;
 		for (size_t i = 0; i < pivots.size(); i++) {
 			size_t index = i;
 			if (ordering < 0)
 				index = pivots.size() - 1 - i;
 			auto [row, col] = pivots[index];
-			auto& thecol = tranmat[col];
+			thecol.clear();
+			for (size_t j = 0; j < tranmat[col].nnz(); j++) {
+				auto r = tranmat[col](j);
+				if (rowlist[r] && r != row)
+					thecol.push_back(r);
+			}
+
 			auto start = SparseRREF::clocknow();
-			if (thecol.size() > 1) {
+			if constexpr (std::is_same_v<T, bool>) {
 				pool.detach_loop<index_t>(0, thecol.size(), [&](index_t j) {
 					auto r = thecol[j];
-					if (r == row)
-						return;
-					auto entry = *sparse_mat_entry(mat, r, col);
-					sparse_vec_sub_mul(mat[r], mat[row], entry, F);
+					sparse_vec_add(mat[r], mat[row], F);
+					},
+					((thecol.size() < 20 * nthreads) ? 0 : thecol.size() / 10));
+			}
+			else {
+				pool.detach_loop<index_t>(0, thecol.size(), [&](index_t j) {
+					auto r = thecol[j];
+					sparse_vec_sub_mul(mat[r], mat[row], *mat.find(r, col), F);
 					},
 					((thecol.size() < 20 * nthreads) ? 0 : thecol.size() / 10));
 			}
@@ -424,9 +431,42 @@ namespace SparseRREF {
 		if (opt->verbose)
 			std::cout << std::endl;
 	}
+	
+	// in this version, we compute the transpose inside
+	template <typename T, typename index_t>
+	void triangular_solver(sparse_mat<T, index_t>& mat,
+		const std::vector<pivot_t<index_t>>& pivots,
+		const field_t& F, rref_option_t opt, int ordering) {
+
+		auto& pool = opt->pool;
+		auto nthreads = pool.get_thread_count();
+
+		if (opt->abort)
+			return;
+
+		size_t mtx_size;
+		if (nthreads > 16)
+			mtx_size = 65536;
+		else
+			mtx_size = (size_t)1 << nthreads;
+		std::vector<std::mutex> mtxes(mtx_size);
+
+		// we only need to compute the transpose of the submatrix involving pivots
+		sparse_mat<bool, index_t> tranmat(mat.ncol, mat.nrow);
+		pool.detach_loop(0, pivots.size(), [&](size_t i) {
+			auto [r, c] = pivots[i];
+			for (auto [ind, val] : mat[r]) {
+				std::lock_guard<std::mutex> lock(mtxes[ind % mtx_size]);
+				tranmat[ind].push_back(r);
+			}
+			});
+		pool.wait();
+		
+		triangular_solver(mat, tranmat, pivots, F, opt, ordering);
+	}
 
 	template <typename T, typename index_t>
-	void triangular_solver(sparse_mat<T, index_t>& mat, 
+	void triangular_solver(sparse_mat<T, index_t>& mat,
 		std::vector<std::vector<pivot_t<index_t>>>& pivots,
 		const field_t& F, rref_option_t opt, int ordering) {
 		std::vector<pivot_t<index_t>> n_pivots;
@@ -476,7 +516,7 @@ namespace SparseRREF {
 	// A = B * C
 	template <typename T, typename index_t>
 	sparse_mat<T, index_t> sparse_mat_mul(
-		const sparse_mat<T, index_t>& B, const sparse_mat<T, index_t>& C, 
+		const sparse_mat<T, index_t>& B, const sparse_mat<T, index_t>& C,
 		const field_t& F, thread_pool* pool = nullptr) {
 
 		sparse_mat<T, index_t> A(B.nrow, C.ncol);
@@ -544,7 +584,7 @@ namespace SparseRREF {
 				A[i](j) = pos[j];
 				A[i][j] = cache_dense_vec[pos[j]];
 			}
-		};
+			};
 
 		if (pool) {
 			pool->detach_loop(0, B.nrow, [&](size_t i) {
@@ -563,7 +603,7 @@ namespace SparseRREF {
 	// make sure nonzero_c and tmpvec are cleared before calling this function
 	// after this function, nonzero_c and tmpvec are also cleared
 	template <typename T, typename index_t>
-	void schur_complete(sparse_mat<T, index_t>& mat, size_t k, 
+	void schur_complete(sparse_mat<T, index_t>& mat, size_t k,
 		const std::vector<pivot_t<index_t>>& pivots,
 		const field_t& F, T* tmpvec, SparseRREF::bit_array& nonzero_c) {
 
@@ -575,15 +615,23 @@ namespace SparseRREF {
 			tmpvec[ind] = val;
 		}
 
+		std::vector<index_t> add_list;
+		std::vector<index_t> remove_list;
+
 		ulong e_pr;
 		for (auto [r, c] : pivots) {
-			if (!nonzero_c.test(c)) [[likely]] 
+			if (!nonzero_c.test(c))
 				continue;
+
 			T entry = tmpvec[c];
+			add_list.clear();
+			remove_list.clear();
+
 			if constexpr (std::is_same_v<T, ulong>) {
 				e_pr = n_mulmod_precomp_shoup(tmpvec[c], F.mod.n);
 			}
 			for (auto [ind, val] : mat[r]) {
+				bool old_c = tmpvec[ind] == 0;
 				if constexpr (std::is_same_v<T, ulong>) {
 					tmpvec[ind] = _nmod_sub(tmpvec[ind],
 						n_mulmod_shoup(entry, val, e_pr, F.mod.n), F.mod);
@@ -594,10 +642,128 @@ namespace SparseRREF {
 				else {
 					tmpvec[ind] = scalar_sub(tmpvec[ind], scalar_mul(entry, val, F), F);
 				}
-				if (tmpvec[ind] == 0)
-					nonzero_c.erase(ind);
-				else
-					nonzero_c.insert(ind);
+				if (tmpvec[ind] == 0) {
+					remove_list.push_back(ind);
+				}
+				else {
+					if (old_c)
+						add_list.push_back(ind);
+				}
+			}
+			for (auto ind : add_list) nonzero_c.insert(ind);
+			for (auto ind : remove_list) nonzero_c.erase(ind);
+		}
+
+		auto nnz = nonzero_c.nnz();
+		if (mat[k].alloc() < nnz) {
+			mat[k].reserve(nnz, false);
+		}
+		mat[k].resize(nnz);
+		nonzero_c.nonzero_and_clear(mat[k].indices);
+		for (size_t i = 0; i < nnz; i++) {
+			mat[k][i] = tmpvec[mat[k](i)];
+			tmpvec[mat[k](i)] = 0; // clear tmpvec for next use
+		}
+	}
+
+	// tempvec is of useless, only nonzero_c is used
+	template <typename index_t>
+	void schur_complete(sparse_mat<bool, index_t>& mat, size_t k,
+		const std::vector<pivot_t<index_t>>& pivots,
+		const field_t& F, bool* tmpvec, SparseRREF::bit_array& nonzero_c) {
+
+		auto nk = mat[k].nnz();
+		if (nk == 0)
+			return;
+
+		for (size_t i = 0; i < nk; i++)
+			nonzero_c.insert(mat[k](i));
+
+		for (auto [r, c] : pivots) {
+			if (!nonzero_c.test(c))
+				continue;
+
+			auto nr = mat[r].nnz();
+			for (size_t i = 0; i < nr; i++)
+				nonzero_c.xor_insert(mat[r](i));
+		}
+
+		auto nnz = nonzero_c.nnz();
+		if (mat[k].alloc() < nnz) {
+			mat[k].reserve(nnz, false);
+		}
+		mat[k].resize(nnz);
+		nonzero_c.nonzero_and_clear(mat[k].indices);
+	}
+
+	// add a buffer to speed up of testing a position is zero or not
+	// it would be helpful when the matrix is very sparse
+	template <typename T, typename index_t, size_t buffer_bit>
+	void schur_complete_buffer(sparse_mat<T, index_t>& mat, size_t k,
+		const std::vector<pivot_t<index_t>>& pivots,
+		const field_t& F, T* tmpvec, SparseRREF::bit_array& nonzero_c) {
+
+		if constexpr (std::is_same_v<T, bool>) {
+			schur_complete(mat, k, pivots, F, tmpvec, nonzero_c);
+			return;
+		}
+
+		if (mat[k].nnz() == 0)
+			return;
+
+		constexpr size_t buffer_size = (size_t)1 << buffer_bit;
+
+		std::array<size_t, buffer_size> buffer = { 0 };
+		for (auto [ind, val] : mat[k]) {
+			nonzero_c.insert(ind);
+			tmpvec[ind] = val;
+			buffer[ind % buffer_size]++;
+		}
+
+		std::vector<index_t> add_list;
+		std::vector<index_t> remove_list;
+		
+		ulong e_pr;
+		for (auto [r, c] : pivots) {
+			if (buffer[c % buffer_size] == 0)
+				continue;
+			if (!nonzero_c.test(c))
+				continue;
+
+			T entry = tmpvec[c];
+			add_list.clear();
+			remove_list.clear();
+
+			if constexpr (std::is_same_v<T, ulong>) {
+				e_pr = n_mulmod_precomp_shoup(tmpvec[c], F.mod.n);
+			}
+			for (auto [ind, val] : mat[r]) {
+				bool old_c = tmpvec[ind] == 0;
+				if constexpr (std::is_same_v<T, ulong>) {
+					tmpvec[ind] = _nmod_sub(tmpvec[ind],
+						n_mulmod_shoup(entry, val, e_pr, F.mod.n), F.mod);
+				}
+				else if constexpr (std::is_same_v<T, rat_t>) {
+					tmpvec[ind] -= entry * val;
+				}
+				else {
+					tmpvec[ind] = scalar_sub(tmpvec[ind], scalar_mul(entry, val, F), F);
+				}
+				if (tmpvec[ind] == 0) {
+					remove_list.push_back(ind);
+				}
+				else {
+					if (old_c)
+						add_list.push_back(ind);
+				}
+			}
+			for (auto ind : add_list) {
+				nonzero_c.insert(ind);
+				buffer[ind % buffer_size]++;
+			}
+			for (auto ind : remove_list) {
+				nonzero_c.erase(ind);
+				buffer[ind % buffer_size]--;
 			}
 		}
 
@@ -614,31 +780,7 @@ namespace SparseRREF {
 	}
 
 	template <typename T, typename index_t>
-	void schur_complete(sparse_mat<T, index_t>& mat, const std::vector<size_t>& rows,
-		const std::vector<pivot_t<index_t>>& pivots,
-		const field_t& F, T* tmpvec, bit_array* nonzero_c,
-		thread_pool* pool = nullptr) {
-
-		if (pool) {
-			auto nthreads = pool->get_thread_count();
-			pool->detach_blocks<size_t>(0, rows.size(), [&](const size_t s, const size_t e) {
-				auto id = SparseRREF::thread_id();
-				for (size_t i = s; i < e; i++) {
-					schur_complete(mat, rows[i], pivots, F, tmpvec + id * mat.ncol, nonzero_c[id]);
-				}
-				}, (rows.size() < 20 * nthreads ? 0 : rows.size() / 10));
-			pool->wait();
-			return;
-		}
-
-		for (size_t i = 0; i < rows.size(); i++) {
-			schur_complete(mat, rows[i], pivots, F, tmpvec, nonzero_c[0]);
-		}
-	}
-
-	// TODO: CHECK!!!
-	template <typename T, typename index_t>
-	void triangular_solver_2_rec(sparse_mat<T, index_t>& mat, 
+	void triangular_solver_2_rec(sparse_mat<T, index_t>& mat,
 		const sparse_mat<bool, index_t>& tranmat,
 		const std::vector<pivot_t<index_t>>& pivots,
 		const field_t& F, rref_option_t opt, T* cachedensedmat,
@@ -652,7 +794,7 @@ namespace SparseRREF {
 		auto& pool = opt->pool;
 		opt->verbose = false;
 		if (pivots.size() < n_split) {
-			triangular_solver(mat, pivots, F, opt, -1);
+			triangular_solver(mat, tranmat, pivots, F, opt, -1);
 			opt->verbose = verbose;
 			process += pivots.size();
 			return;
@@ -675,12 +817,17 @@ namespace SparseRREF {
 		int bitlen_nnz = (int)std::floor(std::log(now_nnz) / std::log(10)) + 2;
 		int bitlen_nrow = (int)std::floor(std::log(rank) / std::log(10)) + 1;
 
+		double density = (double)now_nnz / (mat.nrow * mat.ncol);
+		auto schur_complete_func = &schur_complete_buffer<T, index_t, 10>;
+		if (100 * density > 0.01)
+			schur_complete_func = &schur_complete<T, index_t>;
+
 		auto clock_begin = SparseRREF::clocknow();
 		std::atomic<size_t> cc = 0;
 		pool.detach_blocks<size_t>(0, leftrows.size(), [&](const size_t s, const size_t e) {
 			auto id = SparseRREF::thread_id();
 			for (size_t i = s; i < e; i++) {
-				schur_complete(mat, leftrows[i], sub_pivots, F, cachedensedmat + id * mat.ncol, nonzero_c[id]);
+				schur_complete_func(mat, leftrows[i], sub_pivots, F, cachedensedmat + id * mat.ncol, nonzero_c[id]);
 				cc++;
 			}
 			}, ((n_split < 20 * pool.get_thread_count()) ? 0 : leftrows.size() / 10));
@@ -709,7 +856,7 @@ namespace SparseRREF {
 
 		pool.wait();
 
-		triangular_solver(mat, sub_pivots, F, opt, -1);
+		triangular_solver(mat, tranmat, sub_pivots, F, opt, -1);
 		opt->verbose = verbose;
 		process += sub_pivots.size();
 
@@ -729,19 +876,27 @@ namespace SparseRREF {
 		if (opt->abort)
 			return;
 
-		// we only need to compute the transpose of the submatrix involving pivots
-		sparse_mat_subview<T, index_t> submat;
-		submat.mat_ptr = &mat;
-		submat.rows.resize(pivots.size());
-		for (size_t i = 0; i < pivots.size(); i++)
-			submat.rows[i] = pivots[i].r;
+		size_t mtx_size;
+		if (nthreads > 16)
+			mtx_size = 65536;
+		else
+			mtx_size = (size_t)1 << nthreads;
+		std::vector<std::mutex> mtxes(mtx_size);
 
+		// we only need to compute the transpose of the submatrix involving pivots
 		sparse_mat<bool, index_t> tranmat(mat.ncol, mat.nrow);
-		sparse_mat_transpose_replace(tranmat, submat, &pool);
+		pool.detach_loop(0, pivots.size(), [&](size_t i) {
+			auto [r, c] = pivots[i];
+			for (auto [ind, val] : mat[r]) {
+				std::lock_guard<std::mutex> lock(mtxes[ind % mtx_size]);
+				tranmat[ind].push_back(r);
+			}
+			});
+		pool.wait();
 
 		size_t process = 0;
 		// TODO: better split strategy
-		size_t n_split = std::max(pivots.size() / 128ULL, 1ULL << 10); 
+		size_t n_split = std::max(pivots.size() / 128ULL, 1ULL << 10);
 		size_t rank = pivots.size();
 		triangular_solver_2_rec(mat, tranmat, pivots, F, opt, cachedensedmat.data(), nonzero_c, n_split, rank, process);
 
@@ -750,7 +905,7 @@ namespace SparseRREF {
 	}
 
 	template <typename T, typename index_t>
-	void triangular_solver_2(sparse_mat<T, index_t>& mat, 
+	void triangular_solver_2(sparse_mat<T, index_t>& mat,
 		const std::vector<std::vector<pivot_t<index_t>>>& pivots,
 		const field_t& F, rref_option_t opt) {
 
@@ -762,16 +917,81 @@ namespace SparseRREF {
 		triangular_solver_2(mat, n_pivots, F, opt);
 	}
 
-	// TODO: TEST!!! 
-	// TODO: add ordering
+	template <typename T, typename index_t>
+	std::vector<pivot_t<index_t>> sparse_mat_direct_rref_part(sparse_mat<T, index_t>& mat,
+		const std::vector<std::vector<pivot_t<index_t>>>& sub_pivots,
+		const field_t& F, rref_option_t opt,
+		std::vector<T>& cachedensedmat, std::vector<SparseRREF::bit_array>& nonzero_c) {
+
+		if (sub_pivots.size() <= 1)
+			return std::vector<pivot_t<index_t>>();
+
+		auto& pool = opt->pool;
+		auto nthreads = pool.get_thread_count();
+		
+		std::vector<pivot_t<index_t>> combined_pivots;
+		size_t nnz = 0;
+		size_t total_rank = 0;
+		for (auto& p : sub_pivots) {
+			combined_pivots.insert(combined_pivots.end(), p.begin(), p.end());
+			for (auto [r, c] : p) {
+				nnz += mat[r].nnz();
+				total_rank++;
+			}
+		}
+
+		double density = (double)(nnz) / (total_rank * mat.ncol);
+		auto schur_complete_func = &schur_complete_buffer<T, index_t, 10>;
+		if (100 * density > 0.01)
+			schur_complete_func = &schur_complete<T, index_t>;
+
+		std::vector<size_t> leftrows;
+		leftrows.reserve(total_rank);
+		for (auto rp = sub_pivots.rbegin(); rp != sub_pivots.rend(); rp++) {
+			for (auto p = rp->rbegin(); p != rp->rend(); p++) {
+				leftrows.push_back(p->r);
+			}
+		}
+
+		for (const auto& pivs : sub_pivots) {
+			if (pivs.size() == 0)
+				continue;
+
+			// rescale the pivots
+			pool.detach_loop(0, pivs.size(), [&](size_t j) {
+				auto [r, c] = pivs[j];
+				T scalar = scalar_inv(*mat.find(r, c), F);
+				sparse_vec_rescale(mat[r], scalar, F);
+				mat[r].reserve(mat[r].nnz());
+				});
+
+			// remove the used rows
+			leftrows.resize(leftrows.size() - pivs.size());
+			pool.wait();
+
+			// upper solver
+			pool.detach_blocks<size_t>(0, leftrows.size(), [&](const size_t s, const size_t e) {
+				auto id = SparseRREF::thread_id();
+				for (size_t j = s; j < e; j++) {
+					schur_complete_func(mat, leftrows[j], pivs, F, cachedensedmat.data() + id * mat.ncol, nonzero_c[id]);
+					if (opt->abort)
+						return;
+				}
+				}, ((leftrows.size() < 20 * nthreads) ? 0 : leftrows.size() / 10));
+
+			pool.wait();
+		}
+
+		return combined_pivots;
+	}
+
 	// if already know the pivots, we can directly do the rref
 	// if the pivots are of submatrix, it is dangerous to set clear_zero_row to true
 	template <typename T, typename index_t>
 	void sparse_mat_direct_rref(sparse_mat<T, index_t>& mat,
-		const std::vector<std::vector<pivot_t<index_t>>>& pivots, 
+		const std::vector<std::vector<pivot_t<index_t>>>& pivots,
 		const field_t& F, rref_option_t opt, const bool clear_zero_row = true) {
 		auto& pool = opt->pool;
-
 		constexpr index_t sv = index_sval<index_t>();
 
 		// first set rows not in pivots to zero
@@ -795,7 +1015,6 @@ namespace SparseRREF {
 		for (auto [r, c] : pivots[0]) {
 			mat[r].zero();
 			mat[r].push_back(c, 1);
-			rowset[r] = sv;
 		}
 
 		for (size_t i = 0; i < mat.nrow; i++) {
@@ -807,8 +1026,6 @@ namespace SparseRREF {
 			eliminate_row_with_one_nnz(mat, donelist, opt);
 		}
 
-		std::vector<size_t> leftrows;
-
 		// then do the elimination parallelly
 		auto nthreads = pool.get_thread_count();
 		std::vector<T> cachedensedmat(mat.ncol * nthreads);
@@ -816,25 +1033,58 @@ namespace SparseRREF {
 
 		size_t rank = pivots[0].size();
 
+		double density = (double)mat.nnz() / (total_rank * mat.ncol);
+		auto schur_complete_func = &schur_complete_buffer<T, index_t, 10>;
+		if (100 * density > 0.01)
+			schur_complete_func = &schur_complete<T, index_t>;
+
+		std::vector<size_t> leftrows;
+		leftrows.reserve(total_rank);
+		for (auto rp = pivots.rbegin(); rp != pivots.rend(); rp++) {
+			for (auto p = rp->rbegin(); p != rp->rend(); p++) {
+				leftrows.push_back(p->r);
+			}
+		}
+		leftrows.resize(leftrows.size() - pivots[0].size());
+		
+		int bitlen_nrow = (int)std::floor(std::log(total_rank) / std::log(10)) + 1;
+		int bitlen_nnz = (int)std::floor(std::log(mat.nnz()) / std::log(10)) + 2;
+
+		std::vector<pivot_t<index_t>> used_pivots;
 		for (size_t i = 1; i < pivots.size(); i++) {
 			if (pivots[i].size() == 0)
 				continue;
 
-			// rescale the pivots
-			pool.detach_loop(0, pivots[i].size(), [&](size_t j) {
-				auto [r, c] = pivots[i][j];
-				T scalar = scalar_inv(*sparse_mat_entry(mat, r, c), F);
-				sparse_vec_rescale(mat[r], scalar, F);
-				mat[r].reserve(mat[r].nnz());
-				rowset[r] = sv;
-				});
-			pool.wait();
-
-			leftrows.clear();
-			for (size_t j = 0; j < mat.nrow; j++) {
-				if (rowset[j] != sv && mat[j].nnz() > 0)
-					leftrows.push_back(j);
+			used_pivots.clear();
+			if (pivots[i].size() < 512) {
+				size_t trank = 0;
+				std::vector<std::vector<pivot_t<index_t>>> sub_pivots;
+				for (size_t ni = i; ni < pivots.size(); ni++) {
+					trank += pivots[ni].size();
+					sub_pivots.push_back(pivots[ni]);
+					if (trank > 4096) {
+						i = ni;
+						break;
+					}	
+				}
+				used_pivots = sparse_mat_direct_rref_part(mat, sub_pivots, F, opt, cachedensedmat, nonzero_c);
 			}
+
+			if (used_pivots.size() == 0) {
+				used_pivots = pivots[i];
+				// rescale the pivots
+				pool.detach_loop(0, used_pivots.size(), [&](size_t j) {
+					auto [r, c] = used_pivots[j];
+					T scalar = scalar_inv(*mat.find(r, c), F);
+					sparse_vec_rescale(mat[r], scalar, F);
+					mat[r].reserve(mat[r].nnz());
+					});
+				pool.wait();
+			}
+
+			leftrows.resize(leftrows.size() - used_pivots.size());
+			if (leftrows.size() == 0) // done
+				break;
 
 			// upper solver
 			// TODO: check mode
@@ -843,9 +1093,9 @@ namespace SparseRREF {
 			pool.detach_blocks<size_t>(0, leftrows.size(), [&](const size_t s, const size_t e) {
 				auto id = SparseRREF::thread_id();
 				for (size_t j = s; j < e; j++) {
-					schur_complete(mat, leftrows[j], pivots[i], F, cachedensedmat.data() + id * mat.ncol, nonzero_c[id]);
+					schur_complete_func(mat, leftrows[j], used_pivots, F, cachedensedmat.data() + id * mat.ncol, nonzero_c[id]);
 					cc++;
-					if (opt->abort) 
+					if (opt->abort)
 						return;
 				}
 				}, ((leftrows.size() < 20 * nthreads) ? 0 : leftrows.size() / 10));
@@ -858,11 +1108,11 @@ namespace SparseRREF {
 						return;
 					}
 					if (cc - old_cc > opt->print_step) {
-						std::cout << "\r-- Row: "
-							<< (int)std::floor(rank + (cc * 1.0 / leftrows.size()) * pivots[i].size())
-							<< "/" << total_rank << "  nnz: " << mat.nnz()
+						std::cout << "\r-- Row: " << std::setw(bitlen_nrow)
+							<< (int)std::floor(rank + (cc * 1.0 / leftrows.size()) * used_pivots.size())
+							<< "/" << total_rank << "  nnz: " << std::setw(bitlen_nnz) << mat.nnz()
 							<< "  alloc: " << mat.alloc()
-							<< "  speed: " << (((cc - old_cc) * 1.0 / leftrows.size()) * pivots[i].size() / usedtime(cn, clocknow()))
+							<< "  speed: " << (((cc - old_cc) * 1.0 / leftrows.size()) * used_pivots.size() / usedtime(cn, clocknow()))
 							<< " row/s          " << std::flush;
 						old_cc = cc;
 						cn = clocknow();
@@ -870,7 +1120,7 @@ namespace SparseRREF {
 				}
 			}
 			pool.wait();
-			rank += pivots[i].size();
+			rank += used_pivots.size();
 		}
 		if (opt->verbose) {
 			std::cout << std::endl;
@@ -893,15 +1143,12 @@ namespace SparseRREF {
 
 		pool.detach_loop(0, mat.nrow, [&](auto i) { mat[i].compress(); });
 
-		size_t mtx_size;
-		if (pool.get_thread_count() > 16)
-			mtx_size = 65536;
-		else
-			mtx_size = (size_t)1 << pool.get_thread_count();
-		std::vector<std::mutex> mtxes(mtx_size);
-
 		size_t now_nnz = mat.nnz();
-		
+		double density = (double)now_nnz / (mat.nrow * mat.ncol);
+		auto schur_complete_func = &schur_complete_buffer<T, index_t, 10>;
+		if (100 * density > 0.01)
+			schur_complete_func = &schur_complete<T, index_t>;
+
 		// store the pivots that have been used
 		// sv is not used
 		std::vector<index_t> rowpivs(mat.nrow, sv);
@@ -951,17 +1198,30 @@ namespace SparseRREF {
 
 		bool only_right_search = true;
 
-		sparse_mat<bool, index_t> tranmat;
+		std::vector<sparse_mat<bool, index_t>> tranmat_vec(nthreads);
+		for (auto& tmat : tranmat_vec) {
+			tmat = sparse_mat<bool, index_t>(mat.ncol, mat.nrow);
+		}
+
 		if (opt->method != 1) {
 			only_right_search = false;
-			tranmat = sparse_mat<bool, index_t>(mat.ncol, mat.nrow);
-			sparse_mat_subview<T, index_t> matview(mat, leftrows);
-			sparse_mat_transpose_replace(tranmat, matview, &pool);
+			pool.detach_loop(0, leftrows.size(), [&](size_t i) {
+				auto id = thread_id();
+				auto r = leftrows[i];
+				for (size_t j = 0; j < mat[r].nnz(); j++) {
+					tranmat_vec[id][mat[r](j)].push_back(r);
+				}
+				});
+			pool.wait();
 
 			// sort pivots by nnz, it will be faster
-			std::stable_sort(leftcols.begin(), leftcols.end(),
-				[&tranmat](index_t a, index_t b) {
-					return tranmat[a].nnz() < tranmat[b].nnz();
+			std::ranges::stable_sort(leftcols, std::less{},
+				[&tranmat_vec](size_t r) {
+					size_t nnz = 0;
+					for (auto& tmat : tranmat_vec) {
+						nnz += tmat[r].nnz();
+					}
+					return nnz;
 				});
 		}
 
@@ -982,7 +1242,7 @@ namespace SparseRREF {
 				ps = pivots_search_right(mat, leftrows, leftcols, opt->col_weight);
 			}
 			else {
-				ps = pivots_search(mat, tranmat, leftrows, leftcols, opt->col_weight);
+				ps = pivots_search(mat, tranmat_vec, leftrows, leftcols, opt->col_weight);
 			}
 			if (ps.size() == 0)
 				break;
@@ -996,7 +1256,7 @@ namespace SparseRREF {
 
 			pool.detach_loop(0, n_pivots.size(), [&](size_t i) {
 				auto [r, c] = n_pivots[i];
-				T scalar = scalar_inv(*sparse_mat_entry(mat, r, c), F);
+				T scalar = scalar_inv(*mat.find(r, c), F);
 				sparse_vec_rescale(mat[r], scalar, F);
 				mat[r].reserve(mat[r].nnz());
 				});
@@ -1046,7 +1306,7 @@ namespace SparseRREF {
 				pool.detach_blocks<size_t>(0, leftrows.size(), [&](const size_t s, const size_t e) {
 					auto id = thread_id();
 					for (size_t i = s; i < e; i++) {
-						schur_complete(mat, leftrows[i], n_pivots, F, cachedensedmat.data() + id * mat.ncol, nonzero_c[id]);
+						schur_complete_func(mat, leftrows[i], n_pivots, F, cachedensedmat.data() + id * mat.ncol, nonzero_c[id]);
 						done_count++;
 						if (opt->abort)
 							break;
@@ -1079,13 +1339,13 @@ namespace SparseRREF {
 					std::this_thread::sleep_for(std::chrono::microseconds(10));
 				}
 				pool.wait();
-			} 
+			}
 			else {
 				std::vector<int> flags(leftrows.size(), 0);
 				pool.detach_blocks<size_t>(0, leftrows.size(), [&](const size_t s, const size_t e) {
 					auto id = thread_id();
 					for (size_t i = s; i < e; i++) {
-						schur_complete(mat, leftrows[i], n_pivots, F, cachedensedmat.data() + id * mat.ncol, nonzero_c[id]);
+						schur_complete_func(mat, leftrows[i], n_pivots, F, cachedensedmat.data() + id * mat.ncol, nonzero_c[id]);
 						flags[i] = 1;
 						if (opt->abort)
 							break;
@@ -1101,10 +1361,13 @@ namespace SparseRREF {
 					if (!tmp_set.test(c)) {
 						leftcols[localcount] = c;
 						localcount++;
-						tranmat[c].zero();
+						for (auto& tranmat : tranmat_vec)
+							tranmat[c].zero();
 					}
-					else
-						tranmat[c].clear();
+					else {
+						for (auto& tranmat : tranmat_vec)
+							tranmat[c].clear();
+					}
 				}
 				leftcols.resize(localcount);
 
@@ -1122,10 +1385,10 @@ namespace SparseRREF {
 
 						pool.detach_loop(0, newleftrows.size(), [&](size_t i) {
 							auto row = newleftrows[i];
+							auto id = thread_id();
 							for (size_t j = 0; j < mat[row].nnz(); j++) {
 								auto col = mat[row](j);
-								std::lock_guard<std::mutex> lock(mtxes[col % mtx_size]);
-								tranmat[col].push_back(row, true);
+								tranmat_vec[id][col].push_back(row, true);
 							}
 							localcount++;
 							}, (newleftrows.size() < 20 * nthreads ? 0 : newleftrows.size() / 10));
@@ -1144,7 +1407,7 @@ namespace SparseRREF {
 						if (flags[i]) {
 							auto row = leftrows[i];
 							for (size_t j = 0; j < mat[row].nnz(); j++) {
-								tranmat[mat[row](j)].push_back(row, true);
+								tranmat_vec[0][mat[row](j)].push_back(row, true);
 							}
 							flags[i] = 0;
 							localcount++;
@@ -1169,7 +1432,8 @@ namespace SparseRREF {
 			// so we only search the right columns
 			if (opt->method == 2 && !only_right_search && ps.size() < mat.ncol / 100) {
 				only_right_search = true;
-				tranmat.clear();
+				for (auto& tranmat : tranmat_vec)
+					tranmat.clear();
 			}
 
 			rank += n_pivots.size();
@@ -1208,14 +1472,11 @@ namespace SparseRREF {
 		auto printstep = opt->print_step;
 		bool verbose = opt->verbose;
 
-		size_t mtx_size;
-		if (pool.get_thread_count() > 16)
-			mtx_size = 65536;
-		else
-			mtx_size = 1 << pool.get_thread_count();
-		std::vector<std::mutex> mtxes(mtx_size);
-
 		size_t now_nnz = mat.nnz();
+		double density = (double)now_nnz / (mat.nrow * mat.ncol);
+		auto schur_complete_func = &schur_complete_buffer<T, index_t, 10>;
+		if (100 * density > 0.01)
+			schur_complete_func = &schur_complete<T, index_t>;
 
 		// store the pivots that have been used
 		// sv is not used
@@ -1269,16 +1530,30 @@ namespace SparseRREF {
 
 		bool only_right_search = true;
 
-		sparse_mat<bool, index_t> tranmat;
+		std::vector<sparse_mat<bool, index_t>> tranmat_vec(nthreads);
+		for (auto& tmat : tranmat_vec) {
+			tmat = sparse_mat<bool, index_t>(mat.ncol, mat.nrow);
+		}
+
 		if (opt->method != 1) {
 			only_right_search = false;
-			tranmat = sparse_mat<bool, index_t>(mat.ncol, mat.nrow);
-			sparse_mat_transpose_replace(tranmat, mat, &pool);
+			pool.detach_loop(0, leftrows.size(), [&](size_t i) {
+				auto id = thread_id();
+				auto r = leftrows[i];
+				for (size_t j = 0; j < mat[r].nnz(); j++) {
+					tranmat_vec[id][mat[r](j)].push_back(r);
+				}
+				});
+			pool.wait();
 
 			// sort pivots by nnz, it will be faster
-			std::stable_sort(leftcols.begin(), leftcols.end(),
-				[&tranmat](index_t a, index_t b) {
-					return tranmat[a].nnz() < tranmat[b].nnz();
+			std::ranges::stable_sort(leftcols, std::less{},
+				[&tranmat_vec](size_t r) {
+					size_t nnz = 0;
+					for (auto& tmat : tranmat_vec) {
+						nnz += tmat[r].nnz();
+					}
+					return nnz;
 				});
 		}
 
@@ -1298,7 +1573,7 @@ namespace SparseRREF {
 				ps = pivots_search_right(mat, leftrows, leftcols, col_weight);
 			}
 			else {
-				ps = pivots_search(mat, tranmat, leftrows, leftcols, col_weight);
+				ps = pivots_search(mat, tranmat_vec, leftrows, leftcols, col_weight);
 			}
 			if (ps.size() == 0) {
 				if (rank >= fullrank)
@@ -1319,7 +1594,7 @@ namespace SparseRREF {
 
 			pool.detach_loop(0, n_pivots.size(), [&](size_t i) {
 				auto [r, c] = n_pivots[i];
-				T scalar = scalar_inv(*sparse_mat_entry(mat, r, c), F);
+				T scalar = scalar_inv(*mat.find(r, c), F);
 				sparse_vec_rescale(mat[r], scalar, F);
 				mat[r].reserve(mat[r].nnz());
 				});
@@ -1369,7 +1644,7 @@ namespace SparseRREF {
 				pool.detach_blocks<size_t>(0, leftrows.size(), [&](const size_t s, const size_t e) {
 					auto id = SparseRREF::thread_id();
 					for (size_t i = s; i < e; i++) {
-						schur_complete(mat, leftrows[i], n_pivots, F, cachedensedmat.data() + id * mat.ncol, nonzero_c[id]);
+						schur_complete_func(mat, leftrows[i], n_pivots, F, cachedensedmat.data() + id * mat.ncol, nonzero_c[id]);
 						done_count++;
 						if (opt->abort)
 							break;
@@ -1408,7 +1683,7 @@ namespace SparseRREF {
 				pool.detach_blocks<size_t>(0, leftrows.size(), [&](const size_t s, const size_t e) {
 					auto id = SparseRREF::thread_id();
 					for (size_t i = s; i < e; i++) {
-						schur_complete(mat, leftrows[i], n_pivots, F, cachedensedmat.data() + id * mat.ncol, nonzero_c[id]);
+						schur_complete_func(mat, leftrows[i], n_pivots, F, cachedensedmat.data() + id * mat.ncol, nonzero_c[id]);
 						flags[i] = 1;
 						if (opt->abort)
 							break;
@@ -1424,10 +1699,13 @@ namespace SparseRREF {
 					if (!tmp_set.test(c)) {
 						leftcols[localcount] = c;
 						localcount++;
-						tranmat[c].zero();
+						for (auto& tranmat : tranmat_vec)
+							tranmat[c].zero();
 					}
-					else
-						tranmat[c].clear();
+					else {
+						for (auto& tranmat : tranmat_vec)
+							tranmat[c].clear();
+					}
 				}
 				leftcols.resize(localcount);
 
@@ -1447,8 +1725,8 @@ namespace SparseRREF {
 							auto row = newleftrows[i];
 							for (size_t j = 0; j < mat[row].nnz(); j++) {
 								auto col = mat[row](j);
-								std::lock_guard<std::mutex> lock(mtxes[col % mtx_size]);
-								tranmat[col].push_back(row, true);
+								auto id = thread_id();
+								tranmat_vec[id][col].push_back(row, true);
 							}
 							localcount++;
 							}, (newleftrows.size() < 20 * nthreads ? 0 : newleftrows.size() / 10));
@@ -1459,7 +1737,7 @@ namespace SparseRREF {
 						if (flags[i]) {
 							auto row = leftrows[i];
 							for (size_t j = 0; j < mat[row].nnz(); j++) {
-								tranmat[mat[row](j)].push_back(row, true);
+								tranmat_vec[0][mat[row](j)].push_back(row, true);
 							}
 							flags[i] = 0;
 							localcount++;
@@ -1482,9 +1760,10 @@ namespace SparseRREF {
 			// if the number of new pivots is less than 1% of the total columns, 
 			// it is very expansive to compute the transpose of the matrix
 			// so we only search the right columns
-			if (opt->method == 2 && !only_right_search && ps.size() < mat.ncol / 100) {
+			if (opt->method == 2 && !only_right_search && ps.size() * 100 < mat.ncol) {
 				only_right_search = true;
-				tranmat.clear();
+				for (auto& tranmat : tranmat_vec)
+					tranmat.clear();
 			}
 
 			kk += ps.size();
@@ -1497,20 +1776,19 @@ namespace SparseRREF {
 	}
 
 	template <typename T, typename index_t>
-	std::vector<std::vector<pivot_t<index_t>>> 
+	std::vector<std::vector<pivot_t<index_t>>>
 		sparse_mat_rref(sparse_mat<T, index_t>& mat, const field_t& F, rref_option_t opt) {
 
-		std::vector<std::vector<pivot_t<index_t>>> pivots;
-		pivots = sparse_mat_rref_forward(mat, F, opt);
+		auto pivots = sparse_mat_rref_forward(mat, F, opt);
 
 		if (opt->shrink_memory) {
 			opt->pool.detach_loop(0, mat.nrow, [&](auto i) {
-					mat[i].reserve(mat[i].nnz());
+				mat[i].reserve(mat[i].nnz());
 				});
 			opt->pool.wait();
 		}
 
-		if (opt->abort) 
+		if (opt->abort)
 			return pivots;
 
 		if (opt->is_back_sub) {
@@ -1522,18 +1800,37 @@ namespace SparseRREF {
 		return pivots;
 	}
 
-	// TODO: check!!! 
-	// checkrank only used for sparse_mat_inverse
+	template <typename index_t>
+	int_t sparse_mat_denominator_lcm(const sparse_mat<rat_t, index_t>& mat) {
+		int_t d = 1;
+		for (size_t i = 0; i < mat.nrow; i++) {
+			d = Flint::LCM(d, sparse_vec_denominator_lcm(mat[i]));
+		}
+		return d;
+	}
 
-	// TODO: if the height of initial matrix is too large, the result may be wrong,
-	// since it need to more primes to reconstruct the matrix. 
-	// The correct condition: H(d*E)*H(mat)*ncol < product of primes
-	// where H is the height of a matrix, E is the reconstracted rref matrix
-	// d the denominartor of E such that d*E is a integer matrix
+	template <typename index_t>
+	int_t sparse_mat_height(const sparse_mat<rat_t, index_t>& mat) {
+		if (mat.nrow == 0)
+			return 1;
+
+		int_t h = sparse_vec_height(mat[0]);
+		for (size_t i = 1; i < mat.nrow; i++) {
+			int_t hi = sparse_vec_height(mat[i]);
+			if (hi > h)
+				h = hi;
+		}
+		return h;
+	}
+
+	// The condition to stop reconstruct: H(d*E)*H(mat)*ncol < product of primes
+	// where H is the height of a matrix (the maximal height of each entry), 
+	// E is the reconstracted rref matrix
+	// d is an integer such that d*E is a integer matrix
+	// checkrank is only used for sparse_mat_inverse
 	template <typename index_t>
 	std::vector<std::vector<pivot_t<index_t>>> sparse_mat_rref_reconstruct(
 		sparse_mat<rat_t, index_t>& mat, rref_option_t opt, const bool checkrank = false) {
-		std::vector<std::vector<pivot_t<index_t>>> pivots;
 
 		constexpr index_t sv = index_sval<index_t>();
 
@@ -1552,18 +1849,19 @@ namespace SparseRREF {
 			});
 		pool.wait();
 
-		ulong mat_height_bits = mat.height_bits() + 64 - std::countl_zero(mat.ncol);
+		int_t m_height = sparse_mat_height(mat);
 
-		pivots = sparse_mat_rref_forward(matul, F, opt);
+		auto cs = clocknow();
+		auto pivots = sparse_mat_rref_forward(matul, F, opt);
 
-		if (opt->abort) 
+		if (opt->abort)
 			return pivots;
 
 		if (checkrank) {
 			size_t rank = 0;
-			for (auto& p : pivots) 
+			for (auto& p : pivots)
 				rank += p.size();
-			if (rank != mat.nrow) 
+			if (rank != mat.nrow)
 				return pivots;
 		}
 
@@ -1587,13 +1885,29 @@ namespace SparseRREF {
 			for (size_t j = 0; j < nnz; j++) {
 				matq[i](j) = matul[i](j);
 				int_t mod1 = matul[i][j];
-				if (isok) 
+				if (isok)
 					isok = rational_reconstruct(matq[i][j], mod1, mod);
 			}
 		}
 
 		sparse_mat<int_t, index_t> matz(mat.nrow, mat.ncol);
-		if (!isok || mod.bits() < mat_height_bits) {
+
+		auto check_height_condition = [](const sparse_mat<rat_t, index_t>& matq,
+			const int_t& mod, const int_t& m_height) -> bool {
+			int_t d = sparse_mat_denominator_lcm(matq);
+			int_t h = 1;
+			for (size_t i = 0; i < matq.nrow; i++) {
+				for (size_t j = 0; j < matq[i].nnz(); j++) {
+					int_t hi = (matq[i][j] * d).num().abs(); // since denominator is 1, height() = num().abs()
+					if (hi > h)
+						h = hi;
+				}
+			}
+			return m_height * matq.ncol * h < mod;
+			};
+
+		if (!isok || !check_height_condition(matq, mod, m_height)) {
+			isok = false;
 			for (size_t i = 0; i < mat.nrow; i++)
 				matz[i] = matul[i];
 		}
@@ -1607,10 +1921,8 @@ namespace SparseRREF {
 		if (opt->abort)
 			return pivots;
 
-		ulong old_height = matq.height_bits();
-
 		// set rows not in pivots to zero
-		if (!isok || mod.bits() < mat_height_bits) {
+		if (!isok) {
 			std::vector<index_t> rowset(mat.nrow, sv);
 			for (auto p : pivots)
 				for (auto [r, c] : p)
@@ -1621,11 +1933,16 @@ namespace SparseRREF {
 				}
 		}
 
-		while (!isok || mod.bits() < mat_height_bits) {
+		while (!isok) {
 			isok = true;
 			prime = n_nextprime(prime, 0);
-			if (verbose)
-				std::cout << ">> Reconstruct failed, try next prime: " << prime << std::endl;
+			auto ce = clocknow();
+			
+			if (verbose) {
+				std::cout << ">> Reconstruct failed, now mod ~ " << "2^" << mod.bits();
+				std::cout << ", used time: " << usedtime(cs, ce) << " s" << std::endl;
+			}
+			cs = ce;
 			int_t mod1 = mod * prime;
 			F = field_t(FIELD_Fp, prime);
 			pool.detach_loop(0, mat.nrow, [&](auto i) {
@@ -1655,10 +1972,9 @@ namespace SparseRREF {
 
 			mod = mod1;
 
-			if (matq.height_bits() > old_height) {
-				isok = false;
-				old_height = matq.height_bits();
-			}
+			// if ok, check height condition
+			if (isok)
+				isok = check_height_condition(matq, mod, m_height);
 		}
 		opt->verbose = verbose;
 
@@ -1690,7 +2006,7 @@ namespace SparseRREF {
 
 		for (auto [r, c] : pivots) {
 			K[c] = M[r];
-			*sparse_vec_entry(K[c], c) = (T)0;
+			*K[c].find(c) = (T)0;
 			K[c].canonicalize();
 			nonpivs[c] = sv;
 		}
@@ -1704,7 +2020,7 @@ namespace SparseRREF {
 		}
 
 		for (auto [r, c] : pivots) {
-			for (size_t j = 0; j < K[c].nnz(); j++) 
+			for (size_t j = 0; j < K[c].nnz(); j++)
 				K[c](j) = nonpivs_ord[K[c](j)];
 		}
 
@@ -1722,7 +2038,7 @@ namespace SparseRREF {
 	}
 
 	template <typename T, typename index_t>
-	sparse_mat<T, index_t> sparse_mat_inverse(const sparse_mat<T, index_t>& M, 
+	sparse_mat<T, index_t> sparse_mat_inverse(const sparse_mat<T, index_t>& M,
 		const field_t& F, rref_option_t opt) {
 		if (M.nrow != M.ncol) {
 			std::cerr << "Error: sparse_mat_inverse: matrix is not square" << std::endl;
@@ -1756,9 +2072,19 @@ namespace SparseRREF {
 		if (F.ring == RING::FIELD_Fp)
 			pivots = sparse_mat_rref(M1, F, opt);
 		else if (F.ring == RING::FIELD_QQ)
-			pivots = sparse_mat_rref_reconstruct(M1, opt, true);
+			if constexpr (std::is_same_v<T, rat_t>) {
+				pivots = sparse_mat_rref_reconstruct(M1, opt, true);
+			}
+			else {
+				// type is not rat_t when field is QQ
+				std::cerr << "Warning: sparse_mat_inverse: type is not rat_t when field is QQ" << std::endl;
+				pivots = sparse_mat_rref(M1, F, opt);
+			}
 		else {
 			std::cerr << "Error: sparse_mat_inverse: field not supported" << std::endl;
+			// restore the option
+			opt->col_weight = old_col_weight;
+			opt->is_back_sub = is_back_sub;
 			return sparse_mat<T, index_t>();
 		}
 
@@ -1768,9 +2094,12 @@ namespace SparseRREF {
 			rank += p.size();
 			flatten_pivots.insert(flatten_pivots.end(), p.begin(), p.end());
 		}
-			
+
 		if (rank != M.nrow) {
 			std::cerr << "Error: sparse_mat_inverse: matrix is not invertible" << std::endl;
+			// restore the option
+			opt->col_weight = old_col_weight;
+			opt->is_back_sub = is_back_sub;
 			return sparse_mat<T, index_t>();
 		}
 
@@ -1888,291 +2217,6 @@ namespace SparseRREF {
 		return mat;
 	}
 
-	// SparseArray[Automatic,dims,imp_val = 0,{1,{rowptr,colindex},vals}]
-	// TODO: more check!!!
-	template <typename T, typename index_t>
-	sparse_mat<T, index_t> sparse_mat_read_wxf(const WXF_PARSER::ExprTree& tree, const field_t& F) {
-		if (tree.tokens.size() == 0) 
-			return sparse_mat<T, index_t>();
-
-		auto& root = tree.root;
-
-		// SparseArray
-		std::string tmp_str(tree[root].str);
-
-		if (tmp_str != "SparseArray") { 
-			std::cerr << "Error: sparse_mat_read: ";
-			std::cerr << "not a SparseArray with rational / integer entries" << std::endl;
-			return sparse_mat<T, index_t>();
-		}
-
-		// dims
-		std::vector<size_t> dims(tree[root[1]].i_arr, tree[root[1]].i_arr + tree[root[1]].dim(0));
-
-		if (tree[root[2]].i != 0) {
-			std::cerr << "Error: sparse_mat_read: the implicit value is not 0" << std::endl;
-			return sparse_mat<T, index_t>();
-		}
-
-		// {1,{rowptr,colindex},vals}
-		auto& last_node = root[3];
-
-		// last_node[0] should be 1, what's the meaning of this?
-
-		// last_node[1] is {rowptr,colindex}
-		// last_node[1][0] is rowptr, last_node[1][1] is colindex
-		std::vector<size_t> rowptr(tree[last_node[1][0]].i_arr, tree[last_node[1][0]].i_arr
-			+ tree[last_node[1][0]].dim(0));
-		std::vector<index_t> colindex(tree[last_node[1][1]].i_arr, tree[last_node[1][1]].i_arr
-			+ tree[last_node[1][1]].dim(0));
-	
-		auto toInteger = [](const WXF_PARSER::TOKEN& node) {
-			switch (node.type) {
-			case WXF_PARSER::WXF_HEAD::i8:
-			case WXF_PARSER::WXF_HEAD::i16:
-			case WXF_PARSER::WXF_HEAD::i32:
-			case WXF_PARSER::WXF_HEAD::i64:
-				return Flint::int_t(node.i);
-			case WXF_PARSER::WXF_HEAD::bigint:
-				return Flint::int_t(node.str);
-			default:
-				std::cerr << "not a integer" << std::endl;
-				return Flint::int_t(0);
-			}
-			};
-
-		// last_node[2] is vals
-		std::vector<T> vals;
-		if (tree[last_node[2]].type == WXF_PARSER::WXF_HEAD::array ||
-			tree[last_node[2]].type == WXF_PARSER::WXF_HEAD::narray) {
-
-			auto ptr = tree[last_node[2]].i_arr;
-			auto nnz = tree[last_node[2]].dim(0);
-
-			vals.resize(nnz);
-			if constexpr (std::is_same_v<T, rat_t>) {
-				for (size_t i = 0; i < nnz; i++) {
-					vals[i] = ptr[i];
-				}
-			}
-			else if constexpr (std::is_same_v<T, ulong>) {
-				for (size_t i = 0; i < nnz; i++) {
-					vals[i] = nmod_set_si(ptr[i], F.mod);
-				}
-			}
-		}
-		else {
-			auto nnz = last_node[2].size;
-			vals.resize(nnz);
-
-			for (size_t i = 0; i < nnz; i++) {
-				T val;
-				auto& val_node = last_node[2][i];
-				auto& token = tree[val_node];
-
-				switch (tree[val_node].type) {
-				case WXF_PARSER::WXF_HEAD::i8:
-				case WXF_PARSER::WXF_HEAD::i16:
-				case WXF_PARSER::WXF_HEAD::i32:
-				case WXF_PARSER::WXF_HEAD::i64:
-					if constexpr (std::is_same_v<T, rat_t>) {
-						val = token.i;
-					}
-					else if constexpr (std::is_same_v<T, ulong>) {
-						val = int_t(token.i) % F.mod;
-					}
-					break;
-				case WXF_PARSER::WXF_HEAD::bigint:
-					if constexpr (std::is_same_v<T, rat_t>) {
-						val = toInteger(token);
-					}
-					else if constexpr (std::is_same_v<T, ulong>) {
-						val = int_t(token.str) % F.mod;
-					}
-					break;
-				case WXF_PARSER::WXF_HEAD::symbol:
-					tmp_str = token.str;
-					if (tmp_str == "Rational") {
-						int_t n_1 = toInteger(tree[val_node[0]]);
-						int_t d_1 = toInteger(tree[val_node[1]]);
-						if constexpr (std::is_same_v<T, rat_t>) {
-							val = rat_t(std::move(n_1), std::move(d_1), true);
-						}
-						else if constexpr (std::is_same_v<T, ulong>) {
-							val = rat_t(std::move(n_1), std::move(d_1), true) % F.mod;
-						}
-					}
-					else {
-						std::cerr << "Error: sparse_mat_read: ";
-						std::cerr << "not a SparseArray with rational / integer entries" << std::endl;
-						return sparse_mat<T, index_t>();
-					}
-					break;
-				default:
-					std::cerr << "Error: sparse_mat_read: ";
-					std::cerr << "not a SparseArray with rational / integer entries" << std::endl;
-					return sparse_mat<T, index_t>();
-					break;
-				}
-				vals[i] = val;
-			}
-		}
-
-		sparse_mat<T, index_t> mat(dims[0], dims[1]);
-		for (size_t i = 0; i < rowptr.size() - 1; i++) {
-			mat[i].reserve(rowptr[i + 1] - rowptr[i]);
-			for (auto j = rowptr[i]; j < rowptr[i + 1]; j++) {
-				// mathematica is 1-indexed
-				mat[i].push_back(colindex[j] - 1, vals[j]);
-			}
-		}
-
-		return mat;
-	}
-
-	template <typename T, typename index_t>
-	sparse_mat<T, index_t> sparse_mat_read_wxf(const std::filesystem::path file, const field_t& F) {
-		auto fz = file_size(file);
-
-		// if > 1GB, use mmap
-		if (fz > 1ULL << 30) {
-			MMapFile mm;
-			std::string cc_str = std::filesystem::canonical(file).string();
-			bool status = mmap_file(cc_str.c_str(), mm);
-
-			if (!status) {
-				// if mmap failed, read the file directly
-				return sparse_mat_read_wxf<T, index_t>(WXF_PARSER::MakeExprTree(file), F);
-			}
-
-			return sparse_mat_read_wxf<T, index_t>(WXF_PARSER::MakeExprTree(mm.view), F);
-		}
-
-		return sparse_mat_read_wxf<T, index_t>(WXF_PARSER::MakeExprTree(file), F);
-	}
-
-	// SparseArray[Automatic,dims,imp_val = 0,{1,{rowptr,colindex},vals}]
-	template <typename T, typename index_t>
-	std::vector<uint8_t> sparse_mat_write_wxf(const sparse_mat<T, index_t>& mat, bool include_head = true) {
-		using namespace WXF_PARSER;
-
-		std::vector<uint8_t> res;
-		res.reserve(mat.nnz() * 8);
-
-		if (include_head) {
-			res.push_back(56); // WXF head
-			res.push_back(58); // WXF head
-		}
-
-		auto push_func = [&res](const std::string_view str, size_t size) {
-			TOKEN(WXF_HEAD::func, (int64_t)size).to_ustr(res);
-			TOKEN(WXF_HEAD::symbol, str).to_ustr(res);
-			};
-
-		push_func("SparseArray", 4);
-		TOKEN(WXF_HEAD::symbol, "Automatic").to_ustr(res);
-
-		size_t rank = 2;
-		size_t nnz = mat.nnz();
-
-		{
-			TOKEN token(WXF_HEAD::array, { 2 }, 3, 2);
-			token.i_arr[0] = mat.nrow;
-			token.i_arr[1] = mat.ncol;
-			token.to_ustr(res);
-		}
-
-		TOKEN(WXF_HEAD::i8, 0).to_ustr(res);
-		push_func("List", 3);
-		TOKEN(WXF_HEAD::i8, 1).to_ustr(res);
-		push_func("List", 2);
-
-		{
-			TOKEN token(WXF_HEAD::array, { mat.nrow + 1 }, 3, mat.nrow + 1);
-			token.i_arr[0] = 0;
-			for (size_t i = 0; i < mat.nrow; i++) {
-				token.i_arr[i + 1] = token.i_arr[i] + mat[i].nnz();
-			}
-			token.to_ustr(res);
-		}
-
-		{
-			auto mz = minimal_pos_signed_bits(mat.ncol);
-
-			TOKEN token(WXF_HEAD::array, { nnz, rank - 1 }, mz, (rank - 1) * nnz, false);
-			token.to_ustr(res);
-
-#define APPEND_COLIND_DATA(TYPE)                                        \
-	{                                                                   \
-		std::vector<TYPE> tmp((rank - 1) * nnz);                        \
-		size_t idx = 0;                                                 \
-		for (size_t i = 0; i < mat.nrow; i++) {                         \
-			for (size_t j = 0; j < mat[i].nnz(); j++) {                 \
-				tmp[idx] = mat[i](j) + 1;                               \
-				idx++;                                                  \
-			}                                                           \
-		}                                                               \
-		res.insert(res.end(),                                           \
-				   (uint8_t*)(tmp.data()),                              \
-				   (uint8_t*)(tmp.data()) + tmp.size() * sizeof(TYPE)); \
-	}
-
-			switch (mz) {
-			case 0: APPEND_COLIND_DATA(int8_t); break;
-			case 1: APPEND_COLIND_DATA(int16_t); break;
-			case 2: APPEND_COLIND_DATA(int32_t); break;
-			case 3: APPEND_COLIND_DATA(int64_t); break;
-			case 4: std::cerr << "Error: sparse_tensor_write_wxf: too large dimension" << std::endl; break;
-			}
-#undef APPEND_COLIND_DATA
-		}
-
-		auto push_int = [&](const int_t& val) {
-			if (val.fits_si())
-				TOKEN(WXF_HEAD::i64, (int64_t)val.to_si()).to_ustr(res);
-			else
-				TOKEN(WXF_HEAD::bigint, val.get_str()).to_ustr(res);
-			};
-
-		if constexpr (std::is_same_v<T, rat_t>) {
-			push_func("List", nnz);
-			// func,2,symbol,8,"Rational"
-			constexpr uint8_t func_rational[] = "f\x02s\x08Rational";
-			for (size_t i = 0; i < mat.nrow; i++) {
-				for (size_t j = 0; j < mat[i].nnz(); j++) {
-					rat_t rat_val = mat[i][j];
-					int_t num = rat_val.num();
-					int_t den = rat_val.den();
-					if (den == 1) {
-						push_int(num);
-					}
-					else {
-						res.insert(res.end(), func_rational, func_rational + sizeof(func_rational) - 1); // -1 for '\0'
-						push_int(num);
-						push_int(den);
-					}
-				}
-			}
-		}
-		else if constexpr (std::is_same_v<T, int_t>) {
-			push_func("List", nnz);
-			for (size_t i = 0; i < mat.nrow; i++) {
-				for (size_t j = 0; j < mat[i].nnz(); j++) 
-					push_int(mat[i][j]);
-			}
-		}
-		else if constexpr (std::is_same_v<T, ulong>) {
-			TOKEN token(WXF_HEAD::narray, { nnz }, 19, nnz, false);
-			token.to_ustr(res);
-			for (size_t i = 0; i < mat.nrow; i++) {
-				res.insert(res.end(), (uint8_t*)(mat[i].entries),
-					(uint8_t*)(mat[i].entries + mat[i].nnz()));
-			}
-		}
-
-		return res;
-	}
-
 	template <typename T, typename S, typename index_t>
 	void sparse_mat_write(sparse_mat<T, index_t>& mat, S& st, enum SPARSE_FILE_TYPE type) {
 		switch (type) {
@@ -2232,35 +2276,6 @@ namespace SparseRREF {
 		if (type == SPARSE_FILE_TYPE_SMS) {
 			st << "0 0 0\n";
 		}
-	}
-
-	
-	static inline std::pair<char*, char*> snmod_mat_to_binary(sparse_mat<ulong>& mat) {
-		auto ratio_i = sizeof(slong) / sizeof(char);
-		auto ratio_e = sizeof(ulong) / sizeof(char);
-		auto nnz = mat.nnz();
-		auto len = 3 * ratio_e + mat.nrow * ratio_e + nnz * (ratio_i + ratio_e);
-		char* buffer = s_malloc<char>(len);
-		char* ptr = buffer;
-		ulong some_n[3] = { mat.nrow, mat.ncol, nnz };
-		std::memcpy(ptr, some_n, 3 * sizeof(ulong)); ptr += 3 * ratio_e;
-		for (size_t i = 0; i < mat.nrow; i++) 
-			ptr = snmod_vec_to_binary(mat[i], ptr).second;
-		return std::make_pair(buffer, ptr);
-	}
-
-	
-	inline sparse_mat<ulong> snmod_mat_from_binary(char* buffer) {
-		auto ratio_i = sizeof(slong) / sizeof(char);
-		auto ratio_e = sizeof(ulong) / sizeof(char);
-		char* ptr = buffer;
-		ulong some_n[3]; // nrow, ncol, nnz
-		std::memcpy(some_n, ptr, 3 * sizeof(ulong)); ptr += 3 * ratio_e;
-		sparse_mat<ulong> mat(some_n[0], some_n[1]);
-		for (size_t i = 0; i < mat.nrow; i++)
-			ptr = snmod_vec_from_binary(mat[i], ptr);
-
-		return mat;
 	}
 
 } // namespace SparseRREF

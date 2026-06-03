@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2024 Zhenjie Li (Li, Zhenjie)
+	Copyright (C) 2024-2025 Zhenjie Li (Li, Zhenjie)
 
 	This file is part of SparseRREF. The SparseRREF is free software:
 	you can redistribute it and/or modify it under the terms of the MIT
@@ -10,10 +10,7 @@
 #ifndef SPARSE_TENSOR_H
 #define SPARSE_TENSOR_H
 
-#include "sparse_rref.h"
-#include "scalar.h"
 #include "sparse_type.h"
-#include "wxf_support.h"
 
 namespace SparseRREF {
 	// we assume that A, B are sorted, then C is also sorted
@@ -49,13 +46,6 @@ namespace SparseRREF {
 		return C;
 	}
 
-	// only for debug
-	template<typename T>
-	void print_p(T* a, size_t t) {
-		for (size_t i = 0; i < t; i++)
-			std::cout << (ulong)(a[i]) << " ";
-	}
-
 	// returned tensor is sorted
 	template <typename index_type, typename T>
 	sparse_tensor<T, index_type, SPARSE_COO> tensor_add(
@@ -70,14 +60,14 @@ namespace SparseRREF {
 			return A;
 
 		if (A.rank() != B.rank()) {
-			std::cerr << "Error: The dimensions of the two tensors do not match." << std::endl;
-			exit(1);
+			std::cerr << "Error: tensor_add: The dimensions of the two tensors do not match." << std::endl;
+			return sparse_tensor<T, index_type, SPARSE_COO>();
 		}
 
 		for (size_t i = 0; i < A.rank(); i++) {
 			if (A.dim(i) != B.dim(i)) {
-				std::cerr << "Error: The dimensions of the two tensors do not match." << std::endl;
-				exit(1);
+				std::cerr << "Error: tensor_add: The dimensions of the two tensors do not match." << std::endl;
+				return sparse_tensor<T, index_type, SPARSE_COO>();
 			}
 		}
 
@@ -152,15 +142,20 @@ namespace SparseRREF {
 		auto rank = A.rank();
 
 		if (A.rank() != B.rank()) {
-			std::cerr << "Error: The dimensions of the two tensors do not match." << std::endl;
-			exit(1);
+			std::cerr << "Error: tensor_sum_replace: The dimensions of the two tensors do not match." << std::endl;
+			return;
 		}
 
 		for (size_t i = 0; i < A.rank(); i++) {
 			if (A.dim(i) != B.dim(i)) {
-				std::cerr << "Error: The dimensions of the two tensors do not match." << std::endl;
-				exit(1);
+				std::cerr << "Error: tensor_sum_replace: The dimensions of the two tensors do not match." << std::endl;
+				return;
 			}
+		}
+
+		if (!(A.check_sorted() && B.check_sorted())) {
+			std::cerr << "Error: tensor_sum_replace: tensor_sum_replace: Both tensors must be sorted." << std::endl;
+			return;
 		}
 
 		// if one of the tensors is zero
@@ -239,7 +234,7 @@ namespace SparseRREF {
 
 		if (i1.size() != i2.size()) {
 			std::cerr << "Error: tensor_contract: The size of the two contract sets do not match." << std::endl;
-			exit(1);
+			return sparse_tensor<T, index_type, SPARSE_COO>();
 		}
 
 		if (i1.size() == 0) {
@@ -251,8 +246,8 @@ namespace SparseRREF {
 
 		for (size_t k = 0; k < i1.size(); k++) {
 			if (dimsA[i1[k]] != dimsB[i2[k]]) {
-				std::cerr << "Error: The dimensions of the two tensors do not match." << std::endl;
-				exit(1);
+				std::cerr << "Error: tensor_contract: The dimensions of the two tensors do not match." << std::endl;
+				return sparse_tensor<T, index_type, SPARSE_COO>();
 			}
 		}
 
@@ -364,7 +359,7 @@ namespace SparseRREF {
 								ptrB = pB - index_B_cache.data();
 							}
 							else {
-								entry = scalar_add(std::move(entry), scalar_mul(A.val(permA[ptrA]), B.val(permB[ptrB]), F), F);
+								entry = scalar_add(entry, scalar_mul(A.val(permA[ptrA]), B.val(permB[ptrB]), F), F);
 								ptrA++; pA++;
 								ptrB++; pB++;
 							}
@@ -382,7 +377,7 @@ namespace SparseRREF {
 								ptrB = ((pB - index_B_cache.data()) / i1i2_size);
 							}
 							else {
-								entry = scalar_add(std::move(entry), scalar_mul(A.val(permA[ptrA]), B.val(permB[ptrB]), F), F);
+								entry = scalar_add(entry, scalar_mul(A.val(permA[ptrA]), B.val(permB[ptrB]), F), F);
 								ptrA++; pA += i1i2_size;
 								ptrB++; pB += i1i2_size;
 							}
@@ -472,7 +467,7 @@ namespace SparseRREF {
 	sparse_tensor<T, index_type, SPARSE_COO> tensor_contract_2(
 		const sparse_tensor<T, index_type, SPARSE_COO>& A,
 		const sparse_tensor<T, index_type, SPARSE_COO>& B,
-		const index_type a, const field_t& F, thread_pool* pool = nullptr) {
+		const index_type a, const field_t& F, thread_pool* pool = nullptr, const bool sort_ind = true) {
 
 		auto C = tensor_contract(A, B, a, 0, F, pool);
 		std::vector<size_t> perm;
@@ -481,7 +476,7 @@ namespace SparseRREF {
 		}
 		perm.erase(perm.begin() + A.rank() - 1);
 		perm.insert(perm.begin() + a, A.rank() - 1);
-		C.transpose_replace(perm, pool);
+		C.transpose_replace(perm, pool, sort_ind);
 
 		return C;
 	}
@@ -681,13 +676,13 @@ namespace SparseRREF {
 
 		auto nt = tensors.size();
 		if (nt != index_sets.size()) {
-			std::cerr << "Error: The number of tensors does not match the number of index sets." << std::endl;
-			exit(1);
+			std::cerr << "Error: einstein_sum: The number of tensors does not match the number of index sets." << std::endl;
+			return sparse_tensor<T, index_type, SPARSE_COO>();
 		}
 		for (size_t i = 1; i < nt; i++) {
 			if (tensors[i]->rank() != index_sets[i].size()) {
-				std::cerr << "Error: The rank of the tensor does not match the index set." << std::endl;
-				exit(1);
+				std::cerr << "Error: einstein_sum: The rank of the tensor does not match the index set." << std::endl;
+				return sparse_tensor<T, index_type, SPARSE_COO>();
 			}
 		}
 
@@ -906,7 +901,7 @@ namespace SparseRREF {
 	// IO
 
 	template <typename ScalarType, typename IndexType, typename T>
-	sparse_tensor<ScalarType, IndexType, SPARSE_COO> sparse_tensor_read(T& st, const field_t& F) {
+	sparse_tensor<ScalarType, IndexType, SPARSE_COO> sparse_tensor_read(T& st, const field_t& F, thread_pool* pool = nullptr, const bool sort_ind = true) {
 		if (!st.is_open())
 			return sparse_tensor<ScalarType, IndexType, SPARSE_COO>();
 
@@ -955,7 +950,8 @@ namespace SparseRREF {
 			}
 
 			if (count != dims.size()) {
-				throw std::runtime_error("Error: wrong format in the tensor file");
+				std::cerr << "Error: sparse_tensor_read: wrong format in the tensor file" << std::endl;
+				return sparse_tensor<ScalarType, IndexType, SPARSE_COO>();
 			}
 
 			ScalarType val;
@@ -969,300 +965,11 @@ namespace SparseRREF {
 
 			tensor.push_back(index, val);
 		}
+		
+		if (sort_ind && !tensor.check_sorted())
+			tensor.sort_indices(pool);
 
 		return tensor;
-	}
-
-	template<typename T, typename IndexType, typename S>
-	void sparse_tensor_write(S& st, const sparse_tensor<T, IndexType, SPARSE_COO>& tensor) {
-		const auto& dims = tensor.dims();
-		const size_t rank = dims.size();
-		char num_buf[32];
-
-		for (size_t i = 0; i < rank; ++i) {
-			auto [ptr, ec] = std::to_chars(num_buf, num_buf + sizeof(num_buf), dims[i]);
-			st.write(num_buf, ptr - num_buf);
-			st.put(' ');
-		}
-		auto [ptr, ec] = std::to_chars(num_buf, num_buf + sizeof(num_buf), tensor.nnz());
-		st.write(num_buf, ptr - num_buf);
-		st.put('\n');
-
-		std::vector<char> index_buf;
-		index_buf.reserve(rank * 20 + 64);
-
-		for (size_t i = 0; i < tensor.nnz(); ++i) {
-			index_buf.clear();
-			const auto& index = tensor.index(i);
-			for (size_t j = 0; j < rank; ++j) {
-				auto [ptr, ec] = std::to_chars(num_buf, num_buf + sizeof(num_buf), index[j] + 1);
-				index_buf.insert(index_buf.end(), num_buf, ptr);
-				index_buf.push_back(' ');
-			}
-			st.write(index_buf.data(), index_buf.size());
-			st << tensor.val(i) << '\n';
-		}
-	}
-
-	// SparseArray[Automatic,dims,imp_val = 0,{1,{rowptr,colindex},vals}]
-	// TODO: more check!!!
-	template <typename T, typename index_t>
-	sparse_tensor<T, index_t, SPARSE_CSR> sparse_tensor_read_wxf(const WXF_PARSER::ExprTree& tree, const field_t& F) {
-		using namespace WXF_PARSER;
-		auto& root = tree.root;
-
-		sparse_tensor<T, index_t, SPARSE_CSR> res;
-
-		if (tree[root].str != std::string_view("SparseArray")) {
-			std::cerr << "Error: sparse_tensor_read_wxf: ";
-			std::cerr << "not a SparseArray with rational / integer entries" << std::endl;
-			return res;
-		}
-
-		// dims
-		std::vector<size_t> dims(tree[root[1]].i_arr, tree[root[1]].i_arr + tree[root[1]].dim(0));
-
-		if (tree[root[2]].i != 0) {
-			std::cerr << "Error: sparse_tensor_read_wxf: the implicit value is not 0" << std::endl;
-			return res;
-		}
-
-		// {1,{rowptr,colindex},vals}
-		auto& last_node = root[3];
-
-		// last_node[0] should be 1, what's the meaning of this?
-
-		// last_node[1] is {rowptr,colindex}
-		// last_node[1][0] is rowptr, last_node[1][1] is colindex
-
-		res = sparse_tensor<T, index_t, SPARSE_CSR>(dims);
-		res.data.rowptr = std::vector<size_t>(tree[last_node[1][0]].i_arr, tree[last_node[1][0]].i_arr
-			+ tree[last_node[1][0]].dim(0));
-		auto nnz = res.data.rowptr.back();
-
-		res.data.reserve(nnz);
-		for (size_t i = 0; i < nnz * (dims.size() - 1); i++) {
-			res.data.colptr[i] = tree[last_node[1][1]].i_arr[i] - 1; // mma is 1-base
-		}
-
-		auto toInteger = [](const WXF_PARSER::TOKEN& node) {
-			switch (node.type) {
-			case WXF_HEAD::i8:
-			case WXF_HEAD::i16:
-			case WXF_HEAD::i32:
-			case WXF_HEAD::i64:
-				return Flint::int_t(node.i);
-			case WXF_HEAD::bigint:
-				return Flint::int_t(node.str);
-			default:
-				std::cerr << "not a integer" << std::endl;
-				return Flint::int_t(0);
-			}
-			};
-
-		// last_node[2] is vals
-		T* vals = res.data.valptr;
-		if (tree[last_node[2]].type == WXF_HEAD::array ||
-			tree[last_node[2]].type == WXF_HEAD::narray) {
-
-			auto ptr = tree[last_node[2]].i_arr;
-			if constexpr (std::is_same_v<T, rat_t>) {
-				for (size_t i = 0; i < nnz; i++) 
-					vals[i] = ptr[i];
-			}
-			else if constexpr (std::is_same_v<T, ulong>) {
-				for (size_t i = 0; i < nnz; i++) 
-					vals[i] = nmod_set_si(ptr[i], F.mod);
-			}
-		}
-		else {
-			for (size_t i = 0; i < nnz; i++) {
-				T val;
-				auto& val_node = last_node[2][i];
-				auto& token = tree[val_node];
-
-				switch (tree[val_node].type) {
-				case WXF_HEAD::i8:
-				case WXF_HEAD::i16:
-				case WXF_HEAD::i32:
-				case WXF_HEAD::i64:
-					if constexpr (std::is_same_v<T, rat_t>) {
-						val = token.i;
-					}
-					else if constexpr (std::is_same_v<T, ulong>) {
-						val = nmod_set_si(token.i, F.mod);
-					}
-					break;
-				case WXF_HEAD::bigint:
-					if constexpr (std::is_same_v<T, rat_t>) {
-						val = toInteger(token);
-					}
-					else if constexpr (std::is_same_v<T, ulong>) {
-						val = int_t(token.str) % F.mod;
-					}
-					break;
-				case WXF_HEAD::symbol:
-					if (token.str == std::string_view("Rational")) {
-						int_t n_1 = toInteger(tree[val_node[0]]);
-						int_t d_1 = toInteger(tree[val_node[1]]);
-						if constexpr (std::is_same_v<T, rat_t>) {
-							val = rat_t(std::move(n_1), std::move(d_1), true);
-						}
-						else if constexpr (std::is_same_v<T, ulong>) {
-							val = rat_t(std::move(n_1), std::move(d_1), true) % F.mod;
-						}
-					}
-					else {
-						std::cerr << "Error: sparse_mat_read: ";
-						std::cerr << "not a SparseArray with rational / integer entries" << std::endl;
-						return res;
-					}
-					break;
-				default:
-					std::cerr << "Error: sparse_mat_read: ";
-					std::cerr << "not a SparseArray with rational / integer entries" << std::endl;
-					return res;
-					break;
-				}
-				vals[i] = val;
-			}
-		}
-
-		return res;
-	}
-	
-	template <typename T, typename index_t>
-	auto sparse_tensor_read_wxf(const std::filesystem::path file, const field_t& F) {
-		auto fz = file_size(file);
-
-		// if > 1GB, use mmap
-		if (fz > 1ULL << 30) {
-			MMapFile mm;
-			std::string cc_str = std::filesystem::canonical(file).string();
-			bool status = mmap_file(cc_str.c_str(), mm);
-
-			if (!status) {
-				// mmap failed, use the file directly
-				return sparse_tensor_read_wxf<T, index_t>(WXF_PARSER::MakeExprTree(file), F);
-			}
-
-			return sparse_tensor_read_wxf<T, index_t>(WXF_PARSER::MakeExprTree(mm.view), F);
-		}
-
-		return sparse_tensor_read_wxf<T, index_t>(WXF_PARSER::MakeExprTree(file), F);
-	}
-
-	// TODO...
-	// SparseArray[Automatic,dims,imp_val = 0,{1,{rowptr,colindex},vals}]
-	template <typename T, typename index_t>
-	std::vector<uint8_t> sparse_tensor_write_wxf(const sparse_tensor<T, index_t, SPARSE_CSR>& tensor, bool include_head = true) {
-		using namespace WXF_PARSER;
-
-		std::vector<uint8_t> res;
-		res.reserve(tensor.nnz() * 8);
-
-		if (include_head) {
-			res.push_back(56); // WXF head
-			res.push_back(58); // WXF head
-		}
-		
-		auto push_func = [&res](const std::string_view str, size_t size) {
-			TOKEN(WXF_HEAD::func, size).to_ustr(res);
-			TOKEN(WXF_HEAD::symbol, str).to_ustr(res);
-			};
-
-		push_func("SparseArray", 4);
-		TOKEN(WXF_HEAD::symbol, "Automatic").to_ustr(res);
-
-		auto rank = tensor.rank();
-		auto nnz = tensor.nnz();
-		const auto& dims = tensor.dims();
-		
-		{
-			TOKEN token(WXF_HEAD::array, { rank }, 3, rank);
-			for (auto i = 0; i < rank; i++) {
-				token.i_arr[i] = dims[i];
-			}
-			token.to_ustr(res);
-		}
-
-		TOKEN(WXF_HEAD::i8, 0).to_ustr(res);
-		push_func("List", 3);
-		TOKEN(WXF_HEAD::i8, 1).to_ustr(res);
-		push_func("List", 2);
-
-		const auto& rowptr = tensor.data.rowptr;
-		{
-			TOKEN token(WXF_HEAD::array, { rowptr.size() }, 3, rowptr.size());
-			for (size_t i = 0; i < rowptr.size(); i++) {
-				token.i_arr[i] = rowptr[i];
-			}
-			token.to_ustr(res);
-		}
-
-		{
-			auto mz = minimal_pos_signed_bits(1 + *std::max_element(dims.begin() + 1, dims.end()));
-
-			TOKEN token(WXF_HEAD::array, { nnz, rank - 1 }, mz, (rank - 1) * nnz, false);
-			token.to_ustr(res);
-
-#define APPEND_COLIND_DATA(TYPE)                                        \
-    {                                                                   \
-        std::vector<TYPE> tmp((rank - 1) * nnz);                        \
-        for (size_t i = 0; i < tmp.size(); i++)                         \
-            tmp[i] = tensor.data.colptr[i] + 1;                         \
-        res.insert(res.end(),                                           \
-                   (uint8_t*)(tmp.data()),                              \
-                   (uint8_t*)(tmp.data()) + tmp.size() * sizeof(TYPE)); \
-    }
-
-			switch (mz) {
-			case 0: APPEND_COLIND_DATA(int8_t); break;
-			case 1: APPEND_COLIND_DATA(int16_t); break;
-			case 2: APPEND_COLIND_DATA(int32_t); break;
-			case 3: APPEND_COLIND_DATA(int64_t); break;
-			case 4: std::cerr << "Error: sparse_tensor_write_wxf: too large dimension" << std::endl; break;
-			}
-#undef APPEND_COLIND_DATA
-		}
-
-		auto push_int = [&](const int_t& val) {
-			if (val.fits_si()) 
-				TOKEN(WXF_HEAD::i64, val.to_si()).to_ustr(res);
-			else 
-				TOKEN(WXF_HEAD::bigint, val.get_str()).to_ustr(res);
-			};
-
-		if constexpr (std::is_same_v<T, rat_t>) {
-			push_func("List", nnz);
-			// func,2,symbol,8,"Rational"
-			constexpr uint8_t func_rational[] = "f\x02s\x08Rational";
-			for (size_t i = 0; i < nnz; i++) {
-				T& val = tensor.val(i);
-				int_t num = val.num();
-				int_t den = val.den();
-				if (den == 1) 
-					push_int(num);
-				else {
-					res.insert(res.end(), func_rational, func_rational + sizeof(func_rational) - 1); // -1 for '\0'
-					push_int(num);
-					push_int(den);
-				}
-			}
-		}
-		else if constexpr (std::is_same_v<T, int_t>) {
-			push_func("List", nnz);
-			for (size_t i = 0; i < nnz; i++) {
-				push_int(tensor.val(i));
-			}
-		}
-		else if constexpr (std::is_same_v<T, ulong>) {
-			TOKEN token(WXF_HEAD::narray, { nnz }, 19, nnz, false);
-			token.to_ustr(res);
-			res.insert(res.end(), (uint8_t*)(tensor.data.valptr), (uint8_t*)(tensor.data.valptr + nnz));
-		}
-
-		return res;
 	}
 
 } // namespace SparseRREF

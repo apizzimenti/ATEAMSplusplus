@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2024 Zhenjie Li (Li, Zhenjie)
+	Copyright (C) 2024-2025 Zhenjie Li (Li, Zhenjie)
 
 	This file is part of SparseRREF. The SparseRREF is free software:
 	you can redistribute it and/or modify it under the terms of the MIT
@@ -11,11 +11,12 @@
 
 #include <string>
 #include <cstring>
-#include <flint/nmod.h>
-#include <flint/fmpz.h>
-#include <flint/fmpq.h>
+#include "flint/nmod.h"
+#include "flint/fmpz.h"
+#include "flint/fmpq.h"
 
 #ifdef USE_MIMALLOC
+#include "gmp.h"
 #include "mimalloc.h"
 #endif
 
@@ -44,9 +45,19 @@ namespace Flint {
 	template <typename T>
 	concept unsigned_builtin_integral = builtin_integral<T> && std::is_unsigned_v<T>;
 
+#ifdef USE_MIMALLOC
+	static void* mi_gmp_realloc(void* ptr, size_t old_size, size_t new_size) {
+		void* new_ptr = mi_realloc(ptr, new_size);
+		return new_ptr;
+	}
+
+	static void mi_gmp_free(void* ptr, size_t size) { mi_free(ptr); }
+#endif
+
 	// set memory functions for flint
 	inline void set_memory_functions() {
 #ifdef USE_MIMALLOC
+		mp_set_memory_functions(&mi_malloc, &mi_gmp_realloc, &mi_gmp_free);
 		__flint_set_memory_functions(&mi_malloc, &mi_calloc, &mi_realloc, &mi_free);
 #endif
 	}
@@ -72,7 +83,7 @@ namespace Flint {
 		inline void clear() { fmpz_clear(&_data); }
 		~int_t() { clear(); }
 		int_t(const int_t& other) { init(); fmpz_set(&_data, &other._data); }
-		int_t(int_t&& other) noexcept { 
+		int_t(int_t&& other) noexcept {
 			_data = other._data;
 			other.init(); // reset the other data to avoid double free
 		}
@@ -179,12 +190,12 @@ namespace Flint {
 
 		int_t operator-() const { return neg(); }
 
-		std::string get_str(int base = 10, bool thread_safe = false) const {
+		std::string get_str(int base = 10) const {
 			auto len = fmpz_sizeinbase(&_data, base) + 3;
 			std::string result;
 			result.resize(len + 5);
 			fmpz_get_str(result.data(), base, &_data);
-			result.resize(strlen(result.c_str()));
+			result.resize(strlen(result.data()));
 			return result;
 		}
 	};
@@ -214,12 +225,12 @@ namespace Flint {
 		template <unsigned_builtin_integral T> rat_t(const T a) { init(); fmpq_set_ui(&_data, a, 1); }
 
 		rat_t(const int_t& a) { init(); fmpq_set_fmpz(&_data, &a._data); }
-		rat_t(int_t&& a) { _data = { a._data,1LL }; a.init(); }
+		rat_t(int_t&& a) noexcept { _data = { a._data,1LL }; a.init(); }
 		rat_t(const int_t& a, const int_t& b) { init(); fmpq_set_fmpz_frac(&_data, &a._data, &b._data); }
-		rat_t(int_t&& a, int_t&& b, const bool is_canonical = false) { 
-			_data = { a._data, b._data }; 
+		rat_t(int_t&& a, int_t&& b, const bool is_canonical = false) noexcept {
+			_data = { a._data, b._data };
 			a.init(); b.init(); // reset the other data to avoid double free
-			if (!is_canonical) 
+			if (!is_canonical)
 				canonicalize();
 		}
 
@@ -229,11 +240,11 @@ namespace Flint {
 		explicit rat_t(const char* str) { init(); set_str(str); }
 
 		ulong height_bits() const { return fmpq_height_bits(&_data); }
-		bool is_den_one() const { return fmpz_is_one(fmpq_denref(&_data)); }
-		bool is_integer() const { return is_den_one(); }
+		bool is_integer() const { return fmpz_is_one(fmpq_denref(&_data)); }
 
 		int_t num() const { return fmpq_numref(&_data); }
 		int_t den() const { return fmpq_denref(&_data); }
+		int sign() const { return fmpq_sgn(&_data); }
 
 		fmpz* num_data() { return fmpq_numref(&_data); }
 		const fmpz* num_data() const { return fmpq_numref(&_data); }
@@ -260,9 +271,9 @@ namespace Flint {
 		bool operator==(const rat_t& other) const { return fmpq_equal(&_data, &other._data); }
 		bool operator==(const int_t& other) const { return fmpq_equal_fmpz((fmpq*)&_data, (fmpz*)&other._data); }
 		template <builtin_integral T> bool operator==(const T other) const {
-			if (other == 0) 
+			if (other == 0)
 				return fmpq_is_zero(&_data);
-			if (other == 1) 
+			if (other == 1)
 				return fmpq_is_one(&_data);
 			return fmpq_equal_si((fmpq*)&_data, other);
 		};
@@ -312,9 +323,14 @@ namespace Flint {
 			return nmod_div(nummod, denmod, mod);
 		}
 
-		void operator++() { *this += 1; }
-		void operator--() { *this -= 1; }
+		void operator++() { fmpq_add_ui(&_data, &_data, 1); }
+		void operator--() { fmpq_sub_ui(&_data, &_data, 1); }
 
+		int_t height() const {
+			int_t num_abs = num().abs();
+			int_t den_abs = den().abs();
+			return (num_abs > den_abs) ? num_abs : den_abs;
+		}
 		rat_t pow(const int_t& n) const { rat_t result; fmpq_pow_fmpz(&result._data, &_data, &n._data); return result; }
 		template <signed_builtin_integral T>
 		rat_t pow(const T n) const { rat_t result; fmpq_pow_si(&result._data, &_data, n); return result; }
@@ -332,14 +348,14 @@ namespace Flint {
 
 		rat_t operator-() const { return neg(); }
 
-		std::string get_str(int base = 10, bool thread_safe = false) const {
+		std::string get_str(int base = 10) const {
 			auto len = fmpz_sizeinbase(fmpq_numref(&_data), base) +
 				fmpz_sizeinbase(fmpq_denref(&_data), base) + 3;
 
 			std::string result;
 			result.resize(len + 5);
 			fmpq_get_str(result.data(), base, &_data);
-			result.resize(strlen(result.c_str()));
+			result.resize(strlen(result.data()));
 			return result;
 		}
 	};
@@ -393,6 +409,15 @@ namespace Flint {
 		return result;
 	}
 
+	// Reconstructs a rational number from its residue a modulo m
+	// The function returns 1 if successful, and 0 to indicate that no solution exists.
+	// N is the bound of the abs of the numerator, D is the bound of the abs of the denominator,
+	// which satisfies 2*N*D < mod
+	inline int rational_reconstruct_modular(rat_t& q, const int_t& a, const int_t& mod, const int_t& N, const int_t& D) {
+		return fmpq_reconstruct_fmpz_2(&q._data, &a._data, &mod._data, &N._data, &D._data);
+	}
+
+	// using N = D = floor(sqrt((mod-1)/2))
 	inline int rational_reconstruct(rat_t& q, const int_t& a, const int_t& mod) {
 		return  fmpq_reconstruct_fmpz(&q._data, &a._data, &mod._data);
 	}
@@ -469,8 +494,8 @@ namespace SparseRREF {
 	using Flint::int_t;
 
 	// TODO: avoid copy
-	static inline std::string scalar_to_str(const rat_t& a) { return a.get_str(10, true); }
-	static inline std::string scalar_to_str(const int_t& a) { return a.get_str(10, true); }
+	static inline std::string scalar_to_str(const rat_t& a) { return a.get_str(10); }
+	static inline std::string scalar_to_str(const int_t& a) { return a.get_str(10); }
 	static inline std::string scalar_to_str(const ulong& a) { return std::to_string(a); }
 
 	// arithmetic
@@ -490,31 +515,24 @@ namespace SparseRREF {
 		return _nmod_add(b, c, field.mod);
 	}
 	static inline int_t scalar_add(const int_t& b, const int_t& c, const field_t& field) { return b + c; }
-	static inline int_t scalar_add(int_t&& b, const int_t& c, const field_t& field) { b += c; return b; }
 	static inline rat_t scalar_add(const rat_t& b, const rat_t& c, const field_t& field) { return b + c; }
-	static inline rat_t scalar_add(rat_t&& b, const rat_t& c, const field_t& field) { b += c; return b; }
 
 	static inline ulong scalar_sub(const ulong b, const ulong c, const field_t& field) {
 		return _nmod_sub(b, c, field.mod);
 	}
 	static inline int_t scalar_sub(const int_t& b, const int_t& c, const field_t& field) { return b - c; }
-	static inline int_t scalar_sub(int_t&& b, const int_t& c, const field_t& field) { b -= c; return b; }
 	static inline rat_t scalar_sub(const rat_t& b, const rat_t& c, const field_t& field) { return b - c; }
-	static inline rat_t scalar_sub(rat_t&& b, const rat_t& c, const field_t& field) { b -= c; return b; }
 
 	static inline ulong scalar_mul(const ulong b, const ulong c, const field_t& field) {
 		return nmod_mul(b, c, field.mod);
 	}
 	static inline int_t scalar_mul(const int_t& b, const int_t& c, const field_t& field) { return b * c; }
-	static inline int_t scalar_mul(int_t&& b, const int_t& c, const field_t& field) { b *= c; return b; }
 	static inline rat_t scalar_mul(const rat_t& b, const rat_t& c, const field_t& field) { return b * c; }
-	static inline rat_t scalar_mul(rat_t&& b, const rat_t& c, const field_t& field) { b *= c; return b; }
 
 	static inline ulong scalar_div(const ulong b, const ulong c, const field_t& field) {
 		return nmod_div(b, c, field.mod);
 	}
 	static inline rat_t scalar_div(const rat_t& b, const rat_t& c, const field_t& field) { return b / c; }
-	static inline rat_t scalar_div(rat_t&& b, const rat_t& c, const field_t& field) { b /= c; return b; }
 
 } // namespace SparseRREF
 

@@ -9,5 +9,10 @@ build: clean
 test: clean build
 	@cd build; ctest
 
+docs: FORCE
+	@doxygen
+
 .PHONY: clean build
+
+FORCE: ;
 
