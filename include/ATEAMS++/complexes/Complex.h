@@ -19,7 +19,7 @@ namespace ATEAMS {
 		 * 	matrix \f$\partial_d\f$ of the given complex.
 		 * 
 		 * @var BoundaryData::Bases
-		 * @ref ATEAMS::Bases where `Bases[d]` is a @ref ATEAMS::ZpBasis representing
+		 * @ref ATEAMS::ZpBases where `Bases[d]` is a @ref ATEAMS::ZpBasis representing
 		 * 	a basis for the \f$d\f$th homology group \f$H_d(X)\f$.
 		 * 
 		 * @var BoundaryData::Full

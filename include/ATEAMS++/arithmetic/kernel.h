@@ -35,9 +35,10 @@ namespace ATEAMS::arithmetic {
 	 * 
 	 * @param coboundary Coboundary matrix \f$\delta^{d-1}\f$.
 	 * @param F Field \f$ \Z / p \Z \f$.
+	 * @param exclude Row indices to exclude.
 	 * @param intuniform Uniform distribution over integers \f$[0, p)\f$.
 	 * @param RNG Mersenne twister PRNG.
-	 * @param ThreadOptions Reference to an @ref ATEAMS::arithmetic::ThreadOptions
+	 * @param options Reference to an @ref ATEAMS::arithmetic::ThreadOptions
 	 * 	instance.
 	 * @param DEBUG Are we debugging the arithmetic?
 	 * 

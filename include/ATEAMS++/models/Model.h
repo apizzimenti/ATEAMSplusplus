@@ -34,7 +34,7 @@ namespace ATEAMS {
 		 * @brief Abstract (template) class for various Models.
 		 * 
 		 * @var Model::complex
-		 * Pointer to a @ref ATEAMS::Complex.
+		 * Pointer to a @ref ATEAMS::complexes::Complex.
 		 * 
 		 * @var Model::parameters
 		 * Parameters for the model.

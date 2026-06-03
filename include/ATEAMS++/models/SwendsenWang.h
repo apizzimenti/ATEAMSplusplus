@@ -72,11 +72,34 @@ namespace ATEAMS {
 		 */
 		class SwendsenWang: public Model {
 			public:
+				/**
+				 * @brief Constructor.
+				 * 
+				 * @param complex (Pointer to) a complex.
+				 * @param parameters Model parameters.
+				 */
 				SwendsenWang(ATEAMS::complexes::Complex* complex, SwendsenWangParameters parameters);
 
+				/**
+				 * @brief Alternates between sampling the conditionals \f$P_t \sim \PK(- | f_t)\f$
+				 * 	and \f$f_{t+1} \sim \PK(- | P_{t+1})\f$ of the coupling \f$\PK\f$ between
+				 * 	the PLGT and PRCM.
+				 * 
+				 * @param t Time step.
+				 * @param options Multithreaded computing environment options.
+				 * 
+				 * @return The sample \f$P_t \sim \PK(- | f_t)\f$.
+				 */
 				ZpVector sample(int t, ATEAMS::arithmetic::ThreadOptions& options) override;
 
+				/**
+				 * @brief Initializes \f$f_0\f$ to uniform random elements of \f$\Z/p\Z\f$.
+				 */
 				void initialize() override;
+
+				/**
+				 * @brief Initializes \f$f_0 = c\f$.
+				 */
 				void initialize(ZpVector c) override;
 
 				SwendsenWangParameters parameters;
