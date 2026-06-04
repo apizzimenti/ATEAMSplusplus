@@ -56,12 +56,12 @@ ZpVector models::SwendsenWang::sample(int t, arithmetic::ThreadOptions& options)
 
 	// Now, sample from the kernel.
 	ZpVector sample = arithmetic::submatrixKernelSample(
-		this->complex->Coboundary.Matrices[d],	// full coboundary matrix
+		this->complex->Coboundary.Matrices[d],	// complete dth coboundary matrix
 		this->field,							// field
 		exclude,								// rows to exclude
 		this->intuniform,						// uniform random over field
 		this->RNG,								// RNG
-		options,
+		options,								// compute options
 		this->parameters.DEBUG					// debugging
 	);
 
@@ -107,7 +107,6 @@ void models::SwendsenWang::initialize() {
 void models::SwendsenWang::initialize(ZpVector c) {
 	this->state.cochain = c;
 }
-
 
 models::SwendsenWang::SwendsenWang(complexes::Complex* complex, SwendsenWangParameters parameters)
 	: field(Zp(SparseRREF::FIELD_Fp, parameters.field))

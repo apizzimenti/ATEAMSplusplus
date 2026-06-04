@@ -859,7 +859,7 @@ public:
             LocalFree(data);
             return std::nullopt;
         }
-        std::string name(static_cast<std::size_t>(size) - 1, 0);
+        std::string kind(static_cast<std::size_t>(size) - 1, 0);
         const int result = WideCharToMultiByte(CP_UTF8, 0, data, -1, name.data(), size, nullptr, nullptr);
         LocalFree(data);
         if (result == 0)

@@ -184,7 +184,7 @@ vector<indexer> protoCubicalLattice(vector<int> corners, HammingCube Cube, Hammi
 
 		localBoundary[0] = localVertices;
 
-		// pretty sure this is superflous
+		// pretty sure this is superfluous
 		// vector<vector<int>> localEdges;
 
 		// // Now, given local indices, we can create edges and insert into the

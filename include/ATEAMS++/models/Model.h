@@ -6,6 +6,8 @@
 #include "ATEAMS++/complexes/Complex.h"
 #include "ATEAMS++/arithmetic/options.h"
 
+#include <string>
+
 namespace ATEAMS {
 	namespace models {
 		/**
@@ -41,12 +43,17 @@ namespace ATEAMS {
 		 * 
 		 * @var Model::state
 		 * Manages state for the model.
+		 * 
+		 * @var Model::kind
+		 * Model name.
 		 */
+		template <typename SampleType>
 		class Model {
 			public:
 				ATEAMS::complexes::Complex* complex;
 				ModelParameters parameters;
 				ModelState state;
+				std::string kind;
 
 				/**
 				 * @brief Draw a sample from the model.
@@ -57,7 +64,7 @@ namespace ATEAMS {
 				 * 
 				 * @returns A sample from the model.
 				 */
-				virtual ZpVector sample(int t, ATEAMS::arithmetic::ThreadOptions& options) = 0;
+				virtual SampleType sample(int t, ATEAMS::arithmetic::ThreadOptions& options) = 0;
 
 				/** @brief Initializes the state as determined by the model. */
 				virtual void initialize() = 0;
@@ -67,7 +74,7 @@ namespace ATEAMS {
 				 * 
 				 * @param c Initial state.
 				 */
-				virtual void initialize(ZpVector c) = 0;
+				virtual void initialize(SampleType c) = 0;
 		};
 	}
 }

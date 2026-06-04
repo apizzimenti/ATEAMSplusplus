@@ -42,6 +42,8 @@ namespace ATEAMS {
 				/**
 				 * @brief Constructs boundary matrices for the cubical complex
 				 * with specified corners and boundary conditions.
+				 * 
+				 * @param F Finite field.
 				 */
 				void constructBoundaryMatrices(Zp F) override;
 		};
