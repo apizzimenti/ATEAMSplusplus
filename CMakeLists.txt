@@ -29,6 +29,7 @@ add_library(ATEAMS++ SHARED
 	src/arithmetic/kernel.cpp
 	src/complexes/Cubical.cpp
 	src/models/SwendsenWang.cpp
+	src/models/Bernoulli.cpp
 )
 
 set(ATEAMS++ PROPERTIES VERSION ${PROJECT_VERSION})
@@ -59,5 +60,13 @@ target_link_libraries(models.SwendsenWang PRIVATE ATEAMS++)
 add_test(
 	NAME models.SwendsenWang
 	COMMAND $<TARGET_FILE:models.SwendsenWang>
+)
+
+add_executable(models.Bernoulli tests/models/Bernoulli.cpp)
+target_link_libraries(models.Bernoulli PRIVATE ATEAMS++)
+
+add_test(
+	NAME models.Bernoulli
+	COMMAND $<TARGET_FILE:models.Bernoulli>
 )
 
