@@ -4,7 +4,7 @@
 
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/models/Model.h"
-// #include "ATEAMS++/arithmetic/options.h"
+#include "ATEAMS++/arithmetic/persistence.h"
 
 #include <random>
 #include <set>
@@ -49,6 +49,9 @@ namespace ATEAMS::models {
 	 * 
 	 * @var Bernoulli::kind
 	 * Model name.
+	 * 
+	 * @var Bernoulli::PHATBoundary
+	 * Boundary matrix specialized for PHAT.
 	 */
 	class Bernoulli : Model<std::vector<int>> {
 		public:
@@ -76,6 +79,9 @@ namespace ATEAMS::models {
 
 			BernoulliParameters parameters;
 			BernoulliState state;
+
+			ATEAMS::arithmetic::PHATBoundaryMatrix PHATBoundary;
+
 			std::string kind = "Bernoulli";
 
 		private:

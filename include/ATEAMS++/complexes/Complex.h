@@ -36,7 +36,7 @@ namespace ATEAMS {
 			ZpMatrices Matrices;
 			ZpBases Bases;
 			ZpMatrix Full;
-			std::vector<int> breaks;
+			std::vector<std::vector<int>> breaks;
 		};
 
 		/**

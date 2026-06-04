@@ -27,6 +27,8 @@ vector<int> models::Bernoulli::sample(int t, arithmetic::ThreadOptions& options)
 
 	this->state.included = s;
 
+	// Now, compute the persistent homology.
+
 	return s;
 }
 
@@ -39,6 +41,10 @@ models::Bernoulli::Bernoulli(complexes::Complex* complex, BernoulliParameters pa
 
 	// Determine the field and build the boundary matrices for the Complex.
 	this->complex->constructBoundaryMatrices(this->field);
+
+	// From those boundary matrices, construct the "full" (i.e. up to dimension d+1)
+	// PHAT boundary matrix.
+	
 
 	// Initialize a random number generator.
 	std::random_device rd;

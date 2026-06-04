@@ -301,6 +301,21 @@ void Cubical::constructBoundaryMatrices(Zp F) {
 		this->Coboundary.Matrices[d] = this->Boundary.Matrices[d].transpose();
 		this->Coboundary.Matrices[d].compress();
 	}
+
+	// From cell counts, make breaks.
+	vector<vector<int>> breaks(this->Boundary.Matrices.size());
+	int last = 0;
+
+	for (int d=0; d < this->Boundary.Matrices.size(); d++) {
+		vector<int> broken(2);
+		broken[0] = last;
+		broken[1] = broken[0] + this->Boundary.Matrices[d].nrow;
+		breaks[d] = broken;
+
+		last = broken[1];
+	}
+
+	this->Boundary.breaks = breaks;
 }
 
 
