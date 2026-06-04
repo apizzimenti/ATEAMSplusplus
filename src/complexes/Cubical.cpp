@@ -74,11 +74,82 @@ HammingCube hamming(int D) {
 		vector<vector<bitstring>> facesOfDimension;
 		vector<vector<bitstring>> cells = complex[d+1];
 
+		/*
+		Right now, each "cell" is a list of indices between 0 and (2^D)-1, so
+		each d-cell is a list of d indices. Because this is a Hamming cube, we
+		can treat these indices as length-D bitstrings; again because this is a
+		Hamming cube, the indices of any d-cell are fixed in (D-d) positions.
+		For example, in the D=3 Hamming cube, the "front" face has vertices
+		[0, 1, 4, 5]:
+
+				 (6) 110        111 (7)
+					  ●———————————●
+					 /|			 /|
+			(4)	100	●———————————● |	(5) 101	
+					| |	010	(2) | |
+					| ●—————————|—● 011 (3)
+					|/			|/
+					●———————————●
+			   (0) 000		   001 (1)
+
+		Taking a look at the bitstrings of the vertices composing the front face
+		(which is a 2-cell), the second bit is always 0:
+
+					  ↓
+					0 0 0
+					0 0 1
+					1 0 0
+					1 0 1
+					  ↑
+
+		Looking at the "back" face [2, 3, 6, 7], the second bit is always 1.
+		Moreover, we can identify the index labels (0, 1, ..., 7) with their 
+		_indices_ in the list [0, 1, ..., 7]. Following this pattern, the process
+		for identifying the boundary of each d-cell C = [a0, ..., a(d-1)] goes
+		like this:
+
+			for each digit p in {0,...,d}:      <--- this is the position of the bit we're flipping
+				for each bit b in {0,1}:
+					1. create an empty vector F := [] to store the indices of
+					   the (d-1)-faces of C.
+					2. for each index in {0,...,d-1}:
+						2.1. set x to be the bitstring i with its pth digit cleared;
+							 for example, if i = 011 and p = 1, then x := 001.
+						2.2. set the pth digit of x to b. if b = 0, this step does
+							 nothing; if b = 1, then it sets the pth digit to 1.
+							 for example, if x = 001 and b = 1, then x = 011.
+						2.3. add C[x] (i.e. the vertex at index x) to F.
+					3. now, the elements of F are the elements of C (i.e. vertex labels)
+					   at indices whose bitstrings differ in exactly one position
+					   (i.e. are at Hamming distance 1). because this process flips
+					   each bit twice, F contains two copies of each label, and
+					   the labels are unsorted.
+					4. remove duplicates and sort the elements of F. these are
+					   the (d-1)-dimensional faces of C.
+
+
+		For example, let C = [0, 1, 4, 5]. The vertices are in lexicographic order,
+		so we know that labels at _indices_ differing in 3-2=1 bits are adjacent to
+		one another. Following the steps, we find that the vertices at index pairs
+		form edges:
+
+						00 01 ———> [ C[0], C[1] ] ———> [ 0, 1 ]
+						00 10 ———> [ C[0], C[2] ] ———> [ 0, 4 ]
+						01 11 ———> [ C[1], C[3] ] ———> [ 1, 4 ]
+						10 11 ———> [ C[2], C[3] ] ———> [ 4, 5 ]
+
+		which are exactly the edges bounding the front face of C. Thus, the boundary
+		(in terms of vertex labels) of C is
+
+						[ [ 0, 1 ], [ 0, 4 ], [ 1, 4 ], [ 4, 5 ] ].
+
+		(In practice, each of these edges shows up twice in F, so we just sort F
+		and then delete every other entry.)
+		*/
 		for (auto cell : cells) {
 			for (int pos=0; pos < d+1; pos++) {
 				for (char flip=0; flip<2; flip++) {
 					vector<bitstring> faces;
-
 					for (bitstring i=0; i < cell.size(); i++) {
 						bitstring x = i & ~(1 << pos);
 						x = x | (flip << pos);
@@ -170,7 +241,8 @@ vector<indexer> protoCubicalLattice(vector<int> corners, HammingCube Cube, Hammi
 
 		for (int j=0; j<localVertices.size(); j++) {
 			// With periodic boundary conditions, scan the vertices to check
-			// whether it's a "boundary" point.
+			// whether it's an extremal point (i.e. one of the coordinates is a
+			// corner coordinate).
 			if (periodic) {
 				for (int k=0; k<localVertices[j].size(); k++) {
 					if (localVertices[j][k] == corners[k]) localVertices[j][k] = 0;
@@ -183,22 +255,7 @@ vector<indexer> protoCubicalLattice(vector<int> corners, HammingCube Cube, Hammi
 		}
 
 		localBoundary[0] = localVertices;
-
-		// pretty sure this is superflous
-		// vector<vector<int>> localEdges;
-
-		// // Now, given local indices, we can create edges and insert into the
-		// // prototype boundary.
-		// for (auto edge : Boundary[1]) {
-		// 	vector<int> localEdge(2);
-		// 	for (int j=0; j<edge.size(); j++) localEdge[j] = proto[0][localVertices[edge[j]]];
-
-		// 	proto[1].try_emplace(localEdge, proto[1].size());
-		// 	localEdges.push_back(localEdge);
-		// }
-
-		// localBoundary[1] = localEdges;
-
+		
 		// From here, repeat a similar process, working up in dimension.
 		for (int d=1; d<proto.size(); d++) {
 			vector<vector<int>> canonicalBoundary = Boundary[d];
