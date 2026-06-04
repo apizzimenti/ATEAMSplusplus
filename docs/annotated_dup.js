@@ -10,6 +10,9 @@ var annotated_dup =
         [ "Cubical", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical" ]
       ] ],
       [ "models", "namespace_a_t_e_a_m_s_1_1models.html", [
+        [ "Bernoulli", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli" ],
+        [ "BernoulliParameters", "struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_parameters.html", "struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_parameters" ],
+        [ "BernoulliState", "struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_state.html", "struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_state" ],
         [ "Model", "class_a_t_e_a_m_s_1_1models_1_1_model.html", "class_a_t_e_a_m_s_1_1models_1_1_model" ],
         [ "ModelParameters", "struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html", "struct_a_t_e_a_m_s_1_1models_1_1_model_parameters" ],
         [ "ModelState", "struct_a_t_e_a_m_s_1_1models_1_1_model_state.html", null ],

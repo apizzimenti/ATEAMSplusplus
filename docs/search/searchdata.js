@@ -3,8 +3,8 @@ var indexSectionsWithContent =
   0: "abcdfikmoprstz",
   1: "bcmst",
   2: "a",
-  3: "cfirst",
-  4: "bcdfikmopst",
+  3: "bcfirst",
+  4: "bcdfikmoprst",
   5: "cdiz"
 };
 
