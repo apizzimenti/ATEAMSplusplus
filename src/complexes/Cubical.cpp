@@ -130,8 +130,8 @@ HammingCube hamming(int D) {
 
 		For example, let C = [0, 1, 4, 5]. The vertices are in lexicographic order,
 		so we know that labels at _indices_ differing in 3-2=1 bits are adjacent to
-		one another. Following the steps, we find that the vertices at index pairs
-		form edges:
+		one another. Following the steps, we get the following pairs of indices
+		that indicate edges:
 
 						00 01 ———> [ C[0], C[1] ] ———> [ 0, 1 ]
 						00 10 ———> [ C[0], C[2] ] ———> [ 0, 4 ]
