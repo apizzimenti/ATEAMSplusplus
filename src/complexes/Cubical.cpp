@@ -129,9 +129,11 @@ HammingCube hamming(int D) {
 
 
 		For example, let C = [0, 1, 4, 5]. The vertices are in lexicographic order,
-		so we know that labels at _indices_ differing in 3-2=1 bits are adjacent to
-		one another. Following the steps, we get the following pairs of indices
-		that indicate edges:
+		so we know that labels at _indices_ differing in (d-1) bits belong to the
+		same face. (If d=3 --- i.e. we're looking for the 2-faces of the cube --- then
+		the vertex labels whose indices share (3-2)=1 bit and differ in d=2 bits
+		belong to the same face.) Applying our indexing logic, we get the following
+		index pairs indicating edges:
 
 						00 01 ———> [ C[0], C[1] ] ———> [ 0, 1 ]
 						00 10 ———> [ C[0], C[2] ] ———> [ 0, 4 ]
