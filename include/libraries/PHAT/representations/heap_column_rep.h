@@ -18,7 +18,7 @@ along with PHAT.  If not, see <http://www.gnu.org/licenses/>. */
 
 #pragma once
 
-#include <phat/helpers/misc.h>
+#include "helpers/misc.h"
 
 namespace phat {
     class heap_column_rep {

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['kind_0',['kind',['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a96170d25e84ceacb749714ffad84b93d',1,'ATEAMS::complexes::Cubical']]]
+  ['included_0',['included',['../struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_state.html#a74ae87463c98489ce04058e0e381242b',1,'ATEAMS::models::BernoulliState']]],
+  ['includes_1',['includes',['../struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_state.html#ad9aa6fec8ce9e418ee438f66e0eaf5bf',1,'ATEAMS::models::SwendsenWangState']]]
 ];

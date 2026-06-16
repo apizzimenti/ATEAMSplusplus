@@ -18,8 +18,8 @@
 
 #pragma once
 
-#include <phat/helpers/misc.h>
-#include <phat/boundary_matrix.h>
+#include "helpers/misc.h"
+#include "boundary_matrix.h"
 
 namespace phat {
     class row_reduction {

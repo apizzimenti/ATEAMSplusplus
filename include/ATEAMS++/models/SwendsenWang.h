@@ -7,6 +7,7 @@
 #include "ATEAMS++/arithmetic/options.h"
 
 #include <random>
+#include <string>
 
 namespace ATEAMS {
 	namespace models {
@@ -69,8 +70,11 @@ namespace ATEAMS {
 		 * @var SwendsenWang::intuniform
 		 * Uniform distribution over the integers \f$[0,p)\f$, where \f$p\f$ is
 		 * the order of the model's finite field.
+		 * 
+		 * @var SwendsenWang::kind
+		 * Model name.
 		 */
-		class SwendsenWang: public Model {
+		class SwendsenWang: public Model<ZpVector> {
 			public:
 				/**
 				 * @brief Constructor.
@@ -105,6 +109,8 @@ namespace ATEAMS {
 				SwendsenWangParameters parameters;
 				SwendsenWangState state;
 				const Zp field;
+
+				std::string kind = "SwendsenWang";
 
 			private:
 				std::mt19937 RNG;

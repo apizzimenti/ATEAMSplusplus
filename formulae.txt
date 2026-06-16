@@ -3,3 +3,4 @@
 \newcommand{\PLGT}{\mathrm{PLGT}}
 \newcommand{\PRCM}{\mathrm{PRCM}}
 \newcommand{\PK}{\mathrm{PK}}
+\newcommand{\rank}{\mathrm{rank}}

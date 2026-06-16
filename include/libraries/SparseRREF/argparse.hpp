@@ -1924,7 +1924,7 @@ public:
    * @throws std::logic_error in case of an invalid argument name
    */
   Argument &operator[](std::string_view arg_name) const {
-    std::string name(arg_name);
+    std::string kind(arg_name);
     auto it = m_argument_map.find(name);
     if (it != m_argument_map.end()) {
       return *(it->second);

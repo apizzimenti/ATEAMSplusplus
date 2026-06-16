@@ -4,6 +4,7 @@
 
 #include "ATEAMS++/models/Model.h"
 #include "ATEAMS++/models/SwendsenWang.h"
+#include "ATEAMS++/models/Bernoulli.h"
 
 namespace ATEAMS {
 	/** @brief Discrete probability models. */

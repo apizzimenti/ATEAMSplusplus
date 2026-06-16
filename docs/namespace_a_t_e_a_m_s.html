@@ -31,6 +31,7 @@ window.MathJax = {
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
+    rank: "{\\mathrm{rank}}",
     },
     packages: {
         '[+]': ['units']
@@ -170,6 +171,11 @@ typedef unsigned long&#160;</td><td class="memItemRight"><b>ulong</b></td></tr>
 <tr class="memitem:a35b1a0626467bac02fadce127ae62ff4" id="r_a35b1a0626467bac02fadce127ae62ff4"><td class="memItemLeft">typedef std::vector&lt; <a class="el" href="#a1091f3f417ed66603862abfc7dd14855">ZpVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a35b1a0626467bac02fadce127ae62ff4">ZpVectors</a></td></tr>
 <tr class="memitem:a16953d4db5b20240e18bb9e846db4723" id="r_a16953d4db5b20240e18bb9e846db4723"><td class="memItemLeft">typedef std::vector&lt; <a class="el" href="#a1091f3f417ed66603862abfc7dd14855">ZpVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a16953d4db5b20240e18bb9e846db4723">ZpBasis</a></td></tr>
 <tr class="memitem:affeb975dfe84670b6d4c2f70edd86417" id="r_affeb975dfe84670b6d4c2f70edd86417"><td class="memItemLeft">typedef std::vector&lt; <a class="el" href="#a16953d4db5b20240e18bb9e846db4723">ZpBasis</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#affeb975dfe84670b6d4c2f70edd86417">ZpBases</a></td></tr>
+<tr class="memitem:a4be909ce3a2fa3bc0de28be612076cf8" id="r_a4be909ce3a2fa3bc0de28be612076cf8"><td class="memItemLeft">typedef std::vector&lt; std::vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4be909ce3a2fa3bc0de28be612076cf8">FlatBoundaryMatrix</a></td></tr>
+<tr class="memitem:aa33482893cbd2891838b718a934f2bfa" id="r_aa33482893cbd2891838b718a934f2bfa"><td class="memItemLeft">typedef std::vector&lt; phat::index &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa33482893cbd2891838b718a934f2bfa">PHATColumn</a></td></tr>
+<tr class="memitem:af85aaef0209faa29043f057cfe66413b" id="r_af85aaef0209faa29043f057cfe66413b"><td class="memItemLeft">typedef phat::boundary_matrix&lt; phat::bit_tree_pivot_column &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af85aaef0209faa29043f057cfe66413b">PHATBoundaryMatrix</a></td></tr>
+<tr class="memitem:a1ab3de0701cc085be20a5f4235980472" id="r_a1ab3de0701cc085be20a5f4235980472"><td class="memItemLeft">typedef phat::persistence_pairs&#160;</td><td class="memItemRight"><a class="el" href="#a1ab3de0701cc085be20a5f4235980472">PHATPairs</a></td></tr>
+<tr class="memitem:a57b333e3a6d09bfac4d8f2f75266640a" id="r_a57b333e3a6d09bfac4d8f2f75266640a"><td class="memItemLeft">typedef phat::twist_reduction&#160;</td><td class="memItemRight"><a class="el" href="#a57b333e3a6d09bfac4d8f2f75266640a">PHATTwist</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Global namespace. </p>
@@ -189,6 +195,21 @@ typedef unsigned long&#160;</td><td class="memItemRight"><b>ulong</b></td></tr>
 
 </div>
 </div>
+<a id="a4be909ce3a2fa3bc0de28be612076cf8" name="a4be909ce3a2fa3bc0de28be612076cf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4be909ce3a2fa3bc0de28be612076cf8">&#9670;&#160;</a></span>FlatBoundaryMatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;std::vector&lt;int&gt; &gt; <a class="el" href="#a4be909ce3a2fa3bc0de28be612076cf8">ATEAMS::FlatBoundaryMatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Flat boundary matrix. </p>
+
+</div>
+</div>
 <a id="ae155ebf70a298ef0ab654b914250cca9" name="ae155ebf70a298ef0ab654b914250cca9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae155ebf70a298ef0ab654b914250cca9">&#9670;&#160;</a></span>index_t</h2>
 
@@ -201,6 +222,66 @@ typedef unsigned long&#160;</td><td class="memItemRight"><b>ulong</b></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Default type used for indexing in SparseRREF matrices. </p>
+
+</div>
+</div>
+<a id="af85aaef0209faa29043f057cfe66413b" name="af85aaef0209faa29043f057cfe66413b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af85aaef0209faa29043f057cfe66413b">&#9670;&#160;</a></span>PHATBoundaryMatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef phat::boundary_matrix&lt;phat::bit_tree_pivot_column&gt; <a class="el" href="#af85aaef0209faa29043f057cfe66413b">ATEAMS::PHATBoundaryMatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>PHAT boundary matrix. </p>
+
+</div>
+</div>
+<a id="aa33482893cbd2891838b718a934f2bfa" name="aa33482893cbd2891838b718a934f2bfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa33482893cbd2891838b718a934f2bfa">&#9670;&#160;</a></span>PHATColumn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;phat::index&gt; <a class="el" href="#aa33482893cbd2891838b718a934f2bfa">ATEAMS::PHATColumn</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>PHAT column. </p>
+
+</div>
+</div>
+<a id="a1ab3de0701cc085be20a5f4235980472" name="a1ab3de0701cc085be20a5f4235980472"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ab3de0701cc085be20a5f4235980472">&#9670;&#160;</a></span>PHATPairs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef phat::persistence_pairs <a class="el" href="#a1ab3de0701cc085be20a5f4235980472">ATEAMS::PHATPairs</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>PHAT persistence pairs. </p>
+
+</div>
+</div>
+<a id="a57b333e3a6d09bfac4d8f2f75266640a" name="a57b333e3a6d09bfac4d8f2f75266640a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57b333e3a6d09bfac4d8f2f75266640a">&#9670;&#160;</a></span>PHATTwist</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef phat::twist_reduction <a class="el" href="#a57b333e3a6d09bfac4d8f2f75266640a">ATEAMS::PHATTwist</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>PHAT persistence algorithm. </p>
 
 </div>
 </div>

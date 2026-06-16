@@ -18,8 +18,8 @@
 
 #pragma once
 
-#include <phat/helpers/misc.h>
-#include <phat/representations/default_representations.h>
+#include "helpers/misc.h"
+#include "representations/default_representations.h"
 
 namespace phat {
 

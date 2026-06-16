@@ -4,6 +4,7 @@
 
 #include "ATEAMS++/arithmetic/options.h"
 #include "ATEAMS++/arithmetic/kernel.h"
+#include "ATEAMS++/arithmetic/persistence.h"
 
 namespace ATEAMS {
 	/** @brief Sparse, finite-field linear algebra and support routines. */

@@ -18,18 +18,18 @@
 
 #pragma once
 
-#include <phat/helpers/misc.h>
-#include <phat/representations/Uniform_representation.h>
-#include <phat/representations/Pivot_representation.h>
+#include "helpers/misc.h"
+#include "representations/Uniform_representation.h"
+#include "representations/Pivot_representation.h"
 
-#include <phat/representations/sparse_pivot_column.h>
-#include <phat/representations/full_pivot_column.h>
-#include <phat/representations/heap_pivot_column.h>
-#include <phat/representations/bit_tree_pivot_column.h>
-#include <phat/representations/vector_column_rep.h>
-#include <phat/representations/list_column_rep.h>
-#include <phat/representations/set_column_rep.h>
-#include <phat/representations/heap_column_rep.h>
+#include "representations/sparse_pivot_column.h"
+#include "representations/full_pivot_column.h"
+#include "representations/heap_pivot_column.h"
+#include "representations/bit_tree_pivot_column.h"
+#include "representations/vector_column_rep.h"
+#include "representations/list_column_rep.h"
+#include "representations/set_column_rep.h"
+#include "representations/heap_column_rep.h"
 
 
 namespace phat {

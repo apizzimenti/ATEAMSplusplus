@@ -18,10 +18,10 @@
 
 #pragma once
 
-#include <phat/persistence_pairs.h>
-#include <phat/boundary_matrix.h>
-#include <phat/helpers/dualize.h>
-#include <phat/algorithms/twist_reduction.h>
+#include "persistence_pairs.h"
+#include "boundary_matrix.h"
+#include "helpers/dualize.h"
+#include "algorithms/twist_reduction.h"
 
 namespace phat {
 

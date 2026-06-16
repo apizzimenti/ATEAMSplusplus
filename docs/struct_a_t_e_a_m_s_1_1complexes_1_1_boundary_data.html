@@ -31,6 +31,7 @@ window.MathJax = {
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
+    rank: "{\\mathrm{rank}}",
     },
     packages: {
         '[+]': ['units']
@@ -152,7 +153,7 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a9767684295c6cd3d370bf40aa6cd79ab" id="r_a9767684295c6cd3d370bf40aa6cd79ab"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#aef9b170cf11c5e10e8573d7f38325e91">ZpMatrices</a>&#160;</td><td class="memItemRight"><a class="el" href="#a9767684295c6cd3d370bf40aa6cd79ab">Matrices</a></td></tr>
 <tr class="memitem:a843f70c6917dfa440ab9e28fd297c695" id="r_a843f70c6917dfa440ab9e28fd297c695"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#affeb975dfe84670b6d4c2f70edd86417">ZpBases</a>&#160;</td><td class="memItemRight"><a class="el" href="#a843f70c6917dfa440ab9e28fd297c695">Bases</a></td></tr>
 <tr class="memitem:af39f21f8e1bce0dcc3b451bc3f7cb8a3" id="r_af39f21f8e1bce0dcc3b451bc3f7cb8a3"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">ZpMatrix</a>&#160;</td><td class="memItemRight"><a class="el" href="#af39f21f8e1bce0dcc3b451bc3f7cb8a3">Full</a></td></tr>
-<tr class="memitem:a9d50365d5068990dab67b338e28eef7c" id="r_a9d50365d5068990dab67b338e28eef7c"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9d50365d5068990dab67b338e28eef7c">breaks</a></td></tr>
+<tr class="memitem:a74e11bf3e752a7ea8411d12b5ab45dde" id="r_a74e11bf3e752a7ea8411d12b5ab45dde"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#a4be909ce3a2fa3bc0de28be612076cf8">FlatBoundaryMatrix</a>&#160;</td><td class="memItemRight"><a class="el" href="#a74e11bf3e752a7ea8411d12b5ab45dde">Flat</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Encodes a complex by its boundary matrices. </p>
@@ -172,18 +173,18 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9d50365d5068990dab67b338e28eef7c" name="a9d50365d5068990dab67b338e28eef7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d50365d5068990dab67b338e28eef7c">&#9670;&#160;</a></span>breaks</h2>
+<a id="a74e11bf3e752a7ea8411d12b5ab45dde" name="a74e11bf3e752a7ea8411d12b5ab45dde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74e11bf3e752a7ea8411d12b5ab45dde">&#9670;&#160;</a></span>Flat</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;int&gt; ATEAMS::complexes::BoundaryData::breaks</td>
+          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#a4be909ce3a2fa3bc0de28be612076cf8">FlatBoundaryMatrix</a> ATEAMS::complexes::BoundaryData::Flat</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The \(d\)th entry indicates the starting index of \(d\)-cells in the full boundary matrix. </p>
+<p>A vector of vectors representing the fully indexed flat boundary matrix. For example, the \(d\)th entry contains the indices of its \((d-1)\)-dimensional faces. </p>
 
 </div>
 </div>

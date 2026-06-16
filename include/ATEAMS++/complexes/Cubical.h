@@ -42,8 +42,15 @@ namespace ATEAMS {
 				/**
 				 * @brief Constructs boundary matrices for the cubical complex
 				 * with specified corners and boundary conditions.
+				 * 
+				 * @param F Finite field.
 				 */
 				void constructBoundaryMatrices(Zp F) override;
+
+				/**
+				 * @brief Constructs a boundary matrix for use with PHAT.
+				 */
+				void constructFlatBoundaryMatrix() override;
 		};
 
 		/** @cond */
@@ -52,6 +59,7 @@ namespace ATEAMS {
 
 		typedef std::vector<std::vector<std::vector<int>>> HammingCubeBoundary;
 		typedef HammingCubeBoundary Lattice;
+		
 		typedef std::map<std::vector<int>,int> indexer;
 		/** @endcond */
 	}

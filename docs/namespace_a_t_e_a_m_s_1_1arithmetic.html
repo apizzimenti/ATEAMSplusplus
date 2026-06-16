@@ -31,6 +31,7 @@ window.MathJax = {
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
+    rank: "{\\mathrm{rank}}",
     },
     packages: {
         '[+]': ['units']
@@ -165,10 +166,49 @@ Functions</h2></td></tr>
 <tr class="memdesc:a97f4b5db153ddd6daf732c940922c78a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a uniform random linear combination of the basis for the (reduced) coboundary matrix \(\delta^{d-1}\).  <br /></td></tr>
 <tr class="memitem:a94fe9add9026a351d51b89f3a8172b4c" id="r_a94fe9add9026a351d51b89f3a8172b4c"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ZpVector</a>&#160;</td><td class="memItemRight"><a class="el" href="#a94fe9add9026a351d51b89f3a8172b4c">submatrixKernelSample</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">ZpMatrix</a> coboundary, const <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> &amp;F, std::set&lt; size_t &gt; exclude, std::uniform_int_distribution&lt; int &gt; &amp;intuniform, std::mt19937 &amp;RNG, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options, bool DEBUG=false)</td></tr>
 <tr class="memdesc:a94fe9add9026a351d51b89f3a8172b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a cochain \(f\) at uniform random from \(\delta^{d-1}\) such that \(f\) is a cocycle on the \(d\)-cells corresponding to the rows not in <span class="tt">exclude</span>.  <br /></td></tr>
+<tr class="memitem:a20bf1fec94db3e6ddaf9c9ff7d562d9e" id="r_a20bf1fec94db3e6ddaf9c9ff7d562d9e"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a20bf1fec94db3e6ddaf9c9ff7d562d9e">PHATPersistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, std::vector&lt; int &gt; filtration, int dimension)</td></tr>
+<tr class="memdesc:a20bf1fec94db3e6ddaf9c9ff7d562d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex using \(\Z/2\Z\) coefficients.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Sparse, finite-field linear algebra and support routines. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a20bf1fec94db3e6ddaf9c9ff7d562d9e" name="a20bf1fec94db3e6ddaf9c9ff7d562d9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20bf1fec94db3e6ddaf9c9ff7d562d9e">&#9670;&#160;</a></span>PHATPersistence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; int &gt; ATEAMS::arithmetic::PHATPersistence </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>filtration</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dimension</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the persistent homology of a complex using \(\Z/2\Z\) coefficients. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">complex</td><td>A complex with a flat boundary matrix. </td></tr>
+    <tr><td class="paramname">filtration</td><td>A vector that specifies the order in which to add the cells in the flat boundary matrix. For example, if we are doing 1-dimensional percolation in 2-d, then we switch up the ordering of the 1-d cells in the flat boundary matrix, but leave everything else. </td></tr>
+    <tr><td class="paramname">dimension</td><td>The percolation dimension.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of percolation times. </dd></dl>
+
+</div>
+</div>
 <a id="a97f4b5db153ddd6daf732c940922c78a" name="a97f4b5db153ddd6daf732c940922c78a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a97f4b5db153ddd6daf732c940922c78a">&#9670;&#160;</a></span>randomLinearCombination()</h2>
 

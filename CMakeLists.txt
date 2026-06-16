@@ -27,9 +27,13 @@ pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 # Add the library.
 add_library(ATEAMS++ SHARED
 	src/arithmetic/kernel.cpp
+	src/arithmetic/persistence.cpp
 	src/complexes/Cubical.cpp
 	src/models/SwendsenWang.cpp
+	src/models/Bernoulli.cpp
 )
+
+include_directories(include/libraries/PHAT)
 
 set(ATEAMS++ PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(ATEAMS++ PROPERTIES PUBLIC_HEADER include/ATEAMS++/ATEAMS++.h)
@@ -59,5 +63,13 @@ target_link_libraries(models.SwendsenWang PRIVATE ATEAMS++)
 add_test(
 	NAME models.SwendsenWang
 	COMMAND $<TARGET_FILE:models.SwendsenWang>
+)
+
+add_executable(models.Bernoulli tests/models/Bernoulli.cpp)
+target_link_libraries(models.Bernoulli PRIVATE ATEAMS++)
+
+add_test(
+	NAME models.Bernoulli
+	COMMAND $<TARGET_FILE:models.Bernoulli>
 )
 
