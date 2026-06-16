@@ -14,14 +14,14 @@ int main() {
 
 	models::BernoulliParameters params;
 	params.p = 0.5;
-	params.dimension = 1;
-	params.DEBUG = true;
+	params.dimension = 2;
+	params.DEBUG = false;
 
 	models::Bernoulli P(&C, params);
 	ATEAMS::arithmetic::ThreadOptions options;
 	
 	for (int i=0; i < 1000; i++) {
-		vector<int> r = P.sample(i, options);
+		P.sample(i, options);
 	}
 	
 	return 0;

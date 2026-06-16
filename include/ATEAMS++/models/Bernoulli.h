@@ -28,11 +28,15 @@ namespace ATEAMS::models {
 	 * @var BernoulliState::included
 	 * Indices of included \f$d\f$-cells.
 	 * 
+	 * @var BernoulliState::essential
+	 * Times at which homological percolation occurred (i.e. giant cycles appeared).
+	 * 
 	 * @var BernoulliState::rank
 	 * Rank of the \f$d\f$th persistent homology group \f$PH_d(P)\f$.
 	 */
 	struct BernoulliState : ModelState {
 		std::vector<int> included;
+		std::vector<int> essential;
 		int rank;
 	};
 
@@ -79,8 +83,6 @@ namespace ATEAMS::models {
 
 			BernoulliParameters parameters;
 			BernoulliState state;
-
-			ATEAMS::arithmetic::PHATBoundaryMatrix PHATBoundary;
 
 			std::string kind = "Bernoulli";
 

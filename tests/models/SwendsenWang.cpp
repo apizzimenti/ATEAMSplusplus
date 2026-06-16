@@ -9,11 +9,11 @@ using namespace ATEAMS;
 using namespace std;
 
 int main() {
-	vector<int> corners = {10,10,10,10};
+	vector<int> corners = {4,4,4,4};
 	complexes::Cubical C(corners, true);
 
 	models::SwendsenWangParameters params;
-	params.field = 11;
+	params.field = 2;
 	params.temperatureFunction = statistics::selfdual(params.field);
 	params.dimension = 2;
 
@@ -22,9 +22,13 @@ int main() {
 
 	ATEAMS::arithmetic::ThreadOptions options;
 	std::thread listener = options.spinUp();
-	
-	for (int i=0; i < 1000; i++) {
-		SW.sample(i, options);
+
+	int row = SW.complex->Coboundary.Matrices[2].nrow;
+
+	int k = 0;
+
+	for (int t=0; t < row; t++) {
+		k += SW.complex->Coboundary.Matrices[2][t].size();
 	}
 
 	options.spinDown(&listener);

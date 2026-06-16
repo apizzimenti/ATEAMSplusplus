@@ -15,7 +15,7 @@ int main() {
 	C.constructBoundaryMatrices(F);
 
 	for (int d=0; d < corners.size()+1; d++) {
-		printvector(C.Boundary.breaks[d]);
+		printvector(C.breaks[d]);
 	}
 	
 	return 0;
