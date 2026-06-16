@@ -163,6 +163,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6c0d49219f7e40daa20245e8a1c0a15b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. See <a class="el" href="#a961c92cd5689e3b9ac665f0f4412a0fa" title="ATEAMS::complexes::Cubical::corners">ATEAMS::complexes::Cubical::corners</a>.  <br /></td></tr>
 <tr class="memitem:a5a1d9d3b1f29a7c42d6f85dcde4d8829" id="r_a5a1d9d3b1f29a7c42d6f85dcde4d8829"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5a1d9d3b1f29a7c42d6f85dcde4d8829">constructBoundaryMatrices</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> F) override</td></tr>
 <tr class="memdesc:a5a1d9d3b1f29a7c42d6f85dcde4d8829"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs boundary matrices for the cubical complex with specified corners and boundary conditions.  <br /></td></tr>
+<tr class="memitem:adcfc41a37c0cdf0829400aa0d25fb9aa" id="r_adcfc41a37c0cdf0829400aa0d25fb9aa"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adcfc41a37c0cdf0829400aa0d25fb9aa">constructFlatBoundaryMatrix</a> () override</td></tr>
+<tr class="memdesc:adcfc41a37c0cdf0829400aa0d25fb9aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a boundary matrix for use with PHAT.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -181,6 +183,15 @@ std::string&#160;</td><td class="memItemRight"><b>kind</b> = &quot;cubical&quot;
 <tr class="memitem:a238601cd8c78b04fbb0d84c91f7aa6ee pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a238601cd8c78b04fbb0d84c91f7aa6ee"><td class="memItemLeft">
 std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>Cells</b></td></tr>
 <tr class="memdesc:a238601cd8c78b04fbb0d84c91f7aa6ee pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains cell counts. <br /></td></tr>
+<tr class="memitem:adcf2d963b050fe555feca244c0b5066f pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_adcf2d963b050fe555feca244c0b5066f"><td class="memItemLeft">
+std::vector&lt; std::vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight"><b>breaks</b></td></tr>
+<tr class="memdesc:adcf2d963b050fe555feca244c0b5066f pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the starting and ending indices of \(d\)-cells in the full/flat boundary matrices. <br /></td></tr>
+<tr class="memitem:afd036b3039aa9f44def7193a36d4917d pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_afd036b3039aa9f44def7193a36d4917d"><td class="memItemLeft">
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>offsets</b></td></tr>
+<tr class="memdesc:afd036b3039aa9f44def7193a36d4917d pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the cumulative number of cells over all dimensions lower than d. <br /></td></tr>
+<tr class="memitem:af6a459832df3865cfb3e35696190fbed pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_af6a459832df3865cfb3e35696190fbed"><td class="memItemLeft">
+int&#160;</td><td class="memItemRight"><b>size</b></td></tr>
+<tr class="memdesc:af6a459832df3865cfb3e35696190fbed pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total cell count. <br /></td></tr>
 <tr class="memitem:a2a2f5a9a4a91b1acefe7ef8443bb853f pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a2a2f5a9a4a91b1acefe7ef8443bb853f"><td class="memItemLeft">
 bool&#160;</td><td class="memItemRight"><b>periodic</b></td></tr>
 <tr class="memdesc:a2a2f5a9a4a91b1acefe7ef8443bb853f pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodic boundary conditions? <br /></td></tr>
@@ -259,6 +270,35 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#abd47493579ef3054606cf9630db104a5">ATEAMS::complexes::Complex</a>.</p>
+
+</div>
+</div>
+<a id="adcfc41a37c0cdf0829400aa0d25fb9aa" name="adcfc41a37c0cdf0829400aa0d25fb9aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcfc41a37c0cdf0829400aa0d25fb9aa">&#9670;&#160;</a></span>constructFlatBoundaryMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Cubical::constructFlatBoundaryMatrix </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a boundary matrix for use with PHAT. </p>
+
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a3a824880bb3a7475f18af4493af408f0">ATEAMS::complexes::Complex</a>.</p>
 
 </div>
 </div>

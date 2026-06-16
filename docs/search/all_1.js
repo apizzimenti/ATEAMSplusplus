@@ -6,5 +6,5 @@ var searchData=
   ['bernoullistate_3',['BernoulliState',['../struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_state.html',1,'ATEAMS::models']]],
   ['boundary_4',['Boundary',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a5192ac38e75925cd981741f7ed0676bb',1,'ATEAMS::complexes::Complex']]],
   ['boundarydata_5',['BoundaryData',['../struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html',1,'ATEAMS::complexes']]],
-  ['breaks_6',['breaks',['../struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html#a9d50365d5068990dab67b338e28eef7c',1,'ATEAMS::complexes::BoundaryData']]]
+  ['breaks_6',['breaks',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#adcf2d963b050fe555feca244c0b5066f',1,'ATEAMS::complexes::Complex']]]
 ];

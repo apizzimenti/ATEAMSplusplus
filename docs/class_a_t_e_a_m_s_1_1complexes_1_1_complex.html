@@ -161,6 +161,8 @@ Inheritance diagram for ATEAMS::complexes::Complex:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abd47493579ef3054606cf9630db104a5" id="r_abd47493579ef3054606cf9630db104a5"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#abd47493579ef3054606cf9630db104a5">constructBoundaryMatrices</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> F)=0</td></tr>
 <tr class="memdesc:abd47493579ef3054606cf9630db104a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs boundary matrices.  <br /></td></tr>
+<tr class="memitem:a3a824880bb3a7475f18af4493af408f0" id="r_a3a824880bb3a7475f18af4493af408f0"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a3a824880bb3a7475f18af4493af408f0">constructFlatBoundaryMatrix</a> ()=0</td></tr>
+<tr class="memdesc:a3a824880bb3a7475f18af4493af408f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs flat boundary matrix.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -180,6 +182,15 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a238601cd8c78b04fbb0d84c91f7aa6ee" id="r_a238601cd8c78b04fbb0d84c91f7aa6ee"><td class="memItemLeft"><a id="a238601cd8c78b04fbb0d84c91f7aa6ee" name="a238601cd8c78b04fbb0d84c91f7aa6ee"></a>
 std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>Cells</b></td></tr>
 <tr class="memdesc:a238601cd8c78b04fbb0d84c91f7aa6ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains cell counts. <br /></td></tr>
+<tr class="memitem:adcf2d963b050fe555feca244c0b5066f" id="r_adcf2d963b050fe555feca244c0b5066f"><td class="memItemLeft"><a id="adcf2d963b050fe555feca244c0b5066f" name="adcf2d963b050fe555feca244c0b5066f"></a>
+std::vector&lt; std::vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight"><b>breaks</b></td></tr>
+<tr class="memdesc:adcf2d963b050fe555feca244c0b5066f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the starting and ending indices of \(d\)-cells in the full/flat boundary matrices. <br /></td></tr>
+<tr class="memitem:afd036b3039aa9f44def7193a36d4917d" id="r_afd036b3039aa9f44def7193a36d4917d"><td class="memItemLeft"><a id="afd036b3039aa9f44def7193a36d4917d" name="afd036b3039aa9f44def7193a36d4917d"></a>
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>offsets</b></td></tr>
+<tr class="memdesc:afd036b3039aa9f44def7193a36d4917d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the cumulative number of cells over all dimensions lower than d. <br /></td></tr>
+<tr class="memitem:af6a459832df3865cfb3e35696190fbed" id="r_af6a459832df3865cfb3e35696190fbed"><td class="memItemLeft"><a id="af6a459832df3865cfb3e35696190fbed" name="af6a459832df3865cfb3e35696190fbed"></a>
+int&#160;</td><td class="memItemRight"><b>size</b></td></tr>
+<tr class="memdesc:af6a459832df3865cfb3e35696190fbed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total cell count. <br /></td></tr>
 <tr class="memitem:a2a2f5a9a4a91b1acefe7ef8443bb853f" id="r_a2a2f5a9a4a91b1acefe7ef8443bb853f"><td class="memItemLeft"><a id="a2a2f5a9a4a91b1acefe7ef8443bb853f" name="a2a2f5a9a4a91b1acefe7ef8443bb853f"></a>
 bool&#160;</td><td class="memItemRight"><b>periodic</b></td></tr>
 <tr class="memdesc:a2a2f5a9a4a91b1acefe7ef8443bb853f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodic boundary conditions? <br /></td></tr>
@@ -219,6 +230,35 @@ bool&#160;</td><td class="memItemRight"><b>periodic</b></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a5a1d9d3b1f29a7c42d6f85dcde4d8829">ATEAMS::complexes::Cubical</a>.</p>
+
+</div>
+</div>
+<a id="a3a824880bb3a7475f18af4493af408f0" name="a3a824880bb3a7475f18af4493af408f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a824880bb3a7475f18af4493af408f0">&#9670;&#160;</a></span>constructFlatBoundaryMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ATEAMS::complexes::Complex::constructFlatBoundaryMatrix </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs flat boundary matrix. </p>
+
+<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#adcfc41a37c0cdf0829400aa0d25fb9aa">ATEAMS::complexes::Cubical</a>.</p>
 
 </div>
 </div>
