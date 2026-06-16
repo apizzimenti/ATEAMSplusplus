@@ -27,10 +27,13 @@ pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 # Add the library.
 add_library(ATEAMS++ SHARED
 	src/arithmetic/kernel.cpp
+	src/arithmetic/persistence.cpp
 	src/complexes/Cubical.cpp
 	src/models/SwendsenWang.cpp
 	src/models/Bernoulli.cpp
 )
+
+include_directories(include/libraries/PHAT)
 
 set(ATEAMS++ PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(ATEAMS++ PROPERTIES PUBLIC_HEADER include/ATEAMS++/ATEAMS++.h)
