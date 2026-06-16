@@ -18,9 +18,9 @@
 
 #pragma once
 
-#include <phat/helpers/misc.h>
-#include <phat/boundary_matrix.h>
-#include <phat/persistence_pairs.h>
+#include "helpers/misc.h"
+#include "boundary_matrix.h"
+#include "persistence_pairs.h"
 
 
 namespace phat {

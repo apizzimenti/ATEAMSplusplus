@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include <phat/representations/Container_traits.h>
+#include "representations/Container_traits.h"
 
 namespace phat{
 

@@ -18,8 +18,8 @@
 
 #pragma once
 
-#include <phat/helpers/misc.h>
-#include <phat/boundary_matrix.h>
+#include "helpers/misc.h"
+#include "boundary_matrix.h"
 
 namespace phat {
     template <bool use_sqrt = false> class chunk_reduction_impl  {

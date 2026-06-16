@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include <phat/helpers/misc.h>
+#include "helpers/misc.h"
 
 namespace phat {
     class sparse_column {
