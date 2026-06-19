@@ -8,7 +8,7 @@ using namespace ATEAMS;
 using namespace std;
 
 int main() {
-	vector<int> corners = {3,3,3,3};
+	vector<int> corners = {3,3};
 	complexes::Cubical C(corners, true);
 	ATEAMS::Zp F(SparseRREF::FIELD_Fp, 2);
 
@@ -17,6 +17,8 @@ int main() {
 	for (int d=0; d < corners.size()+1; d++) {
 		printvector(C.breaks[d]);
 	}
+
+	C.constructFullBoundaryMatrix(F);
 	
 	return 0;
 }

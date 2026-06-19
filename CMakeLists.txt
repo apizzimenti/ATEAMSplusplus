@@ -73,3 +73,11 @@ add_test(
 	COMMAND $<TARGET_FILE:models.Bernoulli>
 )
 
+add_executable(arithmetic.persistence tests/arithmetic/persistence.cpp)
+target_link_libraries(arithmetic.persistence PRIVATE ATEAMS++)
+
+add_test(
+	NAME arithmetic.persistence
+	COMMAND $<TARGET_FILE:arithmetic.persistence>
+)
+
