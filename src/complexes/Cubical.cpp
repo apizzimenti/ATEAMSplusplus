@@ -1,5 +1,6 @@
 
 #include "ATEAMS++/complexes/Cubical.h"
+#include "ATEAMS++/util.h"
 
 #include <cmath>
 #include <algorithm>
@@ -337,6 +338,53 @@ ZpMatrices sparseBoundaryMatrices(Lattice L, Zp F) {
 }
 
 
+FlatBoundaryMatrix flatBoundaryMatrix(Lattice L, vector<int> offsets) {
+	// Construct the full flat boundary matrix.
+	FlatBoundaryMatrix flat;
+	int offset;
+
+	for (int d=0; d < L.size(); d++) {
+		offset = (d > 1) ? offsets[d-2] : 0;
+
+		for (int c=0; c < L[d].size(); c++) { // haha c++
+			vector<int> cell;
+
+			if (d > 0) {
+				cell = L[d][c];
+				for (int j=0; j < cell.size(); j++) cell[j] = cell[j] + offset;
+			}
+			
+			flat.push_back(cell);
+		}
+	}
+
+	return flat;
+}
+
+
+ZpMatrix sparseFullBoundaryMatrix(FlatBoundaryMatrix flat, Zp F) {
+	ZpMatrix Full(flat.size(), flat.size());
+	int mod = (int)F.mod.n;
+
+	vector<int> cell;
+
+	for (int col=0; col < flat.size(); col++) {
+		cell = flat[col];
+		for (int i=0; i < cell.size(); i++) {
+			int row = flat[col][i];
+			ZpVector& matrow = Full.rows[row];
+			matrow.push_back(
+				(index_t)col,
+				(data_t)((bool)(i%2) ? mod-1 : 1)
+			);
+		}
+	}
+
+	Full.compress();
+	return Full;
+}
+
+
 vector<int> getCellCounts(Lattice L) {
 	vector<int> counts;
 	for (int d=0; d < L.size(); d++) counts.push_back(L[d].size());
@@ -364,7 +412,10 @@ vector<vector<int>> makeBreaks(vector<int> counts) {
 
 /** @endcond */
 
-#include "ATEAMS++/util.h"
+
+int Cubical::size() {
+	return this->_size;
+}
 
 
 void Cubical::constructFlatBoundaryMatrix() {
@@ -379,32 +430,14 @@ void Cubical::constructFlatBoundaryMatrix() {
 
 	// Get cell counts and breaks.
 	this->Cells = getCellCounts(L);
-	this->size = std::accumulate(this->Cells.begin(), this->Cells.end(), 0);
+	this->_size = std::accumulate(this->Cells.begin(), this->Cells.end(), 0);
 	this->breaks = makeBreaks(this->Cells);
 
 	vector<int> offsets(this->Cells.size());
 	std::partial_sum(this->Cells.begin(), this->Cells.end(), offsets.begin());
+
 	this->offsets = offsets;
-
-	// Construct the full flat boundary matrix.
-	FlatBoundaryMatrix flat;
-	int offset;
-
-	for (int d=0; d < L.size(); d++) {
-		offset = (d > 1) ? this->offsets[d-2] : 0;
-
-		for (int c=0; c < L[d].size(); c++) { // haha c++
-			vector<int> cell;
-
-			if (d > 0) {
-				cell = L[d][c];
-				for (int j=0; j < cell.size(); j++) cell[j] = cell[j] + offset;
-			}
-			
-			flat.push_back(cell);
-		}
-	}
-	this->Boundary.Flat = flat;
+	this->Boundary.Flat = flatBoundaryMatrix(L, offsets);
 }
 
 
@@ -420,7 +453,7 @@ void Cubical::constructBoundaryMatrices(Zp F) {
 
 	// Get cell counts and breaks.
 	this->Cells = getCellCounts(L);
-	this->size = std::accumulate(this->Cells.begin(), this->Cells.end(), 0);
+	this->_size = std::accumulate(this->Cells.begin(), this->Cells.end(), 0);
 	this->breaks = makeBreaks(this->Cells);
 
 	// Get the sparse (co)boundary matrices.
@@ -431,6 +464,29 @@ void Cubical::constructBoundaryMatrices(Zp F) {
 		this->Coboundary.Matrices[d] = this->Boundary.Matrices[d].transpose();
 		this->Coboundary.Matrices[d].compress();
 	}
+}
+
+void Cubical::constructFullBoundaryMatrix(Zp F) {
+	// Create a Hamming cube of the appropriate dimension.
+	HammingCube cube = hamming(this->corners.size());
+	HammingCubeBoundary cubeBoundary = hammingBoundary(cube);
+
+	// Compute the proto-boundary (which includes a vertex map), and get the
+	// flat boundary matrices for each dimension.
+	vector<indexer> protoBoundary = protoCubicalLattice(corners, cube, cubeBoundary, this->periodic);
+	Lattice L = cubicalLattice(protoBoundary);
+
+	// Get cell counts and breaks.
+	this->Cells = getCellCounts(L);
+	this->_size = std::accumulate(this->Cells.begin(), this->Cells.end(), 0);
+	this->breaks = makeBreaks(this->Cells);
+
+	vector<int> offsets(this->Cells.size());
+	std::partial_sum(this->Cells.begin(), this->Cells.end(), offsets.begin());
+
+	FlatBoundaryMatrix flat = flatBoundaryMatrix(L, offsets);
+	this->Boundary.Full = sparseFullBoundaryMatrix(flat, F);
+	this->Coboundary.Full = this->Boundary.Full.transpose();
 }
 
 

@@ -69,6 +69,14 @@ namespace ATEAMS {
 				 */
 				virtual void constructFlatBoundaryMatrix() = 0;
 
+				/**
+				 * @brief Constructs a full boundary matrix (in SparseRREF format).
+				 */
+				virtual void constructFullBoundaryMatrix(Zp F) = 0;
+
+				/** @brief Total number of cells. */
+				virtual int size() = 0;
+
 				/** @brief Boundary data. */
 				BoundaryData Boundary;
 
@@ -91,7 +99,7 @@ namespace ATEAMS {
 				std::vector<int> offsets;
 
 				/** @brief Total cell count. */
-				int size;
+				int _size;
 
 				/** @brief Periodic boundary conditions? */
 				bool periodic;

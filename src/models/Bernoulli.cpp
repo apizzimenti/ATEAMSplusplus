@@ -88,6 +88,7 @@ models::Bernoulli::Bernoulli(complexes::Complex* complex, BernoulliParameters pa
 	// From those boundary matrices, construct the "full" (i.e. up to dimension d+1)
 	// PHAT boundary matrix.
 	this->complex->constructFlatBoundaryMatrix();
+	this->complex->constructFullBoundaryMatrix(this->field);
 
 
 	// Initialize a random number generator.

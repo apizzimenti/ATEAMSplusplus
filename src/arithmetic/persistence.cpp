@@ -17,8 +17,79 @@
 #include "libraries/PHAT/algorithms/lazy_retrospective_reduction.h"
 #include "libraries/PHAT/helpers/dualize.h"
 
+#include "libraries/SparseRREF/sparse_mat.h"
+#include "libraries/SparseRREF/sparse_vec.h"
+#include "libraries/SparseRREF/scalar.h"
+
 using namespace ATEAMS;
+using namespace SparseRREF;
 using namespace std;
+
+/** @cond */
+
+index_t youngestFaceIndexOf(ZpVector cell) {
+	return cell(cell.size()-1);
+}
+
+
+ZpMatrix reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex* complex, vector<int> filtration, int dimension) {
+	// Construct an index mapping.
+	map<int,int> remapping;
+	for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
+
+	// Wow, this is going to be annoying.
+	ZpMatrix Full = complex->Coboundary.Full;
+	ZpMatrix Reindexed(Full.nrow, Full.ncol);
+
+	int startDimension = complex->breaks[dimension][0];
+	int stopDimension = complex->breaks[dimension][1];
+
+	for (int t=0; t < Full.nrow; t++) {
+		if ((startDimension <= t) && (t < stopDimension)) {
+			Reindexed.rows[t] = Full.rows[filtration[t]];
+		} else {
+			ZpVector& row = Reindexed.rows[t];
+			ZpVector orow = Full.rows[t];
+
+			for (int i=0; i < orow.size(); i++) {
+				row.push_back(
+					(index_t)remapping[orow(i)],
+					(data_t)orow[i]
+				);
+			}
+		}
+	}
+
+	Reindexed.compress();
+	return Reindexed;
+}
+
+// ZpMatrix reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex* complex, vector<int> filtration) {
+// 	// Construct an index mapping.
+// 	map<int,int> remapping;
+// 	for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
+
+// 	// Wow, this is going to be annoying.
+// 	ZpMatrix Full = complex->Coboundary.Full;
+// 	ZpMatrix Reindexed(Full.nrow, Full.ncol);
+
+// 	for (int t=0; t < Full.nrow; t++) {
+// 		ZpVector& row = Reindexed.rows[t];
+// 		ZpVector orow = Full.rows[filtration[t]];
+
+// 		for (int i=0; i < orow.size(); i++) {
+// 			row.push_back(
+// 				(index_t)remapping[orow(i)],
+// 				(data_t)orow[i]
+// 			);
+// 		}
+// 	}
+
+// 	Reindexed.compress();
+// 	return Reindexed;
+// }
+
+/** @endcond */
 
 vector<int> arithmetic::PHATPersistence(ATEAMS::complexes::Complex* complex, vector<int> filtration, int dimension) {
 	// The filtration specifies the order in which we add the cells of all
@@ -88,3 +159,108 @@ vector<int> arithmetic::PHATPersistence(ATEAMS::complexes::Complex* complex, vec
 	return essential;
 }
 
+
+// vector<int> arithmetic::TwistPersistence(ATEAMS::complexes::Complex* complex, vector<int> filtration, Zp F) {
+// 	// Doing row operations on the coboundary is equivalent to column operations
+// 	// on the boundary.
+// 	ZpMatrix Full = reindexSparseBoundaryMatrix(complex, filtration);
+// 	ZpVector youngestFace;
+
+// 	// Track which column is to be added next; track which ones are marked.
+// 	vector<int> nextColumnAdded(complex->size(), 0);
+// 	set<int> marked;
+
+// 	// Top dimension of the complex; indices at which we stop and start.
+// 	int topDimension = complex->Cells.size(), lowestCellIndex, highestCellIndex;
+// 	data_t youngestFaceCoefficient;
+
+// 	for (int d=topDimension-1; d > 0; d--) {
+// 		lowestCellIndex = complex->breaks[d][0];
+// 		highestCellIndex = (d+1 >= complex->Cells.size()) ? complex->size() : complex->breaks[d][1];
+
+// 		for (int j=lowestCellIndex; j < highestCellIndex; j++) {
+// 			ZpVector& cell = Full.rows[j];
+
+// 			while (cell.size() > 0 && nextColumnAdded[youngestFaceIndexOf(cell)] != 0) {
+// 				youngestFace = Full.rows[nextColumnAdded[youngestFaceIndexOf(cell)]];
+// 				youngestFaceCoefficient = *youngestFace.find(youngestFaceIndexOf(cell));
+
+// 				sparse_vec_rescale<index_t, data_t>(youngestFace, scalar_neg(scalar_inv(youngestFaceCoefficient, F), F), F);
+// 				sparse_vec_add<index_t>(cell, youngestFace, F);
+
+// 				cell.compress();
+// 			}
+
+// 			if (cell.size() > 0) {
+// 				nextColumnAdded[youngestFaceIndexOf(cell)] = j;
+// 				Full.rows[youngestFaceIndexOf(cell)].zero();
+// 			} else {
+// 				marked.insert(j);
+// 			}
+
+// 			Full.compress();
+// 		}
+// 	}
+
+// 	vector<int> essential;
+// 	essential.push_back(0);
+
+// 	for (auto k : marked) {
+// 		if (nextColumnAdded[k] == 0) essential.push_back(k);
+// 	}
+
+// 	return essential;
+// }
+
+
+vector<int> arithmetic::TwistPersistence(ATEAMS::complexes::Complex* complex, vector<int> filtration, Zp F, int dimension) {
+	// Doing row operations on the coboundary is equivalent to column operations
+	// on the boundary.
+	ZpMatrix Full = reindexSparseBoundaryMatrix(complex, filtration, dimension);
+	ZpVector youngestFace;
+
+	// Track which column is to be added next; track which ones are marked.
+	vector<int> nextColumnAdded(complex->size(), 0);
+	set<int> marked;
+
+	// Top dimension of the complex; indices at which we stop and start.
+	int topDimension = complex->Cells.size(), lowestCellIndex, highestCellIndex;
+	data_t youngestFaceCoefficient;
+
+	for (int d=topDimension-1; d > dimension-1; d--) {
+		lowestCellIndex = complex->breaks[d][0];
+		highestCellIndex = (d+1 >= complex->Cells.size()) ? complex->size() : complex->breaks[d][1];
+
+		for (int j=lowestCellIndex; j < highestCellIndex; j++) {
+			ZpVector& cell = Full.rows[j];
+
+			while (cell.size() > 0 && nextColumnAdded[youngestFaceIndexOf(cell)] != 0) {
+				youngestFace = Full.rows[nextColumnAdded[youngestFaceIndexOf(cell)]];
+				youngestFaceCoefficient = *youngestFace.find(youngestFaceIndexOf(cell));
+
+				sparse_vec_rescale<index_t, data_t>(youngestFace, scalar_neg(scalar_inv(youngestFaceCoefficient, F), F), F);
+				sparse_vec_add<index_t>(cell, youngestFace, F);
+
+				cell.compress();
+			}
+
+			if (cell.size() > 0) {
+				nextColumnAdded[youngestFaceIndexOf(cell)] = j;
+				Full.rows[youngestFaceIndexOf(cell)].zero();
+			} else {
+				marked.insert(j);
+			}
+
+			Full.compress();
+		}
+	}
+
+	int low = complex->breaks[dimension][0], high = complex->breaks[dimension][1];
+	vector<int> essential;
+
+	for (auto k : marked) {
+		if (nextColumnAdded[k] == 0 && (low <= k && k < high)) essential.push_back(k);
+	}
+
+	return essential;
+}

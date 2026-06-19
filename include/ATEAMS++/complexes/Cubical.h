@@ -51,6 +51,16 @@ namespace ATEAMS {
 				 * @brief Constructs a boundary matrix for use with PHAT.
 				 */
 				void constructFlatBoundaryMatrix() override;
+
+				/**
+				 * @brief Constructs a full boundary matrix in SparseRREF format.
+				 */
+				void constructFullBoundaryMatrix(Zp F) override;
+
+				/**
+				 * @brief Size.
+				 */
+				int size() override;
 		};
 
 		/** @cond */

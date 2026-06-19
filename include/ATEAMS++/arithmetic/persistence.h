@@ -27,6 +27,19 @@ namespace ATEAMS {
 			std::vector<int> filtration,
 			int dimension
 		);
+
+		// std::vector<int> TwistPersistence(
+		// 	ATEAMS::complexes::Complex* complex,
+		// 	std::vector<int> filtration,
+		// 	Zp F
+		// );
+
+		std::vector<int> TwistPersistence(
+			ATEAMS::complexes::Complex* complex,
+			std::vector<int> filtration,
+			Zp F,
+			int dimension
+		);
 	}
 }
 
