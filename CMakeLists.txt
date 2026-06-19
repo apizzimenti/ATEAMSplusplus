@@ -31,6 +31,7 @@ add_library(ATEAMS++ SHARED
 	src/complexes/Cubical.cpp
 	src/models/SwendsenWang.cpp
 	src/models/Bernoulli.cpp
+	src/models/InvadedCluster.cpp
 )
 
 include_directories(include/libraries/PHAT)
@@ -72,6 +73,16 @@ add_test(
 	NAME models.Bernoulli
 	COMMAND $<TARGET_FILE:models.Bernoulli>
 )
+
+
+add_executable(models.InvadedCluster tests/models/InvadedCluster.cpp)
+target_link_libraries(models.InvadedCluster PRIVATE ATEAMS++)
+
+add_test(
+	NAME models.InvadedCluster
+	COMMAND $<TARGET_FILE:models.InvadedCluster>
+)
+
 
 add_executable(arithmetic.persistence tests/arithmetic/persistence.cpp)
 target_link_libraries(arithmetic.persistence PRIVATE ATEAMS++)
