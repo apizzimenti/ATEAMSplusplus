@@ -18,6 +18,9 @@ namespace ATEAMS {
 		 * @var SwendsenWangParameters::field
 		 * Order \f$p\f$ for the finite field \f$\Z / p \Z\f$.
 		 * 
+		 * @var SwendsenWangParameters::dimension
+		 * Complex dimension for which we're sampling.
+		 * 
 		 * @var SwendsenWangParameters::temperatureFunction
 		 * Function that consumes a time-step (integer) parameter \f$t\f$, and returns
 		 * a temperature parameter \f$\beta \in [0, \infty)\f$ that is used to compute
@@ -26,6 +29,7 @@ namespace ATEAMS {
 		 */
 		struct SwendsenWangParameters : ModelParameters {
 			int field = 2;
+			int dimension;
 			std::function<double(int)> temperatureFunction;
 		};
 

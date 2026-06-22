@@ -1,12 +1,4 @@
 var searchData=
 [
-  ['sample_0',['sample',['../class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#ae243016d0cfc109a6b518256dd653ff1',1,'ATEAMS::models::Bernoulli::sample()'],['../class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a1f1d2e0d32df77b2219abbb881887dec',1,'ATEAMS::models::InvadedCluster::sample()'],['../class_a_t_e_a_m_s_1_1models_1_1_model.html#afed561a04dba1ab845d125cf42d9e268',1,'ATEAMS::models::Model::sample()'],['../class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#aa0b0470c6ee0fc0167d3386eb79f8d4c',1,'ATEAMS::models::SwendsenWang::sample()']]],
-  ['selfdual_1',['selfdual',['../namespace_a_t_e_a_m_s_1_1statistics.html#ac1ad9e5217444030b4d563a5e196af61',1,'ATEAMS::statistics']]],
-  ['simulate_2',['simulate',['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a031ce286288bc9ed105ce6286377f8f1',1,'ATEAMS::statistics::Chain::simulate()'],['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a4c9641bd33b40e04cd29d71193f99275',1,'ATEAMS::statistics::Chain::simulate()']]],
-  ['size_3',['size',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a4874635146a2df610509846ca7cfabbd',1,'ATEAMS::complexes::Complex::size()'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a964572ed8a825451f432b2761ba594b4',1,'ATEAMS::complexes::Cubical::size()']]],
-  ['spindown_4',['spinDown',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#a356e615c35d53059b1231116d9b3bde2',1,'ATEAMS::arithmetic::ThreadOptions']]],
-  ['spinup_5',['spinUp',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#aa01492441979f6c45cc3e9fbe161550f',1,'ATEAMS::arithmetic::ThreadOptions']]],
-  ['stopinvadingat_6',['stopInvadingAt',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a011c7f21b7fa5d4f670a3126475e9bff',1,'ATEAMS::arithmetic']]],
-  ['submatrixkernelsample_7',['submatrixKernelSample',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a94fe9add9026a351d51b89f3a8172b4c',1,'ATEAMS::arithmetic']]],
-  ['swendsenwang_8',['SwendsenWang',['../class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a792375c888c7c9b3efba84375e05ba93',1,'ATEAMS::models::SwendsenWang']]]
+  ['occupation_0',['occupation',['../namespace_a_t_e_a_m_s_1_1statistics.html#a1abe8379d570d468e1a780d3af163773',1,'ATEAMS::statistics']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['phatpersistence_0',['PHATPersistence',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a20bf1fec94db3e6ddaf9c9ff7d562d9e',1,'ATEAMS::arithmetic']]]
+  ['glauber_0',['Glauber',['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a8958d43acc46d9024fbe439f384e819b',1,'ATEAMS::models::Glauber']]]
 ];

@@ -4,6 +4,7 @@
 
 #include "ATEAMS++/statistics/schedules.h"
 #include "ATEAMS++/statistics/Chain.h"
+#include "ATEAMS++/statistics/observables.h"
 
 namespace ATEAMS {
 	/** @brief Statistical support. */

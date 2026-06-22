@@ -48,7 +48,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"annotated.html",
+"struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_parameters.html#a166816b53ebd6f9e63571f6d1bd14d7b"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';
