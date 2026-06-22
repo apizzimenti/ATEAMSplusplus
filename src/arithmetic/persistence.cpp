@@ -192,7 +192,7 @@ vector<int> arithmetic::TwistPersistence(
 				sparse_vec_rescale<index_t, data_t>(youngestFace, scalar_neg(scalar_inv(youngestFaceCoefficient, F), F), F);
 				sparse_vec_add<index_t>(cell, youngestFace, F);
 
-				cell.canonicalize();
+				cell.compress();
 			}
 
 			if (cell.size() > 0) {

@@ -30,6 +30,7 @@ add_library(ATEAMS++ SHARED
 	src/models/SwendsenWang.cpp
 	src/models/Bernoulli.cpp
 	src/models/InvadedCluster.cpp
+	src/models/Glauber.cpp
 )
 
 include_directories(include/libraries/PHAT)
@@ -81,6 +82,14 @@ add_test(
 	COMMAND $<TARGET_FILE:models.InvadedCluster>
 )
 
+add_executable(models.Glauber tests/models/Glauber.cpp)
+target_link_libraries(models.Glauber PRIVATE ATEAMS++)
+
+add_test(
+	NAME models.Glauber
+	COMMAND $<TARGET_FILE:models.Glauber>
+)
+
 
 add_executable(arithmetic.persistence tests/arithmetic/persistence.cpp)
 target_link_libraries(arithmetic.persistence PRIVATE ATEAMS++)
@@ -98,5 +107,13 @@ add_test(
 	NAME statistics.Chain
 	COMMAND $<TARGET_FILE:statistics.Chain>
 )
+
+# add_executable(statistics.observables tests/statistics/observables.cpp)
+# target_link_libraries(statistics.observables PRIVATE ATEAMS++)
+
+# add_test(
+# 	NAME statistics.observables
+# 	COMMAND $<TARGET_FILE:statistics.observables>
+# )
 
 

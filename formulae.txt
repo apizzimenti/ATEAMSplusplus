@@ -4,3 +4,4 @@
 \newcommand{\PRCM}{\mathrm{PRCM}}
 \newcommand{\PK}{\mathrm{PK}}
 \newcommand{\rank}{\mathrm{rank}}
+\newcommand{\H}{\mathrm{H}}
