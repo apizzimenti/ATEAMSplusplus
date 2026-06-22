@@ -1,7 +1,7 @@
 var hierarchy =
 [
     [ "ATEAMS::complexes::BoundaryData", "struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html", null ],
-    [ "ATEAMS::statistics::Chain", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html", null ],
+    [ "ATEAMS::statistics::Chain&lt; ModelType &gt;", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html", null ],
     [ "ATEAMS::complexes::Complex", "class_a_t_e_a_m_s_1_1complexes_1_1_complex.html", [
       [ "ATEAMS::complexes::Cubical", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html", null ]
     ] ],

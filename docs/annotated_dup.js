@@ -24,7 +24,7 @@ var annotated_dup =
         [ "SwendsenWangState", "struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_state.html", "struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_state" ]
       ] ],
       [ "statistics", "namespace_a_t_e_a_m_s_1_1statistics.html", [
-        [ "Chain", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html", null ]
+        [ "Chain", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html", "class_a_t_e_a_m_s_1_1statistics_1_1_chain" ]
       ] ]
     ] ]
 ];

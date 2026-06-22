@@ -1,7 +1,7 @@
 var searchData=
 [
   ['cells_0',['Cells',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a238601cd8c78b04fbb0d84c91f7aa6ee',1,'ATEAMS::complexes::Complex']]],
-  ['chain_1',['Chain',['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html',1,'ATEAMS::statistics']]],
+  ['chain_1',['Chain',['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html',1,'ATEAMS::statistics::Chain&lt; ModelType &gt;'],['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a3c3119790da0d9e59c6d49190a260a56',1,'ATEAMS::statistics::Chain::Chain(ModelType *model, int steps)'],['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#ae6daa001fb3c2b6439d516b623e03183',1,'ATEAMS::statistics::Chain::Chain(ModelType *model, int steps, ATEAMS::arithmetic::ThreadOptions options)']]],
   ['coboundary_2',['Coboundary',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#acc3fd00ac7e30e383ebedcb0ed094cdc',1,'ATEAMS::complexes::Complex']]],
   ['cochain_3',['cochain',['../struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html#afd598464675ed04bd9f84b6f2a9dc684',1,'ATEAMS::models::InvadedClusterState::cochain'],['../struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_state.html#a64a92288a7c39544384302d31aa3d050',1,'ATEAMS::models::SwendsenWangState::cochain']]],
   ['complex_4',['Complex',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html',1,'ATEAMS::complexes']]],
