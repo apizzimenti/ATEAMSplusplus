@@ -66,7 +66,7 @@ namespace ATEAMS {
 				 * @brief Model-generic iterator.
 				 * 
 				 * @code
-				 * 	for (models::ModelState* _state : M.run()) {
+				 * 	for (models::ModelState* _state : M.simulate()) {
 				 * 		// Requires a cast to access specific members of the state object.
 				 * 		models::InvadedClusterState* state = (models::InvadedClusterState*)_state;
 				 * 	}
@@ -74,7 +74,7 @@ namespace ATEAMS {
 				 * 
 				 * @returns A `std::generator`.
 				 */
-				std::generator<ATEAMS::models::ModelState*> run() {
+				std::generator<ATEAMS::models::ModelState*> simulate() {
 					std::thread listener = options.spinUp();
 
 					for (int t=0; t < 1000; t++) {
@@ -100,7 +100,7 @@ namespace ATEAMS {
 				 * @returns A `std::generator`.
 				 */
 				template <typename State>
-				std::generator<State*> run() {
+				std::generator<State*> simulate() {
 					std::thread listener = options.spinUp();
 
 					for (int t=0; t < 1000; t++) {

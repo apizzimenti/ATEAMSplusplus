@@ -23,7 +23,7 @@ int main() {
 	using Chain = statistics::Chain<models::InvadedCluster>;
 	Chain M(&SW, 100);
 
-	for (models::InvadedClusterState* state : M.run<models::InvadedClusterState>()) {
+	for (models::InvadedClusterState* state : M.simulate<models::InvadedClusterState>()) {
 		// Typecasting.
 		cout << state->cochain.size() << endl;
 	}
