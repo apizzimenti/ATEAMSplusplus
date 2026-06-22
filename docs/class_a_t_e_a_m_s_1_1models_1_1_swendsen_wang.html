@@ -162,7 +162,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a792375c888c7c9b3efba84375e05ba93" id="r_a792375c888c7c9b3efba84375e05ba93"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a792375c888c7c9b3efba84375e05ba93">SwendsenWang</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_parameters.html">SwendsenWangParameters</a> parameters)</td></tr>
 <tr class="memdesc:a792375c888c7c9b3efba84375e05ba93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
 <tr class="memitem:aa0b0470c6ee0fc0167d3386eb79f8d4c" id="r_aa0b0470c6ee0fc0167d3386eb79f8d4c"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ZpVector</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa0b0470c6ee0fc0167d3386eb79f8d4c">sample</a> (int t, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
-<tr class="memdesc:aa0b0470c6ee0fc0167d3386eb79f8d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alternates between sampling the conditionals \(P_t \sim \PK(- | f_t)\) and \(f_{t+1} \sim \PK(- | P_{t+1})\) of the coupling \(\PK\) between the PLGT and PRCM.  <br /></td></tr>
+<tr class="memdesc:aa0b0470c6ee0fc0167d3386eb79f8d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alternates between sampling the conditionals \(P_t \sim \PK(- \mid f_t)\) and \(f_{t+1} \sim \PK(- \mid P_{t+1})\) of the coupling \(\PK\) between the PLGT and PRCM.  <br /></td></tr>
 <tr class="memitem:a94fcc975c6d1703199bf45b78a50dce6" id="r_a94fcc975c6d1703199bf45b78a50dce6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a94fcc975c6d1703199bf45b78a50dce6">initialize</a> () override</td></tr>
 <tr class="memdesc:a94fcc975c6d1703199bf45b78a50dce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes \(f_0\) to uniform random elements of \(\Z/p\Z\).  <br /></td></tr>
 <tr class="memitem:a0b03a7d8a20088c7146b0945dd059ad9" id="r_a0b03a7d8a20088c7146b0945dd059ad9"><td class="memItemLeft"><a id="a0b03a7d8a20088c7146b0945dd059ad9" name="a0b03a7d8a20088c7146b0945dd059ad9"></a>
@@ -271,7 +271,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Alternates between sampling the conditionals \(P_t \sim \PK(- | f_t)\) and \(f_{t+1} \sim \PK(- | P_{t+1})\) of the coupling \(\PK\) between the PLGT and PRCM. </p>
+<p>Alternates between sampling the conditionals \(P_t \sim \PK(- \mid f_t)\) and \(f_{t+1} \sim \PK(- \mid P_{t+1})\) of the coupling \(\PK\) between the PLGT and PRCM. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">t</td><td>Time step. </td></tr>
@@ -279,7 +279,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The sample \(P_t \sim \PK(- | f_t)\). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The sample \(f_{t+1}\). </dd></dl>
 
 <p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#afed561a04dba1ab845d125cf42d9e268">ATEAMS::models::Model&lt; ZpVector &gt;</a>.</p>
 

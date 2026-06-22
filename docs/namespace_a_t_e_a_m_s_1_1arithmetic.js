@@ -5,5 +5,7 @@ var namespace_a_t_e_a_m_s_1_1arithmetic =
     [ "ComputeOptions", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a803ee52988e5d40a470050cb5ad50e00", null ],
     [ "PHATPersistence", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a20bf1fec94db3e6ddaf9c9ff7d562d9e", null ],
     [ "randomLinearCombination", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a97f4b5db153ddd6daf732c940922c78a", null ],
-    [ "submatrixKernelSample", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a94fe9add9026a351d51b89f3a8172b4c", null ]
+    [ "stopInvadingAt", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a011c7f21b7fa5d4f670a3126475e9bff", null ],
+    [ "submatrixKernelSample", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a94fe9add9026a351d51b89f3a8172b4c", null ],
+    [ "TwistPersistence", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a0d26345ebdd9864c1c20108cdb43daef", null ]
 ];

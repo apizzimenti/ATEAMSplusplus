@@ -168,6 +168,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:a94fe9add9026a351d51b89f3a8172b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a cochain \(f\) at uniform random from \(\delta^{d-1}\) such that \(f\) is a cocycle on the \(d\)-cells corresponding to the rows not in <span class="tt">exclude</span>.  <br /></td></tr>
 <tr class="memitem:a20bf1fec94db3e6ddaf9c9ff7d562d9e" id="r_a20bf1fec94db3e6ddaf9c9ff7d562d9e"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a20bf1fec94db3e6ddaf9c9ff7d562d9e">PHATPersistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, std::vector&lt; int &gt; filtration, int dimension)</td></tr>
 <tr class="memdesc:a20bf1fec94db3e6ddaf9c9ff7d562d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex using \(\Z/2\Z\) coefficients.  <br /></td></tr>
+<tr class="memitem:a0d26345ebdd9864c1c20108cdb43daef" id="r_a0d26345ebdd9864c1c20108cdb43daef"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0d26345ebdd9864c1c20108cdb43daef">TwistPersistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, std::vector&lt; int &gt; filtration, <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> F, int dimension)</td></tr>
+<tr class="memdesc:a0d26345ebdd9864c1c20108cdb43daef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime.  <br /></td></tr>
+<tr class="memitem:a011c7f21b7fa5d4f670a3126475e9bff" id="r_a011c7f21b7fa5d4f670a3126475e9bff"><td class="memItemLeft">std::function&lt; int(int)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a011c7f21b7fa5d4f670a3126475e9bff">stopInvadingAt</a> (std::vector&lt; int &gt; ranks)</td></tr>
+<tr class="memdesc:a011c7f21b7fa5d4f670a3126475e9bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenience function for deciding when to stop invading (i.e. when to re-sample the spins over the included edges).  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Sparse, finite-field linear algebra and support routines. </p>
@@ -252,6 +256,40 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a011c7f21b7fa5d4f670a3126475e9bff" name="a011c7f21b7fa5d4f670a3126475e9bff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a011c7f21b7fa5d4f670a3126475e9bff">&#9670;&#160;</a></span>stopInvadingAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt; int(int)&gt; ATEAMS::arithmetic::stopInvadingAt </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>ranks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A convenience function for deciding when to stop invading (i.e. when to re-sample the spins over the included edges). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ranks</td><td>A vector of integers with values in \([1,\rank(H_d(X))]\), where \(\rank(H_d(X))\) is the rank of the \(d\)th homology group of \(X\).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A function that draws a value from <span class="tt">ranks</span> at uniform random, then subtracts \(1\). </dd></dl>
+
+</div>
+</div>
 <a id="a94fe9add9026a351d51b89f3a8172b4c" name="a94fe9add9026a351d51b89f3a8172b4c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a94fe9add9026a351d51b89f3a8172b4c">&#9670;&#160;</a></span>submatrixKernelSample()</h2>
 
@@ -310,6 +348,49 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>(Sparse) uniform vector in \(\ker(\delta^{d-1})\). </dd></dl>
+
+</div>
+</div>
+<a id="a0d26345ebdd9864c1c20108cdb43daef" name="a0d26345ebdd9864c1c20108cdb43daef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d26345ebdd9864c1c20108cdb43daef">&#9670;&#160;</a></span>TwistPersistence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; int &gt; ATEAMS::arithmetic::TwistPersistence </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>filtration</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dimension</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">complex</td><td>A complex with a flat boundary matrix. </td></tr>
+    <tr><td class="paramname">filtration</td><td>A vector that specifies the order in which to add the cells in the flat boundary matrix. For example, if we are doing 1-dimensional percolation in 2-d, then we switch up the ordering of the 1-d cells in the flat boundary matrix, but leave everything else. </td></tr>
+    <tr><td class="paramname">F</td><td>Finite field \(\Z/p\Z\) over which we're doing arithmetic. </td></tr>
+    <tr><td class="paramname">dimension</td><td>The percolation dimension.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of percolation times. </dd></dl>
 
 </div>
 </div>

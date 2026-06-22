@@ -9,7 +9,7 @@ using namespace ATEAMS;
 using namespace std;
 
 int main() {
-	vector<int> corners = {3,3,3,3};
+	vector<int> corners = {5,5,5,5};
 	complexes::Cubical C(corners, true);
 
 	models::InvadedClusterParameters params;
@@ -24,7 +24,7 @@ int main() {
 	ATEAMS::arithmetic::ThreadOptions options;
 	std::thread listener = options.spinUp();
 
-	int N = 100;
+	int N = 1000;
 
 	for (int t=0; t < N; t++) {
 		SW.sample(t, options);

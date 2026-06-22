@@ -163,6 +163,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abd47493579ef3054606cf9630db104a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs boundary matrices.  <br /></td></tr>
 <tr class="memitem:a3a824880bb3a7475f18af4493af408f0" id="r_a3a824880bb3a7475f18af4493af408f0"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a3a824880bb3a7475f18af4493af408f0">constructFlatBoundaryMatrix</a> ()=0</td></tr>
 <tr class="memdesc:a3a824880bb3a7475f18af4493af408f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs flat boundary matrix.  <br /></td></tr>
+<tr class="memitem:a596e221f690c08a5ee81f7a1941db375" id="r_a596e221f690c08a5ee81f7a1941db375"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a596e221f690c08a5ee81f7a1941db375">constructFullBoundaryMatrix</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> F)=0</td></tr>
+<tr class="memdesc:a596e221f690c08a5ee81f7a1941db375"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a full boundary matrix (in SparseRREF format).  <br /></td></tr>
+<tr class="memitem:a4874635146a2df610509846ca7cfabbd" id="r_a4874635146a2df610509846ca7cfabbd"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a4874635146a2df610509846ca7cfabbd">size</a> ()=0</td></tr>
+<tr class="memdesc:a4874635146a2df610509846ca7cfabbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of cells.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -188,9 +192,9 @@ std::vector&lt; std::vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight"
 <tr class="memitem:afd036b3039aa9f44def7193a36d4917d" id="r_afd036b3039aa9f44def7193a36d4917d"><td class="memItemLeft"><a id="afd036b3039aa9f44def7193a36d4917d" name="afd036b3039aa9f44def7193a36d4917d"></a>
 std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>offsets</b></td></tr>
 <tr class="memdesc:afd036b3039aa9f44def7193a36d4917d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the cumulative number of cells over all dimensions lower than d. <br /></td></tr>
-<tr class="memitem:af6a459832df3865cfb3e35696190fbed" id="r_af6a459832df3865cfb3e35696190fbed"><td class="memItemLeft"><a id="af6a459832df3865cfb3e35696190fbed" name="af6a459832df3865cfb3e35696190fbed"></a>
-int&#160;</td><td class="memItemRight"><b>size</b></td></tr>
-<tr class="memdesc:af6a459832df3865cfb3e35696190fbed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total cell count. <br /></td></tr>
+<tr class="memitem:aa88f89266e26df939747ae1abe436e3a" id="r_aa88f89266e26df939747ae1abe436e3a"><td class="memItemLeft"><a id="aa88f89266e26df939747ae1abe436e3a" name="aa88f89266e26df939747ae1abe436e3a"></a>
+int&#160;</td><td class="memItemRight"><b>_size</b></td></tr>
+<tr class="memdesc:aa88f89266e26df939747ae1abe436e3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total cell count. <br /></td></tr>
 <tr class="memitem:a2a2f5a9a4a91b1acefe7ef8443bb853f" id="r_a2a2f5a9a4a91b1acefe7ef8443bb853f"><td class="memItemLeft"><a id="a2a2f5a9a4a91b1acefe7ef8443bb853f" name="a2a2f5a9a4a91b1acefe7ef8443bb853f"></a>
 bool&#160;</td><td class="memItemRight"><b>periodic</b></td></tr>
 <tr class="memdesc:a2a2f5a9a4a91b1acefe7ef8443bb853f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodic boundary conditions? <br /></td></tr>
@@ -262,6 +266,35 @@ bool&#160;</td><td class="memItemRight"><b>periodic</b></td></tr>
 
 </div>
 </div>
+<a id="a596e221f690c08a5ee81f7a1941db375" name="a596e221f690c08a5ee81f7a1941db375"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a596e221f690c08a5ee81f7a1941db375">&#9670;&#160;</a></span>constructFullBoundaryMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ATEAMS::complexes::Complex::constructFullBoundaryMatrix </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a full boundary matrix (in SparseRREF format). </p>
+
+<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#abba9426daca069dc5f845e6552ac1b73">ATEAMS::complexes::Cubical</a>.</p>
+
+</div>
+</div>
 <a id="a01a05b178be35800dd219e358b7ef502" name="a01a05b178be35800dd219e358b7ef502"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a01a05b178be35800dd219e358b7ef502">&#9670;&#160;</a></span>fromFile()</h2>
 
@@ -292,6 +325,35 @@ bool&#160;</td><td class="memItemRight"><b>periodic</b></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a4874635146a2df610509846ca7cfabbd" name="a4874635146a2df610509846ca7cfabbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4874635146a2df610509846ca7cfabbd">&#9670;&#160;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int ATEAMS::complexes::Complex::size </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Total number of cells. </p>
+
+<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a964572ed8a825451f432b2761ba594b4">ATEAMS::complexes::Cubical</a>.</p>
 
 </div>
 </div>

@@ -19,8 +19,6 @@ add_compile_options(-g -O3)
 find_package(PkgConfig REQUIRED)
 find_package(OpenMP REQUIRED)
 
-# pkg_check_modules(GIVARO REQUIRED IMPORTED_TARGET givaro)
-# pkg_check_modules(FFLAS_FFPACK REQUIRED IMPORTED_TARGET fflas-ffpack)
 pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 
 
@@ -91,4 +89,14 @@ add_test(
 	NAME arithmetic.persistence
 	COMMAND $<TARGET_FILE:arithmetic.persistence>
 )
+
+
+add_executable(statistics.Chain tests/statistics/Chain.cpp)
+target_link_libraries(statistics.Chain PRIVATE ATEAMS++)
+
+add_test(
+	NAME statistics.Chain
+	COMMAND $<TARGET_FILE:statistics.Chain>
+)
+
 

@@ -2,7 +2,7 @@
 clean:
 	rm -rf build
 
-build: clean
+build:
 	cmake -B build
 	cmake --build build -v
 
