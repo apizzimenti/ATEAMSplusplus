@@ -5,6 +5,8 @@
 #include "ATEAMS++/arithmetic/kernel.h"
 #include "ATEAMS++/arithmetic/persistence.h"
 
+#include "libraries/SparseRREF/sparse_vec.h"
+
 #include <random>
 #include <algorithm>
 #include <cassert>
@@ -23,7 +25,6 @@ ZpVector models::InvadedCluster::sample(int t, arithmetic::ThreadOptions& option
 		this->state.cochain,
 		this->field
 	);
-	coefficients.compress();
 
 	// The zero entries are those that don't show up in the indices, so we
 	// automatically exclude these.
@@ -158,6 +159,5 @@ models::InvadedCluster::InvadedCluster(complexes::Complex* complex, InvadedClust
 	// Initialize a random number generator.
 	std::random_device rd;
 	this->RNG = std::mt19937(rd());
-	this->unituniform = std::uniform_real_distribution<double>(0,1);
 	this->intuniform = std::uniform_int_distribution<int>(0,this->parameters.field);
 }

@@ -3,6 +3,7 @@
 #include "ATEAMS++/util.h"
 #include "ATEAMS++/complexes/Complex.h"
 #include "ATEAMS++/arithmetic/persistence.h"
+#include "ATEAMS++/arithmetic/options.h"
 
 #include "libraries/PHAT/compute_persistence_pairs.h"
 #include "libraries/PHAT/boundary_matrix.h"
@@ -160,60 +161,9 @@ vector<int> arithmetic::PHATPersistence(ATEAMS::complexes::Complex* complex, vec
 }
 
 
-// vector<int> arithmetic::TwistPersistence(ATEAMS::complexes::Complex* complex, vector<int> filtration, Zp F) {
-// 	// Doing row operations on the coboundary is equivalent to column operations
-// 	// on the boundary.
-// 	ZpMatrix Full = reindexSparseBoundaryMatrix(complex, filtration);
-// 	ZpVector youngestFace;
-
-// 	// Track which column is to be added next; track which ones are marked.
-// 	vector<int> nextColumnAdded(complex->size(), 0);
-// 	set<int> marked;
-
-// 	// Top dimension of the complex; indices at which we stop and start.
-// 	int topDimension = complex->Cells.size(), lowestCellIndex, highestCellIndex;
-// 	data_t youngestFaceCoefficient;
-
-// 	for (int d=topDimension-1; d > 0; d--) {
-// 		lowestCellIndex = complex->breaks[d][0];
-// 		highestCellIndex = (d+1 >= complex->Cells.size()) ? complex->size() : complex->breaks[d][1];
-
-// 		for (int j=lowestCellIndex; j < highestCellIndex; j++) {
-// 			ZpVector& cell = Full.rows[j];
-
-// 			while (cell.size() > 0 && nextColumnAdded[youngestFaceIndexOf(cell)] != 0) {
-// 				youngestFace = Full.rows[nextColumnAdded[youngestFaceIndexOf(cell)]];
-// 				youngestFaceCoefficient = *youngestFace.find(youngestFaceIndexOf(cell));
-
-// 				sparse_vec_rescale<index_t, data_t>(youngestFace, scalar_neg(scalar_inv(youngestFaceCoefficient, F), F), F);
-// 				sparse_vec_add<index_t>(cell, youngestFace, F);
-
-// 				cell.compress();
-// 			}
-
-// 			if (cell.size() > 0) {
-// 				nextColumnAdded[youngestFaceIndexOf(cell)] = j;
-// 				Full.rows[youngestFaceIndexOf(cell)].zero();
-// 			} else {
-// 				marked.insert(j);
-// 			}
-
-// 			Full.compress();
-// 		}
-// 	}
-
-// 	vector<int> essential;
-// 	essential.push_back(0);
-
-// 	for (auto k : marked) {
-// 		if (nextColumnAdded[k] == 0) essential.push_back(k);
-// 	}
-
-// 	return essential;
-// }
-
-
-vector<int> arithmetic::TwistPersistence(ATEAMS::complexes::Complex* complex, vector<int> filtration, Zp F, int dimension) {
+vector<int> arithmetic::TwistPersistence(
+	ATEAMS::complexes::Complex* complex, vector<int> filtration, Zp F, int dimension
+) {
 	// Doing row operations on the coboundary is equivalent to column operations
 	// on the boundary.
 	ZpMatrix Full = reindexSparseBoundaryMatrix(complex, filtration, dimension);
@@ -238,10 +188,11 @@ vector<int> arithmetic::TwistPersistence(ATEAMS::complexes::Complex* complex, ve
 				youngestFace = Full.rows[nextColumnAdded[youngestFaceIndexOf(cell)]];
 				youngestFaceCoefficient = *youngestFace.find(youngestFaceIndexOf(cell));
 
+				// TODO parallelization stuff here?
 				sparse_vec_rescale<index_t, data_t>(youngestFace, scalar_neg(scalar_inv(youngestFaceCoefficient, F), F), F);
 				sparse_vec_add<index_t>(cell, youngestFace, F);
 
-				cell.compress();
+				cell.canonicalize();
 			}
 
 			if (cell.size() > 0) {
@@ -250,8 +201,6 @@ vector<int> arithmetic::TwistPersistence(ATEAMS::complexes::Complex* complex, ve
 			} else {
 				marked.insert(j);
 			}
-
-			Full.compress();
 		}
 	}
 

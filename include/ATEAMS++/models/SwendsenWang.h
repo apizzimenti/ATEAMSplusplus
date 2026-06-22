@@ -85,14 +85,14 @@ namespace ATEAMS {
 				SwendsenWang(ATEAMS::complexes::Complex* complex, SwendsenWangParameters parameters);
 
 				/**
-				 * @brief Alternates between sampling the conditionals \f$P_t \sim \PK(- | f_t)\f$
-				 * 	and \f$f_{t+1} \sim \PK(- | P_{t+1})\f$ of the coupling \f$\PK\f$ between
+				 * @brief Alternates between sampling the conditionals \f$P_t \sim \PK(- \mid f_t)\f$
+				 * 	and \f$f_{t+1} \sim \PK(- \mid P_{t+1})\f$ of the coupling \f$\PK\f$ between
 				 * 	the PLGT and PRCM.
 				 * 
 				 * @param t Time step.
 				 * @param options Multithreaded computing environment options.
 				 * 
-				 * @return The sample \f$P_t \sim \PK(- | f_t)\f$.
+				 * @return The sample \f$f_{t+1}\f$.
 				 */
 				ZpVector sample(int t, ATEAMS::arithmetic::ThreadOptions& options) override;
 

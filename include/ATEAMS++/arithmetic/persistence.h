@@ -30,14 +30,15 @@ namespace ATEAMS {
 		);
 
 		/**
-		 * @brief Computes the persistent homology of a complex over \f$\Z/q\Z\f$
-		 * 	coefficients, where \f$q\f$ is prime.
+		 * @brief Computes the persistent homology of a complex over \f$\Z/p\Z\f$
+		 * 	coefficients, where \f$p\f$ is prime.
 		 * 
 		 * @param complex A complex with a flat boundary matrix.
 		 * @param filtration A vector that specifies the order in which to add
 		 * 	the cells in the flat boundary matrix. For example, if we are doing
 		 * 	1-dimensional percolation in 2-d, then we switch up the ordering of
 		 * 	the 1-d cells in the flat boundary matrix, but leave everything else.
+		 * @param F Finite field \f$\Z/p\Z\f$ over which we're doing arithmetic.
 		 * @param dimension The percolation dimension.
 		 * 
 		 * @returns A vector of percolation times.

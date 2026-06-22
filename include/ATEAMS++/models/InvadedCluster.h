@@ -81,14 +81,16 @@ namespace ATEAMS {
 				InvadedCluster(ATEAMS::complexes::Complex* complex, InvadedClusterParameters parameters);
 
 				/**
-				 * @brief Alternates between sampling the conditionals \f$P_t \sim \PK(- | f_t)\f$
-				 * 	and \f$f_{t+1} \sim \PK(- | P_{t+1})\f$ of the coupling \f$\PK\f$ between
-				 * 	the PLGT and PRCM.
+				 * @brief Implements the plaquette invaded-cluster algorithm,
+				 * 	which inserts satisfied cells (i.e. cells \f$x\f$ such that
+				 * 	\f$(\delta^{d-1}f_t)(x) = 0\f$) in a uniform random order until
+				 * 	some number of giant cycles are created, forming a subcomplex
+				 * 	\f$P_t\f$. Then samples \f$ f_{t+1} \sim \PK(- \mid P_t)\f$.
 				 * 
 				 * @param t Time step.
 				 * @param options Multithreaded computing environment options.
 				 * 
-				 * @return The sample \f$P_t \sim \PK(- | f_t)\f$.
+				 * @return The sample \f$f_{t+1}\f$.
 				 */
 				ZpVector sample(int t, ATEAMS::arithmetic::ThreadOptions& options) override;
 
