@@ -2535,6 +2535,12 @@ details[open]>summary::before {
         display: inline-block;
         transform: rotate(0deg);
 }
+
+#titlearea {
+  border-bottom: none;
+  background-color: var(--nav-background-color);
+  border-right: 1px solid var(--nav-border-color);
+}
 :root {
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-background-color);

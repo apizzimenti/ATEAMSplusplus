@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "ATEAMS++", "index.html", [
+    [ "Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)", "index.html#autotoc_md0", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [

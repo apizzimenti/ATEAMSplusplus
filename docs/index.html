@@ -5,8 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: Main Page</title>
+<title>ATEAMS++: ATEAMS++</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
@@ -16,6 +17,9 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', init_search);
+</script>
 <script type="text/javascript">
 window.MathJax = {
   options: {
@@ -49,6 +53,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<div id="side-nav" class="ui-resizable side-nav-resizable"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
@@ -59,6 +64,18 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
    </div>
   </td>
  </tr>
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</td></tr>
  </tbody>
 </table>
 </div>
@@ -70,40 +87,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', codefold.init);
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', () => {
-  initMenu('',true);
-  init_search();
-});
-</script>
-<div id="main-nav-mobile">
-<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
-<label class="main-menu-btn" for="main-menu-state">
-<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
-<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
-</div>
-</div><!-- main-nav-mobile -->
-<div id="main-nav">
-  <ul class="sm sm-dox" id="main-menu">
-    <li id="searchBoxPos2" style="float:right">
-        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
-          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
-          </span>
-        </div>
-    </li>
-  </ul>
-</div><!-- main-nav -->
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
     <div id="nav-tree-contents">
       <div id="nav-sync" class="sync"></div>
@@ -116,8 +100,22 @@ document.addEventListener('DOMContentLoaded', () => {
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html','',''); });
 </script>
-<div id="container">
-<div id="doc-content">
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+});
+</script>
+<div id="main-nav-mobile">
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<div id="container"><div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -139,10 +137,96 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">ATEAMS++ Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">ATEAMS++ </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
+<p><a href="https://apizzimenti.github.io/ATEAMSplusplus/"><img src="https://img.shields.io/badge/%E2%93%98-Documentation-red" alt="docs" class="inline"/></a> <a href="https://arxiv.org/abs/2507.13503"><img src="https://img.shields.io/badge/arXiv-2507.13503-green.svg" alt="arXiv" style="pointer-events: none;" class="inline"/></a></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
+Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)</h1>
+<p>ATEAMS++ is a high-performance C++ library for simulating generalized Potts, random-cluster, and percolation models at scale. It depends directly on <a href="https://github.com/munuxi/SparseRREF">SparseRREF</a> and PHAT [<a href="https://www.sciencedirect.com/science/article/pii/S0747717116300098">1</a>,<a href="https://bitbucket.org/phat-code/phat/src/master/">2</a>] for fast linear algebra over finite fields. It is a C++ port of the original <a href="https://github.com/apizzimenti/ATEAMS">ATEAMS</a> library.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+Installation</h3>
+<ol type="1">
+<li><b>Clone the repository.</b> Run <div class="fragment"><div class="line">$ git clone https://github.com/apizzimenti/ATEAMSplusplus.git</div>
+</div><!-- fragment --> in your favorite shell.</li>
+<li><p class="startli"><b>Install dependencies.</b> ATEAMS++ requires:</p><ol type="a">
+<li><a href="https://github.com/openmp">OpenMP</a> and</li>
+<li><a href="https://flintlib.org/">FLINT</a>,</li>
+</ol>
+<p class="startli">which are both available through most pacakge managers. <a href="https://en.cppreference.com/cpp/compiler_support/23">Make sure your compiler complies with the C++23 standard</a>; GCC ≥ 15 is a good bet.</p>
+</li>
+<li><b>Build and install the library.</b> In your favorite shell, running <div class="fragment"><div class="line">$ cd ATEAMSplusplus</div>
+<div class="line">$ make build</div>
+<div class="line">$ make install</div>
+</div><!-- fragment --> will build ATEAMS++ to the <span class="tt">build</span> directory, then install its headers and bundled dependencies (SparseRREF, PHAT) to your system's default install location. If you want to install it somewhere else, <div class="fragment"><div class="line">$ sudo cmake --install build --prefix &quot;somewhere/else&quot;</div>
+</div><!-- fragment --> will do the trick.</li>
+<li><b>Double-check.</b> To verify that the library is installed correctly, running <div class="fragment"><div class="line">$ pkg-config --cflags --libs ATEAMS++</div>
+</div><!-- fragment --> should give something like <div class="fragment"><div class="line">-L/usr/local/lib -lATEAMS++ -lflint -I/usr/local/include -std=c++23</div>
+</div><!-- fragment --></li>
+</ol>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Usage</h3>
+<p>Most experiments follow a straightforward template:</p>
+<ol type="1">
+<li>create a Complex;</li>
+<li>create a Model that consumes the Complex;</li>
+<li>run a Chain on the Model.</li>
+</ol>
+<p>The below example samples plaquette Bernoulli percolation 1000 times on the scale-6 4-fold torus:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;ATEAMS++/models/Bernoulli.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;ATEAMS++/complexes/Cubical.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;ATEAMS++/statistics/Chain.h&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s.html">ATEAMS</a>;</div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    <span class="comment">// Construct a cubical complex.</span></div>
+<div class="line">    vector&lt;int&gt; corners = {6,6,6,6};</div>
+<div class="line">    <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">complexes::Cubical</a> C(corners, <span class="keyword">true</span>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Parametrize the model.</span></div>
+<div class="line">    <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_parameters.html">models::BernoulliParameters</a> params;</div>
+<div class="line">    params.<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a0a337f8aba7b7596bcbf88f71bac2ded">dimension</a> = 2;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Construct the model, then the chain.</span></div>
+<div class="line">    <a class="code hl_class" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">models::Bernoulli</a> percolation(&amp;C, params);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">int</span> iterations = 1000;</div>
+<div class="line">    <span class="keyword">using </span>Chain = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">statistics::Chain&lt;models::Bernoulli&gt;</a>;</div>
+<div class="line">    Chain M(&amp;percolation, iterations);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Iterate over the chain, storing the rank of the 2nd homology group as we</span></div>
+<div class="line">    <span class="comment">// go.</span></div>
+<div class="line">    vector&lt;int&gt; ranks;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">for</span> (<a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_state.html">models::BernoulliState</a>* state : M.simulate&lt;<a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_state.html">models::BernoulliState</a>&gt;()) {</div>
+<div class="line">        ranks.push_back(state-&gt;rank);</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Compute the expected rank of the 2nd homology group.</span></div>
+<div class="line">    <span class="keywordtype">int</span> T = std::accumulate(ranks.begin(), ranks.end(), 0);</div>
+<div class="line">    <span class="keywordtype">double</span> e = (double)T/(<span class="keywordtype">double</span>)iterations;</div>
+<div class="line"> </div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;expected rank is &quot;</span> &lt;&lt; std::format(<span class="stringliteral">&quot;{:.2f}&quot;</span>, e) &lt;&lt; std::endl;</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> Cubical.h:18</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">ATEAMS::models::Bernoulli</a></div><div class="ttdoc">Implements Bernoulli percolation.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:60</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a></div><div class="ttdoc">Simulates the Markov chains specified by each ATEAMS::models::Model.</div><div class="ttdef"><b>Definition</b> Chain.h:31</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:9</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_bernoulli_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_parameters.html">ATEAMS::models::BernoulliParameters</a></div><div class="ttdoc">Parameters for Bernoulli percolation.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:20</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_bernoulli_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_state.html">ATEAMS::models::BernoulliState</a></div><div class="ttdoc">Stores the current state of Bernoulli percolation.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:37</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a0a337f8aba7b7596bcbf88f71bac2ded"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a0a337f8aba7b7596bcbf88f71bac2ded">ATEAMS::models::ModelParameters::dimension</a></div><div class="ttdeci">int dimension</div><div class="ttdef"><b>Definition</b> Model.h:24</div></div>
+</div><!-- fragment --><p>If the above snippet is in a file called <span class="tt">main.cpp</span>, then compiling the program and running the executable should give something like</p>
+<div class="fragment"><div class="line">$ g++ `pkg-config --libs --cflags ATEAMS++` main.cpp -o main</div>
+<div class="line">$ ./main</div>
+<div class="line">expected rank is 3.09</div>
+</div><!-- fragment --><p>When timed, this takes ~11 seconds. </p>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->

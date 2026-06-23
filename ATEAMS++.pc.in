@@ -8,5 +8,5 @@ Description: @PROJECT_DESCRIPTION@
 Version: @PROJECT_VERSION@
 
 Requires:
-Libs: -L${libdir} -lATEAMS++
-Cflags: -I${includedir}
+Libs: -L${libdir} -lATEAMS++ -lflint
+Cflags: -I${includedir} -std=c++23
