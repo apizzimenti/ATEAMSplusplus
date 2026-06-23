@@ -35,13 +35,13 @@ include_directories(dependencies/PHAT)
 include_directories(dependencies/SparseRREF)
 
 # Include dependency headers.
-install(DIRECTORY "${PROJECT_SOURCE_DIR}/dependencies/phat"
-	DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+install(DIRECTORY "${PROJECT_SOURCE_DIR}/dependencies/phat/"
+	DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/phat"
 	FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
 )
 
-install(DIRECTORY "${PROJECT_SOURCE_DIR}/dependencies/SparseRREF"
-	DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+install(DIRECTORY "${PROJECT_SOURCE_DIR}/dependencies/SparseRREF/"
+	DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/SparseRREF"
 	FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
 )
 
