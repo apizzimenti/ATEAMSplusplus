@@ -12,9 +12,10 @@ ATEAMS++ is a high-performance C++ library for simulating generalized Potts, ran
 
 1. **Clone the repository.** Run
 	```zsh
-	$ git clone https://github.com/apizzimenti/ATEAMSplusplus.git
+	$ git clone --recursive https://github.com/apizzimenti/ATEAMSplusplus.git
 	```
-	in your favorite shell.
+	in your favorite shell. The `--recursive` flag ensures that SparseRREF is
+	actually cloned, not just referenced.
 
 2. **Install dependencies.** ATEAMS++ requires:
 	1. [OpenMP](https://github.com/openmp) and
