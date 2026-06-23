@@ -6,6 +6,9 @@ build:
 	cmake -B build
 	cmake --build build -v
 
+install: build
+	sudo cmake --install build -v
+
 test: clean build
 	@cd build; ctest
 

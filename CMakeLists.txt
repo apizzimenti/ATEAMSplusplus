@@ -3,22 +3,20 @@ cmake_minimum_required(VERSION 4.2)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(ATEAMS++
-	VERSION 0.1
+	VERSION 1.0
 	LANGUAGES C CXX
+	DESCRIPTION "Algebraic topology-enabled algorithms for spin systems."
 )
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-
-# # Do this instead of requiring c++23, since we need (llvm) clang for this to work.
 add_compile_options(-g -O3)
 
-# Require a bunch of packages.
+# Require OpenMP and FLINT.
 find_package(PkgConfig REQUIRED)
 find_package(OpenMP REQUIRED)
-
 pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 
 
@@ -33,14 +31,66 @@ add_library(ATEAMS++ SHARED
 	src/models/Glauber.cpp
 )
 
-include_directories(include/libraries/PHAT)
+include_directories(dependencies/PHAT)
+include_directories(dependencies/SparseRREF)
 
-set(ATEAMS++ PROPERTIES VERSION ${PROJECT_VERSION})
-set_target_properties(ATEAMS++ PROPERTIES PUBLIC_HEADER include/ATEAMS++/ATEAMS++.h)
+# Include dependency headers.
+install(DIRECTORY "${PROJECT_SOURCE_DIR}/dependencies/phat"
+	DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+	FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
+)
+
+install(DIRECTORY "${PROJECT_SOURCE_DIR}/dependencies/SparseRREF"
+	DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+	FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
+)
+
+# Public headers.
+target_sources(ATEAMS++
+	PUBLIC
+	FILE_SET HEADERS
+	BASE_DIRS ${PROJECT_SOURCE_DIR}/include/
+	FILES
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/common.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/util.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/arithmetic.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/kernel.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/persistence.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/options.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Cubical.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/models.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Bernoulli.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Glauber.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvadedCluster.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Model.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/SwendsenWang.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/statistics.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/Chain.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/observables.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/schedules.h
+)
 
 target_link_libraries(ATEAMS++ PUBLIC PkgConfig::FLINT)
 target_include_directories(ATEAMS++ PUBLIC include)
+target_include_directories(ATEAMS++ PUBLIC dependencies)
 target_include_directories(ATEAMS++ PUBLIC src)
+
+include(GNUInstallDirs)
+
+install(
+	TARGETS ${PROJECT_NAME}
+	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+	FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+configure_file(ATEAMS++.pc.in ATEAMS++.pc @ONLY)
+
+install(
+	FILES ${CMAKE_BINARY_DIR}/ATEAMS++.pc
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
+)
 
 
 # Tests.
