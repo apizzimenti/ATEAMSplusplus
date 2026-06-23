@@ -2,10 +2,10 @@
 #ifndef ATEAMS_COMMON_H
 #define ATEAMS_COMMON_H
 
-#include "libraries/SparseRREF/sparse_mat.h"
-#include "libraries/PHAT/boundary_matrix.h"
-#include "libraries/PHAT/compute_persistence_pairs.h"
-#include "libraries/PHAT/representations/default_representations.h"
+#include <SparseRREF/sparse_mat.h>
+#include <phat/boundary_matrix.h>
+#include <phat/compute_persistence_pairs.h>
+#include <phat/representations/default_representations.h>
 
 #include <set>
 #include <vector>

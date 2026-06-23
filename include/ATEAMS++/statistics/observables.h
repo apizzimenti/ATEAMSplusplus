@@ -5,7 +5,7 @@
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/complexes/complexes.h"
 
-#include "libraries/SparseRREF/sparse_mat.h"
+#include <SparseRREF/sparse_mat.h>
 
 namespace ATEAMS {
 	/** @brief Statistical support. */

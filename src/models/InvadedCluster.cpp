@@ -5,7 +5,7 @@
 #include "ATEAMS++/arithmetic/kernel.h"
 #include "ATEAMS++/arithmetic/persistence.h"
 
-#include "libraries/SparseRREF/sparse_vec.h"
+#include <SparseRREF/sparse_vec.h>
 
 #include <random>
 #include <algorithm>

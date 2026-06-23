@@ -3,8 +3,8 @@
 #define ATEAMS_ARITHMETIC_OPTIONS_H
 
 #include "ATEAMS++/util.h"
-#include "libraries/SparseRREF/sparse_mat.h"
-#include "libraries/SparseRREF/sparse_rref.h"
+#include <SparseRREF/sparse_mat.h>
+#include <SparseRREF/sparse_rref.h>
 
 #include <thread>
 

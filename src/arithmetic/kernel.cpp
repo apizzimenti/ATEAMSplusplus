@@ -2,7 +2,8 @@
 #include "ATEAMS++/util.h"
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/arithmetic/kernel.h"
-#include "libraries/SparseRREF/sparse_mat.h"
+
+#include <SparseRREF/sparse_mat.h>
 
 using namespace std;
 using namespace ATEAMS;

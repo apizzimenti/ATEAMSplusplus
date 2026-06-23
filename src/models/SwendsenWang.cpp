@@ -3,7 +3,8 @@
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/models/SwendsenWang.h"
 #include "ATEAMS++/arithmetic/kernel.h"
-#include "libraries/SparseRREF/sparse_mat.h"
+
+#include <SparseRREF/sparse_mat.h>
 
 #include <random>
 #include <algorithm>

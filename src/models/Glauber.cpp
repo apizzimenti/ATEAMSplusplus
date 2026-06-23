@@ -3,8 +3,8 @@
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/models/Glauber.h"
 #include "ATEAMS++/statistics/observables.h"
-#include "libraries/SparseRREF/sparse_type.h"
-#include "libraries/SparseRREF/sparse_mat.h"
+#include <SparseRREF/sparse_type.h>
+#include <SparseRREF/sparse_mat.h>
 
 #include <random>
 #include <algorithm>
