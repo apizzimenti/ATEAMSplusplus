@@ -159,8 +159,7 @@ Inheritance diagram for ATEAMS::models::InvadedClusterParameters:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ae1d1ed024af893844a584926cef54c4d" id="r_ae1d1ed024af893844a584926cef54c4d"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae1d1ed024af893844a584926cef54c4d">field</a> = 2</td></tr>
-<tr class="memitem:a672d7a0aa3854c08df4e7cf5c4e4e7e0" id="r_a672d7a0aa3854c08df4e7cf5c4e4e7e0"><td class="memItemLeft"><a id="a672d7a0aa3854c08df4e7cf5c4e4e7e0" name="a672d7a0aa3854c08df4e7cf5c4e4e7e0"></a>
-std::function&lt; int(int)&gt;&#160;</td><td class="memItemRight"><b>stoppingFunction</b></td></tr>
+<tr class="memitem:a672d7a0aa3854c08df4e7cf5c4e4e7e0" id="r_a672d7a0aa3854c08df4e7cf5c4e4e7e0"><td class="memItemLeft">std::function&lt; int(int)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a672d7a0aa3854c08df4e7cf5c4e4e7e0">stoppingFunction</a></td></tr>
 <tr class="inherit_header pub_attribs_struct_a_t_e_a_m_s_1_1models_1_1_model_parameters"><td colspan="2">Public Attributes inherited from <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ATEAMS::models::ModelParameters</a></td></tr>
 <tr class="memitem:a0a337f8aba7b7596bcbf88f71bac2ded pub_attribs_struct_a_t_e_a_m_s_1_1models_1_1_model_parameters" id="r_a0a337f8aba7b7596bcbf88f71bac2ded"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a0a337f8aba7b7596bcbf88f71bac2ded">dimension</a></td></tr>
 <tr class="memitem:aab3ad508975c0ceab78575184f455c4d pub_attribs_struct_a_t_e_a_m_s_1_1models_1_1_model_parameters" id="r_aab3ad508975c0ceab78575184f455c4d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#aab3ad508975c0ceab78575184f455c4d">DEBUG</a> = false</td></tr>
@@ -180,6 +179,21 @@ std::function&lt; int(int)&gt;&#160;</td><td class="memItemRight"><b>stoppingFun
       </table>
 </div><div class="memdoc">
 <p>Order \(p\) for the finite field \(\Z / p \Z\). </p>
+
+</div>
+</div>
+<a id="a672d7a0aa3854c08df4e7cf5c4e4e7e0" name="a672d7a0aa3854c08df4e7cf5c4e4e7e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a672d7a0aa3854c08df4e7cf5c4e4e7e0">&#9670;&#160;</a></span>stoppingFunction</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;int(int)&gt; ATEAMS::models::InvadedClusterParameters::stoppingFunction</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function that consumes a time-step (integer) parameter \(t\) and returns an integer in \((a,b)\), where \(a, \ b \) are between \(0\) and \(\rank(H_d(X))\) telling us when to sample the next set of spins. </p>
 
 </div>
 </div>

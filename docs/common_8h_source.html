@@ -135,57 +135,42 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s.html">ATEAMS</a> {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> ulong;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#ae155ebf70a298ef0ab654b914250cca9">   24</a></span>    <span class="keyword">typedef</span> uint32_t <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#ae155ebf70a298ef0ab654b914250cca9">index_t</a>;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#af622242a1ba8f768a79c3fc2cc8d6632">   27</a></span>    <span class="keyword">typedef</span> ulong <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#af622242a1ba8f768a79c3fc2cc8d6632">data_t</a>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">   30</a></span>    <span class="keyword">typedef</span> SparseRREF::sparse_mat&lt;data_t, index_t&gt; <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">ZpMatrix</a>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">   33</a></span>    <span class="keyword">typedef</span> SparseRREF::sparse_vec&lt;data_t, index_t&gt; <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ZpVector</a>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">   36</a></span>    <span class="keyword">typedef</span> SparseRREF::field_t <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#a9b6327feb4b91cf895bd7ce7465fe61f">   39</a></span>    <span class="keyword">typedef</span> SparseRREF::pivot_t&lt;index_t&gt; <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a9b6327feb4b91cf895bd7ce7465fe61f">ZpPivot</a>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#aef9b170cf11c5e10e8573d7f38325e91">   42</a></span>    <span class="keyword">typedef</span> std::vector&lt;ZpMatrix&gt; <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#aef9b170cf11c5e10e8573d7f38325e91">ZpMatrices</a>;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#a35b1a0626467bac02fadce127ae62ff4">   45</a></span>    <span class="keyword">typedef</span> std::vector&lt;ZpVector&gt; <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a35b1a0626467bac02fadce127ae62ff4">ZpVectors</a>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#a16953d4db5b20240e18bb9e846db4723">   48</a></span>    <span class="keyword">typedef</span> std::vector&lt;ZpVector&gt; <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a16953d4db5b20240e18bb9e846db4723">ZpBasis</a>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#affeb975dfe84670b6d4c2f70edd86417">   51</a></span>    <span class="keyword">typedef</span> std::vector&lt;ZpBasis&gt; <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#affeb975dfe84670b6d4c2f70edd86417">ZpBases</a>;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#a4be909ce3a2fa3bc0de28be612076cf8">   54</a></span>    <span class="keyword">typedef</span> std::vector&lt;std::vector&lt;int&gt;&gt; <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a4be909ce3a2fa3bc0de28be612076cf8">FlatBoundaryMatrix</a>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#aa33482893cbd2891838b718a934f2bfa">   57</a></span>    <span class="keyword">typedef</span> std::vector&lt;phat::index&gt; <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#aa33482893cbd2891838b718a934f2bfa">PHATColumn</a>;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#af85aaef0209faa29043f057cfe66413b">   60</a></span>    <span class="keyword">typedef</span> phat::boundary_matrix&lt;phat::bit_tree_pivot_column&gt; <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#af85aaef0209faa29043f057cfe66413b">PHATBoundaryMatrix</a>;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#a1ab3de0701cc085be20a5f4235980472">   63</a></span>    <span class="keyword">typedef</span> phat::persistence_pairs <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a1ab3de0701cc085be20a5f4235980472">PHATPairs</a>;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s.html#a57b333e3a6d09bfac4d8f2f75266640a">   66</a></span>    <span class="keyword">typedef</span> phat::twist_reduction <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a57b333e3a6d09bfac4d8f2f75266640a">PHATTwist</a>;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> ulong;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">typedef</span> uint32_t index_t;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">typedef</span> ulong data_t;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">typedef</span> SparseRREF::sparse_mat&lt;data_t, index_t&gt; ZpMatrix;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">typedef</span> SparseRREF::sparse_vec&lt;data_t, index_t&gt; ZpVector;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">typedef</span> SparseRREF::field_t Zp;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">typedef</span> SparseRREF::pivot_t&lt;index_t&gt; ZpPivot;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">typedef</span> std::vector&lt;ZpMatrix&gt; ZpMatrices;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">typedef</span> std::vector&lt;ZpVector&gt; ZpVectors;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">typedef</span> std::vector&lt;ZpVector&gt; ZpBasis;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">typedef</span> std::vector&lt;ZpBasis&gt; ZpBases;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">typedef</span> std::vector&lt;std::vector&lt;int&gt;&gt; FlatBoundaryMatrix;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">typedef</span> std::vector&lt;phat::index&gt; PHATColumn;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">typedef</span> phat::boundary_matrix&lt;phat::bit_tree_pivot_column&gt; PHATBoundaryMatrix;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">typedef</span> phat::persistence_pairs PHATPairs;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">typedef</span> phat::twist_reduction PHATTwist;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:9</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_a09947896b23f7075fcc350044837e7ef"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">ATEAMS::Zp</a></div><div class="ttdeci">SparseRREF::field_t Zp</div><div class="ttdef"><b>Definition</b> common.h:36</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_a1091f3f417ed66603862abfc7dd14855"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ATEAMS::ZpVector</a></div><div class="ttdeci">SparseRREF::sparse_vec&lt; data_t, index_t &gt; ZpVector</div><div class="ttdef"><b>Definition</b> common.h:33</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_a16953d4db5b20240e18bb9e846db4723"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a16953d4db5b20240e18bb9e846db4723">ATEAMS::ZpBasis</a></div><div class="ttdeci">std::vector&lt; ZpVector &gt; ZpBasis</div><div class="ttdef"><b>Definition</b> common.h:48</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_a1ab3de0701cc085be20a5f4235980472"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a1ab3de0701cc085be20a5f4235980472">ATEAMS::PHATPairs</a></div><div class="ttdeci">phat::persistence_pairs PHATPairs</div><div class="ttdef"><b>Definition</b> common.h:63</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_a35b1a0626467bac02fadce127ae62ff4"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a35b1a0626467bac02fadce127ae62ff4">ATEAMS::ZpVectors</a></div><div class="ttdeci">std::vector&lt; ZpVector &gt; ZpVectors</div><div class="ttdef"><b>Definition</b> common.h:45</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_a4be909ce3a2fa3bc0de28be612076cf8"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a4be909ce3a2fa3bc0de28be612076cf8">ATEAMS::FlatBoundaryMatrix</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; int &gt; &gt; FlatBoundaryMatrix</div><div class="ttdef"><b>Definition</b> common.h:54</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_a57b333e3a6d09bfac4d8f2f75266640a"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a57b333e3a6d09bfac4d8f2f75266640a">ATEAMS::PHATTwist</a></div><div class="ttdeci">phat::twist_reduction PHATTwist</div><div class="ttdef"><b>Definition</b> common.h:66</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_a7ba31c2feb647cfd640f74f2ff8440b1"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">ATEAMS::ZpMatrix</a></div><div class="ttdeci">SparseRREF::sparse_mat&lt; data_t, index_t &gt; ZpMatrix</div><div class="ttdef"><b>Definition</b> common.h:30</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_a9b6327feb4b91cf895bd7ce7465fe61f"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a9b6327feb4b91cf895bd7ce7465fe61f">ATEAMS::ZpPivot</a></div><div class="ttdeci">SparseRREF::pivot_t&lt; index_t &gt; ZpPivot</div><div class="ttdef"><b>Definition</b> common.h:39</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_aa33482893cbd2891838b718a934f2bfa"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#aa33482893cbd2891838b718a934f2bfa">ATEAMS::PHATColumn</a></div><div class="ttdeci">std::vector&lt; phat::index &gt; PHATColumn</div><div class="ttdef"><b>Definition</b> common.h:57</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_ae155ebf70a298ef0ab654b914250cca9"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#ae155ebf70a298ef0ab654b914250cca9">ATEAMS::index_t</a></div><div class="ttdeci">uint32_t index_t</div><div class="ttdef"><b>Definition</b> common.h:24</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_aef9b170cf11c5e10e8573d7f38325e91"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#aef9b170cf11c5e10e8573d7f38325e91">ATEAMS::ZpMatrices</a></div><div class="ttdeci">std::vector&lt; ZpMatrix &gt; ZpMatrices</div><div class="ttdef"><b>Definition</b> common.h:42</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_af622242a1ba8f768a79c3fc2cc8d6632"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#af622242a1ba8f768a79c3fc2cc8d6632">ATEAMS::data_t</a></div><div class="ttdeci">ulong data_t</div><div class="ttdef"><b>Definition</b> common.h:27</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_af85aaef0209faa29043f057cfe66413b"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#af85aaef0209faa29043f057cfe66413b">ATEAMS::PHATBoundaryMatrix</a></div><div class="ttdeci">phat::boundary_matrix&lt; phat::bit_tree_pivot_column &gt; PHATBoundaryMatrix</div><div class="ttdef"><b>Definition</b> common.h:60</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html_affeb975dfe84670b6d4c2f70edd86417"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#affeb975dfe84670b6d4c2f70edd86417">ATEAMS::ZpBases</a></div><div class="ttdeci">std::vector&lt; ZpBasis &gt; ZpBases</div><div class="ttdef"><b>Definition</b> common.h:51</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

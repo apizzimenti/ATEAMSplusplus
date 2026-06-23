@@ -55,6 +55,7 @@ namespace ATEAMS {
 				 * 
 				 * @param model (Pointer to) a Model instance.
 				 * @param steps Number of iterations.
+				 * @param options User-provided compute options.
 				 */
 				Chain(ModelType* model, int steps, ATEAMS::arithmetic::ThreadOptions options) {
 					this->model = model;

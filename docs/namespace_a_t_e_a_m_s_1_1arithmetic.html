@@ -161,13 +161,13 @@ typedef SparseRREF::rref_option_t&#160;</td><td class="memItemRight"><b>ComputeO
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a97f4b5db153ddd6daf732c940922c78a" id="r_a97f4b5db153ddd6daf732c940922c78a"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ZpVector</a>&#160;</td><td class="memItemRight"><a class="el" href="#a97f4b5db153ddd6daf732c940922c78a">randomLinearCombination</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">ZpMatrix</a> kernel, const <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> &amp;F, std::uniform_int_distribution&lt; int &gt; &amp;intuniform, std::mt19937 &amp;RNG)</td></tr>
+<tr class="memitem:a97f4b5db153ddd6daf732c940922c78a" id="r_a97f4b5db153ddd6daf732c940922c78a"><td class="memItemLeft">ZpVector&#160;</td><td class="memItemRight"><a class="el" href="#a97f4b5db153ddd6daf732c940922c78a">randomLinearCombination</a> (ZpMatrix kernel, const Zp &amp;F, std::uniform_int_distribution&lt; int &gt; &amp;intuniform, std::mt19937 &amp;RNG)</td></tr>
 <tr class="memdesc:a97f4b5db153ddd6daf732c940922c78a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a uniform random linear combination of the basis for the (reduced) coboundary matrix \(\delta^{d-1}\).  <br /></td></tr>
-<tr class="memitem:a94fe9add9026a351d51b89f3a8172b4c" id="r_a94fe9add9026a351d51b89f3a8172b4c"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ZpVector</a>&#160;</td><td class="memItemRight"><a class="el" href="#a94fe9add9026a351d51b89f3a8172b4c">submatrixKernelSample</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">ZpMatrix</a> coboundary, const <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> &amp;F, std::set&lt; size_t &gt; exclude, std::uniform_int_distribution&lt; int &gt; &amp;intuniform, std::mt19937 &amp;RNG, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options, bool DEBUG=false)</td></tr>
+<tr class="memitem:a94fe9add9026a351d51b89f3a8172b4c" id="r_a94fe9add9026a351d51b89f3a8172b4c"><td class="memItemLeft">ZpVector&#160;</td><td class="memItemRight"><a class="el" href="#a94fe9add9026a351d51b89f3a8172b4c">submatrixKernelSample</a> (ZpMatrix coboundary, const Zp &amp;F, std::set&lt; size_t &gt; exclude, std::uniform_int_distribution&lt; int &gt; &amp;intuniform, std::mt19937 &amp;RNG, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options, bool DEBUG=false)</td></tr>
 <tr class="memdesc:a94fe9add9026a351d51b89f3a8172b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a cochain \(f\) at uniform random from \(\delta^{d-1}\) such that \(f\) is a cocycle on the \(d\)-cells corresponding to the rows not in <span class="tt">exclude</span>.  <br /></td></tr>
 <tr class="memitem:a20bf1fec94db3e6ddaf9c9ff7d562d9e" id="r_a20bf1fec94db3e6ddaf9c9ff7d562d9e"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a20bf1fec94db3e6ddaf9c9ff7d562d9e">PHATPersistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, std::vector&lt; int &gt; filtration, int dimension)</td></tr>
 <tr class="memdesc:a20bf1fec94db3e6ddaf9c9ff7d562d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex using \(\Z/2\Z\) coefficients.  <br /></td></tr>
-<tr class="memitem:a0d26345ebdd9864c1c20108cdb43daef" id="r_a0d26345ebdd9864c1c20108cdb43daef"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0d26345ebdd9864c1c20108cdb43daef">TwistPersistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, std::vector&lt; int &gt; filtration, <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> F, int dimension)</td></tr>
+<tr class="memitem:a0d26345ebdd9864c1c20108cdb43daef" id="r_a0d26345ebdd9864c1c20108cdb43daef"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0d26345ebdd9864c1c20108cdb43daef">TwistPersistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, std::vector&lt; int &gt; filtration, Zp F, int dimension)</td></tr>
 <tr class="memdesc:a0d26345ebdd9864c1c20108cdb43daef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime.  <br /></td></tr>
 <tr class="memitem:a011c7f21b7fa5d4f670a3126475e9bff" id="r_a011c7f21b7fa5d4f670a3126475e9bff"><td class="memItemLeft">std::function&lt; int(int)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a011c7f21b7fa5d4f670a3126475e9bff">stopInvadingAt</a> (std::vector&lt; int &gt; ranks)</td></tr>
 <tr class="memdesc:a011c7f21b7fa5d4f670a3126475e9bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenience function for deciding when to stop invading (i.e. when to re-sample the spins over the included edges).  <br /></td></tr>
@@ -219,14 +219,14 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ZpVector</a> ATEAMS::arithmetic::randomLinearCombination </td>
+          <td class="memname">ZpVector ATEAMS::arithmetic::randomLinearCombination </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">ZpMatrix</a></td>          <td class="paramname"><span class="paramname"><em>kernel</em></span>, </td>
+          <td class="paramtype">ZpMatrix</td>          <td class="paramname"><span class="paramname"><em>kernel</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
+          <td class="paramtype">const Zp &amp;</td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -296,14 +296,14 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ZpVector</a> ATEAMS::arithmetic::submatrixKernelSample </td>
+          <td class="memname">ZpVector ATEAMS::arithmetic::submatrixKernelSample </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">ZpMatrix</a></td>          <td class="paramname"><span class="paramname"><em>coboundary</em></span>, </td>
+          <td class="paramtype">ZpMatrix</td>          <td class="paramname"><span class="paramname"><em>coboundary</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
+          <td class="paramtype">const Zp &amp;</td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -342,7 +342,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">intuniform</td><td>Uniform distribution over integers \([0, p)\). </td></tr>
     <tr><td class="paramname">RNG</td><td>Mersenne twister PRNG. </td></tr>
     <tr><td class="paramname">options</td><td>Reference to an <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ATEAMS::arithmetic::ThreadOptions">ATEAMS::arithmetic::ThreadOptions</a> instance. </td></tr>
-    <tr><td class="paramname">DEBUG</td><td>Are we debugging the arithmetic?</td></tr>
+    <tr><td class="paramname">DEBUG</td><td><em>(Optional)</em> Are we debugging the arithmetic?</td></tr>
   </table>
   </dd>
 </dl>
@@ -369,7 +369,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
+          <td class="paramtype">Zp</td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

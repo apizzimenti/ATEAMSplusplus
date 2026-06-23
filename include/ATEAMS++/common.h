@@ -17,7 +17,8 @@
 #include <string>
 
 namespace ATEAMS {
-	/** @typedef Unsigned long int. */
+	/** @cond */
+	/** Unsigned long int. */
 	typedef unsigned long ulong;
 
 	/** Default type used for indexing in SparseRREF matrices. */
@@ -64,6 +65,7 @@ namespace ATEAMS {
 
 	/** PHAT persistence algorithm. */
 	typedef phat::twist_reduction PHATTwist;
+	/** @endcond */
 }
 
 

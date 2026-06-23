@@ -48,14 +48,11 @@ namespace ATEAMS::models {
 	 * Parameters for Bernoulli percolation; includes standard ModelParameters, and
 	 * 	Bernoulli trial density \f$0 \leq p \leq 1\f$.
 	 * 
-	 * @var Bernoulli:state
+	 * @var Bernoulli::state
 	 * Records state.
 	 * 
 	 * @var Bernoulli::kind
 	 * Model name.
-	 * 
-	 * @var Bernoulli::PHATBoundary
-	 * Boundary matrix specialized for PHAT.
 	 */
 	class Bernoulli : Model<std::vector<int>> {
 		public:

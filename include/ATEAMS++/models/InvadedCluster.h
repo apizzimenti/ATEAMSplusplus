@@ -18,10 +18,10 @@ namespace ATEAMS {
 		 * @var InvadedClusterParameters::field
 		 * Order \f$p\f$ for the finite field \f$\Z / p \Z\f$.
 		 * 
-		 * @var InvadedClusterParameters::temperatureFunction
+		 * @var InvadedClusterParameters::stoppingFunction
 		 * Function that consumes a time-step (integer) parameter \f$t\f$ and returns
 		 * an integer in \f$(a,b)\f$, where \f$a, \ b \f$ are between \f$0\f$ and
-		 * \f$\rank(H_d(X))\f$ telling us when to sample the netx set of spins.
+		 * \f$\rank(H_d(X))\f$ telling us when to sample the next set of spins.
 		 */
 		struct InvadedClusterParameters : ModelParameters {
 			int field = 2;
