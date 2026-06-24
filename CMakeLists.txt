@@ -8,7 +8,6 @@ project(ATEAMS++
 	DESCRIPTION "Algebraic topology-enabled algorithms for spin systems."
 )
 
-set(BUILD_WITH_INSTALL_NAME_DIR TRUE)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -19,6 +18,9 @@ add_compile_options(-g -O3 -fPIC)
 find_package(PkgConfig REQUIRED)
 find_package(OpenMP REQUIRED)
 pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
+
+# SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
 
 
 # Add the library.
