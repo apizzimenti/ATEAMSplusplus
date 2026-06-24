@@ -19,9 +19,6 @@ find_package(PkgConfig REQUIRED)
 find_package(OpenMP REQUIRED)
 pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 
-SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-
-
 
 # Add the library.
 add_library(ATEAMS++ SHARED
@@ -80,6 +77,9 @@ set_target_properties(ATEAMS++ PROPERTIES PUBLIC_HEADER include/ATEAMS++/ATEAMS+
 target_link_libraries(ATEAMS++ PUBLIC PkgConfig::FLINT)
 
 include(GNUInstallDirs)
+
+SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 
 # Special rule for building locally on macOS and using gnu screen: when screen
 # creates a subshell, it doesn't remember what @rpath means, so the load path
