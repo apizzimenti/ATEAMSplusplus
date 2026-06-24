@@ -79,9 +79,6 @@ target_link_libraries(ATEAMS++ PUBLIC PkgConfig::FLINT)
 
 include(GNUInstallDirs)
 
-# SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-# SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
-
 # Special rule for building locally on macOS and using gnu screen: when screen
 # creates a subshell, it doesn't remember what @rpath means, so the load path
 # for libATEAMS++.dylib is uninterpretable.
