@@ -8,11 +8,12 @@ project(ATEAMS++
 	DESCRIPTION "Algebraic topology-enabled algorithms for spin systems."
 )
 
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_compile_options(-g -O3 -fPIC)
+add_compile_options(-g -O3 -shared)
 
 # Require OpenMP and FLINT.
 find_package(PkgConfig REQUIRED)
@@ -78,8 +79,8 @@ target_link_libraries(ATEAMS++ PUBLIC PkgConfig::FLINT)
 
 include(GNUInstallDirs)
 
-SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+# SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+# SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 
 # Special rule for building locally on macOS and using gnu screen: when screen
 # creates a subshell, it doesn't remember what @rpath means, so the load path
