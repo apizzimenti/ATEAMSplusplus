@@ -55,9 +55,7 @@ Most experiments follow a straightforward template:
 The below example samples plaquette Bernoulli percolation 1000 times on the scale-6 4-fold torus:
 
 ```C++
-#include <ATEAMS++/models/Bernoulli.h>
-#include <ATEAMS++/complexes/Cubical.h>
-#include <ATEAMS++/statistics/Chain.h>
+#include <ATEAMS++/ATEAMS++.h>
 
 using namespace ATEAMS;
 using namespace std;
