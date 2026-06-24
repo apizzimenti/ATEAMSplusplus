@@ -55,6 +55,7 @@ namespace ATEAMS {
 					this->opt->abort = true;
 					Flint::clear_cache();
 					listener->join();
+					// listener->detach();
 				};
 
 		};
