@@ -1,6 +1,8 @@
 var NAVTREEINDEX0 =
 {
 "annotated.html":[2,0],
+"class_a_t_e_a_m_s_1_1_data_writer.html":[1,0,0,4],
+"class_a_t_e_a_m_s_1_1_data_writer.html":[2,0,0,4],
 "class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html":[1,0,0,0,0],
 "class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html":[2,0,0,0,0],
 "class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#a356e615c35d53059b1231116d9b3bde2":[1,0,0,0,0,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_parameters.html#aede50d5264e20ac9b819422882666b02":[2,0,0,2,13,2],
 "struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_state.html":[1,0,0,2,14],
 "struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_state.html":[2,0,0,2,14],
-"struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_state.html#a64a92288a7c39544384302d31aa3d050":[1,0,0,2,14,0],
-"struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_state.html#a64a92288a7c39544384302d31aa3d050":[2,0,0,2,14,0],
-"struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_state.html#ad9aa6fec8ce9e418ee438f66e0eaf5bf":[1,0,0,2,14,1]
+"struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_state.html#a64a92288a7c39544384302d31aa3d050":[1,0,0,2,14,0]
 };

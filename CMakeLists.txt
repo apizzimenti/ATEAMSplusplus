@@ -77,11 +77,14 @@ target_include_directories(ATEAMS++ PUBLIC include)
 target_include_directories(ATEAMS++ PUBLIC dependencies)
 target_include_directories(ATEAMS++ PUBLIC src)
 
+set_target_properties(ATEAMS++ PROPERTIES PUBLIC_HEADER include/ATEAMS++/ATEAMS++.h)
+
 include(GNUInstallDirs)
 
 install(
 	TARGETS ${PROJECT_NAME}
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+	PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 	FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 

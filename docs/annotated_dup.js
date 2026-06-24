@@ -28,6 +28,7 @@ var annotated_dup =
       ] ],
       [ "statistics", "namespace_a_t_e_a_m_s_1_1statistics.html", [
         [ "Chain", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html", "class_a_t_e_a_m_s_1_1statistics_1_1_chain" ]
-      ] ]
+      ] ],
+      [ "DataWriter", "class_a_t_e_a_m_s_1_1_data_writer.html", null ]
     ] ]
 ];

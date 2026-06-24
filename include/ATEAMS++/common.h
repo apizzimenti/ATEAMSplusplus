@@ -66,6 +66,90 @@ namespace ATEAMS {
 	/** PHAT persistence algorithm. */
 	typedef phat::twist_reduction PHATTwist;
 	/** @endcond */
+
+
+	/**
+	 * @class DataWriter
+	 * @brief Utility function for writing various data types to file.
+	 */
+	class DataWriter {
+		public:
+			/**
+			 * @brief Writes a @ref ATEAMS::ZpMatrix to file.
+			 * 
+			 * @param S Storage.
+			 * @param destination Filepath. **This method does no sanity checks:
+			 * 	all directories in the filepath must exist for the data to be
+			 * 	written.**
+			 */
+			static inline void write(ATEAMS::ZpMatrix S, std::string destination) {
+				std::ofstream out;
+				out.open(destination);
+
+				SparseRREF::sparse_mat_write<ATEAMS::data_t,std::ofstream,ATEAMS::index_t>(
+					S, out, SparseRREF::SPARSE_FILE_TYPE_SMS
+				);
+
+				out.close();
+			};
+
+			/**
+			 * @brief Writes a @ref ATEAMS::ZpMatrix to file.
+			 * 
+			 * @param S Storage.
+			 * @param destination Filepath. **This method does no sanity checks:
+			 * 	all directories in the filepath must exist for the data to be
+			 * 	written.**
+			 */
+			static inline void write(std::vector<int> S, std::string destination) {
+				std::ofstream out;
+				out.open(destination);
+
+				for (auto k : S) {
+					out << k << std::endl;
+				}
+
+				out.close();
+			};
+
+			/**
+			 * @brief Writes a @ref ATEAMS::ZpMatrix to file.
+			 * 
+			 * @param S Storage.
+			 * @param destination Filepath. **This method does no sanity checks:
+			 * 	all directories in the filepath must exist for the data to be
+			 * 	written.**
+			 */
+			static inline void write(std::vector<double> S, std::string destination) {
+				std::ofstream out;
+				out.open(destination);
+
+				for (auto k : S) {
+					out << std::format("{:.8f}", k) << std::endl;
+				}
+
+				out.close();
+			};
+
+			/**
+			 * @brief Writes a @ref ATEAMS::ZpMatrix to file.
+			 * 
+			 * @param S Storage.
+			 * @param destination Filepath. **This method does no sanity checks:
+			 * 	all directories in the filepath must exist for the data to be
+			 * 	written.**
+			 */
+			static inline void write(std::vector<float> S, std::string destination) {
+				std::ofstream out;
+				out.open(destination);
+
+				for (auto k : S) {
+					out << std::format("{:.8f}", k) << std::endl;
+				}
+
+				out.close();
+			};
+	};
 }
 
 

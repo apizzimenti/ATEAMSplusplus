@@ -5,6 +5,7 @@ var hierarchy =
     [ "ATEAMS::complexes::Complex", "class_a_t_e_a_m_s_1_1complexes_1_1_complex.html", [
       [ "ATEAMS::complexes::Cubical", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html", null ]
     ] ],
+    [ "ATEAMS::DataWriter", "class_a_t_e_a_m_s_1_1_data_writer.html", null ],
     [ "ATEAMS::models::Model&lt; SampleType &gt;", "class_a_t_e_a_m_s_1_1models_1_1_model.html", null ],
     [ "ATEAMS::models::Model&lt; std::vector&lt; int &gt; &gt;", "class_a_t_e_a_m_s_1_1models_1_1_model.html", [
       [ "ATEAMS::models::Bernoulli", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html", null ]

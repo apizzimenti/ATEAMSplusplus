@@ -6,10 +6,16 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
+
 #include <iostream>
 #include <thread>
 
+#include <fstream>
+#include <string>
+
 #include "ATEAMS++/common.h"
+#include <SparseRREF/sparse_mat.h>
+
 
 /** @cond */
 inline int getch_key() {
@@ -138,4 +144,6 @@ inline void printvectormap(MapStorage m) {
 }
 
 /** @endcond */
+
+
 #endif
