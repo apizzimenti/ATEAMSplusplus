@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_compile_options(-g -O3)
+add_compile_options(-g -O3 -fPIC)
 
 # Require OpenMP and FLINT.
 find_package(PkgConfig REQUIRED)
@@ -92,7 +92,6 @@ install(
 	PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 	FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
-
 
 configure_file(ATEAMS++.pc.in ATEAMS++.pc @ONLY)
 
