@@ -14,14 +14,14 @@ ATEAMS++ is a high-performance C++ library for simulating generalized Potts, ran
 	```zsh
 	$ git clone --recursive https://github.com/apizzimenti/ATEAMSplusplus.git
 	```
-	in your favorite shell. The `--recursive` flag ensures that SparseRREF is
-	actually cloned, not just referenced.
+	in your favorite shell. The `--recursive` flag ensures that SparseRREF is actually cloned, not just referenced.
 
-2. **Install dependencies.** ATEAMS++ requires:
+2. **Install dependencies.** ATEAMS++ requires
+
 	1. [OpenMP](https://github.com/openmp) and
 	2. [FLINT](https://flintlib.org/),
 
-	which are both available through most pacakge managers. [Make sure your compiler complies with the C++23 standard](https://en.cppreference.com/cpp/compiler_support/23); GCC ≥ 15 is a good bet.
+	which are both available through most package managers. [Make sure your compilercomplies with the C++23 standard](https://en.cppreference.com/cpp/compiler_support/23); GCC ≥ 15 is a good bet.
 
 3. **Build and install the library.** In your favorite shell, running
 	```zsh

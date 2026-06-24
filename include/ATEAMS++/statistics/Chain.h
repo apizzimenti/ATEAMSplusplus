@@ -77,8 +77,9 @@ namespace ATEAMS {
 				 */
 				std::generator<ATEAMS::models::ModelState*> simulate() {
 					std::thread listener = options.spinUp();
+					this->model->initialize();
 
-					for (int t=0; t < 1000; t++) {
+					for (int t=0; t < this->steps; t++) {
 						this->model->sample(t, this->options);
 						this->state = &this->model->state;
 						co_yield this->state;
@@ -104,7 +105,7 @@ namespace ATEAMS {
 				std::generator<State*> simulate() {
 					std::thread listener = options.spinUp();
 
-					for (int t=0; t < 1000; t++) {
+					for (int t=0; t < this->steps; t++) {
 						this->model->sample(t, this->options);
 						this->state = &this->model->state;
 						co_yield (State*)this->state;
