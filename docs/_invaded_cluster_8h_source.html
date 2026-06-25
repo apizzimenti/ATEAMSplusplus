@@ -117,8 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef ATEAMS_MODELS_InvadedCluster_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#define ATEAMS_MODELS_InvadedCluster_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef ATEAMS_MODELS_INVADEDCLUSTER_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#define ATEAMS_MODELS_INVADEDCLUSTER_H</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;ATEAMS++/common.h&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;ATEAMS++/models/Model.h&quot;</span></div>
@@ -163,18 +163,19 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                std::mt19937 RNG;</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                std::uniform_int_distribution&lt;int&gt; intuniform;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        };</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                std::vector&lt;int&gt; filtration;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        };</div>
 </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>}</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a></div><div class="ttdoc">Convenience class for managing Flint and multithreading.</div><div class="ttdef"><b>Definition</b> options.h:27</div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_complex_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a></div><div class="ttdoc">Abstract (template) class for various complexes.</div><div class="ttdef"><b>Definition</b> Complex.h:47</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_html_a03adcc1723b63b15276e0ed60759daaf"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a03adcc1723b63b15276e0ed60759daaf">ATEAMS::models::InvadedCluster::InvadedCluster</a></div><div class="ttdeci">InvadedCluster(ATEAMS::complexes::Complex *complex, InvadedClusterParameters parameters)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> InvadedCluster.cpp:147</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_html_a03adcc1723b63b15276e0ed60759daaf"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a03adcc1723b63b15276e0ed60759daaf">ATEAMS::models::InvadedCluster::InvadedCluster</a></div><div class="ttdeci">InvadedCluster(ATEAMS::complexes::Complex *complex, InvadedClusterParameters parameters)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> InvadedCluster.cpp:144</div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_html_a09850dca1d4d2f4b189ce7edfbde604f"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a09850dca1d4d2f4b189ce7edfbde604f">ATEAMS::models::InvadedCluster::kind</a></div><div class="ttdeci">std::string kind</div><div class="ttdef"><b>Definition</b> InvadedCluster.h:111</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_html_a0dadba29ac834c1a0a00424772bf20f5"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a0dadba29ac834c1a0a00424772bf20f5">ATEAMS::models::InvadedCluster::initialize</a></div><div class="ttdeci">void initialize() override</div><div class="ttdoc">Initializes  to uniform random elements of .</div><div class="ttdef"><b>Definition</b> InvadedCluster.cpp:129</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_html_a0dadba29ac834c1a0a00424772bf20f5"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a0dadba29ac834c1a0a00424772bf20f5">ATEAMS::models::InvadedCluster::initialize</a></div><div class="ttdeci">void initialize() override</div><div class="ttdoc">Initializes  to uniform random elements of .</div><div class="ttdef"><b>Definition</b> InvadedCluster.cpp:126</div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_html_a15ed311d8b4d9403137401035d4adf43"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a15ed311d8b4d9403137401035d4adf43">ATEAMS::models::InvadedCluster::state</a></div><div class="ttdeci">InvadedClusterState state</div><div class="ttdef"><b>Definition</b> InvadedCluster.h:108</div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_html_a1f1d2e0d32df77b2219abbb881887dec"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a1f1d2e0d32df77b2219abbb881887dec">ATEAMS::models::InvadedCluster::sample</a></div><div class="ttdeci">ZpVector sample(int t, ATEAMS::arithmetic::ThreadOptions &amp;options) override</div><div class="ttdoc">Implements the plaquette invaded-cluster algorithm, which inserts satisfied cells (i....</div><div class="ttdef"><b>Definition</b> InvadedCluster.cpp:18</div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_html_a22b62a44262e8e6b4ec1a8376e7f8611"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a22b62a44262e8e6b4ec1a8376e7f8611">ATEAMS::models::InvadedCluster::parameters</a></div><div class="ttdeci">InvadedClusterParameters parameters</div><div class="ttdef"><b>Definition</b> InvadedCluster.h:107</div></div>

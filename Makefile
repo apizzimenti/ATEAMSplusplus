@@ -1,4 +1,10 @@
 
+#########
+## ENV ##
+#########
+SHELL := /bin/zsh
+DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+
 clean:
 	rm -rf build
 
@@ -9,13 +15,16 @@ build:
 install: build
 	sudo cmake --install build -v
 
-test: clean build
+.PHONY: clean build
+
+test: clean build install
 	@cd build; ctest
 
+##########
+## DOCS ##
+##########
 docs: FORCE
 	@doxygen
-
-.PHONY: clean build
 
 FORCE: ;
 

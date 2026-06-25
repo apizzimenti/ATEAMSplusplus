@@ -25,7 +25,13 @@
 var NAVTREE =
 [
   [ "ATEAMS++", "index.html", [
-    [ "Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)", "index.html#autotoc_md0", null ],
+    [ "Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)", "index.html#autotoc_md0", [
+      [ "Installation", "index.html#autotoc_md1", null ],
+      [ "Usage", "index.html#autotoc_md2", null ],
+      [ "Known issues", "index.html#autotoc_md3", null ],
+      [ "Contributing", "index.html#autotoc_md4", null ],
+      [ "Citing", "index.html#autotoc_md5", null ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -50,7 +56,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"struct_a_t_e_a_m_s_1_1models_1_1_invasion_percolation_parameters.html"
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html#a6d780de25e1370759a604801c16380ad"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

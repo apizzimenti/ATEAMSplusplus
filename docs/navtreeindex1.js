@@ -1,5 +1,10 @@
 var NAVTREEINDEX1 =
 {
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html#a6d780de25e1370759a604801c16380ad":[1,0,0,2,8,1],
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html#a6d780de25e1370759a604801c16380ad":[2,0,0,2,8,1],
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html#afd598464675ed04bd9f84b6f2a9dc684":[1,0,0,2,8,0],
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html#afd598464675ed04bd9f84b6f2a9dc684":[2,0,0,2,8,0],
+"struct_a_t_e_a_m_s_1_1models_1_1_invasion_percolation_parameters.html":[1,0,0,2,10],
 "struct_a_t_e_a_m_s_1_1models_1_1_invasion_percolation_parameters.html":[2,0,0,2,10],
 "struct_a_t_e_a_m_s_1_1models_1_1_invasion_percolation_parameters.html#a172a50481fe6c057839cca414f118ebb":[1,0,0,2,10,1],
 "struct_a_t_e_a_m_s_1_1models_1_1_invasion_percolation_parameters.html#a172a50481fe6c057839cca414f118ebb":[2,0,0,2,10,1],

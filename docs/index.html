@@ -142,12 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
-<p><a href="https://apizzimenti.github.io/ATEAMSplusplus/"><img src="https://img.shields.io/badge/%E2%93%98-Documentation-red" alt="docs" class="inline"/></a> <a href="https://arxiv.org/abs/2507.13503"><img src="https://img.shields.io/badge/arXiv-2507.13503-green.svg" alt="arXiv" style="pointer-events: none;" class="inline"/></a> <a href="https://doi.org/10.5281/zenodo.20817889"><img src="https://img.shields.io/badge/DOI-10.5281/zenodo.20817889-blue" alt="DOI" class="inline"/></a></p>
+<p><a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License:MIT" style="pointer-events: none;" class="inline"/></a> <a href="https://apizzimenti.github.io/ATEAMSplusplus/"><img src="https://img.shields.io/badge/%E2%93%98-Documentation-red" alt="docs" class="inline"/></a> <a href="https://arxiv.org/abs/2507.13503"><img src="https://img.shields.io/badge/arXiv-2507.13503-green.svg" alt="arXiv" style="pointer-events: none;" class="inline"/></a> <a href="https://doi.org/10.5281/zenodo.20817889"><img src="https://img.shields.io/badge/DOI-10.5281/zenodo.20817889-blue" alt="DOI" class="inline"/></a></p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
 Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)</h1>
 <p>ATEAMS++ is a high-performance C++ library for simulating generalized Potts, random-cluster, and percolation models at scale. It depends directly on <a href="https://github.com/munuxi/SparseRREF">SparseRREF</a> and PHAT [<a href="https://www.sciencedirect.com/science/article/pii/S0747717116300098">1</a>,<a href="https://bitbucket.org/phat-code/phat/src/master/">2</a>] for fast linear algebra over finite fields. It is a C++ port of the original <a href="https://github.com/apizzimenti/ATEAMS">ATEAMS</a> library.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
-Installation</h3>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+Installation</h2>
 <ol type="1">
 <li><b>Clone the repository.</b> Run <div class="fragment"><div class="line">$ git clone --recursive https://github.com/apizzimenti/ATEAMSplusplus.git</div>
 </div><!-- fragment --> in your favorite shell. The <span class="tt">--recursive</span> flag ensures that SparseRREF is actually cloned, not just referenced.</li>
@@ -166,8 +166,8 @@ Installation</h3>
 </div><!-- fragment --> should give something like <div class="fragment"><div class="line">-L/usr/local/lib -lATEAMS++ -lflint -I/usr/local/include -std=c++23</div>
 </div><!-- fragment --></li>
 </ol>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
-Usage</h3>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Usage</h2>
 <p>Most experiments follow a straightforward template:</p>
 <ol type="1">
 <li>create a Complex;</li>
@@ -220,19 +220,31 @@ Usage</h3>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_bernoulli_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_state.html">ATEAMS::models::BernoulliState</a></div><div class="ttdoc">Stores the current state of Bernoulli percolation.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:37</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a0a337f8aba7b7596bcbf88f71bac2ded"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a0a337f8aba7b7596bcbf88f71bac2ded">ATEAMS::models::ModelParameters::dimension</a></div><div class="ttdeci">int dimension</div><div class="ttdef"><b>Definition</b> Model.h:24</div></div>
 </div><!-- fragment --><p>If the above snippet is in a file called <span class="tt">main.cpp</span>, then compiling the program and running the executable should give something like</p>
-<div class="fragment"><div class="line">$ g++ `pkg-config --libs --cflags ATEAMS++` main.cpp -o main</div>
+<div class="fragment"><div class="line">$ $CXX `pkg-config --libs --cflags ATEAMS++` main.cpp -o main</div>
 <div class="line">$ ./main</div>
 <div class="line">expected rank is 3.09</div>
 </div><!-- fragment --><p>When timed, this takes ~11 seconds.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
-Known issues</h3>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+Known issues</h2>
 <ul>
 <li><p class="startli">On some Linux systems, linking against ATEAMS++ after it's installed may cause some issues. In the event you get a linking error talking about undefined symbols in a <span class="tt">tbb</span> namespace, you may have to recompile your program with</p>
 <div class="fragment"><div class="line">$ $CXX yourfile.cpp `pkg-config --libs --cflags ATEAMS++` -ltbb -o executable</div>
-</div><!-- fragment --><p class="startli">for things to work. </p>
+</div><!-- fragment --><p class="startli">for things to work.</p>
 </li>
 </ul>
-</div></div><!-- PageDoc -->
+<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Contributing</h2>
+<p>We welcome contributions.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Citing</h2>
+<div class="fragment"><div class="line">@software{ATEAMS++,</div>
+<div class="line">    title={{ATEAMS++: Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++}},</div>
+<div class="line">    author={Pizzimenti, Anthony E. and Schweinhart, Ben and Duncan, Paul},</div>
+<div class="line">    url={github.com/apizzimenti/ATEAMSplusplus},</div>
+<div class="line">    version={1.3},</div>
+<div class="line">    doi={10.5281/zenodo.20817889}</div>
+<div class="line">}</div>
+</div><!-- fragment --> </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->
