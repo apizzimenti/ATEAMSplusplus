@@ -55,6 +55,7 @@ target_sources(ATEAMS++
 		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvadedCluster.h
 		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Model.h
 		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/SwendsenWang.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvasionPercolation.h
 		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/statistics.h
 		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/Chain.h
 		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/observables.h

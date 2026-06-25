@@ -1,16 +1,11 @@
 
 #include <ATEAMS++/ATEAMS++.h>
-#include <ATEAMS++/models/Glauber.h>
-#include <ATEAMS++/complexes/Cubical.h>
-#include <ATEAMS++/statistics/schedules.h>
-#include <ATEAMS++/statistics/observables.h>
-#include <ATEAMS++/arithmetic/options.h>
 
 using namespace ATEAMS;
 using namespace std;
 
 int main() {
-	vector<int> corners = {3,3,3,3};
+	vector<int> corners = {6,6,6,6};
 	complexes::Cubical C(corners, true);
 
 	models::GlauberParameters params;
@@ -19,18 +14,13 @@ int main() {
 	params.dimension = 2;
 	params.DEBUG = false;
 
-	models::Glauber G(&C, params);
-	G.initialize();
+	models::Glauber Glauber(&C, params);
 
-	ATEAMS::arithmetic::ThreadOptions options;
+	using Chain = statistics::Chain<models::Glauber>;
+	Chain M(&Glauber, 1000);
 
-	int N = 1000;
-	
-	for (int i=0; i < N; i++) {
-		G.sample(i, options);
-		cout << statistics::occupation(G.complex, G.state.cochain, G.field, params.dimension) << endl;
-	}
-	
+	for (models::ModelState* state : M.simulate()) { }
+
 	return 0;
 }
 

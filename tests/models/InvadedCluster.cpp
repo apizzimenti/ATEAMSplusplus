@@ -1,15 +1,11 @@
 
 #include <ATEAMS++/ATEAMS++.h>
-#include <ATEAMS++/models/InvadedCluster.h>
-#include <ATEAMS++/complexes/Cubical.h>
-#include <ATEAMS++/arithmetic/persistence.h>
-#include <ATEAMS++/arithmetic/options.h>
 
 using namespace ATEAMS;
 using namespace std;
 
 int main() {
-	vector<int> corners = {5,5,5,5};
+	vector<int> corners = {6,6,6,6};
 	complexes::Cubical C(corners, true);
 
 	models::InvadedClusterParameters params;
@@ -18,19 +14,12 @@ int main() {
 	params.dimension = 2;
 	params.DEBUG = false;
 
-	models::InvadedCluster SW(&C, params);
-	SW.initialize();
+	models::InvadedCluster invasion(&C, params);
 
-	ATEAMS::arithmetic::ThreadOptions options;
-	std::thread listener = options.spinUp();
+	using Chain = statistics::Chain<models::InvadedCluster>;
+	Chain M(&invasion, 1000);
 
-	int N = 1000;
-
-	for (int t=0; t < N; t++) {
-		SW.sample(t, options);
-	}
-
-	options.spinDown(&listener);
+	for (models::ModelState* state : M.simulate()) { };
 	
 	return 0;
 }
