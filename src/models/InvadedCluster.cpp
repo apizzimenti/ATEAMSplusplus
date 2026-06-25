@@ -45,9 +45,6 @@ ZpVector models::InvadedCluster::sample(int t, arithmetic::ThreadOptions& option
 	// Construct the filtration.
 	vector<size_t> inside(include.begin(), include.end());
 	inside.insert(inside.end(), exclude.begin(), exclude.end());
-	
-	vector<int> filtration(this->complex->size());
-	std::iota(filtration.begin(), filtration.end(), 0);
 
 	int stop = this->complex->breaks[d][1];
 	int start = this->complex->breaks[d][0];
@@ -56,15 +53,15 @@ ZpVector models::InvadedCluster::sample(int t, arithmetic::ThreadOptions& option
 	// TODO a small optimization: we only have to do the persistence algorithm
 	// through the (d+1)-dimensional cells to capture the d-dimensional events.
 	// This will probably save a boatload of time!
-	for (int j=0; j < inside.size(); j++) filtration[j+start] = inside[j]+start;
+	for (int j=0; j < inside.size(); j++) this->filtration[j+start] = inside[j]+start;
 
 	// Persist.
 	vector<int> essential;
 
 	if (this->parameters.field < 3) {
-		essential = arithmetic::PHATPersistence(this->complex, filtration, this->parameters.dimension);
+		essential = arithmetic::PHATPersistence(this->complex, this->filtration, this->parameters.dimension);
 	} else {
-		essential = arithmetic::TwistPersistence(this->complex, filtration, this->field, this->parameters.dimension);
+		essential = arithmetic::TwistPersistence(this->complex, this->filtration, this->field, this->parameters.dimension);
 	}
 
 	std::erase_if(essential, [stop, start](int x) { return !((start <= x) && (x < stop)); });
@@ -72,7 +69,7 @@ ZpVector models::InvadedCluster::sample(int t, arithmetic::ThreadOptions& option
 
 	if (this->parameters.DEBUG) {
 		cerr << "filtration:" << endl;
-		printvector<int>(filtration);
+		printvector<int>(this->filtration);
 		cerr << endl;
 
 		cerr << std::format("essential cycles (of dimension) {}", d) << endl;
@@ -87,8 +84,8 @@ ZpVector models::InvadedCluster::sample(int t, arithmetic::ThreadOptions& option
 	set<size_t> leaveout;
 	vector<int> included(stopat-start, 0);
 
-	for (int i=stopat; i < stop; i++) leaveout.insert(filtration[i]-start);
-	for (int i=start; i < stopat; i++) included[i-start] = filtration[i]-start;
+	for (int i=stopat; i < stop; i++) leaveout.insert(this->filtration[i]-start);
+	for (int i=start; i < stopat; i++) included[i-start] = this->filtration[i]-start;
 
 	ZpVector sample = arithmetic::submatrixKernelSample(
 		this->complex->Coboundary.Matrices[d],	// complete dth coboundary matrix
@@ -155,6 +152,10 @@ models::InvadedCluster::InvadedCluster(complexes::Complex* complex, InvadedClust
 
 	if (this->parameters.field < 3) this->complex->constructFlatBoundaryMatrix();
 	else this->complex->constructFullBoundaryMatrix(this->field);
+
+	vector<int> filtration(this->complex->size());
+	std::iota(filtration.begin(), filtration.end(), 0);
+	this->filtration = filtration;
 
 	// Initialize a random number generator.
 	std::random_device rd;

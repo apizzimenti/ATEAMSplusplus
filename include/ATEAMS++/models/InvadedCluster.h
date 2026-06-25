@@ -1,6 +1,6 @@
 
-#ifndef ATEAMS_MODELS_InvadedCluster_H
-#define ATEAMS_MODELS_InvadedCluster_H
+#ifndef ATEAMS_MODELS_INVADEDCLUSTER_H
+#define ATEAMS_MODELS_INVADEDCLUSTER_H
 
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/models/Model.h"
@@ -113,6 +113,7 @@ namespace ATEAMS {
 			private:
 				std::mt19937 RNG;
 				std::uniform_int_distribution<int> intuniform;
+				std::vector<int> filtration;
 		};
 	}
 }
