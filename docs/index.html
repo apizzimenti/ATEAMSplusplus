@@ -223,7 +223,14 @@ Usage</h3>
 <div class="fragment"><div class="line">$ g++ `pkg-config --libs --cflags ATEAMS++` main.cpp -o main</div>
 <div class="line">$ ./main</div>
 <div class="line">expected rank is 3.09</div>
-</div><!-- fragment --><p>When timed, this takes ~11 seconds. </p>
+</div><!-- fragment --><p>When timed, this takes ~11 seconds.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+Known issues</h3>
+<ul>
+<li>On some Linux systems, linking against ATEAMS++ after it's installed may cause some issues. In the event you get a linking error talking about undefined symbols in a <span class="tt">tbb</span> namespace, you may have to recompile your program with <span class="tt">zsh
+    $ $CXX yourfile.cpp `pkg-config --libs --cflags ATEAMS++` -ltbb -o executable
+    </span> for things to work. </li>
+</ul>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

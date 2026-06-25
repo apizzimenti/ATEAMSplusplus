@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_compile_options(-g -O3 -shared)
+add_compile_options(-g -O3)
 
 # Require OpenMP and FLINT.
 find_package(PkgConfig REQUIRED)

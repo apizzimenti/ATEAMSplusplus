@@ -103,3 +103,12 @@ expected rank is 3.09
 ```
 
 When timed, this takes ~11 seconds.
+
+### Known issues
+	* On some Linux systems, linking against ATEAMS++ after it's installed may
+	cause some issues. In the event you get a linking error talking about undefined
+	symbols in a `tbb` namespace, you may have to recompile your program with
+	```zsh
+	$ $CXX yourfile.cpp `pkg-config --libs --cflags ATEAMS++` -ltbb -o executable
+	```
+	for things to work.
