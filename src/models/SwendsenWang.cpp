@@ -55,6 +55,15 @@ ZpVector models::SwendsenWang::sample(int t, arithmetic::ThreadOptions& options)
 		if (this->unituniform(this->RNG) > p) exclude.insert(i);
 	}
 
+	// Figure out which indices we're *in*cluding.
+	set<int> includeHere;
+	
+	set_difference(
+		this->include.begin(), this->include.end(),
+		exclude.begin(), exclude.end(),
+		inserter(includeHere, includeHere.begin())
+	);
+
 	// Now, sample from the kernel.
 	ZpVector sample = arithmetic::submatrixKernelSample(
 		this->complex->Coboundary.Matrices[d],	// complete dth coboundary matrix
@@ -86,6 +95,7 @@ ZpVector models::SwendsenWang::sample(int t, arithmetic::ThreadOptions& options)
 	}
 
 	this->state.cochain = sample;
+	this->state.includes = vector<int>(includeHere.begin(), includeHere.end());
 
 	return sample;
 }
@@ -117,6 +127,12 @@ models::SwendsenWang::SwendsenWang(complexes::Complex* complex, SwendsenWangPara
 
 	// Determine the field and build the boundary matrices for the Complex.
 	this->complex->constructBoundaryMatrices(this->field);
+
+	// Default set of indices to compare against.
+	set<int> _include;
+	for (int t=0; t<this->complex->Cells[this->parameters.dimension]; t++) _include.insert(t);
+
+	this->include = _include;
 
 	// Initialize a random number generator.
 	std::random_device rd;

@@ -43,12 +43,12 @@ namespace ATEAMS {
 		 * sampled at time \f$t\f$.
 		 * 
 		 * @var SwendsenWangState::includes
-		 * A (sparse) vector with nonzero entries indicating the indices of \f$d\f$-cells
+		 * A vector with integer entries indicating the indices of \f$d\f$-cells
 		 * included in the percolation subcomplex sampled at time \f$t\f$.
 		 */
 		struct SwendsenWangState : ModelState {
 			ZpVector cochain;
-			ZpVector includes;
+			std::vector<int> includes;
 		};
 
 		/**
@@ -120,6 +120,7 @@ namespace ATEAMS {
 				std::mt19937 RNG;
 				std::uniform_real_distribution<double> unituniform;
 				std::uniform_int_distribution<int> intuniform;
+				std::set<int> include;
 		};
 	}
 }
