@@ -87,6 +87,8 @@ namespace ATEAMS::models {
 			std::mt19937 RNG;
 			std::uniform_real_distribution<double> unituniform;
 			const Zp field;
+			
+			std::vector<int> filtration;
 	};
 }
 

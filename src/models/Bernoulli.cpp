@@ -36,41 +36,32 @@ vector<int> models::Bernoulli::sample(int t, arithmetic::ThreadOptions& options)
 	this->state.included = include;
 
 	// Construct the filtration.
-	vector<int> filtration(this->complex->offsets[d+1], 0);
 	int stop = this->complex->breaks[d][0];
 	int start = this->complex->breaks[d][1];
 	int offset = (d > 0) ? this->complex->offsets[d-1] : 0;
 	
 	// Fill in all the indices for cells of dimension not equal to d.
-	// TODO a small optimization: we only have to do the persistence algorithm
-	// through the (d+1)-dimensional cells to capture the d-dimensional events.
-	// This will probably save a boatload of time!
-	for (int j=0; j < stop; j++) filtration[j] = j;
-	for (int j=start; j < this->complex->offsets[d+1]; j++) filtration[j] = j;
+	for (int j=0; j < stop; j++) this->filtration[j] = j;
+	for (int j=start; j < this->complex->offsets[d+1]; j++) this->filtration[j] = j;
 
 	// Shuffle the included indices.
 	std::shuffle(include.begin(), include.end(), this->RNG);
 	
-	for (int j=0; j < include.size(); j++) filtration[j+offset] = include[j]+offset;
-	for (int j=0; j < exclude.size(); j++) filtration[j+offset+include.size()] = exclude[j]+offset;
-
-	// TODO finish this debugging thing
-	// if (this->parameters.DEBUG && this->complex->periodic) {
-	// 	std::cerr << "verifying whether each d-cell is shared by the correct number of (d+1)-cells..." << std::endl;
-	// }
+	for (int j=0; j < include.size(); j++) this->filtration[j+offset] = include[j]+offset;
+	for (int j=0; j < exclude.size(); j++) this->filtration[j+offset+include.size()] = exclude[j]+offset;
 
 	// Now, compute the persistence times, then filter over them to capture only
 	// the ones within the right window.
-	vector<int> essential = arithmetic::PHATPersistence(this->complex, filtration, d);
+	vector<int> essential = arithmetic::PHATPersistence(this->complex, this->filtration, d);
 	std::erase_if(essential, [stop, included](int t) { return !((stop <= t) && (t < stop+included)); });
 	std::sort(essential.begin(), essential.end());
 
 	if (this->parameters.DEBUG) {
 		std::cerr << "outputting filtration to stdout..." << std::endl;
-		printvector(filtration);
+		printvector<int>(this->filtration);
 
 		std::cerr << "outputting essential cycles to stdout..." << std::endl;
-		printvector(essential);
+		printvector<int>(essential);
 	}
 
 	// Knock off the offset value, set state, and done.
@@ -93,6 +84,9 @@ models::Bernoulli::Bernoulli(complexes::Complex* complex, BernoulliParameters pa
 	this->complex->constructFlatBoundaryMatrix();
 	this->complex->constructFullBoundaryMatrix(this->field);
 
+	// Default filtration.
+	vector<int> filtration(this->complex->offsets[this->parameters.dimension+1], 0);
+	this->filtration = filtration;
 
 	// Initialize a random number generator.
 	std::random_device rd;

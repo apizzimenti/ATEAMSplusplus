@@ -76,16 +76,17 @@ namespace ATEAMS {
 				InvasionPercolation(ATEAMS::complexes::Complex* complex, InvasionPercolationParameters parameters);
 
 				/**
-				 * @brief Implements the plaquette invaded-cluster algorithm,
-				 * 	which inserts satisfied cells (i.e. cells \f$x\f$ such that
-				 * 	\f$(\delta^{d-1}f_t)(x) = 0\f$) in a uniform random order until
-				 * 	some number of giant cycles are created, forming a subcomplex
-				 * 	\f$P_t\f$. Then samples \f$ f_{t+1} \sim \PK(- \mid P_t)\f$.
+				 * @brief Implements the plaquette invasion-percolation algorithm,
+				 * which creates a random \f$d\f$-subcomplex \f$X\f$ by (uniformly 
+				 * randomly) inserting \f$d\f$-cells into \f$X\f$ until \f$\rank(H_d(X))\f$
+				 * is "large enough" (set by the user).
 				 * 
 				 * @param t Time step.
 				 * @param options Multithreaded computing environment options.
 				 * 
-				 * @return The sample \f$f_{t+1}\f$.
+				 * @return A list of \f$d\f$-cell indices in insertion order, up
+				 * to the time at which \f$\rank(H_d(X))\f$ exceeds the user-specified
+				 * cutoff.
 				 */
 				std::vector<int> sample(int t, ATEAMS::arithmetic::ThreadOptions& options) override;
 

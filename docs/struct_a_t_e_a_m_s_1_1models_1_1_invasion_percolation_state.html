@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: ATEAMS::models::ModelParameters Struct Reference</title>
+<title>ATEAMS++: ATEAMS::models::InvasionPercolationState Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html','','struct_a_t_e_a_m_s_1_1models_1_1_model_parameters-members'); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_a_t_e_a_m_s_1_1models_1_1_invasion_percolation_state.html','','struct_a_t_e_a_m_s_1_1models_1_1_invasion_percolation_state-members'); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
@@ -138,68 +138,50 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ATEAMS::models::ModelParameters Struct Reference</div></div>
+  <div class="headertitle"><div class="title">ATEAMS::models::InvasionPercolationState Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Typical parameters required for simulating a <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a>.  
+<p>Stores the current state of the invaded-cluster algorithm.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_model_8h_source.html">Model.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_invasion_percolation_8h_source.html">InvasionPercolation.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for ATEAMS::models::ModelParameters:</div>
+Inheritance diagram for ATEAMS::models::InvasionPercolationState:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.png" usemap="#ATEAMS_3A_3Amodels_3A_3AModelParameters_map" alt=""/>
-  <map id="ATEAMS_3A_3Amodels_3A_3AModelParameters_map" name="ATEAMS_3A_3Amodels_3A_3AModelParameters_map">
-<area href="struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_parameters.html" title="Parameters for Bernoulli percolation." alt="ATEAMS::models::BernoulliParameters" shape="rect" coords="0,56,290,80"/>
-<area href="struct_a_t_e_a_m_s_1_1models_1_1_glauber_parameters.html" title="Parameters relevant to simulating the Glauber dynamics Markov chain." alt="ATEAMS::models::GlauberParameters" shape="rect" coords="300,56,590,80"/>
-<area href="struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_parameters.html" title="Parameters relevant to simulating the Swendsen–Wang algorithm." alt="ATEAMS::models::InvadedClusterParameters" shape="rect" coords="600,56,890,80"/>
-<area href="struct_a_t_e_a_m_s_1_1models_1_1_invasion_percolation_parameters.html" title="Parameters relevant to simulating the invaded-cluster algorithm." alt="ATEAMS::models::InvasionPercolationParameters" shape="rect" coords="900,56,1190,80"/>
-<area href="struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_parameters.html" title="Parameters relevant to simulating the Swendsen–Wang algorithm." alt="ATEAMS::models::SwendsenWangParameters" shape="rect" coords="1200,56,1490,80"/>
+  <img src="struct_a_t_e_a_m_s_1_1models_1_1_invasion_percolation_state.png" usemap="#ATEAMS_3A_3Amodels_3A_3AInvasionPercolationState_map" alt=""/>
+  <map id="ATEAMS_3A_3Amodels_3A_3AInvasionPercolationState_map" name="ATEAMS_3A_3Amodels_3A_3AInvasionPercolationState_map">
+<area href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html" title="Maintains state for this Model." alt="ATEAMS::models::ModelState" shape="rect" coords="0,0,254,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a0a337f8aba7b7596bcbf88f71bac2ded" id="r_a0a337f8aba7b7596bcbf88f71bac2ded"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a0a337f8aba7b7596bcbf88f71bac2ded">dimension</a></td></tr>
-<tr class="memitem:aab3ad508975c0ceab78575184f455c4d" id="r_aab3ad508975c0ceab78575184f455c4d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aab3ad508975c0ceab78575184f455c4d">DEBUG</a> = false</td></tr>
+<tr class="memitem:a7910fa1a8abb8a8cce6b48a2b4802fef" id="r_a7910fa1a8abb8a8cce6b48a2b4802fef"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7910fa1a8abb8a8cce6b48a2b4802fef">includes</a></td></tr>
+<tr class="memitem:aa35199661fe30f5d71859d5046488a24" id="r_aa35199661fe30f5d71859d5046488a24"><td class="memItemLeft"><a id="aa35199661fe30f5d71859d5046488a24" name="aa35199661fe30f5d71859d5046488a24"></a>
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>essential</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Typical parameters required for simulating a <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a>. </p>
+<div class="textblock"><p>Stores the current state of the invaded-cluster algorithm. </p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="aab3ad508975c0ceab78575184f455c4d" name="aab3ad508975c0ceab78575184f455c4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab3ad508975c0ceab78575184f455c4d">&#9670;&#160;</a></span>DEBUG</h2>
+<a id="a7910fa1a8abb8a8cce6b48a2b4802fef" name="a7910fa1a8abb8a8cce6b48a2b4802fef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7910fa1a8abb8a8cce6b48a2b4802fef">&#9670;&#160;</a></span>includes</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool ATEAMS::models::ModelParameters::DEBUG = false</td>
+          <td class="memname">std::vector&lt;int&gt; ATEAMS::models::InvasionPercolationState::includes</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Are we debugging the <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a>? </p>
-
-</div>
-</div>
-<a id="a0a337f8aba7b7596bcbf88f71bac2ded" name="a0a337f8aba7b7596bcbf88f71bac2ded"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a337f8aba7b7596bcbf88f71bac2ded">&#9670;&#160;</a></span>dimension</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int ATEAMS::models::ModelParameters::dimension</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Dimension of the cells out of which samples are built. </p>
+<p>A (sparse) vector with nonzero entries indicating the indices of \(d\)-cells included in the percolation subcomplex sampled at time \(t\). </p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/ATEAMS++/models/<a class="el" href="_model_8h_source.html">Model.h</a></li>
+<li>include/ATEAMS++/models/<a class="el" href="_invasion_percolation_8h_source.html">InvasionPercolation.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -214,7 +196,7 @@ Public Attributes</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></li><li class="navelem"><a href="namespace_a_t_e_a_m_s_1_1models.html">models</a></li><li class="navelem"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a></li>
+    <li class="navelem"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></li><li class="navelem"><a href="namespace_a_t_e_a_m_s_1_1models.html">models</a></li><li class="navelem"><a href="struct_a_t_e_a_m_s_1_1models_1_1_invasion_percolation_state.html">InvasionPercolationState</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
   </ul>
 </div>

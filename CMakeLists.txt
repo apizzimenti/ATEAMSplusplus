@@ -30,20 +30,7 @@ add_library(ATEAMS++ SHARED
 	src/models/Bernoulli.cpp
 	src/models/InvadedCluster.cpp
 	src/models/Glauber.cpp
-)
-
-include_directories(dependencies/phat)
-include_directories(dependencies/SparseRREF)
-
-# Include dependency headers.
-install(DIRECTORY "${PROJECT_SOURCE_DIR}/dependencies/phat/"
-	DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/phat"
-	FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
-)
-
-install(DIRECTORY "${PROJECT_SOURCE_DIR}/dependencies/SparseRREF/"
-	DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/SparseRREF"
-	FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
+	src/models/InvasionPercolation.cpp
 )
 
 
@@ -90,6 +77,19 @@ if(APPLE)
 	set_target_properties(ATEAMS++ PROPERTIES INSTALL_NAME_DIR ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR})
 endif()
 
+
+# Install headers.
+install(DIRECTORY "${PROJECT_SOURCE_DIR}/dependencies/phat/"
+	DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/phat"
+	FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
+)
+
+install(DIRECTORY "${PROJECT_SOURCE_DIR}/dependencies/SparseRREF/"
+	DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/SparseRREF"
+	FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
+)
+
+# Install the library.
 install(
 	TARGETS ${PROJECT_NAME}
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -97,8 +97,9 @@ install(
 	FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-configure_file(ATEAMS++.pc.in ATEAMS++.pc @ONLY)
 
+# Install the pkg-config file.
+configure_file(ATEAMS++.pc.in ATEAMS++.pc @ONLY)
 install(
 	FILES ${CMAKE_BINARY_DIR}/ATEAMS++.pc
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
@@ -133,6 +134,15 @@ target_link_libraries(models.Bernoulli PRIVATE ATEAMS++)
 add_test(
 	NAME models.Bernoulli
 	COMMAND $<TARGET_FILE:models.Bernoulli>
+)
+
+
+add_executable(models.InvasionPercolation tests/models/InvasionPercolation.cpp)
+target_link_libraries(models.InvasionPercolation PRIVATE ATEAMS++)
+
+add_test(
+	NAME models.InvasionPercolation
+	COMMAND $<TARGET_FILE:models.InvasionPercolation>
 )
 
 
