@@ -103,7 +103,7 @@ $ ./main
 expected rank is 3.09
 ```
 
-When timed, this takes ~11 seconds.
+When timed, this takes ~11 seconds. **If you plan to run large-scale simulations on an external machine, the [magnetizationplusplus workflow](https://github.com/apizzimenti/magnetizationplusplus) may be of use to you.**
 
 ## Known issues
 * On some Linux systems, linking against ATEAMS++ after it's installed may cause some issues. In the event you get a linking error talking about undefined symbols in a `tbb` namespace, you may have to recompile your program with
