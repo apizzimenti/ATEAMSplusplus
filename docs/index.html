@@ -227,9 +227,10 @@ Usage</h3>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Known issues</h3>
 <ul>
-<li>On some Linux systems, linking against ATEAMS++ after it's installed may cause some issues. In the event you get a linking error talking about undefined symbols in a <span class="tt">tbb</span> namespace, you may have to recompile your program with <span class="tt">zsh
-    $ $CXX yourfile.cpp `pkg-config --libs --cflags ATEAMS++` -ltbb -o executable
-    </span> for things to work. </li>
+<li><p class="startli">On some Linux systems, linking against ATEAMS++ after it's installed may cause some issues. In the event you get a linking error talking about undefined symbols in a <span class="tt">tbb</span> namespace, you may have to recompile your program with</p>
+<div class="fragment"><div class="line">$ $CXX yourfile.cpp `pkg-config --libs --cflags ATEAMS++` -ltbb -o executable</div>
+</div><!-- fragment --><p class="startli">for things to work. </p>
+</li>
 </ul>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
