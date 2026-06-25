@@ -77,6 +77,10 @@ target_sources(ATEAMS++
 set_target_properties(ATEAMS++ PROPERTIES PUBLIC_HEADER include/ATEAMS++/ATEAMS++.h)
 target_link_libraries(ATEAMS++ PUBLIC PkgConfig::FLINT)
 
+target_include_directories(ATEAMS++ PUBLIC include)
+target_include_directories(ATEAMS++ PUBLIC dependencies)
+target_include_directories(ATEAMS++ PUBLIC src)
+
 include(GNUInstallDirs)
 
 # Special rule for building locally on macOS and using gnu screen: when screen
