@@ -123,13 +123,13 @@ install(
 # 	COMMAND $<TARGET_FILE:models.SwendsenWang>
 # )
 
-# add_executable(models.Bernoulli tests/models/Bernoulli.cpp)
-# target_link_libraries(models.Bernoulli PRIVATE ATEAMS++)
+add_executable(models.Bernoulli tests/models/Bernoulli.cpp)
+target_link_libraries(models.Bernoulli PRIVATE ATEAMS++)
 
-# add_test(
-# 	NAME models.Bernoulli
-# 	COMMAND $<TARGET_FILE:models.Bernoulli>
-# )
+add_test(
+	NAME models.Bernoulli
+	COMMAND $<TARGET_FILE:models.Bernoulli>
+)
 
 
 # add_executable(models.InvadedCluster tests/models/InvadedCluster.cpp)

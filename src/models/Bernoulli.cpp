@@ -48,6 +48,9 @@ vector<int> models::Bernoulli::sample(int t, arithmetic::ThreadOptions& options)
 	for (int j=0; j < stop; j++) filtration[j] = j;
 	for (int j=start; j < this->complex->offsets[d+1]; j++) filtration[j] = j;
 
+	// Shuffle the included indices.
+	std::shuffle(include.begin(), include.end(), this->RNG);
+	
 	for (int j=0; j < include.size(); j++) filtration[j+offset] = include[j]+offset;
 	for (int j=0; j < exclude.size(); j++) filtration[j+offset+include.size()] = exclude[j]+offset;
 
