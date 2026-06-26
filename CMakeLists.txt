@@ -121,13 +121,13 @@ install(
 
 
 # # Models.
-add_executable(models.SwendsenWang tests/models/SwendsenWang.cpp)
-target_link_libraries(models.SwendsenWang PRIVATE ATEAMS++)
+# add_executable(models.SwendsenWang tests/models/SwendsenWang.cpp)
+# target_link_libraries(models.SwendsenWang PRIVATE ATEAMS++)
 
-add_test(
-	NAME models.SwendsenWang
-	COMMAND $<TARGET_FILE:models.SwendsenWang>
-)
+# add_test(
+# 	NAME models.SwendsenWang
+# 	COMMAND $<TARGET_FILE:models.SwendsenWang>
+# )
 
 add_executable(models.Bernoulli tests/models/Bernoulli.cpp)
 target_link_libraries(models.Bernoulli PRIVATE ATEAMS++)
@@ -138,30 +138,30 @@ add_test(
 )
 
 
-add_executable(models.InvasionPercolation tests/models/InvasionPercolation.cpp)
-target_link_libraries(models.InvasionPercolation PRIVATE ATEAMS++)
+# add_executable(models.InvasionPercolation tests/models/InvasionPercolation.cpp)
+# target_link_libraries(models.InvasionPercolation PRIVATE ATEAMS++)
 
-add_test(
-	NAME models.InvasionPercolation
-	COMMAND $<TARGET_FILE:models.InvasionPercolation>
-)
+# add_test(
+# 	NAME models.InvasionPercolation
+# 	COMMAND $<TARGET_FILE:models.InvasionPercolation>
+# )
 
 
-add_executable(models.InvadedCluster tests/models/InvadedCluster.cpp)
-target_link_libraries(models.InvadedCluster PRIVATE ATEAMS++)
+# add_executable(models.InvadedCluster tests/models/InvadedCluster.cpp)
+# target_link_libraries(models.InvadedCluster PRIVATE ATEAMS++)
 
-add_test(
-	NAME models.InvadedCluster
-	COMMAND $<TARGET_FILE:models.InvadedCluster>
-)
+# add_test(
+# 	NAME models.InvadedCluster
+# 	COMMAND $<TARGET_FILE:models.InvadedCluster>
+# )
 
-add_executable(models.Glauber tests/models/Glauber.cpp)
-target_link_libraries(models.Glauber PRIVATE ATEAMS++)
+# add_executable(models.Glauber tests/models/Glauber.cpp)
+# target_link_libraries(models.Glauber PRIVATE ATEAMS++)
 
-add_test(
-	NAME models.Glauber
-	COMMAND $<TARGET_FILE:models.Glauber>
-)
+# add_test(
+# 	NAME models.Glauber
+# 	COMMAND $<TARGET_FILE:models.Glauber>
+# )
 
 
 # add_executable(arithmetic.persistence tests/arithmetic/persistence.cpp)

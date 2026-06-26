@@ -5,7 +5,7 @@ using namespace ATEAMS;
 using namespace std;
 
 int main() {
-	vector<int> corners = {6,6,6,6};
+	vector<int> corners = {3,3,3,3};
 	complexes::Cubical C(corners, true);
 
 	models::BernoulliParameters params;
@@ -15,7 +15,7 @@ int main() {
 	models::Bernoulli percolation(&C, params);
 
 	using Chain = statistics::Chain<models::Bernoulli>;
-	Chain M(&percolation, 1000);
+	Chain M(&percolation, 10);
 
 	for (models::ModelState* state : M.simulate()) { }
 

@@ -6,17 +6,6 @@
 #include "ATEAMS++/arithmetic/options.h"
 
 #include <phat/compute_persistence_pairs.h>
-#include <phat/boundary_matrix.h>
-#include <phat/representations/default_representations.h>
-#include <phat/algorithms/twist_reduction.h>
-#include <phat/algorithms/standard_reduction.h>
-#include <phat/algorithms/row_reduction.h>
-#include <phat/algorithms/chunk_reduction.h>
-#include <phat/algorithms/spectral_sequence_reduction.h>
-#include <phat/algorithms/swap_twist_reduction.h>
-#include <phat/algorithms/exhaustive_compress_reduction.h>
-#include <phat/algorithms/lazy_retrospective_reduction.h>
-#include <phat/helpers/dualize.h>
 
 #include <SparseRREF/sparse_mat.h>
 #include <SparseRREF/sparse_vec.h>
@@ -64,31 +53,6 @@ ZpMatrix reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex* complex, vector
 	Reindexed.compress();
 	return Reindexed;
 }
-
-// ZpMatrix reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex* complex, vector<int> filtration) {
-// 	// Construct an index mapping.
-// 	map<int,int> remapping;
-// 	for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
-
-// 	// Wow, this is going to be annoying.
-// 	ZpMatrix Full = complex->Coboundary.Full;
-// 	ZpMatrix Reindexed(Full.nrow, Full.ncol);
-
-// 	for (int t=0; t < Full.nrow; t++) {
-// 		ZpVector& row = Reindexed.rows[t];
-// 		ZpVector orow = Full.rows[filtration[t]];
-
-// 		for (int i=0; i < orow.size(); i++) {
-// 			row.push_back(
-// 				(index_t)remapping[orow(i)],
-// 				(data_t)orow[i]
-// 			);
-// 		}
-// 	}
-
-// 	Reindexed.compress();
-// 	return Reindexed;
-// }
 
 /** @endcond */
 
