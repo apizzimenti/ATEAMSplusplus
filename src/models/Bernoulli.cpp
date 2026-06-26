@@ -33,7 +33,7 @@ vector<int> models::Bernoulli::sample(int t, arithmetic::ThreadOptions& options)
 	}
 
 	int included = include.size();
-	this->state.included = include;
+	this->state.includes = include;
 
 	// Construct the filtration.
 	int stop = this->complex->breaks[d][0];

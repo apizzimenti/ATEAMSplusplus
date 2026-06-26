@@ -25,7 +25,7 @@ namespace ATEAMS::models {
 	 * @struct BernoulliState
 	 * @brief Stores the current state of Bernoulli percolation.
 	 * 
-	 * @var BernoulliState::included
+	 * @var BernoulliState::includes
 	 * Indices of included \f$d\f$-cells.
 	 * 
 	 * @var BernoulliState::essential
@@ -35,7 +35,7 @@ namespace ATEAMS::models {
 	 * Rank of the \f$d\f$th persistent homology group \f$PH_d(P)\f$.
 	 */
 	struct BernoulliState : ModelState {
-		std::vector<int> included;
+		std::vector<int> includes;
 		std::vector<int> essential;
 		int rank;
 	};

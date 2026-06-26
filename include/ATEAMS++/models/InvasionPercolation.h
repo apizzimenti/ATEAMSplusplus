@@ -33,8 +33,12 @@ namespace ATEAMS {
 		 * @brief Stores the current state of the invaded-cluster algorithm.
 		 * 
 		 * @var InvasionPercolationState::includes
-		 * A (sparse) vector with nonzero entries indicating the indices of \f$d\f$-cells
-		 * included in the percolation subcomplex sampled at time \f$t\f$.
+		 * A vector with nonzero entries indicating the indices of \f$d\f$-cells
+		 * included in the percolation subcomplex sampled at time \f$t\f$, in
+		 * insertion order.
+		 * 
+		 * @var InvasionPercolationState::essential
+		 * A vector with the times at which giant cycles were encountered.
 		 */
 		struct InvasionPercolationState : ModelState {
 			std::vector<int> includes;

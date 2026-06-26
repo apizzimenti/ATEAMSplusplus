@@ -159,12 +159,26 @@ Inheritance diagram for ATEAMS::models::InvasionPercolationState:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a7910fa1a8abb8a8cce6b48a2b4802fef" id="r_a7910fa1a8abb8a8cce6b48a2b4802fef"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7910fa1a8abb8a8cce6b48a2b4802fef">includes</a></td></tr>
-<tr class="memitem:aa35199661fe30f5d71859d5046488a24" id="r_aa35199661fe30f5d71859d5046488a24"><td class="memItemLeft"><a id="aa35199661fe30f5d71859d5046488a24" name="aa35199661fe30f5d71859d5046488a24"></a>
-std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>essential</b></td></tr>
+<tr class="memitem:aa35199661fe30f5d71859d5046488a24" id="r_aa35199661fe30f5d71859d5046488a24"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa35199661fe30f5d71859d5046488a24">essential</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Stores the current state of the invaded-cluster algorithm. </p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="aa35199661fe30f5d71859d5046488a24" name="aa35199661fe30f5d71859d5046488a24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa35199661fe30f5d71859d5046488a24">&#9670;&#160;</a></span>essential</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;int&gt; ATEAMS::models::InvasionPercolationState::essential</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A vector with the times at which giant cycles were encountered. </p>
+
+</div>
+</div>
 <a id="a7910fa1a8abb8a8cce6b48a2b4802fef" name="a7910fa1a8abb8a8cce6b48a2b4802fef"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7910fa1a8abb8a8cce6b48a2b4802fef">&#9670;&#160;</a></span>includes</h2>
 
@@ -176,7 +190,7 @@ std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>essential</b></td
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A (sparse) vector with nonzero entries indicating the indices of \(d\)-cells included in the percolation subcomplex sampled at time \(t\). </p>
+<p>A vector with nonzero entries indicating the indices of \(d\)-cells included in the percolation subcomplex sampled at time \(t\), in insertion order. </p>
 
 </div>
 </div>
