@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <filesystem>
 
 namespace ATEAMS {
 	/** @cond */
@@ -78,11 +79,11 @@ namespace ATEAMS {
 			 * @brief Writes a @ref ATEAMS::ZpMatrix to file.
 			 * 
 			 * @param S Storage.
-			 * @param destination Filepath. **This method does no sanity checks:
-			 * 	all directories in the filepath must exist for the data to be
-			 * 	written.**
+			 * @param destination Filepath.
 			 */
 			static inline void write(ATEAMS::ZpMatrix S, std::string destination) {
+				checkDestinationExists(destination);
+
 				std::ofstream out;
 				out.open(destination);
 
@@ -97,11 +98,12 @@ namespace ATEAMS {
 			 * @brief Writes a @ref ATEAMS::ZpMatrix to file.
 			 * 
 			 * @param S Storage.
-			 * @param destination Filepath. **This method does no sanity checks:
-			 * 	all directories in the filepath must exist for the data to be
-			 * 	written.**
+			 * @param destination Filepath.
 			 */
 			static inline void write(std::vector<int> S, std::string destination) {
+				checkDestinationExists(destination);
+
+				// Check 
 				std::ofstream out;
 				out.open(destination);
 
@@ -116,11 +118,11 @@ namespace ATEAMS {
 			 * @brief Writes a @ref ATEAMS::ZpMatrix to file.
 			 * 
 			 * @param S Storage.
-			 * @param destination Filepath. **This method does no sanity checks:
-			 * 	all directories in the filepath must exist for the data to be
-			 * 	written.**
+			 * @param destination Filepath.
 			 */
 			static inline void write(std::vector<double> S, std::string destination) {
+				checkDestinationExists(destination);
+
 				std::ofstream out;
 				out.open(destination);
 
@@ -135,11 +137,11 @@ namespace ATEAMS {
 			 * @brief Writes a @ref ATEAMS::ZpMatrix to file.
 			 * 
 			 * @param S Storage.
-			 * @param destination Filepath. **This method does no sanity checks:
-			 * 	all directories in the filepath must exist for the data to be
-			 * 	written.**
+			 * @param destination Filepath.
 			 */
 			static inline void write(std::vector<float> S, std::string destination) {
+				checkDestinationExists(destination);
+
 				std::ofstream out;
 				out.open(destination);
 
@@ -149,6 +151,16 @@ namespace ATEAMS {
 
 				out.close();
 			};
+
+		private:
+			static inline void checkDestinationExists(std::string destination) {
+				std::filesystem::path writable(destination);
+
+				if (!std::filesystem::exists(writable.parent_path())) {
+					std::cerr << std::format("Couldn't find filepath {}, forcibly writing...", writable.parent_path().string()) << std::endl;
+					std::filesystem::create_directory(writable.parent_path());
+				}
+			}
 	};
 }
 
