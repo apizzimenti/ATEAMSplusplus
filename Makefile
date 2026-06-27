@@ -17,6 +17,9 @@ install: build
 
 .PHONY: clean build
 
+profile: FORCE
+	@screen -dmS profiling ./profiles/profiles.sh
+
 test: clean build install
 	@cd build; ctest
 
