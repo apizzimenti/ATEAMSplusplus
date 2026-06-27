@@ -14,9 +14,10 @@ for MODEL in "${MODELS[@]}"; do
 			for TOPDIMENSION in "${TOPDIMENSIONS[@]}"; do
 				# Delete existing ones first.
 				PADDED=${(l(2)(0))SCALE}
-				echo $PADDED
 				prefix="$MODEL.$FIELD.$PADDED.$TOPDIMENSION"
 				rm profiles/reports/$prefix.*
+
+				echo $prefix
 
 				# Record basic statistics.
 				perf stat -o profiles/reports/$prefix.stat ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
@@ -25,6 +26,8 @@ for MODEL in "${MODELS[@]}"; do
 				# Find bottlenecks.
 				perf record -o profiles/reports/$prefix.record ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
 				wait $!
+
+				echo \n\n
 
 				# perf report --input=profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.record --output=profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.record.csv &
 				# wait $!
