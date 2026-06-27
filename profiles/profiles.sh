@@ -29,7 +29,7 @@ for MODEL in "${MODELS[@]}"; do
 				perf record -o profiles/reports/$prefix.record ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
 				wait $!
 
-				echo \n\n
+				echo "\n\n"
 
 				# perf report --input=profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.record --output=profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.record.csv &
 				# wait $!
