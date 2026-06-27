@@ -13,11 +13,11 @@ for MODEL in "${MODELS[@]}"; do
 		for SCALE in "${SCALES[@]}"; do
 			for TOPDIMENSION in "${TOPDIMENSIONS[@]}"; do
 				# Record basic statistics.
-				perf stat -o profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.txt ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
+				perf stat -o profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.stat.txt ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
 				wait $!
 
 				# Find bottlenecks.
-				perf record -o profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.txt ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
+				perf record -o profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.record.txt ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
 				wait $!
 			done
 		done
