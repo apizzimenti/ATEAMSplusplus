@@ -12,12 +12,15 @@ for MODEL in "${MODELS[@]}"; do
 	for FIELD in "${FIELDS[@]}"; do
 		for SCALE in "${SCALES[@]}"; do
 			for TOPDIMENSION in "${TOPDIMENSIONS[@]}"; do
+				# Delete existing ones first.
+				prefix=$MODEL.$FIELD.$SCALE.$TOPDIMENSION
+				rm $prefix*
 				# Record basic statistics.
-				perf stat -o profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.stat ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
+				perf stat -o profiles/reports/prefix.stat ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
 				wait $!
 
 				# Find bottlenecks.
-				perf record -o profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.record ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
+				perf record -o profiles/reports/prefix.record ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
 				wait $!
 
 				# perf report --input=profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.record --output=profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.record.csv &
