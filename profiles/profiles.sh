@@ -13,7 +13,8 @@ for MODEL in "${MODELS[@]}"; do
 		for SCALE in "${SCALES[@]}"; do
 			for TOPDIMENSION in "${TOPDIMENSIONS[@]}"; do
 				# Delete existing ones first.
-				PADDED=${(l:2::0:)$SCALE}
+				PADDED=${(l(2)(0))SCALE}
+				echo $PADDED
 				prefix="$MODEL.$FIELD.$PADDED.$TOPDIMENSION"
 				rm profiles/reports/$prefix.*
 
