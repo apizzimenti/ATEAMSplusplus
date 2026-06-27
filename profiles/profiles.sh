@@ -13,8 +13,8 @@ for MODEL in "${MODELS[@]}"; do
 		for SCALE in "${SCALES[@]}"; do
 			for TOPDIMENSION in "${TOPDIMENSIONS[@]}"; do
 				# Delete existing ones first.
-				prefix="$MODEL.$FIELD.$SCALE.$TOPDIMENSION"
-				echo $prefix
+				PADDED=${(l:2::0:)$SCALE}
+				prefix="$MODEL.$FIELD.$PADDED.$TOPDIMENSION"
 				rm "profiles/reports/$prefix*"
 
 				# Record basic statistics.
