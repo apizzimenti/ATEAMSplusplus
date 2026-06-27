@@ -15,7 +15,7 @@ for MODEL in "${MODELS[@]}"; do
 				# Delete existing ones first.
 				PADDED=${(l:2::0:)$SCALE}
 				prefix="$MODEL.$FIELD.$PADDED.$TOPDIMENSION"
-				rm "profiles/reports/$prefix*"
+				rm profiles/reports/$prefix.*
 
 				# Record basic statistics.
 				perf stat -o profiles/reports/$prefix.stat ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
