@@ -13,8 +13,10 @@ for MODEL in "${MODELS[@]}"; do
 		for SCALE in "${SCALES[@]}"; do
 			for TOPDIMENSION in "${TOPDIMENSIONS[@]}"; do
 				# Delete existing ones first.
-				prefix=$MODEL.$FIELD.$SCALE.$TOPDIMENSION
+				prefix="$MODEL.$FIELD.$SCALE.$TOPDIMENSION"
+				echo $prefix
 				rm "$prefix*"
+
 				# Record basic statistics.
 				perf stat -o profiles/reports/$prefix.stat ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
 				wait $!
