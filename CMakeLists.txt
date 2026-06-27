@@ -106,6 +106,32 @@ install(
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
 )
 
+list(APPEND MODELS
+	"Bernoulli"
+	"Glauber"
+	"InvadedCluster"
+	"InvasionPercolation"
+	"SwendsenWang"
+)
+
+set(TEST TRUE)
+set(PROFILE TRUE)
+
+if (TEST)
+	foreach(MODEL IN LISTS MODELS)
+		add_executable(tests.${MODEL} tests/models/${MODEL}.cpp)
+		target_link_libraries(tests.${MODEL} PRIVATE ATEAMS++)
+	endforeach()
+endif()
+
+
+if (PROFILE)
+	foreach(MODEL IN LISTS MODELS)
+		add_executable(profiles.${MODEL} profiles/${MODEL}.cpp)
+		target_link_libraries(profiles.${MODEL} PRIVATE ATEAMS++)
+	endforeach()
+endif()
+
 
 # # Tests.
 # enable_testing()
@@ -129,13 +155,13 @@ install(
 # 	COMMAND $<TARGET_FILE:models.SwendsenWang>
 # )
 
-add_executable(models.Bernoulli tests/models/Bernoulli.cpp)
-target_link_libraries(models.Bernoulli PRIVATE ATEAMS++)
+# add_executable(models.Bernoulli tests/models/Bernoulli.cpp)
+# target_link_libraries(models.Bernoulli PRIVATE ATEAMS++)
 
-add_test(
-	NAME models.Bernoulli
-	COMMAND $<TARGET_FILE:models.Bernoulli>
-)
+# add_test(
+# 	NAME models.Bernoulli
+# 	COMMAND $<TARGET_FILE:models.Bernoulli>
+# )
 
 
 # add_executable(models.InvasionPercolation tests/models/InvasionPercolation.cpp)

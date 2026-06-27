@@ -152,7 +152,8 @@ vector<int> arithmetic::TwistPersistence(
 				youngestFace = Full.rows[nextColumnAdded[youngestFaceIndexOf(cell)]];
 				youngestFaceCoefficient = *youngestFace.find(youngestFaceIndexOf(cell));
 
-				// TODO parallelization stuff here?
+				// TODO parallelization stuff here? Can't go across columns, so maybe
+				// within the column? SparseRREF/FLINT probably do that already tho.
 				sparse_vec_rescale<index_t, data_t>(youngestFace, scalar_neg(scalar_inv(youngestFaceCoefficient, F), F), F);
 				sparse_vec_add<index_t>(cell, youngestFace, F);
 
