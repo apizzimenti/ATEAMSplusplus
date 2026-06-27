@@ -17,7 +17,9 @@ for MODEL in "${MODELS[@]}"; do
 				prefix="$MODEL.$FIELD.$PADDED.$TOPDIMENSION"
 				rm profiles/reports/$prefix.*
 
-				echo $prefix
+				echo "########################################"
+				echo "## $prefix"
+				echo "########################################"
 
 				# Record basic statistics.
 				perf stat -o profiles/reports/$prefix.stat ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
