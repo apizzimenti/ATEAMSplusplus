@@ -45,6 +45,12 @@ ATEAMS++ is a high-performance C++ library for simulating generalized Potts, ran
 	-L/usr/local/lib -lATEAMS++ -lflint -I/usr/local/include -std=c++23
 	```
 
+5. **Triple-check.** If you want to run pre-built tests, set the `TEST` variable in `CMakeLists.txt` to `TRUE`, á la
+	```
+	set(TEST TRUE)
+	```
+	then run `make test`.
+
 ## Usage
 
 Most experiments follow a straightforward template:
@@ -116,7 +122,12 @@ When timed, this takes ~11 seconds. **If you plan to run large-scale simulations
 
 
 ## Contributing
-We welcome contributions. If you want to configure prebuilt tests and 
+We welcome contributions. A few housekeeping rules:
+
+1. **Use the fork + branch + PR flow.** Fork + clone this repository, then create
+a new branch for each new feature you add. Once it's camera-ready, open a pull
+request on the main repository page, and we'll review it.
+2. **Test!** Please write unit tests (like the ones in `tests/`) for any significant features (e.g. new Models, arithmetic functions, parallelization) you add. _Pull requests without accompanying unit tests will be automatically closed._
 
 ## Citing
 

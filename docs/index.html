@@ -165,6 +165,8 @@ Installation</h2>
 <li><b>Double-check.</b> To verify that the library is installed correctly, running <div class="fragment"><div class="line">$ pkg-config --cflags --libs ATEAMS++</div>
 </div><!-- fragment --> should give something like <div class="fragment"><div class="line">-L/usr/local/lib -lATEAMS++ -lflint -I/usr/local/include -std=c++23</div>
 </div><!-- fragment --></li>
+<li><b>Triple-check.</b> If you want to run pre-built tests, set the <span class="tt">TEST</span> variable in <span class="tt">CMakeLists.txt</span> to <span class="tt">TRUE</span>, á la <div class="fragment"><div class="line">set(TEST TRUE)</div>
+</div><!-- fragment --> then run <span class="tt">make test</span>.</li>
 </ol>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
 Usage</h2>
@@ -234,7 +236,11 @@ Known issues</h2>
 </ul>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
 Contributing</h2>
-<p>We welcome contributions. If you want to configure prebuilt tests and</p>
+<p>We welcome contributions. A few housekeeping rules:</p>
+<ol type="1">
+<li><b>Use the fork + branch + PR flow.</b> Fork + clone this repository, then create a new branch for each new feature you add. Once it's camera-ready, open a pull request on the main repository page, and we'll review it.</li>
+<li><b>Test!</b> Please write unit tests (like the ones in <span class="tt">tests/</span>) for any significant features (e.g. new Models, arithmetic functions, parallelization) you add. <em>Pull requests without accompanying unit tests will be automatically closed.</em></li>
+</ol>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 Citing</h2>
 <div class="fragment"><div class="line">@software{ATEAMS++,</div>
