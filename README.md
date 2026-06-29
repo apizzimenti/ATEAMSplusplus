@@ -1,5 +1,5 @@
 
-[![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<!-- [![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) -->
 [![docs](https://img.shields.io/badge/%E2%93%98-Documentation-red)](https://apizzimenti.github.io/ATEAMSplusplus/)
 [![arXiv](https://img.shields.io/badge/arXiv-2507.13503-green.svg)](https://arxiv.org/abs/2507.13503)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.20817889-blue)](https://doi.org/10.5281/zenodo.20817889)
@@ -137,7 +137,7 @@ request on the main repository page, and we'll review it.
 ```bibtex
 @software{ATEAMS++,
 	title={{ATEAMS++: Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++}},
-	author={Pizzimenti, Anthony E. and Eldridge, Summer and Duncan, Paul and Schweinhart, Benjamin},
+	author={Pizzimenti, Anthony E. and Eldridge, Summer and Schweinhart, Ben and Duncan, Paul},
 	url={github.com/apizzimenti/ATEAMSplusplus},
 	version={1.4},
 	doi={10.5281/zenodo.20817889}
