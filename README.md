@@ -137,7 +137,7 @@ request on the main repository page, and we'll review it.
 ```bibtex
 @software{ATEAMS++,
 	title={{ATEAMS++: Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++}},
-	author={Duncan, Paul and Eldridge, Summer and Pizzimenti, Anthony E. and Schweinhart, Benjamin},
+	author={Pizzimenti, Anthony E. and Eldridge, Summer and Duncan, Paul and Schweinhart, Benjamin},
 	url={github.com/apizzimenti/ATEAMSplusplus},
 	version={1.4},
 	doi={10.5281/zenodo.20817889}
