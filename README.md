@@ -67,28 +67,30 @@ The below example samples plaquette Bernoulli percolation 1000 times on the scal
 using namespace ATEAMS;
 using namespace std;
 
+using Parameters = models::BernoulliParameters;
+using Model = models::Bernoulli;
+using State = models::BernoulliState;
+using Chain = statistics::Chain<Model>;
+
 int main() {
 	// Construct a cubical complex.
 	vector<int> corners = {6,6,6,6};
-	complexes::Cubical C(corners, true);
+	Cubical COMPLEX(corners, true);
 
 	// Parametrize the model.
-	models::BernoulliParameters params;
-	params.dimension = 2;
+	Parameters PARAMETERS;
+	PARAMETERS.dimension = 2;
 
 	// Construct the model, then the chain.
-	models::Bernoulli percolation(&C, params);
-
-	int iterations = 1000;
-	using Chain = statistics::Chain<models::Bernoulli>;
-	Chain M(&percolation, iterations);
+	Model MODEL(&COMPLEX, PARAMETERS);
+	Chain CHAIN(&MODEL, 1000);
 
 	// Iterate over the chain, storing the rank of the 2nd homology group as we
 	// go.
 	vector<int> ranks;
 
-	for (models::BernoulliState* state : M.simulate<models::BernoulliState>()) {
-		ranks.push_back(state->rank);
+	for (State* STATE : CHAIN.simulate<State>()) {
+		ranks.push_back(STATE->rank);
 	}
 
 	// Compute the expected rank of the 2nd homology group.
