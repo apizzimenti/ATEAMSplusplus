@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-MODELS=("Bernoulli" "Glauber" "InvadedCluster" "InvasionPercolation" "SwendsenWang")
+MODELS=("Bernoulli" "Glauber" "InvadedCluster" "Invasion" "SwendsenWang")
 SCALES=(3 4 6 8 11 16 23)
 FIELDS=(2 3 5 7)
 TOPDIMENSIONS=(2 4)

@@ -8,13 +8,13 @@ int main() {
 	vector<int> corners = {6,6,6,6};
 	complexes::Cubical C(corners, true);
 
-	models::InvasionPercolationParameters params;
+	models::InvasionParameters params;
 	params.stoppingFunction = arithmetic::stopInvadingAt({3,4});
 	params.dimension = 2;
 
-	models::InvasionPercolation percolation(&C, params);
+	models::Invasion percolation(&C, params);
 
-	using Chain = statistics::Chain<models::InvasionPercolation>;
+	using Chain = statistics::Chain<models::Invasion>;
 	Chain M(&percolation, 1000);
 
 	for (models::ModelState* state : M.simulate()) { };

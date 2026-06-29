@@ -1,7 +1,7 @@
 
 #include "ATEAMS++/util.h"
 #include "ATEAMS++/common.h"
-#include "ATEAMS++/models/InvasionPercolation.h"
+#include "ATEAMS++/models/Invasion.h"
 #include "ATEAMS++/arithmetic/kernel.h"
 #include "ATEAMS++/arithmetic/persistence.h"
 
@@ -15,7 +15,7 @@ using namespace ATEAMS;
 using namespace std;
 
 
-vector<int> models::InvasionPercolation::sample(int t, arithmetic::ThreadOptions& options) {
+vector<int> models::Invasion::sample(int t, arithmetic::ThreadOptions& options) {
 	int d = this->parameters.dimension;
 
 	// Shuffle indices.
@@ -58,7 +58,7 @@ vector<int> models::InvasionPercolation::sample(int t, arithmetic::ThreadOptions
 }
 
 
-models::InvasionPercolation::InvasionPercolation(complexes::Complex* complex, InvasionPercolationParameters parameters)
+models::Invasion::Invasion(complexes::Complex* complex, InvasionParameters parameters)
 	: field(Zp(SparseRREF::FIELD_Fp, parameters.field))
 {
 	this->parameters = parameters;

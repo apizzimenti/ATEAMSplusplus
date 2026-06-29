@@ -37,7 +37,7 @@ add_library(ATEAMS++ SHARED
 	src/models/Bernoulli.cpp
 	src/models/InvadedCluster.cpp
 	src/models/Glauber.cpp
-	src/models/InvasionPercolation.cpp
+	src/models/Invasion.cpp
 )
 
 
@@ -62,7 +62,7 @@ target_sources(ATEAMS++
 		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvadedCluster.h
 		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Model.h
 		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/SwendsenWang.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvasionPercolation.h
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Invasion.h
 		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/statistics.h
 		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/Chain.h
 		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/observables.h
@@ -117,7 +117,7 @@ list(APPEND MODELS
 	"Bernoulli"
 	"Glauber"
 	"InvadedCluster"
-	"InvasionPercolation"
+	"Invasion"
 	"SwendsenWang"
 )
 

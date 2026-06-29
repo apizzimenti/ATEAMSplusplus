@@ -1,6 +1,6 @@
 
-#ifndef ATEAMS_MODELS_INVASIONPERCOLATION_H
-#define ATEAMS_MODELS_INVASIONPERCOLATION_H
+#ifndef ATEAMS_MODELS_INVASION_H
+#define ATEAMS_MODELS_INVASION_H
 
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/models/Model.h"
@@ -12,64 +12,64 @@
 namespace ATEAMS {
 	namespace models {
 		/**
-		 * @struct InvasionPercolationParameters
+		 * @struct InvasionParameters
 		 * @brief Parameters relevant to simulating the invaded-cluster algorithm.
 		 * 
-		 * @var InvasionPercolationParameters::field
+		 * @var InvasionParameters::field
 		 * Order \f$p\f$ for the finite field \f$\Z / p \Z\f$.
 		 * 
-		 * @var InvasionPercolationParameters::stoppingFunction
+		 * @var InvasionParameters::stoppingFunction
 		 * Function that consumes a time-step (integer) parameter \f$t\f$ and returns
 		 * an integer in \f$(a,b)\f$, where \f$a, \ b \f$ are between \f$0\f$ and
 		 * \f$\rank(H_d(X))\f$ telling us when to sample the next set of spins.
 		 */
-		struct InvasionPercolationParameters : ModelParameters {
+		struct InvasionParameters : ModelParameters {
 			int field = 2;
 			std::function<int(int)> stoppingFunction;
 		};
 
 		/**
-		 * @struct InvasionPercolationState
+		 * @struct InvasionState
 		 * @brief Stores the current state of the invaded-cluster algorithm.
 		 * 
-		 * @var InvasionPercolationState::includes
+		 * @var InvasionState::includes
 		 * A vector with nonzero entries indicating the indices of \f$d\f$-cells
 		 * included in the percolation subcomplex sampled at time \f$t\f$, in
 		 * insertion order.
 		 * 
-		 * @var InvasionPercolationState::essential
+		 * @var InvasionState::essential
 		 * A vector with the times at which giant cycles were encountered.
 		 */
-		struct InvasionPercolationState : ModelState {
+		struct InvasionState : ModelState {
 			std::vector<int> includes;
 			std::vector<int> essential;
 		};
 
 		/**
-		 * @class InvasionPercolation
+		 * @class Invasion
 		 * @brief Implements the invaded-cluster algorithm for Potts lattice gauge theory
 		 * 	(PLGT) and the plaquette random-cluster model (PRCM).
 		 * 
-		 * @var InvasionPercolation::parameters
+		 * @var Invasion::parameters
 		 * Model parameters.
 		 * 
-		 * @var InvasionPercolation::state
+		 * @var Invasion::state
 		 * Model state.
 		 * 
-		 * @var InvasionPercolation::field
+		 * @var Invasion::field
 		 * Finite field over which computations will be performened.
 		 * 
-		 * @var InvasionPercolation::RNG
+		 * @var Invasion::RNG
 		 * Mersenne twister random number generator.
 		 * 
-		 * @var InvasionPercolation::intuniform
+		 * @var Invasion::intuniform
 		 * Uniform distribution over the integers \f$[0,p)\f$, where \f$p\f$ is
 		 * the order of the model's finite field.
 		 * 
-		 * @var InvasionPercolation::kind
+		 * @var Invasion::kind
 		 * Model name.
 		 */
-		class InvasionPercolation: public Model<std::vector<int>> {
+		class Invasion: public Model<std::vector<int>> {
 			public:
 				/**
 				 * @brief Constructor.
@@ -77,7 +77,7 @@ namespace ATEAMS {
 				 * @param complex (Pointer to) a complex.
 				 * @param parameters Model parameters.
 				 */
-				InvasionPercolation(ATEAMS::complexes::Complex* complex, InvasionPercolationParameters parameters);
+				Invasion(ATEAMS::complexes::Complex* complex, InvasionParameters parameters);
 
 				/**
 				 * @brief Implements the plaquette invasion-percolation algorithm,
@@ -100,11 +100,11 @@ namespace ATEAMS {
 				/** @brief Initialization; superfluous. */
 				void initialize(std::vector<int> c) override { };
 
-				InvasionPercolationParameters parameters;
-				InvasionPercolationState state;
+				InvasionParameters parameters;
+				InvasionState state;
 				const Zp field;
 
-				std::string kind = "InvasionPercolation";
+				std::string kind = "Invasion";
 
 			private:
 				std::mt19937 RNG;
