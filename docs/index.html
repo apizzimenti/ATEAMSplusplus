@@ -224,7 +224,7 @@ Usage</h2>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_bernoulli_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_parameters.html">ATEAMS::models::BernoulliParameters</a></div><div class="ttdoc">Parameters for Bernoulli percolation.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:20</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_bernoulli_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_bernoulli_state.html">ATEAMS::models::BernoulliState</a></div><div class="ttdoc">Stores the current state of Bernoulli percolation.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:37</div></div>
 </div><!-- fragment --><p>If the above snippet is in a file called <span class="tt">main.cpp</span>, then compiling the program and running the executable should give something like</p>
-<div class="fragment"><div class="line">$ $CXX `pkg-config --libs --cflags ATEAMS++` main.cpp -o main</div>
+<div class="fragment"><div class="line">$ $CXX main.cpp `pkg-config --libs --cflags ATEAMS++` -o main</div>
 <div class="line">$ ./main</div>
 <div class="line">expected rank is 3.09</div>
 </div><!-- fragment --><p>When timed, this takes ~11 seconds. <b>If you plan to run large-scale simulations on an external machine, the <a href="https://github.com/apizzimenti/magnetizationplusplus">magnetizationplusplus workflow</a> may be of use to you.</b></p>

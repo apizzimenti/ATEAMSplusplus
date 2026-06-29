@@ -107,7 +107,7 @@ int main() {
 If the above snippet is in a file called `main.cpp`, then compiling the program and running the executable should give something like
 
 ```bash
-$ $CXX `pkg-config --libs --cflags ATEAMS++` main.cpp -o main
+$ $CXX main.cpp `pkg-config --libs --cflags ATEAMS++` -o main
 $ ./main
 expected rank is 3.09
 ```
