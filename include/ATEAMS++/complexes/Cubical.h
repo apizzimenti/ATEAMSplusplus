@@ -40,6 +40,14 @@ namespace ATEAMS {
 				Cubical(std::vector<int> corners, bool periodic);
 
 				/**
+				 * @brief Constructor. See @ref ATEAMS::complexes::Cubical::corners.
+				 * Imposes periodic boundary conditions by default.
+				 * 
+				 * @param corners Corners of the lattice.
+				 */
+				Cubical(std::vector<int> corners);
+
+				/**
 				 * @brief Constructs boundary matrices for the cubical complex
 				 * with specified corners and boundary conditions.
 				 * 

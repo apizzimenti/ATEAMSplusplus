@@ -16,5 +16,5 @@ var searchData=
   ['constructfullboundarymatrix_13',['constructFullBoundaryMatrix',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a596e221f690c08a5ee81f7a1941db375',1,'ATEAMS::complexes::Complex::constructFullBoundaryMatrix()'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#abba9426daca069dc5f845e6552ac1b73',1,'ATEAMS::complexes::Cubical::constructFullBoundaryMatrix()']]],
   ['contributing_14',['Contributing',['../index.html#autotoc_md4',1,'']]],
   ['corners_15',['corners',['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a961c92cd5689e3b9ac665f0f4412a0fa',1,'ATEAMS::complexes::Cubical']]],
-  ['cubical_16',['Cubical',['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html',1,'ATEAMS::complexes::Cubical'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a6c0d49219f7e40daa20245e8a1c0a15b',1,'ATEAMS::complexes::Cubical::Cubical()']]]
+  ['cubical_16',['Cubical',['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html',1,'ATEAMS::complexes::Cubical'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a84a6b0c11dda007cbb72b06933ed2262',1,'ATEAMS::complexes::Cubical::Cubical(std::vector&lt; int &gt; corners, bool periodic)'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#ae3046503ed33a3d7430341b36f079172',1,'ATEAMS::complexes::Cubical::Cubical(std::vector&lt; int &gt; corners)']]]
 ];

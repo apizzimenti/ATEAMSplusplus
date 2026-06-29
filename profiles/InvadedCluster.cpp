@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
 	models::InvadedClusterParameters params;
 	params.dimension = PLAQUETTEDIMENSION;
 	params.field = FIELD;
-	params.stoppingFunction = arithmetic::stopInvadingAt(stopat[TOPDIMENSION]);
+	params.stoppingFunction = statistics::stopInvadingAt(stopat[TOPDIMENSION]);
 
 	models::InvadedCluster G(&C, params);
 

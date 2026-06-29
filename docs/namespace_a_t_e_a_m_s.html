@@ -160,10 +160,110 @@ Namespaces</h2></td></tr>
 Classes</h2></td></tr>
 <tr class="memitem:DataWriter" id="r_DataWriter"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1_data_writer.html">DataWriter</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function for writing various data types to file.  <a href="class_a_t_e_a_m_s_1_1_data_writer.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:affcaa5d02e8058e2d68862ae365b742c" id="r_affcaa5d02e8058e2d68862ae365b742c"><td class="memItemLeft">typedef unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#affcaa5d02e8058e2d68862ae365b742c">ulong</a></td></tr>
+<tr class="memitem:ae155ebf70a298ef0ab654b914250cca9" id="r_ae155ebf70a298ef0ab654b914250cca9"><td class="memItemLeft">typedef uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ae155ebf70a298ef0ab654b914250cca9">index_t</a></td></tr>
+<tr class="memitem:af622242a1ba8f768a79c3fc2cc8d6632" id="r_af622242a1ba8f768a79c3fc2cc8d6632"><td class="memItemLeft">typedef <a class="el" href="#affcaa5d02e8058e2d68862ae365b742c">ulong</a>&#160;</td><td class="memItemRight"><a class="el" href="#af622242a1ba8f768a79c3fc2cc8d6632">data_t</a></td></tr>
+<tr class="memitem:a7ba31c2feb647cfd640f74f2ff8440b1" id="r_a7ba31c2feb647cfd640f74f2ff8440b1"><td class="memItemLeft">typedef SparseRREF::sparse_mat&lt; <a class="el" href="#af622242a1ba8f768a79c3fc2cc8d6632">data_t</a>, <a class="el" href="#ae155ebf70a298ef0ab654b914250cca9">index_t</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7ba31c2feb647cfd640f74f2ff8440b1">ZpMatrix</a></td></tr>
+<tr class="memitem:a1091f3f417ed66603862abfc7dd14855" id="r_a1091f3f417ed66603862abfc7dd14855"><td class="memItemLeft">typedef SparseRREF::sparse_vec&lt; <a class="el" href="#af622242a1ba8f768a79c3fc2cc8d6632">data_t</a>, <a class="el" href="#ae155ebf70a298ef0ab654b914250cca9">index_t</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1091f3f417ed66603862abfc7dd14855">ZpVector</a></td></tr>
+<tr class="memitem:a09947896b23f7075fcc350044837e7ef" id="r_a09947896b23f7075fcc350044837e7ef"><td class="memItemLeft">typedef SparseRREF::field_t&#160;</td><td class="memItemRight"><a class="el" href="#a09947896b23f7075fcc350044837e7ef">Zp</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Global namespace. </p>
-</div></div><!-- contents -->
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="af622242a1ba8f768a79c3fc2cc8d6632" name="af622242a1ba8f768a79c3fc2cc8d6632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af622242a1ba8f768a79c3fc2cc8d6632">&#9670;&#160;</a></span>data_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="#affcaa5d02e8058e2d68862ae365b742c">ulong</a> <a class="el" href="#af622242a1ba8f768a79c3fc2cc8d6632">ATEAMS::data_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Default type used for data storage in SparseRREF matrices. </p>
+
+</div>
+</div>
+<a id="ae155ebf70a298ef0ab654b914250cca9" name="ae155ebf70a298ef0ab654b914250cca9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae155ebf70a298ef0ab654b914250cca9">&#9670;&#160;</a></span>index_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint32_t <a class="el" href="#ae155ebf70a298ef0ab654b914250cca9">ATEAMS::index_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Default type used for indexing in SparseRREF matrices. </p>
+
+</div>
+</div>
+<a id="affcaa5d02e8058e2d68862ae365b742c" name="affcaa5d02e8058e2d68862ae365b742c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affcaa5d02e8058e2d68862ae365b742c">&#9670;&#160;</a></span>ulong</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unsigned long <a class="el" href="#affcaa5d02e8058e2d68862ae365b742c">ATEAMS::ulong</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Unsigned long int. </p>
+
+</div>
+</div>
+<a id="a09947896b23f7075fcc350044837e7ef" name="a09947896b23f7075fcc350044837e7ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09947896b23f7075fcc350044837e7ef">&#9670;&#160;</a></span>Zp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef SparseRREF::field_t <a class="el" href="#a09947896b23f7075fcc350044837e7ef">ATEAMS::Zp</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>SparseRREF field, \(\mathrm{GF}(p) \cong \Z/p \Z\) for \(p\) prime. </p>
+
+</div>
+</div>
+<a id="a7ba31c2feb647cfd640f74f2ff8440b1" name="a7ba31c2feb647cfd640f74f2ff8440b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ba31c2feb647cfd640f74f2ff8440b1">&#9670;&#160;</a></span>ZpMatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef SparseRREF::sparse_mat&lt;<a class="el" href="#af622242a1ba8f768a79c3fc2cc8d6632">data_t</a>, <a class="el" href="#ae155ebf70a298ef0ab654b914250cca9">index_t</a>&gt; <a class="el" href="#a7ba31c2feb647cfd640f74f2ff8440b1">ATEAMS::ZpMatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>SparseRREF matrix. </p>
+
+</div>
+</div>
+<a id="a1091f3f417ed66603862abfc7dd14855" name="a1091f3f417ed66603862abfc7dd14855"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1091f3f417ed66603862abfc7dd14855">&#9670;&#160;</a></span>ZpVector</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef SparseRREF::sparse_vec&lt;<a class="el" href="#af622242a1ba8f768a79c3fc2cc8d6632">data_t</a>, <a class="el" href="#ae155ebf70a298ef0ab654b914250cca9">index_t</a>&gt; <a class="el" href="#a1091f3f417ed66603862abfc7dd14855">ATEAMS::ZpVector</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>SparseRREF vector. </p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

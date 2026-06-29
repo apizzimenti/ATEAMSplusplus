@@ -116,7 +116,7 @@ When timed, this takes ~11 seconds. **If you plan to run large-scale simulations
 
 
 ## Contributing
-We welcome contributions.
+We welcome contributions. If you want to configure prebuilt tests and 
 
 ## Citing
 

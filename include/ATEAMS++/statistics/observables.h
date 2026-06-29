@@ -5,6 +5,7 @@
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/complexes/complexes.h"
 
+#include <algorithm>
 #include <SparseRREF/sparse_mat.h>
 
 namespace ATEAMS {
@@ -45,6 +46,8 @@ namespace ATEAMS {
 		 * @param f \f$(d-1)\f$-cochain.
 		 * @param F Finite field.
 		 * @param dimension Dimension of the cells over which we're sampling.
+		 * 
+		 * @returns Number of satisfied cells.
 		 */
 		inline int occupation(
 			ATEAMS::complexes::Complex* complex,
@@ -58,6 +61,80 @@ namespace ATEAMS {
 			coefficients.compress();
 
 			return complex->Cells[dimension]-coefficients.size();
+		}
+
+		/**
+		 * @brief Computes the indices of satisfied \f$d\f$-cells in the complex
+		 * with respect to \f$f_t\f$: that is, the indices of \f$d\f$-cells \f$x\f$
+		 * for which \f$(\delta^{d-1}f_t)(x) = 0\f$.
+		 * 
+		 * @param complex (Pointer to) a Complex.
+		 * @param f \f$(d-1)\f$-cochain.
+		 * @param F Finite field.
+		 * @param dimension Dimension of the cells over which we're sampling.
+		 * 
+		 * @returns Indices of satisfied cells.
+		 */
+		inline std::vector<int> satisfied(
+			ATEAMS::complexes::Complex* complex,
+			ATEAMS::ZpVector f,
+			ATEAMS::Zp F,
+			int dimension
+		) {
+			// Perform the matrix multiplication.
+			ATEAMS::ZpVector coefficients = SparseRREF::sparse_mat_dot_sparse_vec<data_t,index_t>(
+				complex->Coboundary.Matrices[dimension], f, F
+			);
+			coefficients.compress();
+
+			// Create a vector containing the indices of nonzero entries.
+			std::vector<int> unsatisfied(coefficients.size());
+			for (int i=0; i < unsatisfied.size(); i++) unsatisfied[i] = (int)coefficients(i);
+
+			// Create a vector containing the indices of *all* entries, then take
+			// the difference.
+			std::vector<int> totality(complex->Cells[dimension]);
+			std::iota(totality.begin(), totality.end(), 0);
+
+			std::vector<int> satisfied;
+			std::set_difference(
+				totality.begin(), totality.end(),
+				unsatisfied.begin(), unsatisfied.end(),
+				inserter(satisfied, satisfied.begin())
+			);
+
+			return satisfied;
+		}
+
+		/**
+		 * @brief Computes the indices of unsatisfied \f$d\f$-cells in the complex
+		 * with respect to \f$f_t\f$: that is, the indices of \f$d\f$-cells \f$x\f$
+		 * for which \f$(\delta^{d-1}f_t)(x) \neq 0\f$.
+		 * 
+		 * @param complex (Pointer to) a Complex.
+		 * @param f \f$(d-1)\f$-cochain.
+		 * @param F Finite field.
+		 * @param dimension Dimension of the cells over which we're sampling.
+		 * 
+		 * @returns Indices of unsatisfied cells.
+		 */
+		inline std::vector<int> unsatisfied(
+			ATEAMS::complexes::Complex* complex,
+			ATEAMS::ZpVector f,
+			ATEAMS::Zp F,
+			int dimension
+		) {
+			// Perform the matrix multiplication.
+			ATEAMS::ZpVector coefficients = SparseRREF::sparse_mat_dot_sparse_vec<data_t,index_t>(
+				complex->Coboundary.Matrices[dimension], f, F
+			);
+			coefficients.compress();
+
+			// Create a vector containing the indices of nonzero entries.
+			std::vector<int> unsatisfied(coefficients.size());
+			for (int i=0; i < unsatisfied.size(); i++) unsatisfied[i] = (int)coefficients(i);
+
+			return unsatisfied;
 		}
 	};
 }

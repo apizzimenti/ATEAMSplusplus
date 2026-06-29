@@ -392,6 +392,13 @@ vector<int> getCellCounts(Lattice L) {
 	return counts;
 }
 
+vector<int> makeOffsets(vector<int> Cells) {
+	vector<int> offsets(Cells.size());
+	std::partial_sum(Cells.begin(), Cells.end(), offsets.begin());
+
+	return offsets;
+}
+
 vector<vector<int>> makeBreaks(vector<int> counts) {
 	// Get cell counts and breaks.
 	vector<vector<int>> breaks(counts.size());
@@ -432,11 +439,8 @@ void Cubical::constructFlatBoundaryMatrix() {
 	this->Cells = getCellCounts(L);
 	this->_size = std::accumulate(this->Cells.begin(), this->Cells.end(), 0);
 	this->breaks = makeBreaks(this->Cells);
+	this->offsets = makeOffsets(this->Cells);
 
-	vector<int> offsets(this->Cells.size());
-	std::partial_sum(this->Cells.begin(), this->Cells.end(), offsets.begin());
-
-	this->offsets = offsets;
 	this->Boundary.Flat = flatBoundaryMatrix(L, offsets);
 }
 
@@ -455,6 +459,7 @@ void Cubical::constructBoundaryMatrices(Zp F) {
 	this->Cells = getCellCounts(L);
 	this->_size = std::accumulate(this->Cells.begin(), this->Cells.end(), 0);
 	this->breaks = makeBreaks(this->Cells);
+	this->offsets = makeOffsets(this->Cells);
 
 	// Get the sparse (co)boundary matrices.
 	this->Boundary.Matrices = sparseBoundaryMatrices(L, F);
@@ -480,6 +485,7 @@ void Cubical::constructFullBoundaryMatrix(Zp F) {
 	this->Cells = getCellCounts(L);
 	this->_size = std::accumulate(this->Cells.begin(), this->Cells.end(), 0);
 	this->breaks = makeBreaks(this->Cells);
+	this->offsets = makeOffsets(this->Cells);
 
 	vector<int> offsets(this->Cells.size());
 	std::partial_sum(this->Cells.begin(), this->Cells.end(), offsets.begin());
@@ -490,7 +496,13 @@ void Cubical::constructFullBoundaryMatrix(Zp F) {
 }
 
 
-Cubical::Cubical(vector<int> corners, bool periodic=true) {
+Cubical::Cubical(vector<int> corners, bool periodic) {
 	this->corners = corners;
 	this->periodic = periodic;
 }
+
+Cubical::Cubical(vector<int> corners) {
+	this->corners = corners;
+	this->periodic = true;
+}
+

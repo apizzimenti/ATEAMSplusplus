@@ -1,6 +1,7 @@
 var class_a_t_e_a_m_s_1_1complexes_1_1_cubical =
 [
-    [ "Cubical", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a6c0d49219f7e40daa20245e8a1c0a15b", null ],
+    [ "Cubical", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a84a6b0c11dda007cbb72b06933ed2262", null ],
+    [ "Cubical", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#ae3046503ed33a3d7430341b36f079172", null ],
     [ "constructBoundaryMatrices", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a5a1d9d3b1f29a7c42d6f85dcde4d8829", null ],
     [ "constructFlatBoundaryMatrix", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#adcfc41a37c0cdf0829400aa0d25fb9aa", null ],
     [ "constructFullBoundaryMatrix", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#abba9426daca069dc5f845e6552ac1b73", null ],

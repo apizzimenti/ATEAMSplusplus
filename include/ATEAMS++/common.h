@@ -18,7 +18,6 @@
 #include <filesystem>
 
 namespace ATEAMS {
-	/** @cond */
 	/** Unsigned long int. */
 	typedef unsigned long ulong;
 
@@ -36,7 +35,8 @@ namespace ATEAMS {
 
 	/** SparseRREF field, \f$\mathrm{GF}(p) \cong \Z/p \Z\f$ for \f$p\f$ prime. */
 	typedef SparseRREF::field_t Zp;
-
+	
+	/** @cond */
 	/** SparseRREF index of pivots. */
 	typedef SparseRREF::pivot_t<index_t> ZpPivot;
 

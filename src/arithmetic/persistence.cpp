@@ -22,7 +22,7 @@ index_t youngestFaceIndexOf(ZpVector cell) {
 }
 
 
-ZpMatrix reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex* complex, vector<int> filtration, int dimension) {
+ZpMatrix arithmetic::reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex* complex, vector<int> filtration, int dimension) {
 	// Construct an index mapping.
 	map<int,int> remapping;
 	for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;

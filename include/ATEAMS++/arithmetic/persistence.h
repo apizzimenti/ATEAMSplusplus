@@ -50,26 +50,10 @@ namespace ATEAMS {
 			int dimension
 		);
 
-		/**
-		 * @brief A convenience function for deciding when to stop invading
-		 * 	(i.e. when to re-sample the spins over the included edges).
-		 * 
-		 * @param ranks A vector of integers with values in \f$[1,\rank(H_d(X))]\f$,
-		 * 	where \f$\rank(H_d(X))\f$ is the rank of the \f$d\f$th homology group
-		 * 	of \f$X\f$.
-		 * 
-		 * @returns A function that draws a value from `ranks` at uniform random,
-		 * 	then subtracts \f$1\f$.
-		 */
-		inline std::function<int(int)> stopInvadingAt(std::vector<int> ranks) {
-			return [ranks](int t) {
-				std::random_device rd;
-				std::mt19937 RNG(rd());
-				std::uniform_int_distribution<int> uniform(0,ranks.size()-1);
-
-				return ranks[uniform(RNG)]-1;
-			};
-		}
+		/** @cond */
+		// Expose this for testing, but not for general use.
+		ATEAMS::ZpMatrix reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex* complex, std::vector<int> filtration, int dimension);
+		/** @endcond */
 	}
 }
 

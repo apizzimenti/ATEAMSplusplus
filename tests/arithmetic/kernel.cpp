@@ -1,0 +1,49 @@
+
+#include <ATEAMS++/ATEAMS++.h>
+#include "tests.h"
+
+#include <random>
+#include <SparseRREF/sparse_mat.h>
+
+using namespace ATEAMS;
+using namespace std;
+
+
+int main(int argc, char *argv[]) {
+	int FIELD = stoi(argv[1]);
+	int RESULT = PASS;
+
+	// Random device, uniform distribution.
+	std::random_device rd;
+	std::mt19937 RNG(rd());
+	std::uniform_int_distribution<int> intuniform(0, FIELD);
+
+	// Construct a Complex (doesn't matter which).
+	complexes::Cubical C({3,3,3,3}, true);
+	Zp F(SparseRREF::FIELD_Fp, FIELD);
+	C.constructBoundaryMatrices(F);
+
+	// Construct arithmetic options.
+	arithmetic::ThreadOptions options;
+	std::thread listener = options.spinUp();
+
+	// Include all the rows and perform the computation.
+	set<size_t> exclude;
+
+	ZpVector sample = arithmetic::submatrixKernelSample(
+		C.Coboundary.Matrices[2],
+		F,
+		exclude,
+		intuniform,
+		RNG,
+		options,
+		false
+	);
+
+	// Now, check whether we actually got something in the kernel.
+	if (!inKernel(C.Coboundary.Matrices[2], sample, F)) RESULT = FAIL;
+
+	options.spinDown(&listener);
+	
+	return RESULT;
+}

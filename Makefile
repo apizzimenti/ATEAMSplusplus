@@ -20,7 +20,7 @@ install: build
 profile: FORCE
 	@screen -dmS profiling ./profiles/profiles.sh
 
-test: clean build install
+test:
 	@cd build; ctest
 
 ##########

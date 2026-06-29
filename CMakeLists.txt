@@ -15,19 +15,34 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_compile_options(-O3)
 
-if (PROFILE)
-	add_compile_options(-g)
-endif()
 
-set(TEST TRUE)
-set(PROFILE TRUE)
-
-# Require OpenMP and FLINT.
+################################################################################
+## EXTERNAL DEPENDENCIES                                                      ##
+################################################################################
 find_package(PkgConfig REQUIRED)
 find_package(OpenMP REQUIRED)
 pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 
+################################################################################
+## TESTING/PROFILING?                                                         ##
+################################################################################
+set(TEST TRUE)
+set(PROFILE FALSE)
 
+if (TEST)
+	# add_subdirectory(dependencies/Catch2)
+	enable_testing()
+endif()
+
+if (PROFILE)
+	add_compile_options(-g)
+endif()
+
+
+
+################################################################################
+## MAIN LIBRARY BUILD                                                         ##
+################################################################################
 # Add the library.
 add_library(ATEAMS++ SHARED
 	src/arithmetic/kernel.cpp
@@ -113,6 +128,21 @@ install(
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
 )
 
+
+
+################################################################################
+## TESTING                                                                    ##
+################################################################################
+
+list(APPEND COMPLEXES
+	"Cubical"
+)
+
+list(APPEND ARITHMETIC
+	"kernel"
+	"persistence"
+)
+
 list(APPEND MODELS
 	"Bernoulli"
 	"Glauber"
@@ -124,8 +154,30 @@ list(APPEND MODELS
 if (TEST)
 	foreach(MODEL IN LISTS MODELS)
 		add_executable(tests.${MODEL} tests/models/${MODEL}.cpp)
-		add_compile_options(-g)
+		target_include_directories(tests.${MODEL} PUBLIC tests)
 		target_link_libraries(tests.${MODEL} PRIVATE ATEAMS++)
+
+		add_test(NAME tests.${MODEL}.2 COMMAND tests.${MODEL} 2)
+		add_test(NAME tests.${MODEL}.3 COMMAND tests.${MODEL} 3)
+	endforeach()
+
+
+	foreach(COMPLEX IN LISTS COMPLEXES)
+		add_executable(tests.${COMPLEX} tests/complexes/${COMPLEX}.cpp)
+		target_include_directories(tests.${COMPLEX} PUBLIC tests)
+		target_link_libraries(tests.${COMPLEX} PRIVATE ATEAMS++)
+
+		add_test(NAME tests.${COMPLEX} COMMAND tests.${COMPLEX})
+	endforeach()
+
+
+	foreach(FUNCTION IN LISTS ARITHMETIC)
+		add_executable(tests.${FUNCTION} tests/arithmetic/${FUNCTION}.cpp)
+		target_include_directories(tests.${FUNCTION} PUBLIC tests)
+		target_link_libraries(tests.${FUNCTION} PRIVATE ATEAMS++)
+
+		add_test(NAME tests.${FUNCTION}.2 COMMAND tests.${FUNCTION} 2)
+		add_test(NAME tests.${FUNCTION}.3 COMMAND tests.${FUNCTION} 3)
 	endforeach()
 endif()
 

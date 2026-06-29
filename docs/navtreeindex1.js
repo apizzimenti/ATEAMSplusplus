@@ -1,5 +1,15 @@
 var NAVTREEINDEX1 =
 {
+"struct_a_t_e_a_m_s_1_1models_1_1_glauber_state.html#aac6f2a7b2ff34805ce38297699d95ef2":[1,0,0,2,5,1],
+"struct_a_t_e_a_m_s_1_1models_1_1_glauber_state.html#aac6f2a7b2ff34805ce38297699d95ef2":[2,0,0,2,5,1],
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_parameters.html":[1,0,0,2,7],
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_parameters.html":[2,0,0,2,7],
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_parameters.html#a672d7a0aa3854c08df4e7cf5c4e4e7e0":[1,0,0,2,7,1],
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_parameters.html#a672d7a0aa3854c08df4e7cf5c4e4e7e0":[2,0,0,2,7,1],
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_parameters.html#ae1d1ed024af893844a584926cef54c4d":[1,0,0,2,7,0],
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_parameters.html#ae1d1ed024af893844a584926cef54c4d":[2,0,0,2,7,0],
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html":[1,0,0,2,8],
+"struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html":[2,0,0,2,8],
 "struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html#a6d780de25e1370759a604801c16380ad":[1,0,0,2,8,1],
 "struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html#a6d780de25e1370759a604801c16380ad":[2,0,0,2,8,1],
 "struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html#afd598464675ed04bd9f84b6f2a9dc684":[1,0,0,2,8,0],

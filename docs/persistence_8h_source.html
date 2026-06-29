@@ -137,32 +137,24 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a0d26345ebdd9864c1c20108cdb43daef">   46</a></span>        std::vector&lt;int&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a0d26345ebdd9864c1c20108cdb43daef">TwistPersistence</a>(</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>* complex,</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            std::vector&lt;int&gt; filtration,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            Zp F,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> F,</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <span class="keywordtype">int</span> dimension</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        );</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
-<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a011c7f21b7fa5d4f670a3126475e9bff">   64</a></span>        <span class="keyword">inline</span> std::function&lt;int(<span class="keywordtype">int</span>)&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a011c7f21b7fa5d4f670a3126475e9bff">stopInvadingAt</a>(std::vector&lt;int&gt; ranks) {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="keywordflow">return</span> [ranks](<span class="keywordtype">int</span> t) {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                std::random_device rd;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                std::mt19937 RNG(rd());</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                std::uniform_int_distribution&lt;int&gt; uniform(0,ranks.size()-1);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                <span class="keywordflow">return</span> ranks[uniform(RNG)]-1;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            };</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        }</div>
-</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="comment">// Expose this for testing, but not for general use.</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">ATEAMS::ZpMatrix</a> reindexSparseBoundaryMatrix(<a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>* complex, std::vector&lt;int&gt; filtration, <span class="keywordtype">int</span> dimension);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_complex_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a></div><div class="ttdoc">Abstract (template) class for various complexes.</div><div class="ttdef"><b>Definition</b> Complex.h:47</div></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_1_1arithmetic_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1arithmetic.html">ATEAMS::arithmetic</a></div><div class="ttdoc">Sparse, finite-field linear algebra and support routines.</div><div class="ttdef"><b>Definition</b> arithmetic.h:11</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1arithmetic_html_a011c7f21b7fa5d4f670a3126475e9bff"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a011c7f21b7fa5d4f670a3126475e9bff">ATEAMS::arithmetic::stopInvadingAt</a></div><div class="ttdeci">std::function&lt; int(int)&gt; stopInvadingAt(std::vector&lt; int &gt; ranks)</div><div class="ttdoc">A convenience function for deciding when to stop invading (i.e. when to re-sample the spins over the ...</div><div class="ttdef"><b>Definition</b> persistence.h:64</div></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_1_1arithmetic_html_a0d26345ebdd9864c1c20108cdb43daef"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a0d26345ebdd9864c1c20108cdb43daef">ATEAMS::arithmetic::TwistPersistence</a></div><div class="ttdeci">std::vector&lt; int &gt; TwistPersistence(ATEAMS::complexes::Complex *complex, std::vector&lt; int &gt; filtration, Zp F, int dimension)</div><div class="ttdoc">Computes the persistent homology of a complex over  coefficients, where  is prime.</div></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_1_1arithmetic_html_a20bf1fec94db3e6ddaf9c9ff7d562d9e"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a20bf1fec94db3e6ddaf9c9ff7d562d9e">ATEAMS::arithmetic::PHATPersistence</a></div><div class="ttdeci">std::vector&lt; int &gt; PHATPersistence(ATEAMS::complexes::Complex *complex, std::vector&lt; int &gt; filtration, int dimension)</div><div class="ttdoc">Computes the persistent homology of a complex using  coefficients.</div></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:9</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_html_a09947896b23f7075fcc350044837e7ef"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">ATEAMS::Zp</a></div><div class="ttdeci">SparseRREF::field_t Zp</div><div class="ttdef"><b>Definition</b> common.h:37</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_html_a7ba31c2feb647cfd640f74f2ff8440b1"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">ATEAMS::ZpMatrix</a></div><div class="ttdeci">SparseRREF::sparse_mat&lt; data_t, index_t &gt; ZpMatrix</div><div class="ttdef"><b>Definition</b> common.h:31</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
