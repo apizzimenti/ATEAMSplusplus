@@ -4,8 +4,12 @@
 using namespace ATEAMS;
 using namespace std;
 
-// For ease-of-use.
-typedef statistics::Chain<models::Bernoulli> Chain;
+using Complex = complexes::Cubical;
+using Parameters = models::BernoulliParameters;
+using Model = models::Bernoulli;
+using State = models::BernoulliState;
+using Chain = statistics::Chain<Model>;
+
 
 int main(int argc, char* argv[]) {
 	// cmd
@@ -17,19 +21,17 @@ int main(int argc, char* argv[]) {
 
 	// Construct a cubical complex.
 	vector<int> corners(TOPDIMENSION, SCALE);
-	complexes::Cubical C(corners, true);
+	Complex COMPLEX(corners, true);
 
 	// Parametrize + initialize the model.
-	models::BernoulliParameters params;
-	params.p = 0.5;
-	params.dimension = PLAQUETTEDIMENSION;
+	Parameters PARAMETERS;
+	PARAMETERS.p = 0.5;
+	PARAMETERS.dimension = PLAQUETTEDIMENSION;
 
-	models::Bernoulli G(&C, params);
+	Model MODEL(&COMPLEX, PARAMETERS);
+	Chain M(&MODEL, ITERATIONS);
 
-	// Create the chain and data storage buckets.
-	Chain M(&G, ITERATIONS);
-
-	for (models::BernoulliState* state : M.simulate<models::BernoulliState>()) { }
+	for (State* STATE : M.simulate<State>()) { }
 
 	return 0;
 }

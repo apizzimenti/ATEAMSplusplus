@@ -4,8 +4,12 @@
 using namespace ATEAMS;
 using namespace std;
 
-// For ease-of-use.
-typedef statistics::Chain<models::Glauber> Chain;
+using Complex = complexes::Cubical;
+using Parameters = models::GlauberParameters;
+using Model = models::Glauber;
+using State = models::GlauberState;
+using Chain = statistics::Chain<Model>;
+
 
 int main(int argc, char* argv[]) {
 	// cmd
@@ -17,20 +21,18 @@ int main(int argc, char* argv[]) {
 
 	// Construct a cubical complex.
 	vector<int> corners(TOPDIMENSION, SCALE);
-	complexes::Cubical C(corners, true);
+	Complex COMPLEX(corners, true);
 
 	// Parametrize + initialize the model.
-	models::GlauberParameters params;
-	params.dimension = PLAQUETTEDIMENSION;
-	params.field = FIELD;
-	params.temperatureFunction = statistics::selfdual(FIELD);
+	Parameters PARAMETERS;
+	PARAMETERS.dimension = PLAQUETTEDIMENSION;
+	PARAMETERS.field = FIELD;
+	PARAMETERS.temperatureFunction = statistics::selfdual(FIELD);
 
-	models::Glauber G(&C, params);
+	Model MODEL(&COMPLEX, PARAMETERS);
+	Chain M(&MODEL, ITERATIONS);
 
-	// Create the chain and data storage buckets.
-	Chain M(&G, ITERATIONS);
-
-	for (models::GlauberState* state : M.simulate<models::GlauberState>()) { }
+	for (State* STATE : M.simulate<State>()) { }
 
 	return 0;
 }

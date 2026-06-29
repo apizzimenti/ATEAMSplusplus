@@ -4,8 +4,11 @@
 using namespace ATEAMS;
 using namespace std;
 
-// For ease-of-use.
-typedef statistics::Chain<models::Invasion> Chain;
+using Complex = complexes::Cubical;
+using Parameters = models::InvasionParameters;
+using Model = models::Invasion;
+using State = models::InvasionState;
+using Chain = statistics::Chain<Model>;
 
 std::map<int,vector<int>> stopat = {
 	{2,{1}},
@@ -22,21 +25,19 @@ int main(int argc, char* argv[]) {
 
 	// Construct a cubical complex.
 	vector<int> corners(TOPDIMENSION, SCALE);
-	complexes::Cubical C(corners, true);
+	Complex COMPLEX(corners, true);
 
 	// Parametrize + initialize the model.
-	models::InvasionParameters params;
-	params.dimension = PLAQUETTEDIMENSION;
-	params.field = FIELD;
-	params.stoppingFunction = arithmetic::stopInvadingAt(stopat[TOPDIMENSION]);
+	Parameters PARAMETERS;
+	PARAMETERS.dimension = PLAQUETTEDIMENSION;
+	PARAMETERS.field = FIELD;
+	params.stoppingFunction = statistics::stopInvadingAt(stopat[TOPDIMENSION]);
 
-	models::Invasion G(&C, params);
+	Model MODEL(&COMPLEX, PARAMETERS);
+	Chain M(&MODEL, ITERATIONS);
 
-	// Create the chain and data storage buckets.
-	Chain M(&G, ITERATIONS);
-
-	for (models::InvasionState* state : M.simulate<models::InvasionState>()) { }
-
+	for (State* STATE : M.simulate<State>()) { }
+	
 	return 0;
 }
 

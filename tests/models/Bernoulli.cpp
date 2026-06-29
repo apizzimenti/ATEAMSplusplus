@@ -5,6 +5,7 @@
 using namespace ATEAMS;
 using namespace std;
 
+using Complex = complexes::Cubical;
 using Parameters = models::BernoulliParameters;
 using Model = models::Bernoulli;
 using State = models::BernoulliState;
@@ -14,26 +15,19 @@ int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
 	int RESULT = PASS;
 
-	vector<int> dimensions{2,3,4};
-	map<int,int> ranks{
-		{2, 2},
-		{3, 3},
-		{4, 6}
-	};
-
-	for (int dimension : dimensions) {
+	for (int dimension : DIMENSIONS) {
 		vector<int> corners(dimension, 3);
-		complexes::Cubical CUBICAL(corners);
+		Complex COMPLEX(corners);
 
 		Parameters PARAMETERS;
 		PARAMETERS.p = 0.5;
 		PARAMETERS.dimension = dimension/2;
 
-		Model MODEL(&CUBICAL, PARAMETERS);
-		Chain CHAIN(&MODEL, 10);
+		Model MODEL(&COMPLEX, PARAMETERS);
+		Chain CHAIN(&MODEL, ITERATIONS);
 
-		for (State* state : CHAIN.simulate<State>()) {
-			if (state->rank > ranks[dimension]) RESULT = FAIL;
+		for (State* STATE : CHAIN.simulate<State>()) {
+			if (STATE->rank > HOMOLOGICALRANK[dimension]) RESULT = FAIL;
 		}
 	}
 

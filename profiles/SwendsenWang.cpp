@@ -4,8 +4,11 @@
 using namespace ATEAMS;
 using namespace std;
 
-// For ease-of-use.
-typedef statistics::Chain<models::SwendsenWang> Chain;
+using Complex = complexes::Cubical;
+using Parameters = models::SwendsenWangParameters;
+using Model = models::SwendsenWang;
+using State = models::SwendsenWangState;
+using Chain = statistics::Chain<Model>;
 
 int main(int argc, char* argv[]) {
 	// cmd
@@ -17,21 +20,18 @@ int main(int argc, char* argv[]) {
 
 	// Construct a cubical complex.
 	vector<int> corners(TOPDIMENSION, SCALE);
-	complexes::Cubical C(corners, true);
+	Complex COMPLEX(corners, true);
 
 	// Parametrize + initialize the model.
-	models::SwendsenWangParameters params;
-	params.dimension = PLAQUETTEDIMENSION;
-	params.field = FIELD;
-	params.temperatureFunction = statistics::selfdual(FIELD);
+	Parameters PARAMETERS;
+	PARAMETERS.dimension = PLAQUETTEDIMENSION;
+	PARAMETERS.field = FIELD;
+	PARAMETERS.temperatureFunction = statistics::selfdual(FIELD);
 
-	models::SwendsenWang G(&C, params);
+	Model MODEL(&COMPLEX, PARAMETERS);
+	Chain M(&MODEL, ITERATIONS);
 
-	// Create the chain and data storage buckets.
-	Chain M(&G, ITERATIONS);
-
-	for (models::SwendsenWangState* state : M.simulate<models::SwendsenWangState>()) { }
-
+	for (State* STATE : M.simulate<State>()) { }
 	return 0;
 }
 
