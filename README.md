@@ -125,7 +125,7 @@ We welcome contributions.
 	title={{ATEAMS++: Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++}},
 	author={Duncan, Paul and Eldridge, Summer and Pizzimenti, Anthony E. and Schweinhart, Benjamin},
 	url={github.com/apizzimenti/ATEAMSplusplus},
-	version={1.3},
+	version={1.4},
 	doi={10.5281/zenodo.20817889}
 }
 ```
