@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: include/ATEAMS++ Directory Reference</title>
+<title>ATEAMS++: include/ATEAMS++/enable_mimalloc.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -20,31 +20,6 @@
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', init_search);
 </script>
-<script type="text/javascript">
-window.MathJax = {
-  options: {
-    ignoreHtmlClass: 'tex2jax_ignore',
-    processHtmlClass: 'tex2jax_process'
-  },
-  loader: {
-    load: ['[tex]/units']
-  },
-  tex: {
-    macros: {    Z: "{\\mathbb Z}",
-    ker: "{\\mathrm{ker}}",
-    PLGT: "{\\mathrm{PLGT}}",
-    PRCM: "{\\mathrm{PRCM}}",
-    PK: "{\\mathrm{PK}}",
-    rank: "{\\mathrm{rank}}",
-    H: "{\\mathrm{H}}",
-    },
-    packages: {
-        '[+]': ['units']
-    }
-  }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
 <script type="module">
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
@@ -98,7 +73,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('dir_e433bc251a51d969bff3d7a315f99ad3.html','',''); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('enable__mimalloc_8h_source.html','',''); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
@@ -138,38 +113,27 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ATEAMS++ Directory Reference</div></div>
+  <div class="headertitle"><div class="title">enable_mimalloc.h</div></div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-subdirs" class="groupheader"><a id="subdirs" name="subdirs"></a>
-Directories</h2></td></tr>
-<tr class="memitem:arithmetic" id="r_arithmetic"><td class="memItemLeft"><span class="iconfolder"><div class="folder-icon"></div></span>&#160;</td><td class="memItemRight"><a class="el" href="dir_b42ad9bd0fc24d7aa3242074f7527014.html">arithmetic</a></td></tr>
-<tr class="memitem:complexes" id="r_complexes"><td class="memItemLeft"><span class="iconfolder"><div class="folder-icon"></div></span>&#160;</td><td class="memItemRight"><a class="el" href="dir_870048f375fb966fffdf4611e77281e9.html">complexes</a></td></tr>
-<tr class="memitem:models" id="r_models"><td class="memItemLeft"><span class="iconfolder"><div class="folder-icon"></div></span>&#160;</td><td class="memItemRight"><a class="el" href="dir_c391eb599f8c678d441c29b5a0d27a72.html">models</a></td></tr>
-<tr class="memitem:statistics" id="r_statistics"><td class="memItemLeft"><span class="iconfolder"><div class="folder-icon"></div></span>&#160;</td><td class="memItemRight"><a class="el" href="dir_603e2f4c0a6b547a62b3ef88e1ec0a41.html">statistics</a></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-files" class="groupheader"><a id="files" name="files"></a>
-Files</h2></td></tr>
-<tr class="memitem:ATEAMS_2B_2B_2Eh" id="r_ATEAMS_2B_2B_2Eh"><td class="memItemLeft"><a href="_a_t_e_a_m_s_09_09_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><b>ATEAMS++.h</b></td></tr>
-<tr class="memitem:common_2Eh" id="r_common_2Eh"><td class="memItemLeft"><a href="common_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><b>common.h</b></td></tr>
-<tr class="memitem:enable_5Fmimalloc_2Eh" id="r_enable_5Fmimalloc_2Eh"><td class="memItemLeft"><a href="enable__mimalloc_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><b>enable_mimalloc.h</b></td></tr>
-<tr class="memitem:util_2Eh" id="r_util_2Eh"><td class="memItemLeft"><a href="util_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><b>util.h</b></td></tr>
-</table>
-</div><!-- contents -->
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#ifndef ATEAMS_ENABLE_MIMALLOC_H</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#define ATEAMS_ENABLE_MIMALLOC_H</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// Enables mimalloc.</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define USE_MIMALLOC 1</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div id="page-nav" class="page-nav-panel">
-<div id="page-nav-resize-handle"></div>
-<div id="page-nav-tree">
-<div id="page-nav-contents">
-</div><!-- page-nav-contents -->
-</div><!-- page-nav-tree -->
-</div><!-- page-nav -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>include</b></li><li class="navelem"><b>ATEAMS++</b></li>
+    <li class="navelem"><b>include</b></li><li class="navelem"><b>ATEAMS++</b></li><li class="navelem"><b>enable_mimalloc.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
   </ul>
 </div>

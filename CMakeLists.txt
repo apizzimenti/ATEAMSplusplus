@@ -23,6 +23,15 @@ find_package(PkgConfig REQUIRED)
 find_package(OpenMP REQUIRED)
 pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 
+# If we want to use mimalloc (which we should, by default) then set this to
+# TRUE. Otherwise, set it to FALSE.
+set(mimalloc TRUE)
+
+if(mimalloc)
+	find_package(mimalloc REQUIRED)
+	pkg_check_modules(mimalloc REQUIRED IMPORTED_TARGET mimalloc)
+endif()
+
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
@@ -55,37 +64,50 @@ add_library(ATEAMS++ SHARED
 	src/models/Invasion.cpp
 )
 
+if(mimalloc)
+	list(APPEND SOURCE_HEADERS
+		${PROJECT_SOURCE_DIR}/include/ATEAMS++/enable_mimalloc.h
+	)
+endif()
+
+list(APPEND SOURCE_HEADERS
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/common.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/util.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/arithmetic.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/kernel.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/persistence.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/options.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Cubical.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/models.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Bernoulli.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Glauber.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvadedCluster.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Model.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/SwendsenWang.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Invasion.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/statistics.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/Chain.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/observables.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/schedules.h
+)
+
 
 # Public headers.
 target_sources(ATEAMS++
 	PUBLIC
 	FILE_SET HEADERS
 	BASE_DIRS ${PROJECT_SOURCE_DIR}/include/
-	FILES
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/common.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/util.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/arithmetic.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/kernel.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/persistence.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/options.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Cubical.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/models.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Bernoulli.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Glauber.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvadedCluster.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Model.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/SwendsenWang.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Invasion.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/statistics.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/Chain.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/observables.h
-		${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/schedules.h
+	FILES ${SOURCE_HEADERS}
 )
 
 set_target_properties(ATEAMS++ PROPERTIES PUBLIC_HEADER include/ATEAMS++/ATEAMS++.h)
 target_link_libraries(ATEAMS++ PUBLIC PkgConfig::FLINT)
+
+if(mimalloc)
+	target_link_libraries(ATEAMS++ PUBLIC PkgConfig::mimalloc)
+endif()
 
 target_include_directories(ATEAMS++ PUBLIC include)
 target_include_directories(ATEAMS++ PUBLIC dependencies)
@@ -122,7 +144,12 @@ install(
 
 
 # Install the pkg-config file.
-configure_file(ATEAMS++.pc.in ATEAMS++.pc @ONLY)
+if (mimalloc)
+	configure_file(ATEAMS++.pc.mimalloc.in ATEAMS++.pc @ONLY)
+else()
+	configure_file(ATEAMS++.pc.in ATEAMS++.pc @ONLY)
+endif()
+
 install(
 	FILES ${CMAKE_BINARY_DIR}/ATEAMS++.pc
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
