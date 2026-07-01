@@ -1,10 +1,10 @@
 #!/bin/zsh
 
 MODELS=("Bernoulli" "Glauber" "InvadedCluster" "Invasion" "SwendsenWang")
-SCALES=(3 4 6 8 11 16 23)
+SCALES=(3 4 6 8 11 16)
 FIELDS=(2 3 5 7)
 TOPDIMENSIONS=(2 4)
-ITERATIONS=100
+ITERATIONS=10
 
 EXECPREFIX="../build"
 
@@ -26,11 +26,10 @@ for MODEL in "${MODELS[@]}"; do
 				wait $!
 
 				# Find bottlenecks.
-				perf record -o profiles/reports/$prefix.record ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
+				perf record -g -o profiles/reports/$prefix.record ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
 				wait $!
 
 				echo "\n\n"
-
 				# perf report --input=profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.record --output=profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.record.csv &
 				# wait $!
 			done

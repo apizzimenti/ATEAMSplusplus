@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 	Parameters PARAMETERS;
 	PARAMETERS.dimension = PLAQUETTEDIMENSION;
 	PARAMETERS.field = FIELD;
-	params.stoppingFunction = statistics::stopInvadingAt(stopat[TOPDIMENSION]);
+	PARAMETERS.stoppingFunction = statistics::stopInvadingAt(stopat[TOPDIMENSION]);
 
 	Model MODEL(&COMPLEX, PARAMETERS);
 	Chain M(&MODEL, ITERATIONS);
