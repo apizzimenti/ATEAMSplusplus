@@ -8,8 +8,8 @@ using namespace ATEAMS;
 using namespace std;
 
 
-bool checkReindexing(complexes::Complex<data_t>* COMPLEX) {
-	ZpMatrix COBOUNDARY = COMPLEX->Coboundary.Full;
+bool checkReindexing(complexes::Complex<RATIONAL>* COMPLEX) {
+	SparseMatrix<RATIONAL> COBOUNDARY = COMPLEX->Coboundary.Full;
 
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
@@ -18,8 +18,8 @@ bool checkReindexing(complexes::Complex<data_t>* COMPLEX) {
 	int OFFSET = 100;
 	int FIRSTINDEX = COMPLEX->breaks[2][0], SECONDINDEX = COMPLEX->breaks[2][0]+OFFSET;
 
-	ZpVector FIRST = COBOUNDARY[FIRSTINDEX];
-	ZpVector SECOND = COBOUNDARY[SECONDINDEX];
+	SparseVector<RATIONAL> FIRST = COBOUNDARY[FIRSTINDEX];
+	SparseVector<RATIONAL> SECOND = COBOUNDARY[SECONDINDEX];
 
 	// Find the first 3-dimensional cells with these indices in them.
 	int FIRSTFACE, SECONDFACE;
@@ -44,7 +44,7 @@ bool checkReindexing(complexes::Complex<data_t>* COMPLEX) {
 	// Swap, then reindex.
 	FILTRATION[FIRSTINDEX] = SECONDINDEX;
 	FILTRATION[SECONDINDEX] = FIRSTINDEX;
-	ZpMatrix REINDEXED = arithmetic::reindexSparseBoundaryMatrix<data_t>(COMPLEX, FILTRATION, 2);
+	SparseMatrix<RATIONAL> REINDEXED = arithmetic::reindexSparseBoundaryMatrix<RATIONAL>(COMPLEX, FILTRATION, 2);
 
 	bool FIRSTREINDEXED = false, SECONDREINDEXED = false;
 
@@ -59,25 +59,25 @@ bool checkReindexing(complexes::Complex<data_t>* COMPLEX) {
 }
 
 
-bool checkPHATpersistence(complexes::Complex<data_t>* COMPLEX) {
+bool checkPHATpersistence(complexes::Complex<RATIONAL>* COMPLEX) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
 
 	// We should have 1 + 4 + 6 + 4 + 1 = 16 giant components.
-	vector<int> times = arithmetic::PHATPersistence<data_t>(COMPLEX, FILTRATION, 2);
+	vector<int> times = arithmetic::PHATPersistence<RATIONAL>(COMPLEX, FILTRATION, 2);
 
 	return times.size() == 16;
 }
 
-bool checkTwistPersistence(complexes::Complex<data_t>* COMPLEX, Field F) {
+bool checkTwistPersistence(complexes::Complex<RATIONAL>* COMPLEX, Field F) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
 
 	// We should have 1 + 4 + 6 + 4 + 1 = 16 giant components, but only 6 of the
 	// desired dimension (2).
-	vector<int> times = arithmetic::TwistPersistence<data_t>(COMPLEX, FILTRATION, F, 2);
+	vector<int> times = arithmetic::TwistPersistence<RATIONAL>(COMPLEX, FILTRATION, F, 2);
 
 	return times.size() == 6;
 }
@@ -85,10 +85,10 @@ bool checkTwistPersistence(complexes::Complex<data_t>* COMPLEX, Field F) {
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
-	Field F(SparseRREF::FIELD_Fp, FIELD);
+	Field F(SparseRREF::FIELD_QQ);
 
 	// Construct a Complex.
-	complexes::Cubical<data_t> COMPLEX({3,3,3,3});
+	complexes::Cubical<RATIONAL> COMPLEX({3,3,3,3});
 
 	// Construct boundary matrices.
 	COMPLEX.constructBoundaryMatrices(F);

@@ -6,13 +6,13 @@ using namespace ATEAMS;
 using namespace std;
 
 
-vector<int> homologySizes(complexes::Complex<data_t>* COMPLEX, int dimension) {
+vector<int> homologySizes(complexes::Complex<FINITE>* COMPLEX, int dimension) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
 
 	// Compute 
-	vector<int> times = arithmetic::PHATPersistence<data_t>(COMPLEX, FILTRATION, dimension/2);
+	vector<int> times = arithmetic::PHATPersistence<FINITE>(COMPLEX, FILTRATION, dimension/2);
 	vector<int> sizes;
 
 	for (int d=0; d < COMPLEX->breaks.size(); d++) {
@@ -51,7 +51,7 @@ int main() {
 
 	for (int dimension : dimensions) {
 		vector<int> corners(dimension, 3);
-		complexes::Cubical<data_t> CUBICAL(corners);
+		complexes::Cubical<FINITE> CUBICAL(corners);
 		CUBICAL.constructFlatBoundaryMatrix();
 
 		vector<int> sizes = homologySizes(&CUBICAL, dimension);

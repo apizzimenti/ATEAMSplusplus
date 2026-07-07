@@ -9,6 +9,8 @@ using namespace std;
 using namespace ATEAMS;
 
 
+
+
 template <typename T>
 SparseVector<T> arithmetic::randomLinearCombination(
 	SparseMatrix<T> kernel,

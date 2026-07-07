@@ -15,7 +15,11 @@ using namespace std;
 
 
 template <typename T>
-models::ModelState<SparseVector<T>> models::SwendsenWang<T>::sample(int t, arithmetic::ThreadOptions& options) {
+models::ModelState<T,SparseVector> models::SwendsenWang<T>::sample(
+	int t,
+	models::ModelState<T,SparseVector>& state,
+	arithmetic::ThreadOptions& options
+) {
 	// Compute the temperature and probability of including particular (d-1)-cells.
 	double temp = this->parameters.temperatureFunction(t);
 	double p = 1-exp(temp);
@@ -34,7 +38,7 @@ models::ModelState<SparseVector<T>> models::SwendsenWang<T>::sample(int t, arith
 
 	SparseVector<T> coefficients = sparse_mat_dot_sparse_vec<T,index_t>(
 		this->complex->Coboundary.Matrices[d],
-		this->state.cochain,
+		state.cochain,
 		this->field
 	);
 	coefficients.compress();
@@ -95,14 +99,17 @@ models::ModelState<SparseVector<T>> models::SwendsenWang<T>::sample(int t, arith
 		assert(outcome.size() < 1);
 	}
 
-	this->state.cochain = sample;
-	this->state.includes = vector<int>(includeHere.begin(), includeHere.end());
+	state.cochain = sample;
+	state.includes = vector<int>(includeHere.begin(), includeHere.end());
+	state.t = t;
 
-	return this->state;
+	return state;
 }
 
 template <typename T>
-void models::SwendsenWang<T>::initialize() {
+models::ModelState<T,SparseVector> models::SwendsenWang<T>::initialize(
+	models::ModelState<T,SparseVector>& state
+) {
 	size_t dimension = this->parameters.dimension-1;
 	int N = this->complex->Cells[dimension];
 
@@ -112,18 +119,24 @@ void models::SwendsenWang<T>::initialize() {
 	);
 
 	cochain.compress();
-	this->state.cochain = cochain;
+	state.cochain = cochain;
+	return state;
 }
 
 
 template <typename T>
-void models::SwendsenWang<T>::initialize(SparseVector<T> c) {
-	this->state.cochain = c;
+models::ModelState<T,SparseVector> models::SwendsenWang<T>::initialize(
+	SparseVector<T> c,
+	models::ModelState<T,SparseVector>& state
+) {
+	state.cochain = c;
+	return state;
 }
+
 
 template <typename T>
 models::SwendsenWang<T>::SwendsenWang(complexes::Complex<T>* complex, ModelParameters parameters)
-	: field(Field(SparseRREF::FIELD_Fp, parameters.field))
+	: field(parameters.field > 0 ? Field(SparseRREF::FIELD_Fp, parameters.field) : Field(SparseRREF::FIELD_QQ))
 {
 	this->parameters = parameters;
 	this->complex = complex;
@@ -141,5 +154,5 @@ models::SwendsenWang<T>::SwendsenWang(complexes::Complex<T>* complex, ModelParam
 	std::random_device rd;
 	this->RNG = std::mt19937(rd());
 	this->unituniform = std::uniform_real_distribution<double>(0,1);
-	this->intuniform = std::uniform_int_distribution<int>(0,this->parameters.field);
+	this->intuniform = std::uniform_int_distribution<int>(0,this->parameters.field > 0 ? this->parameters.field : 1);
 }

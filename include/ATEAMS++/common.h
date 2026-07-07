@@ -31,11 +31,11 @@ namespace ATEAMS {
 	typedef SparseRREF::rat_t rational;	
 
 	/** SparseRREF matrix. */
-	template <typename T=ff>
+	template <typename T>
 	using SparseMatrix = SparseRREF::sparse_mat<T,index_t>;
 
 	/** SparseRREF vector. */
-	template <typename T=ff>
+	template <typename T>
 	using SparseVector = SparseRREF::sparse_vec<T,index_t>;
 
 	/** SparseRREF field, \f$\mathrm{GF}(p) \cong \Z/p \Z\f$ for \f$p\f$ prime. */
@@ -46,15 +46,15 @@ namespace ATEAMS {
 	typedef SparseRREF::pivot_t<index_t> SparsePivot;
 
 	/** Vector of @ref ATEAMS::SparseMatrix. */
-	template <typename T=ff>
+	template <typename T>
 	using SparseMatrices = std::vector<SparseMatrix<T>>;
 
 	/** Vector of @ref ATEAMS::SparseVectors. */
-	template <typename T=ff>
+	template <typename T>
 	using SparseVectors = std::vector<SparseVector<T>>;
 
 	/** Alias of @ref ATEAMS::SparseVectors. */
-	template <typename T=ff>
+	template <typename T>
 	using SparseBasis = std::vector<SparseVector<T>>;
 
 	/** Vector of vector of @ref ATEAMS::SparseBasis. */

@@ -17,6 +17,16 @@ using namespace std;
 
 /** @cond */
 
+// Type specialization for adding sparse vectors.
+void add_sparse_vectors(SparseVector<ff> &A, SparseVector<ff> B, Field F) {
+	sparse_vec_add<index_t>(A, B, F);
+}
+
+void add_sparse_vectors(SparseVector<rational> &A, SparseVector<rational> B, Field F) {
+	sfmpq_vec_addsub_mul<index_t,false>(A, B, (rational)1);
+}
+
+
 template <typename T>
 index_t youngestFaceIndexOf(SparseVector<T> cell) {
 	return cell(cell.size()-1);
@@ -161,7 +171,7 @@ vector<int> arithmetic::TwistPersistence(
 				// TODO parallelization stuff here? Can't go across columns, so maybe
 				// within the column? SparseRREF/FLINT probably do that already tho.
 				sparse_vec_rescale<index_t,T>(youngestFace, scalar_neg(scalar_inv(youngestFaceCoefficient, F), F), F);
-				sparse_vec_add<index_t>(cell, youngestFace, F);
+				add_sparse_vectors(cell, youngestFace, F);
 
 				cell.compress();
 			}

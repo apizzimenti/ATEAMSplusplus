@@ -10,7 +10,6 @@
 
 namespace ATEAMS {
 	namespace statistics {
-
 		/**
 		 * @class Chain
 		 * @brief Simulates the Markov chains specified by each @ref ATEAMS::models::Model.
@@ -19,7 +18,7 @@ namespace ATEAMS {
 		 * 	(Pointer to) a Model.
 		 * 
 		 * @var Chain::state
-		 * 	(Pointer to) Model state.
+		 * 	A @ref ATEAMS::ModelState.
 		 * 
 		 * @var Chain::options
 		 * 	Multithreaded computing options @ref ATEAMS::arithmetic::ThreadOptions.
@@ -31,7 +30,7 @@ namespace ATEAMS {
 		class Chain {
 			public:
 				ATEAMS::models::Model<T,ContainerType>* model;
-				ATEAMS::models::ModelState<ContainerType<T>>* state;
+				ATEAMS::models::ModelState<T,ContainerType> state;
 				ATEAMS::arithmetic::ThreadOptions options;
 
 				int steps;
@@ -48,6 +47,9 @@ namespace ATEAMS {
 
 					ATEAMS::arithmetic::ThreadOptions options;
 					this->options = options;
+
+					ATEAMS::models::ModelState<T,ContainerType> state;
+					this->state = state;
 				};
 
 				/**
@@ -61,59 +63,34 @@ namespace ATEAMS {
 					this->model = model;
 					this->steps = steps;
 					this->options = options;
+
+					ATEAMS::models::ModelState<T,ContainerType> state;
+					this->state = state;
 				};
 
 				/**
 				 * @brief Model-generic iterator.
 				 * 
 				 * @code
-				 * 	for (models::ModelState* _state : M.simulate()) {
-				 * 		// Requires a cast to access specific members of the state object.
-				 * 		models::InvadedClusterState* state = (models::InvadedClusterState*)_state;
+				 * 	for (models::ModelState<ATEAMS::ff,ATEAMS::SparseVector> State : M.simulate()) {
+				 * 		<do whatever>
 				 * 	}
 				 * @endcode
 				 * 
 				 * @returns A `std::generator`.
 				 */
-				std::generator<ATEAMS::models::ModelState<ContainerType<T>>*> simulate() {
+				std::generator<ATEAMS::models::ModelState<T,ContainerType>> simulate() {
 					std::thread listener = options.spinUp();
-					this->model->initialize();
+					this->model->initialize(this->state);
 
 					for (int t=0; t < this->steps; t++) {
-						this->model->sample(t, this->options);
-						this->state = &this->model->state;
+						this->model->sample(t, this->state, this->options);
 						co_yield this->state;
 					}
 
 					// Spin down multithreading environment.
 					options.spinDown(&listener);
 				}
-
-				// /**
-				//  * @brief Templated iterator.
-				//  * 
-				//  * @code
-				//  * 	for (models::InvadedClusterState* _state : M.run<models::InvadedClusterState*>()) {
-				//  * 		// Doesn't require a cast.
-				//  * 		...
-				//  * 	}
-				//  * @endcode
-				//  * 
-				//  * @returns A `std::generator`.
-				//  */
-				// template <typename State>
-				// std::generator<State*> simulate() {
-				// 	std::thread listener = options.spinUp();
-
-				// 	for (int t=0; t < this->steps; t++) {
-				// 		this->model->sample(t, this->options);
-				// 		this->state = &this->model->state;
-				// 		co_yield (State*)this->state;
-				// 	}
-
-				// 	// Spin down multithreading environment.
-				// 	options.spinDown(&listener);
-				// }
 		};
 	}
 }

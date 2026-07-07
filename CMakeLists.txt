@@ -25,7 +25,7 @@ pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 
 # If we want to use mimalloc (which we should, by default) then set this to
 # TRUE. Otherwise, set it to FALSE.
-set(mimalloc TRUE)
+set(mimalloc FALSE)
 
 if(mimalloc)
 	find_package(mimalloc REQUIRED)
@@ -54,15 +54,7 @@ endif()
 ################################################################################
 # Add the library.
 add_library(ATEAMS++ INTERFACE)
-# add_library(ATEAMS++ SHARED
-# 	# src/arithmetic/kernel.cpp
-# 	# src/arithmetic/persistence.cpp
-# 	# src/models/SwendsenWang.cpp
-# 	# src/models/Bernoulli.cpp
-# 	# src/models/InvadedCluster.cpp
-# 	# src/models/Glauber.cpp
-# 	# src/models/Invasion.cpp
-# )
+
 
 if(mimalloc)
 	list(APPEND SOURCE_HEADERS
@@ -178,6 +170,11 @@ list(APPEND MODELS
 	"SwendsenWang"
 )
 
+list(APPEND TYPES
+	"Q"
+	"Zp"
+)
+
 if (TEST)
 	foreach(MODEL IN LISTS MODELS)
 		add_executable(tests.${MODEL} tests/models/${MODEL}.cpp)
@@ -190,21 +187,28 @@ if (TEST)
 
 
 	foreach(COMPLEX IN LISTS COMPLEXES)
-		add_executable(tests.${COMPLEX} tests/complexes/${COMPLEX}.cpp)
-		target_include_directories(tests.${COMPLEX} PUBLIC tests)
-		target_link_libraries(tests.${COMPLEX} PRIVATE ATEAMS++)
-
-		add_test(NAME tests.${COMPLEX} COMMAND tests.${COMPLEX})
+		foreach(TYPE IN LISTS TYPES)
+			add_executable(tests.${COMPLEX}.${TYPE} tests/complexes/${COMPLEX}.${TYPE}.cpp)
+			target_include_directories(tests.${COMPLEX}.${TYPE} PUBLIC tests)
+			target_link_libraries(tests.${COMPLEX}.${TYPE} PRIVATE ATEAMS++)
+			add_test(NAME tests.${COMPLEX}.${TYPE} COMMAND tests.${COMPLEX}.${TYPE})
+		endforeach()
 	endforeach()
 
 
 	foreach(FUNCTION IN LISTS ARITHMETIC)
-		add_executable(tests.${FUNCTION} tests/arithmetic/${FUNCTION}.cpp)
-		target_include_directories(tests.${FUNCTION} PUBLIC tests)
-		target_link_libraries(tests.${FUNCTION} PRIVATE ATEAMS++)
+		foreach(TYPE IN LISTS TYPES)
+			add_executable(tests.${FUNCTION}.${TYPE} tests/arithmetic/${FUNCTION}.${TYPE}.cpp)
+			target_include_directories(tests.${FUNCTION}.${TYPE} PUBLIC tests)
+			target_link_libraries(tests.${FUNCTION}.${TYPE} PRIVATE ATEAMS++)
 
-		add_test(NAME tests.${FUNCTION}.2 COMMAND tests.${FUNCTION} 2)
-		add_test(NAME tests.${FUNCTION}.3 COMMAND tests.${FUNCTION} 3)
+			if("${TYPE}" STREQUAL "Q")
+				add_test(NAME tests.${FUNCTION}.${TYPE} COMMAND tests.${FUNCTION}.${TYPE} 0)
+			else()
+				add_test(NAME tests.${FUNCTION}.${TYPE}.2 COMMAND tests.${FUNCTION}.${TYPE} 2)
+				add_test(NAME tests.${FUNCTION}.${TYPE}.3 COMMAND tests.${FUNCTION}.${TYPE} 3)
+			endif()
+		endforeach()
 	endforeach()
 endif()
 

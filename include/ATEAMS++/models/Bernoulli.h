@@ -11,36 +11,6 @@
 
 namespace ATEAMS::models {
 	/**
-	 * @struct BernoulliParameters
-	 * @brief Parameters for Bernoulli percolation.
-	 * 
-	 * @var BernoulliParameters::p
-	 * Bernoulli trial density.
-	 */
-	struct BernoulliParameters : ModelParameters {
-		double p = 0.5;
-	};
-
-	/**
-	 * @struct BernoulliState
-	 * @brief Stores the current state of Bernoulli percolation.
-	 * 
-	 * @var BernoulliState::includes
-	 * Indices of included \f$d\f$-cells.
-	 * 
-	 * @var BernoulliState::essential
-	 * Times at which homological percolation occurred (i.e. giant cycles appeared).
-	 * 
-	 * @var BernoulliState::rank
-	 * Rank of the \f$d\f$th persistent homology group \f$PH_d(P)\f$.
-	 */
-	struct BernoulliState : ModelState {
-		std::vector<int> includes;
-		std::vector<int> essential;
-		int rank;
-	};
-
-	/**
 	 * @class Bernoulli
 	 * @brief Implements Bernoulli percolation.
 	 * 
@@ -48,20 +18,21 @@ namespace ATEAMS::models {
 	 * Parameters for Bernoulli percolation; includes standard ModelParameters, and
 	 * 	Bernoulli trial density \f$0 \leq p \leq 1\f$.
 	 * 
-	 * @var Bernoulli::state
-	 * Records state.
-	 * 
 	 * @var Bernoulli::kind
 	 * Model name.
 	 */
-	class Bernoulli : Model<std::vector<int>> {
+	template <typename T>
+	class Bernoulli : Model<T,std::vector> {
 		public:
+			ModelParameters parameters;
+			std::string kind = "Bernoulli"
+
 			/**
 			 * @brief Constructor.
 			 * @param complex (Pointer to) a complex.
 			 * @param parameters Model parameters.
 			 */
-			Bernoulli(ATEAMS::complexes::Complex* complex, BernoulliParameters parameters);
+			Bernoulli(ATEAMS::complexes::Complex<T>* complex, BernoulliParameters parameters);
 
 			/**
 			 * @brief Directly samples Bernoulli percolation at the desired dimension.
@@ -70,23 +41,18 @@ namespace ATEAMS::models {
 			 * 
 			 * @return List of indices of included \f$d\f$-cells.
 			 */
-			std::vector<int> sample(int t, ATEAMS::arithmetic::ThreadOptions& options) override;
+			ModelState<T,std::vector> sample(int t, ModelState<T,std::vector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
 
 			/** @brief Initialization; superfluous. */
-			void initialize() override { };
+			ModelState<T,std::vector> initialize(ModelState<T,std::vector>& state) override { };
 
 			/** @brief Initialization; superfluous. */
-			void initialize(std::vector<int> c) override { };
-
-			BernoulliParameters parameters;
-			BernoulliState state;
-
-			std::string kind = "Bernoulli";
+			ModelState<T,std::vector> initialize(std::vector<int> c, ModelState<T,std::vector>& state) override { };
 
 		private:
 			std::mt19937 RNG;
 			std::uniform_real_distribution<double> unituniform;
-			const Zp field;
+			const Field field;
 			
 			std::vector<int> filtration;
 	};

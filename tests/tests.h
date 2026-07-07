@@ -7,9 +7,14 @@
 #include <map>
 
 // Typical data types.
-typedef ATEAMS::ff data_t;
-typedef ATEAMS::SparseMatrix<data_t> ZpMatrix;
-typedef ATEAMS::SparseVector<data_t> ZpVector;
+typedef ATEAMS::ff FINITE;
+typedef ATEAMS::rational RATIONAL;
+
+typedef ATEAMS::SparseMatrix<FINITE> ZpMatrix;
+typedef ATEAMS::SparseVector<FINITE> ZpVector;
+
+typedef ATEAMS::SparseMatrix<RATIONAL> QMatrix;
+typedef ATEAMS::SparseVector<RATIONAL> QVector;
 
 const std::vector<int> DIMENSIONS{2,3,4};
 

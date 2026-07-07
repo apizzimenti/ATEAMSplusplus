@@ -58,20 +58,19 @@ namespace ATEAMS::models {
 			 * 
 			 * @return The sample \f$f_{t+1}\f$.
 			 */
-			ModelState<SparseVector<T>> sample(int t, ATEAMS::arithmetic::ThreadOptions& options) override;
+			ModelState<T,SparseVector> sample(int t, ModelState<T,SparseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
 
 			/**
 			 * @brief Initializes \f$f_0\f$ to uniform random elements of \f$\Z/p\Z\f$.
 			 */
-			void initialize() override;
+			ModelState<T,SparseVector> initialize(ModelState<T,SparseVector>& state) override;
 
 			/**
 			 * @brief Initializes \f$f_0 = c\f$.
 			 */
-			void initialize(SparseVector<T> c) override;
+			ModelState<T,SparseVector> initialize(SparseVector<T> c, ModelState<T,SparseVector>& state) override;
 
 			ModelParameters parameters;
-			ModelState<SparseVector<T>> state;
 			const Field field;
 
 			std::string kind = "SwendsenWang";
