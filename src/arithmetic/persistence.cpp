@@ -25,7 +25,7 @@ index_t youngestFaceIndexOf(SparseVector<T> cell) {
 
 template <typename T>
 SparseMatrix<T> arithmetic::reindexSparseBoundaryMatrix(
-	ATEAMS::complexes::Complex* complex, vector<int> filtration, int dimension
+	ATEAMS::complexes::Complex<T>* complex, vector<int> filtration, int dimension
 ) {
 	// Construct an index mapping.
 	map<int,int> remapping;
@@ -60,7 +60,8 @@ SparseMatrix<T> arithmetic::reindexSparseBoundaryMatrix(
 
 /** @endcond */
 
-vector<int> arithmetic::PHATPersistence(ATEAMS::complexes::Complex* complex, vector<int> filtration, int dimension) {
+template <typename T>
+vector<int> arithmetic::PHATPersistence(ATEAMS::complexes::Complex<T>* complex, vector<int> filtration, int dimension) {
 	// The filtration specifies the order in which we add the cells of all
 	// dimensions. Create a map that specifies to which position each cell was
 	// moved. For example, if the filtration has
@@ -131,7 +132,7 @@ vector<int> arithmetic::PHATPersistence(ATEAMS::complexes::Complex* complex, vec
 
 template <typename T>
 vector<int> arithmetic::TwistPersistence(
-	ATEAMS::complexes::Complex* complex, vector<int> filtration, Field F, int dimension
+	ATEAMS::complexes::Complex<T>* complex, vector<int> filtration, Field F, int dimension
 ) {
 	// Doing row operations on the coboundary is equivalent to column operations
 	// on the boundary.

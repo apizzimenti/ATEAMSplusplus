@@ -23,8 +23,9 @@ namespace ATEAMS {
 		 * 
 		 * @returns A vector of percolation times.
 		 */
+		template <typename T>
 		std::vector<int> PHATPersistence(
-			ATEAMS::complexes::Complex* complex,
+			ATEAMS::complexes::Complex<T>* complex,
 			std::vector<int> filtration,
 			int dimension
 		);
@@ -45,7 +46,7 @@ namespace ATEAMS {
 		 */
 		template <typename T>
 		std::vector<int> TwistPersistence(
-			ATEAMS::complexes::Complex* complex,
+			ATEAMS::complexes::Complex<T>* complex,
 			std::vector<int> filtration,
 			Field F,
 			int dimension
@@ -54,7 +55,7 @@ namespace ATEAMS {
 		/** @cond */
 		// Expose this for testing, but not for general use.
 		template <typename T>
-		ATEAMS::SparseMatrix<T> reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex* complex, std::vector<int> filtration, int dimension);
+		ATEAMS::SparseMatrix<T> reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex<T>* complex, std::vector<int> filtration, int dimension);
 		/** @endcond */
 	}
 }

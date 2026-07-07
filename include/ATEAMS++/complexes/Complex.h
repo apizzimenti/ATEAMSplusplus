@@ -33,10 +33,11 @@ namespace ATEAMS {
 		 * matrix. For example, the \f$d\f$th entry contains the indices of its
 		 * \f$(d-1)\f$-dimensional faces.
 		 */
+		template <typename T=ATEAMS::ff>
 		struct BoundaryData {
-			ZpMatrices Matrices;
-			ZpBases Bases;
-			ZpMatrix Full;
+			SparseMatrices<T> Matrices;
+			SparseBases<T> Bases;
+			SparseMatrix<T> Full;
 			FlatBoundaryMatrix Flat;
 		};
 
@@ -44,6 +45,7 @@ namespace ATEAMS {
 		 * @class Complex
 		 * @brief Abstract (template) class for various complexes.
 		 */
+		template <typename T=ATEAMS::ff>
 		class Complex {
 			public:
 				/**
@@ -62,7 +64,7 @@ namespace ATEAMS {
 				 * @brief Constructs boundary matrices.
 				 * @param F Finite field \f$ \Z/p\Z \f$.
 				 */
-				virtual void constructBoundaryMatrices(Zp F) = 0;
+				virtual void constructBoundaryMatrices(Field F) = 0;
 
 				/**
 				 * @brief Constructs flat boundary matrix.
@@ -72,16 +74,16 @@ namespace ATEAMS {
 				/**
 				 * @brief Constructs a full boundary matrix (in SparseRREF format).
 				 */
-				virtual void constructFullBoundaryMatrix(Zp F) = 0;
+				virtual void constructFullBoundaryMatrix(Field F) = 0;
 
 				/** @brief Total number of cells. */
 				virtual int size() = 0;
 
 				/** @brief Boundary data. */
-				BoundaryData Boundary;
+				BoundaryData<T> Boundary;
 
 				/** @brief Coboundary data. */
-				BoundaryData Coboundary;
+				BoundaryData<T> Coboundary;
 
 				/** @brief Contains cell counts. */
 				std::vector<int> Cells;

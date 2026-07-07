@@ -35,7 +35,7 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST FALSE)
+set(TEST TRUE)
 set(PROFILE FALSE)
 
 if (TEST)
@@ -77,9 +77,9 @@ list(APPEND SOURCE_HEADERS
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/kernel.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/persistence.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/options.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Cubical.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Cubical.h
 	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/models.h
 	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Bernoulli.h
 	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Glauber.h
@@ -166,16 +166,16 @@ list(APPEND COMPLEXES
 )
 
 list(APPEND ARITHMETIC
-	"kernel"
-	"persistence"
+	# "kernel"
+	# "persistence"
 )
 
 list(APPEND MODELS
-	"Bernoulli"
-	"Glauber"
-	"InvadedCluster"
-	"Invasion"
-	"SwendsenWang"
+	# "Bernoulli"
+	# "Glauber"
+	# "InvadedCluster"
+	# "Invasion"
+	# "SwendsenWang"
 )
 
 if (TEST)

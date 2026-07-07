@@ -308,23 +308,24 @@ Lattice cubicalLattice(vector<indexer> proto) {
 /**
  * Using the full (flat) boundary matrices, make SparseRREF matrices.
  */
-ZpMatrices sparseBoundaryMatrices(Lattice L, Zp F) {
-	ZpMatrices Boundary(L.size());
+template <typename T>
+SparseMatrices<T> sparseBoundaryMatrices(Lattice L, Field F) {
+	SparseMatrices<T> Boundary(L.size());
 	int mod = (int)F.mod.n;
 
 	for (int d=L.size()-1; d > 0; d--) {
 		// Get the dimensions of the matrix; instantiate.
 		int M = L[d-1].size(), N = L[d].size();
-		ZpMatrix B(M,N);
+		SparseMatrix<T> B(M,N);
 
 		// Fill in the values.
 		for (int col=0; col < L[d].size(); col++) {
 			for (int i=0; i < L[d][col].size(); i++) {
 				int row = L[d][col][i];
-				ZpVector& matrow = B.rows[row];
+				SparseVector<T>& matrow = B.rows[row];
 				matrow.push_back(
 					(index_t)col,
-					(data_t)((bool)(i%2) ? mod-1 : 1)
+					(T)((bool)(i%2) ? mod-1 : 1)
 				);
 			}
 		}
@@ -362,8 +363,9 @@ FlatBoundaryMatrix flatBoundaryMatrix(Lattice L, vector<int> offsets) {
 }
 
 
-ZpMatrix sparseFullBoundaryMatrix(FlatBoundaryMatrix flat, Zp F) {
-	ZpMatrix Full(flat.size(), flat.size());
+template <typename T>
+SparseMatrix<T> sparseFullBoundaryMatrix(FlatBoundaryMatrix flat, Field F) {
+	SparseMatrix<T> Full(flat.size(), flat.size());
 	int mod = (int)F.mod.n;
 
 	vector<int> cell;
@@ -372,10 +374,10 @@ ZpMatrix sparseFullBoundaryMatrix(FlatBoundaryMatrix flat, Zp F) {
 		cell = flat[col];
 		for (int i=0; i < cell.size(); i++) {
 			int row = flat[col][i];
-			ZpVector& matrow = Full.rows[row];
+			SparseVector<T>& matrow = Full.rows[row];
 			matrow.push_back(
 				(index_t)col,
-				(data_t)((bool)(i%2) ? mod-1 : 1)
+				(T)((bool)(i%2) ? mod-1 : 1)
 			);
 		}
 	}
@@ -420,12 +422,14 @@ vector<vector<int>> makeBreaks(vector<int> counts) {
 /** @endcond */
 
 
-int Cubical::size() {
+template <typename T>
+int Cubical<T>::size() {
 	return this->_size;
 }
 
 
-void Cubical::constructFlatBoundaryMatrix() {
+template <typename T>
+void Cubical<T>::constructFlatBoundaryMatrix() {
 	// Create a Hamming cube of the appropriate dimension.
 	HammingCube cube = hamming(this->corners.size());
 	HammingCubeBoundary cubeBoundary = hammingBoundary(cube);
@@ -441,11 +445,12 @@ void Cubical::constructFlatBoundaryMatrix() {
 	this->breaks = makeBreaks(this->Cells);
 	this->offsets = makeOffsets(this->Cells);
 
-	this->Boundary.Flat = flatBoundaryMatrix(L, offsets);
+	this->Boundary.Flat = flatBoundaryMatrix(L, this->offsets);
 }
 
 
-void Cubical::constructBoundaryMatrices(Zp F) {
+template <typename T>
+void Cubical<T>::constructBoundaryMatrices(Field F) {
 	// Create a Hamming cube of the appropriate dimension.
 	HammingCube cube = hamming(this->corners.size());
 	HammingCubeBoundary cubeBoundary = hammingBoundary(cube);
@@ -462,8 +467,8 @@ void Cubical::constructBoundaryMatrices(Zp F) {
 	this->offsets = makeOffsets(this->Cells);
 
 	// Get the sparse (co)boundary matrices.
-	this->Boundary.Matrices = sparseBoundaryMatrices(L, F);
-	this->Coboundary.Matrices = ZpMatrices(this->Boundary.Matrices.size());
+	this->Boundary.Matrices = sparseBoundaryMatrices<T>(L, F);
+	this->Coboundary.Matrices = SparseMatrices<T>(this->Boundary.Matrices.size());
 
 	for (int d=0; d < this->Boundary.Matrices.size(); d++) {
 		this->Coboundary.Matrices[d] = this->Boundary.Matrices[d].transpose();
@@ -471,7 +476,9 @@ void Cubical::constructBoundaryMatrices(Zp F) {
 	}
 }
 
-void Cubical::constructFullBoundaryMatrix(Zp F) {
+
+template <typename T>
+void Cubical<T>::constructFullBoundaryMatrix(Field F) {
 	// Create a Hamming cube of the appropriate dimension.
 	HammingCube cube = hamming(this->corners.size());
 	HammingCubeBoundary cubeBoundary = hammingBoundary(cube);
@@ -487,21 +494,20 @@ void Cubical::constructFullBoundaryMatrix(Zp F) {
 	this->breaks = makeBreaks(this->Cells);
 	this->offsets = makeOffsets(this->Cells);
 
-	vector<int> offsets(this->Cells.size());
-	std::partial_sum(this->Cells.begin(), this->Cells.end(), offsets.begin());
-
-	FlatBoundaryMatrix flat = flatBoundaryMatrix(L, offsets);
-	this->Boundary.Full = sparseFullBoundaryMatrix(flat, F);
+	FlatBoundaryMatrix flat = flatBoundaryMatrix(L, this->offsets);
+	this->Boundary.Full = sparseFullBoundaryMatrix<T>(flat, F);
 	this->Coboundary.Full = this->Boundary.Full.transpose();
 }
 
 
-Cubical::Cubical(vector<int> corners, bool periodic) {
+template <typename T>
+Cubical<T>::Cubical(vector<int> corners, bool periodic) {
 	this->corners = corners;
 	this->periodic = periodic;
 }
 
-Cubical::Cubical(vector<int> corners) {
+template <typename T>
+Cubical<T>::Cubical(vector<int> corners) {
 	this->corners = corners;
 	this->periodic = true;
 }
