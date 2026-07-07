@@ -5,11 +5,9 @@
 using namespace ATEAMS;
 using namespace std;
 
-using Complex = complexes::Cubical;
-using Parameters = models::SwendsenWangParameters;
-using Model = models::SwendsenWang;
-using State = models::SwendsenWangState;
-using Chain = statistics::Chain<Model>;
+using Model = models::SwendsenWang<data_t>;
+using Chain = statistics::Chain<data_t,SparseVector>;
+using State = models::ModelState<ZpVector>;
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
@@ -17,9 +15,9 @@ int main(int argc, char *argv[]) {
 
 	for (int dimension : DIMENSIONS) {
 		vector<int> corners(dimension, 3);
-		Complex COMPLEX(corners);
+		complexes::Cubical<data_t> COMPLEX(corners);
 
-		Parameters PARAMETERS;
+		models::ModelParameters PARAMETERS;
 		PARAMETERS.field = FIELD;
 		PARAMETERS.dimension = dimension/2;
 		PARAMETERS.temperatureFunction = statistics::selfdual(PARAMETERS.field);
@@ -27,7 +25,7 @@ int main(int argc, char *argv[]) {
 		Model MODEL(&COMPLEX, PARAMETERS);
 		Chain CHAIN(&MODEL, ITERATIONS);
 
-		for (State* state : CHAIN.simulate<State>()) {
+		for (State* state : CHAIN.simulate()) {
 			// Figure out which cells were excluded; on these cells, the cochain
 			// can evaluate to anything. We just want the ones that evaluate to
 			// 0.

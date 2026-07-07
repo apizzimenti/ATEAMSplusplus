@@ -53,16 +53,16 @@ endif()
 ## MAIN LIBRARY BUILD                                                         ##
 ################################################################################
 # Add the library.
-add_library(ATEAMS++ SHARED
-	src/arithmetic/kernel.cpp
-	src/arithmetic/persistence.cpp
-	# src/complexes/Cubical.cpp
-	# src/models/SwendsenWang.cpp
-	# src/models/Bernoulli.cpp
-	# src/models/InvadedCluster.cpp
-	# src/models/Glauber.cpp
-	# src/models/Invasion.cpp
-)
+add_library(ATEAMS++ INTERFACE)
+# add_library(ATEAMS++ SHARED
+# 	# src/arithmetic/kernel.cpp
+# 	# src/arithmetic/persistence.cpp
+# 	# src/models/SwendsenWang.cpp
+# 	# src/models/Bernoulli.cpp
+# 	# src/models/InvadedCluster.cpp
+# 	# src/models/Glauber.cpp
+# 	# src/models/Invasion.cpp
+# )
 
 if(mimalloc)
 	list(APPEND SOURCE_HEADERS
@@ -80,17 +80,17 @@ list(APPEND SOURCE_HEADERS
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Cubical.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/models.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/models.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Model.h
 	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Bernoulli.h
 	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Glauber.h
 	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvadedCluster.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Model.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/SwendsenWang.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/SwendsenWang.h
 	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Invasion.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/statistics.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/Chain.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/statistics.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/Chain.h
 	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/observables.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/schedules.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/schedules.h
 )
 
 
@@ -103,15 +103,15 @@ target_sources(ATEAMS++
 )
 
 set_target_properties(ATEAMS++ PROPERTIES PUBLIC_HEADER include/ATEAMS++/ATEAMS++.h)
-target_link_libraries(ATEAMS++ PUBLIC PkgConfig::FLINT)
+target_link_libraries(ATEAMS++ INTERFACE PkgConfig::FLINT)
 
 if(mimalloc)
-	target_link_libraries(ATEAMS++ PUBLIC PkgConfig::mimalloc)
+	target_link_libraries(ATEAMS++ INTERFACE PkgConfig::mimalloc)
 endif()
 
-target_include_directories(ATEAMS++ PUBLIC include)
-target_include_directories(ATEAMS++ PUBLIC dependencies)
-target_include_directories(ATEAMS++ PUBLIC src)
+target_include_directories(ATEAMS++ INTERFACE include)
+target_include_directories(ATEAMS++ INTERFACE dependencies)
+target_include_directories(ATEAMS++ INTERFACE src)
 
 include(GNUInstallDirs)
 
@@ -166,8 +166,8 @@ list(APPEND COMPLEXES
 )
 
 list(APPEND ARITHMETIC
-	# "kernel"
-	# "persistence"
+	"kernel"
+	"persistence"
 )
 
 list(APPEND MODELS
@@ -175,7 +175,7 @@ list(APPEND MODELS
 	# "Glauber"
 	# "InvadedCluster"
 	# "Invasion"
-	# "SwendsenWang"
+	"SwendsenWang"
 )
 
 if (TEST)

@@ -8,7 +8,7 @@ using namespace ATEAMS;
 using namespace std;
 
 
-bool checkReindexing(complexes::Complex* COMPLEX) {
+bool checkReindexing(complexes::Complex<data_t>* COMPLEX) {
 	ZpMatrix COBOUNDARY = COMPLEX->Coboundary.Full;
 
 	// Swap two elements and verify they are reindexed correctly.
@@ -44,7 +44,7 @@ bool checkReindexing(complexes::Complex* COMPLEX) {
 	// Swap, then reindex.
 	FILTRATION[FIRSTINDEX] = SECONDINDEX;
 	FILTRATION[SECONDINDEX] = FIRSTINDEX;
-	ZpMatrix REINDEXED = arithmetic::reindexSparseBoundaryMatrix(COMPLEX, FILTRATION, 2);
+	ZpMatrix REINDEXED = arithmetic::reindexSparseBoundaryMatrix<data_t>(COMPLEX, FILTRATION, 2);
 
 	bool FIRSTREINDEXED = false, SECONDREINDEXED = false;
 
@@ -59,25 +59,25 @@ bool checkReindexing(complexes::Complex* COMPLEX) {
 }
 
 
-bool checkPHATpersistence(complexes::Complex* COMPLEX) {
+bool checkPHATpersistence(complexes::Complex<data_t>* COMPLEX) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
 
 	// We should have 1 + 4 + 6 + 4 + 1 = 16 giant components.
-	vector<int> times = arithmetic::PHATPersistence(COMPLEX, FILTRATION, 2);
+	vector<int> times = arithmetic::PHATPersistence<data_t>(COMPLEX, FILTRATION, 2);
 
 	return times.size() == 16;
 }
 
-bool checkTwistPersistence(complexes::Complex* COMPLEX, Zp F) {
+bool checkTwistPersistence(complexes::Complex<data_t>* COMPLEX, Field F) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
 
 	// We should have 1 + 4 + 6 + 4 + 1 = 16 giant components, but only 6 of the
 	// desired dimension (2).
-	vector<int> times = arithmetic::TwistPersistence(COMPLEX, FILTRATION, F, 2);
+	vector<int> times = arithmetic::TwistPersistence<data_t>(COMPLEX, FILTRATION, F, 2);
 
 	return times.size() == 6;
 }
@@ -85,10 +85,10 @@ bool checkTwistPersistence(complexes::Complex* COMPLEX, Zp F) {
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
-	Zp F(SparseRREF::FIELD_Fp, FIELD);
+	Field F(SparseRREF::FIELD_Fp, FIELD);
 
 	// Construct a Complex.
-	complexes::Cubical COMPLEX({3,3,3,3}, true);
+	complexes::Cubical<data_t> COMPLEX({3,3,3,3});
 
 	// Construct boundary matrices.
 	COMPLEX.constructBoundaryMatrices(F);

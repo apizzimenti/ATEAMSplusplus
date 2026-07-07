@@ -6,6 +6,11 @@
 #include <vector>
 #include <map>
 
+// Typical data types.
+typedef ATEAMS::ff data_t;
+typedef ATEAMS::SparseMatrix<data_t> ZpMatrix;
+typedef ATEAMS::SparseVector<data_t> ZpVector;
+
 const std::vector<int> DIMENSIONS{2,3,4};
 
 std::map<int,int> HOMOLOGICALRANK{
@@ -18,8 +23,9 @@ const int PASS = 0;
 const int FAIL = 1;
 const int ITERATIONS = 10;
 
-inline bool inKernel(ATEAMS::ZpMatrix K, ATEAMS::ZpVector v, ATEAMS::Zp F) {
-	ATEAMS::ZpVector w = SparseRREF::sparse_mat_dot_sparse_vec<ATEAMS::data_t,ATEAMS::index_t>(
+template <typename T>
+inline bool inKernel(ATEAMS::SparseMatrix<T> K, ATEAMS::SparseVector<T> v, ATEAMS::Field F) {
+	ATEAMS::SparseVector<T> w = SparseRREF::sparse_mat_dot_sparse_vec<T,ATEAMS::index_t>(
 		K, v, F
 	);
 

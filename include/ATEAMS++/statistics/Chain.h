@@ -27,11 +27,11 @@ namespace ATEAMS {
 		 * @var Chain::steps
 		 * 	Number of iterations.
 		 */
-		template <typename ModelType>
+		template <typename T, template <typename> typename ContainerType>
 		class Chain {
 			public:
-				ModelType* model;
-				ATEAMS::models::ModelState* state;
+				ATEAMS::models::Model<T,ContainerType>* model;
+				ATEAMS::models::ModelState<ContainerType<T>>* state;
 				ATEAMS::arithmetic::ThreadOptions options;
 
 				int steps;
@@ -42,7 +42,7 @@ namespace ATEAMS {
 				 * @param model (Pointer to) a Model instance.
 				 * @param steps Number of iterations.
 				 */
-				Chain(ModelType* model, int steps) {
+				Chain(ATEAMS::models::Model<T,ContainerType>* model, int steps) {
 					this->model = model;
 					this->steps = steps;
 
@@ -57,7 +57,7 @@ namespace ATEAMS {
 				 * @param steps Number of iterations.
 				 * @param options User-provided compute options.
 				 */
-				Chain(ModelType* model, int steps, ATEAMS::arithmetic::ThreadOptions options) {
+				Chain(ATEAMS::models::Model<T,ContainerType>* model, int steps, ATEAMS::arithmetic::ThreadOptions options) {
 					this->model = model;
 					this->steps = steps;
 					this->options = options;
@@ -75,7 +75,7 @@ namespace ATEAMS {
 				 * 
 				 * @returns A `std::generator`.
 				 */
-				std::generator<ATEAMS::models::ModelState*> simulate() {
+				std::generator<ATEAMS::models::ModelState<ContainerType<T>>*> simulate() {
 					std::thread listener = options.spinUp();
 					this->model->initialize();
 
@@ -89,31 +89,31 @@ namespace ATEAMS {
 					options.spinDown(&listener);
 				}
 
-				/**
-				 * @brief Templated iterator.
-				 * 
-				 * @code
-				 * 	for (models::InvadedClusterState* _state : M.run<models::InvadedClusterState*>()) {
-				 * 		// Doesn't require a cast.
-				 * 		...
-				 * 	}
-				 * @endcode
-				 * 
-				 * @returns A `std::generator`.
-				 */
-				template <typename State>
-				std::generator<State*> simulate() {
-					std::thread listener = options.spinUp();
+				// /**
+				//  * @brief Templated iterator.
+				//  * 
+				//  * @code
+				//  * 	for (models::InvadedClusterState* _state : M.run<models::InvadedClusterState*>()) {
+				//  * 		// Doesn't require a cast.
+				//  * 		...
+				//  * 	}
+				//  * @endcode
+				//  * 
+				//  * @returns A `std::generator`.
+				//  */
+				// template <typename State>
+				// std::generator<State*> simulate() {
+				// 	std::thread listener = options.spinUp();
 
-					for (int t=0; t < this->steps; t++) {
-						this->model->sample(t, this->options);
-						this->state = &this->model->state;
-						co_yield (State*)this->state;
-					}
+				// 	for (int t=0; t < this->steps; t++) {
+				// 		this->model->sample(t, this->options);
+				// 		this->state = &this->model->state;
+				// 		co_yield (State*)this->state;
+				// 	}
 
-					// Spin down multithreading environment.
-					options.spinDown(&listener);
-				}
+				// 	// Spin down multithreading environment.
+				// 	options.spinDown(&listener);
+				// }
 		};
 	}
 }

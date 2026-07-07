@@ -14,10 +14,11 @@ using namespace ATEAMS;
 using namespace std;
 
 
-ZpVector models::SwendsenWang::sample(int t, arithmetic::ThreadOptions& options) {
+template <typename T>
+models::ModelState<SparseVector<T>> models::SwendsenWang<T>::sample(int t, arithmetic::ThreadOptions& options) {
 	// Compute the temperature and probability of including particular (d-1)-cells.
-	double T = this->parameters.temperatureFunction(t);
-	double p = 1-exp(T);
+	double temp = this->parameters.temperatureFunction(t);
+	double p = 1-exp(temp);
 
 	// If we're debugging, check that the inclusion probability is actually within
 	// acceptable parameters.
@@ -31,7 +32,7 @@ ZpVector models::SwendsenWang::sample(int t, arithmetic::ThreadOptions& options)
 	// multiplication, then checking which of the entries are zero.
 	size_t d = this->parameters.dimension;
 
-	ZpVector coefficients = sparse_mat_dot_sparse_vec<data_t, index_t>(
+	SparseVector<T> coefficients = sparse_mat_dot_sparse_vec<T,index_t>(
 		this->complex->Coboundary.Matrices[d],
 		this->state.cochain,
 		this->field
@@ -65,7 +66,7 @@ ZpVector models::SwendsenWang::sample(int t, arithmetic::ThreadOptions& options)
 	);
 
 	// Now, sample from the kernel.
-	ZpVector sample = arithmetic::submatrixKernelSample(
+	SparseVector<T> sample = arithmetic::submatrixKernelSample<T>(
 		this->complex->Coboundary.Matrices[d],	// complete dth coboundary matrix
 		this->field,							// field
 		exclude,								// rows to exclude
@@ -78,14 +79,14 @@ ZpVector models::SwendsenWang::sample(int t, arithmetic::ThreadOptions& options)
 	// If we're debugging, check whether we actually sampled from the kernel.
 	if (this->parameters.DEBUG) {
 		// Copy and pare down the coboundary matrix.
-		ZpMatrix cbd = this->complex->Coboundary.Matrices[d];
+		SparseMatrix<T> cbd = this->complex->Coboundary.Matrices[d];
 		for (auto i : exclude) cbd[i].zero();
 		cbd.clear_zero_row();
 		cbd.compress();
 
 		// Multiply, and check whether there's anything in the resulting vector;
 		// there shouldn't be (i.e. it should have size 0).
-		ZpVector outcome = sparse_mat_dot_sparse_vec<data_t, index_t>(
+		SparseVector<T> outcome = sparse_mat_dot_sparse_vec<T,index_t>(
 			cbd,
 			sample,
 			this->field
@@ -97,17 +98,17 @@ ZpVector models::SwendsenWang::sample(int t, arithmetic::ThreadOptions& options)
 	this->state.cochain = sample;
 	this->state.includes = vector<int>(includeHere.begin(), includeHere.end());
 
-	return sample;
+	return this->state;
 }
 
-
-void models::SwendsenWang::initialize() {
+template <typename T>
+void models::SwendsenWang<T>::initialize() {
 	size_t dimension = this->parameters.dimension-1;
 	int N = this->complex->Cells[dimension];
 
-	ZpVector cochain;
+	SparseVector<T> cochain;
 	for (int i=0; i < N; i++) cochain.push_back(
-		(index_t)i, (data_t)this->intuniform(this->RNG)
+		(index_t)i, (T)this->intuniform(this->RNG)
 	);
 
 	cochain.compress();
@@ -115,12 +116,14 @@ void models::SwendsenWang::initialize() {
 }
 
 
-void models::SwendsenWang::initialize(ZpVector c) {
+template <typename T>
+void models::SwendsenWang<T>::initialize(SparseVector<T> c) {
 	this->state.cochain = c;
 }
 
-models::SwendsenWang::SwendsenWang(complexes::Complex* complex, SwendsenWangParameters parameters)
-	: field(Zp(SparseRREF::FIELD_Fp, parameters.field))
+template <typename T>
+models::SwendsenWang<T>::SwendsenWang(complexes::Complex<T>* complex, ModelParameters parameters)
+	: field(Field(SparseRREF::FIELD_Fp, parameters.field))
 {
 	this->parameters = parameters;
 	this->complex = complex;
