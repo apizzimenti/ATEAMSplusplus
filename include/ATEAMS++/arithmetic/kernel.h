@@ -22,9 +22,10 @@ namespace ATEAMS {
 		 * 
 		 * @return (Sparse) uniform vector in \f$\ker(\delta^{d-1})\f$.
 		 */
-		ZpVector randomLinearCombination(
-			ZpMatrix kernel,
-			const Zp& F,
+		template <typename T>
+		SparseVector<T> randomLinearCombination(
+			SparseMatrix<T> kernel,
+			const Field& F,
 			std::uniform_int_distribution<int>& intuniform,
 			std::mt19937& RNG
 		);
@@ -45,9 +46,10 @@ namespace ATEAMS {
 		 * 
 		 * @return (Sparse) uniform vector in \f$\ker(\delta^{d-1})\f$.
 		 */
-		ZpVector submatrixKernelSample(
-			ZpMatrix coboundary,
-			const Zp& F,
+		template <typename T>
+		SparseVector<T> submatrixKernelSample(
+			SparseMatrix<T> coboundary,
+			const Field& F,
 			std::set<size_t> exclude,
 			std::uniform_int_distribution<int>& intuniform,
 			std::mt19937& RNG,

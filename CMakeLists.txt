@@ -35,7 +35,7 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST TRUE)
+set(TEST FALSE)
 set(PROFILE FALSE)
 
 if (TEST)
@@ -56,12 +56,12 @@ endif()
 add_library(ATEAMS++ SHARED
 	src/arithmetic/kernel.cpp
 	src/arithmetic/persistence.cpp
-	src/complexes/Cubical.cpp
-	src/models/SwendsenWang.cpp
-	src/models/Bernoulli.cpp
-	src/models/InvadedCluster.cpp
-	src/models/Glauber.cpp
-	src/models/Invasion.cpp
+	# src/complexes/Cubical.cpp
+	# src/models/SwendsenWang.cpp
+	# src/models/Bernoulli.cpp
+	# src/models/InvadedCluster.cpp
+	# src/models/Glauber.cpp
+	# src/models/Invasion.cpp
 )
 
 if(mimalloc)
@@ -77,20 +77,20 @@ list(APPEND SOURCE_HEADERS
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/kernel.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/persistence.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/options.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Cubical.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/models.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Bernoulli.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Glauber.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvadedCluster.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Model.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/SwendsenWang.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Invasion.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/statistics.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/Chain.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/observables.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/schedules.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Cubical.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/models.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Bernoulli.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Glauber.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvadedCluster.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Model.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/SwendsenWang.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Invasion.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/statistics.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/Chain.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/observables.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/schedules.h
 )
 
 

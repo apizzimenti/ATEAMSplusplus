@@ -43,16 +43,18 @@ namespace ATEAMS {
 		 * 
 		 * @returns A vector of percolation times.
 		 */
+		template <typename T>
 		std::vector<int> TwistPersistence(
 			ATEAMS::complexes::Complex* complex,
 			std::vector<int> filtration,
-			Zp F,
+			Field F,
 			int dimension
 		);
 
 		/** @cond */
 		// Expose this for testing, but not for general use.
-		ATEAMS::ZpMatrix reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex* complex, std::vector<int> filtration, int dimension);
+		template <typename T>
+		ATEAMS::SparseMatrix<T> reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex* complex, std::vector<int> filtration, int dimension);
 		/** @endcond */
 	}
 }

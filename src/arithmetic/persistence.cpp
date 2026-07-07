@@ -17,19 +17,23 @@ using namespace std;
 
 /** @cond */
 
-index_t youngestFaceIndexOf(ZpVector cell) {
+template <typename T>
+index_t youngestFaceIndexOf(SparseVector<T> cell) {
 	return cell(cell.size()-1);
 }
 
 
-ZpMatrix arithmetic::reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex* complex, vector<int> filtration, int dimension) {
+template <typename T>
+SparseMatrix<T> arithmetic::reindexSparseBoundaryMatrix(
+	ATEAMS::complexes::Complex* complex, vector<int> filtration, int dimension
+) {
 	// Construct an index mapping.
 	map<int,int> remapping;
 	for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
 
 	// Wow, this is going to be annoying.
-	ZpMatrix Full = complex->Coboundary.Full;
-	ZpMatrix Reindexed(Full.nrow, Full.ncol);
+	SparseMatrix<T> Full = complex->Coboundary.Full;
+	SparseMatrix<T> Reindexed(Full.nrow, Full.ncol);
 
 	int startDimension = complex->breaks[dimension][0];
 	int stopDimension = complex->breaks[dimension][1];
@@ -38,13 +42,13 @@ ZpMatrix arithmetic::reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex* com
 		if ((startDimension <= t) && (t < stopDimension)) {
 			Reindexed.rows[t] = Full.rows[filtration[t]];
 		} else {
-			ZpVector& row = Reindexed.rows[t];
-			ZpVector orow = Full.rows[t];
+			SparseVector<T>& row = Reindexed.rows[t];
+			SparseVector<T> orow = Full.rows[t];
 
 			for (int i=0; i < orow.size(); i++) {
 				row.push_back(
 					(index_t)remapping[orow(i)],
-					(data_t)orow[i]
+					(T)orow[i]
 				);
 			}
 		}
@@ -125,13 +129,14 @@ vector<int> arithmetic::PHATPersistence(ATEAMS::complexes::Complex* complex, vec
 }
 
 
+template <typename T>
 vector<int> arithmetic::TwistPersistence(
-	ATEAMS::complexes::Complex* complex, vector<int> filtration, Zp F, int dimension
+	ATEAMS::complexes::Complex* complex, vector<int> filtration, Field F, int dimension
 ) {
 	// Doing row operations on the coboundary is equivalent to column operations
 	// on the boundary.
-	ZpMatrix Full = reindexSparseBoundaryMatrix(complex, filtration, dimension);
-	ZpVector youngestFace;
+	SparseMatrix<T> Full = reindexSparseBoundaryMatrix<T>(complex, filtration, dimension);
+	SparseVector<T> youngestFace;
 
 	// Track which column is to be added next; track which ones are marked.
 	vector<int> nextColumnAdded(complex->size(), 0);
@@ -139,30 +144,30 @@ vector<int> arithmetic::TwistPersistence(
 
 	// Top dimension of the complex; indices at which we stop and start.
 	int topDimension = complex->Cells.size(), lowestCellIndex, highestCellIndex;
-	data_t youngestFaceCoefficient;
+	T youngestFaceCoefficient;
 
 	for (int d=topDimension-1; d > dimension-1; d--) {
 		lowestCellIndex = complex->breaks[d][0];
 		highestCellIndex = (d+1 >= complex->Cells.size()) ? complex->size() : complex->breaks[d][1];
 
 		for (int j=lowestCellIndex; j < highestCellIndex; j++) {
-			ZpVector& cell = Full.rows[j];
+			SparseVector<T>& cell = Full.rows[j];
 
-			while (cell.size() > 0 && nextColumnAdded[youngestFaceIndexOf(cell)] != 0) {
-				youngestFace = Full.rows[nextColumnAdded[youngestFaceIndexOf(cell)]];
-				youngestFaceCoefficient = *youngestFace.find(youngestFaceIndexOf(cell));
+			while (cell.size() > 0 && nextColumnAdded[youngestFaceIndexOf<T>(cell)] != 0) {
+				youngestFace = Full.rows[nextColumnAdded[youngestFaceIndexOf<T>(cell)]];
+				youngestFaceCoefficient = *youngestFace.find(youngestFaceIndexOf<T>(cell));
 
 				// TODO parallelization stuff here? Can't go across columns, so maybe
 				// within the column? SparseRREF/FLINT probably do that already tho.
-				sparse_vec_rescale<index_t, data_t>(youngestFace, scalar_neg(scalar_inv(youngestFaceCoefficient, F), F), F);
+				sparse_vec_rescale<index_t,T>(youngestFace, scalar_neg(scalar_inv(youngestFaceCoefficient, F), F), F);
 				sparse_vec_add<index_t>(cell, youngestFace, F);
 
 				cell.compress();
 			}
 
 			if (cell.size() > 0) {
-				nextColumnAdded[youngestFaceIndexOf(cell)] = j;
-				Full.rows[youngestFaceIndexOf(cell)].zero();
+				nextColumnAdded[youngestFaceIndexOf<T>(cell)] = j;
+				Full.rows[youngestFaceIndexOf<T>(cell)].zero();
 			} else {
 				marked.insert(j);
 			}
