@@ -1,4 +1,11 @@
 
+#ifndef ATEAMS_ARITHMETIC_PERSISTENCE_T
+#define ATEAMS_ARITHMETIC_PERSISTENCE_T
+
+#ifndef ATEAMS_ARITHMETIC_PERSISTENCE_H
+#error __FILE__ should only be included from arithmetic/persistence.h.
+#endif
+
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/util.h"
 #include "ATEAMS++/complexes/Complex.h"
@@ -194,3 +201,5 @@ vector<int> arithmetic::TwistPersistence(
 
 	return essential;
 }
+
+#endif

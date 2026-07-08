@@ -57,10 +57,10 @@ namespace ATEAMS {
 		template <typename T>
 		ATEAMS::SparseMatrix<T> reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex<T>* complex, std::vector<int> filtration, int dimension);
 		/** @endcond */
-
-		#include "arithmetic/persistence.tpp"
 	}
 }
+
+#include "ATEAMS++/arithmetic/persistence.tpp"
 
 #endif
 

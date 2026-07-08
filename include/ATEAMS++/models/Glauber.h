@@ -12,55 +12,11 @@
 namespace ATEAMS {
 	namespace models {
 		/**
-		 * @struct GlauberParameters
-		 * @brief Parameters relevant to simulating the Glauber dynamics Markov chain.
-		 * 
-		 * @var GlauberParameters::field
-		 * Order \f$p\f$ for the finite field \f$\Z / p \Z\f$.
-		 * 
-		 * @var GlauberParameters::dimension
-		 * Complex dimension for which we're sampling.
-		 * 
-		 * @var GlauberParameters::temperatureFunction
-		 * Function that consumes a time-step (integer) parameter \f$t\f$, and returns
-		 * a temperature parameter \f$\beta \in [0, \infty)\f$ that is used to compute
-		 * the probability \f$p = 1-e^{-\beta}\f$ of including any individual
-		 * \f$(d-1)\f$-cell in the sampled subcomplex.
-		 */
-		struct GlauberParameters : ModelParameters {
-			int field = 2;
-			int dimension;
-			std::function<double(int)> temperatureFunction;
-		};
-
-		/**
-		 * @struct GlauberState
-		 * @brief Stores the current state of the Glauber dynamics Markov chain.
-		 * 
-		 * @var GlauberState::cochain
-		 * A (sparse) vector representing the cochain \f$f_t \in C^{d-1}(X; \Z/p\Z)\f$
-		 * (i.e. a linear map from \f$(d-1)\f$-cells to \f$\Z/p\Z\f$)
-		 * sampled at time \f$t\f$.
-		 * 
-		 * @var GlauberState::energy
-		 * An integer representing the total energy of the cochain (i.e. the Hamiltonian
-		 * \f$\H(f_t)\f$) indicating the (negative) number of \f$d\f$-cells \f$x\f$ on which
-		 * \f$(\delta^{d-1}f)(x) > 0\f$.
-		 */
-		struct GlauberState : ModelState {
-			ZpVector cochain;
-			int energy;
-		};
-
-		/**
 		 * @class Glauber
 		 * @brief Implements the Glauber dynamics algorithm.
 		 * 
 		 * @var Glauber::parameters
 		 * Model parameters.
-		 * 
-		 * @var Glauber::state
-		 * Model state.
 		 * 
 		 * @var Glauber::field
 		 * Finite field over which computations will be performened.
@@ -82,7 +38,8 @@ namespace ATEAMS {
 		 * @var Glauber::kind
 		 * Model name.
 		 */
-		class Glauber: public Model<ZpVector> {
+		template <typename T>
+		class Glauber: public Model<T,SparseVector> {
 			public:
 				/**
 				 * @brief Constructor.
@@ -90,7 +47,7 @@ namespace ATEAMS {
 				 * @param complex (Pointer to) a complex.
 				 * @param parameters Model parameters.
 				 */
-				Glauber(ATEAMS::complexes::Complex* complex, GlauberParameters parameters);
+				Glauber(ATEAMS::complexes::Complex<T>* complex, ModelParameters parameters);
 
 				/**
 				 * @brief Switches the spin of a uniform random cell.
@@ -100,21 +57,20 @@ namespace ATEAMS {
 				 * 
 				 * @return The sample \f$f_{t+1}\f$.
 				 */
-				ZpVector sample(int t, ATEAMS::arithmetic::ThreadOptions& options) override;
+				ModelState<T,SparseVector> sample(int t, ModelState<T,SparseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
 
 				/**
 				 * @brief Initializes \f$f_0\f$ to uniform random elements of \f$\Z/p\Z\f$.
 				 */
-				void initialize() override;
+				ModelState<T,SparseVector> initialize(ModelState<T,SparseVector>& state) override;
 
 				/**
 				 * @brief Initializes \f$f_0 = c\f$.
 				 */
-				void initialize(ZpVector c) override;
-
-				GlauberParameters parameters;
-				GlauberState state;
-				const Zp field;
+				ModelState<T,SparseVector> initialize(SparseVector<T> c, ModelState<T,SparseVector>& state) override;
+				
+				ModelParameters parameters;
+				const Field field;
 
 				std::string kind = "Glauber";
 
@@ -126,6 +82,8 @@ namespace ATEAMS {
 		};
 	}
 }
+
+#include "ATEAMS++/models/Glauber.tpp"
 
 #endif
 

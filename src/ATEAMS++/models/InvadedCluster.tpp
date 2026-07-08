@@ -1,4 +1,11 @@
 
+#ifndef ATEAMS_MODELS_INVADEDCLUSTER_T
+#define ATEAMS_MODELS_INVADEDCLUSTER_T
+
+#ifndef ATEAMS_MODELS_INVADEDCLUSTER_H
+#error __FILE__ should only be included from models/InvadedCluster.h.
+#endif
+
 #include "ATEAMS++/util.h"
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/models/InvadedCluster.h"
@@ -15,14 +22,19 @@ using namespace ATEAMS;
 using namespace std;
 
 
-ZpVector models::InvadedCluster::sample(int t, arithmetic::ThreadOptions& options) {
+template <typename T>
+models::ModelState<T,SparseVector> models::InvadedCluster<T>::sample(
+	int t,
+	models::ModelState<T,SparseVector>& state,
+	arithmetic::ThreadOptions& options
+) {
 	int d = this->parameters.dimension;
 
 	// Determine which (d-1)-cells are "satisfiable" (i.e. those on which the
 	// current (d-1)-cochain vanishes).
-	ZpVector coefficients = sparse_mat_dot_sparse_vec<data_t, index_t>(
+	SparseVector<T> coefficients = sparse_mat_dot_sparse_vec<T,index_t>(
 		this->complex->Coboundary.Matrices[d],
-		this->state.cochain,
+		state.cochain,
 		this->field
 	);
 
@@ -87,7 +99,7 @@ ZpVector models::InvadedCluster::sample(int t, arithmetic::ThreadOptions& option
 	for (int i=stopat; i < stop; i++) leaveout.insert(this->filtration[i]-start);
 	for (int i=start; i < stopat; i++) included[i-start] = this->filtration[i]-start;
 
-	ZpVector sample = arithmetic::submatrixKernelSample(
+	SparseVector<T> sample = arithmetic::submatrixKernelSample(
 		this->complex->Coboundary.Matrices[d],	// complete dth coboundary matrix
 		this->field,							// field
 		leaveout,								// rows to exclude
@@ -100,14 +112,14 @@ ZpVector models::InvadedCluster::sample(int t, arithmetic::ThreadOptions& option
 	// If we're debugging, check whether we actually sampled from the kernel.
 	if (this->parameters.DEBUG) {
 		// Copy and pare down the coboundary matrix.
-		ZpMatrix cbd = this->complex->Coboundary.Matrices[d];
+		SparseMatrix<T> cbd = this->complex->Coboundary.Matrices[d];
 		for (auto i : leaveout) cbd[i].zero();
 		cbd.clear_zero_row();
 		cbd.compress();
 
 		// Multiply, and check whether there's anything in the resulting vector;
 		// there shouldn't be (i.e. it should have size 0).
-		ZpVector outcome = sparse_mat_dot_sparse_vec<data_t, index_t>(
+		SparseVector<T> outcome = sparse_mat_dot_sparse_vec<T, index_t>(
 			cbd,
 			sample,
 			this->field
@@ -116,33 +128,45 @@ ZpVector models::InvadedCluster::sample(int t, arithmetic::ThreadOptions& option
 		assert(outcome.size() < 1);
 	}
 
-	this->state.cochain = sample;
-	this->state.includes = included;
+	state.cochain = sample;
+	state.includes = included;
+	state.t = t;
 
-	return sample;
+	return state;
 }
 
 
-void models::InvadedCluster::initialize() {
+template <typename T>
+models::ModelState<T,SparseVector> models::InvadedCluster<T>::initialize(
+	models::ModelState<T,SparseVector>& state
+) {
 	size_t dimension = this->parameters.dimension-1;
 	int N = this->complex->Cells[dimension];
 
-	ZpVector cochain;
+	SparseVector<T> cochain;
 	for (int i=0; i < N; i++) cochain.push_back(
-		(index_t)i, (data_t)this->intuniform(this->RNG)
+		(index_t)i, (T)this->intuniform(this->RNG)
 	);
 
 	cochain.compress();
-	this->state.cochain = cochain;
+	state.cochain = cochain;
+	return state;
 }
 
 
-void models::InvadedCluster::initialize(ZpVector c) {
-	this->state.cochain = c;
+template <typename T>
+models::ModelState<T,SparseVector> models::InvadedCluster<T>::initialize(
+	SparseVector<T> c,
+	models::ModelState<T,SparseVector>& state
+) {
+	state.cochain = c;
+	return state;
 }
 
-models::InvadedCluster::InvadedCluster(complexes::Complex* complex, InvadedClusterParameters parameters)
-	: field(Zp(SparseRREF::FIELD_Fp, parameters.field))
+
+template <typename T>
+models::InvadedCluster<T>::InvadedCluster(complexes::Complex<T>* complex, ModelParameters parameters)
+	: field(parameters.field > 0 ? Field(SparseRREF::FIELD_Fp, parameters.field) : Field(SparseRREF::FIELD_QQ))
 {
 	this->parameters = parameters;
 	this->complex = complex;
@@ -150,8 +174,11 @@ models::InvadedCluster::InvadedCluster(complexes::Complex* complex, InvadedClust
 	// Determine the field and build the boundary matrices for the Complex.
 	this->complex->constructBoundaryMatrices(this->field);
 
-	if (this->parameters.field < 3) this->complex->constructFlatBoundaryMatrix();
-	else this->complex->constructFullBoundaryMatrix(this->field);
+	if (this->parameters.field == 2){
+		this->complex->constructFlatBoundaryMatrix();
+	} else {
+		this->complex->constructFullBoundaryMatrix(this->field);
+	}
 
 	vector<int> filtration(this->complex->size());
 	std::iota(filtration.begin(), filtration.end(), 0);
@@ -160,5 +187,7 @@ models::InvadedCluster::InvadedCluster(complexes::Complex* complex, InvadedClust
 	// Initialize a random number generator.
 	std::random_device rd;
 	this->RNG = std::mt19937(rd());
-	this->intuniform = std::uniform_int_distribution<int>(0,this->parameters.field);
+	this->intuniform = std::uniform_int_distribution<int>(0,this->parameters.field > 0 ? this->parameters.field : 1);
 }
+
+#endif

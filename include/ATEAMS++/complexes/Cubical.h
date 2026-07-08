@@ -84,6 +84,6 @@ namespace ATEAMS {
 	}
 }
 
-#include "complexes/Cubical.tpp"
+#include "ATEAMS++/complexes/Cubical.tpp"
 
 #endif

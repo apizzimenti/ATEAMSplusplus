@@ -1,4 +1,11 @@
 
+#ifndef ATEAMS_MODELS_SWENDSENWANG_T
+#define ATEAMS_MODELS_SWENDSENWANG_T
+
+#ifndef ATEAMS_MODELS_SWENDSENWANG_H
+#error __FILE__ should only be included from models/SwendsenWang.h.
+#endif
+
 #include "ATEAMS++/util.h"
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/models/SwendsenWang.h"
@@ -135,7 +142,10 @@ models::ModelState<T,SparseVector> models::SwendsenWang<T>::initialize(
 
 
 template <typename T>
-models::SwendsenWang<T>::SwendsenWang(complexes::Complex<T>* complex, ModelParameters parameters)
+models::SwendsenWang<T>::SwendsenWang(
+	complexes::Complex<T>* complex,
+	ModelParameters parameters
+)
 	: field(parameters.field > 0 ? Field(SparseRREF::FIELD_Fp, parameters.field) : Field(SparseRREF::FIELD_QQ))
 {
 	this->parameters = parameters;
@@ -156,3 +166,5 @@ models::SwendsenWang<T>::SwendsenWang(complexes::Complex<T>* complex, ModelParam
 	this->unituniform = std::uniform_real_distribution<double>(0,1);
 	this->intuniform = std::uniform_int_distribution<int>(0,this->parameters.field > 0 ? this->parameters.field : 1);
 }
+
+#endif

@@ -75,102 +75,124 @@ namespace ATEAMS {
 
 	/** PHAT persistence algorithm. */
 	typedef phat::twist_reduction PHATTwist;
+
+	template <typename T>
+	using DenseVector = std::vector<T,std::allocator<T>>;
 	/** @endcond */
 
 
-	// /**
-	//  * @class DataWriter
-	//  * @brief Utility function for writing various data types to file.
-	//  */
-	// class DataWriter {
-	// 	public:
-	// 		/**
-	// 		 * @brief Writes a @ref ATEAMS::ZpMatrix to file.
-	// 		 * 
-	// 		 * @param S Storage.
-	// 		 * @param destination Filepath.
-	// 		 */
-	// 		static inline void write(ATEAMS::ZpMatrix S, std::string destination) {
-	// 			checkDestinationExists(destination);
+	/**
+	 * @class DataWriter
+	 * @brief Utility function for writing various data types to file.
+	 */
+	class DataWriter {
+		public:
+			/**
+			 * @brief Writes a @ref ATEAMS::SparseMatrix to file.
+			 * 
+			 * @param S Storage.
+			 * @param destination Filepath.
+			 */
+			static inline void write(ATEAMS::SparseMatrix<rational> S, std::string destination) {
+				checkDestinationExists(destination);
 
-	// 			std::ofstream out;
-	// 			out.open(destination);
+				std::ofstream out;
+				out.open(destination);
 
-	// 			SparseRREF::sparse_mat_write<ATEAMS::data_t,std::ofstream,ATEAMS::index_t>(
-	// 				S, out, SparseRREF::SPARSE_FILE_TYPE_SMS
-	// 			);
+				SparseRREF::sparse_mat_write<rational,std::ofstream,ATEAMS::index_t>(
+					S, out, SparseRREF::SPARSE_FILE_TYPE_SMS
+				);
 
-	// 			out.close();
-	// 		};
+				out.close();
+			};
 
-	// 		/**
-	// 		 * @brief Writes a @ref ATEAMS::ZpMatrix to file.
-	// 		 * 
-	// 		 * @param S Storage.
-	// 		 * @param destination Filepath.
-	// 		 */
-	// 		static inline void write(std::vector<int> S, std::string destination) {
-	// 			checkDestinationExists(destination);
+			/**
+			 * @brief Writes a @ref ATEAMS::SparseMatrix to file.
+			 * 
+			 * @param S Storage.
+			 * @param destination Filepath.
+			 */
+			static inline void write(ATEAMS::SparseMatrix<ff> S, std::string destination) {
+				checkDestinationExists(destination);
 
-	// 			// Check 
-	// 			std::ofstream out;
-	// 			out.open(destination);
+				std::ofstream out;
+				out.open(destination);
 
-	// 			for (auto k : S) {
-	// 				out << k << std::endl;
-	// 			}
+				SparseRREF::sparse_mat_write<ff,std::ofstream,ATEAMS::index_t>(
+					S, out, SparseRREF::SPARSE_FILE_TYPE_SMS
+				);
 
-	// 			out.close();
-	// 		};
+				out.close();
+			};
 
-	// 		/**
-	// 		 * @brief Writes a @ref ATEAMS::ZpMatrix to file.
-	// 		 * 
-	// 		 * @param S Storage.
-	// 		 * @param destination Filepath.
-	// 		 */
-	// 		static inline void write(std::vector<double> S, std::string destination) {
-	// 			checkDestinationExists(destination);
+			/**
+			 * @brief Writes a @ref ATEAMS::SparseMatrix to file.
+			 * 
+			 * @param S Storage.
+			 * @param destination Filepath.
+			 */
+			static inline void write(std::vector<int> S, std::string destination) {
+				checkDestinationExists(destination);
 
-	// 			std::ofstream out;
-	// 			out.open(destination);
+				// Check 
+				std::ofstream out;
+				out.open(destination);
 
-	// 			for (auto k : S) {
-	// 				out << std::format("{:.8f}", k) << std::endl;
-	// 			}
+				for (auto k : S) {
+					out << k << std::endl;
+				}
 
-	// 			out.close();
-	// 		};
+				out.close();
+			};
 
-	// 		/**
-	// 		 * @brief Writes a @ref ATEAMS::ZpMatrix to file.
-	// 		 * 
-	// 		 * @param S Storage.
-	// 		 * @param destination Filepath.
-	// 		 */
-	// 		static inline void write(std::vector<float> S, std::string destination) {
-	// 			checkDestinationExists(destination);
+			/**
+			 * @brief Writes a @ref ATEAMS::SparseMatrix to file.
+			 * 
+			 * @param S Storage.
+			 * @param destination Filepath.
+			 */
+			static inline void write(std::vector<double> S, std::string destination) {
+				checkDestinationExists(destination);
 
-	// 			std::ofstream out;
-	// 			out.open(destination);
+				std::ofstream out;
+				out.open(destination);
 
-	// 			for (auto k : S) {
-	// 				out << std::format("{:.8f}", k) << std::endl;
-	// 			}
+				for (auto k : S) {
+					out << std::format("{:.8f}", k) << std::endl;
+				}
 
-	// 			out.close();
-	// 		};
+				out.close();
+			};
 
-	// 	private:
-	// 		static inline void checkDestinationExists(std::string destination) {
-	// 			std::filesystem::path writable(destination);
+			/**
+			 * @brief Writes a @ref ATEAMS::SparseMatrix to file.
+			 * 
+			 * @param S Storage.
+			 * @param destination Filepath.
+			 */
+			static inline void write(std::vector<float> S, std::string destination) {
+				checkDestinationExists(destination);
 
-	// 			if (!std::filesystem::exists(writable.parent_path())) {
-	// 				std::cerr << std::format("Couldn't find filepath {}, forcibly writing...", writable.parent_path().string()) << std::endl;
-	// 				std::filesystem::create_directory(writable.parent_path());
-	// 			}
-	// 		}
-	// };
+				std::ofstream out;
+				out.open(destination);
+
+				for (auto k : S) {
+					out << std::format("{:.8f}", k) << std::endl;
+				}
+
+				out.close();
+			};
+
+		private:
+			static inline void checkDestinationExists(std::string destination) {
+				std::filesystem::path writable(destination);
+
+				if (!std::filesystem::exists(writable.parent_path())) {
+					std::cerr << std::format("Couldn't find filepath {}, forcibly writing...", writable.parent_path().string()) << std::endl;
+					std::filesystem::create_directory(writable.parent_path());
+				}
+			}
+	};
 }
 
 

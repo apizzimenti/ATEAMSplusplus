@@ -12,50 +12,12 @@
 namespace ATEAMS {
 	namespace models {
 		/**
-		 * @struct InvadedClusterParameters
-		 * @brief Parameters relevant to simulating the Swendsen--Wang algorithm.
-		 * 
-		 * @var InvadedClusterParameters::field
-		 * Order \f$p\f$ for the finite field \f$\Z / p \Z\f$.
-		 * 
-		 * @var InvadedClusterParameters::stoppingFunction
-		 * Function that consumes a time-step (integer) parameter \f$t\f$ and returns
-		 * an integer in \f$(a,b)\f$, where \f$a, \ b \f$ are between \f$0\f$ and
-		 * \f$\rank(H_d(X))\f$ telling us when to sample the next set of spins.
-		 */
-		struct InvadedClusterParameters : ModelParameters {
-			int field = 2;
-			std::function<int(int)> stoppingFunction;
-		};
-
-		/**
-		 * @struct InvadedClusterState
-		 * @brief Stores the current state of the Swendsen--Wang algorithm.
-		 * 
-		 * @var InvadedClusterState::cochain
-		 * A (sparse) vector representing the cochain \f$f_t \in C^{d-1}(X; \Z/p\Z)\f$
-		 * (i.e. a linear map from \f$(d-1)\f$-cells to \f$\Z/p\Z\f$)
-		 * sampled at time \f$t\f$.
-		 * 
-		 * @var InvadedClusterState::includes
-		 * A (sparse) vector with nonzero entries indicating the indices of \f$d\f$-cells
-		 * included in the percolation subcomplex sampled at time \f$t\f$.
-		 */
-		struct InvadedClusterState : ModelState {
-			ZpVector cochain;
-			std::vector<int> includes;
-		};
-
-		/**
 		 * @class InvadedCluster
 		 * @brief Implements the Swendsen--Wang algorithm for Potts lattice gauge theory
 		 * 	(PLGT) and the plaquette random-cluster model (PRCM).
 		 * 
 		 * @var InvadedCluster::parameters
 		 * Model parameters.
-		 * 
-		 * @var InvadedCluster::state
-		 * Model state.
 		 * 
 		 * @var InvadedCluster::field
 		 * Finite field over which computations will be performened.
@@ -70,7 +32,8 @@ namespace ATEAMS {
 		 * @var InvadedCluster::kind
 		 * Model name.
 		 */
-		class InvadedCluster: public Model<ZpVector> {
+		template <typename T>
+		class InvadedCluster: public Model<T,SparseVector> {
 			public:
 				/**
 				 * @brief Constructor.
@@ -78,7 +41,7 @@ namespace ATEAMS {
 				 * @param complex (Pointer to) a complex.
 				 * @param parameters Model parameters.
 				 */
-				InvadedCluster(ATEAMS::complexes::Complex* complex, InvadedClusterParameters parameters);
+				InvadedCluster(ATEAMS::complexes::Complex<T>* complex, ModelParameters parameters);
 
 				/**
 				 * @brief Implements the plaquette invaded-cluster algorithm,
@@ -92,22 +55,20 @@ namespace ATEAMS {
 				 * 
 				 * @return The sample \f$f_{t+1}\f$.
 				 */
-				ZpVector sample(int t, ATEAMS::arithmetic::ThreadOptions& options) override;
+				ModelState<T,SparseVector> sample(int t, ModelState<T,SparseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
 
 				/**
 				 * @brief Initializes \f$f_0\f$ to uniform random elements of \f$\Z/p\Z\f$.
 				 */
-				void initialize() override;
+				ModelState<T,SparseVector> initialize(ModelState<T,SparseVector>& state) override;
 
 				/**
 				 * @brief Initializes \f$f_0 = c\f$.
 				 */
-				void initialize(ZpVector c) override;
+				ModelState<T,SparseVector> initialize(SparseVector<T> c, ModelState<T,SparseVector>& state) override;
 
-				InvadedClusterParameters parameters;
-				InvadedClusterState state;
-				const Zp field;
-
+				ModelParameters parameters;
+				const Field field;
 				std::string kind = "InvadedCluster";
 
 			private:
@@ -117,6 +78,8 @@ namespace ATEAMS {
 		};
 	}
 }
+
+#include "ATEAMS++/models/InvadedCluster.tpp"
 
 #endif
 

@@ -6,7 +6,6 @@
  * @namespace ATEAMS
  * @brief Global namespace.
  */
-namespace ATEAMS { };
 
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/arithmetic/arithmetic.h"

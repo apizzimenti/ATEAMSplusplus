@@ -52,9 +52,7 @@ endif()
 ################################################################################
 ## MAIN LIBRARY BUILD                                                         ##
 ################################################################################
-# Add the library.
 add_library(ATEAMS++ INTERFACE)
-
 
 if(mimalloc)
 	list(APPEND SOURCE_HEADERS
@@ -62,27 +60,46 @@ if(mimalloc)
 	)
 endif()
 
+
 list(APPEND SOURCE_HEADERS
+	# Headers
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/common.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/util.h
+
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/arithmetic.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/kernel.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/persistence.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/options.h
+
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Cubical.h
+
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/models.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Model.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Bernoulli.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Glauber.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvadedCluster.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Bernoulli.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Glauber.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvadedCluster.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/SwendsenWang.h
 	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Invasion.h
+
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/statistics.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/Chain.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/observables.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/observables.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/schedules.h
+)
+
+
+list(APPEND SOURCE_IMPLEMENTATIONS
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/arithmetic/kernel.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/arithmetic/persistence.tpp
+
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/complexes/Cubical.tpp
+
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/SwendsenWang.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/Bernoulli.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/Glauber.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/InvadedCluster.tpp
 )
 
 
@@ -90,8 +107,8 @@ list(APPEND SOURCE_HEADERS
 target_sources(ATEAMS++
 	PUBLIC
 	FILE_SET HEADERS
-	BASE_DIRS ${PROJECT_SOURCE_DIR}/include/
-	FILES ${SOURCE_HEADERS}
+	BASE_DIRS ${PROJECT_SOURCE_DIR}/include/ ${PROJECT_SOURCE_DIR}/src/
+	FILES ${SOURCE_HEADERS} ${SOURCE_IMPLEMENTATIONS}
 )
 
 set_target_properties(ATEAMS++ PROPERTIES PUBLIC_HEADER include/ATEAMS++/ATEAMS++.h)
@@ -101,9 +118,9 @@ if(mimalloc)
 	target_link_libraries(ATEAMS++ INTERFACE PkgConfig::mimalloc)
 endif()
 
-target_include_directories(ATEAMS++ INTERFACE include)
+# target_include_directories(ATEAMS++ INTERFACE include)
 target_include_directories(ATEAMS++ INTERFACE dependencies)
-target_include_directories(ATEAMS++ INTERFACE src)
+# target_include_directories(ATEAMS++ INTERFACE src)
 
 include(GNUInstallDirs)
 
@@ -154,20 +171,20 @@ install(
 ################################################################################
 
 list(APPEND COMPLEXES
-	"Cubical"
+	# "Cubical"
 )
 
 list(APPEND ARITHMETIC
-	"kernel"
-	"persistence"
+	# "kernel"
+	# "persistence"
 )
 
 list(APPEND MODELS
 	# "Bernoulli"
 	# "Glauber"
-	# "InvadedCluster"
+	"InvadedCluster"
 	# "Invasion"
-	"SwendsenWang"
+	# "SwendsenWang"
 )
 
 list(APPEND TYPES
@@ -177,12 +194,18 @@ list(APPEND TYPES
 
 if (TEST)
 	foreach(MODEL IN LISTS MODELS)
-		add_executable(tests.${MODEL} tests/models/${MODEL}.cpp)
-		target_include_directories(tests.${MODEL} PUBLIC tests)
-		target_link_libraries(tests.${MODEL} PRIVATE ATEAMS++)
+		foreach(TYPE IN LISTS TYPES)
+			add_executable(tests.${MODEL}.${TYPE} tests/models/${MODEL}.${TYPE}.cpp)
+			target_include_directories(tests.${MODEL}.${TYPE} PUBLIC tests)
+			target_link_libraries(tests.${MODEL}.${TYPE} PUBLIC ATEAMS++)
 
-		add_test(NAME tests.${MODEL}.2 COMMAND tests.${MODEL} 2)
-		add_test(NAME tests.${MODEL}.3 COMMAND tests.${MODEL} 3)
+			if("${TYPE}" STREQUAL "Q")
+				add_test(NAME tests.${MODEL}.${TYPE} COMMAND tests.${MODEL}.${TYPE} 0)
+			else()
+				add_test(NAME tests.${MODEL}.${TYPE}.2 COMMAND tests.${MODEL}.${TYPE} 2)
+				add_test(NAME tests.${MODEL}.${TYPE}.3 COMMAND tests.${MODEL}.${TYPE} 3)
+			endif()
+		endforeach()
 	endforeach()
 
 
@@ -190,7 +213,7 @@ if (TEST)
 		foreach(TYPE IN LISTS TYPES)
 			add_executable(tests.${COMPLEX}.${TYPE} tests/complexes/${COMPLEX}.${TYPE}.cpp)
 			target_include_directories(tests.${COMPLEX}.${TYPE} PUBLIC tests)
-			target_link_libraries(tests.${COMPLEX}.${TYPE} PRIVATE ATEAMS++)
+			target_link_libraries(tests.${COMPLEX}.${TYPE} PUBLIC ATEAMS++)
 			add_test(NAME tests.${COMPLEX}.${TYPE} COMMAND tests.${COMPLEX}.${TYPE})
 		endforeach()
 	endforeach()
@@ -200,7 +223,7 @@ if (TEST)
 		foreach(TYPE IN LISTS TYPES)
 			add_executable(tests.${FUNCTION}.${TYPE} tests/arithmetic/${FUNCTION}.${TYPE}.cpp)
 			target_include_directories(tests.${FUNCTION}.${TYPE} PUBLIC tests)
-			target_link_libraries(tests.${FUNCTION}.${TYPE} PRIVATE ATEAMS++)
+			target_link_libraries(tests.${FUNCTION}.${TYPE} PUBLIC ATEAMS++)
 
 			if("${TYPE}" STREQUAL "Q")
 				add_test(NAME tests.${FUNCTION}.${TYPE} COMMAND tests.${FUNCTION}.${TYPE} 0)

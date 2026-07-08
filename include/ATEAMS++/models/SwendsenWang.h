@@ -81,9 +81,9 @@ namespace ATEAMS::models {
 			std::uniform_int_distribution<int> intuniform;
 			std::set<int> include;
 	};
-
-	#include "models/SwendsenWang.tpp"
 }
+
+#include "ATEAMS++/models/SwendsenWang.tpp"
 
 #endif
 

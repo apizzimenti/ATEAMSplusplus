@@ -1,4 +1,11 @@
 
+#ifndef ATEAMS_ARITHMETIC_KERNEL_T
+#define ATEAMS_ARITHMETIC_KERNEL_T
+
+#ifndef ATEAMS_ARITHMETIC_KERNEL_H
+#error __FILE__ should only be included from arithmetic/kernel.h.
+#endif
+
 #include "ATEAMS++/util.h"
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/arithmetic/kernel.h"
@@ -7,8 +14,6 @@
 
 using namespace std;
 using namespace ATEAMS;
-
-
 
 
 template <typename T>
@@ -55,3 +60,5 @@ SparseVector<T> arithmetic::submatrixKernelSample(
 	// Return a random linear combination of the columns.
 	return arithmetic::randomLinearCombination<T>(kernel, F, intuniform, RNG);
 }
+
+#endif

@@ -56,9 +56,9 @@ namespace ATEAMS {
 			ATEAMS::arithmetic::ThreadOptions& options,
 			bool DEBUG=false
 		);
-
-		#include "arithmetic/kernel.tpp"
 	}
 }
+
+#include "ATEAMS++/arithmetic/kernel.tpp"
 
 #endif
