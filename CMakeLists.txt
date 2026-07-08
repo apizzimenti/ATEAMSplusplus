@@ -172,20 +172,20 @@ install(
 ################################################################################
 
 list(APPEND COMPLEXES
-	# "Cubical"
+	"Cubical"
 )
 
 list(APPEND ARITHMETIC
-	# "kernel"
-	# "persistence"
+	"kernel"
+	"persistence"
 )
 
 list(APPEND MODELS
 	"Bernoulli"
-	# "Glauber"
-	# "InvadedCluster"
-	# "Invasion"
-	# "SwendsenWang"
+	"Glauber"
+	"InvadedCluster"
+	"Invasion"
+	"SwendsenWang"
 )
 
 list(APPEND TYPES
