@@ -7,7 +7,7 @@
 #include "ATEAMS++/models/Bernoulli.h"
 #include "ATEAMS++/models/Glauber.h"
 #include "ATEAMS++/models/InvadedCluster.h"
-// #include "ATEAMS++/models/Invasion.h"
+#include "ATEAMS++/models/Invasion.h"
 
 namespace ATEAMS {
 	/** @brief Discrete probability models. */

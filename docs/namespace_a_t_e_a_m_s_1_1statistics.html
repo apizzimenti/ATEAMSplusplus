@@ -152,14 +152,18 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae9fd64828392386caea7718496a6693b" id="r_ae9fd64828392386caea7718496a6693b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae9fd64828392386caea7718496a6693b">energy</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, <a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ATEAMS::ZpVector</a> f, <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">ATEAMS::Zp</a> F, int dimension)</td></tr>
-<tr class="memdesc:ae9fd64828392386caea7718496a6693b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the total energy of the given configuration.  <br /></td></tr>
-<tr class="memitem:a1abe8379d570d468e1a780d3af163773" id="r_a1abe8379d570d468e1a780d3af163773"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a1abe8379d570d468e1a780d3af163773">occupation</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, <a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ATEAMS::ZpVector</a> f, <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">ATEAMS::Zp</a> F, int dimension)</td></tr>
-<tr class="memdesc:a1abe8379d570d468e1a780d3af163773"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the number of satisfied \(d\)-cells in the complex with respect to \(f_t\): that is, the number of \(d\)-cells \(x\) for which \((\delta^{d-1}f_t)(x) = 0\).  <br /></td></tr>
-<tr class="memitem:acfaf3c3ac758d5c2287029fb9b01b0b9" id="r_acfaf3c3ac758d5c2287029fb9b01b0b9"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#acfaf3c3ac758d5c2287029fb9b01b0b9">satisfied</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, <a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ATEAMS::ZpVector</a> f, <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">ATEAMS::Zp</a> F, int dimension)</td></tr>
-<tr class="memdesc:acfaf3c3ac758d5c2287029fb9b01b0b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the indices of satisfied \(d\)-cells in the complex with respect to \(f_t\): that is, the indices of \(d\)-cells \(x\) for which \((\delta^{d-1}f_t)(x) = 0\).  <br /></td></tr>
-<tr class="memitem:ad59f1acb679dd1b81f71228943613137" id="r_ad59f1acb679dd1b81f71228943613137"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad59f1acb679dd1b81f71228943613137">unsatisfied</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, <a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ATEAMS::ZpVector</a> f, <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">ATEAMS::Zp</a> F, int dimension)</td></tr>
-<tr class="memdesc:ad59f1acb679dd1b81f71228943613137"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the indices of unsatisfied \(d\)-cells in the complex with respect to \(f_t\): that is, the indices of \(d\)-cells \(x\) for which \((\delta^{d-1}f_t)(x) \neq 0\).  <br /></td></tr>
+<tr class="memitem:a7ebc622d4fb23af94f17fc6e194064b5" id="r_a7ebc622d4fb23af94f17fc6e194064b5"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a7ebc622d4fb23af94f17fc6e194064b5 template"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a7ebc622d4fb23af94f17fc6e194064b5">energy</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt; *complex, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">ATEAMS::SparseVector</a>&lt; T &gt; f, <a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">ATEAMS::Field</a> F, int dimension)</td></tr>
+<tr class="memdesc:a7ebc622d4fb23af94f17fc6e194064b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the total energy of the given configuration.  <br /></td></tr>
+<tr class="memitem:aa50caab653fc415f8503cc0d01afe53a" id="r_aa50caab653fc415f8503cc0d01afe53a"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:aa50caab653fc415f8503cc0d01afe53a template"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aa50caab653fc415f8503cc0d01afe53a">occupation</a> (Complex&lt; T &gt; *complex, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a>&lt; T &gt; f, <a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a> F, int dimension)</td></tr>
+<tr class="memdesc:aa50caab653fc415f8503cc0d01afe53a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the number of satisfied \(d\)-cells in the complex with respect to \(f_t\): that is, the number of \(d\)-cells \(x\) for which \((\delta^{d-1}f_t)(x) = 0\).  <br /></td></tr>
+<tr class="memitem:a058caa873b7a013093016b8744629d2c" id="r_a058caa873b7a013093016b8744629d2c"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a058caa873b7a013093016b8744629d2c template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a058caa873b7a013093016b8744629d2c">satisfied</a> (Complex&lt; T &gt; *complex, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a>&lt; T &gt; f, <a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a> F, int dimension)</td></tr>
+<tr class="memdesc:a058caa873b7a013093016b8744629d2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the indices of satisfied \(d\)-cells in the complex with respect to \(f_t\): that is, the indices of \(d\)-cells \(x\) for which \((\delta^{d-1}f_t)(x) = 0\).  <br /></td></tr>
+<tr class="memitem:a6eb792ab38981d60ea762a71acd595f1" id="r_a6eb792ab38981d60ea762a71acd595f1"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a6eb792ab38981d60ea762a71acd595f1 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6eb792ab38981d60ea762a71acd595f1">unsatisfied</a> (Complex&lt; T &gt; *complex, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a>&lt; T &gt; f, <a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a> F, int dimension)</td></tr>
+<tr class="memdesc:a6eb792ab38981d60ea762a71acd595f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the indices of unsatisfied \(d\)-cells in the complex with respect to \(f_t\): that is, the indices of \(d\)-cells \(x\) for which \((\delta^{d-1}f_t)(x) \neq 0\).  <br /></td></tr>
 <tr class="memitem:ac1ad9e5217444030b4d563a5e196af61" id="r_ac1ad9e5217444030b4d563a5e196af61"><td class="memItemLeft">std::function&lt; double(int)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac1ad9e5217444030b4d563a5e196af61">selfdual</a> (int p)</td></tr>
 <tr class="memdesc:ac1ad9e5217444030b4d563a5e196af61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines the self-dual probability for the PLGT/PRCM.  <br /></td></tr>
 <tr class="memitem:afc076e238f0d484e8009f5ca22af7def" id="r_afc076e238f0d484e8009f5ca22af7def"><td class="memItemLeft">std::function&lt; double(int)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#afc076e238f0d484e8009f5ca22af7def">constant</a> (double C)</td></tr>
@@ -196,7 +200,7 @@ Functions</h2></td></tr>
 <p>Constant-temperature. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">C</td><td>Temperature to return. If you want to see whether this temperature is valid (i.e. \(0 \leq 1-e^{-C} \leq 1\)), please set the <span class="tt">DEBUG</span> model parameter (e.g. in <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_parameters.html" title="ATEAMS::models::SwendsenWangParameters">ATEAMS::models::SwendsenWangParameters</a>) to <span class="tt">true</span>. If your provided temperature doesn't work, an assertion will fail. </td></tr>
+    <tr><td class="paramname">C</td><td>Temperature to return. If you want to see whether this temperature is valid (i.e. \(0 \leq 1-e^{-C} \leq 1\)), please set the <span class="tt">DEBUG</span> model parameter (e.g. in ATEAMS::models::SwendsenWangParameters) to <span class="tt">true</span>. If your provided temperature doesn't work, an assertion will fail. </td></tr>
   </table>
   </dd>
 </dl>
@@ -204,11 +208,13 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae9fd64828392386caea7718496a6693b" name="ae9fd64828392386caea7718496a6693b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9fd64828392386caea7718496a6693b">&#9670;&#160;</a></span>energy()</h2>
+<a id="a7ebc622d4fb23af94f17fc6e194064b5" name="a7ebc622d4fb23af94f17fc6e194064b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ebc622d4fb23af94f17fc6e194064b5">&#9670;&#160;</a></span>energy()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -216,17 +222,17 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int ATEAMS::statistics::energy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ATEAMS::ZpVector</a></td>          <td class="paramname"><span class="paramname"><em>f</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">ATEAMS::SparseVector</a>&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>f</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">ATEAMS::Zp</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">ATEAMS::Field</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -255,11 +261,13 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1abe8379d570d468e1a780d3af163773" name="a1abe8379d570d468e1a780d3af163773"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1abe8379d570d468e1a780d3af163773">&#9670;&#160;</a></span>occupation()</h2>
+<a id="aa50caab653fc415f8503cc0d01afe53a" name="aa50caab653fc415f8503cc0d01afe53a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa50caab653fc415f8503cc0d01afe53a">&#9670;&#160;</a></span>occupation()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -267,17 +275,17 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int ATEAMS::statistics::occupation </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+          <td class="paramtype">Complex&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ATEAMS::ZpVector</a></td>          <td class="paramname"><span class="paramname"><em>f</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a>&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>f</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">ATEAMS::Zp</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -306,11 +314,13 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="acfaf3c3ac758d5c2287029fb9b01b0b9" name="acfaf3c3ac758d5c2287029fb9b01b0b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acfaf3c3ac758d5c2287029fb9b01b0b9">&#9670;&#160;</a></span>satisfied()</h2>
+<a id="a058caa873b7a013093016b8744629d2c" name="a058caa873b7a013093016b8744629d2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a058caa873b7a013093016b8744629d2c">&#9670;&#160;</a></span>satisfied()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -318,17 +328,17 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">std::vector&lt; int &gt; ATEAMS::statistics::satisfied </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+          <td class="paramtype">Complex&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ATEAMS::ZpVector</a></td>          <td class="paramname"><span class="paramname"><em>f</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a>&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>f</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">ATEAMS::Zp</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -425,11 +435,13 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad59f1acb679dd1b81f71228943613137" name="ad59f1acb679dd1b81f71228943613137"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad59f1acb679dd1b81f71228943613137">&#9670;&#160;</a></span>unsatisfied()</h2>
+<a id="a6eb792ab38981d60ea762a71acd595f1" name="a6eb792ab38981d60ea762a71acd595f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6eb792ab38981d60ea762a71acd595f1">&#9670;&#160;</a></span>unsatisfied()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -437,17 +449,17 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">std::vector&lt; int &gt; ATEAMS::statistics::unsatisfied </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+          <td class="paramtype">Complex&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ATEAMS::ZpVector</a></td>          <td class="paramname"><span class="paramname"><em>f</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a>&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>f</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">ATEAMS::Zp</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

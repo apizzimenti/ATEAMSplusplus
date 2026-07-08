@@ -5,11 +5,10 @@
 using namespace ATEAMS;
 using namespace std;
 
-using Complex = complexes::Cubical;
-using Parameters = models::BernoulliParameters;
+using Structure = complexes::Cubical<FINITE>;
 using Model = models::Bernoulli;
-using State = models::BernoulliState;
-using Chain = statistics::Chain<Model>;
+using State = models::ModelState<FINITE,DenseVector>;
+using Chain = statistics::Chain<FINITE,DenseVector>;
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
@@ -17,17 +16,17 @@ int main(int argc, char *argv[]) {
 
 	for (int dimension : DIMENSIONS) {
 		vector<int> corners(dimension, 3);
-		Complex COMPLEX(corners);
+		Structure COMPLEX(corners);
 
-		Parameters PARAMETERS;
+		models::ModelParameters PARAMETERS;
 		PARAMETERS.p = 0.5;
 		PARAMETERS.dimension = dimension/2;
 
 		Model MODEL(&COMPLEX, PARAMETERS);
 		Chain CHAIN(&MODEL, ITERATIONS);
 
-		for (State* STATE : CHAIN.simulate<State>()) {
-			if (STATE->rank > HOMOLOGICALRANK[dimension]) RESULT = FAIL;
+		for (State STATE : CHAIN.simulate()) {
+			if (STATE.rank > HOMOLOGICALRANK[dimension]) RESULT = FAIL;
 		}
 	}
 

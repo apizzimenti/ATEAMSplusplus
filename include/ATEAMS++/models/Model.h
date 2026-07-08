@@ -74,10 +74,10 @@ namespace ATEAMS::models {
 	 * @var ModelState::energy
 	 * 	Energy of the current cochain, i.e. \f$\H(f_t)\f$. Used by @ref Glauber.
 	 * 
-	 * @var ModelState::time
+	 * @var ModelState::t
 	 * 	Current time-step. Used by every @ref Model.
 	 */
-	template <typename T, template <typename> typename ContainerType>
+	template <typename T=ATEAMS::ff, template <typename> typename ContainerType=ATEAMS::SparseVector>
 	struct ModelState {
 		// Used by: SwendsenWang, InvadedCluster,
 		ContainerType<T> cochain;
@@ -111,31 +111,46 @@ namespace ATEAMS::models {
 	 * @var Model::kind
 	 * Model name.
 	 */
-	template <typename T, template <typename> typename ContainerType>
+	template <typename T=ATEAMS::ff, template <typename> typename ContainerType=ATEAMS::SparseVector>
 	class Model {
 		public:
 			ATEAMS::complexes::Complex<T>* complex;
 			ModelParameters parameters;
 			std::string kind;
 
+			typedef T DataType;
+
+			template <typename R>
+			using StorageType = ContainerType<R>;
+
 			/**
 			 * @brief Draw a sample from the model.
 			 * 
 			 * @param t When simulated by a Markov chain, \f$t\f$ is the current
 			 * 	time-step.
+			 * @param state Keeps track of state.
 			 * @param options Options for the multithreaded computing environment.
 			 * 
-			 * @returns A sample from the model.
+			 * @returns Modified state.
 			 */
 			virtual ModelState<T,ContainerType> sample(int t, ModelState<T,ContainerType>& state, ATEAMS::arithmetic::ThreadOptions& options) = 0;
 
-			/** @brief Initializes the state as determined by the model. */
+			/**
+			 * @brief Initializes the state as determined by the model.
+			 * 
+			 * @param state Keeps track of state.
+			 * 
+			 * @returns Modified state.
+			 */
 			virtual ModelState<T,ContainerType> initialize(ModelState<T,ContainerType>& state) = 0;
 
 			/**
 			 * @brief Initializes the state as determined by the user.
 			 * 
-			 * @param c Initial state.
+			 * @param c Initial cochain.
+			 * @param state Keeps track of state.
+			 * 
+			 * @returns Modified state.
 			 */
 			virtual ModelState<T,ContainerType> initialize(ContainerType<T> c, ModelState<T,ContainerType>& state) = 0;
 	};

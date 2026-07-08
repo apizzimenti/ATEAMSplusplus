@@ -15,15 +15,15 @@ namespace ATEAMS {
 		 * @brief Encodes a complex by its boundary matrices.
 		 * 
 		 * @var BoundaryData::Matrices
-		 * @ref ATEAMS::ZpMatrices where `Matrices[d]` is the \f$d\f$th boundary
+		 * 	@ref SparseMatrices where `Matrices[d]` is the \f$d\f$th boundary
 		 * 	matrix \f$\partial_d\f$ of the given complex.
 		 * 
 		 * @var BoundaryData::Bases
-		 * @ref ATEAMS::ZpBases where `Bases[d]` is a @ref ATEAMS::ZpBasis representing
+		 * @ref SparseBases where `Bases[d]` is a @ref SparseBasis representing
 		 * 	a basis for the \f$d\f$th homology group \f$H_d(X)\f$.
 		 * 
 		 * @var BoundaryData::Full
-		 * A @ref ATEAMS::ZpMatrix representing the full boundary matrix \f$\partial\f$
+		 * A @ref SparseMatrix representing the full boundary matrix \f$\partial\f$
 		 * 	for the complex \f$X\f$ --- that is, the square matrix with rows and
 		 * 	columns indexed by all cells of \f$X\f$ where \f$\partial_{ij} = \pm 1\f$
 		 * 	if cell \f$i\f$ is a face of cell \f$j\f$, and \f$0\f$ otherwise.
@@ -62,7 +62,7 @@ namespace ATEAMS {
 
 				/**
 				 * @brief Constructs boundary matrices.
-				 * @param F Finite field \f$ \Z/p\Z \f$.
+				 * @param F Finite field \f$ \Z/p\Z \f$ or \f$ \Q \f$..
 				 */
 				virtual void constructBoundaryMatrices(Field F) = 0;
 

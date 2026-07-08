@@ -81,7 +81,7 @@ list(APPEND SOURCE_HEADERS
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Glauber.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvadedCluster.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/SwendsenWang.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Invasion.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Invasion.h
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/statistics.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/statistics/Chain.h
@@ -100,6 +100,7 @@ list(APPEND SOURCE_IMPLEMENTATIONS
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/Bernoulli.tpp
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/Glauber.tpp
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/InvadedCluster.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/Invasion.tpp
 )
 
 
@@ -182,8 +183,8 @@ list(APPEND ARITHMETIC
 list(APPEND MODELS
 	# "Bernoulli"
 	# "Glauber"
-	"InvadedCluster"
-	# "Invasion"
+	# "InvadedCluster"
+	"Invasion"
 	# "SwendsenWang"
 )
 

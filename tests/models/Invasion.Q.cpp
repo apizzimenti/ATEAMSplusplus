@@ -5,11 +5,10 @@
 using namespace ATEAMS;
 using namespace std;
 
-using Complex = complexes::Cubical;
-using Parameters = models::InvasionParameters;
+using Structure = complexes::Cubical<FINITE>;
 using Model = models::Invasion;
-using State = models::InvasionState;
-using Chain = statistics::Chain<Model>;
+using State = models::ModelState<FINITE,DenseVector>;
+using Chain = statistics::Chain<FINITE,DenseVector>;
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
@@ -17,9 +16,9 @@ int main(int argc, char *argv[]) {
 
 	for (int dimension : DIMENSIONS) {
 		vector<int> corners(dimension, 3);
-		Complex COMPLEX(corners);
+		Structure COMPLEX(corners);
 
-		Parameters PARAMETERS;
+		models::ModelParameters PARAMETERS;
 		PARAMETERS.field = FIELD;
 		PARAMETERS.dimension = dimension/2;
 		PARAMETERS.stoppingFunction = statistics::stopInvadingAt({1});
@@ -27,8 +26,8 @@ int main(int argc, char *argv[]) {
 		Model MODEL(&COMPLEX, PARAMETERS);
 		Chain CHAIN(&MODEL, ITERATIONS);
 
-		for (State* state : CHAIN.simulate<State>()) {
-			if (state->essential.size() != HOMOLOGICALRANK[dimension]) RESULT = FAIL;
+		for (State state : CHAIN.simulate()) {
+			if (state.essential.size() != HOMOLOGICALRANK[dimension]) RESULT = FAIL;
 		}
 	}
 

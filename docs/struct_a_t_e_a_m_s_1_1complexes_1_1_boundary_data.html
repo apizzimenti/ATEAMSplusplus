@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: ATEAMS::complexes::BoundaryData Struct Reference</title>
+<title>ATEAMS++: ATEAMS::complexes::BoundaryData&lt; T &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ATEAMS::complexes::BoundaryData Struct Reference</div></div>
+  <div class="headertitle"><div class="title">ATEAMS::complexes::BoundaryData&lt; T &gt; Struct Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -149,37 +149,42 @@ document.addEventListener('DOMContentLoaded', () => {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a9767684295c6cd3d370bf40aa6cd79ab" id="r_a9767684295c6cd3d370bf40aa6cd79ab"><td class="memItemLeft">ZpMatrices&#160;</td><td class="memItemRight"><a class="el" href="#a9767684295c6cd3d370bf40aa6cd79ab">Matrices</a></td></tr>
-<tr class="memitem:a843f70c6917dfa440ab9e28fd297c695" id="r_a843f70c6917dfa440ab9e28fd297c695"><td class="memItemLeft">ZpBases&#160;</td><td class="memItemRight"><a class="el" href="#a843f70c6917dfa440ab9e28fd297c695">Bases</a></td></tr>
-<tr class="memitem:af39f21f8e1bce0dcc3b451bc3f7cb8a3" id="r_af39f21f8e1bce0dcc3b451bc3f7cb8a3"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">ZpMatrix</a>&#160;</td><td class="memItemRight"><a class="el" href="#af39f21f8e1bce0dcc3b451bc3f7cb8a3">Full</a></td></tr>
-<tr class="memitem:a74e11bf3e752a7ea8411d12b5ab45dde" id="r_a74e11bf3e752a7ea8411d12b5ab45dde"><td class="memItemLeft">FlatBoundaryMatrix&#160;</td><td class="memItemRight"><a class="el" href="#a74e11bf3e752a7ea8411d12b5ab45dde">Flat</a></td></tr>
+<tr class="memitem:a1d92b22db58da7ff31b298fac1fc35d0" id="r_a1d92b22db58da7ff31b298fac1fc35d0"><td class="memItemLeft">SparseMatrices&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1d92b22db58da7ff31b298fac1fc35d0">Matrices</a></td></tr>
+<tr class="memitem:aa43652bbdfcfb9f05725975d47f8a0ae" id="r_aa43652bbdfcfb9f05725975d47f8a0ae"><td class="memItemLeft">SparseBases&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa43652bbdfcfb9f05725975d47f8a0ae">Bases</a></td></tr>
+<tr class="memitem:af840fc27aefc5949e4b53ba3bce7b013" id="r_af840fc27aefc5949e4b53ba3bce7b013"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#a2103baa5389dfd08d5ba2052c4022760">SparseMatrix</a>&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af840fc27aefc5949e4b53ba3bce7b013">Full</a></td></tr>
+<tr class="memitem:a775e1fef0df9e66c36c2d725f119ce0e" id="r_a775e1fef0df9e66c36c2d725f119ce0e"><td class="memItemLeft">FlatBoundaryMatrix&#160;</td><td class="memItemRight"><a class="el" href="#a775e1fef0df9e66c36c2d725f119ce0e">Flat</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Encodes a complex by its boundary matrices. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = ATEAMS::ff&gt;<br />
+struct ATEAMS::complexes::BoundaryData&lt; T &gt;</div><p>Encodes a complex by its boundary matrices. </p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a843f70c6917dfa440ab9e28fd297c695" name="a843f70c6917dfa440ab9e28fd297c695"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a843f70c6917dfa440ab9e28fd297c695">&#9670;&#160;</a></span>Bases</h2>
+<a id="aa43652bbdfcfb9f05725975d47f8a0ae" name="aa43652bbdfcfb9f05725975d47f8a0ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa43652bbdfcfb9f05725975d47f8a0ae">&#9670;&#160;</a></span>Bases</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T = ATEAMS::ff&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">ZpBases ATEAMS::complexes::BoundaryData::Bases</td>
+          <td class="memname">SparseBases&lt;T&gt; <a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">ATEAMS::complexes::BoundaryData</a>&lt; T &gt;::Bases</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>ATEAMS::ZpBases where <span class="tt"><a class="el" href="#a843f70c6917dfa440ab9e28fd297c695">Bases</a>[d]</span> is a ATEAMS::ZpBasis representing a basis for the \(d\)th homology group \(H_d(X)\). </p>
+<p>ATEAMS::ZpBases where <span class="tt"><a class="el" href="#aa43652bbdfcfb9f05725975d47f8a0ae">Bases</a>[d]</span> is a ATEAMS::ZpBasis representing a basis for the \(d\)th homology group \(H_d(X)\). </p>
 
 </div>
 </div>
-<a id="a74e11bf3e752a7ea8411d12b5ab45dde" name="a74e11bf3e752a7ea8411d12b5ab45dde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74e11bf3e752a7ea8411d12b5ab45dde">&#9670;&#160;</a></span>Flat</h2>
+<a id="a775e1fef0df9e66c36c2d725f119ce0e" name="a775e1fef0df9e66c36c2d725f119ce0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a775e1fef0df9e66c36c2d725f119ce0e">&#9670;&#160;</a></span>Flat</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T = ATEAMS::ff&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">FlatBoundaryMatrix ATEAMS::complexes::BoundaryData::Flat</td>
+          <td class="memname">FlatBoundaryMatrix <a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">ATEAMS::complexes::BoundaryData</a>&lt; T &gt;::Flat</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -187,33 +192,37 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="af39f21f8e1bce0dcc3b451bc3f7cb8a3" name="af39f21f8e1bce0dcc3b451bc3f7cb8a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af39f21f8e1bce0dcc3b451bc3f7cb8a3">&#9670;&#160;</a></span>Full</h2>
+<a id="af840fc27aefc5949e4b53ba3bce7b013" name="af840fc27aefc5949e4b53ba3bce7b013"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af840fc27aefc5949e4b53ba3bce7b013">&#9670;&#160;</a></span>Full</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T = ATEAMS::ff&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1">ZpMatrix</a> ATEAMS::complexes::BoundaryData::Full</td>
+          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#a2103baa5389dfd08d5ba2052c4022760">SparseMatrix</a>&lt;T&gt; <a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">ATEAMS::complexes::BoundaryData</a>&lt; T &gt;::Full</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A <a class="el" href="namespace_a_t_e_a_m_s.html#a7ba31c2feb647cfd640f74f2ff8440b1" title="ATEAMS::ZpMatrix">ATEAMS::ZpMatrix</a> representing the full boundary matrix \(\partial\) for the complex \(X\) &mdash; that is, the square matrix with rows and columns indexed by all cells of \(X\) where \(\partial_{ij} = \pm 1\) if cell \(i\) is a face of cell \(j\), and \(0\) otherwise. </p>
+<p>A ATEAMS::ZpMatrix representing the full boundary matrix \(\partial\) for the complex \(X\) &mdash; that is, the square matrix with rows and columns indexed by all cells of \(X\) where \(\partial_{ij} = \pm 1\) if cell \(i\) is a face of cell \(j\), and \(0\) otherwise. </p>
 
 </div>
 </div>
-<a id="a9767684295c6cd3d370bf40aa6cd79ab" name="a9767684295c6cd3d370bf40aa6cd79ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9767684295c6cd3d370bf40aa6cd79ab">&#9670;&#160;</a></span>Matrices</h2>
+<a id="a1d92b22db58da7ff31b298fac1fc35d0" name="a1d92b22db58da7ff31b298fac1fc35d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d92b22db58da7ff31b298fac1fc35d0">&#9670;&#160;</a></span>Matrices</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T = ATEAMS::ff&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">ZpMatrices ATEAMS::complexes::BoundaryData::Matrices</td>
+          <td class="memname">SparseMatrices&lt;T&gt; <a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">ATEAMS::complexes::BoundaryData</a>&lt; T &gt;::Matrices</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>ATEAMS::ZpMatrices where <span class="tt"><a class="el" href="#a9767684295c6cd3d370bf40aa6cd79ab">Matrices</a>[d]</span> is the \(d\)th boundary matrix \(\partial_d\) of the given complex. </p>
+<p>ATEAMS::ZpMatrices where <span class="tt"><a class="el" href="#a1d92b22db58da7ff31b298fac1fc35d0">Matrices</a>[d]</span> is the \(d\)th boundary matrix \(\partial_d\) of the given complex. </p>
 
 </div>
 </div>

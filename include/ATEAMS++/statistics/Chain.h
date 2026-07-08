@@ -18,7 +18,7 @@ namespace ATEAMS {
 		 * 	(Pointer to) a Model.
 		 * 
 		 * @var Chain::state
-		 * 	A @ref ATEAMS::ModelState.
+		 * 	A @ref ATEAMS::models::ModelState.
 		 * 
 		 * @var Chain::options
 		 * 	Multithreaded computing options @ref ATEAMS::arithmetic::ThreadOptions.
@@ -26,7 +26,7 @@ namespace ATEAMS {
 		 * @var Chain::steps
 		 * 	Number of iterations.
 		 */
-		template <typename T, template <typename> typename ContainerType>
+		template <typename T=ATEAMS::ff, template <typename> typename ContainerType=ATEAMS::SparseVector>
 		class Chain {
 			public:
 				ATEAMS::models::Model<T,ContainerType>* model;

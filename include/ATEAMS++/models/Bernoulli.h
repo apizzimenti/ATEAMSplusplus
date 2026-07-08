@@ -29,7 +29,7 @@ namespace ATEAMS {
 
 				/**
 				 * @brief Constructor.
-				 * @param complex (Pointer to) a complex.
+				 * @param complex (Pointer to) a Complex.
 				 * @param parameters Model parameters.
 				 */
 				Bernoulli(ATEAMS::complexes::Complex<ff>* complex, ModelParameters parameters);
@@ -37,9 +37,11 @@ namespace ATEAMS {
 				/**
 				 * @brief Directly samples Bernoulli percolation at the desired dimension.
 				 * @param t Time step.
+				 * @param state Tracks the state of the model. See @ref ATEAMS::statistics::Chain.
 				 * @param options Multithreaded computing environment options.
 				 * 
-				 * @return List of indices of included \f$d\f$-cells.
+				 * @returns @ref ModelState with @ref ModelState::essential,
+				 * @ref ModelState::includes, and @ref ModelState::t modified.
 				 */
 				ModelState<ff,DenseVector> sample(int t, ModelState<ff,DenseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
 

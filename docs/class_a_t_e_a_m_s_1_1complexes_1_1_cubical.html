@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: ATEAMS::complexes::Cubical Class Reference</title>
+<title>ATEAMS++: ATEAMS::complexes::Cubical&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ATEAMS::complexes::Cubical Class Reference</div></div>
+  <div class="headertitle"><div class="title">ATEAMS::complexes::Cubical&lt; T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -147,79 +147,82 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <p><code>#include &lt;<a class="el" href="_cubical_8h_source.html">Cubical.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for ATEAMS::complexes::Cubical:</div>
+Inheritance diagram for ATEAMS::complexes::Cubical&lt; T &gt;:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.png" usemap="#ATEAMS_3A_3Acomplexes_3A_3ACubical_map" alt=""/>
-  <map id="ATEAMS_3A_3Acomplexes_3A_3ACubical_map" name="ATEAMS_3A_3Acomplexes_3A_3ACubical_map">
-<area href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" title="Abstract (template) class for various complexes." alt="ATEAMS::complexes::Complex" shape="rect" coords="0,0,183,24"/>
+  <img src="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.png" usemap="#ATEAMS_3A_3Acomplexes_3A_3ACubical_3C_20T_20_3E_map" alt=""/>
+  <map id="ATEAMS_3A_3Acomplexes_3A_3ACubical_3C_20T_20_3E_map" name="ATEAMS_3A_3Acomplexes_3A_3ACubical_3C_20T_20_3E_map">
+<area href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" alt="ATEAMS::complexes::Complex&lt; T &gt;" shape="rect" coords="0,0,214,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a84a6b0c11dda007cbb72b06933ed2262" id="r_a84a6b0c11dda007cbb72b06933ed2262"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a84a6b0c11dda007cbb72b06933ed2262">Cubical</a> (std::vector&lt; int &gt; corners, bool periodic)</td></tr>
-<tr class="memdesc:a84a6b0c11dda007cbb72b06933ed2262"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. See <a class="el" href="#a961c92cd5689e3b9ac665f0f4412a0fa" title="ATEAMS::complexes::Cubical::corners">ATEAMS::complexes::Cubical::corners</a>.  <br /></td></tr>
-<tr class="memitem:ae3046503ed33a3d7430341b36f079172" id="r_ae3046503ed33a3d7430341b36f079172"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae3046503ed33a3d7430341b36f079172">Cubical</a> (std::vector&lt; int &gt; corners)</td></tr>
-<tr class="memdesc:ae3046503ed33a3d7430341b36f079172"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. See <a class="el" href="#a961c92cd5689e3b9ac665f0f4412a0fa" title="ATEAMS::complexes::Cubical::corners">ATEAMS::complexes::Cubical::corners</a>. Imposes periodic boundary conditions by default.  <br /></td></tr>
-<tr class="memitem:a5a1d9d3b1f29a7c42d6f85dcde4d8829" id="r_a5a1d9d3b1f29a7c42d6f85dcde4d8829"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5a1d9d3b1f29a7c42d6f85dcde4d8829">constructBoundaryMatrices</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> F) override</td></tr>
-<tr class="memdesc:a5a1d9d3b1f29a7c42d6f85dcde4d8829"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs boundary matrices for the cubical complex with specified corners and boundary conditions.  <br /></td></tr>
-<tr class="memitem:adcfc41a37c0cdf0829400aa0d25fb9aa" id="r_adcfc41a37c0cdf0829400aa0d25fb9aa"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adcfc41a37c0cdf0829400aa0d25fb9aa">constructFlatBoundaryMatrix</a> () override</td></tr>
-<tr class="memdesc:adcfc41a37c0cdf0829400aa0d25fb9aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a boundary matrix for use with PHAT.  <br /></td></tr>
-<tr class="memitem:abba9426daca069dc5f845e6552ac1b73" id="r_abba9426daca069dc5f845e6552ac1b73"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abba9426daca069dc5f845e6552ac1b73">constructFullBoundaryMatrix</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> F) override</td></tr>
-<tr class="memdesc:abba9426daca069dc5f845e6552ac1b73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a full boundary matrix in SparseRREF format.  <br /></td></tr>
-<tr class="memitem:a964572ed8a825451f432b2761ba594b4" id="r_a964572ed8a825451f432b2761ba594b4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a964572ed8a825451f432b2761ba594b4">size</a> () override</td></tr>
-<tr class="memdesc:a964572ed8a825451f432b2761ba594b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size.  <br /></td></tr>
+<tr class="memitem:a988a36e80c4d51a99466b4ed97b9106a" id="r_a988a36e80c4d51a99466b4ed97b9106a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a988a36e80c4d51a99466b4ed97b9106a">Cubical</a> (std::vector&lt; int &gt; corners, bool periodic)</td></tr>
+<tr class="memdesc:a988a36e80c4d51a99466b4ed97b9106a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. See <a class="el" href="#aafb83af1e649f55e42a708ec8e47e0a2" title="ATEAMS::complexes::Cubical::corners">ATEAMS::complexes::Cubical::corners</a>.  <br /></td></tr>
+<tr class="memitem:aa085c2a6a743f695fc3cd2803ecd4588" id="r_aa085c2a6a743f695fc3cd2803ecd4588"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa085c2a6a743f695fc3cd2803ecd4588">Cubical</a> (std::vector&lt; int &gt; corners)</td></tr>
+<tr class="memdesc:aa085c2a6a743f695fc3cd2803ecd4588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. See <a class="el" href="#aafb83af1e649f55e42a708ec8e47e0a2" title="ATEAMS::complexes::Cubical::corners">ATEAMS::complexes::Cubical::corners</a>. Imposes periodic boundary conditions by default.  <br /></td></tr>
+<tr class="memitem:ac39f54d9fc7b25f507a68446616ba425" id="r_ac39f54d9fc7b25f507a68446616ba425"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac39f54d9fc7b25f507a68446616ba425">constructBoundaryMatrices</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a> F) override</td></tr>
+<tr class="memdesc:ac39f54d9fc7b25f507a68446616ba425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs boundary matrices for the cubical complex with specified corners and boundary conditions.  <br /></td></tr>
+<tr class="memitem:ad21bb3507ba02383f1f8a3ab2b01391e" id="r_ad21bb3507ba02383f1f8a3ab2b01391e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad21bb3507ba02383f1f8a3ab2b01391e">constructFlatBoundaryMatrix</a> () override</td></tr>
+<tr class="memdesc:ad21bb3507ba02383f1f8a3ab2b01391e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a boundary matrix for use with PHAT.  <br /></td></tr>
+<tr class="memitem:a2cb9e64100280b4672e8c3d3e356283c" id="r_a2cb9e64100280b4672e8c3d3e356283c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2cb9e64100280b4672e8c3d3e356283c">constructFullBoundaryMatrix</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a> F) override</td></tr>
+<tr class="memdesc:a2cb9e64100280b4672e8c3d3e356283c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a full boundary matrix in SparseRREF format.  <br /></td></tr>
+<tr class="memitem:a4aae3ffd784fb13c36c708d087662514" id="r_a4aae3ffd784fb13c36c708d087662514"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a4aae3ffd784fb13c36c708d087662514">size</a> () override</td></tr>
+<tr class="memdesc:a4aae3ffd784fb13c36c708d087662514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a96170d25e84ceacb749714ffad84b93d" id="r_a96170d25e84ceacb749714ffad84b93d"><td class="memItemLeft"><a id="a96170d25e84ceacb749714ffad84b93d" name="a96170d25e84ceacb749714ffad84b93d"></a>
+<tr class="memitem:acc0e87412d2f7cc2ba5cc08eb22ae484" id="r_acc0e87412d2f7cc2ba5cc08eb22ae484"><td class="memItemLeft"><a id="acc0e87412d2f7cc2ba5cc08eb22ae484" name="acc0e87412d2f7cc2ba5cc08eb22ae484"></a>
 std::string&#160;</td><td class="memItemRight"><b>kind</b> = &quot;cubical&quot;</td></tr>
-<tr class="memdesc:a96170d25e84ceacb749714ffad84b93d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Short name, mostly for metadata collection. <br /></td></tr>
-<tr class="memitem:a961c92cd5689e3b9ac665f0f4412a0fa" id="r_a961c92cd5689e3b9ac665f0f4412a0fa"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a961c92cd5689e3b9ac665f0f4412a0fa">corners</a></td></tr>
-<tr class="memdesc:a961c92cd5689e3b9ac665f0f4412a0fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Corners of the lattice.  <br /></td></tr>
-<tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a></td></tr>
-<tr class="memitem:a5192ac38e75925cd981741f7ed0676bb pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a5192ac38e75925cd981741f7ed0676bb"><td class="memItemLeft">
-<a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&#160;</td><td class="memItemRight"><b>Boundary</b></td></tr>
-<tr class="memdesc:a5192ac38e75925cd981741f7ed0676bb pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boundary data. <br /></td></tr>
-<tr class="memitem:acc3fd00ac7e30e383ebedcb0ed094cdc pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_acc3fd00ac7e30e383ebedcb0ed094cdc"><td class="memItemLeft">
-<a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&#160;</td><td class="memItemRight"><b>Coboundary</b></td></tr>
-<tr class="memdesc:acc3fd00ac7e30e383ebedcb0ed094cdc pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coboundary data. <br /></td></tr>
-<tr class="memitem:a238601cd8c78b04fbb0d84c91f7aa6ee pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a238601cd8c78b04fbb0d84c91f7aa6ee"><td class="memItemLeft">
+<tr class="memdesc:acc0e87412d2f7cc2ba5cc08eb22ae484"><td class="mdescLeft">&#160;</td><td class="mdescRight">Short name, mostly for metadata collection. <br /></td></tr>
+<tr class="memitem:aafb83af1e649f55e42a708ec8e47e0a2" id="r_aafb83af1e649f55e42a708ec8e47e0a2"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aafb83af1e649f55e42a708ec8e47e0a2">corners</a></td></tr>
+<tr class="memdesc:aafb83af1e649f55e42a708ec8e47e0a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Corners of the lattice.  <br /></td></tr>
+<tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td></tr>
+<tr class="memitem:a314d3ba6a82bdffb540d9c16d0a95796 pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a314d3ba6a82bdffb540d9c16d0a95796"><td class="memItemLeft">
+<a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&lt; T &gt;&#160;</td><td class="memItemRight"><b>Boundary</b></td></tr>
+<tr class="memdesc:a314d3ba6a82bdffb540d9c16d0a95796 pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boundary data. <br /></td></tr>
+<tr class="memitem:a6a8b0bc09cb613b1dceb2459f79363ed pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a6a8b0bc09cb613b1dceb2459f79363ed"><td class="memItemLeft">
+<a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&lt; T &gt;&#160;</td><td class="memItemRight"><b>Coboundary</b></td></tr>
+<tr class="memdesc:a6a8b0bc09cb613b1dceb2459f79363ed pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coboundary data. <br /></td></tr>
+<tr class="memitem:a502d3c55cf06a916dd9800d9b8018170 pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a502d3c55cf06a916dd9800d9b8018170"><td class="memItemLeft">
 std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>Cells</b></td></tr>
-<tr class="memdesc:a238601cd8c78b04fbb0d84c91f7aa6ee pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains cell counts. <br /></td></tr>
-<tr class="memitem:adcf2d963b050fe555feca244c0b5066f pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_adcf2d963b050fe555feca244c0b5066f"><td class="memItemLeft">
+<tr class="memdesc:a502d3c55cf06a916dd9800d9b8018170 pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains cell counts. <br /></td></tr>
+<tr class="memitem:a9106091796025605db5e15b1d4d6ab25 pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a9106091796025605db5e15b1d4d6ab25"><td class="memItemLeft">
 std::vector&lt; std::vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight"><b>breaks</b></td></tr>
-<tr class="memdesc:adcf2d963b050fe555feca244c0b5066f pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the starting and ending indices of \(d\)-cells in the full/flat boundary matrices. <br /></td></tr>
-<tr class="memitem:afd036b3039aa9f44def7193a36d4917d pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_afd036b3039aa9f44def7193a36d4917d"><td class="memItemLeft">
+<tr class="memdesc:a9106091796025605db5e15b1d4d6ab25 pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the starting and ending indices of \(d\)-cells in the full/flat boundary matrices. <br /></td></tr>
+<tr class="memitem:aaee582dcd95effd4a7c1dca580aeb8f6 pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_aaee582dcd95effd4a7c1dca580aeb8f6"><td class="memItemLeft">
 std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>offsets</b></td></tr>
-<tr class="memdesc:afd036b3039aa9f44def7193a36d4917d pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the cumulative number of cells over all dimensions lower than d. <br /></td></tr>
-<tr class="memitem:aa88f89266e26df939747ae1abe436e3a pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_aa88f89266e26df939747ae1abe436e3a"><td class="memItemLeft">
+<tr class="memdesc:aaee582dcd95effd4a7c1dca580aeb8f6 pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the cumulative number of cells over all dimensions lower than d. <br /></td></tr>
+<tr class="memitem:a16efef3b9408f3a5c08fd1b2f74eaccb pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a16efef3b9408f3a5c08fd1b2f74eaccb"><td class="memItemLeft">
 int&#160;</td><td class="memItemRight"><b>_size</b></td></tr>
-<tr class="memdesc:aa88f89266e26df939747ae1abe436e3a pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total cell count. <br /></td></tr>
-<tr class="memitem:a2a2f5a9a4a91b1acefe7ef8443bb853f pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a2a2f5a9a4a91b1acefe7ef8443bb853f"><td class="memItemLeft">
+<tr class="memdesc:a16efef3b9408f3a5c08fd1b2f74eaccb pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total cell count. <br /></td></tr>
+<tr class="memitem:a25112684c419170e0ea0f43e76824a9d pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a25112684c419170e0ea0f43e76824a9d"><td class="memItemLeft">
 bool&#160;</td><td class="memItemRight"><b>periodic</b></td></tr>
-<tr class="memdesc:a2a2f5a9a4a91b1acefe7ef8443bb853f pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodic boundary conditions? <br /></td></tr>
+<tr class="memdesc:a25112684c419170e0ea0f43e76824a9d pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodic boundary conditions? <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td colspan="2">Static Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a></td></tr>
-<tr class="memitem:abc508c81913005bc39b6234e873d1c27 pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_abc508c81913005bc39b6234e873d1c27"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#abc508c81913005bc39b6234e873d1c27">toFile</a> (std::string filename)</td></tr>
-<tr class="memdesc:abc508c81913005bc39b6234e873d1c27 pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes boundary matrices to file.  <br /></td></tr>
-<tr class="memitem:a01a05b178be35800dd219e358b7ef502 pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a01a05b178be35800dd219e358b7ef502"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a01a05b178be35800dd219e358b7ef502">fromFile</a> (std::string filename)</td></tr>
-<tr class="memdesc:a01a05b178be35800dd219e358b7ef502 pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads boundary matrices from file.  <br /></td></tr>
+<tr class="inherit_header pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td colspan="2">Static Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td></tr>
+<tr class="memitem:a5e33f91200b8ae6d7243c2be5bffaa3c pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a5e33f91200b8ae6d7243c2be5bffaa3c"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a5e33f91200b8ae6d7243c2be5bffaa3c">toFile</a> (std::string filename)</td></tr>
+<tr class="memdesc:a5e33f91200b8ae6d7243c2be5bffaa3c pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes boundary matrices to file.  <br /></td></tr>
+<tr class="memitem:ae48ad59395a5ffce6f83b3ccd04e4e61 pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_ae48ad59395a5ffce6f83b3ccd04e4e61"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#ae48ad59395a5ffce6f83b3ccd04e4e61">fromFile</a> (std::string filename)</td></tr>
+<tr class="memdesc:ae48ad59395a5ffce6f83b3ccd04e4e61 pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads boundary matrices from file.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html" title="Cubical complex.">Cubical</a> complex. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
+class ATEAMS::complexes::Cubical&lt; T &gt;</div><p><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html" title="Cubical complex.">Cubical</a> complex. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a84a6b0c11dda007cbb72b06933ed2262" name="a84a6b0c11dda007cbb72b06933ed2262"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84a6b0c11dda007cbb72b06933ed2262">&#9670;&#160;</a></span>Cubical() <span class="overload">[1/2]</span></h2>
+<a id="a988a36e80c4d51a99466b4ed97b9106a" name="a988a36e80c4d51a99466b4ed97b9106a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a988a36e80c4d51a99466b4ed97b9106a">&#9670;&#160;</a></span>Cubical() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">ATEAMS::complexes::Cubical::Cubical </td>
+          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a>&lt; T &gt;::Cubical </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>corners</em></span>, </td>
         </tr>
@@ -231,7 +234,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor. See <a class="el" href="#a961c92cd5689e3b9ac665f0f4412a0fa" title="ATEAMS::complexes::Cubical::corners">ATEAMS::complexes::Cubical::corners</a>. </p>
+<p>Constructor. See <a class="el" href="#aafb83af1e649f55e42a708ec8e47e0a2" title="ATEAMS::complexes::Cubical::corners">ATEAMS::complexes::Cubical::corners</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">corners</td><td>Corners of the lattice. </td></tr>
@@ -242,14 +245,16 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ae3046503ed33a3d7430341b36f079172" name="ae3046503ed33a3d7430341b36f079172"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3046503ed33a3d7430341b36f079172">&#9670;&#160;</a></span>Cubical() <span class="overload">[2/2]</span></h2>
+<a id="aa085c2a6a743f695fc3cd2803ecd4588" name="aa085c2a6a743f695fc3cd2803ecd4588"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa085c2a6a743f695fc3cd2803ecd4588">&#9670;&#160;</a></span>Cubical() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">ATEAMS::complexes::Cubical::Cubical </td>
+          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a>&lt; T &gt;::Cubical </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>corners</em></span></td><td>)</td>
           <td></td>
@@ -257,7 +262,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor. See <a class="el" href="#a961c92cd5689e3b9ac665f0f4412a0fa" title="ATEAMS::complexes::Cubical::corners">ATEAMS::complexes::Cubical::corners</a>. Imposes periodic boundary conditions by default. </p>
+<p>Constructor. See <a class="el" href="#aafb83af1e649f55e42a708ec8e47e0a2" title="ATEAMS::complexes::Cubical::corners">ATEAMS::complexes::Cubical::corners</a>. Imposes periodic boundary conditions by default. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">corners</td><td>Corners of the lattice. </td></tr>
@@ -268,19 +273,21 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a5a1d9d3b1f29a7c42d6f85dcde4d8829" name="a5a1d9d3b1f29a7c42d6f85dcde4d8829"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a1d9d3b1f29a7c42d6f85dcde4d8829">&#9670;&#160;</a></span>constructBoundaryMatrices()</h2>
+<a id="ac39f54d9fc7b25f507a68446616ba425" name="ac39f54d9fc7b25f507a68446616ba425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac39f54d9fc7b25f507a68446616ba425">&#9670;&#160;</a></span>constructBoundaryMatrices()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Cubical::constructBoundaryMatrices </td>
+          <td class="memname">void <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a>&lt; T &gt;::constructBoundaryMatrices </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -299,21 +306,23 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#abd47493579ef3054606cf9630db104a5">ATEAMS::complexes::Complex</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#abf78d0c21ab0696be8daed36fdf74d79">ATEAMS::complexes::Complex&lt; T &gt;</a>.</p>
 
 </div>
 </div>
-<a id="adcfc41a37c0cdf0829400aa0d25fb9aa" name="adcfc41a37c0cdf0829400aa0d25fb9aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adcfc41a37c0cdf0829400aa0d25fb9aa">&#9670;&#160;</a></span>constructFlatBoundaryMatrix()</h2>
+<a id="ad21bb3507ba02383f1f8a3ab2b01391e" name="ad21bb3507ba02383f1f8a3ab2b01391e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad21bb3507ba02383f1f8a3ab2b01391e">&#9670;&#160;</a></span>constructFlatBoundaryMatrix()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Cubical::constructFlatBoundaryMatrix </td>
+          <td class="memname">void <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a>&lt; T &gt;::constructFlatBoundaryMatrix </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -328,23 +337,25 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Constructs a boundary matrix for use with PHAT. </p>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a3a824880bb3a7475f18af4493af408f0">ATEAMS::complexes::Complex</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a3f8fbef5b2fedea91952b9ba01eaebb0">ATEAMS::complexes::Complex&lt; T &gt;</a>.</p>
 
 </div>
 </div>
-<a id="abba9426daca069dc5f845e6552ac1b73" name="abba9426daca069dc5f845e6552ac1b73"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abba9426daca069dc5f845e6552ac1b73">&#9670;&#160;</a></span>constructFullBoundaryMatrix()</h2>
+<a id="a2cb9e64100280b4672e8c3d3e356283c" name="a2cb9e64100280b4672e8c3d3e356283c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cb9e64100280b4672e8c3d3e356283c">&#9670;&#160;</a></span>constructFullBoundaryMatrix()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Cubical::constructFullBoundaryMatrix </td>
+          <td class="memname">void <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a>&lt; T &gt;::constructFullBoundaryMatrix </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -357,21 +368,23 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Constructs a full boundary matrix in SparseRREF format. </p>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a596e221f690c08a5ee81f7a1941db375">ATEAMS::complexes::Complex</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#ab1834061a70d6db288c1dfc93faec0af">ATEAMS::complexes::Complex&lt; T &gt;</a>.</p>
 
 </div>
 </div>
-<a id="a964572ed8a825451f432b2761ba594b4" name="a964572ed8a825451f432b2761ba594b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a964572ed8a825451f432b2761ba594b4">&#9670;&#160;</a></span>size()</h2>
+<a id="a4aae3ffd784fb13c36c708d087662514" name="a4aae3ffd784fb13c36c708d087662514"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aae3ffd784fb13c36c708d087662514">&#9670;&#160;</a></span>size()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Cubical::size </td>
+          <td class="memname">int <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a>&lt; T &gt;::size </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -386,31 +399,32 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Size. </p>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a4874635146a2df610509846ca7cfabbd">ATEAMS::complexes::Complex</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#add7c197f8394055adcf1885a30393240">ATEAMS::complexes::Complex&lt; T &gt;</a>.</p>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a961c92cd5689e3b9ac665f0f4412a0fa" name="a961c92cd5689e3b9ac665f0f4412a0fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a961c92cd5689e3b9ac665f0f4412a0fa">&#9670;&#160;</a></span>corners</h2>
+<a id="aafb83af1e649f55e42a708ec8e47e0a2" name="aafb83af1e649f55e42a708ec8e47e0a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafb83af1e649f55e42a708ec8e47e0a2">&#9670;&#160;</a></span>corners</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;int&gt; ATEAMS::complexes::Cubical::corners</td>
+          <td class="memname">std::vector&lt;int&gt; <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a>&lt; T &gt;::corners</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Corners of the lattice. </p>
-<p>If <span class="tt"><a class="el" href="#a961c92cd5689e3b9ac665f0f4412a0fa" title="Corners of the lattice.">corners</a></span> is \((c_1, c_2, \dots, c_n)\), then the integer lattice created is the product \( \prod [0, c_i] \); if periodic boundary conditions are imposed, opposite vertices (and thus opposite \((d-1)\)-faces) are identified to form an \(n\)-fold torus. </p>
+<p>If <span class="tt"><a class="el" href="#aafb83af1e649f55e42a708ec8e47e0a2" title="Corners of the lattice.">corners</a></span> is \((c_1, c_2, \dots, c_n)\), then the integer lattice created is the product \( \prod [0, c_i] \); if periodic boundary conditions are imposed, opposite vertices (and thus opposite \((d-1)\)-faces) are identified to form an \(n\)-fold torus. </p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/ATEAMS++/complexes/<a class="el" href="_cubical_8h_source.html">Cubical.h</a></li>
-<li>src/complexes/<b>Cubical.cpp</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -124,6 +124,8 @@ When timed, this takes ~11 seconds. **If you plan to run large-scale simulations
 
 	for things to work.
 
+* Using `mimalloc` on macOS with GCC ≥ 16 can sometimes yield slower compute times and segfaults.
+
 
 ## Contributing
 We welcome contributions. A few housekeeping rules:

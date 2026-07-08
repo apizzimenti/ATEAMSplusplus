@@ -15,7 +15,7 @@ namespace ATEAMS {
 		 * @class Cubical
 		 * @brief Cubical complex.
 		 */
-		template <typename T>
+		template <typename T=ATEAMS::ff>
 		class Cubical: public Complex<T> {
 			public:
 				/** @brief Short name, mostly for metadata collection. */

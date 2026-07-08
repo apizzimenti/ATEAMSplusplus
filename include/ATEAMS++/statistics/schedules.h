@@ -26,7 +26,7 @@ namespace ATEAMS {
 		 * @brief Constant-temperature.
 		 * @param C Temperature to return. If you want to see whether this temperature
 		 * 	is valid (i.e. \f$0 \leq 1-e^{-C} \leq 1\f$), please set the `DEBUG`
-		 * 	model parameter (e.g. in @ref ATEAMS::models::SwendsenWangParameters)
+		 * 	model parameter (e.g. in @ref ATEAMS::models::ModelParameters)
 		 *  to `true`. If your provided temperature doesn't work, an assertion will
 		 * 	fail.
 		 * @returns Lambda function that always returns \f$C\f$.

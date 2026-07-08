@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: ATEAMS::models::SwendsenWang Class Reference</title>
+<title>ATEAMS++: ATEAMS::models::SwendsenWang&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ATEAMS::models::SwendsenWang Class Reference</div></div>
+  <div class="headertitle"><div class="title">ATEAMS::models::SwendsenWang&lt; T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -147,57 +147,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <p><code>#include &lt;<a class="el" href="_swendsen_wang_8h_source.html">SwendsenWang.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for ATEAMS::models::SwendsenWang:</div>
+Inheritance diagram for ATEAMS::models::SwendsenWang&lt; T &gt;:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.png" usemap="#ATEAMS_3A_3Amodels_3A_3ASwendsenWang_map" alt=""/>
-  <map id="ATEAMS_3A_3Amodels_3A_3ASwendsenWang_map" name="ATEAMS_3A_3Amodels_3A_3ASwendsenWang_map">
-<area href="class_a_t_e_a_m_s_1_1models_1_1_model.html" alt="ATEAMS::models::Model&lt; ZpVector &gt;" shape="rect" coords="0,0,228,24"/>
+  <img src="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.png" usemap="#ATEAMS_3A_3Amodels_3A_3ASwendsenWang_3C_20T_20_3E_map" alt=""/>
+  <map id="ATEAMS_3A_3Amodels_3A_3ASwendsenWang_3C_20T_20_3E_map" name="ATEAMS_3A_3Amodels_3A_3ASwendsenWang_3C_20T_20_3E_map">
+<area href="class_a_t_e_a_m_s_1_1models_1_1_model.html" alt="ATEAMS::models::Model&lt; T, SparseVector &gt;" shape="rect" coords="0,0,268,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a792375c888c7c9b3efba84375e05ba93" id="r_a792375c888c7c9b3efba84375e05ba93"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a792375c888c7c9b3efba84375e05ba93">SwendsenWang</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_parameters.html">SwendsenWangParameters</a> parameters)</td></tr>
-<tr class="memdesc:a792375c888c7c9b3efba84375e05ba93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
-<tr class="memitem:aa0b0470c6ee0fc0167d3386eb79f8d4c" id="r_aa0b0470c6ee0fc0167d3386eb79f8d4c"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ZpVector</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa0b0470c6ee0fc0167d3386eb79f8d4c">sample</a> (int t, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
-<tr class="memdesc:aa0b0470c6ee0fc0167d3386eb79f8d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alternates between sampling the conditionals \(P_t \sim \PK(- \mid f_t)\) and \(f_{t+1} \sim \PK(- \mid P_{t+1})\) of the coupling \(\PK\) between the PLGT and PRCM.  <br /></td></tr>
-<tr class="memitem:a94fcc975c6d1703199bf45b78a50dce6" id="r_a94fcc975c6d1703199bf45b78a50dce6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a94fcc975c6d1703199bf45b78a50dce6">initialize</a> () override</td></tr>
-<tr class="memdesc:a94fcc975c6d1703199bf45b78a50dce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes \(f_0\) to uniform random elements of \(\Z/p\Z\).  <br /></td></tr>
-<tr class="memitem:a0b03a7d8a20088c7146b0945dd059ad9" id="r_a0b03a7d8a20088c7146b0945dd059ad9"><td class="memItemLeft"><a id="a0b03a7d8a20088c7146b0945dd059ad9" name="a0b03a7d8a20088c7146b0945dd059ad9"></a>
-void&#160;</td><td class="memItemRight"><b>initialize</b> (<a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ZpVector</a> c) override</td></tr>
-<tr class="memdesc:a0b03a7d8a20088c7146b0945dd059ad9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes \(f_0 = c\). <br /></td></tr>
+<tr class="memitem:a6984288ff99cbf8a129d7c8c36b9a9d1" id="r_a6984288ff99cbf8a129d7c8c36b9a9d1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6984288ff99cbf8a129d7c8c36b9a9d1">SwendsenWang</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt; *complex, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a> parameters)</td></tr>
+<tr class="memdesc:a6984288ff99cbf8a129d7c8c36b9a9d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="memitem:a9a12bed9fb7854b2d4eaec17d46ced75" id="r_a9a12bed9fb7854b2d4eaec17d46ced75"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9a12bed9fb7854b2d4eaec17d46ced75">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a> &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
+<tr class="memdesc:a9a12bed9fb7854b2d4eaec17d46ced75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alternates between sampling the conditionals \(P_t \sim \PK(- \mid f_t)\) and \(f_{t+1} \sim \PK(- \mid P_{t+1})\) of the coupling \(\PK\) between the PLGT and PRCM.  <br /></td></tr>
+<tr class="memitem:aa9e09bac98e6b370b696a63b95de809b" id="r_aa9e09bac98e6b370b696a63b95de809b"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa9e09bac98e6b370b696a63b95de809b">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a> &gt; &amp;state) override</td></tr>
+<tr class="memdesc:aa9e09bac98e6b370b696a63b95de809b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes \(f_0\) to uniform random elements of \(\Z/p\Z\).  <br /></td></tr>
+<tr class="memitem:aa8fa1b81e590339ce0d9b38f4c40f6f1" id="r_aa8fa1b81e590339ce0d9b38f4c40f6f1"><td class="memItemLeft"><a id="aa8fa1b81e590339ce0d9b38f4c40f6f1" name="aa8fa1b81e590339ce0d9b38f4c40f6f1"></a>
+<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a> &gt;&#160;</td><td class="memItemRight"><b>initialize</b> (<a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a>&lt; T &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a> &gt; &amp;state) override</td></tr>
+<tr class="memdesc:aa8fa1b81e590339ce0d9b38f4c40f6f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes \(f_0 = c\). <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a8c9e7597416f0383d369f8249ad33eb4" id="r_a8c9e7597416f0383d369f8249ad33eb4"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_parameters.html">SwendsenWangParameters</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8c9e7597416f0383d369f8249ad33eb4">parameters</a></td></tr>
-<tr class="memitem:a4af823643cec02d3e8fbe9359bbc9a4c" id="r_a4af823643cec02d3e8fbe9359bbc9a4c"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_state.html">SwendsenWangState</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4af823643cec02d3e8fbe9359bbc9a4c">state</a></td></tr>
-<tr class="memitem:a9fd7ca0e13dfe6b61fc0b2f83f5c66a3" id="r_a9fd7ca0e13dfe6b61fc0b2f83f5c66a3"><td class="memItemLeft">const <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a>&#160;</td><td class="memItemRight"><a class="el" href="#a9fd7ca0e13dfe6b61fc0b2f83f5c66a3">field</a></td></tr>
-<tr class="memitem:a15ddfea14ca23bb4c2e7dd688345e5a9" id="r_a15ddfea14ca23bb4c2e7dd688345e5a9"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a15ddfea14ca23bb4c2e7dd688345e5a9">kind</a> = &quot;SwendsenWang&quot;</td></tr>
-<tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ZpVector &gt;</a></td></tr>
-<tr class="memitem:a8c133ee41b5c388e06fd452b6c9ecfe9 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a8c133ee41b5c388e06fd452b6c9ecfe9"><td class="memItemLeft"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a8c133ee41b5c388e06fd452b6c9ecfe9">complex</a></td></tr>
-<tr class="memitem:a662584225bb501070113bdf0bd463a1c pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a662584225bb501070113bdf0bd463a1c"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a>&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a662584225bb501070113bdf0bd463a1c">parameters</a></td></tr>
-<tr class="memitem:abc8efbef442c1eaf188e058d429cdb67 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_abc8efbef442c1eaf188e058d429cdb67"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#abc8efbef442c1eaf188e058d429cdb67">state</a></td></tr>
-<tr class="memitem:a437ecdcc9601cb03c0b59009951be23c pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a437ecdcc9601cb03c0b59009951be23c"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a437ecdcc9601cb03c0b59009951be23c">kind</a></td></tr>
+<tr class="memitem:a2685c5c6a64eec2280c0e29232b7ab3e" id="r_a2685c5c6a64eec2280c0e29232b7ab3e"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2685c5c6a64eec2280c0e29232b7ab3e">parameters</a></td></tr>
+<tr class="memitem:a398c94d3b1d667db02a8ec175cf7abf3" id="r_a398c94d3b1d667db02a8ec175cf7abf3"><td class="memItemLeft">const <a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a>&#160;</td><td class="memItemRight"><a class="el" href="#a398c94d3b1d667db02a8ec175cf7abf3">field</a></td></tr>
+<tr class="memitem:a7a71c0395e9ddbfbc035b70160e5847a" id="r_a7a71c0395e9ddbfbc035b70160e5847a"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a7a71c0395e9ddbfbc035b70160e5847a">kind</a> = &quot;SwendsenWang&quot;</td></tr>
+<tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; T, SparseVector &gt;</a></td></tr>
+<tr class="memitem:ad8db6c7f5baea526b3b68dd66e6e09e6 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_ad8db6c7f5baea526b3b68dd66e6e09e6"><td class="memItemLeft"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt; *&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#ad8db6c7f5baea526b3b68dd66e6e09e6">complex</a></td></tr>
+<tr class="memitem:a71938f93b66c74d76b32d35bd465075a pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a71938f93b66c74d76b32d35bd465075a"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a>&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a71938f93b66c74d76b32d35bd465075a">parameters</a></td></tr>
+<tr class="memitem:ab648053a09c720f3ddfed3a98802f60c pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_ab648053a09c720f3ddfed3a98802f60c"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#ab648053a09c720f3ddfed3a98802f60c">kind</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implements the Swendsen&ndash;Wang algorithm for Potts lattice gauge theory (PLGT) and the plaquette random-cluster model (PRCM). </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
+class ATEAMS::models::SwendsenWang&lt; T &gt;</div><p>Implements the Swendsen&ndash;Wang algorithm for Potts lattice gauge theory (PLGT) and the plaquette random-cluster model (PRCM). </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a792375c888c7c9b3efba84375e05ba93" name="a792375c888c7c9b3efba84375e05ba93"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a792375c888c7c9b3efba84375e05ba93">&#9670;&#160;</a></span>SwendsenWang()</h2>
+<a id="a6984288ff99cbf8a129d7c8c36b9a9d1" name="a6984288ff99cbf8a129d7c8c36b9a9d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6984288ff99cbf8a129d7c8c36b9a9d1">&#9670;&#160;</a></span>SwendsenWang()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">models::SwendsenWang::SwendsenWang </td>
+          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang</a>&lt; T &gt;::SwendsenWang </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_parameters.html">SwendsenWangParameters</a></td>          <td class="paramname"><span class="paramname"><em>parameters</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a></td>          <td class="paramname"><span class="paramname"><em>parameters</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -214,19 +215,21 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a94fcc975c6d1703199bf45b78a50dce6" name="a94fcc975c6d1703199bf45b78a50dce6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94fcc975c6d1703199bf45b78a50dce6">&#9670;&#160;</a></span>initialize()</h2>
+<a id="aa9e09bac98e6b370b696a63b95de809b" name="aa9e09bac98e6b370b696a63b95de809b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9e09bac98e6b370b696a63b95de809b">&#9670;&#160;</a></span>initialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void models::SwendsenWang::initialize </td>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a> &gt; <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang</a>&lt; T &gt;::initialize </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -239,23 +242,30 @@ Public Attributes</h2></td></tr>
 
 <p>Initializes \(f_0\) to uniform random elements of \(\Z/p\Z\). </p>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#aa92e1ca4a86e850da7acea887bc454db">ATEAMS::models::Model&lt; ZpVector &gt;</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a62ea5826546e2b1a21c097c417c88660">ATEAMS::models::Model&lt; T, SparseVector &gt;</a>.</p>
 
 </div>
 </div>
-<a id="aa0b0470c6ee0fc0167d3386eb79f8d4c" name="aa0b0470c6ee0fc0167d3386eb79f8d4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0b0470c6ee0fc0167d3386eb79f8d4c">&#9670;&#160;</a></span>sample()</h2>
+<a id="a9a12bed9fb7854b2d4eaec17d46ced75" name="a9a12bed9fb7854b2d4eaec17d46ced75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a12bed9fb7854b2d4eaec17d46ced75">&#9670;&#160;</a></span>sample()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#a1091f3f417ed66603862abfc7dd14855">ZpVector</a> models::SwendsenWang::sample </td>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a> &gt; <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang</a>&lt; T &gt;::sample </td>
           <td>(</td>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, <a class="el" href="namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37">SparseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -280,19 +290,21 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The sample \(f_{t+1}\). </dd></dl>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#afed561a04dba1ab845d125cf42d9e268">ATEAMS::models::Model&lt; ZpVector &gt;</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#aad572e61319937fba274812b00b6620c">ATEAMS::models::Model&lt; T, SparseVector &gt;</a>.</p>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a9fd7ca0e13dfe6b61fc0b2f83f5c66a3" name="a9fd7ca0e13dfe6b61fc0b2f83f5c66a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9fd7ca0e13dfe6b61fc0b2f83f5c66a3">&#9670;&#160;</a></span>field</h2>
+<a id="a398c94d3b1d667db02a8ec175cf7abf3" name="a398c94d3b1d667db02a8ec175cf7abf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a398c94d3b1d667db02a8ec175cf7abf3">&#9670;&#160;</a></span>field</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="namespace_a_t_e_a_m_s.html#a09947896b23f7075fcc350044837e7ef">Zp</a> ATEAMS::models::SwendsenWang::field</td>
+          <td class="memname">const <a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a> <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang</a>&lt; T &gt;::field</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -300,14 +312,16 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a15ddfea14ca23bb4c2e7dd688345e5a9" name="a15ddfea14ca23bb4c2e7dd688345e5a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15ddfea14ca23bb4c2e7dd688345e5a9">&#9670;&#160;</a></span>kind</h2>
+<a id="a7a71c0395e9ddbfbc035b70160e5847a" name="a7a71c0395e9ddbfbc035b70160e5847a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a71c0395e9ddbfbc035b70160e5847a">&#9670;&#160;</a></span>kind</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::string ATEAMS::models::SwendsenWang::kind = &quot;SwendsenWang&quot;</td>
+          <td class="memname">std::string <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang</a>&lt; T &gt;::kind = &quot;SwendsenWang&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -315,14 +329,16 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a8c9e7597416f0383d369f8249ad33eb4" name="a8c9e7597416f0383d369f8249ad33eb4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c9e7597416f0383d369f8249ad33eb4">&#9670;&#160;</a></span>parameters</h2>
+<a id="a2685c5c6a64eec2280c0e29232b7ab3e" name="a2685c5c6a64eec2280c0e29232b7ab3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2685c5c6a64eec2280c0e29232b7ab3e">&#9670;&#160;</a></span>parameters</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_parameters.html">SwendsenWangParameters</a> ATEAMS::models::SwendsenWang::parameters</td>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a> <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang</a>&lt; T &gt;::parameters</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -330,24 +346,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4af823643cec02d3e8fbe9359bbc9a4c" name="a4af823643cec02d3e8fbe9359bbc9a4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4af823643cec02d3e8fbe9359bbc9a4c">&#9670;&#160;</a></span>state</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_swendsen_wang_state.html">SwendsenWangState</a> ATEAMS::models::SwendsenWang::state</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> state. </p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/ATEAMS++/models/<a class="el" href="_swendsen_wang_8h_source.html">SwendsenWang.h</a></li>
-<li>src/models/<b>SwendsenWang.cpp</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -14,7 +14,7 @@ namespace ATEAMS {
 		 * @brief Computes the persistent homology of a complex using \f$\Z/2\Z\f$
 		 * coefficients.
 		 * 
-		 * @param complex A complex with a flat boundary matrix.
+		 * @param complex A (pointer to) a @ref ATEAMS::complexes::Complex with a flat boundary matrix.
 		 * @param filtration A vector that specifies the order in which to add
 		 * 	the cells in the flat boundary matrix. For example, if we are doing
 		 * 	1-dimensional percolation in 2-d, then we switch up the ordering of
@@ -34,7 +34,7 @@ namespace ATEAMS {
 		 * @brief Computes the persistent homology of a complex over \f$\Z/p\Z\f$
 		 * 	coefficients, where \f$p\f$ is prime.
 		 * 
-		 * @param complex A complex with a flat boundary matrix.
+		 * @param complex A (pointer to) a @ref ATEAMS::complexes::Complex with a flat boundary matrix.
 		 * @param filtration A vector that specifies the order in which to add
 		 * 	the cells in the flat boundary matrix. For example, if we are doing
 		 * 	1-dimensional percolation in 2-d, then we switch up the ordering of

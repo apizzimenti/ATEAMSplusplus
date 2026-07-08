@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: ATEAMS::statistics::Chain&lt; ModelType &gt; Class Template Reference</title>
+<title>ATEAMS++: ATEAMS::statistics::Chain&lt; T, ContainerType &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ATEAMS::statistics::Chain&lt; ModelType &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">ATEAMS::statistics::Chain&lt; T, ContainerType &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -149,42 +149,39 @@ document.addEventListener('DOMContentLoaded', () => {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3c3119790da0d9e59c6d49190a260a56" id="r_a3c3119790da0d9e59c6d49190a260a56"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3c3119790da0d9e59c6d49190a260a56">Chain</a> (ModelType *model, int steps)</td></tr>
-<tr class="memdesc:a3c3119790da0d9e59c6d49190a260a56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor; uses default <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ATEAMS::arithmetic::ThreadOptions">ATEAMS::arithmetic::ThreadOptions</a>.  <br /></td></tr>
-<tr class="memitem:ae6daa001fb3c2b6439d516b623e03183" id="r_ae6daa001fb3c2b6439d516b623e03183"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae6daa001fb3c2b6439d516b623e03183">Chain</a> (ModelType *model, int steps, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> options)</td></tr>
-<tr class="memdesc:ae6daa001fb3c2b6439d516b623e03183"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor; use user-provided <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ATEAMS::arithmetic::ThreadOptions">ATEAMS::arithmetic::ThreadOptions</a>.  <br /></td></tr>
-<tr class="memitem:a031ce286288bc9ed105ce6286377f8f1" id="r_a031ce286288bc9ed105ce6286377f8f1"><td class="memItemLeft">std::generator&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a> * &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a031ce286288bc9ed105ce6286377f8f1">simulate</a> ()</td></tr>
-<tr class="memdesc:a031ce286288bc9ed105ce6286377f8f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Model-generic iterator.  <br /></td></tr>
-<tr class="memitem:a4c9641bd33b40e04cd29d71193f99275" id="r_a4c9641bd33b40e04cd29d71193f99275"><td class="memTemplParams" colspan="2">template&lt;typename State&gt; </td></tr>
-<tr class="memitem:a4c9641bd33b40e04cd29d71193f99275 template"><td class="memItemLeft">std::generator&lt; State * &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4c9641bd33b40e04cd29d71193f99275">simulate</a> ()</td></tr>
-<tr class="memdesc:a4c9641bd33b40e04cd29d71193f99275"><td class="mdescLeft">&#160;</td><td class="mdescRight">Templated iterator.  <br /></td></tr>
+<tr class="memitem:ac045f9e9081b6dc8dd0409fa1f74eeab" id="r_ac045f9e9081b6dc8dd0409fa1f74eeab"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ac045f9e9081b6dc8dd0409fa1f74eeab">Chain</a> (<a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model</a>&lt; T, ContainerType &gt; *model, int steps)</td></tr>
+<tr class="memdesc:ac045f9e9081b6dc8dd0409fa1f74eeab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor; uses default <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ATEAMS::arithmetic::ThreadOptions">ATEAMS::arithmetic::ThreadOptions</a>.  <br /></td></tr>
+<tr class="memitem:a28af294f833218a8ec143c601efef5ff" id="r_a28af294f833218a8ec143c601efef5ff"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a28af294f833218a8ec143c601efef5ff">Chain</a> (<a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model</a>&lt; T, ContainerType &gt; *model, int steps, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> options)</td></tr>
+<tr class="memdesc:a28af294f833218a8ec143c601efef5ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor; use user-provided <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ATEAMS::arithmetic::ThreadOptions">ATEAMS::arithmetic::ThreadOptions</a>.  <br /></td></tr>
+<tr class="memitem:aa769e9e247cff6276124bba58062da89" id="r_aa769e9e247cff6276124bba58062da89"><td class="memItemLeft">std::generator&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a>&lt; T, ContainerType &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa769e9e247cff6276124bba58062da89">simulate</a> ()</td></tr>
+<tr class="memdesc:aa769e9e247cff6276124bba58062da89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Model-generic iterator.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5cdfb02f61f29bd5503943e18574a0ad" id="r_a5cdfb02f61f29bd5503943e18574a0ad"><td class="memItemLeft">ModelType *&#160;</td><td class="memItemRight"><a class="el" href="#a5cdfb02f61f29bd5503943e18574a0ad">model</a></td></tr>
-<tr class="memitem:a020441d7c4332e8948a25080f9ba9160" id="r_a020441d7c4332e8948a25080f9ba9160"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a020441d7c4332e8948a25080f9ba9160">state</a></td></tr>
-<tr class="memitem:a61304a19ec7e24cc43bab938563c70bc" id="r_a61304a19ec7e24cc43bab938563c70bc"><td class="memItemLeft"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a>&#160;</td><td class="memItemRight"><a class="el" href="#a61304a19ec7e24cc43bab938563c70bc">options</a></td></tr>
-<tr class="memitem:a8d8b362eaa76a369aeb72e007cbb0386" id="r_a8d8b362eaa76a369aeb72e007cbb0386"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a8d8b362eaa76a369aeb72e007cbb0386">steps</a></td></tr>
+<tr class="memitem:aea5b793ced8a3909affdbbead41042ac" id="r_aea5b793ced8a3909affdbbead41042ac"><td class="memItemLeft"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model</a>&lt; T, ContainerType &gt; *&#160;</td><td class="memItemRight"><a class="el" href="#aea5b793ced8a3909affdbbead41042ac">model</a></td></tr>
+<tr class="memitem:a0076180568da8842f101f7eddb8e8d7f" id="r_a0076180568da8842f101f7eddb8e8d7f"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a>&lt; T, ContainerType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0076180568da8842f101f7eddb8e8d7f">state</a></td></tr>
+<tr class="memitem:ac1ab3a93dc5d3fea9ebdeb0a5239a687" id="r_ac1ab3a93dc5d3fea9ebdeb0a5239a687"><td class="memItemLeft"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac1ab3a93dc5d3fea9ebdeb0a5239a687">options</a></td></tr>
+<tr class="memitem:a7bbfeb7ae855d5a4c34c0aacb9091da9" id="r_a7bbfeb7ae855d5a4c34c0aacb9091da9"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a7bbfeb7ae855d5a4c34c0aacb9091da9">steps</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename ModelType&gt;<br />
-class ATEAMS::statistics::Chain&lt; ModelType &gt;</div><p>Simulates the Markov chains specified by each <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="ATEAMS::models::Model">ATEAMS::models::Model</a>. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt;<br />
+class ATEAMS::statistics::Chain&lt; T, ContainerType &gt;</div><p>Simulates the Markov chains specified by each <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="ATEAMS::models::Model">ATEAMS::models::Model</a>. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3c3119790da0d9e59c6d49190a260a56" name="a3c3119790da0d9e59c6d49190a260a56"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c3119790da0d9e59c6d49190a260a56">&#9670;&#160;</a></span>Chain() <span class="overload">[1/2]</span></h2>
+<a id="ac045f9e9081b6dc8dd0409fa1f74eeab" name="ac045f9e9081b6dc8dd0409fa1f74eeab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac045f9e9081b6dc8dd0409fa1f74eeab">&#9670;&#160;</a></span>Chain() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ModelType&gt; </div>
+template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; ModelType &gt;::Chain </td>
+          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; T, ContainerType &gt;::Chain </td>
           <td>(</td>
-          <td class="paramtype">ModelType *</td>          <td class="paramname"><span class="paramname"><em>model</em></span>, </td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model</a>&lt; T, ContainerType &gt; *</td>          <td class="paramname"><span class="paramname"><em>model</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -210,21 +207,21 @@ template&lt;typename ModelType&gt; </div>
 
 </div>
 </div>
-<a id="ae6daa001fb3c2b6439d516b623e03183" name="ae6daa001fb3c2b6439d516b623e03183"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6daa001fb3c2b6439d516b623e03183">&#9670;&#160;</a></span>Chain() <span class="overload">[2/2]</span></h2>
+<a id="a28af294f833218a8ec143c601efef5ff" name="a28af294f833218a8ec143c601efef5ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28af294f833218a8ec143c601efef5ff">&#9670;&#160;</a></span>Chain() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ModelType&gt; </div>
+template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; ModelType &gt;::Chain </td>
+          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; T, ContainerType &gt;::Chain </td>
           <td>(</td>
-          <td class="paramtype">ModelType *</td>          <td class="paramname"><span class="paramname"><em>model</em></span>, </td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model</a>&lt; T, ContainerType &gt; *</td>          <td class="paramname"><span class="paramname"><em>model</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -257,56 +254,19 @@ template&lt;typename ModelType&gt; </div>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a4c9641bd33b40e04cd29d71193f99275" name="a4c9641bd33b40e04cd29d71193f99275"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c9641bd33b40e04cd29d71193f99275">&#9670;&#160;</a></span>simulate() <span class="overload">[1/2]</span></h2>
+<a id="aa769e9e247cff6276124bba58062da89" name="aa769e9e247cff6276124bba58062da89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa769e9e247cff6276124bba58062da89">&#9670;&#160;</a></span>simulate()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ModelType&gt; </div>
-<div class="memtemplate">
-template&lt;typename State&gt; </div>
+template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::generator&lt; State * &gt; <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; ModelType &gt;::simulate </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Templated iterator. </p>
-<div class="fragment"><div class="line"><span class="keywordflow">for</span> (<a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html">models::InvadedClusterState</a>* _state : M.run&lt;<a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html">models::InvadedClusterState</a>*&gt;()) {</div>
-<div class="line">    <span class="comment">// Doesn&#39;t require a cast.</span></div>
-<div class="line">    ...</div>
-<div class="line">}</div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html">ATEAMS::models::InvadedClusterState</a></div><div class="ttdoc">Stores the current state of the Swendsen–Wang algorithm.</div><div class="ttdef"><b>Definition</b> InvadedCluster.h:44</div></div>
-</div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>A <span class="tt">std::generator</span>. </dd></dl>
-
-</div>
-</div>
-<a id="a031ce286288bc9ed105ce6286377f8f1" name="a031ce286288bc9ed105ce6286377f8f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a031ce286288bc9ed105ce6286377f8f1">&#9670;&#160;</a></span>simulate() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename ModelType&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::generator&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a> * &gt; <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; ModelType &gt;::simulate </td>
+          <td class="memname">std::generator&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a>&lt; T, ContainerType &gt; &gt; <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; T, ContainerType &gt;::simulate </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -320,27 +280,25 @@ template&lt;typename ModelType&gt; </div>
 </div><div class="memdoc">
 
 <p>Model-generic iterator. </p>
-<div class="fragment"><div class="line"><span class="keywordflow">for</span> (<a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">models::ModelState</a>* _state : M.simulate()) {</div>
-<div class="line">    <span class="comment">// Requires a cast to access specific members of the state object.</span></div>
-<div class="line">    <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html">models::InvadedClusterState</a>* <a class="code hl_variable" href="#a020441d7c4332e8948a25080f9ba9160">state</a> = (<a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_state.html">models::InvadedClusterState</a>*)_state;</div>
+<div class="fragment"><div class="line"><span class="keywordflow">for</span> (<a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">models::ModelState&lt;ATEAMS::ff,ATEAMS::SparseVector&gt;</a> State : M.simulate()) {</div>
+<div class="line">    &lt;<span class="keywordflow">do</span> whatever&gt;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a020441d7c4332e8948a25080f9ba9160"><div class="ttname"><a href="#a020441d7c4332e8948a25080f9ba9160">ATEAMS::statistics::Chain::state</a></div><div class="ttdeci">ATEAMS::models::ModelState * state</div><div class="ttdef"><b>Definition</b> Chain.h:34</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a></div><div class="ttdoc">Maintains state for this Model.</div><div class="ttdef"><b>Definition</b> Model.h:32</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a></div><div class="ttdoc">Maintains state for this Model.</div><div class="ttdef"><b>Definition</b> Model.h:74</div></div>
 </div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>A <span class="tt">std::generator</span>. </dd></dl>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a5cdfb02f61f29bd5503943e18574a0ad" name="a5cdfb02f61f29bd5503943e18574a0ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cdfb02f61f29bd5503943e18574a0ad">&#9670;&#160;</a></span>model</h2>
+<a id="aea5b793ced8a3909affdbbead41042ac" name="aea5b793ced8a3909affdbbead41042ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea5b793ced8a3909affdbbead41042ac">&#9670;&#160;</a></span>model</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ModelType&gt; </div>
+template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">ModelType* <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; ModelType &gt;::model</td>
+          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model</a>&lt;T,ContainerType&gt;* <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; T, ContainerType &gt;::model</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -348,16 +306,16 @@ template&lt;typename ModelType&gt; </div>
 
 </div>
 </div>
-<a id="a61304a19ec7e24cc43bab938563c70bc" name="a61304a19ec7e24cc43bab938563c70bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61304a19ec7e24cc43bab938563c70bc">&#9670;&#160;</a></span>options</h2>
+<a id="ac1ab3a93dc5d3fea9ebdeb0a5239a687" name="ac1ab3a93dc5d3fea9ebdeb0a5239a687"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1ab3a93dc5d3fea9ebdeb0a5239a687">&#9670;&#160;</a></span>options</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ModelType&gt; </div>
+template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; ModelType &gt;::options</td>
+          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; T, ContainerType &gt;::options</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -365,33 +323,33 @@ template&lt;typename ModelType&gt; </div>
 
 </div>
 </div>
-<a id="a020441d7c4332e8948a25080f9ba9160" name="a020441d7c4332e8948a25080f9ba9160"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a020441d7c4332e8948a25080f9ba9160">&#9670;&#160;</a></span>state</h2>
+<a id="a0076180568da8842f101f7eddb8e8d7f" name="a0076180568da8842f101f7eddb8e8d7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0076180568da8842f101f7eddb8e8d7f">&#9670;&#160;</a></span>state</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ModelType&gt; </div>
+template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a>* <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; ModelType &gt;::state</td>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a>&lt;T,ContainerType&gt; <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; T, ContainerType &gt;::state</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>(Pointer to) Model state. </p>
+<p>A ATEAMS::ModelState. </p>
 
 </div>
 </div>
-<a id="a8d8b362eaa76a369aeb72e007cbb0386" name="a8d8b362eaa76a369aeb72e007cbb0386"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d8b362eaa76a369aeb72e007cbb0386">&#9670;&#160;</a></span>steps</h2>
+<a id="a7bbfeb7ae855d5a4c34c0aacb9091da9" name="a7bbfeb7ae855d5a4c34c0aacb9091da9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bbfeb7ae855d5a4c34c0aacb9091da9">&#9670;&#160;</a></span>steps</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ModelType&gt; </div>
+template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; ModelType &gt;::steps</td>
+          <td class="memname">int <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; T, ContainerType &gt;::steps</td>
         </tr>
       </table>
 </div><div class="memdoc">

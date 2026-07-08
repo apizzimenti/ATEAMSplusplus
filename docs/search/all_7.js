@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['glauber_0',['Glauber',['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html',1,'ATEAMS::models::Glauber'],['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a8958d43acc46d9024fbe439f384e819b',1,'ATEAMS::models::Glauber::Glauber()']]],
-  ['glauberparameters_1',['GlauberParameters',['../struct_a_t_e_a_m_s_1_1models_1_1_glauber_parameters.html',1,'ATEAMS::models']]],
-  ['glauberstate_2',['GlauberState',['../struct_a_t_e_a_m_s_1_1models_1_1_glauber_state.html',1,'ATEAMS::models']]]
+  ['glauber_0',['Glauber',['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html',1,'ATEAMS::models::Glauber&lt; T &gt;'],['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a3f25170943f633906508e0576a0da46b',1,'ATEAMS::models::Glauber::Glauber()']]]
 ];

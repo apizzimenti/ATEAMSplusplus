@@ -130,6 +130,7 @@ models::ModelState<T,SparseVector> models::InvadedCluster<T>::sample(
 
 	state.cochain = sample;
 	state.includes = included;
+	state.essential = essential;
 	state.t = t;
 
 	return state;

@@ -8,5 +8,5 @@ Description: @PROJECT_DESCRIPTION@
 Version: @PROJECT_VERSION@
 
 Requires:
-Libs: -L${libdir} -lATEAMS++ -lflint -lmimalloc
+Libs: -L${libdir} -lflint -lmimalloc
 Cflags: -I${includedir} -std=c++23

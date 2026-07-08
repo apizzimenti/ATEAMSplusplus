@@ -6,7 +6,7 @@ using namespace ATEAMS;
 using namespace std;
 
 using Structure = complexes::Cubical<FINITE>;
-using Model = models::SwendsenWang<FINITE>;
+using Model = models::Glauber<FINITE>;
 using State = models::ModelState<FINITE,SparseVector>;
 using Chain = statistics::Chain<FINITE,SparseVector>;
 
@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 				&CUBICAL, state.cochain, MODEL.field, PARAMETERS.dimension
 			);
 
-			ZpMatrix REDUCED = MODEL.complex->Coboundary.Matrices[PARAMETERS.dimension];
+			SparseMatrix<FINITE> REDUCED = MODEL.complex->Coboundary.Matrices[PARAMETERS.dimension];
 			for (auto u : unsatisfied) REDUCED[u].zero();
 			REDUCED.clear_zero_row();
 			REDUCED.compress();

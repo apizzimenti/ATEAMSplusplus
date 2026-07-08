@@ -38,12 +38,12 @@ namespace ATEAMS {
 	template <typename T>
 	using SparseVector = SparseRREF::sparse_vec<T,index_t>;
 
-	/** SparseRREF field, \f$\mathrm{GF}(p) \cong \Z/p \Z\f$ for \f$p\f$ prime. */
+	/** SparseRREF field: either \f$\Q\f$ or \f$\GF(p) \cong \Z/p \Z\f$ for \f$p\f$ prime. */
 	typedef SparseRREF::field_t Field;
-	
-	/** @cond */
-	/** SparseRREF index of pivots. */
-	typedef SparseRREF::pivot_t<index_t> SparsePivot;
+
+	/** Template alias for `std::vector`. */
+	template <typename T>
+	using DenseVector = std::vector<T,std::allocator<T>>;
 
 	/** Vector of @ref ATEAMS::SparseMatrix. */
 	template <typename T>
@@ -61,8 +61,12 @@ namespace ATEAMS {
 	template <typename T>
 	using SparseBases = std::vector<SparseBasis<T>>;
 
+	/** @cond */
 	/** Flat boundary matrix. */
 	typedef std::vector<std::vector<int>> FlatBoundaryMatrix;
+
+	/** SparseRREF index of pivots. */
+	typedef SparseRREF::pivot_t<index_t> SparsePivot;
 
 	/** PHAT column. */
 	typedef std::vector<phat::index> PHATColumn;
@@ -75,9 +79,6 @@ namespace ATEAMS {
 
 	/** PHAT persistence algorithm. */
 	typedef phat::twist_reduction PHATTwist;
-
-	template <typename T>
-	using DenseVector = std::vector<T,std::allocator<T>>;
 	/** @endcond */
 
 

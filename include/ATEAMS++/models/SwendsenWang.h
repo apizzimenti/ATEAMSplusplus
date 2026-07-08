@@ -18,9 +18,6 @@ namespace ATEAMS::models {
 	 * @var SwendsenWang::parameters
 	 * Model parameters.
 	 * 
-	 * @var SwendsenWang::state
-	 * Model state.
-	 * 
 	 * @var SwendsenWang::field
 	 * Finite field over which computations will be performened.
 	 * 
@@ -37,9 +34,14 @@ namespace ATEAMS::models {
 	 * @var SwendsenWang::kind
 	 * Model name.
 	 */
-	template <typename T>
+	template <typename T=ATEAMS::ff>
 	class SwendsenWang: public Model<T,SparseVector> {
 		public:
+			typedef T DataType;
+
+			template <typename R>
+			using StorageType = SparseVector<R>;
+			
 			/**
 			 * @brief Constructor.
 			 * 
@@ -54,19 +56,31 @@ namespace ATEAMS::models {
 			 * 	the PLGT and PRCM.
 			 * 
 			 * @param t Time step.
+			 * @param state State.
 			 * @param options Multithreaded computing environment options.
 			 * 
-			 * @return The sample \f$f_{t+1}\f$.
+			 * @return Model state, with @ref ModelState::cochain, @ref ModelState::includes,
+			 * and @ref ModelState::t updated.
 			 */
 			ModelState<T,SparseVector> sample(int t, ModelState<T,SparseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
 
 			/**
-			 * @brief Initializes \f$f_0\f$ to uniform random elements of \f$\Z/p\Z\f$.
+			 * @brief Initializes \f$f_0\f$ to uniform random element of \f$\Z/p\Z\f$
+			 * or \f$ \Q \f$.
+			 * 
+			 * @param state State.
+			 * 
+			 * @returns Modified State.
 			 */
 			ModelState<T,SparseVector> initialize(ModelState<T,SparseVector>& state) override;
 
 			/**
 			 * @brief Initializes \f$f_0 = c\f$.
+			 * 
+			 * @param c Cochain to which \f$f_0\f$ is initialized.
+			 * @param state State.
+			 * 
+			 * @returns Modified State.
 			 */
 			ModelState<T,SparseVector> initialize(SparseVector<T> c, ModelState<T,SparseVector>& state) override;
 

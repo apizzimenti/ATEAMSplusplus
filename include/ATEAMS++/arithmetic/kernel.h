@@ -40,7 +40,7 @@ namespace ATEAMS {
 		 * @param exclude Row indices to exclude.
 		 * @param intuniform Uniform distribution over integers \f$[0, p)\f$.
 		 * @param RNG Mersenne twister PRNG.
-		 * @param options Reference to an @ref ATEAMS::arithmetic::ThreadOptions
+		 * @param options Reference to a @ref ThreadOptions.
 		 * 	instance.
 		 * @param DEBUG _(Optional)_ Are we debugging the arithmetic?
 		 * 

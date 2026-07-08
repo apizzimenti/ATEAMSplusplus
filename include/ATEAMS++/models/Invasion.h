@@ -12,49 +12,12 @@
 namespace ATEAMS {
 	namespace models {
 		/**
-		 * @struct InvasionParameters
-		 * @brief Parameters relevant to simulating the invaded-cluster algorithm.
-		 * 
-		 * @var InvasionParameters::field
-		 * Order \f$p\f$ for the finite field \f$\Z / p \Z\f$.
-		 * 
-		 * @var InvasionParameters::stoppingFunction
-		 * Function that consumes a time-step (integer) parameter \f$t\f$ and returns
-		 * an integer in \f$(a,b)\f$, where \f$a, \ b \f$ are between \f$0\f$ and
-		 * \f$\rank(H_d(X))\f$ telling us when to sample the next set of spins.
-		 */
-		struct InvasionParameters : ModelParameters {
-			int field = 2;
-			std::function<int(int)> stoppingFunction;
-		};
-
-		/**
-		 * @struct InvasionState
-		 * @brief Stores the current state of the invaded-cluster algorithm.
-		 * 
-		 * @var InvasionState::includes
-		 * A vector with nonzero entries indicating the indices of \f$d\f$-cells
-		 * included in the percolation subcomplex sampled at time \f$t\f$, in
-		 * insertion order.
-		 * 
-		 * @var InvasionState::essential
-		 * A vector with the times at which giant cycles were encountered.
-		 */
-		struct InvasionState : ModelState {
-			std::vector<int> includes;
-			std::vector<int> essential;
-		};
-
-		/**
 		 * @class Invasion
 		 * @brief Implements the invaded-cluster algorithm for Potts lattice gauge theory
 		 * 	(PLGT) and the plaquette random-cluster model (PRCM).
 		 * 
 		 * @var Invasion::parameters
 		 * Model parameters.
-		 * 
-		 * @var Invasion::state
-		 * Model state.
 		 * 
 		 * @var Invasion::field
 		 * Finite field over which computations will be performened.
@@ -69,7 +32,7 @@ namespace ATEAMS {
 		 * @var Invasion::kind
 		 * Model name.
 		 */
-		class Invasion: public Model<std::vector<int>> {
+		class Invasion: public Model<ff,DenseVector> {
 			public:
 				/**
 				 * @brief Constructor.
@@ -77,7 +40,7 @@ namespace ATEAMS {
 				 * @param complex (Pointer to) a complex.
 				 * @param parameters Model parameters.
 				 */
-				Invasion(ATEAMS::complexes::Complex* complex, InvasionParameters parameters);
+				Invasion(ATEAMS::complexes::Complex<ff>* complex, ModelParameters parameters);
 
 				/**
 				 * @brief Implements the plaquette invasion-percolation algorithm,
@@ -86,23 +49,22 @@ namespace ATEAMS {
 				 * is "large enough" (set by the user).
 				 * 
 				 * @param t Time step.
+				 * @param state Model state.
 				 * @param options Multithreaded computing environment options.
 				 * 
-				 * @return A list of \f$d\f$-cell indices in insertion order, up
-				 * to the time at which \f$\rank(H_d(X))\f$ exceeds the user-specified
-				 * cutoff.
+				 * @return Model state with @ref ModelState::includes, @ref ModelState::essential,
+				 * and @ref ModelState::t updated.
 				 */
-				std::vector<int> sample(int t, ATEAMS::arithmetic::ThreadOptions& options) override;
+				ModelState<ff,DenseVector> sample(int t, ModelState<ff,DenseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
 
 				/** @brief Initialization; superfluous. */
-				void initialize() override { };
+				ModelState<ff,DenseVector> initialize(ModelState<ff,DenseVector>& state) override { return state; };
 
 				/** @brief Initialization; superfluous. */
-				void initialize(std::vector<int> c) override { };
+				ModelState<ff,DenseVector> initialize(std::vector<ff> c, ModelState<ff,DenseVector>& state) override { return state; };
 
-				InvasionParameters parameters;
-				InvasionState state;
-				const Zp field;
+				ModelParameters parameters;
+				const Field field;
 
 				std::string kind = "Invasion";
 
@@ -114,6 +76,8 @@ namespace ATEAMS {
 		};
 	}
 }
+
+#include "ATEAMS++/models/Invasion.tpp"
 
 #endif
 

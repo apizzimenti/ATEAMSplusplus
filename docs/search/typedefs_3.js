@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ulong_0',['ulong',['../namespace_a_t_e_a_m_s.html#affcaa5d02e8058e2d68862ae365b742c',1,'ATEAMS']]]
+  ['rational_0',['rational',['../namespace_a_t_e_a_m_s.html#a18e95932ded0d166d82dcf631b7f50ae',1,'ATEAMS']]]
 ];

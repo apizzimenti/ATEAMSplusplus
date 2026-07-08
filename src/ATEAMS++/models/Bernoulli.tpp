@@ -14,8 +14,6 @@
 
 namespace ATEAMS {
 	namespace models {
-		using namespace std;
-		
 		models::ModelState<ATEAMS::ff,DenseVector> models::Bernoulli::sample(
 			int t,
 			models::ModelState<ATEAMS::ff,DenseVector>& state,
@@ -30,8 +28,6 @@ namespace ATEAMS {
 				cerr << std::format("verifying 0 ≤ {} ≤ 1", p) << endl;
 				assert((0 <= p) && (p <= 1));
 			}
-
-			cout << "whatever" << endl;
 
 			// Then decide which cells we're including/excluding.
 			vector<int> include;
