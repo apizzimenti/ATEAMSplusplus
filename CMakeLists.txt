@@ -181,10 +181,10 @@ list(APPEND ARITHMETIC
 )
 
 list(APPEND MODELS
-	# "Bernoulli"
+	"Bernoulli"
 	# "Glauber"
 	# "InvadedCluster"
-	"Invasion"
+	# "Invasion"
 	# "SwendsenWang"
 )
 

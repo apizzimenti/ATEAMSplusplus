@@ -3,6 +3,7 @@
 #define ATEAMS_TEST_H
 
 #include <ATEAMS++/ATEAMS++.h>
+#include <SparseRREF/sparse_vec.h>
 #include <vector>
 #include <map>
 
@@ -27,10 +28,15 @@ const int ITERATIONS = 10;
 
 // Checks whether a vector is in the kernel of a matrix.
 template <typename T>
-inline bool inKernel(ATEAMS::SparseMatrix<T> K, ATEAMS::SparseVector<T> v, ATEAMS::Field F) {
+inline bool inKernel(ATEAMS::SparseMatrix<T> K, ATEAMS::SparseVector<T> v, ATEAMS::Field F, bool DEBUG=true) {
 	ATEAMS::SparseVector<T> w = SparseRREF::sparse_mat_dot_sparse_vec<T,ATEAMS::index_t>(
 		K, v, F
 	);
+
+	if (DEBUG) {
+		SparseRREF::print_vec_info<ATEAMS::index_t,T>(v);
+		SparseRREF::print_vec_info<ATEAMS::index_t,T>(w);
+	}
 
 	return w.size() < 1;
 }

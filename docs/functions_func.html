@@ -31,12 +31,14 @@ window.MathJax = {
   },
   tex: {
     macros: {    Z: "{\\mathbb Z}",
+    Q: "{\\mathbb Q}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
+    GF: "{\\mathrm{GF}}",
     },
     packages: {
         '[+]': ['units']
@@ -139,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <div class="contents">
 <div class="textblock">Here is a list of all documented functions with links to the class documentation for each member:</div><br/>
-<div class="qindex"><a class="qindex" href="#index_b">B</a><div class="alphasepar"></div><a class="qindex" href="#index_c">C</a><div class="alphasepar"></div><a class="qindex" href="#index_f">F</a><div class="alphasepar"></div><a class="qindex" href="#index_g">G</a><div class="alphasepar"></div><a class="qindex" href="#index_i">I</a><div class="alphasepar"></div><a class="qindex" href="#index_s">S</a><div class="alphasepar"></div><a class="qindex" href="#index_t">T</a><div class="alphasepar"></div><a class="qindex" href="#index_w">W</a></div>
+<div class="qindex"><a class="qindex" href="#index_b">B</a><div class="alphasepar"></div><a class="qindex" href="#index_c">C</a><div class="alphasepar"></div><a class="qindex" href="#index_f">F</a><div class="alphasepar"></div><a class="qindex" href="#index_g">G</a><div class="alphasepar"></div><a class="qindex" href="#index_i">I</a><div class="alphasepar"></div><a class="qindex" href="#index_m">M</a><div class="alphasepar"></div><a class="qindex" href="#index_s">S</a><div class="alphasepar"></div><a class="qindex" href="#index_t">T</a><div class="alphasepar"></div><a class="qindex" href="#index_w">W</a></div>
 
 
 <h3 class="doxsection"><a id="index_b" name="index_b"></a>- b -</h3><ul>
@@ -167,14 +169,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <h3 class="doxsection"><a id="index_i" name="index_i"></a>- i -</h3><ul>
-<li>initialize()&#160;:&#160;<a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a688f01a111b4245365bee3558181a876">ATEAMS::models::Bernoulli</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a1407d02001ba49e95b22adb522afac45">ATEAMS::models::Glauber&lt; T &gt;</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a0dadba29ac834c1a0a00424772bf20f5">ATEAMS::models::InvadedCluster</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#aaff756d0b6cb9b644311ad6ba6307d9b">ATEAMS::models::Invasion</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a62ea5826546e2b1a21c097c417c88660">ATEAMS::models::Model&lt; T, ContainerType &gt;</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#aa9e09bac98e6b370b696a63b95de809b">ATEAMS::models::SwendsenWang&lt; T &gt;</a></li>
-<li>InvadedCluster()&#160;:&#160;<a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a03adcc1723b63b15276e0ed60759daaf">ATEAMS::models::InvadedCluster</a></li>
-<li>Invasion()&#160;:&#160;<a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a354fece5f1a48395903d0ecd187c95f2">ATEAMS::models::Invasion</a></li>
+<li>initialize()&#160;:&#160;<a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a688f01a111b4245365bee3558181a876">ATEAMS::models::Bernoulli</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a1407d02001ba49e95b22adb522afac45">ATEAMS::models::Glauber&lt; T &gt;</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#afd42046bdb5354a8a8bac4e9ea01cc5b">ATEAMS::models::InvadedCluster&lt; T &gt;</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#ad1e00eab9298cf4e4ed76c36325e7423">ATEAMS::models::Invasion</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a62ea5826546e2b1a21c097c417c88660">ATEAMS::models::Model&lt; T, ContainerType &gt;</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#aa9e09bac98e6b370b696a63b95de809b">ATEAMS::models::SwendsenWang&lt; T &gt;</a></li>
+<li>InvadedCluster()&#160;:&#160;<a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a3baaef42b091b39f59164ee8ebbb5edd">ATEAMS::models::InvadedCluster&lt; T &gt;</a></li>
+<li>Invasion()&#160;:&#160;<a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a2eda9e89b6837432f24daa2dad62f3ef">ATEAMS::models::Invasion</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_m" name="index_m"></a>- m -</h3><ul>
+<li>Model()&#160;:&#160;<a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a9638630e357a11549408959388bab718">ATEAMS::models::Model&lt; T, ContainerType &gt;</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_s" name="index_s"></a>- s -</h3><ul>
-<li>sample()&#160;:&#160;<a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a310ab0375e4b2baa232eff25c01e808d">ATEAMS::models::Bernoulli</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ab476c862eb96cd1de6bd54d13474fd57">ATEAMS::models::Glauber&lt; T &gt;</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a1f1d2e0d32df77b2219abbb881887dec">ATEAMS::models::InvadedCluster</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#ac63a2374f7a1de4b8229f3006b7d832b">ATEAMS::models::Invasion</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#aad572e61319937fba274812b00b6620c">ATEAMS::models::Model&lt; T, ContainerType &gt;</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a9a12bed9fb7854b2d4eaec17d46ced75">ATEAMS::models::SwendsenWang&lt; T &gt;</a></li>
+<li>sample()&#160;:&#160;<a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a310ab0375e4b2baa232eff25c01e808d">ATEAMS::models::Bernoulli</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ab476c862eb96cd1de6bd54d13474fd57">ATEAMS::models::Glauber&lt; T &gt;</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a2794b93f763f83780c6ec46cf1585b39">ATEAMS::models::InvadedCluster&lt; T &gt;</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a1cc20bccf331f4af842fcabf8b418ae1">ATEAMS::models::Invasion</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#aad572e61319937fba274812b00b6620c">ATEAMS::models::Model&lt; T, ContainerType &gt;</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a9a12bed9fb7854b2d4eaec17d46ced75">ATEAMS::models::SwendsenWang&lt; T &gt;</a></li>
 <li>simulate()&#160;:&#160;<a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#aa769e9e247cff6276124bba58062da89">ATEAMS::statistics::Chain&lt; T, ContainerType &gt;</a></li>
 <li>size()&#160;:&#160;<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#add7c197f8394055adcf1885a30393240">ATEAMS::complexes::Complex&lt; T &gt;</a>, <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a4aae3ffd784fb13c36c708d087662514">ATEAMS::complexes::Cubical&lt; T &gt;</a></li>
 <li>spinDown()&#160;:&#160;<a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#a356e615c35d53059b1231116d9b3bde2">ATEAMS::arithmetic::ThreadOptions</a></li>

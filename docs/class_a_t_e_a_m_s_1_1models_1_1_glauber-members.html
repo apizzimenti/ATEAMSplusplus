@@ -31,12 +31,14 @@ window.MathJax = {
   },
   tex: {
     macros: {    Z: "{\\mathbb Z}",
+    Q: "{\\mathbb Q}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
+    GF: "{\\mathrm{GF}}",
     },
     packages: {
         '[+]': ['units']
@@ -144,14 +146,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <p>This is the complete list of members for <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber&lt; T &gt;</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#ad8db6c7f5baea526b3b68dd66e6e09e6">complex</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; T, SparseVector &gt;</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#afabd0bae1067681ffbda90701bfe4ece">field</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#ad8db6c7f5baea526b3b68dd66e6e09e6">complex</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ATEAMS::ff, SparseVector &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a271b656588720f7ebd6d58bfaed4437c">DataType</a> typedef</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ATEAMS::ff, SparseVector &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#aebd16e54d2519315ec36ce02185b8124">dt</a> typedef</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a0e96bd14ea1609ae34bb83c546bdec35">field</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ATEAMS::ff, SparseVector &gt;</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a3f25170943f633906508e0576a0da46b">Glauber</a>(ATEAMS::complexes::Complex&lt; T &gt; *complex, ModelParameters parameters)</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber&lt; T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a1407d02001ba49e95b22adb522afac45">initialize</a>(ModelState&lt; T, SparseVector &gt; &amp;state) override</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber&lt; T &gt;</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a1407d02001ba49e95b22adb522afac45">initialize</a>(ModelState&lt; T, SparseVector &gt; &amp;state) override</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber&lt; T &gt;</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a5fc776b11cf3519426c65c0b38e60294">initialize</a>(SparseVector&lt; T &gt; c, ModelState&lt; T, SparseVector &gt; &amp;state) override</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber&lt; T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a0ab5d166fbdc5df10a3cc9ffcacf2e2d">kind</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber&lt; T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a15702a601a8270fadb42a41fd3cde128">parameters</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber&lt; T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ab476c862eb96cd1de6bd54d13474fd57">sample</a>(int t, ModelState&lt; T, SparseVector &gt; &amp;state, ATEAMS::arithmetic::ThreadOptions &amp;options) override</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber&lt; T &gt;</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a62ea5826546e2b1a21c097c417c88660">ATEAMS::models::Model&lt; ATEAMS::ff, SparseVector &gt;::initialize</a>(ModelState&lt; ATEAMS::ff, SparseVector &gt; &amp;state)=0</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ATEAMS::ff, SparseVector &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#ab648053a09c720f3ddfed3a98802f60c">kind</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ATEAMS::ff, SparseVector &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a9638630e357a11549408959388bab718">Model</a>(Field F, string kind)</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ATEAMS::ff, SparseVector &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a71938f93b66c74d76b32d35bd465075a">parameters</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ATEAMS::ff, SparseVector &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ab476c862eb96cd1de6bd54d13474fd57">sample</a>(int t, ModelState&lt; T, SparseVector &gt; &amp;state, ATEAMS::arithmetic::ThreadOptions &amp;options) override</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#aad572e61319937fba274812b00b6620c">ATEAMS::models::Model&lt; ATEAMS::ff, SparseVector &gt;::sample</a>(int t, ModelState&lt; ATEAMS::ff, SparseVector &gt; &amp;state, ATEAMS::arithmetic::ThreadOptions &amp;options)=0</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ATEAMS::ff, SparseVector &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a4ef1fbeaa0a077c8f853f647a47f522e">st</a> typedef</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a1c8b5fbd74a1a1a799410f9df6307295">StorageType</a> typedef</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ATEAMS::ff, SparseVector &gt;</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

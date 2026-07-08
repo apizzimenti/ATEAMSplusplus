@@ -31,12 +31,14 @@ window.MathJax = {
   },
   tex: {
     macros: {    Z: "{\\mathbb Z}",
+    Q: "{\\mathbb Q}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
+    GF: "{\\mathrm{GF}}",
     },
     packages: {
         '[+]': ['units']
@@ -206,7 +208,7 @@ template&lt;typename T&gt; </div>
 <p>Computes the persistent homology of a complex using \(\Z/2\Z\) coefficients. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">complex</td><td>A complex with a flat boundary matrix. </td></tr>
+    <tr><td class="paramname">complex</td><td>A (pointer to) a <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" title="ATEAMS::complexes::Complex">ATEAMS::complexes::Complex</a> with a flat boundary matrix. </td></tr>
     <tr><td class="paramname">filtration</td><td>A vector that specifies the order in which to add the cells in the flat boundary matrix. For example, if we are doing 1-dimensional percolation in 2-d, then we switch up the ordering of the 1-d cells in the flat boundary matrix, but leave everything else. </td></tr>
     <tr><td class="paramname">dimension</td><td>The percolation dimension.</td></tr>
   </table>
@@ -315,7 +317,7 @@ template&lt;typename T&gt; </div>
     <tr><td class="paramname">exclude</td><td>Row indices to exclude. </td></tr>
     <tr><td class="paramname">intuniform</td><td>Uniform distribution over integers \([0, p)\). </td></tr>
     <tr><td class="paramname">RNG</td><td>Mersenne twister PRNG. </td></tr>
-    <tr><td class="paramname">options</td><td>Reference to an <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ATEAMS::arithmetic::ThreadOptions">ATEAMS::arithmetic::ThreadOptions</a> instance. </td></tr>
+    <tr><td class="paramname">options</td><td>Reference to a <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ThreadOptions">ThreadOptions</a>. instance. </td></tr>
     <tr><td class="paramname">DEBUG</td><td><em>(Optional)</em> Are we debugging the arithmetic?</td></tr>
   </table>
   </dd>
@@ -358,7 +360,7 @@ template&lt;typename T&gt; </div>
 <p>Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">complex</td><td>A complex with a flat boundary matrix. </td></tr>
+    <tr><td class="paramname">complex</td><td>A (pointer to) a <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" title="ATEAMS::complexes::Complex">ATEAMS::complexes::Complex</a> with a flat boundary matrix. </td></tr>
     <tr><td class="paramname">filtration</td><td>A vector that specifies the order in which to add the cells in the flat boundary matrix. For example, if we are doing 1-dimensional percolation in 2-d, then we switch up the ordering of the 1-d cells in the flat boundary matrix, but leave everything else. </td></tr>
     <tr><td class="paramname">F</td><td>Finite field \(\Z/p\Z\) over which we're doing arithmetic. </td></tr>
     <tr><td class="paramname">dimension</td><td>The percolation dimension.</td></tr>

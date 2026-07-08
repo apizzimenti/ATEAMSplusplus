@@ -14,18 +14,15 @@ namespace ATEAMS {
 		/**
 		 * @class Bernoulli
 		 * @brief Implements Bernoulli percolation.
-		 * 
-		 * @var Bernoulli::parameters
-		 * Parameters for Bernoulli percolation; includes standard ModelParameters, and
-		 * 	Bernoulli trial density \f$0 \leq p \leq 1\f$.
-		 * 
-		 * @var Bernoulli::kind
-		 * Model name.
 		 */
 		class Bernoulli : public Model<ff,DenseVector> {
 			public:
-				ModelParameters parameters;
-				std::string kind = "Bernoulli";
+				/** Coefficients are of type @ref ATEAMS::ff. */
+				typedef ff dt;
+
+				/** Vectors are of type @ref ATEAMS::DenseVector. */
+				template <typename R>
+				using st = DenseVector<R>;
 
 				/**
 				 * @brief Constructor.
@@ -50,7 +47,6 @@ namespace ATEAMS {
 
 				/** @brief Initialization; superfluous. */
 				ModelState<ff,DenseVector> initialize(std::vector<ff> c, ModelState<ff,DenseVector>& state) override { return state; };
-
 			private:
 				std::mt19937 RNG;
 				std::uniform_real_distribution<double> unituniform;

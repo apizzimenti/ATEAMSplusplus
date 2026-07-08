@@ -5,10 +5,12 @@
 using namespace ATEAMS;
 using namespace std;
 
-using Structure = complexes::Cubical<FINITE>;
 using Model = models::Bernoulli;
-using State = models::ModelState<FINITE,DenseVector>;
-using Chain = statistics::Chain<FINITE,DenseVector>;
+using Parameters = models::ModelParameters;
+
+using Structure = complexes::Cubical<Model::dt>;
+using State = models::ModelState<Model::dt,Model::st>;
+using Chain = statistics::Chain<Model::dt,Model::st>;
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
@@ -18,7 +20,7 @@ int main(int argc, char *argv[]) {
 		vector<int> corners(dimension, 3);
 		Structure COMPLEX(corners);
 
-		models::ModelParameters PARAMETERS;
+		Parameters PARAMETERS;
 		PARAMETERS.p = 0.5;
 		PARAMETERS.dimension = dimension/2;
 

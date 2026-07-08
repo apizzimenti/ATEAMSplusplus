@@ -14,33 +14,17 @@ namespace ATEAMS {
 		/**
 		 * @class Glauber
 		 * @brief Implements the Glauber dynamics algorithm.
-		 * 
-		 * @var Glauber::parameters
-		 * Model parameters.
-		 * 
-		 * @var Glauber::field
-		 * Finite field over which computations will be performened.
-		 * 
-		 * @var Glauber::RNG
-		 * Mersenne twister random number generator.
-		 * 
-		 * @var Glauber::unituniform
-		 * Uniform distribution over \f$(0,1)\f$.
-		 * 
-		 * @var Glauber::intuniform
-		 * Uniform distribution over the integers \f$[0,p)\f$, where \f$p\f$ is
-		 * the order of the model's finite field.
-		 * 
-		 * @var Glauber::indexuniform
-		 * Uniform distribution over the integers \f$[0,N)\f$, where \f$N\f$ is
-		 * the number of \f$(d-1)\f$-cells in the complex.
-		 * 
-		 * @var Glauber::kind
-		 * Model name.
 		 */
 		template <typename T=ATEAMS::ff>
 		class Glauber: public Model<T,SparseVector> {
 			public:
+				/** Coefficients are of type @ref ATEAMS::ff or @ref ATEAMS::rational. */
+				typedef T dt;
+
+				/** Vectors are of type @ref ATEAMS::SparseVector. */
+				template <typename R>
+				using st = SparseVector<R>;
+				
 				/**
 				 * @brief Constructor.
 				 * 
@@ -80,11 +64,6 @@ namespace ATEAMS {
 				 * @returns Model state.
 				 */
 				ModelState<T,SparseVector> initialize(SparseVector<T> c, ModelState<T,SparseVector>& state) override;
-				
-				ModelParameters parameters;
-				const Field field;
-
-				std::string kind = "Glauber";
 
 			private:
 				std::mt19937 RNG;

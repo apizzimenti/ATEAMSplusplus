@@ -31,12 +31,14 @@ window.MathJax = {
   },
   tex: {
     macros: {    Z: "{\\mathbb Z}",
+    Q: "{\\mathbb Q}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
+    GF: "{\\mathrm{GF}}",
     },
     packages: {
         '[+]': ['units']
@@ -146,22 +148,13 @@ document.addEventListener('DOMContentLoaded', () => {
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_model_8h_source.html">Model.h</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for ATEAMS::models::ModelParameters:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.png" usemap="#ATEAMS_3A_3Amodels_3A_3AModelParameters_map" alt=""/>
-  <map id="ATEAMS_3A_3Amodels_3A_3AModelParameters_map" name="ATEAMS_3A_3Amodels_3A_3AModelParameters_map">
-<area href="struct_a_t_e_a_m_s_1_1models_1_1_invaded_cluster_parameters.html" title="Parameters relevant to simulating the Swendsen–Wang algorithm." alt="ATEAMS::models::InvadedClusterParameters" shape="rect" coords="0,56,264,80"/>
-<area href="struct_a_t_e_a_m_s_1_1models_1_1_invasion_parameters.html" title="Parameters relevant to simulating the invaded-cluster algorithm." alt="ATEAMS::models::InvasionParameters" shape="rect" coords="274,56,538,80"/>
-  </map>
-</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ae91bfbeb2b93bb8af965f21668a5decf" id="r_ae91bfbeb2b93bb8af965f21668a5decf"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae91bfbeb2b93bb8af965f21668a5decf">field</a></td></tr>
-<tr class="memitem:a71755214e04ea1a1b6cb704d529de46d" id="r_a71755214e04ea1a1b6cb704d529de46d"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a71755214e04ea1a1b6cb704d529de46d">p</a></td></tr>
+<tr class="memitem:ab8f9de358a04244e3a3fb74df6592ab8" id="r_ab8f9de358a04244e3a3fb74df6592ab8"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ab8f9de358a04244e3a3fb74df6592ab8">p</a></td></tr>
 <tr class="memitem:a35dad95b5b4c9efe6f47d3e7cd02847e" id="r_a35dad95b5b4c9efe6f47d3e7cd02847e"><td class="memItemLeft">std::function&lt; double(int)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a35dad95b5b4c9efe6f47d3e7cd02847e">temperatureFunction</a></td></tr>
+<tr class="memitem:a0c5595ebe34c5ca2c81b960048aaa427" id="r_a0c5595ebe34c5ca2c81b960048aaa427"><td class="memItemLeft">std::function&lt; int(int)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0c5595ebe34c5ca2c81b960048aaa427">stoppingFunction</a></td></tr>
 <tr class="memitem:a0a337f8aba7b7596bcbf88f71bac2ded" id="r_a0a337f8aba7b7596bcbf88f71bac2ded"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a0a337f8aba7b7596bcbf88f71bac2ded">dimension</a></td></tr>
 <tr class="memitem:aab3ad508975c0ceab78575184f455c4d" id="r_aab3ad508975c0ceab78575184f455c4d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aab3ad508975c0ceab78575184f455c4d">DEBUG</a> = false</td></tr>
 </table>
@@ -213,18 +206,33 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a71755214e04ea1a1b6cb704d529de46d" name="a71755214e04ea1a1b6cb704d529de46d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71755214e04ea1a1b6cb704d529de46d">&#9670;&#160;</a></span>p</h2>
+<a id="ab8f9de358a04244e3a3fb74df6592ab8" name="ab8f9de358a04244e3a3fb74df6592ab8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8f9de358a04244e3a3fb74df6592ab8">&#9670;&#160;</a></span>p</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int ATEAMS::models::ModelParameters::p</td>
+          <td class="memname">float ATEAMS::models::ModelParameters::p</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation.">Bernoulli</a> trial density. Used by <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Bernoulli">Bernoulli</a>. </p>
+
+</div>
+</div>
+<a id="a0c5595ebe34c5ca2c81b960048aaa427" name="a0c5595ebe34c5ca2c81b960048aaa427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c5595ebe34c5ca2c81b960048aaa427">&#9670;&#160;</a></span>stoppingFunction</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;int(int)&gt; ATEAMS::models::ModelParameters::stoppingFunction</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function that specifies the number of giant cycles encountered before re-sampling spins. Used by <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html" title="InvadedCluster">InvadedCluster</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html" title="Invasion">Invasion</a>. </p>
 
 </div>
 </div>

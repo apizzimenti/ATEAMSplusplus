@@ -31,12 +31,14 @@ window.MathJax = {
   },
   tex: {
     macros: {    Z: "{\\mathbb Z}",
+    Q: "{\\mathbb Q}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
+    GF: "{\\mathrm{GF}}",
     },
     packages: {
         '[+]': ['units']
@@ -147,6 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <p><code>#include &lt;<a class="el" href="_complex_8h_source.html">Complex.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:af83f7a22b58d13f227062c8732ce595a" id="r_af83f7a22b58d13f227062c8732ce595a"><td class="memItemLeft">typedef T&#160;</td><td class="memItemRight"><a class="el" href="#af83f7a22b58d13f227062c8732ce595a">dt</a></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abf78d0c21ab0696be8daed36fdf74d79" id="r_abf78d0c21ab0696be8daed36fdf74d79"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#abf78d0c21ab0696be8daed36fdf74d79">constructBoundaryMatrices</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a> F)=0</td></tr>
@@ -192,7 +198,25 @@ bool&#160;</td><td class="memItemRight"><b>periodic</b></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T = ATEAMS::ff&gt;<br />
 class ATEAMS::complexes::Complex&lt; T &gt;</div><p>Abstract (template) class for various complexes. </p>
-</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="af83f7a22b58d13f227062c8732ce595a" name="af83f7a22b58d13f227062c8732ce595a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af83f7a22b58d13f227062c8732ce595a">&#9670;&#160;</a></span>dt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T = ATEAMS::ff&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef T <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt;::dt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Exposed matrix entry type. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="abf78d0c21ab0696be8daed36fdf74d79" name="abf78d0c21ab0696be8daed36fdf74d79"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abf78d0c21ab0696be8daed36fdf74d79">&#9670;&#160;</a></span>constructBoundaryMatrices()</h2>
 
@@ -221,7 +245,7 @@ template&lt;typename T = ATEAMS::ff&gt; </div>
 <p>Constructs boundary matrices. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">F</td><td>Finite field \( \Z/p\Z \). </td></tr>
+    <tr><td class="paramname">F</td><td>Finite field \( \Z/p\Z \) or \( \Q \).. </td></tr>
   </table>
   </dd>
 </dl>

@@ -31,12 +31,14 @@ window.MathJax = {
   },
   tex: {
     macros: {    Z: "{\\mathbb Z}",
+    Q: "{\\mathbb Q}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
+    GF: "{\\mathrm{GF}}",
     },
     packages: {
         '[+]': ['units']
@@ -164,7 +166,7 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a7bbfeb7ae855d5a4c34c0aacb9091da9" id="r_a7bbfeb7ae855d5a4c34c0aacb9091da9"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a7bbfeb7ae855d5a4c34c0aacb9091da9">steps</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt;<br />
 class ATEAMS::statistics::Chain&lt; T, ContainerType &gt;</div><p>Simulates the Markov chains specified by each <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="ATEAMS::models::Model">ATEAMS::models::Model</a>. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac045f9e9081b6dc8dd0409fa1f74eeab" name="ac045f9e9081b6dc8dd0409fa1f74eeab"></a>
@@ -173,7 +175,7 @@ class ATEAMS::statistics::Chain&lt; T, ContainerType &gt;</div><p>Simulates the 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
+template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -213,7 +215,7 @@ template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
+template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -260,7 +262,7 @@ template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
+template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -283,7 +285,7 @@ template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </
 <div class="fragment"><div class="line"><span class="keywordflow">for</span> (<a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">models::ModelState&lt;ATEAMS::ff,ATEAMS::SparseVector&gt;</a> State : M.simulate()) {</div>
 <div class="line">    &lt;<span class="keywordflow">do</span> whatever&gt;</div>
 <div class="line">}</div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a></div><div class="ttdoc">Maintains state for this Model.</div><div class="ttdef"><b>Definition</b> Model.h:74</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a></div><div class="ttdoc">Maintains state for this Model.</div><div class="ttdef"><b>Definition</b> Model.h:81</div></div>
 </div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>A <span class="tt">std::generator</span>. </dd></dl>
 
 </div>
@@ -295,7 +297,7 @@ template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
+template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model</a>&lt;T,ContainerType&gt;* <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; T, ContainerType &gt;::model</td>
@@ -312,7 +314,7 @@ template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
+template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; T, ContainerType &gt;::options</td>
@@ -329,14 +331,14 @@ template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
+template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a>&lt;T,ContainerType&gt; <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; T, ContainerType &gt;::state</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A ATEAMS::ModelState. </p>
+<p>A <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html" title="ATEAMS::models::ModelState">ATEAMS::models::ModelState</a>. </p>
 
 </div>
 </div>
@@ -346,7 +348,7 @@ template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T, template&lt; typename &gt; typename ContainerType&gt; </div>
+template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">int <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a>&lt; T, ContainerType &gt;::steps</td>

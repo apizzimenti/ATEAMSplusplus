@@ -31,12 +31,14 @@ window.MathJax = {
   },
   tex: {
     macros: {    Z: "{\\mathbb Z}",
+    Q: "{\\mathbb Q}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
+    GF: "{\\mathrm{GF}}",
     },
     packages: {
         '[+]': ['units']
@@ -145,13 +147,18 @@ document.addEventListener('DOMContentLoaded', () => {
 <p>This is the complete list of members for <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang&lt; T &gt;</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#ad8db6c7f5baea526b3b68dd66e6e09e6">complex</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; T, SparseVector &gt;</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a398c94d3b1d667db02a8ec175cf7abf3">field</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a271b656588720f7ebd6d58bfaed4437c">DataType</a> typedef</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; T, SparseVector &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#ac3581ef44944da8f8d0e4f4ae0491ae8">dt</a> typedef</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a0e96bd14ea1609ae34bb83c546bdec35">field</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; T, SparseVector &gt;</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#aa9e09bac98e6b370b696a63b95de809b">initialize</a>(ModelState&lt; T, SparseVector &gt; &amp;state) override</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang&lt; T &gt;</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#aa8fa1b81e590339ce0d9b38f4c40f6f1">initialize</a>(SparseVector&lt; T &gt; c, ModelState&lt; T, SparseVector &gt; &amp;state) override</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang&lt; T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a7a71c0395e9ddbfbc035b70160e5847a">kind</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang&lt; T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a2685c5c6a64eec2280c0e29232b7ab3e">parameters</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang&lt; T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a9a12bed9fb7854b2d4eaec17d46ced75">sample</a>(int t, ModelState&lt; T, SparseVector &gt; &amp;state, ATEAMS::arithmetic::ThreadOptions &amp;options) override</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang&lt; T &gt;</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a6984288ff99cbf8a129d7c8c36b9a9d1">SwendsenWang</a>(ATEAMS::complexes::Complex&lt; T &gt; *complex, ModelParameters parameters)</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#ab648053a09c720f3ddfed3a98802f60c">kind</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; T, SparseVector &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a9638630e357a11549408959388bab718">Model</a>(Field F, string kind)</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; T, SparseVector &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a71938f93b66c74d76b32d35bd465075a">parameters</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; T, SparseVector &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a9a12bed9fb7854b2d4eaec17d46ced75">sample</a>(int t, ModelState&lt; T, SparseVector &gt; &amp;state, ATEAMS::arithmetic::ThreadOptions &amp;options) override</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang&lt; T &gt;</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#aaf4840886b83cccad38ad4dca9c32379">st</a> typedef</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a1c8b5fbd74a1a1a799410f9df6307295">StorageType</a> typedef</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; T, SparseVector &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a6984288ff99cbf8a129d7c8c36b9a9d1">SwendsenWang</a>(ATEAMS::complexes::Complex&lt; T &gt; *complex, ModelParameters parameters)</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html">ATEAMS::models::SwendsenWang&lt; T &gt;</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

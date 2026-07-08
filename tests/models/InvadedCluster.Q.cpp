@@ -5,10 +5,12 @@
 using namespace ATEAMS;
 using namespace std;
 
-using Structure = complexes::Cubical<RATIONAL>;
 using Model = models::InvadedCluster<RATIONAL>;
-using State = models::ModelState<RATIONAL,SparseVector>;
-using Chain = statistics::Chain<RATIONAL,SparseVector>;
+using Parameters = models::ModelParameters;
+
+using Structure = complexes::Cubical<Model::dt>;
+using State = models::ModelState<Model::dt,Model::st>;
+using Chain = statistics::Chain<Model::dt,Model::st>;
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
@@ -18,10 +20,11 @@ int main(int argc, char *argv[]) {
 		vector<int> corners(dimension, 3);
 		Structure COMPLEX(corners);
 
-		models::ModelParameters PARAMETERS;
+		Parameters PARAMETERS;
 		PARAMETERS.field = FIELD;
 		PARAMETERS.dimension = dimension/2;
 		PARAMETERS.stoppingFunction = statistics::stopInvadingAt({dimension/2});
+		PARAMETERS.DEBUG = true;
 
 		Model MODEL(&COMPLEX, PARAMETERS);
 		Chain CHAIN(&MODEL, ITERATIONS);
@@ -30,16 +33,16 @@ int main(int argc, char *argv[]) {
 			// Figure out which cells were excluded; on these cells, the cochain
 			// can evaluate to anything. We just want the ones that evaluate to
 			// 0.
-			vector<int> unsatisfied = statistics::unsatisfied(
+			vector<int> unsatisfied = statistics::unsatisfied<Model::dt>(
 				&COMPLEX, state.cochain, MODEL.field, PARAMETERS.dimension
 			);
 
-			SparseMatrix<RATIONAL> REDUCED = MODEL.complex->Coboundary.Matrices[PARAMETERS.dimension];
+			SparseMatrix<Model::dt> REDUCED = MODEL.complex->Coboundary.Matrices[PARAMETERS.dimension];
 			for (auto u : unsatisfied) REDUCED[u].zero();
 			REDUCED.clear_zero_row();
 			REDUCED.compress();
 
-			if (!inKernel(REDUCED, state.cochain, MODEL.field)) {
+			if (!inKernel<Model::dt>(REDUCED, state.cochain, MODEL.field, PARAMETERS.DEBUG)) {
 				RESULT = FAIL;
 			}
 		}

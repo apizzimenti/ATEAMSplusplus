@@ -31,12 +31,14 @@ window.MathJax = {
   },
   tex: {
     macros: {    Z: "{\\mathbb Z}",
+    Q: "{\\mathbb Q}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
+    GF: "{\\mathrm{GF}}",
     },
     packages: {
         '[+]': ['units']
@@ -152,11 +154,12 @@ document.addEventListener('DOMContentLoaded', () => {
   <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#abf78d0c21ab0696be8daed36fdf74d79">constructBoundaryMatrices</a>(Field F)=0</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a3f8fbef5b2fedea91952b9ba01eaebb0">constructFlatBoundaryMatrix</a>()=0</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#ab1834061a70d6db288c1dfc93faec0af">constructFullBoundaryMatrix</a>(Field F)=0</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#ae48ad59395a5ffce6f83b3ccd04e4e61">fromFile</a>(std::string filename)</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#aaee582dcd95effd4a7c1dca580aeb8f6">offsets</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a25112684c419170e0ea0f43e76824a9d">periodic</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#add7c197f8394055adcf1885a30393240">size</a>()=0</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a5e33f91200b8ae6d7243c2be5bffaa3c">toFile</a>(std::string filename)</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#af83f7a22b58d13f227062c8732ce595a">dt</a> typedef</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#ae48ad59395a5ffce6f83b3ccd04e4e61">fromFile</a>(std::string filename)</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#aaee582dcd95effd4a7c1dca580aeb8f6">offsets</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a25112684c419170e0ea0f43e76824a9d">periodic</a></td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#add7c197f8394055adcf1885a30393240">size</a>()=0</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a5e33f91200b8ae6d7243c2be5bffaa3c">toFile</a>(std::string filename)</td><td class="entry"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

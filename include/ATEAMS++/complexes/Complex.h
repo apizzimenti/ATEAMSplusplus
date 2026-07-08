@@ -48,6 +48,9 @@ namespace ATEAMS {
 		template <typename T=ATEAMS::ff>
 		class Complex {
 			public:
+				/** Exposed matrix entry type. */
+				typedef T dt;
+				
 				/**
 				 * @brief Writes boundary matrices to file.
 				 * @param filename Destination.

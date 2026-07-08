@@ -18,11 +18,13 @@
 #include <algorithm>
 #include <cassert>
 
+using namespace std;
+
 namespace ATEAMS {
 	namespace models {
-		models::ModelState<ff,DenseVector> models::Invasion::sample(
+		ModelState<ff,DenseVector> Invasion::sample(
 			int t,
-			models::ModelState<ff,DenseVector>& state,
+			ModelState<ff,DenseVector>& state,
 			arithmetic::ThreadOptions& options
 		) {
 			int d = this->parameters.dimension;
@@ -68,12 +70,15 @@ namespace ATEAMS {
 		}
 
 
-		models::Invasion::Invasion(
-			ATEAMS::complexes::Complex<ATEAMS::ff>* complex,
-			models::ModelParameters parameters
-		)
-			: field(parameters.field > 0 ? Field(SparseRREF::FIELD_Fp, parameters.field) : Field(SparseRREF::FIELD_QQ))
-		{
+		Invasion::Invasion(
+			complexes::Complex<ff>* complex,
+			ModelParameters parameters
+		) : Model<ff,DenseVector>( // parent constructor; initializes the field.
+			parameters.field > 0 ?	
+				Field(SparseRREF::FIELD_Fp, parameters.field) :
+				Field(SparseRREF::FIELD_QQ),
+			"Invasion"
+		) {
 			this->parameters = parameters;
 			this->complex = complex;
 

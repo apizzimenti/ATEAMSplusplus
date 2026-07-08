@@ -51,7 +51,7 @@ int main() {
 
 	for (int dimension : dimensions) {
 		vector<int> corners(dimension, 3);
-		complexes::Cubical<FINITE> CUBICAL(corners);
+		complexes::Cubical CUBICAL(corners);
 		CUBICAL.constructFlatBoundaryMatrix();
 
 		vector<int> sizes = homologySizes(&CUBICAL, dimension);

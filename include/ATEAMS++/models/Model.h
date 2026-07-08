@@ -38,7 +38,7 @@ namespace ATEAMS::models {
 		int field;
 
 		// Used by: Bernoulli
-		int p;
+		float p;
 
 		// Used by: SwendsenWang, Glauber
 		std::function<double(int)> temperatureFunction;
@@ -108,6 +108,10 @@ namespace ATEAMS::models {
 	 * @var Model::parameters
 	 * Parameters for the model.
 	 * 
+	 * @var Model::field
+	 * Field (either \f$\Z/p\Z\f$ or \f$\Q\f$) over which we're performing
+	 * arithmetic.
+	 * 
 	 * @var Model::kind
 	 * Model name.
 	 */
@@ -116,12 +120,19 @@ namespace ATEAMS::models {
 		public:
 			ATEAMS::complexes::Complex<T>* complex;
 			ModelParameters parameters;
+			Field field;
+
 			std::string kind;
 
+			/** Data type for the Model. */
 			typedef T DataType;
 
+			/** Container type for the Model. */
 			template <typename R>
 			using StorageType = ContainerType<R>;
+
+			/** Constructor. */
+			Model(Field F, string kind) : field(F), kind(kind) { };
 
 			/**
 			 * @brief Draw a sample from the model.

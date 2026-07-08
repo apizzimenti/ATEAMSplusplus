@@ -15,26 +15,17 @@ namespace ATEAMS {
 		 * @class InvadedCluster
 		 * @brief Implements the Swendsen--Wang algorithm for Potts lattice gauge theory
 		 * 	(PLGT) and the plaquette random-cluster model (PRCM).
-		 * 
-		 * @var InvadedCluster::parameters
-		 * Model parameters.
-		 * 
-		 * @var InvadedCluster::field
-		 * Finite field over which computations will be performened.
-		 * 
-		 * @var InvadedCluster::RNG
-		 * Mersenne twister random number generator.
-		 * 
-		 * @var InvadedCluster::intuniform
-		 * Uniform distribution over the integers \f$[0,p)\f$, where \f$p\f$ is
-		 * the order of the model's finite field.
-		 * 
-		 * @var InvadedCluster::kind
-		 * Model name.
 		 */
 		template <typename T=ATEAMS::ff>
 		class InvadedCluster: public Model<T,SparseVector> {
 			public:
+				/** Coefficients are of type @ref ATEAMS::ff or @ref ATEAMS::rational. */
+				typedef T dt;
+
+				/** Vectors are of type @ref ATEAMS::SparseVector. */
+				template <typename R>
+				using st = SparseVector<R>;
+
 				/**
 				 * @brief Constructor.
 				 * 
@@ -78,10 +69,6 @@ namespace ATEAMS {
 				 * @returns Model state.
 				 */
 				ModelState<T,SparseVector> initialize(SparseVector<T> c, ModelState<T,SparseVector>& state) override;
-
-				ModelParameters parameters;
-				const Field field;
-				std::string kind = "InvadedCluster";
 
 			private:
 				std::mt19937 RNG;

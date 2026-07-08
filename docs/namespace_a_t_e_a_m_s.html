@@ -31,12 +31,14 @@ window.MathJax = {
   },
   tex: {
     macros: {    Z: "{\\mathbb Z}",
+    Q: "{\\mathbb Q}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
+    GF: "{\\mathrm{GF}}",
     },
     packages: {
         '[+]': ['units']
@@ -172,10 +174,37 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a59c129a068fba70d5ba973b5195cec37" id="r_a59c129a068fba70d5ba973b5195cec37"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
 <tr class="memitem:a59c129a068fba70d5ba973b5195cec37 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a59c129a068fba70d5ba973b5195cec37">SparseVector</a> = SparseRREF::sparse_vec&lt;T,<a class="el" href="#ae155ebf70a298ef0ab654b914250cca9">index_t</a>&gt;</td></tr>
 <tr class="memitem:aff31e84c8d3a26b261aa42976d78a959" id="r_aff31e84c8d3a26b261aa42976d78a959"><td class="memItemLeft">typedef SparseRREF::field_t&#160;</td><td class="memItemRight"><a class="el" href="#aff31e84c8d3a26b261aa42976d78a959">Field</a></td></tr>
+<tr class="memitem:adfeb758aaabd2f82b9cc6e2be7a0cb1f" id="r_adfeb758aaabd2f82b9cc6e2be7a0cb1f"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:adfeb758aaabd2f82b9cc6e2be7a0cb1f template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> = std::vector&lt;T,std::allocator&lt;T&gt;&gt;</td></tr>
+<tr class="memitem:a54a9b270a2fb170f4c7c1399789a6e83" id="r_a54a9b270a2fb170f4c7c1399789a6e83"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a54a9b270a2fb170f4c7c1399789a6e83 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a54a9b270a2fb170f4c7c1399789a6e83">SparseMatrices</a> = std::vector&lt;<a class="el" href="#a2103baa5389dfd08d5ba2052c4022760">SparseMatrix</a>&lt;T&gt;&gt;</td></tr>
+<tr class="memitem:a933ef5ae8825ab6497e5c48680204fee" id="r_a933ef5ae8825ab6497e5c48680204fee"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a933ef5ae8825ab6497e5c48680204fee template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a933ef5ae8825ab6497e5c48680204fee">SparseVectors</a> = std::vector&lt;<a class="el" href="#a59c129a068fba70d5ba973b5195cec37">SparseVector</a>&lt;T&gt;&gt;</td></tr>
+<tr class="memitem:a8b8960d57e097d7ad4e2dd4e2424fd91" id="r_a8b8960d57e097d7ad4e2dd4e2424fd91"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a8b8960d57e097d7ad4e2dd4e2424fd91 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a8b8960d57e097d7ad4e2dd4e2424fd91">SparseBasis</a> = std::vector&lt;<a class="el" href="#a59c129a068fba70d5ba973b5195cec37">SparseVector</a>&lt;T&gt;&gt;</td></tr>
+<tr class="memitem:a95fb7c82219a875c5e61d5781f6544a5" id="r_a95fb7c82219a875c5e61d5781f6544a5"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a95fb7c82219a875c5e61d5781f6544a5 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a95fb7c82219a875c5e61d5781f6544a5">SparseBases</a> = std::vector&lt;<a class="el" href="#a8b8960d57e097d7ad4e2dd4e2424fd91">SparseBasis</a>&lt;T&gt;&gt;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Global namespace. </p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="adfeb758aaabd2f82b9cc6e2be7a0cb1f" name="adfeb758aaabd2f82b9cc6e2be7a0cb1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfeb758aaabd2f82b9cc6e2be7a0cb1f">&#9670;&#160;</a></span>DenseVector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#adfeb758aaabd2f82b9cc6e2be7a0cb1f">ATEAMS::DenseVector</a> = std::vector&lt;T,std::allocator&lt;T&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Template alias for <span class="tt">std::vector</span>. </p>
+
+</div>
+</div>
 <a id="aef74e8b0680d153d8cedf53d66d1f3d8" name="aef74e8b0680d153d8cedf53d66d1f3d8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aef74e8b0680d153d8cedf53d66d1f3d8">&#9670;&#160;</a></span>ff</h2>
 
@@ -202,7 +231,7 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>SparseRREF field, \(\mathrm{GF}(p) \cong \Z/p \Z\) for \(p\) prime. </p>
+<p>SparseRREF field: either \(\Q\) or \(\GF(p) \cong \Z/p \Z\) for \(p\) prime. </p>
 
 </div>
 </div>
@@ -233,6 +262,57 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Rational type for SparseRREF machinery. </p>
+
+</div>
+</div>
+<a id="a95fb7c82219a875c5e61d5781f6544a5" name="a95fb7c82219a875c5e61d5781f6544a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95fb7c82219a875c5e61d5781f6544a5">&#9670;&#160;</a></span>SparseBases</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a95fb7c82219a875c5e61d5781f6544a5">ATEAMS::SparseBases</a> = std::vector&lt;<a class="el" href="#a8b8960d57e097d7ad4e2dd4e2424fd91">SparseBasis</a>&lt;T&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vector of vector of <a class="el" href="#a8b8960d57e097d7ad4e2dd4e2424fd91" title="ATEAMS::SparseBasis">ATEAMS::SparseBasis</a>. </p>
+
+</div>
+</div>
+<a id="a8b8960d57e097d7ad4e2dd4e2424fd91" name="a8b8960d57e097d7ad4e2dd4e2424fd91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b8960d57e097d7ad4e2dd4e2424fd91">&#9670;&#160;</a></span>SparseBasis</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a8b8960d57e097d7ad4e2dd4e2424fd91">ATEAMS::SparseBasis</a> = std::vector&lt;<a class="el" href="#a59c129a068fba70d5ba973b5195cec37">SparseVector</a>&lt;T&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias of <a class="el" href="#a933ef5ae8825ab6497e5c48680204fee" title="ATEAMS::SparseVectors">ATEAMS::SparseVectors</a>. </p>
+
+</div>
+</div>
+<a id="a54a9b270a2fb170f4c7c1399789a6e83" name="a54a9b270a2fb170f4c7c1399789a6e83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54a9b270a2fb170f4c7c1399789a6e83">&#9670;&#160;</a></span>SparseMatrices</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a54a9b270a2fb170f4c7c1399789a6e83">ATEAMS::SparseMatrices</a> = std::vector&lt;<a class="el" href="#a2103baa5389dfd08d5ba2052c4022760">SparseMatrix</a>&lt;T&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vector of <a class="el" href="#a2103baa5389dfd08d5ba2052c4022760" title="ATEAMS::SparseMatrix">ATEAMS::SparseMatrix</a>. </p>
 
 </div>
 </div>
@@ -267,6 +347,23 @@ template&lt;typename T&gt; </div>
       </table>
 </div><div class="memdoc">
 <p>SparseRREF vector. </p>
+
+</div>
+</div>
+<a id="a933ef5ae8825ab6497e5c48680204fee" name="a933ef5ae8825ab6497e5c48680204fee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a933ef5ae8825ab6497e5c48680204fee">&#9670;&#160;</a></span>SparseVectors</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a933ef5ae8825ab6497e5c48680204fee">ATEAMS::SparseVectors</a> = std::vector&lt;<a class="el" href="#a59c129a068fba70d5ba973b5195cec37">SparseVector</a>&lt;T&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vector of <a class="el" href="#a933ef5ae8825ab6497e5c48680204fee" title="ATEAMS::SparseVectors">ATEAMS::SparseVectors</a>. </p>
 
 </div>
 </div>

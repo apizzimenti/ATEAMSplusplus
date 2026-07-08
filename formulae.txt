@@ -1,7 +1,9 @@
 \newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
 \newcommand{\ker}{\mathrm{ker}}
 \newcommand{\PLGT}{\mathrm{PLGT}}
 \newcommand{\PRCM}{\mathrm{PRCM}}
 \newcommand{\PK}{\mathrm{PK}}
 \newcommand{\rank}{\mathrm{rank}}
 \newcommand{\H}{\mathrm{H}}
+\newcommand{\GF}{\mathrm{GF}}

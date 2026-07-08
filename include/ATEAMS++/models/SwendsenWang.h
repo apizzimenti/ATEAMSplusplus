@@ -14,33 +14,16 @@ namespace ATEAMS::models {
 	 * @class SwendsenWang
 	 * @brief Implements the Swendsen--Wang algorithm for Potts lattice gauge theory
 	 * 	(PLGT) and the plaquette random-cluster model (PRCM).
-	 * 
-	 * @var SwendsenWang::parameters
-	 * Model parameters.
-	 * 
-	 * @var SwendsenWang::field
-	 * Finite field over which computations will be performened.
-	 * 
-	 * @var SwendsenWang::RNG
-	 * Mersenne twister random number generator.
-	 * 
-	 * @var SwendsenWang::unituniform
-	 * Uniform distribution over \f$(0,1)\f$.
-	 * 
-	 * @var SwendsenWang::intuniform
-	 * Uniform distribution over the integers \f$[0,p)\f$, where \f$p\f$ is
-	 * the order of the model's finite field.
-	 * 
-	 * @var SwendsenWang::kind
-	 * Model name.
 	 */
-	template <typename T=ATEAMS::ff>
+	template <typename T>
 	class SwendsenWang: public Model<T,SparseVector> {
 		public:
-			typedef T DataType;
+			/** Coefficients are of type @ref ATEAMS::ff or @ref ATEAMS::rational. */
+				typedef T dt;
 
-			template <typename R>
-			using StorageType = SparseVector<R>;
+				/** Vectors are of type @ref ATEAMS::SparseVector. */
+				template <typename R>
+				using st = SparseVector<R>;
 			
 			/**
 			 * @brief Constructor.
@@ -83,11 +66,6 @@ namespace ATEAMS::models {
 			 * @returns Modified State.
 			 */
 			ModelState<T,SparseVector> initialize(SparseVector<T> c, ModelState<T,SparseVector>& state) override;
-
-			ModelParameters parameters;
-			const Field field;
-
-			std::string kind = "SwendsenWang";
 
 		private:
 			std::mt19937 RNG;

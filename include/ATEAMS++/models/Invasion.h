@@ -15,25 +15,16 @@ namespace ATEAMS {
 		 * @class Invasion
 		 * @brief Implements the invaded-cluster algorithm for Potts lattice gauge theory
 		 * 	(PLGT) and the plaquette random-cluster model (PRCM).
-		 * 
-		 * @var Invasion::parameters
-		 * Model parameters.
-		 * 
-		 * @var Invasion::field
-		 * Finite field over which computations will be performened.
-		 * 
-		 * @var Invasion::RNG
-		 * Mersenne twister random number generator.
-		 * 
-		 * @var Invasion::intuniform
-		 * Uniform distribution over the integers \f$[0,p)\f$, where \f$p\f$ is
-		 * the order of the model's finite field.
-		 * 
-		 * @var Invasion::kind
-		 * Model name.
 		 */
 		class Invasion: public Model<ff,DenseVector> {
 			public:
+				/** Coefficients are of type @ref ATEAMS::ff. */
+				typedef ff dt;
+
+				/** Vectors are of type @ref ATEAMS::DenseVector. */
+				template <typename R>
+				using st = DenseVector<R>;
+
 				/**
 				 * @brief Constructor.
 				 * 
@@ -62,11 +53,6 @@ namespace ATEAMS {
 
 				/** @brief Initialization; superfluous. */
 				ModelState<ff,DenseVector> initialize(std::vector<ff> c, ModelState<ff,DenseVector>& state) override { return state; };
-
-				ModelParameters parameters;
-				const Field field;
-
-				std::string kind = "Invasion";
 
 			private:
 				std::mt19937 RNG;

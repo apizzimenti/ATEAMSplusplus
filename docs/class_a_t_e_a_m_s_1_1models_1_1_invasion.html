@@ -31,12 +31,14 @@ window.MathJax = {
   },
   tex: {
     macros: {    Z: "{\\mathbb Z}",
+    Q: "{\\mathbb Q}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
+    GF: "{\\mathrm{GF}}",
     },
     packages: {
         '[+]': ['units']
@@ -152,58 +154,92 @@ Inheritance diagram for ATEAMS::models::Invasion:</div>
  <div class="center">
   <img src="class_a_t_e_a_m_s_1_1models_1_1_invasion.png" usemap="#ATEAMS_3A_3Amodels_3A_3AInvasion_map" alt=""/>
   <map id="ATEAMS_3A_3Amodels_3A_3AInvasion_map" name="ATEAMS_3A_3Amodels_3A_3AInvasion_map">
-<area href="class_a_t_e_a_m_s_1_1models_1_1_model.html" alt="ATEAMS::models::Model&lt; std::vector&lt; int &gt; &gt;" shape="rect" coords="0,0,269,24"/>
+<area href="class_a_t_e_a_m_s_1_1models_1_1_model.html" alt="ATEAMS::models::Model&lt; ff, DenseVector &gt;" shape="rect" coords="0,0,265,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aefaf872ee4aa2b51defe4118180e1df3" id="r_aefaf872ee4aa2b51defe4118180e1df3"><td class="memItemLeft">typedef <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>&#160;</td><td class="memItemRight"><a class="el" href="#aefaf872ee4aa2b51defe4118180e1df3">dt</a></td></tr>
+<tr class="memitem:a1fa07862bc47a88363c088f3742273e4" id="r_a1fa07862bc47a88363c088f3742273e4"><td class="memTemplParams" colspan="2">template&lt;typename R&gt; </td></tr>
+<tr class="memitem:a1fa07862bc47a88363c088f3742273e4 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a1fa07862bc47a88363c088f3742273e4">st</a> = <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a>&lt;R&gt;</td></tr>
+<tr class="inherit_header pub_types_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Types inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ff, DenseVector &gt;</a></td></tr>
+<tr class="memitem:a271b656588720f7ebd6d58bfaed4437c pub_types_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a271b656588720f7ebd6d58bfaed4437c"><td class="memItemLeft">typedef <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a271b656588720f7ebd6d58bfaed4437c">DataType</a></td></tr>
+<tr class="memitem:a1c8b5fbd74a1a1a799410f9df6307295 pub_types_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a1c8b5fbd74a1a1a799410f9df6307295"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a1c8b5fbd74a1a1a799410f9df6307295">StorageType</a></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a354fece5f1a48395903d0ecd187c95f2" id="r_a354fece5f1a48395903d0ecd187c95f2"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a354fece5f1a48395903d0ecd187c95f2">Invasion</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *complex, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_invasion_parameters.html">InvasionParameters</a> parameters)</td></tr>
-<tr class="memdesc:a354fece5f1a48395903d0ecd187c95f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
-<tr class="memitem:ac63a2374f7a1de4b8229f3006b7d832b" id="r_ac63a2374f7a1de4b8229f3006b7d832b"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac63a2374f7a1de4b8229f3006b7d832b">sample</a> (int t, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
-<tr class="memdesc:ac63a2374f7a1de4b8229f3006b7d832b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the plaquette invasion-percolation algorithm, which creates a random \(d\)-subcomplex \(X\) by (uniformly randomly) inserting \(d\)-cells into \(X\) until \(\rank(H_d(X))\) is "large enough" (set by the user).  <br /></td></tr>
-<tr class="memitem:aaff756d0b6cb9b644311ad6ba6307d9b" id="r_aaff756d0b6cb9b644311ad6ba6307d9b"><td class="memItemLeft"><a id="aaff756d0b6cb9b644311ad6ba6307d9b" name="aaff756d0b6cb9b644311ad6ba6307d9b"></a>
-void&#160;</td><td class="memItemRight"><b>initialize</b> () override</td></tr>
-<tr class="memdesc:aaff756d0b6cb9b644311ad6ba6307d9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous. <br /></td></tr>
-<tr class="memitem:a2bebc7a0bf0487745427c49ab52d2dae" id="r_a2bebc7a0bf0487745427c49ab52d2dae"><td class="memItemLeft"><a id="a2bebc7a0bf0487745427c49ab52d2dae" name="a2bebc7a0bf0487745427c49ab52d2dae"></a>
-void&#160;</td><td class="memItemRight"><b>initialize</b> (std::vector&lt; int &gt; c) override</td></tr>
-<tr class="memdesc:a2bebc7a0bf0487745427c49ab52d2dae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous. <br /></td></tr>
-<tr class="inherit_header pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; std::vector&lt; int &gt; &gt;</a></td></tr>
-<tr class="memitem:aad572e61319937fba274812b00b6620c pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_aad572e61319937fba274812b00b6620c"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; std::vector&lt; int &gt;, ContainerType &gt;&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#aad572e61319937fba274812b00b6620c">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; std::vector&lt; int &gt;, ContainerType &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options)=0</td></tr>
-<tr class="memdesc:aad572e61319937fba274812b00b6620c pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sample from the model.  <br /></td></tr>
-<tr class="memitem:a62ea5826546e2b1a21c097c417c88660 pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a62ea5826546e2b1a21c097c417c88660"><td class="memItemLeft">
-virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; std::vector&lt; int &gt;, ContainerType &gt;&#160;</td><td class="memItemRight"><b>initialize</b> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; std::vector&lt; int &gt;, ContainerType &gt; &amp;state)=0</td></tr>
-<tr class="memdesc:a62ea5826546e2b1a21c097c417c88660 pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the model. <br /></td></tr>
+<tr class="memitem:a2eda9e89b6837432f24daa2dad62f3ef" id="r_a2eda9e89b6837432f24daa2dad62f3ef"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2eda9e89b6837432f24daa2dad62f3ef">Invasion</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a> &gt; *complex, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a> parameters)</td></tr>
+<tr class="memdesc:a2eda9e89b6837432f24daa2dad62f3ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="memitem:a1cc20bccf331f4af842fcabf8b418ae1" id="r_a1cc20bccf331f4af842fcabf8b418ae1"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1cc20bccf331f4af842fcabf8b418ae1">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
+<tr class="memdesc:a1cc20bccf331f4af842fcabf8b418ae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the plaquette invasion-percolation algorithm, which creates a random \(d\)-subcomplex \(X\) by (uniformly randomly) inserting \(d\)-cells into \(X\) until \(\rank(H_d(X))\) is "large enough" (set by the user).  <br /></td></tr>
+<tr class="memitem:ad1e00eab9298cf4e4ed76c36325e7423" id="r_ad1e00eab9298cf4e4ed76c36325e7423"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad1e00eab9298cf4e4ed76c36325e7423">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; &amp;state) override</td></tr>
+<tr class="memdesc:ad1e00eab9298cf4e4ed76c36325e7423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous.  <br /></td></tr>
+<tr class="memitem:a172fd532ecc6f8a5c93c51f8971be0e3" id="r_a172fd532ecc6f8a5c93c51f8971be0e3"><td class="memItemLeft"><a id="a172fd532ecc6f8a5c93c51f8971be0e3" name="a172fd532ecc6f8a5c93c51f8971be0e3"></a>
+<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><b>initialize</b> (std::vector&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a> &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; &amp;state) override</td></tr>
+<tr class="memdesc:a172fd532ecc6f8a5c93c51f8971be0e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous. <br /></td></tr>
+<tr class="inherit_header pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ff, DenseVector &gt;</a></td></tr>
+<tr class="memitem:a9638630e357a11549408959388bab718 pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a9638630e357a11549408959388bab718"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a9638630e357a11549408959388bab718">Model</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a> F, string kind)</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a850898860fee12a2741767f8573cebe1" id="r_a850898860fee12a2741767f8573cebe1"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_invasion_parameters.html">InvasionParameters</a>&#160;</td><td class="memItemRight"><a class="el" href="#a850898860fee12a2741767f8573cebe1">parameters</a></td></tr>
-<tr class="memitem:a00d4e5253e8df5ab4e4d18369409c983" id="r_a00d4e5253e8df5ab4e4d18369409c983"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_invasion_state.html">InvasionState</a>&#160;</td><td class="memItemRight"><a class="el" href="#a00d4e5253e8df5ab4e4d18369409c983">state</a></td></tr>
-<tr class="memitem:a5ca8fc4d790d392dab08d803415a0e1f" id="r_a5ca8fc4d790d392dab08d803415a0e1f"><td class="memItemLeft">const Zp&#160;</td><td class="memItemRight"><a class="el" href="#a5ca8fc4d790d392dab08d803415a0e1f">field</a></td></tr>
-<tr class="memitem:a3ab6579aeac8a04651e65d667e629524" id="r_a3ab6579aeac8a04651e65d667e629524"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a3ab6579aeac8a04651e65d667e629524">kind</a> = &quot;Invasion&quot;</td></tr>
-<tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; std::vector&lt; int &gt; &gt;</a></td></tr>
-<tr class="memitem:ad8db6c7f5baea526b3b68dd66e6e09e6 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_ad8db6c7f5baea526b3b68dd66e6e09e6"><td class="memItemLeft"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; std::vector&lt; int &gt; &gt; *&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#ad8db6c7f5baea526b3b68dd66e6e09e6">complex</a></td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ff, DenseVector &gt;</a></td></tr>
+<tr class="memitem:ad8db6c7f5baea526b3b68dd66e6e09e6 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_ad8db6c7f5baea526b3b68dd66e6e09e6"><td class="memItemLeft"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a> &gt; *&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#ad8db6c7f5baea526b3b68dd66e6e09e6">complex</a></td></tr>
 <tr class="memitem:a71938f93b66c74d76b32d35bd465075a pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a71938f93b66c74d76b32d35bd465075a"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a>&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a71938f93b66c74d76b32d35bd465075a">parameters</a></td></tr>
+<tr class="memitem:a0e96bd14ea1609ae34bb83c546bdec35 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a0e96bd14ea1609ae34bb83c546bdec35"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a>&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a0e96bd14ea1609ae34bb83c546bdec35">field</a></td></tr>
 <tr class="memitem:ab648053a09c720f3ddfed3a98802f60c pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_ab648053a09c720f3ddfed3a98802f60c"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#ab648053a09c720f3ddfed3a98802f60c">kind</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements the invaded-cluster algorithm for Potts lattice gauge theory (PLGT) and the plaquette random-cluster model (PRCM). </p>
-</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a354fece5f1a48395903d0ecd187c95f2" name="a354fece5f1a48395903d0ecd187c95f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a354fece5f1a48395903d0ecd187c95f2">&#9670;&#160;</a></span>Invasion()</h2>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="aefaf872ee4aa2b51defe4118180e1df3" name="aefaf872ee4aa2b51defe4118180e1df3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefaf872ee4aa2b51defe4118180e1df3">&#9670;&#160;</a></span>dt</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">models::Invasion::Invasion </td>
+          <td class="memname">typedef <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a> <a class="el" href="#aefaf872ee4aa2b51defe4118180e1df3">ATEAMS::models::Invasion::dt</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Coefficients are of type <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8" title="ATEAMS::ff">ATEAMS::ff</a>. </p>
+
+</div>
+</div>
+<a id="a1fa07862bc47a88363c088f3742273e4" name="a1fa07862bc47a88363c088f3742273e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fa07862bc47a88363c088f3742273e4">&#9670;&#160;</a></span>st</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename R&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a1fa07862bc47a88363c088f3742273e4">ATEAMS::models::Invasion::st</a> = <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a>&lt;R&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vectors are of type <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f" title="ATEAMS::DenseVector">ATEAMS::DenseVector</a>. </p>
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2eda9e89b6837432f24daa2dad62f3ef" name="a2eda9e89b6837432f24daa2dad62f3ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2eda9e89b6837432f24daa2dad62f3ef">&#9670;&#160;</a></span>Invasion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ATEAMS::models::Invasion::Invasion </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a> *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a> &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_invasion_parameters.html">InvasionParameters</a></td>          <td class="paramname"><span class="paramname"><em>parameters</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a></td>          <td class="paramname"><span class="paramname"><em>parameters</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -220,8 +256,8 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="ac63a2374f7a1de4b8229f3006b7d832b" name="ac63a2374f7a1de4b8229f3006b7d832b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac63a2374f7a1de4b8229f3006b7d832b">&#9670;&#160;</a></span>sample()</h2>
+<a id="ad1e00eab9298cf4e4ed76c36325e7423" name="ad1e00eab9298cf4e4ed76c36325e7423"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1e00eab9298cf4e4ed76c36325e7423">&#9670;&#160;</a></span>initialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -230,9 +266,43 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; int &gt; models::Invasion::sample </td>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; ATEAMS::models::Invasion::initialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialization; superfluous. </p>
+
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a62ea5826546e2b1a21c097c417c88660">ATEAMS::models::Model&lt; ff, DenseVector &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a1cc20bccf331f4af842fcabf8b418ae1" name="a1cc20bccf331f4af842fcabf8b418ae1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cc20bccf331f4af842fcabf8b418ae1">&#9670;&#160;</a></span>sample()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; ATEAMS::models::Invasion::sample </td>
           <td>(</td>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -242,7 +312,7 @@ Public Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -251,78 +321,19 @@ Public Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">t</td><td>Time step. </td></tr>
+    <tr><td class="paramname">state</td><td><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> state. </td></tr>
     <tr><td class="paramname">options</td><td>Multithreaded computing environment options.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A list of \(d\)-cell indices in insertion order, up to the time at which \(\rank(H_d(X))\) exceeds the user-specified cutoff. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> state with <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a395e8abc7ea8f7a1f2aeedc8b37ae72b" title="ModelState::includes">ModelState::includes</a>, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a6114a5164f2fd094adb99c6e2c3523cb" title="ModelState::essential">ModelState::essential</a>, and <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a849bf39db1a0a8f9ff0702ac9b0203fe" title="ModelState::t">ModelState::t</a> updated. </dd></dl>
+
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#aad572e61319937fba274812b00b6620c">ATEAMS::models::Model&lt; ff, DenseVector &gt;</a>.</p>
 
 </div>
 </div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a5ca8fc4d790d392dab08d803415a0e1f" name="a5ca8fc4d790d392dab08d803415a0e1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ca8fc4d790d392dab08d803415a0e1f">&#9670;&#160;</a></span>field</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const Zp ATEAMS::models::Invasion::field</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Finite field over which computations will be performened. </p>
-
-</div>
-</div>
-<a id="a3ab6579aeac8a04651e65d667e629524" name="a3ab6579aeac8a04651e65d667e629524"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ab6579aeac8a04651e65d667e629524">&#9670;&#160;</a></span>kind</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string ATEAMS::models::Invasion::kind = &quot;Invasion&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> name. </p>
-
-</div>
-</div>
-<a id="a850898860fee12a2741767f8573cebe1" name="a850898860fee12a2741767f8573cebe1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a850898860fee12a2741767f8573cebe1">&#9670;&#160;</a></span>parameters</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_invasion_parameters.html">InvasionParameters</a> ATEAMS::models::Invasion::parameters</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> parameters. </p>
-
-</div>
-</div>
-<a id="a00d4e5253e8df5ab4e4d18369409c983" name="a00d4e5253e8df5ab4e4d18369409c983"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00d4e5253e8df5ab4e4d18369409c983">&#9670;&#160;</a></span>state</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_invasion_state.html">InvasionState</a> ATEAMS::models::Invasion::state</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> state. </p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/ATEAMS++/models/<a class="el" href="_invasion_8h_source.html">Invasion.h</a></li>
-<li>src/ATEAMS++/models/<b>Invasion.cpp</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

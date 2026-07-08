@@ -68,20 +68,23 @@ The below example samples plaquette Bernoulli percolation 1000 times on the scal
 using namespace ATEAMS;
 using namespace std;
 
-using Complex = complexes::Cubical;
-using Parameters = models::BernoulliParameters;
+using Structure = complexes::Cubical<ATEAMS::ff>;
 using Model = models::Bernoulli;
-using State = models::BernoulliState;
-using Chain = statistics::Chain<Model>;
+
+// Tracks the state of the model; ATEAMS::ff is the finite-field data type,
+// and ATEAMS::DenseVector is just an alias of std::vector.
+using State = models::ModelState<ATEAMS::ff,ATEAMS::DenseVector>;
+using Chain = statistics::Chain<ATEAMS::ff,ATEAMS::DenseVector>;
 
 int main() {
 	// Construct a cubical complex.
 	vector<int> corners = {6,6,6,6};
-	Complex COMPLEX(corners, true);
+	Structure COMPLEX(corners, true);
 
 	// Parametrize the model.
-	Parameters PARAMETERS;
+	models::ModelParameters PARAMETERS;
 	PARAMETERS.dimension = 2;
+	PARAMETERS.p = 0.5;
 
 	// Construct the model, then the chain.
 	Model MODEL(&COMPLEX, PARAMETERS);
@@ -91,8 +94,8 @@ int main() {
 	// go.
 	vector<int> ranks;
 
-	for (State* STATE : CHAIN.simulate<State>()) {
-		ranks.push_back(STATE->rank);
+	for (State STATE : CHAIN.simulate()) {
+		ranks.push_back(STATE.rank);
 	}
 
 	// Compute the expected rank of the 2nd homology group.

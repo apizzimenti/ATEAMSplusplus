@@ -31,12 +31,14 @@ window.MathJax = {
   },
   tex: {
     macros: {    Z: "{\\mathbb Z}",
+    Q: "{\\mathbb Q}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
+    GF: "{\\mathrm{GF}}",
     },
     packages: {
         '[+]': ['units']
@@ -152,7 +154,7 @@ Inheritance diagram for ATEAMS::complexes::Cubical&lt; T &gt;:</div>
  <div class="center">
   <img src="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.png" usemap="#ATEAMS_3A_3Acomplexes_3A_3ACubical_3C_20T_20_3E_map" alt=""/>
   <map id="ATEAMS_3A_3Acomplexes_3A_3ACubical_3C_20T_20_3E_map" name="ATEAMS_3A_3Acomplexes_3A_3ACubical_3C_20T_20_3E_map">
-<area href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" alt="ATEAMS::complexes::Complex&lt; T &gt;" shape="rect" coords="0,0,214,24"/>
+<area href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" alt="ATEAMS::complexes::Complex&lt; ATEAMS::ff &gt;" shape="rect" coords="0,0,273,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -178,12 +180,12 @@ std::string&#160;</td><td class="memItemRight"><b>kind</b> = &quot;cubical&quot;
 <tr class="memdesc:acc0e87412d2f7cc2ba5cc08eb22ae484"><td class="mdescLeft">&#160;</td><td class="mdescRight">Short name, mostly for metadata collection. <br /></td></tr>
 <tr class="memitem:aafb83af1e649f55e42a708ec8e47e0a2" id="r_aafb83af1e649f55e42a708ec8e47e0a2"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aafb83af1e649f55e42a708ec8e47e0a2">corners</a></td></tr>
 <tr class="memdesc:aafb83af1e649f55e42a708ec8e47e0a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Corners of the lattice.  <br /></td></tr>
-<tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td></tr>
+<tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; ATEAMS::ff &gt;</a></td></tr>
 <tr class="memitem:a314d3ba6a82bdffb540d9c16d0a95796 pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a314d3ba6a82bdffb540d9c16d0a95796"><td class="memItemLeft">
-<a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&lt; T &gt;&#160;</td><td class="memItemRight"><b>Boundary</b></td></tr>
+<a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ATEAMS::ff</a> &gt;&#160;</td><td class="memItemRight"><b>Boundary</b></td></tr>
 <tr class="memdesc:a314d3ba6a82bdffb540d9c16d0a95796 pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boundary data. <br /></td></tr>
 <tr class="memitem:a6a8b0bc09cb613b1dceb2459f79363ed pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a6a8b0bc09cb613b1dceb2459f79363ed"><td class="memItemLeft">
-<a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&lt; T &gt;&#160;</td><td class="memItemRight"><b>Coboundary</b></td></tr>
+<a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ATEAMS::ff</a> &gt;&#160;</td><td class="memItemRight"><b>Coboundary</b></td></tr>
 <tr class="memdesc:a6a8b0bc09cb613b1dceb2459f79363ed pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coboundary data. <br /></td></tr>
 <tr class="memitem:a502d3c55cf06a916dd9800d9b8018170 pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a502d3c55cf06a916dd9800d9b8018170"><td class="memItemLeft">
 std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>Cells</b></td></tr>
@@ -203,14 +205,16 @@ bool&#160;</td><td class="memItemRight"><b>periodic</b></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td colspan="2">Static Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; T &gt;</a></td></tr>
+<tr class="inherit_header pub_types_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td colspan="2">Public Types inherited from <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; ATEAMS::ff &gt;</a></td></tr>
+<tr class="memitem:af83f7a22b58d13f227062c8732ce595a pub_types_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_af83f7a22b58d13f227062c8732ce595a"><td class="memItemLeft">typedef <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ATEAMS::ff</a>&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#af83f7a22b58d13f227062c8732ce595a">dt</a></td></tr>
+<tr class="inherit_header pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td colspan="2">Static Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex&lt; ATEAMS::ff &gt;</a></td></tr>
 <tr class="memitem:a5e33f91200b8ae6d7243c2be5bffaa3c pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_a5e33f91200b8ae6d7243c2be5bffaa3c"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a5e33f91200b8ae6d7243c2be5bffaa3c">toFile</a> (std::string filename)</td></tr>
 <tr class="memdesc:a5e33f91200b8ae6d7243c2be5bffaa3c pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes boundary matrices to file.  <br /></td></tr>
 <tr class="memitem:ae48ad59395a5ffce6f83b3ccd04e4e61 pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_ae48ad59395a5ffce6f83b3ccd04e4e61"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#ae48ad59395a5ffce6f83b3ccd04e4e61">fromFile</a> (std::string filename)</td></tr>
 <tr class="memdesc:ae48ad59395a5ffce6f83b3ccd04e4e61 pub_static_methods_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads boundary matrices from file.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = ATEAMS::ff&gt;<br />
 class ATEAMS::complexes::Cubical&lt; T &gt;</div><p><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html" title="Cubical complex.">Cubical</a> complex. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a988a36e80c4d51a99466b4ed97b9106a" name="a988a36e80c4d51a99466b4ed97b9106a"></a>
@@ -219,7 +223,7 @@ class ATEAMS::complexes::Cubical&lt; T &gt;</div><p><a class="el" href="class_a_
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T = ATEAMS::ff&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a>&lt; T &gt;::Cubical </td>
@@ -251,7 +255,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T = ATEAMS::ff&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a>&lt; T &gt;::Cubical </td>
@@ -279,7 +283,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T = ATEAMS::ff&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -306,7 +310,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#abf78d0c21ab0696be8daed36fdf74d79">ATEAMS::complexes::Complex&lt; T &gt;</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#abf78d0c21ab0696be8daed36fdf74d79">ATEAMS::complexes::Complex&lt; ATEAMS::ff &gt;</a>.</p>
 
 </div>
 </div>
@@ -316,7 +320,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T = ATEAMS::ff&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -337,7 +341,7 @@ template&lt;typename T&gt; </div>
 
 <p>Constructs a boundary matrix for use with PHAT. </p>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a3f8fbef5b2fedea91952b9ba01eaebb0">ATEAMS::complexes::Complex&lt; T &gt;</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a3f8fbef5b2fedea91952b9ba01eaebb0">ATEAMS::complexes::Complex&lt; ATEAMS::ff &gt;</a>.</p>
 
 </div>
 </div>
@@ -347,7 +351,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T = ATEAMS::ff&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -368,7 +372,7 @@ template&lt;typename T&gt; </div>
 
 <p>Constructs a full boundary matrix in SparseRREF format. </p>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#ab1834061a70d6db288c1dfc93faec0af">ATEAMS::complexes::Complex&lt; T &gt;</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#ab1834061a70d6db288c1dfc93faec0af">ATEAMS::complexes::Complex&lt; ATEAMS::ff &gt;</a>.</p>
 
 </div>
 </div>
@@ -378,7 +382,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T = ATEAMS::ff&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -399,7 +403,7 @@ template&lt;typename T&gt; </div>
 
 <p>Size. </p>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#add7c197f8394055adcf1885a30393240">ATEAMS::complexes::Complex&lt; T &gt;</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#add7c197f8394055adcf1885a30393240">ATEAMS::complexes::Complex&lt; ATEAMS::ff &gt;</a>.</p>
 
 </div>
 </div>
@@ -410,7 +414,7 @@ template&lt;typename T&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T&gt; </div>
+template&lt;typename T = ATEAMS::ff&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">std::vector&lt;int&gt; <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a>&lt; T &gt;::corners</td>

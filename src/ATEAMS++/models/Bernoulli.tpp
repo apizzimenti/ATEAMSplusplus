@@ -14,9 +14,9 @@
 
 namespace ATEAMS {
 	namespace models {
-		models::ModelState<ATEAMS::ff,DenseVector> models::Bernoulli::sample(
+		ModelState<ff,DenseVector> Bernoulli::sample(
 			int t,
-			models::ModelState<ATEAMS::ff,DenseVector>& state,
+			ModelState<ff,DenseVector>& state,
 			arithmetic::ThreadOptions& options
 		) {
 			// If we're debugging, check that the inclusion probability is a probability
@@ -83,8 +83,8 @@ namespace ATEAMS {
 		}
 
 
-		models::Bernoulli::Bernoulli(complexes::Complex<ATEAMS::ff>* complex, ModelParameters parameters) 
-			: field(Field(SparseRREF::FIELD_Fp, 2)) 
+		Bernoulli::Bernoulli(complexes::Complex<ff>* complex, ModelParameters parameters) 
+			: Model<ff,DenseVector>(Field(SparseRREF::FIELD_Fp, 2), "Bernoulli")
 		{
 			this->parameters = parameters;
 			this->complex = complex;

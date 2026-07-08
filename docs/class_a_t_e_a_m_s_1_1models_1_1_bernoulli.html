@@ -31,12 +31,14 @@ window.MathJax = {
   },
   tex: {
     macros: {    Z: "{\\mathbb Z}",
+    Q: "{\\mathbb Q}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
     PK: "{\\mathrm{PK}}",
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
+    GF: "{\\mathrm{GF}}",
     },
     packages: {
         '[+]': ['units']
@@ -156,30 +158,73 @@ Inheritance diagram for ATEAMS::models::Bernoulli:</div>
   </map>
 </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a4a2f4020bf5408753369f584ab4e35ad" id="r_a4a2f4020bf5408753369f584ab4e35ad"><td class="memItemLeft">typedef <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4a2f4020bf5408753369f584ab4e35ad">dt</a></td></tr>
+<tr class="memitem:a809fff3ddaf25b74f640d7b2e41844aa" id="r_a809fff3ddaf25b74f640d7b2e41844aa"><td class="memTemplParams" colspan="2">template&lt;typename R&gt; </td></tr>
+<tr class="memitem:a809fff3ddaf25b74f640d7b2e41844aa template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a809fff3ddaf25b74f640d7b2e41844aa">st</a> = <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a>&lt;R&gt;</td></tr>
+<tr class="inherit_header pub_types_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Types inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ff, DenseVector &gt;</a></td></tr>
+<tr class="memitem:a271b656588720f7ebd6d58bfaed4437c pub_types_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a271b656588720f7ebd6d58bfaed4437c"><td class="memItemLeft">typedef <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a271b656588720f7ebd6d58bfaed4437c">DataType</a></td></tr>
+<tr class="memitem:a1c8b5fbd74a1a1a799410f9df6307295 pub_types_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a1c8b5fbd74a1a1a799410f9df6307295"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a1c8b5fbd74a1a1a799410f9df6307295">StorageType</a></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6c3291767464cbddea1489be2abaa4f9" id="r_a6c3291767464cbddea1489be2abaa4f9"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6c3291767464cbddea1489be2abaa4f9">Bernoulli</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a> &gt; *complex, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a> parameters)</td></tr>
 <tr class="memdesc:a6c3291767464cbddea1489be2abaa4f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
-<tr class="memitem:a310ab0375e4b2baa232eff25c01e808d" id="r_a310ab0375e4b2baa232eff25c01e808d"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, DenseVector &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a310ab0375e4b2baa232eff25c01e808d">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, DenseVector &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
+<tr class="memitem:a310ab0375e4b2baa232eff25c01e808d" id="r_a310ab0375e4b2baa232eff25c01e808d"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a310ab0375e4b2baa232eff25c01e808d">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
 <tr class="memdesc:a310ab0375e4b2baa232eff25c01e808d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directly samples <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation.">Bernoulli</a> percolation at the desired dimension.  <br /></td></tr>
-<tr class="memitem:a688f01a111b4245365bee3558181a876" id="r_a688f01a111b4245365bee3558181a876"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, DenseVector &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a688f01a111b4245365bee3558181a876">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, DenseVector &gt; &amp;state) override</td></tr>
+<tr class="memitem:a688f01a111b4245365bee3558181a876" id="r_a688f01a111b4245365bee3558181a876"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a688f01a111b4245365bee3558181a876">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; &amp;state) override</td></tr>
 <tr class="memdesc:a688f01a111b4245365bee3558181a876"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous.  <br /></td></tr>
 <tr class="memitem:af664903e0c1da27206404bde9563090b" id="r_af664903e0c1da27206404bde9563090b"><td class="memItemLeft"><a id="af664903e0c1da27206404bde9563090b" name="af664903e0c1da27206404bde9563090b"></a>
-<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, DenseVector &gt;&#160;</td><td class="memItemRight"><b>initialize</b> (std::vector&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a> &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, DenseVector &gt; &amp;state) override</td></tr>
+<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><b>initialize</b> (std::vector&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a> &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; &amp;state) override</td></tr>
 <tr class="memdesc:af664903e0c1da27206404bde9563090b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous. <br /></td></tr>
+<tr class="inherit_header pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ff, DenseVector &gt;</a></td></tr>
+<tr class="memitem:a9638630e357a11549408959388bab718 pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a9638630e357a11549408959388bab718"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a9638630e357a11549408959388bab718">Model</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a> F, string kind)</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:aa45d311fc6040011cbcdff430b4bc71a" id="r_aa45d311fc6040011cbcdff430b4bc71a"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa45d311fc6040011cbcdff430b4bc71a">parameters</a></td></tr>
-<tr class="memitem:adfbfc1556b8ec21508e651ed77162cca" id="r_adfbfc1556b8ec21508e651ed77162cca"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#adfbfc1556b8ec21508e651ed77162cca">kind</a> = &quot;Bernoulli&quot;</td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">ATEAMS::models::Model&lt; ff, DenseVector &gt;</a></td></tr>
 <tr class="memitem:ad8db6c7f5baea526b3b68dd66e6e09e6 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_ad8db6c7f5baea526b3b68dd66e6e09e6"><td class="memItemLeft"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a> &gt; *&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#ad8db6c7f5baea526b3b68dd66e6e09e6">complex</a></td></tr>
 <tr class="memitem:a71938f93b66c74d76b32d35bd465075a pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a71938f93b66c74d76b32d35bd465075a"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a>&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a71938f93b66c74d76b32d35bd465075a">parameters</a></td></tr>
+<tr class="memitem:a0e96bd14ea1609ae34bb83c546bdec35 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a0e96bd14ea1609ae34bb83c546bdec35"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a>&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a0e96bd14ea1609ae34bb83c546bdec35">field</a></td></tr>
 <tr class="memitem:ab648053a09c720f3ddfed3a98802f60c pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_ab648053a09c720f3ddfed3a98802f60c"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#ab648053a09c720f3ddfed3a98802f60c">kind</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation.">Bernoulli</a> percolation. </p>
-</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="a4a2f4020bf5408753369f584ab4e35ad" name="a4a2f4020bf5408753369f584ab4e35ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a2f4020bf5408753369f584ab4e35ad">&#9670;&#160;</a></span>dt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a> <a class="el" href="#a4a2f4020bf5408753369f584ab4e35ad">ATEAMS::models::Bernoulli::dt</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Coefficients are of type <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8" title="ATEAMS::ff">ATEAMS::ff</a>. </p>
+
+</div>
+</div>
+<a id="a809fff3ddaf25b74f640d7b2e41844aa" name="a809fff3ddaf25b74f640d7b2e41844aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a809fff3ddaf25b74f640d7b2e41844aa">&#9670;&#160;</a></span>st</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename R&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a809fff3ddaf25b74f640d7b2e41844aa">ATEAMS::models::Bernoulli::st</a> = <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a>&lt;R&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vectors are of type <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f" title="ATEAMS::DenseVector">ATEAMS::DenseVector</a>. </p>
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6c3291767464cbddea1489be2abaa4f9" name="a6c3291767464cbddea1489be2abaa4f9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6c3291767464cbddea1489be2abaa4f9">&#9670;&#160;</a></span>Bernoulli()</h2>
 
@@ -202,7 +247,7 @@ Public Attributes</h2></td></tr>
 <p>Constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">complex</td><td>(Pointer to) a complex. </td></tr>
+    <tr><td class="paramname">complex</td><td>(Pointer to) a Complex. </td></tr>
     <tr><td class="paramname">parameters</td><td><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> parameters. </td></tr>
   </table>
   </dd>
@@ -221,9 +266,9 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, DenseVector &gt; ATEAMS::models::Bernoulli::initialize </td>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; ATEAMS::models::Bernoulli::initialize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, DenseVector &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -250,14 +295,14 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, DenseVector &gt; ATEAMS::models::Bernoulli::sample </td>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; ATEAMS::models::Bernoulli::sample </td>
           <td>(</td>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, DenseVector &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#aef74e8b0680d153d8cedf53d66d1f3d8">ff</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#adfeb758aaabd2f82b9cc6e2be7a0cb1f">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -276,44 +321,14 @@ Public Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">t</td><td>Time step. </td></tr>
+    <tr><td class="paramname">state</td><td>Tracks the state of the model. See <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html" title="ATEAMS::statistics::Chain">ATEAMS::statistics::Chain</a>. </td></tr>
     <tr><td class="paramname">options</td><td>Multithreaded computing environment options.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>List of indices of included \(d\)-cells. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html" title="ModelState">ModelState</a> with <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a6114a5164f2fd094adb99c6e2c3523cb" title="ModelState::essential">ModelState::essential</a>, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a395e8abc7ea8f7a1f2aeedc8b37ae72b" title="ModelState::includes">ModelState::includes</a>, and <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a849bf39db1a0a8f9ff0702ac9b0203fe" title="ModelState::t">ModelState::t</a> modified. </dd></dl>
 
 <p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#aad572e61319937fba274812b00b6620c">ATEAMS::models::Model&lt; ff, DenseVector &gt;</a>.</p>
-
-</div>
-</div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="adfbfc1556b8ec21508e651ed77162cca" name="adfbfc1556b8ec21508e651ed77162cca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adfbfc1556b8ec21508e651ed77162cca">&#9670;&#160;</a></span>kind</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string ATEAMS::models::Bernoulli::kind = &quot;Bernoulli&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> name. </p>
-
-</div>
-</div>
-<a id="aa45d311fc6040011cbcdff430b4bc71a" name="aa45d311fc6040011cbcdff430b4bc71a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa45d311fc6040011cbcdff430b4bc71a">&#9670;&#160;</a></span>parameters</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a> ATEAMS::models::Bernoulli::parameters</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Parameters for <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation.">Bernoulli</a> percolation; includes standard <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html" title="Typical parameters required for simulating a Model.">ModelParameters</a>, and <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation.">Bernoulli</a> trial density \(0 \leq p \leq 1\). </p>
 
 </div>
 </div>

@@ -20,10 +20,11 @@
 
 namespace ATEAMS {
 	namespace models {
+		
 		template <typename T>
-		models::ModelState<T,SparseVector> models::Glauber<T>::sample(
+		ModelState<T,SparseVector> Glauber<T>::sample(
 			int t,
-			models::ModelState<T,SparseVector>& state,
+			ModelState<T,SparseVector>& state,
 			arithmetic::ThreadOptions& options
 		) {
 			// Compute the temperature and probability of including particular (d-1)-cells.
@@ -62,7 +63,7 @@ namespace ATEAMS {
 
 
 		template <typename T>
-		models::ModelState<T,SparseVector> models::Glauber<T>::initialize(models::ModelState<T,SparseVector>& state) {
+		ModelState<T,SparseVector> Glauber<T>::initialize(ModelState<T,SparseVector>& state) {
 			size_t dimension = this->parameters.dimension-1;
 			int N = this->complex->Cells[dimension];
 
@@ -79,21 +80,24 @@ namespace ATEAMS {
 
 
 		template <typename T>
-		models::ModelState<T,SparseVector> models::Glauber<T>::initialize(
+		ModelState<T,SparseVector> Glauber<T>::initialize(
 			SparseVector<T> c,
-			models::ModelState<T,SparseVector>& state
+			ModelState<T,SparseVector>& state
 		) {
 			state.cochain = c;
 			return state;
 		}
 
 		template <typename T>
-		models::Glauber<T>::Glauber(
+		Glauber<T>::Glauber(
 			complexes::Complex<T>* complex,
-			models::ModelParameters parameters
-		)
-			: field(parameters.field > 0 ? Field(SparseRREF::FIELD_Fp, parameters.field) : Field(SparseRREF::FIELD_QQ))
-		{
+			ModelParameters parameters
+		) : Model<T,SparseVector>( // Parent constructor; initializes the field.
+				parameters.field > 0 ?
+					Field(SparseRREF::FIELD_Fp, parameters.field) :
+					Field(SparseRREF::FIELD_QQ),
+				"Glauber"
+		) {
 			this->parameters = parameters;
 			this->complex = complex;
 
