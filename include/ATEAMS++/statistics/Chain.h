@@ -26,11 +26,11 @@ namespace ATEAMS {
 		 * @var Chain::steps
 		 * 	Number of iterations.
 		 */
-		template <typename T=ATEAMS::ff, template <typename> typename ContainerType=ATEAMS::SparseVector>
+		template <typename RingLike, template <typename> typename VectorLike>
 		class Chain {
 			public:
-				ATEAMS::models::Model<T,ContainerType>* model;
-				ATEAMS::models::ModelState<T,ContainerType> state;
+				ATEAMS::models::Model<RingLike,VectorLike>* model;
+				ATEAMS::models::ModelState<RingLike,VectorLike> state;
 				ATEAMS::arithmetic::ThreadOptions options;
 
 				int steps;
@@ -41,14 +41,14 @@ namespace ATEAMS {
 				 * @param model (Pointer to) a Model instance.
 				 * @param steps Number of iterations.
 				 */
-				Chain(ATEAMS::models::Model<T,ContainerType>* model, int steps) {
+				Chain(ATEAMS::models::Model<RingLike,VectorLike>* model, int steps) {
 					this->model = model;
 					this->steps = steps;
 
 					ATEAMS::arithmetic::ThreadOptions options;
 					this->options = options;
 
-					ATEAMS::models::ModelState<T,ContainerType> state;
+					ATEAMS::models::ModelState<RingLike,VectorLike> state;
 					this->state = state;
 				};
 
@@ -59,12 +59,12 @@ namespace ATEAMS {
 				 * @param steps Number of iterations.
 				 * @param options User-provided compute options.
 				 */
-				Chain(ATEAMS::models::Model<T,ContainerType>* model, int steps, ATEAMS::arithmetic::ThreadOptions options) {
+				Chain(ATEAMS::models::Model<RingLike,VectorLike>* model, int steps, ATEAMS::arithmetic::ThreadOptions options) {
 					this->model = model;
 					this->steps = steps;
 					this->options = options;
 
-					ATEAMS::models::ModelState<T,ContainerType> state;
+					ATEAMS::models::ModelState<RingLike,VectorLike> state;
 					this->state = state;
 				};
 
@@ -79,7 +79,7 @@ namespace ATEAMS {
 				 * 
 				 * @returns A `std::generator`.
 				 */
-				std::generator<ATEAMS::models::ModelState<T,ContainerType>> simulate() {
+				std::generator<ATEAMS::models::ModelState<RingLike,VectorLike>> simulate() {
 					std::thread listener = options.spinUp();
 					this->model->initialize(this->state);
 

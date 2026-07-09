@@ -99,7 +99,7 @@ namespace ATEAMS {
 
 				/**
 				 * @brief Constructs boundary matrices.
-				 * @param R (Pointer to a) coefficient ring.
+				 * @param R (Pointer to a) coefficient ring, like @ref Zp or @ref Q.
 				 */
 				virtual void constructBoundaryMatrices(Ring* R) = 0;
 
@@ -110,7 +110,7 @@ namespace ATEAMS {
 
 				/**
 				 * @brief Constructs a full boundary matrix (in SparseRREF format).
-				 * @param R (Pointer to a) coefficient ring.
+				 * @param R (Pointer to a) coefficient ring, like @ref Zp or @ref Q.
 				 */
 				virtual void constructFullBoundaryMatrix(Ring* R) = 0;
 

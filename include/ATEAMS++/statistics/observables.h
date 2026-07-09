@@ -21,15 +21,15 @@ namespace ATEAMS {
 		 * @returns An integer giving the (negative) number of \f$(d-1)\f$-cells
 		 * over which \f$f_t\f$ does not vanish.
 		 */
-		template <typename T>
+		template <typename RingLike>
 		inline int energy(
-			ATEAMS::complexes::Complex<T>* complex,
-			ATEAMS::SparseVector<T> f,
-			ATEAMS::Field F,
+			complexes::Complex<RingLike>* complex,
+			SparseVector<RingLike> f,
+			Ring* R,
 			int dimension
 		) {
-			ATEAMS::SparseVector<T> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<T,INDEX>(
-				complex->Coboundary.Matrices[dimension], f, F
+			SparseVector<RingLike> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
+				complex->Coboundary.Matrices[dimension], f, R->ring
 			);
 			coefficients.compress();
 
@@ -48,15 +48,15 @@ namespace ATEAMS {
 		 * 
 		 * @returns Number of satisfied cells.
 		 */
-		template <typename T>
+		template <typename RingLike>
 		inline int occupation(
-			ATEAMS::complexes::Complex<T>* complex,
-			ATEAMS::SparseVector<T> f,
-			ATEAMS::Field F,
+			complexes::Complex<RingLike>* complex,
+			SparseVector<RingLike> f,
+			Ring* R,
 			int dimension
 		) {
-			ATEAMS::SparseVector<T> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<T,INDEX>(
-				complex->Coboundary.Matrices[dimension], f, F
+			SparseVector<RingLike> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
+				complex->Coboundary.Matrices[dimension], f, R->ring
 			);
 			coefficients.compress();
 
@@ -75,16 +75,16 @@ namespace ATEAMS {
 		 * 
 		 * @returns Indices of satisfied cells.
 		 */
-		template <typename T>
+		template <typename RingLike>
 		inline std::vector<int> satisfied(
-			ATEAMS::complexes::Complex<T>* complex,
-			ATEAMS::SparseVector<T> f,
-			ATEAMS::Field F,
+			complexes::Complex<RingLike>* complex,
+			SparseVector<RingLike> f,
+			Ring* R,
 			int dimension
 		) {
 			// Perform the matrix multiplication.
-			ATEAMS::SparseVector<T> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<T,INDEX>(
-				complex->Coboundary.Matrices[dimension], f, F
+			SparseVector<RingLike> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
+				complex->Coboundary.Matrices[dimension], f, R->ring
 			);
 			coefficients.compress();
 
@@ -119,16 +119,16 @@ namespace ATEAMS {
 		 * 
 		 * @returns Indices of unsatisfied cells.
 		 */
-		template <typename T>
+		template <typename RingLike>
 		inline std::vector<int> unsatisfied(
-			ATEAMS::complexes::Complex<T>* complex,
-			ATEAMS::SparseVector<T> f,
-			ATEAMS::Field F,
+			complexes::Complex<RingLike>* complex,
+			SparseVector<RingLike> f,
+			Ring* R,
 			int dimension
 		) {
 			// Perform the matrix multiplication.
-			ATEAMS::SparseVector<T> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<T,INDEX>(
-				complex->Coboundary.Matrices[dimension], f, F
+			SparseVector<RingLike> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
+				complex->Coboundary.Matrices[dimension], f, R->ring
 			);
 			coefficients.compress();
 

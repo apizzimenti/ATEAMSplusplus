@@ -10,7 +10,7 @@
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/arithmetic/arithmetic.h"
 #include "ATEAMS++/complexes/complexes.h"
-// #include "ATEAMS++/models/models.h"
-// #include "ATEAMS++/statistics/statistics.h"
+#include "ATEAMS++/statistics/statistics.h"
+#include "ATEAMS++/models/models.h"
 
 #endif

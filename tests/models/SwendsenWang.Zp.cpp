@@ -5,12 +5,12 @@
 using namespace ATEAMS;
 using namespace std;
 
-using Model = models::SwendsenWang<FINITE>;
+using Model = models::SwendsenWang<Zp>;
 using Parameters = models::ModelParameters;
 
-using Structure = complexes::Cubical<Model::dt>;
-using State = models::ModelState<Model::dt,Model::st>;
-using Chain = statistics::Chain<Model::dt,Model::st>;
+using Structure = complexes::Cubical<Zp>;
+using State = models::ModelState<Zp,SparseVector>;
+using Chain = statistics::Chain<Zp,SparseVector>;
 
 
 int main(int argc, char *argv[]) {
@@ -21,10 +21,12 @@ int main(int argc, char *argv[]) {
 		vector<int> corners(dimension, 3);
 		Structure CUBICAL(corners);
 
+		Zp ZZ(FIELD);
+
 		Parameters PARAMETERS;
-		PARAMETERS.field = FIELD;
+		PARAMETERS.coefficients = &ZZ;
 		PARAMETERS.dimension = dimension/2;
-		PARAMETERS.temperatureFunction = statistics::selfdual(PARAMETERS.field);
+		PARAMETERS.temperatureFunction = statistics::selfdual(&ZZ);
 		PARAMETERS.DEBUG = true;
 
 		Model MODEL(&CUBICAL, PARAMETERS);
@@ -34,16 +36,16 @@ int main(int argc, char *argv[]) {
 			// Figure out which cells were excluded; on these cells, the cochain
 			// can evaluate to anything. We just want the ones that evaluate to
 			// 0.
-			vector<int> unsatisfied = statistics::unsatisfied<Model::dt>(
-				&CUBICAL, state.cochain, MODEL.field, PARAMETERS.dimension
+			vector<int> unsatisfied = statistics::unsatisfied<Zp>(
+				&CUBICAL, state.cochain, MODEL.coefficients, PARAMETERS.dimension
 			);
 
-			SparseMatrix<Model::dt> REDUCED = MODEL.complex->Coboundary.Matrices[PARAMETERS.dimension];
+			SparseMatrix<Zp> REDUCED = MODEL.complex->Coboundary.Matrices[PARAMETERS.dimension];
 			for (auto u : unsatisfied) REDUCED[u].zero();
 			REDUCED.clear_zero_row();
 			REDUCED.compress();
 
-			if (!inKernel<Model::dt>(REDUCED, state.cochain, MODEL.field)) {
+			if (!inKernel<Zp>(REDUCED, state.cochain, MODEL.coefficients)) {
 				RESULT = FAIL;
 			}
 		}

@@ -21,19 +21,19 @@
 namespace ATEAMS {
 	namespace models {
 
-		template <typename T>
-		ModelState<T,SparseVector> SwendsenWang<T>::sample(
+		template <typename RingLike>
+		ModelState<RingLike,SparseVector> SwendsenWang<RingLike>::sample(
 			int t,
-			ModelState<T,SparseVector>& state,
+			ModelState<RingLike,SparseVector>& state,
 			arithmetic::ThreadOptions& options
 		) {
 			// Compute the temperature and probability of including particular (d-1)-cells.
-			double temp = this->parameters.temperatureFunction(t);
+			double temp = this->temperatureFunction(t);
 			double p = 1-exp(temp);
 
 			// If we're debugging, check that the inclusion probability is actually within
 			// acceptable parameters.
-			if (this->parameters.DEBUG) {
+			if (this->DEBUG) {
 				cerr << std::format("verifying 0 ≤ {} ≤ 1", p) << endl;
 				assert((0 <= p) && (p <= 1));
 			}
@@ -41,12 +41,12 @@ namespace ATEAMS {
 			// Perform independent Bernoulli trials over each (d-1)-cell to decide whether
 			// it gets included in the computation. We do this by performing a (sparse!) matrix
 			// multiplication, then checking which of the entries are zero.
-			size_t d = this->parameters.dimension;
+			size_t d = this->dimension;
 
-			SparseVector<T> coefficients = sparse_mat_dot_sparse_vec<T,INDEX>(
+			SparseVector<RingLike> coefficients = sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
 				this->complex->Coboundary.Matrices[d],
 				state.cochain,
-				this->field
+				this->coefficients->ring
 			);
 			coefficients.compress();
 
@@ -77,30 +77,30 @@ namespace ATEAMS {
 			);
 
 			// Now, sample from the kernel.
-			SparseVector<T> sample = arithmetic::submatrixKernelSample<T>(
+			SparseVector<RingLike> sample = arithmetic::submatrixKernelSample<RingLike>(
 				this->complex->Coboundary.Matrices[d],	// complete dth coboundary matrix
-				this->field,							// field
+				this->coefficients,								// ring
 				exclude,								// rows to exclude
 				this->intuniform,						// uniform random over field
 				this->RNG,								// RNG
 				options,								// compute options
-				this->parameters.DEBUG					// debugging
+				this->DEBUG								// debugging
 			);
 
 			// If we're debugging, check whether we actually sampled from the kernel.
-			if (this->parameters.DEBUG) {
+			if (this->DEBUG) {
 				// Copy and pare down the coboundary matrix.
-				SparseMatrix<T> cbd = this->complex->Coboundary.Matrices[d];
+				SparseMatrix<RingLike> cbd = this->complex->Coboundary.Matrices[d];
 				for (auto i : exclude) cbd[i].zero();
 				cbd.clear_zero_row();
 				cbd.compress();
 
 				// Multiply, and check whether there's anything in the resulting vector;
 				// there shouldn't be (i.e. it should have size 0).
-				SparseVector<T> outcome = sparse_mat_dot_sparse_vec<T,INDEX>(
+				SparseVector<RingLike> outcome = sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
 					cbd,
 					sample,
-					this->field
+					this->coefficients->ring
 				);
 
 				assert(outcome.size() < 1);
@@ -113,16 +113,16 @@ namespace ATEAMS {
 			return state;
 		}
 
-		template <typename T>
-		ModelState<T,SparseVector> SwendsenWang<T>::initialize(
-			ModelState<T,SparseVector>& state
+		template <typename RingLike>
+		ModelState<RingLike,SparseVector> SwendsenWang<RingLike>::initialize(
+			ModelState<RingLike,SparseVector>& state
 		) {
-			size_t dimension = this->parameters.dimension-1;
+			size_t dimension = this->dimension-1;
 			int N = this->complex->Cells[dimension];
 
-			SparseVector<T> cochain;
+			SparseVector<RingLike> cochain;
 			for (int i=0; i < N; i++) cochain.push_back(
-				(INDEX)i, (T)this->intuniform(this->RNG)
+				(INDEX)i, (typename RingLike::dtype)this->intuniform(this->RNG)
 			);
 
 			cochain.compress();
@@ -131,35 +131,32 @@ namespace ATEAMS {
 		}
 
 
-		template <typename T>
-		ModelState<T,SparseVector> SwendsenWang<T>::initialize(
-			SparseVector<T> c,
-			ModelState<T,SparseVector>& state
+		template <typename RingLike>
+		ModelState<RingLike,SparseVector> SwendsenWang<RingLike>::initialize(
+			SparseVector<RingLike> c,
+			ModelState<RingLike,SparseVector>& state
 		) {
 			state.cochain = c;
 			return state;
 		}
 
 
-		template <typename T>
-		SwendsenWang<T>::SwendsenWang(
-			complexes::Complex<T>* complex,
-			ModelParameters parameters
-		) : Model<T,SparseVector>(
-			parameters.field > 0 ?
-				Field(SparseRREF::FIELD_Fp, parameters.field) :
-				Field(SparseRREF::FIELD_QQ),
-			"SwendsenWang"
-		) {
-			this->parameters = parameters;
+		template <typename RingLike>
+		SwendsenWang<RingLike>::SwendsenWang(
+			complexes::Complex<RingLike>* complex,
+			Ring* R,
+			int dimension,
+			bool DEBUG
+		) : Model<RingLike,SparseVector>(R, dimension, DEBUG) {
 			this->complex = complex;
+			this->temperatureFunction = statistics::selfdual(this->coefficients);
 
 			// Determine the field and build the boundary matrices for the Complex.
-			this->complex->constructBoundaryMatrices(this->field);
+			this->complex->constructBoundaryMatrices(this->coefficients);
 
 			// Default set of indices to compare against.
 			std::set<int> _include;
-			for (int t=0; t<this->complex->Cells[this->parameters.dimension]; t++) _include.insert(t);
+			for (int t=0; t < this->complex->Cells[this->dimension]; t++) _include.insert(t);
 
 			this->include = _include;
 
@@ -167,7 +164,64 @@ namespace ATEAMS {
 			std::random_device rd;
 			this->RNG = std::mt19937(rd());
 			this->unituniform = std::uniform_real_distribution<double>(0,1);
-			this->intuniform = std::uniform_int_distribution<int>(0,this->parameters.field > 0 ? this->parameters.field : 1);
+
+			int mod = (int)R->ring.mod.n;
+			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
+		};
+
+		template <typename RingLike>
+		SwendsenWang<RingLike>::SwendsenWang(
+			complexes::Complex<RingLike>* complex,
+			Ring* R,
+			int dimension,
+			std::function<double(int)> temperatureFunction,
+			bool DEBUG
+		) : Model<RingLike,SparseVector>(R, dimension, DEBUG) {
+			this->complex = complex;
+			this->temperatureFunction = temperatureFunction;
+
+			// Determine the field and build the boundary matrices for the Complex.
+			this->complex->constructBoundaryMatrices(this->coefficients);
+
+			// Default set of indices to compare against.
+			std::set<int> _include;
+			for (int t=0; t < this->complex->Cells[this->dimension]; t++) _include.insert(t);
+
+			this->include = _include;
+
+			// Initialize a random number generator.
+			std::random_device rd;
+			this->RNG = std::mt19937(rd());
+			this->unituniform = std::uniform_real_distribution<double>(0,1);
+
+			int mod = (int)R->ring.mod.n;
+			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
+		};
+
+		template <typename RingLike>
+		SwendsenWang<RingLike>::SwendsenWang(
+			complexes::Complex<RingLike>* complex,
+			ModelParameters parameters
+		) : Model<RingLike,SparseVector>(parameters.coefficients, parameters.dimension, parameters.DEBUG) {
+			this->complex = complex;
+			this->temperatureFunction = parameters.temperatureFunction;
+
+			// Determine the field and build the boundary matrices for the Complex.
+			this->complex->constructBoundaryMatrices(this->coefficients);
+
+			// Default set of indices to compare against.
+			std::set<int> _include;
+			for (int t=0; t < this->complex->Cells[this->dimension]; t++) _include.insert(t);
+
+			this->include = _include;
+
+			// Initialize a random number generator.
+			std::random_device rd;
+			this->RNG = std::mt19937(rd());
+			this->unituniform = std::uniform_real_distribution<double>(0,1);
+
+			int mod = (int)this->coefficients->ring.mod.n;
+			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
 		}
 	}
 }

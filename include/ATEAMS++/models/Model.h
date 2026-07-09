@@ -13,8 +13,8 @@ namespace ATEAMS::models {
 	 * @struct ModelParameters
 	 * @brief Typical parameters required for simulating a Model.
 	 * 
-	 * @var ModelParameters::field
-	 * 	Field over which computations are performed. Used by every @ref Model.
+	 * @var ModelParameters::ring
+	 * 	@brief Coefficient ring.
 	 * 
 	 * @var ModelParameters::dimension
 	 * 	Percolation subcomplex dimension. Used by every @ref Model.
@@ -35,7 +35,7 @@ namespace ATEAMS::models {
 	 */
 	struct ModelParameters {
 		// Used by: SwendsenWang, InvadedCluster, Invasion, Glauber
-		int field;
+		Ring* coefficients;
 
 		// Used by: Bernoulli
 		float p;
@@ -55,32 +55,35 @@ namespace ATEAMS::models {
 	 * @struct ModelState
 	 * @brief Maintains state for this Model.
 	 * 
+	 * @tparam RingLike Coefficient @ref Ring, like @ref Zp or @ref Q.
+	 * @tparam VectorLike Storage unit compatible with @p RingLike, like
+	 *  @ref DenseVector or @ref SparseVector.
+	 * 
 	 * @var ModelState::cochain
-	 * 	Current cochain \f$ f_t \f$ in `ContainerType<T>`. Used by
-	 * 	@ref InvadedCluster, @ref SwendsenWang.
+	 * 	@brief Current cochain \f$ f_t \f$. Used by @ref InvadedCluster, @ref SwendsenWang.
 	 * 
 	 * @var ModelState::includes
-	 * 	Percolation subcomplex \f$ P_t \f$. Used by @ref Bernoulli, @ref InvadedCluster,
+	 * 	@brief Percolation subcomplex \f$ P_t \f$. Used by @ref Bernoulli, @ref InvadedCluster,
 	 * 	@ref Invasion, @ref SwendsenWang.
 	 * 
 	 * @var ModelState::essential
-	 * 	Times at which essential cycles of \f$ P_t \f$ were born. Used by
+	 * 	@brief Times at which essential cycles of \f$ P_t \f$ were born. Used by
 	 * 	@ref Bernoulli, @ref Invasion.
 	 * 
 	 * @var ModelState::rank
-	 * 	Rank of the \f$d\f$th persistent homology group \f$PH_d(P_t)\f$. Used by
+	 * 	@brief Rank of the \f$d\f$th persistent homology group \f$PH_d(P_t)\f$. Used by
 	 * 	@ref Bernoulli.
 	 * 
 	 * @var ModelState::energy
-	 * 	Energy of the current cochain, i.e. \f$\H(f_t)\f$. Used by @ref Glauber.
+	 * 	@brief Energy of the current cochain, i.e. \f$\H(f_t)\f$. Used by @ref Glauber.
 	 * 
 	 * @var ModelState::t
-	 * 	Current time-step. Used by every @ref Model.
+	 * 	@brief Current time-step. Used by every @ref Model.
 	 */
-	template <typename T=ATEAMS::ff, template <typename> typename ContainerType=ATEAMS::SparseVector>
+	template <typename RingLike, template <typename> typename VectorLike>
 	struct ModelState {
 		// Used by: SwendsenWang, InvadedCluster,
-		ContainerType<T> cochain;
+		VectorLike<RingLike> cochain;
 
 		// Used by: SwendsenWang, InvadedCluster, Invasion, Bernoulli
 		std::vector<int> includes;
@@ -102,37 +105,38 @@ namespace ATEAMS::models {
 	 * @class Model
 	 * @brief Abstract (template) class for various Models.
 	 * 
+	 * @tparam RingLike Coefficient @ref Ring, like @ref Zp or @ref Q.
+	 * @tparam VectorLike Storage unit compatible with @p RingLike, like
+	 *  @ref DenseVector or @ref SparseVector.
+	 * 
 	 * @var Model::complex
-	 * Pointer to a @ref ATEAMS::complexes::Complex.
+	 *  @brief Pointer to a @ref ATEAMS::complexes::Complex.
 	 * 
-	 * @var Model::parameters
-	 * Parameters for the model.
+	 * @var Model::coefficients
+	 *  @brief Coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * 
-	 * @var Model::field
-	 * Field (either \f$\Z/p\Z\f$ or \f$\Q\f$) over which we're performing
-	 * arithmetic.
+	 * @var Model::dimension
+	 * 	@brief Subcomplex dimension.
 	 * 
-	 * @var Model::kind
-	 * Model name.
+	 * @var Model::DEBUG
+	 * 	@brief Are we debugging this Model? (Default is `false`.)
 	 */
-	template <typename T=ATEAMS::ff, template <typename> typename ContainerType=ATEAMS::SparseVector>
+	template <typename RingLike, template <typename> typename VectorLike>
 	class Model {
 		public:
-			ATEAMS::complexes::Complex<T>* complex;
-			ModelParameters parameters;
-			Field field;
+			ATEAMS::complexes::Complex<RingLike>* complex;
 
-			std::string kind;
-
-			/** Data type for the Model. */
-			typedef T DataType;
-
-			/** Container type for the Model. */
-			template <typename R>
-			using StorageType = ContainerType<R>;
+			Ring* coefficients;
+			int dimension;
+			bool DEBUG = false;
 
 			/** Constructor. */
-			Model(Field F, string kind) : field(F), kind(kind) { };
+			Model(
+				Ring* R,
+				int dimension,
+				bool DEBUG=false
+
+			) : coefficients(R), dimension(dimension), DEBUG(DEBUG) { };
 
 			/**
 			 * @brief Draw a sample from the model.
@@ -144,7 +148,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @returns Modified state.
 			 */
-			virtual ModelState<T,ContainerType> sample(int t, ModelState<T,ContainerType>& state, ATEAMS::arithmetic::ThreadOptions& options) = 0;
+			virtual ModelState<RingLike,VectorLike> sample(int t, ModelState<RingLike,VectorLike>& state, ATEAMS::arithmetic::ThreadOptions& options) = 0;
 
 			/**
 			 * @brief Initializes the state as determined by the model.
@@ -153,7 +157,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @returns Modified state.
 			 */
-			virtual ModelState<T,ContainerType> initialize(ModelState<T,ContainerType>& state) = 0;
+			virtual ModelState<RingLike,VectorLike> initialize(ModelState<RingLike,VectorLike>& state) = 0;
 
 			/**
 			 * @brief Initializes the state as determined by the user.
@@ -163,7 +167,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @returns Modified state.
 			 */
-			virtual ModelState<T,ContainerType> initialize(ContainerType<T> c, ModelState<T,ContainerType>& state) = 0;
+			virtual ModelState<RingLike,VectorLike> initialize(VectorLike<RingLike> c, ModelState<RingLike,VectorLike>& state) = 0;
 	};
 }
 

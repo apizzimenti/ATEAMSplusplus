@@ -9,14 +9,16 @@ namespace ATEAMS {
 		/**
 		 * @brief Determines the self-dual probability for the PLGT/PRCM.
 		 * 
-		 * @param p Order of the finite field for PLGT.
+		 * @param R (Pointer to a) coefficient ring, like @ref Zp or @ref Q.
 		 * 
 		 * @returns A lambda function that always returns the self-dual point
 		 * 	\f$\ln(1-\nicefrac{\sqrt p}{1+\sqrt p})\f$.
 		 */
-		inline std::function<double(int)> selfdual(int p) {
+		inline std::function<double(int)> selfdual(Ring* R) {
+			int mod = (int)R->ring.mod.n;
+
 			double c = std::log(
-				1-(std::sqrt(p)/(1+std::sqrt(p)))
+				1-(std::sqrt(mod)/(1+std::sqrt(mod)))
 			);
 
 			return [c](int t) { return c; };
