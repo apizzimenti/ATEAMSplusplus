@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: Model&lt; T, ContainerType &gt; Class Template Reference</title>
+<title>ATEAMS++: Model&lt; RingLike, VectorLike &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Model&lt; T, ContainerType &gt; Class Template Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">Model&lt; RingLike, VectorLike &gt; Class Template Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -149,77 +149,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <p><code>#include &lt;<a class="el" href="_model_8h_source.html">Model.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:afe400d3f662f42fab8f065a689ba9a4a" id="r_afe400d3f662f42fab8f065a689ba9a4a"><td class="memItemLeft">typedef T&#160;</td><td class="memItemRight"><a class="el" href="#afe400d3f662f42fab8f065a689ba9a4a">DataType</a></td></tr>
-<tr class="memitem:a4a65e9658f6e7740240acb1046c6a869" id="r_a4a65e9658f6e7740240acb1046c6a869"><td class="memTemplParams" colspan="2">template&lt;typename R&gt; </td></tr>
-<tr class="memitem:a4a65e9658f6e7740240acb1046c6a869 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a4a65e9658f6e7740240acb1046c6a869">StorageType</a> = ContainerType&lt;R&gt;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab4ccd5f63bd50df82ae9b145ee716ca4" id="r_ab4ccd5f63bd50df82ae9b145ee716ca4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab4ccd5f63bd50df82ae9b145ee716ca4">Model</a> (Field F, string kind)</td></tr>
-<tr class="memitem:a033e265387de53a46d9da5d3ac551f92" id="r_a033e265387de53a46d9da5d3ac551f92"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, ContainerType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a033e265387de53a46d9da5d3ac551f92">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, ContainerType &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options)=0</td></tr>
-<tr class="memdesc:a033e265387de53a46d9da5d3ac551f92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sample from the model.  <br /></td></tr>
-<tr class="memitem:afef108404d049e25a3dcbc5b072f2f5d" id="r_afef108404d049e25a3dcbc5b072f2f5d"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, ContainerType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#afef108404d049e25a3dcbc5b072f2f5d">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, ContainerType &gt; &amp;state)=0</td></tr>
-<tr class="memdesc:afef108404d049e25a3dcbc5b072f2f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the model.  <br /></td></tr>
-<tr class="memitem:abc849b1cd0a97061d2ddd78912905460" id="r_abc849b1cd0a97061d2ddd78912905460"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, ContainerType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#abc849b1cd0a97061d2ddd78912905460">initialize</a> (ContainerType&lt; T &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, ContainerType &gt; &amp;state)=0</td></tr>
-<tr class="memdesc:abc849b1cd0a97061d2ddd78912905460"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the user.  <br /></td></tr>
+<tr class="memitem:af4902cce023a35cb4c3201a4600e140b" id="r_af4902cce023a35cb4c3201a4600e140b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af4902cce023a35cb4c3201a4600e140b">Model</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, bool DEBUG=false)</td></tr>
+<tr class="memitem:a4bf284e877ba348b401247c09b994881" id="r_a4bf284e877ba348b401247c09b994881"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4bf284e877ba348b401247c09b994881">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options)=0</td></tr>
+<tr class="memdesc:a4bf284e877ba348b401247c09b994881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sample from the model.  <br /></td></tr>
+<tr class="memitem:a2b8f22c96cbee660fcfb8792d9fc42a0" id="r_a2b8f22c96cbee660fcfb8792d9fc42a0"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2b8f22c96cbee660fcfb8792d9fc42a0">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; &amp;state)=0</td></tr>
+<tr class="memdesc:a2b8f22c96cbee660fcfb8792d9fc42a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the model.  <br /></td></tr>
+<tr class="memitem:affe5983deec91f7e42843d617eecde81" id="r_affe5983deec91f7e42843d617eecde81"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#affe5983deec91f7e42843d617eecde81">initialize</a> (VectorLike&lt; RingLike &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; &amp;state)=0</td></tr>
+<tr class="memdesc:affe5983deec91f7e42843d617eecde81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the user.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ad229b423127503d1f8dd8a24d936747e" id="r_ad229b423127503d1f8dd8a24d936747e"><td class="memItemLeft"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt; *&#160;</td><td class="memItemRight"><a class="el" href="#ad229b423127503d1f8dd8a24d936747e">complex</a></td></tr>
-<tr class="memitem:a3b429fad97509c9697fa57c21ad985f8" id="r_a3b429fad97509c9697fa57c21ad985f8"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a>&#160;</td><td class="memItemRight"><a class="el" href="#a3b429fad97509c9697fa57c21ad985f8">parameters</a></td></tr>
-<tr class="memitem:a7dcfc38e2de5dafd89e3d4bda9760010" id="r_a7dcfc38e2de5dafd89e3d4bda9760010"><td class="memItemLeft">Field&#160;</td><td class="memItemRight"><a class="el" href="#a7dcfc38e2de5dafd89e3d4bda9760010">field</a></td></tr>
-<tr class="memitem:aca87c2bbc26e697653e2d8461c76a361" id="r_aca87c2bbc26e697653e2d8461c76a361"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#aca87c2bbc26e697653e2d8461c76a361">kind</a></td></tr>
+<tr class="memitem:aa9fb7501f4721a129cf3d6f6f0160d84" id="r_aa9fb7501f4721a129cf3d6f6f0160d84"><td class="memItemLeft"><a id="aa9fb7501f4721a129cf3d6f6f0160d84" name="aa9fb7501f4721a129cf3d6f6f0160d84"></a>
+<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; RingLike &gt; *&#160;</td><td class="memItemRight"><b>complex</b></td></tr>
+<tr class="memdesc:aa9fb7501f4721a129cf3d6f6f0160d84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" title="Complex">Complex</a>. <br /></td></tr>
+<tr class="memitem:a67c367e941d9cfa52dc173c8a0dc20f5" id="r_a67c367e941d9cfa52dc173c8a0dc20f5"><td class="memItemLeft"><a id="a67c367e941d9cfa52dc173c8a0dc20f5" name="a67c367e941d9cfa52dc173c8a0dc20f5"></a>
+<a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *&#160;</td><td class="memItemRight"><b>coefficients</b></td></tr>
+<tr class="memdesc:a67c367e941d9cfa52dc173c8a0dc20f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. <br /></td></tr>
+<tr class="memitem:a1a8a8235879363159315091a1daed72f" id="r_a1a8a8235879363159315091a1daed72f"><td class="memItemLeft"><a id="a1a8a8235879363159315091a1daed72f" name="a1a8a8235879363159315091a1daed72f"></a>
+int&#160;</td><td class="memItemRight"><b>dimension</b></td></tr>
+<tr class="memdesc:a1a8a8235879363159315091a1daed72f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subcomplex dimension. <br /></td></tr>
+<tr class="memitem:a117352cc494cc62c6b2f1882786a332c" id="r_a117352cc494cc62c6b2f1882786a332c"><td class="memItemLeft"><a id="a117352cc494cc62c6b2f1882786a332c" name="a117352cc494cc62c6b2f1882786a332c"></a>
+bool&#160;</td><td class="memItemRight"><b>DEBUG</b> = false</td></tr>
+<tr class="memdesc:a117352cc494cc62c6b2f1882786a332c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are we debugging this <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a>? (Default is <span class="tt">false</span>.). <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt;<br />
-class ATEAMS::models::Model&lt; T, ContainerType &gt;</div><p>Abstract (template) class for various Models. </p>
-</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
-<a id="afe400d3f662f42fab8f065a689ba9a4a" name="afe400d3f662f42fab8f065a689ba9a4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe400d3f662f42fab8f065a689ba9a4a">&#9670;&#160;</a></span>DataType</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt;<br />
+class ATEAMS::models::Model&lt; RingLike, VectorLike &gt;</div><p>Abstract (template) class for various Models. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RingLike</td><td>Coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </td></tr>
+    <tr><td class="paramname">VectorLike</td><td>Storage unit compatible with <code class="param">RingLike</code>, like <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082" title="DenseVector">DenseVector</a> or <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1" title="SparseVector">SparseVector</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af4902cce023a35cb4c3201a4600e140b" name="af4902cce023a35cb4c3201a4600e140b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4902cce023a35cb4c3201a4600e140b">&#9670;&#160;</a></span>Model()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef T <a class="el" href="#afe400d3f662f42fab8f065a689ba9a4a">DataType</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Data type for the <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a>. </p>
-
-</div>
-</div>
-<a id="a4a65e9658f6e7740240acb1046c6a869" name="a4a65e9658f6e7740240acb1046c6a869"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a65e9658f6e7740240acb1046c6a869">&#9670;&#160;</a></span>StorageType</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
-<div class="memtemplate">
-template&lt;typename R&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="#a4a65e9658f6e7740240acb1046c6a869">StorageType</a> = ContainerType&lt;R&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Container type for the <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a>. </p>
-
-</div>
-</div>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab4ccd5f63bd50df82ae9b145ee716ca4" name="ab4ccd5f63bd50df82ae9b145ee716ca4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4ccd5f63bd50df82ae9b145ee716ca4">&#9670;&#160;</a></span>Model()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
+template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -227,12 +199,17 @@ template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename Contain
         <tr>
           <td class="memname">Model </td>
           <td>(</td>
-          <td class="paramtype">Field</td>          <td class="paramname"><span class="paramname"><em>F</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>kind</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dimension</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>DEBUG</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -246,26 +223,64 @@ template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename Contain
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="abc849b1cd0a97061d2ddd78912905460" name="abc849b1cd0a97061d2ddd78912905460"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc849b1cd0a97061d2ddd78912905460">&#9670;&#160;</a></span>initialize() <span class="overload">[1/2]</span></h2>
+<a id="a2b8f22c96cbee660fcfb8792d9fc42a0" name="a2b8f22c96cbee660fcfb8792d9fc42a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b8f22c96cbee660fcfb8792d9fc42a0">&#9670;&#160;</a></span>initialize() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
+template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, ContainerType &gt; initialize </td>
+          <td class="memname">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; initialize </td>
           <td>(</td>
-          <td class="paramtype">ContainerType&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes the state as determined by the model. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Keeps track of state.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Modified state. </dd></dl>
+
+<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a912e1145c4c1fa9cfa44e0e80fcf40e0">Bernoulli</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a912e1145c4c1fa9cfa44e0e80fcf40e0">Invasion</a>, and <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#ad71bbc2872102a39443a2947bdc9d361">SwendsenWang&lt; RingLike &gt;</a>.</p>
+
+</div>
+</div>
+<a id="affe5983deec91f7e42843d617eecde81" name="affe5983deec91f7e42843d617eecde81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affe5983deec91f7e42843d617eecde81">&#9670;&#160;</a></span>initialize() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; initialize </td>
+          <td>(</td>
+          <td class="paramtype">VectorLike&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, ContainerType &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -287,64 +302,26 @@ template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename Contain
 
 </div>
 </div>
-<a id="afef108404d049e25a3dcbc5b072f2f5d" name="afef108404d049e25a3dcbc5b072f2f5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afef108404d049e25a3dcbc5b072f2f5d">&#9670;&#160;</a></span>initialize() <span class="overload">[2/2]</span></h2>
+<a id="a4bf284e877ba348b401247c09b994881" name="a4bf284e877ba348b401247c09b994881"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bf284e877ba348b401247c09b994881">&#9670;&#160;</a></span>sample()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
+template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, ContainerType &gt; initialize </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, ContainerType &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Initializes the state as determined by the model. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">state</td><td>Keeps track of state.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Modified state. </dd></dl>
-
-<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a912e1145c4c1fa9cfa44e0e80fcf40e0">Bernoulli</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a912e1145c4c1fa9cfa44e0e80fcf40e0">Invasion</a>, and <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a2c39694e87b8d57a914a4efcdee0932d">SwendsenWang&lt; T &gt;</a>.</p>
-
-</div>
-</div>
-<a id="a033e265387de53a46d9da5d3ac551f92" name="a033e265387de53a46d9da5d3ac551f92"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a033e265387de53a46d9da5d3ac551f92">&#9670;&#160;</a></span>sample()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, ContainerType &gt; sample </td>
+          <td class="memname">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; sample </td>
           <td>(</td>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; T, ContainerType &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -370,76 +347,7 @@ template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename Contain
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Modified state. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#aab32ff550f334de4dc263bace6c7dbae">Bernoulli</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#aab32ff550f334de4dc263bace6c7dbae">Invasion</a>, and <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#adc8559c3d3782e34c7c5121128a7c93b">SwendsenWang&lt; T &gt;</a>.</p>
-
-</div>
-</div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="ad229b423127503d1f8dd8a24d936747e" name="ad229b423127503d1f8dd8a24d936747e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad229b423127503d1f8dd8a24d936747e">&#9670;&#160;</a></span>complex</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt;T&gt;* complex</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Pointer to a <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" title="Complex">Complex</a>. </p>
-
-</div>
-</div>
-<a id="a7dcfc38e2de5dafd89e3d4bda9760010" name="a7dcfc38e2de5dafd89e3d4bda9760010"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7dcfc38e2de5dafd89e3d4bda9760010">&#9670;&#160;</a></span>field</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">Field field</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Field (either \(\Z/p\Z\) or \(\Q\)) over which we're performing arithmetic. </p>
-
-</div>
-</div>
-<a id="aca87c2bbc26e697653e2d8461c76a361" name="aca87c2bbc26e697653e2d8461c76a361"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca87c2bbc26e697653e2d8461c76a361">&#9670;&#160;</a></span>kind</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string kind</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> name. </p>
-
-</div>
-</div>
-<a id="a3b429fad97509c9697fa57c21ad985f8" name="a3b429fad97509c9697fa57c21ad985f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b429fad97509c9697fa57c21ad985f8">&#9670;&#160;</a></span>parameters</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T = ATEAMS::ff, template&lt; typename &gt; typename ContainerType = ATEAMS::SparseVector&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a> parameters</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Parameters for the model. </p>
+<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#aab32ff550f334de4dc263bace6c7dbae">Bernoulli</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#aab32ff550f334de4dc263bace6c7dbae">Invasion</a>, and <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a5e376a7a5aa1cbd4a2d96c0aa4434da7">SwendsenWang&lt; RingLike &gt;</a>.</p>
 
 </div>
 </div>

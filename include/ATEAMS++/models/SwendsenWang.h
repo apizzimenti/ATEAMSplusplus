@@ -28,7 +28,23 @@ namespace ATEAMS::models {
 			std::string name = "Swendsen--Wang";
 
 			/**
-			 * @brief Constructor. The `temperatureFunction` is automatically
+			 * @brief Constructor.
+			 * 
+			 * Using this constructor, typical model parameters can be passed
+			 * as a @ref ATEAMS::models::ModelParameters object.
+			 * 
+			 * @param complex (Pointer to) a complex.
+			 * @param parameters Model parameters.
+			 */
+			SwendsenWang(
+				ATEAMS::complexes::Complex<RingLike>* complex,
+				ModelParameters parameters
+			);
+
+			/**
+			 * @brief Constructor.
+			 * 
+			 * Using this constructor, the `temperatureFunction` is automatically
 			 * 	set to the inverse temperature parameter admitting the self-dual
 			 * 	point according to the modulus of the @ref Ring; see
 			 *  @ref ATEAMS::statistics::selfdual.
@@ -64,18 +80,9 @@ namespace ATEAMS::models {
 			);
 
 			/**
-			 * @brief Constructor.
+			 * @brief Model sampler.
 			 * 
-			 * @param complex (Pointer to) a complex.
-			 * @param parameters Model parameters.
-			 */
-			SwendsenWang(
-				ATEAMS::complexes::Complex<RingLike>* complex,
-				ModelParameters parameters
-			);
-
-			/**
-			 * @brief Alternates between sampling the conditionals \f$P_t \sim \PK(- \mid f_t)\f$
+			 * Alternates between sampling the conditionals \f$P_t \sim \PK(- \mid f_t)\f$
 			 * 	and \f$f_{t+1} \sim \PK(- \mid P_{t+1})\f$ of the coupling \f$\PK\f$ between
 			 * 	the PLGT and PRCM.
 			 * 

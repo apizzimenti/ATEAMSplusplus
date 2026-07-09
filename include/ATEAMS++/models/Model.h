@@ -13,7 +13,7 @@ namespace ATEAMS::models {
 	 * @struct ModelParameters
 	 * @brief Typical parameters required for simulating a Model.
 	 * 
-	 * @var ModelParameters::ring
+	 * @var ModelParameters::coefficients
 	 * 	@brief Coefficient ring.
 	 * 
 	 * @var ModelParameters::dimension

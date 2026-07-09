@@ -13,9 +13,11 @@ namespace ATEAMS {
 		/**
 		 * @brief Computes the total energy of the given configuration.
 		 * 
+		 * @tparam RingLike Coefficient @ref Ring type, like @ref Zp or @ref Q.
+		 * 
 		 * @param complex (Pointer to) a Complex.
 		 * @param f \f$(d-1)\f$-cochain.
-		 * @param F Finite field.
+		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
 		 * @param dimension Dimension of the cells over which we're sampling.
 		 * 
 		 * @returns An integer giving the (negative) number of \f$(d-1)\f$-cells
@@ -41,9 +43,11 @@ namespace ATEAMS {
 		 * with respect to \f$f_t\f$: that is, the number of \f$d\f$-cells \f$x\f$
 		 * for which \f$(\delta^{d-1}f_t)(x) = 0\f$.
 		 * 
+		 * @tparam RingLike Coefficient @ref Ring type, like @ref Zp or @ref Q.
+		 * 
 		 * @param complex (Pointer to) a Complex.
 		 * @param f \f$(d-1)\f$-cochain.
-		 * @param F Finite field.
+		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
 		 * @param dimension Dimension of the cells over which we're sampling.
 		 * 
 		 * @returns Number of satisfied cells.
@@ -68,9 +72,11 @@ namespace ATEAMS {
 		 * with respect to \f$f_t\f$: that is, the indices of \f$d\f$-cells \f$x\f$
 		 * for which \f$(\delta^{d-1}f_t)(x) = 0\f$.
 		 * 
+		 * @tparam RingLike Coefficient @ref Ring type, like @ref Zp or @ref Q.
+		 * 
 		 * @param complex (Pointer to) a Complex.
 		 * @param f \f$(d-1)\f$-cochain.
-		 * @param F Finite field.
+		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
 		 * @param dimension Dimension of the cells over which we're sampling.
 		 * 
 		 * @returns Indices of satisfied cells.
@@ -112,9 +118,11 @@ namespace ATEAMS {
 		 * with respect to \f$f_t\f$: that is, the indices of \f$d\f$-cells \f$x\f$
 		 * for which \f$(\delta^{d-1}f_t)(x) \neq 0\f$.
 		 * 
+		 * @tparam RingLike Coefficient @ref Ring type, like @ref Zp or @ref Q.
+		 * 
 		 * @param complex (Pointer to) a Complex.
 		 * @param f \f$(d-1)\f$-cochain.
-		 * @param F Finite field.
+		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
 		 * @param dimension Dimension of the cells over which we're sampling.
 		 * 
 		 * @returns Indices of unsatisfied cells.

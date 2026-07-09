@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['q_0',['Q',['../struct_a_t_e_a_m_s_1_1_q.html',1,'Q'],['../struct_a_t_e_a_m_s_1_1_q.html#aa4862696728f1aaefc917945e27d4716',1,'ATEAMS::Q::Q(int characteristic)'],['../struct_a_t_e_a_m_s_1_1_q.html#a57426605b00772c329d240b02ef33c9d',1,'ATEAMS::Q::Q()']]]
+  ['p_0',['p',['../struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1922a551816a2725c69a086db7c12a03',1,'ATEAMS::models::ModelParameters']]],
+  ['periodic_1',['periodic',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a09271c5dbbb7bb9b0e0487bbc48373aa',1,'ATEAMS::complexes::Complex']]],
+  ['phatpersistence_2',['PHATPersistence',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a10692014e1f613bb397ec488a5600507',1,'ATEAMS::arithmetic']]]
 ];

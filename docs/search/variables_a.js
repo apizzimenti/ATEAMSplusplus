@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['p_0',['p',['../struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1922a551816a2725c69a086db7c12a03',1,'ATEAMS::models::ModelParameters']]],
-  ['parameters_1',['parameters',['../class_a_t_e_a_m_s_1_1models_1_1_model.html#a3b429fad97509c9697fa57c21ad985f8',1,'ATEAMS::models::Model']]],
-  ['periodic_2',['periodic',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a09271c5dbbb7bb9b0e0487bbc48373aa',1,'ATEAMS::complexes::Complex']]]
+  ['offsets_0',['Offsets',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#af4dbfcfd4ffe8e565bfc5df5089ec9ce',1,'ATEAMS::complexes::Complex']]],
+  ['opt_1',['opt',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#a1f3b56a433fc78d01e9882a1a0e0cba5',1,'ATEAMS::arithmetic::ThreadOptions']]],
+  ['options_2',['options',['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a09c3685da12e9cd2ce70a61e3276f130',1,'ATEAMS::statistics::Chain']]]
 ];
