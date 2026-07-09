@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['write_0',['write',['../class_a_t_e_a_m_s_1_1_data_writer.html#a2b7da6d45a08dc430bcc15e1d160334e',1,'ATEAMS::DataWriter::write(ATEAMS::SparseMatrix&lt; rational &gt; S, std::string destination)'],['../class_a_t_e_a_m_s_1_1_data_writer.html#a8825bebaf9be0e6b14f2e31a54b5a4a0',1,'ATEAMS::DataWriter::write(ATEAMS::SparseMatrix&lt; ff &gt; S, std::string destination)'],['../class_a_t_e_a_m_s_1_1_data_writer.html#a74fff4aa7dac09cff3489a6f02186f4e',1,'ATEAMS::DataWriter::write(std::vector&lt; int &gt; S, std::string destination)'],['../class_a_t_e_a_m_s_1_1_data_writer.html#a70ad565e1140ddef2354025930cfdf10',1,'ATEAMS::DataWriter::write(std::vector&lt; double &gt; S, std::string destination)'],['../class_a_t_e_a_m_s_1_1_data_writer.html#af5d66b06f8e131d00995ce10dde91a41',1,'ATEAMS::DataWriter::write(std::vector&lt; float &gt; S, std::string destination)']]]
+  ['unsatisfied_0',['unsatisfied',['../namespace_a_t_e_a_m_s_1_1statistics.html#a0dd4a7bb0586291d6768e8564e571fa5',1,'ATEAMS::statistics']]],
+  ['usage_1',['Usage',['../index.html#autotoc_md2',1,'']]]
 ];

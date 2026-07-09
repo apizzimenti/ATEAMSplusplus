@@ -22,6 +22,9 @@ var annotated_dup =
       [ "statistics", "namespace_a_t_e_a_m_s_1_1statistics.html", [
         [ "Chain", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html", "class_a_t_e_a_m_s_1_1statistics_1_1_chain" ]
       ] ],
+      [ "Ring", "struct_a_t_e_a_m_s_1_1_ring.html", "struct_a_t_e_a_m_s_1_1_ring" ],
+      [ "Q", "struct_a_t_e_a_m_s_1_1_q.html", "struct_a_t_e_a_m_s_1_1_q" ],
+      [ "Zp", "struct_a_t_e_a_m_s_1_1_zp.html", "struct_a_t_e_a_m_s_1_1_zp" ],
       [ "DataWriter", "class_a_t_e_a_m_s_1_1_data_writer.html", null ]
     ] ]
 ];

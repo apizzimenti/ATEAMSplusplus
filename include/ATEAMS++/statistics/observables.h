@@ -28,7 +28,7 @@ namespace ATEAMS {
 			ATEAMS::Field F,
 			int dimension
 		) {
-			ATEAMS::SparseVector<T> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<T,index_t>(
+			ATEAMS::SparseVector<T> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<T,INDEX>(
 				complex->Coboundary.Matrices[dimension], f, F
 			);
 			coefficients.compress();
@@ -55,7 +55,7 @@ namespace ATEAMS {
 			ATEAMS::Field F,
 			int dimension
 		) {
-			ATEAMS::SparseVector<T> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<T,index_t>(
+			ATEAMS::SparseVector<T> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<T,INDEX>(
 				complex->Coboundary.Matrices[dimension], f, F
 			);
 			coefficients.compress();
@@ -83,7 +83,7 @@ namespace ATEAMS {
 			int dimension
 		) {
 			// Perform the matrix multiplication.
-			ATEAMS::SparseVector<T> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<T,index_t>(
+			ATEAMS::SparseVector<T> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<T,INDEX>(
 				complex->Coboundary.Matrices[dimension], f, F
 			);
 			coefficients.compress();
@@ -127,7 +127,7 @@ namespace ATEAMS {
 			int dimension
 		) {
 			// Perform the matrix multiplication.
-			ATEAMS::SparseVector<T> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<T,index_t>(
+			ATEAMS::SparseVector<T> coefficients = SparseRREF::sparse_mat_dot_sparse_vec<T,INDEX>(
 				complex->Coboundary.Matrices[dimension], f, F
 			);
 			coefficients.compress();

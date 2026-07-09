@@ -1,9 +1,9 @@
 var class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang =
 [
-    [ "dt", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#ac3581ef44944da8f8d0e4f4ae0491ae8", null ],
-    [ "st", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#aaf4840886b83cccad38ad4dca9c32379", null ],
-    [ "SwendsenWang", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a6984288ff99cbf8a129d7c8c36b9a9d1", null ],
-    [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#aa9e09bac98e6b370b696a63b95de809b", null ],
-    [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#aa8fa1b81e590339ce0d9b38f4c40f6f1", null ],
-    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a9a12bed9fb7854b2d4eaec17d46ced75", null ]
+    [ "dt", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a24418ffd99aea7be318649ab39e1f7dd", null ],
+    [ "st", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a365811632b9cc51bb5c1f223880f2619", null ],
+    [ "SwendsenWang", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a363fae6a1ac25bd0f7e2da5178ca0b05", null ],
+    [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a2c39694e87b8d57a914a4efcdee0932d", null ],
+    [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a26426cb0fad358f4b5e495a1bf0d082d", null ],
+    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#adc8559c3d3782e34c7c5121128a7c93b", null ]
 ];

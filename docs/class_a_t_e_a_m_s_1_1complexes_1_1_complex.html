@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: ATEAMS::complexes::Complex&lt; T &gt; Class Template Reference</title>
+<title>ATEAMS++: Complex&lt; RingLike &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -140,98 +140,91 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ATEAMS::complexes::Complex&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">Complex&lt; RingLike &gt; Class Template Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Abstract (template) class for various complexes.  
+<p>Template class for various complexes.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_complex_8h_source.html">Complex.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Complex&lt; RingLike &gt;:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_a_t_e_a_m_s_1_1complexes_1_1_complex.png" usemap="#Complex_3C_20RingLike_20_3E_map" alt=""/>
+  <map id="Complex_3C_20RingLike_20_3E_map" name="Complex_3C_20RingLike_20_3E_map">
+<area href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html" title="Cubical complex." alt="Cubical&lt; RingLike &gt;" shape="rect" coords="0,56,132,80"/>
+  </map>
+</div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:af83f7a22b58d13f227062c8732ce595a" id="r_af83f7a22b58d13f227062c8732ce595a"><td class="memItemLeft">typedef T&#160;</td><td class="memItemRight"><a class="el" href="#af83f7a22b58d13f227062c8732ce595a">dt</a></td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abf78d0c21ab0696be8daed36fdf74d79" id="r_abf78d0c21ab0696be8daed36fdf74d79"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#abf78d0c21ab0696be8daed36fdf74d79">constructBoundaryMatrices</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a> F)=0</td></tr>
-<tr class="memdesc:abf78d0c21ab0696be8daed36fdf74d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs boundary matrices.  <br /></td></tr>
-<tr class="memitem:a3f8fbef5b2fedea91952b9ba01eaebb0" id="r_a3f8fbef5b2fedea91952b9ba01eaebb0"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a3f8fbef5b2fedea91952b9ba01eaebb0">constructFlatBoundaryMatrix</a> ()=0</td></tr>
-<tr class="memdesc:a3f8fbef5b2fedea91952b9ba01eaebb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs flat boundary matrix.  <br /></td></tr>
-<tr class="memitem:ab1834061a70d6db288c1dfc93faec0af" id="r_ab1834061a70d6db288c1dfc93faec0af"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ab1834061a70d6db288c1dfc93faec0af">constructFullBoundaryMatrix</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a> F)=0</td></tr>
-<tr class="memdesc:ab1834061a70d6db288c1dfc93faec0af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a full boundary matrix (in SparseRREF format).  <br /></td></tr>
-<tr class="memitem:add7c197f8394055adcf1885a30393240" id="r_add7c197f8394055adcf1885a30393240"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#add7c197f8394055adcf1885a30393240">size</a> ()=0</td></tr>
-<tr class="memdesc:add7c197f8394055adcf1885a30393240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of cells.  <br /></td></tr>
+<tr class="memitem:aaef3b89d7151e0b6ac7e96e8b2c8bce7" id="r_aaef3b89d7151e0b6ac7e96e8b2c8bce7"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#aaef3b89d7151e0b6ac7e96e8b2c8bce7">constructBoundaryMatrices</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R)=0</td></tr>
+<tr class="memdesc:aaef3b89d7151e0b6ac7e96e8b2c8bce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs boundary matrices.  <br /></td></tr>
+<tr class="memitem:a271a21d67a50656bbe743686c2ea9556" id="r_a271a21d67a50656bbe743686c2ea9556"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a271a21d67a50656bbe743686c2ea9556">constructFlatBoundaryMatrix</a> ()=0</td></tr>
+<tr class="memdesc:a271a21d67a50656bbe743686c2ea9556"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs flat boundary matrix.  <br /></td></tr>
+<tr class="memitem:a01aa572c027c6e8c3c88b3cc903b2542" id="r_a01aa572c027c6e8c3c88b3cc903b2542"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a01aa572c027c6e8c3c88b3cc903b2542">constructFullBoundaryMatrix</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R)=0</td></tr>
+<tr class="memdesc:a01aa572c027c6e8c3c88b3cc903b2542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a full boundary matrix (in SparseRREF format).  <br /></td></tr>
+<tr class="memitem:acd603591b043f1e197b8a66207e70b91" id="r_acd603591b043f1e197b8a66207e70b91"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#acd603591b043f1e197b8a66207e70b91">size</a> ()=0</td></tr>
+<tr class="memdesc:acd603591b043f1e197b8a66207e70b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of cells.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a5e33f91200b8ae6d7243c2be5bffaa3c" id="r_a5e33f91200b8ae6d7243c2be5bffaa3c"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a5e33f91200b8ae6d7243c2be5bffaa3c">toFile</a> (std::string filename)</td></tr>
-<tr class="memdesc:a5e33f91200b8ae6d7243c2be5bffaa3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes boundary matrices to file.  <br /></td></tr>
-<tr class="memitem:ae48ad59395a5ffce6f83b3ccd04e4e61" id="r_ae48ad59395a5ffce6f83b3ccd04e4e61"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#ae48ad59395a5ffce6f83b3ccd04e4e61">fromFile</a> (std::string filename)</td></tr>
-<tr class="memdesc:ae48ad59395a5ffce6f83b3ccd04e4e61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads boundary matrices from file.  <br /></td></tr>
+<tr class="memitem:a436c8ebfd74bdc792bc8050baba8ad8d" id="r_a436c8ebfd74bdc792bc8050baba8ad8d"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a436c8ebfd74bdc792bc8050baba8ad8d">toFile</a> (std::string filename)</td></tr>
+<tr class="memdesc:a436c8ebfd74bdc792bc8050baba8ad8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes boundary matrices to file.  <br /></td></tr>
+<tr class="memitem:ae5ea133105a93c4f8edf3e696f0dc085" id="r_ae5ea133105a93c4f8edf3e696f0dc085"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#ae5ea133105a93c4f8edf3e696f0dc085">fromFile</a> (std::string filename)</td></tr>
+<tr class="memdesc:ae5ea133105a93c4f8edf3e696f0dc085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads boundary matrices from file.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a314d3ba6a82bdffb540d9c16d0a95796" id="r_a314d3ba6a82bdffb540d9c16d0a95796"><td class="memItemLeft"><a id="a314d3ba6a82bdffb540d9c16d0a95796" name="a314d3ba6a82bdffb540d9c16d0a95796"></a>
-<a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&lt; T &gt;&#160;</td><td class="memItemRight"><b>Boundary</b></td></tr>
-<tr class="memdesc:a314d3ba6a82bdffb540d9c16d0a95796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boundary data. <br /></td></tr>
-<tr class="memitem:a6a8b0bc09cb613b1dceb2459f79363ed" id="r_a6a8b0bc09cb613b1dceb2459f79363ed"><td class="memItemLeft"><a id="a6a8b0bc09cb613b1dceb2459f79363ed" name="a6a8b0bc09cb613b1dceb2459f79363ed"></a>
-<a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&lt; T &gt;&#160;</td><td class="memItemRight"><b>Coboundary</b></td></tr>
-<tr class="memdesc:a6a8b0bc09cb613b1dceb2459f79363ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coboundary data. <br /></td></tr>
-<tr class="memitem:a502d3c55cf06a916dd9800d9b8018170" id="r_a502d3c55cf06a916dd9800d9b8018170"><td class="memItemLeft"><a id="a502d3c55cf06a916dd9800d9b8018170" name="a502d3c55cf06a916dd9800d9b8018170"></a>
+<tr class="memitem:aa89e1ec672a7e657b16d6ef2b78a0441" id="r_aa89e1ec672a7e657b16d6ef2b78a0441"><td class="memItemLeft"><a id="aa89e1ec672a7e657b16d6ef2b78a0441" name="aa89e1ec672a7e657b16d6ef2b78a0441"></a>
+<a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&lt; RingLike &gt;&#160;</td><td class="memItemRight"><b>Boundary</b></td></tr>
+<tr class="memdesc:aa89e1ec672a7e657b16d6ef2b78a0441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boundary data. <br /></td></tr>
+<tr class="memitem:a81f99c9d5bbed1222b707b1a639899d9" id="r_a81f99c9d5bbed1222b707b1a639899d9"><td class="memItemLeft"><a id="a81f99c9d5bbed1222b707b1a639899d9" name="a81f99c9d5bbed1222b707b1a639899d9"></a>
+<a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&lt; RingLike &gt;&#160;</td><td class="memItemRight"><b>Coboundary</b></td></tr>
+<tr class="memdesc:a81f99c9d5bbed1222b707b1a639899d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coboundary data. <br /></td></tr>
+<tr class="memitem:aebe12edf5366ea3267642d96be4a2324" id="r_aebe12edf5366ea3267642d96be4a2324"><td class="memItemLeft"><a id="aebe12edf5366ea3267642d96be4a2324" name="aebe12edf5366ea3267642d96be4a2324"></a>
 std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>Cells</b></td></tr>
-<tr class="memdesc:a502d3c55cf06a916dd9800d9b8018170"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains cell counts. <br /></td></tr>
-<tr class="memitem:a9106091796025605db5e15b1d4d6ab25" id="r_a9106091796025605db5e15b1d4d6ab25"><td class="memItemLeft"><a id="a9106091796025605db5e15b1d4d6ab25" name="a9106091796025605db5e15b1d4d6ab25"></a>
-std::vector&lt; std::vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight"><b>breaks</b></td></tr>
-<tr class="memdesc:a9106091796025605db5e15b1d4d6ab25"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the starting and ending indices of \(d\)-cells in the full/flat boundary matrices. <br /></td></tr>
-<tr class="memitem:aaee582dcd95effd4a7c1dca580aeb8f6" id="r_aaee582dcd95effd4a7c1dca580aeb8f6"><td class="memItemLeft"><a id="aaee582dcd95effd4a7c1dca580aeb8f6" name="aaee582dcd95effd4a7c1dca580aeb8f6"></a>
-std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>offsets</b></td></tr>
-<tr class="memdesc:aaee582dcd95effd4a7c1dca580aeb8f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the cumulative number of cells over all dimensions lower than d. <br /></td></tr>
-<tr class="memitem:a16efef3b9408f3a5c08fd1b2f74eaccb" id="r_a16efef3b9408f3a5c08fd1b2f74eaccb"><td class="memItemLeft"><a id="a16efef3b9408f3a5c08fd1b2f74eaccb" name="a16efef3b9408f3a5c08fd1b2f74eaccb"></a>
+<tr class="memdesc:aebe12edf5366ea3267642d96be4a2324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cell counts; <span class="tt"><a class="el" href="#aebe12edf5366ea3267642d96be4a2324" title="Cell counts; Cells[d] is the number of -dimensional cells in the complex.">Cells</a>[d]</span> is the number of \(d\)-dimensional cells in the complex. <br /></td></tr>
+<tr class="memitem:a3c4e3cc58db2dc2785768a4549d2d6e0" id="r_a3c4e3cc58db2dc2785768a4549d2d6e0"><td class="memItemLeft"><a id="a3c4e3cc58db2dc2785768a4549d2d6e0" name="a3c4e3cc58db2dc2785768a4549d2d6e0"></a>
+std::vector&lt; std::vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight"><b>Breaks</b></td></tr>
+<tr class="memdesc:a3c4e3cc58db2dc2785768a4549d2d6e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the starting and ending indices of \(d\)-cells in the full/flat boundary matrices. <br /></td></tr>
+<tr class="memitem:af4dbfcfd4ffe8e565bfc5df5089ec9ce" id="r_af4dbfcfd4ffe8e565bfc5df5089ec9ce"><td class="memItemLeft"><a id="af4dbfcfd4ffe8e565bfc5df5089ec9ce" name="af4dbfcfd4ffe8e565bfc5df5089ec9ce"></a>
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>Offsets</b></td></tr>
+<tr class="memdesc:af4dbfcfd4ffe8e565bfc5df5089ec9ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">The \(d\)th entry indicates the cumulative number of cells over all dimensions lower than d. <br /></td></tr>
+<tr class="memitem:aaa6c8c862a2c0bc18c802314cc58961d" id="r_aaa6c8c862a2c0bc18c802314cc58961d"><td class="memItemLeft"><a id="aaa6c8c862a2c0bc18c802314cc58961d" name="aaa6c8c862a2c0bc18c802314cc58961d"></a>
 int&#160;</td><td class="memItemRight"><b>_size</b></td></tr>
-<tr class="memdesc:a16efef3b9408f3a5c08fd1b2f74eaccb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total cell count. <br /></td></tr>
-<tr class="memitem:a25112684c419170e0ea0f43e76824a9d" id="r_a25112684c419170e0ea0f43e76824a9d"><td class="memItemLeft"><a id="a25112684c419170e0ea0f43e76824a9d" name="a25112684c419170e0ea0f43e76824a9d"></a>
+<tr class="memdesc:aaa6c8c862a2c0bc18c802314cc58961d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of cells in the complex. <br /></td></tr>
+<tr class="memitem:a09271c5dbbb7bb9b0e0487bbc48373aa" id="r_a09271c5dbbb7bb9b0e0487bbc48373aa"><td class="memItemLeft"><a id="a09271c5dbbb7bb9b0e0487bbc48373aa" name="a09271c5dbbb7bb9b0e0487bbc48373aa"></a>
 bool&#160;</td><td class="memItemRight"><b>periodic</b></td></tr>
-<tr class="memdesc:a25112684c419170e0ea0f43e76824a9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodic boundary conditions? <br /></td></tr>
+<tr class="memdesc:a09271c5dbbb7bb9b0e0487bbc48373aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this complex have periodic boundary conditions? <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename T = ATEAMS::ff&gt;<br />
-class ATEAMS::complexes::Complex&lt; T &gt;</div><p>Abstract (template) class for various complexes. </p>
-</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
-<a id="af83f7a22b58d13f227062c8732ce595a" name="af83f7a22b58d13f227062c8732ce595a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af83f7a22b58d13f227062c8732ce595a">&#9670;&#160;</a></span>dt</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename RingLike&gt;<br />
+class ATEAMS::complexes::Complex&lt; RingLike &gt;</div><p>Template class for various complexes. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RingLike</td><td>A <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="aaef3b89d7151e0b6ac7e96e8b2c8bce7" name="aaef3b89d7151e0b6ac7e96e8b2c8bce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaef3b89d7151e0b6ac7e96e8b2c8bce7">&#9670;&#160;</a></span>constructBoundaryMatrices()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T = ATEAMS::ff&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef T <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt;::dt</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Exposed matrix entry type. </p>
-
-</div>
-</div>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="abf78d0c21ab0696be8daed36fdf74d79" name="abf78d0c21ab0696be8daed36fdf74d79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf78d0c21ab0696be8daed36fdf74d79">&#9670;&#160;</a></span>constructBoundaryMatrices()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T = ATEAMS::ff&gt; </div>
+template&lt;typename RingLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt;::constructBoundaryMatrices </td>
+          <td class="memname">virtual void constructBoundaryMatrices </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -245,28 +238,28 @@ template&lt;typename T = ATEAMS::ff&gt; </div>
 <p>Constructs boundary matrices. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">F</td><td>Finite field \( \Z/p\Z \) or \( \Q \).. </td></tr>
+    <tr><td class="paramname">R</td><td>(Pointer to a) coefficient ring. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#ac39f54d9fc7b25f507a68446616ba425">ATEAMS::complexes::Cubical&lt; T &gt;</a>.</p>
+<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a098d75363939c94927404ee7a5982623">Cubical&lt; RingLike &gt;</a>.</p>
 
 </div>
 </div>
-<a id="a3f8fbef5b2fedea91952b9ba01eaebb0" name="a3f8fbef5b2fedea91952b9ba01eaebb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f8fbef5b2fedea91952b9ba01eaebb0">&#9670;&#160;</a></span>constructFlatBoundaryMatrix()</h2>
+<a id="a271a21d67a50656bbe743686c2ea9556" name="a271a21d67a50656bbe743686c2ea9556"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a271a21d67a50656bbe743686c2ea9556">&#9670;&#160;</a></span>constructFlatBoundaryMatrix()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T = ATEAMS::ff&gt; </div>
+template&lt;typename RingLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt;::constructFlatBoundaryMatrix </td>
+          <td class="memname">virtual void constructFlatBoundaryMatrix </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -281,25 +274,25 @@ template&lt;typename T = ATEAMS::ff&gt; </div>
 
 <p>Constructs flat boundary matrix. </p>
 
-<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#ad21bb3507ba02383f1f8a3ab2b01391e">ATEAMS::complexes::Cubical&lt; T &gt;</a>.</p>
+<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a97e1c46c8078a155cd40bdb8cb8fa9d4">Cubical&lt; RingLike &gt;</a>.</p>
 
 </div>
 </div>
-<a id="ab1834061a70d6db288c1dfc93faec0af" name="ab1834061a70d6db288c1dfc93faec0af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1834061a70d6db288c1dfc93faec0af">&#9670;&#160;</a></span>constructFullBoundaryMatrix()</h2>
+<a id="a01aa572c027c6e8c3c88b3cc903b2542" name="a01aa572c027c6e8c3c88b3cc903b2542"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01aa572c027c6e8c3c88b3cc903b2542">&#9670;&#160;</a></span>constructFullBoundaryMatrix()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T = ATEAMS::ff&gt; </div>
+template&lt;typename RingLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt;::constructFullBoundaryMatrix </td>
+          <td class="memname">virtual void constructFullBoundaryMatrix </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#aff31e84c8d3a26b261aa42976d78a959">Field</a></td>          <td class="paramname"><span class="paramname"><em>F</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -311,24 +304,30 @@ template&lt;typename T = ATEAMS::ff&gt; </div>
 </div><div class="memdoc">
 
 <p>Constructs a full boundary matrix (in SparseRREF format). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">R</td><td>(Pointer to a) coefficient ring. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a2cb9e64100280b4672e8c3d3e356283c">ATEAMS::complexes::Cubical&lt; T &gt;</a>.</p>
+<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a7dccc3b83aec5b2425d3f93cc5cbcf4f">Cubical&lt; RingLike &gt;</a>.</p>
 
 </div>
 </div>
-<a id="ae48ad59395a5ffce6f83b3ccd04e4e61" name="ae48ad59395a5ffce6f83b3ccd04e4e61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae48ad59395a5ffce6f83b3ccd04e4e61">&#9670;&#160;</a></span>fromFile()</h2>
+<a id="ae5ea133105a93c4f8edf3e696f0dc085" name="ae5ea133105a93c4f8edf3e696f0dc085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5ea133105a93c4f8edf3e696f0dc085">&#9670;&#160;</a></span>fromFile()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T = ATEAMS::ff&gt; </div>
+template&lt;typename RingLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt;::fromFile </td>
+          <td class="memname">void fromFile </td>
           <td>(</td>
           <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
           <td></td>
@@ -351,19 +350,19 @@ template&lt;typename T = ATEAMS::ff&gt; </div>
 
 </div>
 </div>
-<a id="add7c197f8394055adcf1885a30393240" name="add7c197f8394055adcf1885a30393240"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add7c197f8394055adcf1885a30393240">&#9670;&#160;</a></span>size()</h2>
+<a id="acd603591b043f1e197b8a66207e70b91" name="acd603591b043f1e197b8a66207e70b91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd603591b043f1e197b8a66207e70b91">&#9670;&#160;</a></span>size()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T = ATEAMS::ff&gt; </div>
+template&lt;typename RingLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual int <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt;::size </td>
+          <td class="memname">virtual int size </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -378,23 +377,23 @@ template&lt;typename T = ATEAMS::ff&gt; </div>
 
 <p>Total number of cells. </p>
 
-<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a4aae3ffd784fb13c36c708d087662514">ATEAMS::complexes::Cubical&lt; T &gt;</a>.</p>
+<p>Implemented in <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a808525013fd8f811fabce39491042118">Cubical&lt; RingLike &gt;</a>.</p>
 
 </div>
 </div>
-<a id="a5e33f91200b8ae6d7243c2be5bffaa3c" name="a5e33f91200b8ae6d7243c2be5bffaa3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e33f91200b8ae6d7243c2be5bffaa3c">&#9670;&#160;</a></span>toFile()</h2>
+<a id="a436c8ebfd74bdc792bc8050baba8ad8d" name="a436c8ebfd74bdc792bc8050baba8ad8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a436c8ebfd74bdc792bc8050baba8ad8d">&#9670;&#160;</a></span>toFile()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T = ATEAMS::ff&gt; </div>
+template&lt;typename RingLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; T &gt;::toFile </td>
+          <td class="memname">void toFile </td>
           <td>(</td>
           <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
           <td></td>

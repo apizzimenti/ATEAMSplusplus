@@ -26,24 +26,26 @@ namespace ATEAMS {
 		/** @cond */
 
 		// Type specialization for adding sparse vectors.
-		void add_sparse_vectors(SparseVector<Zp> &A, SparseVector<Zp> B, Zp R) {
-			sparse_vec_add<index_t>(A, B, R.ring);
+		void add_sparse_vectors(SparseVector<Zp> &A, SparseVector<Zp> B, Ring* R) {
+			sparse_vec_add<INDEX>(A, B, R->ring);
 		}
 
-		void add_sparse_vectors(SparseVector<Q> &A, SparseVector<Q> B, Q R) {
-			sfmpq_vec_addsub_mul<index_t,false>(A, B, (Q::dtype)1);
+		void add_sparse_vectors(SparseVector<Q> &A, SparseVector<Q> B, Ring* R) {
+			sfmpq_vec_addsub_mul<INDEX,false>(A, B, (Q::dtype)1);
 		}
 
 
 		template <typename RingLike>
-		index_t youngestFaceIndexOf(SparseVector<RingLike> cell) {
+		INDEX youngestFaceIndexOf(SparseVector<RingLike> cell) {
 			return cell(cell.size()-1);
 		}
 
 
 		template <typename RingLike>
 		SparseMatrix<RingLike> arithmetic::reindexSparseBoundaryMatrix(
-			ATEAMS::complexes::Complex<RingLike>* complex, vector<int> filtration, int dimension
+			ATEAMS::complexes::Complex<RingLike>* complex,
+			vector<int> filtration,
+			int dimension
 		) {
 			// Construct an index mapping.
 			map<int,int> remapping;
@@ -53,8 +55,8 @@ namespace ATEAMS {
 			SparseMatrix<RingLike> Full = complex->Coboundary.Full;
 			SparseMatrix<RingLike> Reindexed(Full.nrow, Full.ncol);
 
-			int startDimension = complex->breaks[dimension][0];
-			int stopDimension = complex->breaks[dimension][1];
+			int startDimension = complex->Breaks[dimension][0];
+			int stopDimension = complex->Breaks[dimension][1];
 
 			for (int t=0; t < Full.nrow; t++) {
 				if ((startDimension <= t) && (t < stopDimension)) {
@@ -65,7 +67,7 @@ namespace ATEAMS {
 
 					for (int i=0; i < orow.size(); i++) {
 						row.push_back(
-							(index_t)remapping[orow(i)],
+							(INDEX)remapping[orow(i)],
 							(typename RingLike::dtype)orow[i]
 						);
 					}
@@ -103,8 +105,8 @@ namespace ATEAMS {
 			PHATColumn column;
 			int faces;
 
-			int startDimension = complex->breaks[dimension][0];
-			int stopDimension = complex->breaks[dimension][1];
+			int startDimension = complex->Breaks[dimension][0];
+			int stopDimension = complex->Breaks[dimension][1];
 
 			boundary.set_num_cols(complex->Boundary.Flat.size());
 
@@ -173,8 +175,8 @@ namespace ATEAMS {
 			typename RingLike::dtype youngestFaceCoefficient;
 
 			for (int d=topDimension-1; d > dimension-1; d--) {
-				lowestCellIndex = complex->breaks[d][0];
-				highestCellIndex = (d+1 >= complex->Cells.size()) ? complex->size() : complex->breaks[d][1];
+				lowestCellIndex = complex->Breaks[d][0];
+				highestCellIndex = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
 
 				for (int j=lowestCellIndex; j < highestCellIndex; j++) {
 					SparseVector<RingLike>& cell = Full.rows[j];
@@ -185,12 +187,12 @@ namespace ATEAMS {
 
 						// TODO parallelization stuff here? Can't go across columns, so maybe
 						// within the column? SparseRREF/FLINT probably do that already tho.
-						sparse_vec_rescale<index_t,typename RingLike::dtype>(
+						sparse_vec_rescale<INDEX,typename RingLike::dtype>(
 							youngestFace,
 							scalar_neg(scalar_inv(youngestFaceCoefficient, R->ring), R->ring),
 							R->ring
 						);
-						add_sparse_vectors(cell, youngestFace, R->ring);
+						add_sparse_vectors(cell, youngestFace, R);
 
 						cell.compress();
 					}
@@ -204,7 +206,7 @@ namespace ATEAMS {
 				}
 			}
 
-			int low = complex->breaks[dimension][0], high = complex->breaks[dimension][1];
+			int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
 			vector<int> essential;
 
 			for (auto k : marked) {

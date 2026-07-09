@@ -14,22 +14,29 @@ namespace ATEAMS {
 		/**
 		 * @class Cubical
 		 * @brief Cubical complex.
+		 * 
+		 * @tparam RingLike A @ref Ring, like @ref Zp or @ref Q.
+		 * 
+		 * @var Cubical::kind
+		 * 	Human-readable short name.
+		 * 
+		 * @var Cubical::corners
+		 *  Corners of the lattice. If `corners` is \f$(c_1, c_2, \dots, c_n)\f$,
+		 *  then the integer lattice created is the product \f$ \prod [0, c_i] \f$; if
+		 *  periodic boundary conditions are imposed, opposite vertices
+		 *  (and thus opposite \f$(d-1)\f$-faces) are identified to form
+		 *  an \f$n\f$-fold torus.
+		 * 
+		 * @code
+		 * using namespace ATEAMS::complexes;
+		 * Cubical<Zp> C({3,3,3,3});			// Assumes periodic boundary conditions
+		 * Cubical<Zp> D({3,3,3,3}, false); 	// Just a subcomplex of Z^4.
+		 * @endcode
 		 */
 		template <typename RingLike>
 		class Cubical: public Complex<RingLike> {
 			public:
-				/** @brief Short name, mostly for metadata collection. */
 				std::string kind = "cubical";
-
-				/**
-				 * @brief Corners of the lattice.
-				 * 
-				 * If `corners` is \f$(c_1, c_2, \dots, c_n)\f$, then the integer
-				 * lattice created is the product \f$ \prod [0, c_i] \f$; if
-				 * periodic boundary conditions are imposed, opposite vertices
-				 * (and thus opposite \f$(d-1)\f$-faces) are identified to form
-				 * an \f$n\f$-fold torus.
-				 */
 				std::vector<int> corners;
 
 				/**
@@ -48,27 +55,10 @@ namespace ATEAMS {
 				 */
 				Cubical(std::vector<int> corners);
 
-				/**
-				 * @brief Constructs boundary matrices for the cubical complex
-				 * with specified corners and boundary conditions.
-				 * 
-				 * @param F Finite field.
-				 */
 				void constructBoundaryMatrices(Ring* R) override;
-
-				/**
-				 * @brief Constructs a boundary matrix for use with PHAT.
-				 */
 				void constructFlatBoundaryMatrix() override;
-
-				/**
-				 * @brief Constructs a full boundary matrix in SparseRREF format.
-				 */
 				void constructFullBoundaryMatrix(Ring* R) override;
-
-				/**
-				 * @brief Size.
-				 */
+				
 				int size() override;
 		};
 

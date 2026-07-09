@@ -329,7 +329,7 @@ namespace ATEAMS {
 						int row = L[d][col][i];
 						SparseVector<RingLike>& matrow = B.rows[row];
 						matrow.push_back(
-							(index_t)col,
+							(INDEX)col,
 							(typename RingLike::dtype)((bool)(i%2) ? mod-1 : 1)
 						);
 					}
@@ -381,7 +381,7 @@ namespace ATEAMS {
 					int row = flat[col][i];
 					SparseVector<RingLike>& matrow = Full.rows[row];
 					matrow.push_back(
-						(index_t)col,
+						(INDEX)col,
 						(typename RingLike::dtype)((bool)(i%2) ? mod-1 : 1)
 					);
 				}
@@ -447,10 +447,10 @@ namespace ATEAMS {
 			// Get cell counts and breaks.
 			this->Cells = getCellCounts(L);
 			this->_size = std::accumulate(this->Cells.begin(), this->Cells.end(), 0);
-			this->breaks = makeBreaks(this->Cells);
-			this->offsets = makeOffsets(this->Cells);
+			this->Breaks = makeBreaks(this->Cells);
+			this->Offsets = makeOffsets(this->Cells);
 
-			this->Boundary.Flat = flatBoundaryMatrix(L, this->offsets);
+			this->Boundary.Flat = flatBoundaryMatrix(L, this->Offsets);
 		}
 
 
@@ -468,8 +468,8 @@ namespace ATEAMS {
 			// Get cell counts and breaks.
 			this->Cells = getCellCounts(L);
 			this->_size = std::accumulate(this->Cells.begin(), this->Cells.end(), 0);
-			this->breaks = makeBreaks(this->Cells);
-			this->offsets = makeOffsets(this->Cells);
+			this->Breaks = makeBreaks(this->Cells);
+			this->Offsets = makeOffsets(this->Cells);
 
 			// Get the sparse (co)boundary matrices.
 			this->Boundary.Matrices = sparseBoundaryMatrices<RingLike>(L, R);
@@ -496,10 +496,10 @@ namespace ATEAMS {
 			// Get cell counts and breaks.
 			this->Cells = getCellCounts(L);
 			this->_size = std::accumulate(this->Cells.begin(), this->Cells.end(), 0);
-			this->breaks = makeBreaks(this->Cells);
-			this->offsets = makeOffsets(this->Cells);
+			this->Breaks = makeBreaks(this->Cells);
+			this->Offsets = makeOffsets(this->Cells);
 
-			FlatBoundaryMatrix flat = flatBoundaryMatrix(L, this->offsets);
+			FlatBoundaryMatrix flat = flatBoundaryMatrix(L, this->Offsets);
 			this->Boundary.Full = sparseFullBoundaryMatrix<RingLike>(flat, R);
 			this->Coboundary.Full = this->Boundary.Full.transpose();
 		}

@@ -1,9 +1,9 @@
 var class_a_t_e_a_m_s_1_1models_1_1_bernoulli =
 [
-    [ "dt", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a4a2f4020bf5408753369f584ab4e35ad", null ],
-    [ "st", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a809fff3ddaf25b74f640d7b2e41844aa", null ],
-    [ "Bernoulli", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a6c3291767464cbddea1489be2abaa4f9", null ],
-    [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a688f01a111b4245365bee3558181a876", null ],
-    [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#af664903e0c1da27206404bde9563090b", null ],
-    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a310ab0375e4b2baa232eff25c01e808d", null ]
+    [ "dt", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#ab4838a2ef7e3f85cd2784c622fba438b", null ],
+    [ "st", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a5617a4f54bb3e646ce299c485782a3b3", null ],
+    [ "Bernoulli", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#ae454847791e8eb94a12565054e87232b", null ],
+    [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a912e1145c4c1fa9cfa44e0e80fcf40e0", null ],
+    [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a06b64bb21c37ba99756fa40729ac4e19", null ],
+    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#aab32ff550f334de4dc263bace6c7dbae", null ]
 ];

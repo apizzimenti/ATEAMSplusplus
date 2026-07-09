@@ -8,24 +8,24 @@ using namespace ATEAMS;
 using namespace std;
 
 
-bool checkReindexing(complexes::Complex<FINITE>* COMPLEX) {
-	SparseMatrix<FINITE> COBOUNDARY = COMPLEX->Coboundary.Full;
+bool checkReindexing(complexes::Complex<Zp>* COMPLEX) {
+	SparseMatrix<Zp> COBOUNDARY = COMPLEX->Coboundary.Full;
 
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
 
 	int OFFSET = 100;
-	int FIRSTINDEX = COMPLEX->breaks[2][0], SECONDINDEX = COMPLEX->breaks[2][0]+OFFSET;
+	int FIRSTINDEX = COMPLEX->Breaks[2][0], SECONDINDEX = COMPLEX->Breaks[2][0]+OFFSET;
 
-	SparseVector<FINITE> FIRST = COBOUNDARY[FIRSTINDEX];
-	SparseVector<FINITE> SECOND = COBOUNDARY[SECONDINDEX];
+	SparseVector<Zp> FIRST = COBOUNDARY[FIRSTINDEX];
+	SparseVector<Zp> SECOND = COBOUNDARY[SECONDINDEX];
 
 	// Find the first 3-dimensional cells with these indices in them.
 	int FIRSTFACE, SECONDFACE;
 	bool foundfirst = false, foundsecond = false;
 
-	for (int t=COMPLEX->breaks[3][0]; t < COMPLEX->breaks[3][1]; t++) {
+	for (int t=COMPLEX->Breaks[3][0]; t < COMPLEX->Breaks[3][1]; t++) {
 		for (int i=0; i < COBOUNDARY[t].size(); i++) {
 			if (COBOUNDARY[t](i) == FIRSTINDEX && !foundfirst) {
 				FIRSTFACE = t;
@@ -44,7 +44,7 @@ bool checkReindexing(complexes::Complex<FINITE>* COMPLEX) {
 	// Swap, then reindex.
 	FILTRATION[FIRSTINDEX] = SECONDINDEX;
 	FILTRATION[SECONDINDEX] = FIRSTINDEX;
-	SparseMatrix<FINITE> REINDEXED = arithmetic::reindexSparseBoundaryMatrix<FINITE>(COMPLEX, FILTRATION, 2);
+	SparseMatrix<Zp> REINDEXED = arithmetic::reindexSparseBoundaryMatrix<Zp>(COMPLEX, FILTRATION, 2);
 
 	bool FIRSTREINDEXED = false, SECONDREINDEXED = false;
 
@@ -59,25 +59,25 @@ bool checkReindexing(complexes::Complex<FINITE>* COMPLEX) {
 }
 
 
-bool checkPHATpersistence(complexes::Complex<FINITE>* COMPLEX) {
+bool checkPHATpersistence(complexes::Complex<Zp>* COMPLEX) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
 
 	// We should have 1 + 4 + 6 + 4 + 1 = 16 giant components.
-	vector<int> times = arithmetic::PHATPersistence<FINITE>(COMPLEX, FILTRATION, 2);
+	vector<int> times = arithmetic::PHATPersistence<Zp>(COMPLEX, FILTRATION, 2);
 
 	return times.size() == 16;
 }
 
-bool checkTwistPersistence(complexes::Complex<FINITE>* COMPLEX, Field F) {
+bool checkTwistPersistence(complexes::Complex<Zp>* COMPLEX, Ring* R) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
 
 	// We should have 1 + 4 + 6 + 4 + 1 = 16 giant components, but only 6 of the
 	// desired dimension (2).
-	vector<int> times = arithmetic::TwistPersistence<FINITE>(COMPLEX, FILTRATION, F, 2);
+	vector<int> times = arithmetic::TwistPersistence<Zp>(COMPLEX, FILTRATION, R, 2);
 
 	return times.size() == 6;
 }
@@ -85,15 +85,15 @@ bool checkTwistPersistence(complexes::Complex<FINITE>* COMPLEX, Field F) {
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
-	Field F(SparseRREF::FIELD_Fp, FIELD);
+	Zp ZZ(FIELD);
 
 	// Construct a Complex.
-	complexes::Cubical<FINITE> COMPLEX({3,3,3,3});
+	complexes::Cubical<Zp> COMPLEX({3,3,3,3});
 
 	// Construct boundary matrices.
-	COMPLEX.constructBoundaryMatrices(F);
+	COMPLEX.constructBoundaryMatrices(&ZZ);
 	COMPLEX.constructFlatBoundaryMatrix();
-	COMPLEX.constructFullBoundaryMatrix(F);
+	COMPLEX.constructFullBoundaryMatrix(&ZZ);
 
 	// Construct arithmetic options.
 	arithmetic::ThreadOptions options;
@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	if (FIELD > 2) {
-		if (!checkTwistPersistence(&COMPLEX, F)) {
+		if (!checkTwistPersistence(&COMPLEX, &ZZ)) {
 			options.spinDown(&listener);
 			return FAIL;
 		}

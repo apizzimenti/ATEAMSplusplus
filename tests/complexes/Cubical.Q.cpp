@@ -6,19 +6,19 @@ using namespace ATEAMS;
 using namespace std;
 
 
-vector<int> homologySizes(complexes::Complex<RATIONAL>* COMPLEX, int dimension) {
+vector<int> homologySizes(complexes::Complex<Q>* COMPLEX, int dimension) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
 
 	// Compute 
-	vector<int> times = arithmetic::PHATPersistence<RATIONAL>(COMPLEX, FILTRATION, dimension/2);
+	vector<int> times = arithmetic::PHATPersistence<Q>(COMPLEX, FILTRATION, dimension/2);
 	vector<int> sizes;
 
-	for (int d=0; d < COMPLEX->breaks.size(); d++) {
+	for (int d=0; d < COMPLEX->Breaks.size(); d++) {
 		sizes.push_back(
 			std::count_if(times.begin(), times.end(), [=](int t) {
-				return COMPLEX->breaks[d][0] <= t && t < COMPLEX->breaks[d][1];
+				return COMPLEX->Breaks[d][0] <= t && t < COMPLEX->Breaks[d][1];
 			})
 		);
 	}
@@ -51,7 +51,7 @@ int main() {
 
 	for (int dimension : dimensions) {
 		vector<int> corners(dimension, 3);
-		complexes::Cubical<RATIONAL> CUBICAL(corners);
+		complexes::Cubical<Q> CUBICAL(corners);
 		CUBICAL.constructFlatBoundaryMatrix();
 
 		vector<int> sizes = homologySizes(&CUBICAL, dimension);

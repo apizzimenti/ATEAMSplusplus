@@ -19,9 +19,9 @@ int main(int argc, char *argv[]) {
 	std::uniform_int_distribution<int> intuniform(0, FIELD);
 
 	// Construct a Complex (doesn't matter which).
-	complexes::Cubical<RATIONAL> C({3,3,3,3});
-	Field F(SparseRREF::FIELD_QQ);
-	C.constructBoundaryMatrices(F);
+	complexes::Cubical<Q> C({3,3,3,3});
+	Q QQ;
+	C.constructBoundaryMatrices(&QQ);
 
 	// Construct arithmetic options.
 	arithmetic::ThreadOptions options;
@@ -30,9 +30,9 @@ int main(int argc, char *argv[]) {
 	// Include all the rows and perform the computation.
 	set<size_t> exclude;
 
-	SparseVector<RATIONAL> sample = arithmetic::submatrixKernelSample<RATIONAL>(
+	SparseVector<Q> sample = arithmetic::submatrixKernelSample<Q>(
 		C.Coboundary.Matrices[2],
-		F,
+		&QQ,
 		exclude,
 		intuniform,
 		RNG,
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
 	);
 
 	// Now, check whether we actually got something in the kernel.
-	if (!inKernel<RATIONAL>(C.Coboundary.Matrices[2], sample, F)) RESULT = FAIL;
+	if (!inKernel<Q>(C.Coboundary.Matrices[2], sample, &QQ)) RESULT = FAIL;
 
 	options.spinDown(&listener);
 	

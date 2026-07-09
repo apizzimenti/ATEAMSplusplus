@@ -18,107 +18,131 @@
 #include <filesystem>
 
 namespace ATEAMS {
-	
-	/** Unsigned long int. */
-	typedef unsigned long ulong;
+	/** Default indexing type. */
+	typedef uint32_t INDEX;
 
-	/** Default type used for indexing in SparseRREF matrices. */
-	typedef uint32_t index_t;
+	/** Represents an element of \f$\Z/p\Z\f$. See @ref Zp. */
+	typedef unsigned long FINITE;
 
-	/** Finite-field type for SparseRREF machinery. */
-	typedef ulong FINITE;
-
-	/** Rational type for SparseRREF machinery. */
+	/** Alias of `SparseRREF::rat_t`; represents an element of \f$\Q\f$. See @ref Q. */
 	typedef SparseRREF::rat_t RATIONAL;
 
-	typedef SparseRREF::field_t Field;
+	/** Type alias for a SparseRREF ring type. */
+	typedef SparseRREF::field_t abstractRing;
 
+	/**
+	 * @class Ring
+	 * @brief Generic algebraic ring.
+	 * 
+	 * @var Ring::ring
+	 * 	Abstract (SparseRREF) ring underlying this Ring.
+	 */
 	struct Ring {
 		public:
-			Field ring;
+			abstractRing ring;
 	};
 
 	/**
+	 * @class Q
 	 * @brief Rationals \f$\Q\f$.
-	 * 
-	 * @var Q::ring SparseRREF ring underlying this Ring.
 	 */
 	struct Q : public Ring {
-		/**
-		 * @brief Data type for this ring.
-		 */
-		typedef RATIONAL dtype;
+		public:
+			/**
+			 * @brief Data type.
+			 */
+			typedef RATIONAL dtype;
 
-		/**
-		 * @brief Constructor.
-		 * 
-		 * @param characteristic Characteristic of the field; superfluous.
-		 */
-		Q(int characteristic) {
-			this->ring = Field(SparseRREF::FIELD_QQ);
-		};
+			/**
+			 * @brief Constructor.
+			 * @param characteristic Characteristic of the field; superfluous.
+			 */
+			Q(int characteristic) {
+				this->ring = abstractRing(SparseRREF::FIELD_QQ);
+			};
 
-		/** 
-		 * @brief Constructor.
-		*/
-		Q() {
-			this->ring = Field(SparseRREF::FIELD_QQ);
-		};
+			/** 
+			 * @brief Constructor.
+			 */
+			Q() {
+				this->ring = abstractRing(SparseRREF::FIELD_QQ);
+			};
 	};
 
+	/**
+	 * @brief Quotient ring \f$\Z/p\Z\f$.
+	 */
 	struct Zp : public Ring {
-		typedef FINITE dtype;
+		public:
+			/**
+			 * @brief Data type.
+			 */
+			typedef FINITE dtype;
 
-		Zp(int characteristic) {
-			this->ring = Field(SparseRREF::FIELD_Fp, characteristic);
-		};
+			/**
+			 * @brief Constructor.
+			 * @param characteristic Characteristic (modulus) of the ring.
+			 */
+			Zp(int characteristic) {
+				this->ring = abstractRing(SparseRREF::FIELD_Fp, characteristic);
+			};
 	};
 
-	// /** SparseRREF matrix. */
-	// template <typename T>
-	// using SparseMatrix = SparseRREF::sparse_mat<T,index_t>;
-
-	// /** SparseRREF vector. */
-	// template <typename T>
-	// using SparseVector = SparseRREF::sparse_vec<T,index_t>;
-
-	/** Generic  */
+	/**
+	 * @brief Generic sparse matrix.
+	 * @tparam RingLike A @ref Ring, like @ref Zp or @ref Q.
+	 */
 	template <typename RingLike>
-	using SparseMatrix = SparseRREF::sparse_mat<typename RingLike::dtype,index_t>;
+	using SparseMatrix = SparseRREF::sparse_mat<typename RingLike::dtype,INDEX>;
 
+	/**
+	 * @brief Generic sparse vector.
+	 * @tparam RingLike A @ref Ring, like @ref Zp or @ref Q.
+	 */
 	template <typename RingLike>
-	using SparseVector = SparseRREF::sparse_vec<typename RingLike::dtype,index_t>;
+	using SparseVector = SparseRREF::sparse_vec<typename RingLike::dtype,INDEX>;
 
-	/** SparseRREF field: either \f$\Q\f$ or \f$\GF(p) \cong \Z/p \Z\f$ for \f$p\f$ prime. */
-	typedef SparseRREF::field_t Field;
-	// typedef SparseRREF::field_t Ring;
-
-	/** Template alias for `std::vector`. */
-	template <typename T>
-	using DenseVector = std::vector<T,std::allocator<T>>;
-
-	/** Vector of @ref ATEAMS::SparseMatrix. */
+	/**
+	 * @brief Vector of @ref SparseMatrix.
+	 * @tparam RingLike A @ref Ring, like @ref Zp or @ref Q.
+	 */
 	template <typename RingLike>
 	using SparseMatrices = std::vector<SparseMatrix<RingLike>>;
 
-	/** Vector of @ref ATEAMS::SparseVectors. */
+	/**
+	 * @brief Vector of @ref SparseVector.
+	 * @tparam RingLike A @ref Ring, like @ref Zp or @ref Q.
+	 */
 	template <typename RingLike>
 	using SparseVectors = std::vector<SparseVector<RingLike>>;
 
-	/** Alias of @ref ATEAMS::SparseVectors. */
+	/**
+	 * @brief Alias of @ref SparseVector.
+	 * @tparam RingLike A @ref Ring, like @ref Zp or @ref Q.
+	 */
 	template <typename RingLike>
 	using SparseBasis = std::vector<SparseVector<RingLike>>;
 
-	/** Vector of vector of @ref ATEAMS::SparseBasis. */
+	/**
+	 * @brief Vector of @ref SparseBasis.
+	 * @tparam RingLike A @ref Ring, like @ref Zp or @ref Q.
+	 */
 	template <typename RingLike>
 	using SparseBases = std::vector<SparseBasis<RingLike>>;
+
+	/**
+	 * @brief Alias of `std::vector`.
+	 * @tparam T Numeric type.
+	 */
+	template <typename T>
+	using DenseVector = std::vector<T,std::allocator<T>>;
 
 	/** @cond */
 	/** Flat boundary matrix. */
 	typedef std::vector<std::vector<int>> FlatBoundaryMatrix;
 
 	/** SparseRREF index of pivots. */
-	typedef SparseRREF::pivot_t<index_t> SparsePivot;
+	typedef SparseRREF::pivot_t<INDEX> SparsePivot;
 
 	/** PHAT column. */
 	typedef std::vector<phat::index> PHATColumn;
@@ -151,7 +175,7 @@ namespace ATEAMS {
 				std::ofstream out;
 				out.open(destination);
 
-				SparseRREF::sparse_mat_write<Q::dtype,std::ofstream,ATEAMS::index_t>(
+				SparseRREF::sparse_mat_write<Q::dtype,std::ofstream,ATEAMS::INDEX>(
 					S, out, SparseRREF::SPARSE_FILE_TYPE_SMS
 				);
 
@@ -170,7 +194,7 @@ namespace ATEAMS {
 				std::ofstream out;
 				out.open(destination);
 
-				SparseRREF::sparse_mat_write<Zp::dtype,std::ofstream,ATEAMS::index_t>(
+				SparseRREF::sparse_mat_write<Zp::dtype,std::ofstream,ATEAMS::INDEX>(
 					S, out, SparseRREF::SPARSE_FILE_TYPE_SMS
 				);
 

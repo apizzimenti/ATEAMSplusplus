@@ -1,26 +1,8 @@
 var searchData=
 [
-  ['sample_0',['sample',['../class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a310ab0375e4b2baa232eff25c01e808d',1,'ATEAMS::models::Bernoulli::sample()'],['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ab476c862eb96cd1de6bd54d13474fd57',1,'ATEAMS::models::Glauber::sample()'],['../class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a2794b93f763f83780c6ec46cf1585b39',1,'ATEAMS::models::InvadedCluster::sample()'],['../class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a1cc20bccf331f4af842fcabf8b418ae1',1,'ATEAMS::models::Invasion::sample()'],['../class_a_t_e_a_m_s_1_1models_1_1_model.html#aad572e61319937fba274812b00b6620c',1,'ATEAMS::models::Model::sample()'],['../class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a9a12bed9fb7854b2d4eaec17d46ced75',1,'ATEAMS::models::SwendsenWang::sample()']]],
-  ['satisfied_1',['satisfied',['../namespace_a_t_e_a_m_s_1_1statistics.html#a861dfad4a736b2721c1676bfd4f8c550',1,'ATEAMS::statistics']]],
-  ['selfdual_2',['selfdual',['../namespace_a_t_e_a_m_s_1_1statistics.html#ac1ad9e5217444030b4d563a5e196af61',1,'ATEAMS::statistics']]],
-  ['simulate_3',['simulate',['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#aa769e9e247cff6276124bba58062da89',1,'ATEAMS::statistics::Chain']]],
-  ['size_4',['size',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#add7c197f8394055adcf1885a30393240',1,'ATEAMS::complexes::Complex::size()'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a4aae3ffd784fb13c36c708d087662514',1,'ATEAMS::complexes::Cubical::size()']]],
-  ['sparsebases_5',['SparseBases',['../namespace_a_t_e_a_m_s.html#a95fb7c82219a875c5e61d5781f6544a5',1,'ATEAMS']]],
-  ['sparsebasis_6',['SparseBasis',['../namespace_a_t_e_a_m_s.html#a8b8960d57e097d7ad4e2dd4e2424fd91',1,'ATEAMS']]],
-  ['sparsematrices_7',['SparseMatrices',['../namespace_a_t_e_a_m_s.html#a54a9b270a2fb170f4c7c1399789a6e83',1,'ATEAMS']]],
-  ['sparsematrix_8',['SparseMatrix',['../namespace_a_t_e_a_m_s.html#a2103baa5389dfd08d5ba2052c4022760',1,'ATEAMS']]],
-  ['sparsevector_9',['SparseVector',['../namespace_a_t_e_a_m_s.html#a59c129a068fba70d5ba973b5195cec37',1,'ATEAMS']]],
-  ['sparsevectors_10',['SparseVectors',['../namespace_a_t_e_a_m_s.html#a933ef5ae8825ab6497e5c48680204fee',1,'ATEAMS']]],
-  ['spin_20systems_20in_20c_20ateams_11',['Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)',['../index.html#autotoc_md0',1,'']]],
-  ['spindown_12',['spinDown',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#a356e615c35d53059b1231116d9b3bde2',1,'ATEAMS::arithmetic::ThreadOptions']]],
-  ['spinup_13',['spinUp',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#aa01492441979f6c45cc3e9fbe161550f',1,'ATEAMS::arithmetic::ThreadOptions']]],
-  ['st_14',['st',['../class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a809fff3ddaf25b74f640d7b2e41844aa',1,'ATEAMS::models::Bernoulli::st'],['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a4ef1fbeaa0a077c8f853f647a47f522e',1,'ATEAMS::models::Glauber::st'],['../class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#aadbaf825e8dc2a7320f9f0b25b9a6a0b',1,'ATEAMS::models::InvadedCluster::st'],['../class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a1fa07862bc47a88363c088f3742273e4',1,'ATEAMS::models::Invasion::st'],['../class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#aaf4840886b83cccad38ad4dca9c32379',1,'ATEAMS::models::SwendsenWang::st']]],
-  ['state_15',['state',['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a0076180568da8842f101f7eddb8e8d7f',1,'ATEAMS::statistics::Chain']]],
-  ['steps_16',['steps',['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a7bbfeb7ae855d5a4c34c0aacb9091da9',1,'ATEAMS::statistics::Chain']]],
-  ['stopinvadingat_17',['stopInvadingAt',['../namespace_a_t_e_a_m_s_1_1statistics.html#a2ed94ba864416a389cbf84cc32125917',1,'ATEAMS::statistics']]],
-  ['stoppingfunction_18',['stoppingFunction',['../struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a0c5595ebe34c5ca2c81b960048aaa427',1,'ATEAMS::models::ModelParameters']]],
-  ['storagetype_19',['StorageType',['../class_a_t_e_a_m_s_1_1models_1_1_model.html#a1c8b5fbd74a1a1a799410f9df6307295',1,'ATEAMS::models::Model']]],
-  ['submatrixkernelsample_20',['submatrixKernelSample',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a0e933d54cbbcc38983cd2218fb376d21',1,'ATEAMS::arithmetic']]],
-  ['swendsenwang_21',['SwendsenWang',['../class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html',1,'ATEAMS::models::SwendsenWang&lt; T &gt;'],['../class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a6984288ff99cbf8a129d7c8c36b9a9d1',1,'ATEAMS::models::SwendsenWang::SwendsenWang()']]],
-  ['systems_20in_20c_20ateams_22',['Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)',['../index.html#autotoc_md0',1,'']]]
+  ['randomlinearcombination_0',['randomLinearCombination',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a0380e4b8e176dfb6ae21015fb74910f3',1,'ATEAMS::arithmetic']]],
+  ['rank_1',['rank',['../struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a6cfd95afd0afebd625b889fb6e58371c',1,'ATEAMS::models::ModelState']]],
+  ['rational_2',['RATIONAL',['../namespace_a_t_e_a_m_s.html#ae4a41e6d053c886a61012e49503be8bf',1,'ATEAMS']]],
+  ['ring_3',['Ring',['../struct_a_t_e_a_m_s_1_1_ring.html',1,'ATEAMS']]],
+  ['ring_4',['ring',['../struct_a_t_e_a_m_s_1_1_ring.html#affd3db115d9c8409d94c770928ee09d5',1,'ATEAMS::Ring']]]
 ];

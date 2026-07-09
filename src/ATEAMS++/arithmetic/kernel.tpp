@@ -16,26 +16,26 @@ using namespace std;
 using namespace ATEAMS;
 
 
-template <typename T>
-SparseVector<T> arithmetic::randomLinearCombination(
-	SparseMatrix<T> kernel,
-	const Field& F,
+template <typename RingLike>
+SparseVector<RingLike> arithmetic::randomLinearCombination(
+	SparseMatrix<RingLike> kernel,
+	Ring* R,
 	std::uniform_int_distribution<int>& intuniform,
 	std::mt19937& RNG
 ) {
 	// Create a vector of random coefficients, multiply the kernel on the right, done.
-	SparseVector<T> rcoeffs;
-	for (int i=0; i < kernel.ncol; i++) rcoeffs.push_back((index_t)i, (T)intuniform(RNG));
+	SparseVector<RingLike> rcoeffs;
+	for (int i=0; i < kernel.ncol; i++) rcoeffs.push_back((INDEX)i, (typename RingLike::dtype)intuniform(RNG));
 	rcoeffs.compress();
 
-	return SparseRREF::sparse_mat_dot_sparse_vec<T,index_t>(kernel, rcoeffs, F);
+	return SparseRREF::sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(kernel, rcoeffs, R->ring);
 }
 
 
-template <typename T>
-SparseVector<T> arithmetic::submatrixKernelSample(
-	SparseMatrix<T> coboundary,
-	const Field& F,
+template <typename RingLike>
+SparseVector<RingLike> arithmetic::submatrixKernelSample(
+	SparseMatrix<RingLike> coboundary,
+	Ring* R,
 	set<size_t> exclude,
 	std::uniform_int_distribution<int>& intuniform,
 	std::mt19937& RNG,
@@ -51,14 +51,14 @@ SparseVector<T> arithmetic::submatrixKernelSample(
 
 	// RREF (i.e. find the pivots for) the subcoboundary matrix.
 	if (DEBUG) cerr << std::format("RREFing {}x{} coboundary matrix", coboundary.nrow, coboundary.ncol) << endl;
-	pivots = SparseRREF::sparse_mat_rref<T,index_t>(coboundary, F, options.opt);
+	pivots = SparseRREF::sparse_mat_rref<typename RingLike::dtype,INDEX>(coboundary, R->ring, options.opt);
 
 	// Find a kernel for the subcoboundary matrix.
 	if (DEBUG) cerr << std::format("computing kernel of {}x{} coboundary matrix", coboundary.nrow, coboundary.ncol) << endl;
-	SparseMatrix<T> kernel = SparseRREF::sparse_mat_rref_kernel<T,index_t>(coboundary, pivots, F, options.opt);
+	SparseMatrix<RingLike> kernel = SparseRREF::sparse_mat_rref_kernel<typename RingLike::dtype,INDEX>(coboundary, pivots, R->ring, options.opt);
 
 	// Return a random linear combination of the columns.
-	return arithmetic::randomLinearCombination<T>(kernel, F, intuniform, RNG);
+	return arithmetic::randomLinearCombination<RingLike>(kernel, R, intuniform, RNG);
 }
 
 #endif

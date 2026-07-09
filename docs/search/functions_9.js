@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['randomlinearcombination_0',['randomLinearCombination',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#ac90667fcd85a33271d9d75db7688c73c',1,'ATEAMS::arithmetic']]]
+  ['q_0',['Q',['../struct_a_t_e_a_m_s_1_1_q.html#aa4862696728f1aaefc917945e27d4716',1,'ATEAMS::Q::Q(int characteristic)'],['../struct_a_t_e_a_m_s_1_1_q.html#a57426605b00772c329d240b02ef33c9d',1,'ATEAMS::Q::Q()']]]
 ];

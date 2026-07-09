@@ -31,12 +31,12 @@ namespace ATEAMS {
 			double temp = this->parameters.temperatureFunction(t);
 			
 			// Sample a (d-1)-cell at uniform random and change its spin.
-			index_t flippedIndex = this->indexuniform(this->RNG);
+			INDEX flippedIndex = this->indexuniform(this->RNG);
 			SparseVector<T> flipped(state.cochain);
 
 			// Overwrite the entry? Not sure if this actually overwrites it or not.
 			flipped.push_back(
-				(index_t)flippedIndex,
+				(INDEX)flippedIndex,
 				(T)this->intuniform(this->RNG)
 			);
 
@@ -69,7 +69,7 @@ namespace ATEAMS {
 
 			SparseVector<T> cochain;
 			for (int i=0; i < N; i++) cochain.push_back(
-				(index_t)i, (T)this->intuniform(this->RNG)
+				(INDEX)i, (T)this->intuniform(this->RNG)
 			);
 
 			cochain.compress();

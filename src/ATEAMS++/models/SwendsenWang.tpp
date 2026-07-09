@@ -43,7 +43,7 @@ namespace ATEAMS {
 			// multiplication, then checking which of the entries are zero.
 			size_t d = this->parameters.dimension;
 
-			SparseVector<T> coefficients = sparse_mat_dot_sparse_vec<T,index_t>(
+			SparseVector<T> coefficients = sparse_mat_dot_sparse_vec<T,INDEX>(
 				this->complex->Coboundary.Matrices[d],
 				state.cochain,
 				this->field
@@ -97,7 +97,7 @@ namespace ATEAMS {
 
 				// Multiply, and check whether there's anything in the resulting vector;
 				// there shouldn't be (i.e. it should have size 0).
-				SparseVector<T> outcome = sparse_mat_dot_sparse_vec<T,index_t>(
+				SparseVector<T> outcome = sparse_mat_dot_sparse_vec<T,INDEX>(
 					cbd,
 					sample,
 					this->field
@@ -122,7 +122,7 @@ namespace ATEAMS {
 
 			SparseVector<T> cochain;
 			for (int i=0; i < N; i++) cochain.push_back(
-				(index_t)i, (T)this->intuniform(this->RNG)
+				(INDEX)i, (T)this->intuniform(this->RNG)
 			);
 
 			cochain.compress();
