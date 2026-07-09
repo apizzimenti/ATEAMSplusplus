@@ -49,7 +49,7 @@ namespace ATEAMS {
 	struct Q : public Ring {
 		public:
 			/**
-			 * @brief Data type.
+			 * @brief Data type @ref RATIONAL.
 			 */
 			typedef RATIONAL dtype;
 
@@ -75,7 +75,7 @@ namespace ATEAMS {
 	struct Zp : public Ring {
 		public:
 			/**
-			 * @brief Data type.
+			 * @brief Data type @ref FINITE.
 			 */
 			typedef FINITE dtype;
 
@@ -86,6 +86,22 @@ namespace ATEAMS {
 			Zp(int characteristic) {
 				this->ring = abstractRing(SparseRREF::FIELD_Fp, characteristic);
 			};
+	};
+
+	/**
+	 * @brief Quotient ring \f$\Z/2\Z\f$.
+	 */
+	struct Z2 : public Ring {
+		public:
+			/**
+			 * @brief Data type @ref FINITE.
+			 */
+			typedef FINITE dtype;
+
+			/**
+			 * @brief Constructor.
+			 */
+			Z2() { this->ring = abstractRing(SparseRREF::FIELD_Fp, 2); };
 	};
 
 	/**

@@ -5,12 +5,12 @@
 using namespace ATEAMS;
 using namespace std;
 
-using Model = models::Glauber<FINITE>;
+using Model = models::Glauber<Zp>;
 using Parameters = models::ModelParameters;
 
-using Structure = complexes::Cubical<Model::dt>;
-using State = models::ModelState<Model::dt,Model::st>;
-using Chain = statistics::Chain<Model::dt,Model::st>;
+using Structure = complexes::Cubical<Model::CoefficientType>;
+using State = models::ModelState<Model::CoefficientType,Model::VectorType>;
+using Chain = statistics::Chain<Model::CoefficientType,Model::VectorType>;
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
@@ -20,10 +20,12 @@ int main(int argc, char *argv[]) {
 		vector<int> corners(dimension, 3);
 		Structure CUBICAL(corners);
 
+		Zp ZZ(FIELD);
+
 		Parameters PARAMETERS;
-		PARAMETERS.field = FIELD;
+		PARAMETERS.coefficients = &ZZ;
 		PARAMETERS.dimension = dimension/2;
-		PARAMETERS.temperatureFunction = statistics::selfdual(PARAMETERS.field);
+		PARAMETERS.temperatureFunction = statistics::selfdual(PARAMETERS.coefficients);
 		PARAMETERS.DEBUG = true;
 
 		Model MODEL(&CUBICAL, PARAMETERS);
@@ -33,16 +35,16 @@ int main(int argc, char *argv[]) {
 			// Figure out which cells were excluded; on these cells, the cochain
 			// can evaluate to anything. We just want the ones that evaluate to
 			// 0.
-			vector<int> unsatisfied = statistics::unsatisfied<Model::dt>(
-				&CUBICAL, state.cochain, MODEL.field, PARAMETERS.dimension
+			vector<int> unsatisfied = statistics::unsatisfied<Model::CoefficientType>(
+				&CUBICAL, state.cochain, MODEL.coefficients, PARAMETERS.dimension
 			);
 
-			SparseMatrix<Model::dt> REDUCED = MODEL.complex->Coboundary.Matrices[PARAMETERS.dimension];
+			SparseMatrix<Model::CoefficientType> REDUCED = MODEL.complex->Coboundary.Matrices[PARAMETERS.dimension];
 			for (auto u : unsatisfied) REDUCED[u].zero();
 			REDUCED.clear_zero_row();
 			REDUCED.compress();
 
-			if (!inKernel<Model::dt>(REDUCED, state.cochain, MODEL.field, PARAMETERS.DEBUG)) {
+			if (!inKernel<Model::CoefficientType>(REDUCED, state.cochain, MODEL.coefficients, PARAMETERS.DEBUG)) {
 				RESULT = FAIL;
 			}
 		}

@@ -1,9 +1,13 @@
 var class_a_t_e_a_m_s_1_1models_1_1_glauber =
 [
-    [ "dt", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a24418ffd99aea7be318649ab39e1f7dd", null ],
-    [ "st", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a365811632b9cc51bb5c1f223880f2619", null ],
-    [ "Glauber", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#afc604595d30f5e74995adeb416594fef", null ],
-    [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a2c39694e87b8d57a914a4efcdee0932d", null ],
-    [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a26426cb0fad358f4b5e495a1bf0d082d", null ],
-    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#adc8559c3d3782e34c7c5121128a7c93b", null ]
+    [ "CoefficientType", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ab779bcbc3f387f71af0765385b1543be", null ],
+    [ "VectorType", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a5bf49417840f2e21eca8e9d534436a73", null ],
+    [ "Glauber", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ae1467a1fcdaf33d02265b99d0d1f3f3c", null ],
+    [ "Glauber", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a66346480812812f2c53f8c04e4c0d7fd", null ],
+    [ "Glauber", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a8aa1cdb7971840174e3529daadf0a1b4", null ],
+    [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ad71bbc2872102a39443a2947bdc9d361", null ],
+    [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a0251e6f5743390ef4b131e2ee7cf114a", null ],
+    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a1e3e0fafb4ffcc16010bdda5b7e42de6", null ],
+    [ "name", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a9b45b3e13bd9167aab02e17e08916231", null ],
+    [ "temperatureFunction", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ab4e19b8573d2f42134f8d05ec289295f", null ]
 ];

@@ -18,100 +18,143 @@
 #include <algorithm>
 #include <cassert>
 
-namespace ATEAMS {
-	namespace models {
+namespace ATEAMS::models {
 		
-		template <typename T>
-		ModelState<T,SparseVector> Glauber<T>::sample(
-			int t,
-			ModelState<T,SparseVector>& state,
-			arithmetic::ThreadOptions& options
-		) {
-			// Compute the temperature and probability of including particular (d-1)-cells.
-			double temp = this->parameters.temperatureFunction(t);
-			
-			// Sample a (d-1)-cell at uniform random and change its spin.
-			INDEX flippedIndex = this->indexuniform(this->RNG);
-			SparseVector<T> flipped(state.cochain);
+	template <typename RingLike>
+	ModelState<RingLike,SparseVector> Glauber<RingLike>::sample(
+		int t,
+		ModelState<RingLike,SparseVector>& state,
+		arithmetic::ThreadOptions& options
+	) {
+		// Compute the temperature and probability of including particular (d-1)-cells.
+		double temp = this->temperatureFunction(t);
+		
+		// Sample a (d-1)-cell at uniform random and change its spin.
+		INDEX flippedIndex = this->indexuniform(this->RNG);
+		SparseVector<RingLike> flipped(state.cochain);
 
-			// Overwrite the entry? Not sure if this actually overwrites it or not.
-			flipped.push_back(
-				(INDEX)flippedIndex,
-				(T)this->intuniform(this->RNG)
-			);
+		// Overwrite the entry? Not sure if this actually overwrites it or not.
+		flipped.push_back(
+			(INDEX)flippedIndex,
+			(typename RingLike::dtype)this->intuniform(this->RNG)
+		);
 
-			// Compute the energies of the cochains.
-			// TODO this is gonna be really slow, so we should work out a better way to
-			// compute these.
-			int original = statistics::energy(this->complex, state.cochain, this->field, this->parameters.dimension);
-			int updated = statistics::energy(this->complex, flipped, this->field, this->parameters.dimension);
+		// Compute the energies of the cochains.
+		// TODO this is gonna be really slow, so we should work out a better way to
+		// compute these.
+		int original = statistics::energy(this->complex, state.cochain, this->coefficients, this->dimension);
+		int updated = statistics::energy(this->complex, flipped, this->coefficients, this->dimension);
 
-			// Comptue the probability of accepting the new cochain; perform the Metropolis
-			// step.
-			double random = this->unituniform(this->RNG);
-			double diff = min(1.0, exp(temp*(original-updated)));
+		// Comptue the probability of accepting the new cochain; perform the Metropolis
+		// step.
+		double random = this->unituniform(this->RNG);
+		double diff = min(1.0, exp(temp*(original-updated)));
 
-			if (random < diff) {
-				state.cochain = flipped;
-				state.energy = updated;
-			} else {
-				state.energy = original;
-			}
-
-			return state;
+		if (random < diff) {
+			state.cochain = flipped;
+			state.energy = updated;
+		} else {
+			state.energy = original;
 		}
 
-
-		template <typename T>
-		ModelState<T,SparseVector> Glauber<T>::initialize(ModelState<T,SparseVector>& state) {
-			size_t dimension = this->parameters.dimension-1;
-			int N = this->complex->Cells[dimension];
-
-			SparseVector<T> cochain;
-			for (int i=0; i < N; i++) cochain.push_back(
-				(INDEX)i, (T)this->intuniform(this->RNG)
-			);
-
-			cochain.compress();
-			state.cochain = cochain;
-
-			return state;
-		}
-
-
-		template <typename T>
-		ModelState<T,SparseVector> Glauber<T>::initialize(
-			SparseVector<T> c,
-			ModelState<T,SparseVector>& state
-		) {
-			state.cochain = c;
-			return state;
-		}
-
-		template <typename T>
-		Glauber<T>::Glauber(
-			complexes::Complex<T>* complex,
-			ModelParameters parameters
-		) : Model<T,SparseVector>( // Parent constructor; initializes the field.
-				parameters.field > 0 ?
-					Field(SparseRREF::FIELD_Fp, parameters.field) :
-					Field(SparseRREF::FIELD_QQ),
-				"Glauber"
-		) {
-			this->parameters = parameters;
-			this->complex = complex;
-
-			// Determine the field and build the boundary matrices for the Complex.
-			this->complex->constructBoundaryMatrices(this->field);
-
-			// Initialize a random number generator.
-			std::random_device rd;
-			this->RNG = std::mt19937(rd());
-			this->unituniform = std::uniform_real_distribution<double>(0,1);
-			this->intuniform = std::uniform_int_distribution<int>(0,this->parameters.field > 0 ? this->parameters.field : 1);
-			this->indexuniform = std::uniform_int_distribution<int>(0, this->complex->Cells[this->parameters.dimension-1]);
-		}
+		return state;
 	}
+
+
+	template <typename RingLike>
+	ModelState<RingLike,SparseVector> Glauber<RingLike>::initialize(ModelState<RingLike,SparseVector>& state) {
+		size_t dimension = this->dimension-1;
+		int N = this->complex->Cells[dimension];
+
+		SparseVector<RingLike> cochain;
+		for (int i=0; i < N; i++) cochain.push_back(
+			(INDEX)i, (typename RingLike::dtype)this->intuniform(this->RNG)
+		);
+
+		cochain.compress();
+		state.cochain = cochain;
+
+		return state;
+	}
+
+
+	template <typename RingLike>
+	ModelState<RingLike,SparseVector> Glauber<RingLike>::initialize(
+		SparseVector<RingLike> c,
+		ModelState<RingLike,SparseVector>& state
+	) {
+		state.cochain = c;
+		return state;
+	};
+
+	template <typename RingLike>
+	Glauber<RingLike>::Glauber(
+		complexes::Complex<RingLike>* complex,
+		Ring* R,
+		int dimension,
+		std::function<double(int)> temperatureFunction,
+		bool DEBUG
+	) : Model<RingLike,SparseVector>(R, dimension, DEBUG) {
+		this->temperatureFunction = temperatureFunction;
+		this->complex = complex;
+
+		// Determine the field and build the boundary matrices for the Complex.
+		this->complex->constructBoundaryMatrices(this->coefficients);
+
+		// Initialize a random number generator.
+		std::random_device rd;
+		this->RNG = std::mt19937(rd());
+		this->unituniform = std::uniform_real_distribution<double>(0,1);
+		this->intuniform = std::uniform_int_distribution<int>(0,this->coefficients > 0 ? this->coefficients : 1);
+		this->indexuniform = std::uniform_int_distribution<int>(0, this->complex->Cells[this->dimension-1]);
+	};
+
+	template <typename RingLike>
+	Glauber<RingLike>::Glauber(
+		complexes::Complex<RingLike>* complex,
+		Ring* R,
+		int dimension,
+		bool DEBUG
+	) : Model<RingLike,SparseVector>(R, dimension, DEBUG) {
+		this->temperatureFunction = statistics::selfdual(this->coefficients);
+		this->complex = complex;
+
+		// Determine the field and build the boundary matrices for the Complex.
+		this->complex->constructBoundaryMatrices(this->coefficients);
+
+		// Initialize a random number generator.
+		std::random_device rd;
+		this->RNG = std::mt19937(rd());
+		this->unituniform = std::uniform_real_distribution<double>(0,1);
+		this->intuniform = std::uniform_int_distribution<int>(0,this->coefficients > 0 ? this->coefficients : 1);
+		this->indexuniform = std::uniform_int_distribution<int>(0, this->complex->Cells[this->dimension-1]);
+	};
+
+
+	template <typename RingLike>
+	Glauber<RingLike>::Glauber(
+		complexes::Complex<RingLike>* complex,
+		ModelParameters parameters
+	) : Model<RingLike,SparseVector>(
+		parameters.coefficients,
+		parameters.dimension,
+		parameters.DEBUG
+	) {
+		this->complex = complex;
+		this->temperatureFunction = parameters.temperatureFunction;
+
+		// Determine the field and build the boundary matrices for the Complex.
+		this->complex->constructBoundaryMatrices(this->coefficients);
+
+		// Initialize a random number generator.
+		std::random_device rd;
+		this->RNG = std::mt19937(rd());
+		this->unituniform = std::uniform_real_distribution<double>(0,1);
+		this->indexuniform = std::uniform_int_distribution<int>(0, this->complex->Cells[this->dimension-1]);
+
+		int mod = (int)this->coefficients->ring.mod.n;
+		this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
+	};
 }
 
 #endif

@@ -154,35 +154,47 @@ Inheritance diagram for Bernoulli:</div>
  <div class="center">
   <img src="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.png" usemap="#Bernoulli_map" alt=""/>
   <map id="Bernoulli_map" name="Bernoulli_map">
-<area href="class_a_t_e_a_m_s_1_1models_1_1_model.html" alt="Model&lt; FINITE, DenseVector &gt;" shape="rect" coords="0,0,192,24"/>
+<area href="class_a_t_e_a_m_s_1_1models_1_1_model.html" alt="Model&lt; Z2, DenseVector &gt;" shape="rect" coords="0,0,170,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ab4838a2ef7e3f85cd2784c622fba438b" id="r_ab4838a2ef7e3f85cd2784c622fba438b"><td class="memItemLeft">typedef <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab4838a2ef7e3f85cd2784c622fba438b">dt</a></td></tr>
-<tr class="memitem:a5617a4f54bb3e646ce299c485782a3b3" id="r_a5617a4f54bb3e646ce299c485782a3b3"><td class="memTemplParams" colspan="2">template&lt;typename R&gt; </td></tr>
-<tr class="memitem:a5617a4f54bb3e646ce299c485782a3b3 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a5617a4f54bb3e646ce299c485782a3b3">st</a> = <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a>&lt;R&gt;</td></tr>
+<tr class="memitem:a739f538186290736563a552cb07f0851" id="r_a739f538186290736563a552cb07f0851"><td class="memItemLeft"><a id="a739f538186290736563a552cb07f0851" name="a739f538186290736563a552cb07f0851"></a>
+using&#160;</td><td class="memItemRight"><b>CoefficientType</b> = <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a></td></tr>
+<tr class="memdesc:a739f538186290736563a552cb07f0851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exposed coefficient ring type. See <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html" title="Z2">Z2</a>. <br /></td></tr>
+<tr class="memitem:ae00b00fff77661c47e6bfc5092436f3e" id="r_ae00b00fff77661c47e6bfc5092436f3e"><td class="memTemplParams" colspan="2"><a id="ae00b00fff77661c47e6bfc5092436f3e" name="ae00b00fff77661c47e6bfc5092436f3e"></a>
+template&lt;typename R&gt; </td></tr>
+<tr class="memitem:ae00b00fff77661c47e6bfc5092436f3e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><b>VectorType</b> = <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a>&lt;R&gt;</td></tr>
+<tr class="memdesc:ae00b00fff77661c47e6bfc5092436f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exposed vector storage type. See <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1" title="SparseVector">SparseVector</a>. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae454847791e8eb94a12565054e87232b" id="r_ae454847791e8eb94a12565054e87232b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae454847791e8eb94a12565054e87232b">Bernoulli</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a> &gt; *complex, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a> parameters)</td></tr>
-<tr class="memdesc:ae454847791e8eb94a12565054e87232b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
-<tr class="memitem:aab32ff550f334de4dc263bace6c7dbae" id="r_aab32ff550f334de4dc263bace6c7dbae"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aab32ff550f334de4dc263bace6c7dbae">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
-<tr class="memdesc:aab32ff550f334de4dc263bace6c7dbae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directly samples <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation.">Bernoulli</a> percolation at the desired dimension.  <br /></td></tr>
-<tr class="memitem:a912e1145c4c1fa9cfa44e0e80fcf40e0" id="r_a912e1145c4c1fa9cfa44e0e80fcf40e0"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a912e1145c4c1fa9cfa44e0e80fcf40e0">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;state) override</td></tr>
-<tr class="memdesc:a912e1145c4c1fa9cfa44e0e80fcf40e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous.  <br /></td></tr>
-<tr class="memitem:a06b64bb21c37ba99756fa40729ac4e19" id="r_a06b64bb21c37ba99756fa40729ac4e19"><td class="memItemLeft"><a id="a06b64bb21c37ba99756fa40729ac4e19" name="a06b64bb21c37ba99756fa40729ac4e19"></a>
-<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><b>initialize</b> (std::vector&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a> &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;state) override</td></tr>
-<tr class="memdesc:a06b64bb21c37ba99756fa40729ac4e19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous. <br /></td></tr>
-<tr class="inherit_header pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">Model&lt; FINITE, DenseVector &gt;</a></td></tr>
+<tr class="memitem:a8df54a8e4554ea92d4391bad125f76b2" id="r_a8df54a8e4554ea92d4391bad125f76b2"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8df54a8e4554ea92d4391bad125f76b2">Bernoulli</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a> &gt; *complex, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a> parameters)</td></tr>
+<tr class="memdesc:a8df54a8e4554ea92d4391bad125f76b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="memitem:a0a987a419a985380ddfa6c9398cd8d95" id="r_a0a987a419a985380ddfa6c9398cd8d95"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a0a987a419a985380ddfa6c9398cd8d95">Bernoulli</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a> &gt; *complex, int dimension, float p=0.5, bool DEBUG=true)</td></tr>
+<tr class="memdesc:a0a987a419a985380ddfa6c9398cd8d95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="memitem:a508b1ccddde11ec0efd85d325cbd4c28" id="r_a508b1ccddde11ec0efd85d325cbd4c28"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a508b1ccddde11ec0efd85d325cbd4c28">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
+<tr class="memdesc:a508b1ccddde11ec0efd85d325cbd4c28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directly samples <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation.">Bernoulli</a> percolation at the desired dimension.  <br /></td></tr>
+<tr class="memitem:a6d43a99909752c931c22673de19d73db" id="r_a6d43a99909752c931c22673de19d73db"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6d43a99909752c931c22673de19d73db">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;state) override</td></tr>
+<tr class="memdesc:a6d43a99909752c931c22673de19d73db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous.  <br /></td></tr>
+<tr class="memitem:ad620e3862493e235b39b0bd0952e99c1" id="r_ad620e3862493e235b39b0bd0952e99c1"><td class="memItemLeft"><a id="ad620e3862493e235b39b0bd0952e99c1" name="ad620e3862493e235b39b0bd0952e99c1"></a>
+<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><b>initialize</b> (std::vector&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a> &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;state) override</td></tr>
+<tr class="memdesc:ad620e3862493e235b39b0bd0952e99c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous. <br /></td></tr>
+<tr class="inherit_header pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">Model&lt; Z2, DenseVector &gt;</a></td></tr>
 <tr class="memitem:af4902cce023a35cb4c3201a4600e140b pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_af4902cce023a35cb4c3201a4600e140b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#af4902cce023a35cb4c3201a4600e140b">Model</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, bool DEBUG=false)</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">Model&lt; FINITE, DenseVector &gt;</a></td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a1922a551816a2725c69a086db7c12a03" id="r_a1922a551816a2725c69a086db7c12a03"><td class="memItemLeft"><a id="a1922a551816a2725c69a086db7c12a03" name="a1922a551816a2725c69a086db7c12a03"></a>
+float&#160;</td><td class="memItemRight"><b>p</b></td></tr>
+<tr class="memdesc:a1922a551816a2725c69a086db7c12a03"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation.">Bernoulli</a> trial density \(p \in [0,1]\). <br /></td></tr>
+<tr class="memitem:a9b45b3e13bd9167aab02e17e08916231" id="r_a9b45b3e13bd9167aab02e17e08916231"><td class="memItemLeft"><a id="a9b45b3e13bd9167aab02e17e08916231" name="a9b45b3e13bd9167aab02e17e08916231"></a>
+std::string&#160;</td><td class="memItemRight"><b>name</b> = &quot;Bernoulli&quot;</td></tr>
+<tr class="memdesc:a9b45b3e13bd9167aab02e17e08916231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Human-readable name. <br /></td></tr>
+<tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">Model&lt; Z2, DenseVector &gt;</a></td></tr>
 <tr class="memitem:aa9fb7501f4721a129cf3d6f6f0160d84 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_aa9fb7501f4721a129cf3d6f6f0160d84"><td class="memItemLeft">
-<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a> &gt; *&#160;</td><td class="memItemRight"><b>complex</b></td></tr>
+<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a> &gt; *&#160;</td><td class="memItemRight"><b>complex</b></td></tr>
 <tr class="memdesc:aa9fb7501f4721a129cf3d6f6f0160d84 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" title="Complex">Complex</a>. <br /></td></tr>
 <tr class="memitem:a67c367e941d9cfa52dc173c8a0dc20f5 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a67c367e941d9cfa52dc173c8a0dc20f5"><td class="memItemLeft">
 <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *&#160;</td><td class="memItemRight"><b>coefficients</b></td></tr>
@@ -196,42 +208,9 @@ bool&#160;</td><td class="memItemRight"><b>DEBUG</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation.">Bernoulli</a> percolation. </p>
-</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
-<a id="ab4838a2ef7e3f85cd2784c622fba438b" name="ab4838a2ef7e3f85cd2784c622fba438b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4838a2ef7e3f85cd2784c622fba438b">&#9670;&#160;</a></span>dt</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a> <a class="el" href="#ab4838a2ef7e3f85cd2784c622fba438b">dt</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Coefficients are of type <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71" title="FINITE">FINITE</a>. </p>
-
-</div>
-</div>
-<a id="a5617a4f54bb3e646ce299c485782a3b3" name="a5617a4f54bb3e646ce299c485782a3b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5617a4f54bb3e646ce299c485782a3b3">&#9670;&#160;</a></span>st</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename R&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="#a5617a4f54bb3e646ce299c485782a3b3">st</a> = <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a>&lt;R&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Vectors are of type <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082" title="DenseVector">DenseVector</a>. </p>
-
-</div>
-</div>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ae454847791e8eb94a12565054e87232b" name="ae454847791e8eb94a12565054e87232b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae454847791e8eb94a12565054e87232b">&#9670;&#160;</a></span>Bernoulli()</h2>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8df54a8e4554ea92d4391bad125f76b2" name="a8df54a8e4554ea92d4391bad125f76b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8df54a8e4554ea92d4391bad125f76b2">&#9670;&#160;</a></span>Bernoulli() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -239,7 +218,7 @@ template&lt;typename R&gt; </div>
         <tr>
           <td class="memname">Bernoulli </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a> &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a> &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -250,9 +229,10 @@ template&lt;typename R&gt; </div>
 </div><div class="memdoc">
 
 <p>Constructor. </p>
+<p>Using this constructor, typical model parameters can be passed as a <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html" title="ModelParameters">ModelParameters</a> object.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">complex</td><td>(Pointer to) a Complex. </td></tr>
+    <tr><td class="paramname">complex</td><td>(Pointer to) a complex. </td></tr>
     <tr><td class="paramname">parameters</td><td><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> parameters. </td></tr>
   </table>
   </dd>
@@ -260,9 +240,52 @@ template&lt;typename R&gt; </div>
 
 </div>
 </div>
+<a id="a0a987a419a985380ddfa6c9398cd8d95" name="a0a987a419a985380ddfa6c9398cd8d95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a987a419a985380ddfa6c9398cd8d95">&#9670;&#160;</a></span>Bernoulli() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Bernoulli </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a> &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dimension</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>p</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.5</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>DEBUG</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<p>Using this constructor, the subcomplex dimension and percolation density must be passed manually.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">complex</td><td>(Pointer to) a complex. </td></tr>
+    <tr><td class="paramname">dimension</td><td>Subcomplex dimension. </td></tr>
+    <tr><td class="paramname">p</td><td><em>(Optional, default <span class="tt">0.5</span>)</em> <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation.">Bernoulli</a> trial density. </td></tr>
+    <tr><td class="paramname">DEBUG</td><td><em>(Optional, default <span class="tt">false</span>)</em> Are we debugging this <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a>? </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a912e1145c4c1fa9cfa44e0e80fcf40e0" name="a912e1145c4c1fa9cfa44e0e80fcf40e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a912e1145c4c1fa9cfa44e0e80fcf40e0">&#9670;&#160;</a></span>initialize()</h2>
+<a id="a6d43a99909752c931c22673de19d73db" name="a6d43a99909752c931c22673de19d73db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d43a99909752c931c22673de19d73db">&#9670;&#160;</a></span>initialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -271,9 +294,9 @@ template&lt;typename R&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; initialize </td>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; initialize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -286,12 +309,12 @@ template&lt;typename R&gt; </div>
 
 <p>Initialization; superfluous. </p>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a2b8f22c96cbee660fcfb8792d9fc42a0">Model&lt; FINITE, DenseVector &gt;</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a2b8f22c96cbee660fcfb8792d9fc42a0">Model&lt; Z2, DenseVector &gt;</a>.</p>
 
 </div>
 </div>
-<a id="aab32ff550f334de4dc263bace6c7dbae" name="aab32ff550f334de4dc263bace6c7dbae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab32ff550f334de4dc263bace6c7dbae">&#9670;&#160;</a></span>sample()</h2>
+<a id="a508b1ccddde11ec0efd85d325cbd4c28" name="a508b1ccddde11ec0efd85d325cbd4c28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a508b1ccddde11ec0efd85d325cbd4c28">&#9670;&#160;</a></span>sample()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -300,14 +323,14 @@ template&lt;typename R&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; sample </td>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; sample </td>
           <td>(</td>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -333,7 +356,7 @@ template&lt;typename R&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html" title="ModelState">ModelState</a> with <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#affb9db935dc3e09600f19267b9593b9d" title="essential">essential</a>, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a07fe4a6d18195cf882792dcc5d22e6f4" title="includes">includes</a>, and <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#ac310d9181e916ba43604099aee272c71" title="t">t</a> modified. </dd></dl>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a4bf284e877ba348b401247c09b994881">Model&lt; FINITE, DenseVector &gt;</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a4bf284e877ba348b401247c09b994881">Model&lt; Z2, DenseVector &gt;</a>.</p>
 
 </div>
 </div>

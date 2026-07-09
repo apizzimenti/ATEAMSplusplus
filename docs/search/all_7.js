@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['glauber_0',['Glauber',['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html',1,'Glauber&lt; T &gt;'],['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#afc604595d30f5e74995adeb416594fef',1,'ATEAMS::models::Glauber::Glauber()']]]
+  ['glauber_0',['Glauber',['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html',1,'Glauber&lt; RingLike &gt;'],['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ae1467a1fcdaf33d02265b99d0d1f3f3c',1,'ATEAMS::models::Glauber::Glauber(complexes::Complex&lt; RingLike &gt; *complex, ModelParameters parameters)'],['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a66346480812812f2c53f8c04e4c0d7fd',1,'ATEAMS::models::Glauber::Glauber(complexes::Complex&lt; RingLike &gt; *complex, Ring *R, int dimension, bool DEBUG=false)'],['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a8aa1cdb7971840174e3529daadf0a1b4',1,'ATEAMS::models::Glauber::Glauber(complexes::Complex&lt; RingLike &gt; *complex, Ring *R, int dimension, std::function&lt; double(int)&gt; temperatureFunction, bool DEBUG=false)']]]
 ];

@@ -8,9 +8,9 @@ using namespace std;
 using Model = models::Bernoulli;
 using Parameters = models::ModelParameters;
 
-using Structure = complexes::Cubical<Model::dt>;
-using State = models::ModelState<Model::dt,Model::st>;
-using Chain = statistics::Chain<Model::dt,Model::st>;
+using Structure = complexes::Cubical<Z2>;
+using State = models::ModelState<Z2,DenseVector>;
+using Chain = statistics::Chain<Z2,DenseVector>;
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
 		Parameters PARAMETERS;
 		PARAMETERS.p = 0.5;
 		PARAMETERS.dimension = dimension/2;
+		PARAMETERS.DEBUG = true;
 
 		Model MODEL(&COMPLEX, PARAMETERS);
 		Chain CHAIN(&MODEL, ITERATIONS);

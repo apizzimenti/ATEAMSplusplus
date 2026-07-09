@@ -76,9 +76,11 @@ list(APPEND SOURCE_HEADERS
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Cubical.h
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/models.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/ModelState.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/ModelParameters.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Model.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Bernoulli.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Glauber.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Bernoulli.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Glauber.h
 	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/InvadedCluster.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/SwendsenWang.h
 	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/models/Invasion.h
@@ -97,8 +99,8 @@ list(APPEND SOURCE_IMPLEMENTATIONS
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/complexes/Cubical.tpp
 
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/SwendsenWang.tpp
-	# ${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/Bernoulli.tpp
-	# ${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/Glauber.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/Bernoulli.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/Glauber.tpp
 	# ${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/InvadedCluster.tpp
 	# ${PROJECT_SOURCE_DIR}/src/ATEAMS++/models/Invasion.tpp
 )
@@ -172,20 +174,20 @@ install(
 ################################################################################
 
 list(APPEND COMPLEXES
-	"Cubical"
+	# "Cubical"
 )
 
 list(APPEND ARITHMETIC
-	"kernel"
-	"persistence"
+	# "kernel"
+	# "persistence"
 )
 
 list(APPEND MODELS
 	# "Bernoulli"
-	# "Glauber"
+	"Glauber"
 	# "InvadedCluster"
 	# "Invasion"
-	"SwendsenWang"
+	# "SwendsenWang"
 )
 
 list(APPEND TYPES

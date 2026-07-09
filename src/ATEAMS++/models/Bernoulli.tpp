@@ -14,17 +14,17 @@
 
 namespace ATEAMS {
 	namespace models {
-		ModelState<FINITE,DenseVector> Bernoulli::sample(
+		ModelState<Z2,DenseVector> Bernoulli::sample(
 			int t,
-			ModelState<FINITE,DenseVector>& state,
+			ModelState<Z2,DenseVector>& state,
 			arithmetic::ThreadOptions& options
 		) {
 			// If we're debugging, check that the inclusion probability is a probability
 			// to begin with.
-			double p = this->parameters.p;
-			int d = this->parameters.dimension;
+			double p = this->p;
+			int d = this->dimension;
 			
-			if (this->parameters.DEBUG) {
+			if (this->DEBUG) {
 				cerr << std::format("verifying 0 ≤ {} ≤ 1", p) << endl;
 				assert((0 <= p) && (p <= 1));
 			}
@@ -45,13 +45,13 @@ namespace ATEAMS {
 			state.includes = include;
 
 			// Construct the filtration.
-			int stop = this->complex->breaks[d][0];
-			int start = this->complex->breaks[d][1];
-			int offset = (d > 0) ? this->complex->offsets[d-1] : 0;
+			int stop = this->complex->Breaks[d][0];
+			int start = this->complex->Breaks[d][1];
+			int offset = (d > 0) ? this->complex->Offsets[d-1] : 0;
 			
 			// Fill in all the indices for cells of dimension not equal to d.
 			for (int j=0; j < stop; j++) this->filtration[j] = j;
-			for (int j=start; j < this->complex->offsets[d+1]; j++) this->filtration[j] = j;
+			for (int j=start; j < this->complex->Offsets[d+1]; j++) this->filtration[j] = j;
 
 			// Shuffle the included indices.
 			std::shuffle(include.begin(), include.end(), this->RNG);
@@ -61,11 +61,11 @@ namespace ATEAMS {
 
 			// Now, compute the persistence times, then filter over them to capture only
 			// the ones within the right window.
-			vector<int> essential = arithmetic::PHATPersistence(this->complex, this->filtration, d);
+			vector<int> essential = arithmetic::PHATPersistence<Z2>(this->complex, this->filtration, d);
 			std::erase_if(essential, [stop, included](int t) { return !((stop <= t) && (t < stop+included)); });
 			std::sort(essential.begin(), essential.end());
 
-			if (this->parameters.DEBUG) {
+			if (this->DEBUG) {
 				std::cerr << "outputting filtration to stdout..." << std::endl;
 				printvector<int>(this->filtration);
 
@@ -83,26 +83,54 @@ namespace ATEAMS {
 		}
 
 
-		Bernoulli::Bernoulli(complexes::Complex<FINITE>* complex, ModelParameters parameters) 
-			: Model<FINITE,DenseVector>(Field(SparseRREF::FIELD_Fp, 2), "Bernoulli")
-		{
-			this->parameters = parameters;
+		Bernoulli::Bernoulli(
+			complexes::Complex<Z2>* complex,
+			ModelParameters parameters
+		) : Model<Z2,DenseVector>(
+			parameters.coefficients,
+			parameters.dimension,
+			parameters.DEBUG
+		) {
 			this->complex = complex;
+			this->p = parameters.p;
 
 			// From those boundary matrices, construct the "full" (i.e. up to dimension d+1)
 			// PHAT boundary matrix.
 			this->complex->constructFlatBoundaryMatrix();
-			this->complex->constructFullBoundaryMatrix(this->field);
+			this->complex->constructFullBoundaryMatrix(this->coefficients);
 
 			// Default filtration.
-			vector<int> filtration(this->complex->offsets[this->parameters.dimension+1], 0);
+			vector<int> filtration(this->complex->Offsets[this->dimension+1], 0);
 			this->filtration = filtration;
 
 			// Initialize a random number generator.
 			std::random_device rd;
 			this->RNG = std::mt19937(rd());
 			this->unituniform = std::uniform_real_distribution<double>(0,1);
-		}
+		};
+
+		Bernoulli::Bernoulli(
+			complexes::Complex<Z2>* complex,
+			int dimension,
+			float p,
+			bool DEBUG
+		) : Model<Z2,DenseVector>(new Z2, dimension, DEBUG) {
+			this->complex = complex;
+
+			// From those boundary matrices, construct the "full" (i.e. up to dimension d+1)
+			// PHAT boundary matrix.
+			this->complex->constructFlatBoundaryMatrix();
+			this->complex->constructFullBoundaryMatrix(this->coefficients);
+
+			// Default filtration.
+			vector<int> filtration(this->complex->Offsets[this->dimension+1], 0);
+			this->filtration = filtration;
+
+			// Initialize a random number generator.
+			std::random_device rd;
+			this->RNG = std::mt19937(rd());
+			this->unituniform = std::uniform_real_distribution<double>(0,1);
+		};
 	}
 }
 

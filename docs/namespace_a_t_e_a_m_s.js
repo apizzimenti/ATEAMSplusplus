@@ -7,6 +7,7 @@ var namespace_a_t_e_a_m_s =
     [ "Ring", "struct_a_t_e_a_m_s_1_1_ring.html", "struct_a_t_e_a_m_s_1_1_ring" ],
     [ "Q", "struct_a_t_e_a_m_s_1_1_q.html", "struct_a_t_e_a_m_s_1_1_q" ],
     [ "Zp", "struct_a_t_e_a_m_s_1_1_zp.html", "struct_a_t_e_a_m_s_1_1_zp" ],
+    [ "Z2", "struct_a_t_e_a_m_s_1_1_z2.html", "struct_a_t_e_a_m_s_1_1_z2" ],
     [ "DataWriter", "class_a_t_e_a_m_s_1_1_data_writer.html", null ],
     [ "abstractRing", "namespace_a_t_e_a_m_s.html#ae80ef505614ae9f1c0b62bb0cb60ab29", null ],
     [ "DenseVector", "namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082", null ],

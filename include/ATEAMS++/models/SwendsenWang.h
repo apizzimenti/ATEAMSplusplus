@@ -15,6 +15,8 @@ namespace ATEAMS::models {
 	 * @brief Implements the Swendsen--Wang algorithm for Potts lattice gauge theory
 	 * 	(PLGT) and the plaquette random-cluster model (PRCM).
 	 * 
+	 * @tparam RingLike A coefficient @ref Ring type, like @ref Zp or @ref Q.
+	 * 
 	 * @var SwendsenWang::temperatureFunction
 	 * 	@brief Specifies an inverse temperature at each time-step; see @ref ATEAMS::statistics::selfdual.
 	 * 
@@ -26,6 +28,17 @@ namespace ATEAMS::models {
 		public:
 			std::function<double(int)> temperatureFunction;
 			std::string name = "Swendsen--Wang";
+
+			/**
+			 * @brief Exposed coefficient ring type. See @ref Ring.
+			 */
+			using CoefficientType = RingLike;
+
+			/**
+			 * @brief Exposed vector storage type. See @ref SparseVector.
+			 */
+			template <typename R>
+			using VectorType = SparseVector<R>;
 
 			/**
 			 * @brief Constructor.

@@ -9,69 +9,126 @@
 #include <random>
 #include <string>
 
-namespace ATEAMS {
-	namespace models {
-		/**
-		 * @class Glauber
-		 * @brief Implements the Glauber dynamics algorithm.
-		 */
-		template <typename T=ATEAMS::FINITE>
-		class Glauber: public Model<T,SparseVector> {
-			public:
-				/** Coefficients are of type @ref ATEAMS::ff or @ref ATEAMS::RATIONAL. */
-				typedef T dt;
+namespace ATEAMS::models {
+	/**
+	 * @class Glauber
+	 * @brief Implements the Glauber dynamics algorithm.
+	 * @tparam RingLike A coefficient @ref Ring type, like @ref Zp or @ref Q.
+	 * 
+	 * @var Glauber::temperatureFunction
+	 * 	@brief Specifies an inverse temperature at each time-step; see @ref ATEAMS::statistics::selfdual.
+	 * 
+	 * @var Glauber::name
+	 * 	@brief Human-readable name.
+	 */
+	template <typename RingLike>
+	class Glauber: public Model<RingLike,SparseVector> {
+		public:
+			std::function<double(int)> temperatureFunction;
+			std::string name = "Glauber";
 
-				/** Vectors are of type @ref ATEAMS::SparseVector. */
-				template <typename R>
-				using st = SparseVector<R>;
-				
-				/**
-				 * @brief Constructor.
-				 * 
-				 * @param complex (Pointer to) a complex.
-				 * @param parameters Model parameters.
-				 */
-				Glauber(ATEAMS::complexes::Complex<T>* complex, ModelParameters parameters);
+			/**
+			 * @brief Exposed coefficient ring type. See @ref Ring.
+			 */
+			using CoefficientType = RingLike;
 
-				/**
-				 * @brief Switches the spin of a uniform random cell.
-				 * 
-				 * @param t Time step.
-				 * @param state Tracks state; see @ref ATEAMS::statistics::Chain.
-				 * @param options Multithreaded computing environment options.
-				 * 
-				 * @return State with modified @ref ModelState::cochain,
-				 * @ref ModelState::energy, and @ref ModelState::t.
-				 */
-				ModelState<T,SparseVector> sample(int t, ModelState<T,SparseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
+			/**
+			 * @brief Exposed vector storage type. See @ref SparseVector.
+			 */
+			template <typename R>
+			using VectorType = SparseVector<R>;
+			
+			/**
+			 * @brief Constructor.
+			 * 
+			 * @param complex (Pointer to) a complex.
+			 * @param parameters Model parameters.
+			 */
+			Glauber(
+				complexes::Complex<RingLike>* complex,
+				ModelParameters parameters
+			);
 
-				/**
-				 * @brief Initializes \f$f_0\f$ to uniform random element of \f$\Z/p\Z\f$
-				 * or \f$ \Q \f$.
-				 * 
-				 * @param state Model state.
-				 * 
-				 * @returns Model state.
-				 */
-				ModelState<T,SparseVector> initialize(ModelState<T,SparseVector>& state) override;
+			/**
+			 * @brief Constructor.
+			 * 
+			 * Using this constructor, the `temperatureFunction` is automatically
+			 * 	set to the inverse temperature parameter admitting the self-dual
+			 * 	point according to the modulus of the @ref Ring; see
+			 *  @ref ATEAMS::statistics::selfdual.
+			 * 
+			 * @param complex (Pointer to) a complex.
+			 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
+			 * @param dimension Subcomplex dimension.
+			 * @param DEBUG _(Optional, default `false`)_ Are we debugging this Model?
+			 */
+			Glauber(
+				complexes::Complex<RingLike>* complex,
+				Ring* R,
+				int dimension,
+				bool DEBUG=false
+			);
 
-				/**
-				 * @brief Initializes \f$f_0 = c\f$.
-				 * 
-				 * @param c Cochain to which \f$f_0\f$ is initialized.
-				 * @param state Model state.
-				 * 
-				 * @returns Model state.
-				 */
-				ModelState<T,SparseVector> initialize(SparseVector<T> c, ModelState<T,SparseVector>& state) override;
+			/**
+			 * @brief Constructor.
+			 * 
+			 * @param complex (Pointer to) a complex.
+			 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
+			 * @param dimension Subcomplex dimension.
+			 * @param temperatureFunction A function that consumes an integer time \f$t\f$ and
+			 * 	returns a double, representing the _inverse temperature_ at time \f$t\f$.
+			 * @param DEBUG _(Optional, default `false`)_ Are we debugging this Model?
+			 */
+			Glauber(
+				complexes::Complex<RingLike>* complex,
+				Ring* R,
+				int dimension,
+				std::function<double(int)> temperatureFunction,
+				bool DEBUG=false
+			);
 
-			private:
-				std::mt19937 RNG;
-				std::uniform_real_distribution<double> unituniform;
-				std::uniform_int_distribution<int> intuniform;
-				std::uniform_int_distribution<int> indexuniform;
-		};
-	}
+			/**
+			 * @brief Switches the spin of a uniform random cell.
+			 * 
+			 * @param t Time step.
+			 * @param state Tracks state; see @ref ATEAMS::statistics::Chain.
+			 * @param options Multithreaded computing environment options.
+			 * 
+			 * @return State with modified @ref ModelState::cochain,
+			 * @ref ModelState::energy, and @ref ModelState::t.
+			 */
+			ModelState<RingLike,SparseVector> sample(
+				int t,
+				ModelState<RingLike,SparseVector>& state,
+				arithmetic::ThreadOptions& options
+			) override;
+
+			/**
+			 * @brief Initializes \f$f_0\f$ to uniform random element of \f$\Z/p\Z\f$
+			 * or \f$ \Q \f$.
+			 * 
+			 * @param state Model state.
+			 * 
+			 * @returns Model state.
+			 */
+			ModelState<RingLike,SparseVector> initialize(ModelState<RingLike,SparseVector>& state) override;
+
+			/**
+			 * @brief Initializes \f$f_0 = c\f$.
+			 * 
+			 * @param c Cochain to which \f$f_0\f$ is initialized.
+			 * @param state Model state.
+			 * 
+			 * @returns Model state.
+			 */
+			ModelState<RingLike,SparseVector> initialize(SparseVector<RingLike> c, ModelState<RingLike,SparseVector>& state) override;
+
+		private:
+			std::mt19937 RNG;
+			std::uniform_real_distribution<double> unituniform;
+			std::uniform_int_distribution<int> intuniform;
+			std::uniform_int_distribution<int> indexuniform;
+	};
 }
 
 #include "ATEAMS++/models/Glauber.tpp"
