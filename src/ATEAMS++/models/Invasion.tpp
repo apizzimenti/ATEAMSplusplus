@@ -22,9 +22,9 @@ using namespace std;
 
 namespace ATEAMS {
 	namespace models {
-		ModelState<ff,DenseVector> Invasion::sample(
+		ModelState<FINITE,DenseVector> Invasion::sample(
 			int t,
-			ModelState<ff,DenseVector>& state,
+			ModelState<FINITE,DenseVector>& state,
 			arithmetic::ThreadOptions& options
 		) {
 			int d = this->parameters.dimension;
@@ -71,9 +71,9 @@ namespace ATEAMS {
 
 
 		Invasion::Invasion(
-			complexes::Complex<ff>* complex,
+			complexes::Complex<FINITE>* complex,
 			ModelParameters parameters
-		) : Model<ff,DenseVector>( // parent constructor; initializes the field.
+		) : Model<FINITE,DenseVector>( // parent constructor; initializes the field.
 			parameters.field > 0 ?	
 				Field(SparseRREF::FIELD_Fp, parameters.field) :
 				Field(SparseRREF::FIELD_QQ),

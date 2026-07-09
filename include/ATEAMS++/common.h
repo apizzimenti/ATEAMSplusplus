@@ -18,6 +18,7 @@
 #include <filesystem>
 
 namespace ATEAMS {
+	
 	/** Unsigned long int. */
 	typedef unsigned long ulong;
 
@@ -25,41 +26,92 @@ namespace ATEAMS {
 	typedef uint32_t index_t;
 
 	/** Finite-field type for SparseRREF machinery. */
-	typedef ulong ff;
+	typedef ulong FINITE;
 
 	/** Rational type for SparseRREF machinery. */
-	typedef SparseRREF::rat_t rational;	
+	typedef SparseRREF::rat_t RATIONAL;
 
-	/** SparseRREF matrix. */
-	template <typename T>
-	using SparseMatrix = SparseRREF::sparse_mat<T,index_t>;
+	typedef SparseRREF::field_t Field;
 
-	/** SparseRREF vector. */
-	template <typename T>
-	using SparseVector = SparseRREF::sparse_vec<T,index_t>;
+	struct Ring {
+		public:
+			Field ring;
+	};
+
+	/**
+	 * @brief Rationals \f$\Q\f$.
+	 * 
+	 * @var Q::ring SparseRREF ring underlying this Ring.
+	 */
+	struct Q : public Ring {
+		/**
+		 * @brief Data type for this ring.
+		 */
+		typedef RATIONAL dtype;
+
+		/**
+		 * @brief Constructor.
+		 * 
+		 * @param characteristic Characteristic of the field; superfluous.
+		 */
+		Q(int characteristic) {
+			this->ring = Field(SparseRREF::FIELD_QQ);
+		};
+
+		/** 
+		 * @brief Constructor.
+		*/
+		Q() {
+			this->ring = Field(SparseRREF::FIELD_QQ);
+		};
+	};
+
+	struct Zp : public Ring {
+		typedef FINITE dtype;
+
+		Zp(int characteristic) {
+			this->ring = Field(SparseRREF::FIELD_Fp, characteristic);
+		};
+	};
+
+	// /** SparseRREF matrix. */
+	// template <typename T>
+	// using SparseMatrix = SparseRREF::sparse_mat<T,index_t>;
+
+	// /** SparseRREF vector. */
+	// template <typename T>
+	// using SparseVector = SparseRREF::sparse_vec<T,index_t>;
+
+	/** Generic  */
+	template <typename RingLike>
+	using SparseMatrix = SparseRREF::sparse_mat<typename RingLike::dtype,index_t>;
+
+	template <typename RingLike>
+	using SparseVector = SparseRREF::sparse_vec<typename RingLike::dtype,index_t>;
 
 	/** SparseRREF field: either \f$\Q\f$ or \f$\GF(p) \cong \Z/p \Z\f$ for \f$p\f$ prime. */
 	typedef SparseRREF::field_t Field;
+	// typedef SparseRREF::field_t Ring;
 
 	/** Template alias for `std::vector`. */
 	template <typename T>
 	using DenseVector = std::vector<T,std::allocator<T>>;
 
 	/** Vector of @ref ATEAMS::SparseMatrix. */
-	template <typename T>
-	using SparseMatrices = std::vector<SparseMatrix<T>>;
+	template <typename RingLike>
+	using SparseMatrices = std::vector<SparseMatrix<RingLike>>;
 
 	/** Vector of @ref ATEAMS::SparseVectors. */
-	template <typename T>
-	using SparseVectors = std::vector<SparseVector<T>>;
+	template <typename RingLike>
+	using SparseVectors = std::vector<SparseVector<RingLike>>;
 
 	/** Alias of @ref ATEAMS::SparseVectors. */
-	template <typename T>
-	using SparseBasis = std::vector<SparseVector<T>>;
+	template <typename RingLike>
+	using SparseBasis = std::vector<SparseVector<RingLike>>;
 
 	/** Vector of vector of @ref ATEAMS::SparseBasis. */
-	template <typename T>
-	using SparseBases = std::vector<SparseBasis<T>>;
+	template <typename RingLike>
+	using SparseBases = std::vector<SparseBasis<RingLike>>;
 
 	/** @cond */
 	/** Flat boundary matrix. */
@@ -81,7 +133,6 @@ namespace ATEAMS {
 	typedef phat::twist_reduction PHATTwist;
 	/** @endcond */
 
-
 	/**
 	 * @class DataWriter
 	 * @brief Utility function for writing various data types to file.
@@ -94,13 +145,13 @@ namespace ATEAMS {
 			 * @param S Storage.
 			 * @param destination Filepath.
 			 */
-			static inline void write(ATEAMS::SparseMatrix<rational> S, std::string destination) {
+			static inline void write(ATEAMS::SparseMatrix<Q> S, std::string destination) {
 				checkDestinationExists(destination);
 
 				std::ofstream out;
 				out.open(destination);
 
-				SparseRREF::sparse_mat_write<rational,std::ofstream,ATEAMS::index_t>(
+				SparseRREF::sparse_mat_write<Q::dtype,std::ofstream,ATEAMS::index_t>(
 					S, out, SparseRREF::SPARSE_FILE_TYPE_SMS
 				);
 
@@ -113,13 +164,13 @@ namespace ATEAMS {
 			 * @param S Storage.
 			 * @param destination Filepath.
 			 */
-			static inline void write(ATEAMS::SparseMatrix<ff> S, std::string destination) {
+			static inline void write(ATEAMS::SparseMatrix<Zp> S, std::string destination) {
 				checkDestinationExists(destination);
 
 				std::ofstream out;
 				out.open(destination);
 
-				SparseRREF::sparse_mat_write<ff,std::ofstream,ATEAMS::index_t>(
+				SparseRREF::sparse_mat_write<Zp::dtype,std::ofstream,ATEAMS::index_t>(
 					S, out, SparseRREF::SPARSE_FILE_TYPE_SMS
 				);
 

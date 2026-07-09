@@ -15,10 +15,10 @@ namespace ATEAMS {
 		 * @class Bernoulli
 		 * @brief Implements Bernoulli percolation.
 		 */
-		class Bernoulli : public Model<ff,DenseVector> {
+		class Bernoulli : public Model<FINITE,DenseVector> {
 			public:
-				/** Coefficients are of type @ref ATEAMS::ff. */
-				typedef ff dt;
+				/** Coefficients are of type @ref ATEAMS::FINITE. */
+				typedef FINITE dt;
 
 				/** Vectors are of type @ref ATEAMS::DenseVector. */
 				template <typename R>
@@ -29,7 +29,7 @@ namespace ATEAMS {
 				 * @param complex (Pointer to) a Complex.
 				 * @param parameters Model parameters.
 				 */
-				Bernoulli(ATEAMS::complexes::Complex<ff>* complex, ModelParameters parameters);
+				Bernoulli(ATEAMS::complexes::Complex<FINITE>* complex, ModelParameters parameters);
 
 				/**
 				 * @brief Directly samples Bernoulli percolation at the desired dimension.
@@ -40,13 +40,13 @@ namespace ATEAMS {
 				 * @returns @ref ModelState with @ref ModelState::essential,
 				 * @ref ModelState::includes, and @ref ModelState::t modified.
 				 */
-				ModelState<ff,DenseVector> sample(int t, ModelState<ff,DenseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
+				ModelState<FINITE,DenseVector> sample(int t, ModelState<FINITE,DenseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
 
 				/** @brief Initialization; superfluous. */
-				ModelState<ff,DenseVector> initialize(ModelState<ff,DenseVector>& state) override { return state; };
+				ModelState<FINITE,DenseVector> initialize(ModelState<FINITE,DenseVector>& state) override { return state; };
 
 				/** @brief Initialization; superfluous. */
-				ModelState<ff,DenseVector> initialize(std::vector<ff> c, ModelState<ff,DenseVector>& state) override { return state; };
+				ModelState<FINITE,DenseVector> initialize(std::vector<FINITE> c, ModelState<FINITE,DenseVector>& state) override { return state; };
 			private:
 				std::mt19937 RNG;
 				std::uniform_real_distribution<double> unituniform;

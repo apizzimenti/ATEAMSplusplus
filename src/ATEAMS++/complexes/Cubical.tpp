@@ -313,24 +313,24 @@ namespace ATEAMS {
 		/**
 		 * Using the full (flat) boundary matrices, make SparseRREF matrices.
 		 */
-		template <typename T>
-		SparseMatrices<T> sparseBoundaryMatrices(Lattice L, Field F) {
-			SparseMatrices<T> Boundary(L.size());
-			int mod = (int)F.mod.n;
+		template <typename RingLike>
+		SparseMatrices<RingLike> sparseBoundaryMatrices(Lattice L, Ring* R) {
+			SparseMatrices<RingLike> Boundary(L.size());
+			int mod = (int)R->ring.mod.n;
 
 			for (int d=L.size()-1; d > 0; d--) {
 				// Get the dimensions of the matrix; instantiate.
 				int M = L[d-1].size(), N = L[d].size();
-				SparseMatrix<T> B(M,N);
+				SparseMatrix<RingLike> B(M,N);
 
 				// Fill in the values.
 				for (int col=0; col < L[d].size(); col++) {
 					for (int i=0; i < L[d][col].size(); i++) {
 						int row = L[d][col][i];
-						SparseVector<T>& matrow = B.rows[row];
+						SparseVector<RingLike>& matrow = B.rows[row];
 						matrow.push_back(
 							(index_t)col,
-							(T)((bool)(i%2) ? mod-1 : 1)
+							(typename RingLike::dtype)((bool)(i%2) ? mod-1 : 1)
 						);
 					}
 				}
@@ -368,10 +368,10 @@ namespace ATEAMS {
 		}
 
 
-		template <typename T>
-		SparseMatrix<T> sparseFullBoundaryMatrix(FlatBoundaryMatrix flat, Field F) {
-			SparseMatrix<T> Full(flat.size(), flat.size());
-			int mod = (int)F.mod.n;
+		template <typename RingLike>
+		SparseMatrix<RingLike> sparseFullBoundaryMatrix(FlatBoundaryMatrix flat, Ring* R) {
+			SparseMatrix<RingLike> Full(flat.size(), flat.size());
+			int mod = (int)R->ring.mod.n;
 
 			vector<int> cell;
 
@@ -379,10 +379,10 @@ namespace ATEAMS {
 				cell = flat[col];
 				for (int i=0; i < cell.size(); i++) {
 					int row = flat[col][i];
-					SparseVector<T>& matrow = Full.rows[row];
+					SparseVector<RingLike>& matrow = Full.rows[row];
 					matrow.push_back(
 						(index_t)col,
-						(T)((bool)(i%2) ? mod-1 : 1)
+						(typename RingLike::dtype)((bool)(i%2) ? mod-1 : 1)
 					);
 				}
 			}
@@ -427,14 +427,14 @@ namespace ATEAMS {
 		/** @endcond */
 
 
-		template <typename T>
-		int Cubical<T>::size() {
+		template <typename RingLike>
+		int Cubical<RingLike>::size() {
 			return this->_size;
 		}
 
 
-		template <typename T>
-		void Cubical<T>::constructFlatBoundaryMatrix() {
+		template <typename RingLike>
+		void Cubical<RingLike>::constructFlatBoundaryMatrix() {
 			// Create a Hamming cube of the appropriate dimension.
 			HammingCube cube = hamming(this->corners.size());
 			HammingCubeBoundary cubeBoundary = hammingBoundary(cube);
@@ -454,8 +454,8 @@ namespace ATEAMS {
 		}
 
 
-		template <typename T>
-		void Cubical<T>::constructBoundaryMatrices(Field F) {
+		template <typename RingLike>
+		void Cubical<RingLike>::constructBoundaryMatrices(Ring* R) {
 			// Create a Hamming cube of the appropriate dimension.
 			HammingCube cube = hamming(this->corners.size());
 			HammingCubeBoundary cubeBoundary = hammingBoundary(cube);
@@ -472,8 +472,8 @@ namespace ATEAMS {
 			this->offsets = makeOffsets(this->Cells);
 
 			// Get the sparse (co)boundary matrices.
-			this->Boundary.Matrices = sparseBoundaryMatrices<T>(L, F);
-			this->Coboundary.Matrices = SparseMatrices<T>(this->Boundary.Matrices.size());
+			this->Boundary.Matrices = sparseBoundaryMatrices<RingLike>(L, R);
+			this->Coboundary.Matrices = SparseMatrices<RingLike>(this->Boundary.Matrices.size());
 
 			for (int d=0; d < this->Boundary.Matrices.size(); d++) {
 				this->Coboundary.Matrices[d] = this->Boundary.Matrices[d].transpose();
@@ -482,8 +482,8 @@ namespace ATEAMS {
 		}
 
 
-		template <typename T>
-		void Cubical<T>::constructFullBoundaryMatrix(Field F) {
+		template <typename RingLike>
+		void Cubical<RingLike>::constructFullBoundaryMatrix(Ring* R) {
 			// Create a Hamming cube of the appropriate dimension.
 			HammingCube cube = hamming(this->corners.size());
 			HammingCubeBoundary cubeBoundary = hammingBoundary(cube);
@@ -492,7 +492,7 @@ namespace ATEAMS {
 			// flat boundary matrices for each dimension.
 			vector<indexer> protoBoundary = protoCubicalLattice(corners, cube, cubeBoundary, this->periodic);
 			Lattice L = cubicalLattice(protoBoundary);
-
+			
 			// Get cell counts and breaks.
 			this->Cells = getCellCounts(L);
 			this->_size = std::accumulate(this->Cells.begin(), this->Cells.end(), 0);
@@ -500,19 +500,19 @@ namespace ATEAMS {
 			this->offsets = makeOffsets(this->Cells);
 
 			FlatBoundaryMatrix flat = flatBoundaryMatrix(L, this->offsets);
-			this->Boundary.Full = sparseFullBoundaryMatrix<T>(flat, F);
+			this->Boundary.Full = sparseFullBoundaryMatrix<RingLike>(flat, R);
 			this->Coboundary.Full = this->Boundary.Full.transpose();
 		}
 
 
-		template <typename T>
-		Cubical<T>::Cubical(vector<int> corners, bool periodic) {
+		template <typename RingLike>
+		Cubical<RingLike>::Cubical(vector<int> corners, bool periodic) {
 			this->corners = corners;
 			this->periodic = periodic;
 		}
 
-		template <typename T>
-		Cubical<T>::Cubical(vector<int> corners) {
+		template <typename RingLike>
+		Cubical<RingLike>::Cubical(vector<int> corners) {
 			this->corners = corners;
 			this->periodic = true;
 		}

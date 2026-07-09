@@ -15,8 +15,8 @@ namespace ATEAMS {
 		 * @class Cubical
 		 * @brief Cubical complex.
 		 */
-		template <typename T=ATEAMS::ff>
-		class Cubical: public Complex<T> {
+		template <typename RingLike>
+		class Cubical: public Complex<RingLike> {
 			public:
 				/** @brief Short name, mostly for metadata collection. */
 				std::string kind = "cubical";
@@ -54,7 +54,7 @@ namespace ATEAMS {
 				 * 
 				 * @param F Finite field.
 				 */
-				void constructBoundaryMatrices(Field F) override;
+				void constructBoundaryMatrices(Ring* R) override;
 
 				/**
 				 * @brief Constructs a boundary matrix for use with PHAT.
@@ -64,7 +64,7 @@ namespace ATEAMS {
 				/**
 				 * @brief Constructs a full boundary matrix in SparseRREF format.
 				 */
-				void constructFullBoundaryMatrix(Field F) override;
+				void constructFullBoundaryMatrix(Ring* R) override;
 
 				/**
 				 * @brief Size.

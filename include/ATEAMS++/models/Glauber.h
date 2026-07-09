@@ -15,10 +15,10 @@ namespace ATEAMS {
 		 * @class Glauber
 		 * @brief Implements the Glauber dynamics algorithm.
 		 */
-		template <typename T=ATEAMS::ff>
+		template <typename T=ATEAMS::FINITE>
 		class Glauber: public Model<T,SparseVector> {
 			public:
-				/** Coefficients are of type @ref ATEAMS::ff or @ref ATEAMS::rational. */
+				/** Coefficients are of type @ref ATEAMS::ff or @ref ATEAMS::RATIONAL. */
 				typedef T dt;
 
 				/** Vectors are of type @ref ATEAMS::SparseVector. */

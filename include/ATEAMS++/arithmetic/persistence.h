@@ -23,9 +23,9 @@ namespace ATEAMS {
 		 * 
 		 * @returns A vector of percolation times.
 		 */
-		template <typename T>
+		template <typename RingLike>
 		std::vector<int> PHATPersistence(
-			ATEAMS::complexes::Complex<T>* complex,
+			complexes::Complex<RingLike>* complex,
 			std::vector<int> filtration,
 			int dimension
 		);
@@ -44,18 +44,18 @@ namespace ATEAMS {
 		 * 
 		 * @returns A vector of percolation times.
 		 */
-		template <typename T>
+		template <typename RingLike>
 		std::vector<int> TwistPersistence(
-			ATEAMS::complexes::Complex<T>* complex,
+			complexes::Complex<RingLike>* complex,
 			std::vector<int> filtration,
-			Field F,
+			Ring* R,
 			int dimension
 		);
 
 		/** @cond */
 		// Expose this for testing, but not for general use.
-		template <typename T>
-		ATEAMS::SparseMatrix<T> reindexSparseBoundaryMatrix(ATEAMS::complexes::Complex<T>* complex, std::vector<int> filtration, int dimension);
+		template <typename RingLike>
+		SparseMatrix<RingLike> reindexSparseBoundaryMatrix(complexes::Complex<RingLike>* complex, std::vector<int> filtration, int dimension);
 		/** @endcond */
 	}
 }

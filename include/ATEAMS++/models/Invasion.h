@@ -16,10 +16,10 @@ namespace ATEAMS {
 		 * @brief Implements the invaded-cluster algorithm for Potts lattice gauge theory
 		 * 	(PLGT) and the plaquette random-cluster model (PRCM).
 		 */
-		class Invasion: public Model<ff,DenseVector> {
+		class Invasion: public Model<FINITE,DenseVector> {
 			public:
-				/** Coefficients are of type @ref ATEAMS::ff. */
-				typedef ff dt;
+				/** Coefficients are of type @ref ATEAMS::FINITE. */
+				typedef FINITE dt;
 
 				/** Vectors are of type @ref ATEAMS::DenseVector. */
 				template <typename R>
@@ -31,7 +31,7 @@ namespace ATEAMS {
 				 * @param complex (Pointer to) a complex.
 				 * @param parameters Model parameters.
 				 */
-				Invasion(ATEAMS::complexes::Complex<ff>* complex, ModelParameters parameters);
+				Invasion(ATEAMS::complexes::Complex<FINITE>* complex, ModelParameters parameters);
 
 				/**
 				 * @brief Implements the plaquette invasion-percolation algorithm,
@@ -46,13 +46,13 @@ namespace ATEAMS {
 				 * @return Model state with @ref ModelState::includes, @ref ModelState::essential,
 				 * and @ref ModelState::t updated.
 				 */
-				ModelState<ff,DenseVector> sample(int t, ModelState<ff,DenseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
+				ModelState<FINITE,DenseVector> sample(int t, ModelState<FINITE,DenseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
 
 				/** @brief Initialization; superfluous. */
-				ModelState<ff,DenseVector> initialize(ModelState<ff,DenseVector>& state) override { return state; };
+				ModelState<FINITE,DenseVector> initialize(ModelState<FINITE,DenseVector>& state) override { return state; };
 
 				/** @brief Initialization; superfluous. */
-				ModelState<ff,DenseVector> initialize(std::vector<ff> c, ModelState<ff,DenseVector>& state) override { return state; };
+				ModelState<FINITE,DenseVector> initialize(std::vector<FINITE> c, ModelState<FINITE,DenseVector>& state) override { return state; };
 
 			private:
 				std::mt19937 RNG;

@@ -33,11 +33,11 @@ namespace ATEAMS {
 		 * matrix. For example, the \f$d\f$th entry contains the indices of its
 		 * \f$(d-1)\f$-dimensional faces.
 		 */
-		template <typename T=ATEAMS::ff>
+		template <typename RingLike>
 		struct BoundaryData {
-			SparseMatrices<T> Matrices;
-			SparseBases<T> Bases;
-			SparseMatrix<T> Full;
+			SparseMatrices<RingLike> Matrices;
+			SparseBases<RingLike> Bases;
+			SparseMatrix<RingLike> Full;
 			FlatBoundaryMatrix Flat;
 		};
 
@@ -45,12 +45,9 @@ namespace ATEAMS {
 		 * @class Complex
 		 * @brief Abstract (template) class for various complexes.
 		 */
-		template <typename T=ATEAMS::ff>
+		template <typename RingLike>
 		class Complex {
 			public:
-				/** Exposed matrix entry type. */
-				typedef T dt;
-				
 				/**
 				 * @brief Writes boundary matrices to file.
 				 * @param filename Destination.
@@ -67,7 +64,7 @@ namespace ATEAMS {
 				 * @brief Constructs boundary matrices.
 				 * @param F Finite field \f$ \Z/p\Z \f$ or \f$ \Q \f$..
 				 */
-				virtual void constructBoundaryMatrices(Field F) = 0;
+				virtual void constructBoundaryMatrices(Ring* R) = 0;
 
 				/**
 				 * @brief Constructs flat boundary matrix.
@@ -77,16 +74,16 @@ namespace ATEAMS {
 				/**
 				 * @brief Constructs a full boundary matrix (in SparseRREF format).
 				 */
-				virtual void constructFullBoundaryMatrix(Field F) = 0;
+				virtual void constructFullBoundaryMatrix(Ring* R) = 0;
 
 				/** @brief Total number of cells. */
 				virtual int size() = 0;
 
 				/** @brief Boundary data. */
-				BoundaryData<T> Boundary;
+				BoundaryData<RingLike> Boundary;
 
 				/** @brief Coboundary data. */
-				BoundaryData<T> Coboundary;
+				BoundaryData<RingLike> Coboundary;
 
 				/** @brief Contains cell counts. */
 				std::vector<int> Cells;

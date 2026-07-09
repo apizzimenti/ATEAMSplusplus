@@ -16,10 +16,10 @@ namespace ATEAMS {
 		 * @brief Implements the Swendsen--Wang algorithm for Potts lattice gauge theory
 		 * 	(PLGT) and the plaquette random-cluster model (PRCM).
 		 */
-		template <typename T=ATEAMS::ff>
+		template <typename T=ATEAMS::FINITE>
 		class InvadedCluster: public Model<T,SparseVector> {
 			public:
-				/** Coefficients are of type @ref ATEAMS::ff or @ref ATEAMS::rational. */
+				/** Coefficients are of type @ref ATEAMS::ff or @ref ATEAMS::RATIONAL. */
 				typedef T dt;
 
 				/** Vectors are of type @ref ATEAMS::SparseVector. */
