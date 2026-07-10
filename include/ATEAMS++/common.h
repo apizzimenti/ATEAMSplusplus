@@ -37,7 +37,7 @@ namespace ATEAMS {
 	 * @var Ring::ring
 	 * 	Abstract (SparseRREF) ring underlying this Ring.
 	 * 
-	 * @var Ring::char
+	 * @var Ring::characteristic
 	 * 	(Integer) characteristic of the ring.
 	 */
 	struct Ring {
@@ -98,7 +98,7 @@ namespace ATEAMS {
 	/**
 	 * @brief Quotient ring \f$\Z/2\Z\f$.
 	 */
-	struct Z2 : public Zp {
+	struct Z2 : public Ring {
 		public:
 			/**
 			 * @brief Data type @ref FINITE.
@@ -108,13 +108,19 @@ namespace ATEAMS {
 			/**
 			 * @brief Constructor.
 			 */
-			Z2() : Zp(2) { };
+			Z2() {
+				this->ring = AbstractRing(SparseRREF::FIELD_Fp, 2);
+				this->characteristic = 2;
+			};
 
 			/**
-			 * @brief Constructor with an unused parameter.
+			 * @brief Constructor.
 			 * @param characteristic Superfluous.
 			 */
-			Z2(int characteristic) : Zp(2) { };
+			Z2(int characteristic) {
+				this->ring = AbstractRing(SparseRREF::FIELD_Fp, 2);
+				this->characteristic = 2;
+			};
 	};
 
 	/**
@@ -172,6 +178,9 @@ namespace ATEAMS {
 
 	/** SparseRREF index of pivots. */
 	typedef SparseRREF::pivot_t<INDEX> SparsePivot;
+
+	/** SparseRREF list of pivots. */
+	typedef std::vector<std::vector<SparsePivot>> SparsePivots;
 
 	/** PHAT column. */
 	typedef std::vector<phat::index> PHATColumn;

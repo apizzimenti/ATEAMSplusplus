@@ -71,14 +71,13 @@ using namespace std;
 using Model = models::Bernoulli;
 using Parameters = models::ModelParameters;
 
-using Structure = complexes::Cubical<Model::RingType>;
+using Complex = complexes::Cubical<Model::RingType>;
 using State = models::ModelState<Model::RingType,Model::VectorType>;
 using Chain = statistics::Chain<Model::RingType,Model::VectorType>;
 
 int main() {
 	// Construct a cubical complex.
-	vector<int> corners = {6,6,6,6};
-	Structure COMPLEX(corners, true);
+	Complex COMPLEX({6,6,6,6});
 
 	// Parametrize the model.
 	Parameters PARAMETERS;
@@ -127,15 +126,14 @@ This takes ~11 seconds on a 2022 MacBook Air with an Apple M2 processor. **If yo
 	for things to work.
 
 * Using `mimalloc` on macOS with GCC ≥ 16 can sometimes yield slower compute times and segfaults.
-* For most models, sampling with rational coefficients doesn't make sense (yet).
+* `InvadedCluster` and `Invasion` perform \(\mathbb Z/2\mathbb Z\) persistence when using rational coefficients.
+* Some models don't have complete debugging information.
 
 
 ## Contributing
 We welcome contributions. A few housekeeping rules:
 
-1. **Use the fork + branch + PR flow.** Fork + clone this repository, then create
-a new branch for each new feature you add. Once it's camera-ready, open a pull
-request on the main repository page, and we'll review it.
+1. **Use the fork + branch + PR flow.** Fork + clone this repository, then create a new branch for each new feature you add. Once it's camera-ready, open a pull request on the main repository page, and we'll review it.
 2. **Test!** Please write unit tests (like the ones in `tests/`) for any significant features (e.g. new Models, arithmetic functions, parallelization) you add. _Pull requests without accompanying unit tests will be automatically closed._
 
 ## Citing

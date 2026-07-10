@@ -2,7 +2,7 @@
 #ifndef ATEAMS_COMPLEXES_CUBICAL_T
 #define ATEAMS_COMPLEXES_CUBICAL_T
 
-#ifndef ATEAMS_ARITHMETIC_PERSISTENCE_H
+#ifndef ATEAMS_COMPLEXES_CUBICAL_H
 #error __FILE__ should only be included from complexes/Cubical.h.
 #endif
 

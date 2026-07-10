@@ -3,7 +3,7 @@
 #define ATEAMS_STATISTICS_CHAIN_H
 
 #include "ATEAMS++/models/Model.h"
-#include "ATEAMS++/arithmetic/options.h"
+#include "ATEAMS++/arithmetic/arithmetic.h"
 
 #include <generator>
 

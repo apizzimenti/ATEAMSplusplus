@@ -10,7 +10,7 @@
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/models/InvadedCluster.h"
 #include "ATEAMS++/arithmetic/kernel.h"
-#include "ATEAMS++/arithmetic/persistence.h"
+#include "ATEAMS++/topology/persistence.h"
 
 #include <SparseRREF/sparse_vec.h>
 
@@ -32,10 +32,10 @@ namespace ATEAMS {
 
 			// Determine which (d-1)-cells are "satisfiable" (i.e. those on which the
 			// current (d-1)-cochain vanishes).
-			SparseVector<RingLike> satisfiable = sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
+			SparseVector<RingLike> satisfiable = arithmetic::SparseRightMultiplication<RingLike>(
 				this->complex->Coboundary.Matrices[d],
 				state.cochain,
-				this->coefficients->ring
+				this->coefficients
 			);
 
 			// The zero entries are those that don't show up in the indices, so we
@@ -68,16 +68,13 @@ namespace ATEAMS {
 			for (int j=0; j < inside.size(); j++) this->filtration[j+start] = inside[j]+start;
 
 			// Persist.
-			std::vector<int> essential;
-
-			int mod = (int)this->coefficients->characteristic;
-
-			if (mod < 3) {
-				essential = arithmetic::PHATPersistence<RingLike>(this->complex, this->filtration, this->dimension);
-			} else {
-				essential = arithmetic::TwistPersistence<RingLike>(this->complex, this->filtration, this->coefficients, this->dimension);
-			}
-
+			std::vector<int> essential = topology::persistence<RingLike>(
+				this->complex,
+				this->filtration,
+				this->coefficients,
+				this->dimension
+			);
+			
 			std::erase_if(essential, [stop, start](int x) { return !((start <= x) && (x < stop)); });
 			std::sort(essential.begin(), essential.end());
 
@@ -121,12 +118,11 @@ namespace ATEAMS {
 
 				// Multiply, and check whether there's anything in the resulting std::vector;
 				// there shouldn't be (i.e. it should have size 0).
-				SparseVector<RingLike> outcome = sparse_mat_dot_sparse_vec<typename RingLike::dtype, INDEX>(
+				SparseVector<RingLike> outcome = arithmetic::SparseRightMultiplication<RingLike>(
 					cbd,
 					sample,
-					this->coefficients->ring
+					this->coefficients
 				);
-
 				assert(outcome.size() < 1);
 			}
 

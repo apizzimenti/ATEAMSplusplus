@@ -9,9 +9,7 @@
 #include "ATEAMS++/util.h"
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/models/SwendsenWang.h"
-#include "ATEAMS++/arithmetic/kernel.h"
-
-#include <SparseRREF/sparse_mat.h>
+#include "ATEAMS++/arithmetic/arithmetic.h"
 
 #include <random>
 #include <algorithm>
@@ -42,13 +40,11 @@ namespace ATEAMS {
 			// it gets included in the computation. We do this by performing a (sparse!) matrix
 			// multiplication, then checking which of the entries are zero.
 			size_t d = this->dimension;
-
-			SparseVector<RingLike> coeffs = sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
+			SparseVector<RingLike> coeffs = arithmetic::SparseRightMultiplication<RingLike>(
 				this->complex->Coboundary.Matrices[d],
 				state.cochain,
-				this->coefficients->ring
+				this->coefficients
 			);
-			coeffs.compress();
 
 			// The zero entries are those that don't show up in the indices, so we
 			// automatically exclude these.
@@ -97,10 +93,10 @@ namespace ATEAMS {
 
 				// Multiply, and check whether there's anything in the resulting vector;
 				// there shouldn't be (i.e. it should have size 0).
-				SparseVector<RingLike> outcome = sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
+				SparseVector<RingLike> outcome = arithmetic::SparseRightMultiplication<RingLike>(
 					cbd,
 					sample,
-					this->coefficients->ring
+					this->coefficients
 				);
 
 				assert(outcome.size() < 1);

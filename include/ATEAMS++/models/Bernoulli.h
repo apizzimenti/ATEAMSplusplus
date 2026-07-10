@@ -3,8 +3,9 @@
 #define ATEAMS_MODELS_BERNOULLI_H
 
 #include "ATEAMS++/common.h"
+#include "ATEAMS++/complexes/Complex.h"
 #include "ATEAMS++/models/Model.h"
-#include "ATEAMS++/arithmetic/persistence.h"
+#include "ATEAMS++/topology/persistence.h"
 
 #include <random>
 #include <set>
@@ -63,7 +64,7 @@ namespace ATEAMS::models {
 			 * @param parameters Model parameters.
 			 */
 			Bernoulli(
-				ATEAMS::complexes::Complex<Z2>* complex,
+				complexes::Complex<Z2>* complex,
 				ModelParameters parameters
 			);
 
@@ -79,7 +80,7 @@ namespace ATEAMS::models {
 			 * @param DEBUG _(Optional, default `false`)_ Are we debugging this Model?
 			 */
 			Bernoulli(
-				ATEAMS::complexes::Complex<Z2>* complex,
+				complexes::Complex<Z2>* complex,
 				int dimension,
 				double p=0.5,
 				bool DEBUG=true
@@ -98,7 +99,7 @@ namespace ATEAMS::models {
 			ModelState<Z2,DenseVector> sample(
 				int t, 
 				ModelState<Z2,DenseVector>& state,
-				ATEAMS::arithmetic::ThreadOptions& options
+				arithmetic::ThreadOptions& options
 			) override;
 
 			/** @brief Initialization; superfluous. */

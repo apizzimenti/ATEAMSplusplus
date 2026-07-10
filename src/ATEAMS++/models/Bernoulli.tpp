@@ -7,7 +7,7 @@
 #endif
 
 #include "ATEAMS++/models/Bernoulli.h"
-#include "ATEAMS++/arithmetic/persistence.h"
+#include "ATEAMS++/topology/persistence.h"
 
 #include <random>
 #include <cassert>
@@ -61,7 +61,7 @@ namespace ATEAMS {
 
 			// Now, compute the persistence times, then filter over them to capture only
 			// the ones within the right window.
-			vector<int> essential = arithmetic::PHATPersistence<Z2>(this->complex, this->filtration, d);
+			vector<int> essential = topology::persistence<Z2>(this->complex, this->filtration, this->coefficients, d);
 			std::erase_if(essential, [stop, included](int t) { return !((stop <= t) && (t < stop+included)); });
 			std::sort(essential.begin(), essential.end());
 
