@@ -126,7 +126,7 @@ This takes ~11 seconds on a 2022 MacBook Air with an Apple M2 processor. **If yo
 	for things to work.
 
 * Using `mimalloc` on macOS with GCC ≥ 16 can sometimes yield slower compute times and segfaults.
-* `InvadedCluster` and `Invasion` perform $\mathbb Z/2\mathbb Z$ persistence when using rational coefficients.
+* `InvadedCluster` and `Invasion` perform $`\mathbb Z/2\mathbb Z`$ persistence when using rational coefficients.
 * Some models don't have complete debugging information.
 
 
