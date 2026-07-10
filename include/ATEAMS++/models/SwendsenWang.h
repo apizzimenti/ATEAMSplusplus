@@ -17,6 +17,26 @@ namespace ATEAMS::models {
 	 * 
 	 * @tparam RingLike A coefficient @ref Ring type, like @ref Zp or @ref Q.
 	 * 
+	 * @code
+	 * // Complexes must be constructed with the same underlying coefficient
+	 * // ring as the model. If the ring is known (e.g. for Bernoulli percolation it
+	 * // is always ATEAMS::Z2), you can name it explicitly; otherwise, the
+	 * // model exposes the ring type after it is declared. You can also create
+	 * // the complex *first* using a specific ring, which is exposed under the
+	 * // same type alias (i.e. ::RingType).
+	 * using CC = complexes::Cubical<Zp>;
+	 * 
+	 * CC plex({4,4,4,4});
+	 * CC::RingType RR(3); // equivalent to Zp RR(3);
+	 * 
+	 * models::ModelParameters params;
+	 * params.dimension = 2;
+	 * params.coefficients = &RR;
+	 * params.stoppingFunction = statistics::selfdual(&RR);
+	 * 
+	 * models::SwendsenWang<CC::RingType> SW(&plex, params);
+	 * @endcode
+	 * 
 	 * @var SwendsenWang::temperatureFunction
 	 * 	@brief Specifies an inverse temperature at each time-step; see @ref ATEAMS::statistics::selfdual.
 	 * 
@@ -32,7 +52,7 @@ namespace ATEAMS::models {
 			/**
 			 * @brief Exposed coefficient ring type. See @ref Ring.
 			 */
-			using CoefficientType = RingLike;
+			using RingType = RingLike;
 
 			/**
 			 * @brief Exposed vector storage type. See @ref SparseVector.

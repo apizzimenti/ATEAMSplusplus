@@ -1,14 +1,15 @@
 
-#include <ATEAMS++.h>
+#include <ATEAMS++/ATEAMS++.h>
 
 using namespace ATEAMS;
 using namespace std;
 
-using Complex = complexes::Cubical;
-using Parameters = models::BernoulliParameters;
 using Model = models::Bernoulli;
-using State = models::BernoulliState;
-using Chain = statistics::Chain<Model>;
+using Parameters = models::ModelParameters;
+
+using Structure = complexes::Cubical<Model::RingType>;
+using State = models::ModelState<Model::RingType,Model::VectorType>;
+using Chain = statistics::Chain<Model::RingType,Model::VectorType>;
 
 
 int main(int argc, char* argv[]) {
@@ -21,7 +22,7 @@ int main(int argc, char* argv[]) {
 
 	// Construct a cubical complex.
 	vector<int> corners(TOPDIMENSION, SCALE);
-	Complex COMPLEX(corners, true);
+	Structure COMPLEX(corners, true);
 
 	// Parametrize + initialize the model.
 	Parameters PARAMETERS;
@@ -31,9 +32,8 @@ int main(int argc, char* argv[]) {
 	Model MODEL(&COMPLEX, PARAMETERS);
 	Chain M(&MODEL, ITERATIONS);
 
-	for (State* STATE : M.simulate<State>()) { }
+	for (State STATE : M.simulate()) { }
 
 	return 0;
 }
-
 

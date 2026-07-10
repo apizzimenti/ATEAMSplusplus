@@ -160,9 +160,9 @@ Inheritance diagram for Glauber&lt; RingLike &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ab779bcbc3f387f71af0765385b1543be" id="r_ab779bcbc3f387f71af0765385b1543be"><td class="memItemLeft"><a id="ab779bcbc3f387f71af0765385b1543be" name="ab779bcbc3f387f71af0765385b1543be"></a>
-using&#160;</td><td class="memItemRight"><b>CoefficientType</b> = RingLike</td></tr>
-<tr class="memdesc:ab779bcbc3f387f71af0765385b1543be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exposed coefficient ring type. See <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>. <br /></td></tr>
+<tr class="memitem:a019cbd9f4f20c936dfb268d52b5d1e0a" id="r_a019cbd9f4f20c936dfb268d52b5d1e0a"><td class="memItemLeft"><a id="a019cbd9f4f20c936dfb268d52b5d1e0a" name="a019cbd9f4f20c936dfb268d52b5d1e0a"></a>
+using&#160;</td><td class="memItemRight"><b>RingType</b> = RingLike</td></tr>
+<tr class="memdesc:a019cbd9f4f20c936dfb268d52b5d1e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exposed coefficient ring type. See <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>. <br /></td></tr>
 <tr class="memitem:a5bf49417840f2e21eca8e9d534436a73" id="r_a5bf49417840f2e21eca8e9d534436a73"><td class="memTemplParams" colspan="2"><a id="a5bf49417840f2e21eca8e9d534436a73" name="a5bf49417840f2e21eca8e9d534436a73"></a>
 template&lt;typename R&gt; </td></tr>
 <tr class="memitem:a5bf49417840f2e21eca8e9d534436a73 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><b>VectorType</b> = <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt;R&gt;</td></tr>
@@ -212,11 +212,35 @@ bool&#160;</td><td class="memItemRight"><b>DEBUG</b></td></tr>
 class ATEAMS::models::Glauber&lt; RingLike &gt;</div><p>Implements the <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html" title="Implements the Glauber dynamics algorithm.">Glauber</a> dynamics algorithm. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a> type, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </td></tr>
+    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a> type, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
   </table>
   </dd>
 </dl>
-</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<div class="fragment"><div class="line"><span class="comment">// Complexes must be constructed with the same underlying coefficient</span></div>
+<div class="line"><span class="comment">// ring as the model. If the ring is known (e.g. for Bernoulli percolation it</span></div>
+<div class="line"><span class="comment">// is always ATEAMS::Z2), you can name it explicitly; otherwise, the</span></div>
+<div class="line"><span class="comment">// model exposes the ring type after it is declared. You can also create</span></div>
+<div class="line"><span class="comment">// the complex *first* using a specific ring, which is exposed under the</span></div>
+<div class="line"><span class="comment">// same type alias (i.e. ::RingType).</span></div>
+<div class="line"><span class="keyword">using </span>CC = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">complexes::Cubical&lt;Zp&gt;</a>;</div>
+<div class="line"> </div>
+<div class="line">CC plex({4,4,4,4});</div>
+<div class="line">CC::RingType RR(3); <span class="comment">// equivalent to Zp RR(3);</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">models::ModelParameters</a> params;</div>
+<div class="line">params.<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f">dimension</a> = 2;</div>
+<div class="line">params.<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a67c367e941d9cfa52dc173c8a0dc20f5">coefficients</a> = &amp;RR;</div>
+<div class="line">params.<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#ab4e19b8573d2f42134f8d05ec289295f">temperatureFunction</a> = <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1statistics.html#adec1b3926f4354b27bda2d569c39f746">statistics::selfdual</a>(&amp;RR);</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">models::Glauber&lt;CC::RingType&gt;</a> glauber(&amp;plex, params);</div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> Cubical.h:37</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_glauber_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber</a></div><div class="ttdoc">Implements the Glauber dynamics algorithm.</div><div class="ttdef"><b>Definition</b> Glauber.h:45</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1statistics_html_adec1b3926f4354b27bda2d569c39f746"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1statistics.html#adec1b3926f4354b27bda2d569c39f746">ATEAMS::statistics::selfdual</a></div><div class="ttdeci">std::function&lt; double(int)&gt; selfdual(Ring *R)</div><div class="ttdoc">Determines the self-dual probability for the PLGT/PRCM.</div><div class="ttdef"><b>Definition</b> schedules.h:17</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ATEAMS::models::ModelParameters</a></div><div class="ttdoc">Typical parameters required for simulating a Model.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:32</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a1a8a8235879363159315091a1daed72f"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f">ATEAMS::models::ModelParameters::dimension</a></div><div class="ttdeci">int dimension</div><div class="ttdef"><b>Definition</b> ModelParameters.h:46</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a67c367e941d9cfa52dc173c8a0dc20f5"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a67c367e941d9cfa52dc173c8a0dc20f5">ATEAMS::models::ModelParameters::coefficients</a></div><div class="ttdeci">Ring * coefficients</div><div class="ttdoc">Coefficient ring.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:34</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_ab4e19b8573d2f42134f8d05ec289295f"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#ab4e19b8573d2f42134f8d05ec289295f">ATEAMS::models::ModelParameters::temperatureFunction</a></div><div class="ttdeci">std::function&lt; double(int)&gt; temperatureFunction</div><div class="ttdef"><b>Definition</b> ModelParameters.h:40</div></div>
+</div><!-- fragment --> </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae1467a1fcdaf33d02265b99d0d1f3f3c" name="ae1467a1fcdaf33d02265b99d0d1f3f3c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae1467a1fcdaf33d02265b99d0d1f3f3c">&#9670;&#160;</a></span>Glauber() <span class="overload">[1/3]</span></h2>
 

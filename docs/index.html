@@ -166,7 +166,7 @@ Installation</h2>
 </div><!-- fragment --> will build ATEAMS++ to the <span class="tt">build</span> directory, then install its headers and bundled dependencies (SparseRREF, PHAT) to your system's default install location. If you want to install it somewhere else, <div class="fragment"><div class="line">$ sudo cmake --install build --prefix &quot;somewhere/else&quot;</div>
 </div><!-- fragment --> will do the trick.</li>
 <li><b>Double-check.</b> To verify that the library is installed correctly, running <div class="fragment"><div class="line">$ pkg-config --cflags --libs ATEAMS++</div>
-</div><!-- fragment --> should give something like <div class="fragment"><div class="line">-L/usr/local/lib -lATEAMS++ -lflint -I/usr/local/include -std=c++23</div>
+</div><!-- fragment --> should give something like <div class="fragment"><div class="line">-I/usr/local/include -std=c++23 -L/usr/local/lib -lflint</div>
 </div><!-- fragment --></li>
 <li><b>Triple-check.</b> If you want to run pre-built tests, set the <span class="tt">TEST</span> variable in <span class="tt">CMakeLists.txt</span> to <span class="tt">TRUE</span>, á la <div class="fragment"><div class="line">set(TEST TRUE)</div>
 </div><!-- fragment --> then run <span class="tt">make test</span>.</li>
@@ -185,13 +185,12 @@ Usage</h2>
 <div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s.html">ATEAMS</a>;</div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">using </span>Structure = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">complexes::Cubical&lt;ATEAMS::ff&gt;</a>;</div>
 <div class="line"><span class="keyword">using </span>Model = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">models::Bernoulli</a>;</div>
+<div class="line"><span class="keyword">using </span>Parameters = <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">models::ModelParameters</a>;</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// Tracks the state of the model; ATEAMS::ff is the finite-field data type,</span></div>
-<div class="line"><span class="comment">// and ATEAMS::DenseVector is just an alias of std::vector.</span></div>
-<div class="line"><span class="keyword">using </span>State = <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">models::ModelState&lt;ATEAMS::ff,ATEAMS::DenseVector&gt;</a>;</div>
-<div class="line"><span class="keyword">using </span>Chain = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">statistics::Chain&lt;ATEAMS::ff,ATEAMS::DenseVector&gt;</a>;</div>
+<div class="line"><span class="keyword">using </span>Structure = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">complexes::Cubical&lt;Model::RingType&gt;</a>;</div>
+<div class="line"><span class="keyword">using </span>State = <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">models::ModelState&lt;Model::RingType,Model::VectorType&gt;</a>;</div>
+<div class="line"><span class="keyword">using </span>Chain = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">statistics::Chain&lt;Model::RingType,Model::VectorType&gt;</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main() {</div>
 <div class="line">    <span class="comment">// Construct a cubical complex.</span></div>
@@ -199,9 +198,9 @@ Usage</h2>
 <div class="line">    Structure COMPLEX(corners, <span class="keyword">true</span>);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Parametrize the model.</span></div>
-<div class="line">    <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">models::ModelParameters</a> PARAMETERS;</div>
-<div class="line">    PARAMETERS.<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f">dimension</a> = 2;</div>
-<div class="line">    PARAMETERS.<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1922a551816a2725c69a086db7c12a03">p</a> = 0.5;</div>
+<div class="line">    Parameters PARAMETERS;</div>
+<div class="line">    PARAMETERS.dimension = 2;</div>
+<div class="line">    PARAMETERS.p = 0.5;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Construct the model, then the chain.</span></div>
 <div class="line">    Model MODEL(&amp;COMPLEX, PARAMETERS);</div>
@@ -224,18 +223,16 @@ Usage</h2>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> Cubical.h:37</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">ATEAMS::models::Bernoulli</a></div><div class="ttdoc">Implements Bernoulli percolation.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:23</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">ATEAMS::models::Bernoulli</a></div><div class="ttdoc">Implements Bernoulli percolation. See Z2.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:39</div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a></div><div class="ttdoc">Simulates the Markov chains specified by each Model.</div><div class="ttdef"><b>Definition</b> Chain.h:30</div></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:9</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ATEAMS::models::ModelParameters</a></div><div class="ttdoc">Typical parameters required for simulating a Model.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:32</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a1922a551816a2725c69a086db7c12a03"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1922a551816a2725c69a086db7c12a03">ATEAMS::models::ModelParameters::p</a></div><div class="ttdeci">float p</div><div class="ttdef"><b>Definition</b> ModelParameters.h:37</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a1a8a8235879363159315091a1daed72f"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f">ATEAMS::models::ModelParameters::dimension</a></div><div class="ttdeci">int dimension</div><div class="ttdef"><b>Definition</b> ModelParameters.h:46</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a></div><div class="ttdoc">Maintains state for this Model.</div><div class="ttdef"><b>Definition</b> ModelState.h:38</div></div>
 </div><!-- fragment --><p>If the above snippet is in a file called <span class="tt">main.cpp</span>, then compiling the program and running the executable should give something like</p>
 <div class="fragment"><div class="line">$ $CXX main.cpp `pkg-config --libs --cflags ATEAMS++` -o main</div>
 <div class="line">$ ./main</div>
 <div class="line">expected rank is 3.09</div>
-</div><!-- fragment --><p>When timed, this takes ~11 seconds. <b>If you plan to run large-scale simulations on an external machine, the <a href="https://github.com/apizzimenti/magnetizationplusplus">magnetizationplusplus workflow</a> may be of use to you.</b></p>
+</div><!-- fragment --><p>This takes ~11 seconds on a 2022 MacBook Air with an Apple M2 processor. <b>If you plan to run large-scale simulations on an external machine, the <a href="https://github.com/apizzimenti/magnetizationplusplus">magnetizationplusplus workflow</a> may be of use to you.</b></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Known issues</h2>
 <ul>
@@ -244,6 +241,7 @@ Known issues</h2>
 </div><!-- fragment --><p class="startli">for things to work.</p>
 </li>
 <li>Using <span class="tt">mimalloc</span> on macOS with GCC ≥ 16 can sometimes yield slower compute times and segfaults.</li>
+<li>For most models, sampling with rational coefficients doesn't make sense (yet).</li>
 </ul>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
 Contributing</h2>

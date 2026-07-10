@@ -1,6 +1,6 @@
 var class_a_t_e_a_m_s_1_1models_1_1_glauber =
 [
-    [ "CoefficientType", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ab779bcbc3f387f71af0765385b1543be", null ],
+    [ "RingType", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a019cbd9f4f20c936dfb268d52b5d1e0a", null ],
     [ "VectorType", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a5bf49417840f2e21eca8e9d534436a73", null ],
     [ "Glauber", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ae1467a1fcdaf33d02265b99d0d1f3f3c", null ],
     [ "Glauber", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a66346480812812f2c53f8c04e4c0d7fd", null ],

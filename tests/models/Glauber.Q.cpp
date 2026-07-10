@@ -8,9 +8,9 @@ using namespace std;
 using Model = models::Glauber<Q>;
 using Parameters = models::ModelParameters;
 
-using Structure = complexes::Cubical<Model::CoefficientType>;
-using State = models::ModelState<Model::CoefficientType,Model::VectorType>;
-using Chain = statistics::Chain<Model::CoefficientType,Model::VectorType>;
+using Structure = complexes::Cubical<Model::RingType>;
+using State = models::ModelState<Model::RingType,Model::VectorType>;
+using Chain = statistics::Chain<Model::RingType,Model::VectorType>;
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
@@ -20,10 +20,10 @@ int main(int argc, char *argv[]) {
 		vector<int> corners(dimension, 3);
 		Structure CUBICAL(corners);
 
-		Q QQ;
+		Model::RingType RR(FIELD);
 
 		Parameters PARAMETERS;
-		PARAMETERS.coefficients = &QQ;
+		PARAMETERS.coefficients = &RR;
 		PARAMETERS.dimension = dimension/2;
 		PARAMETERS.temperatureFunction = statistics::selfdual(PARAMETERS.coefficients);
 		PARAMETERS.DEBUG = true;
@@ -35,16 +35,16 @@ int main(int argc, char *argv[]) {
 			// Figure out which cells were excluded; on these cells, the cochain
 			// can evaluate to anything. We just want the ones that evaluate to
 			// 0.
-			vector<int> unsatisfied = statistics::unsatisfied<Model::CoefficientType>(
+			vector<int> unsatisfied = statistics::unsatisfied<Model::RingType>(
 				&CUBICAL, state.cochain, MODEL.coefficients, PARAMETERS.dimension
 			);
 
-			SparseMatrix<Model::CoefficientType> REDUCED = MODEL.complex->Coboundary.Matrices[PARAMETERS.dimension];
+			SparseMatrix<Model::RingType> REDUCED = MODEL.complex->Coboundary.Matrices[PARAMETERS.dimension];
 			for (auto u : unsatisfied) REDUCED[u].zero();
 			REDUCED.clear_zero_row();
 			REDUCED.compress();
 
-			if (!inKernel<Model::CoefficientType>(REDUCED, state.cochain, MODEL.coefficients, PARAMETERS.DEBUG)) {
+			if (!inKernel<Model::RingType>(REDUCED, state.cochain, MODEL.coefficients, PARAMETERS.DEBUG)) {
 				RESULT = FAIL;
 			}
 		}

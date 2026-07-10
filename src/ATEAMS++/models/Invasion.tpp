@@ -22,19 +22,20 @@ using namespace std;
 
 namespace ATEAMS {
 	namespace models {
-		ModelState<FINITE,DenseVector> Invasion::sample(
+		template <typename RingLike>
+		ModelState<RingLike,DenseVector> Invasion<RingLike>::sample(
 			int t,
-			ModelState<FINITE,DenseVector>& state,
+			ModelState<RingLike,DenseVector>& state,
 			arithmetic::ThreadOptions& options
 		) {
-			int d = this->parameters.dimension;
+			int d = this->dimension;
 
 			// Shuffle indices.
 			std::shuffle(this->indices.begin(), this->indices.end(), this->RNG);
 
-			int start = this->complex->breaks[d][0];
-			int stop = this->complex->breaks[d][1];
-			int offset = (d > 0) ? this->complex->offsets[d-1] : 0;
+			int start = this->complex->Breaks[d][0];
+			int stop = this->complex->Breaks[d][1];
+			int offset = (d > 0) ? this->complex->Offsets[d-1] : 0;
 			
 			// Fill in all the indices for cells of dimension not equal to d.
 			// TODO a small optimization: we only have to do the persistence algorithm
@@ -45,10 +46,12 @@ namespace ATEAMS {
 			// Persist.
 			DenseVector<int> essential;
 
-			if (this->parameters.field < 3) {
-				essential = arithmetic::PHATPersistence(this->complex, this->filtration, this->parameters.dimension);
+			int mod = (int)this->coefficients->characteristic;
+
+			if (mod < 3) {
+				essential = arithmetic::PHATPersistence<RingLike>(this->complex, this->filtration, this->dimension);
 			} else {
-				essential = arithmetic::TwistPersistence(this->complex, this->filtration, this->field, this->parameters.dimension);
+				essential = arithmetic::TwistPersistence<RingLike>(this->complex, this->filtration, this->coefficients, this->dimension);
 			}
 
 			// Make sure we shift the listed indices lower.
@@ -59,7 +62,7 @@ namespace ATEAMS {
 			std::for_each(essential.begin(), essential.end(), [offset](int &k) { k -= offset; });
 			std::sort(essential.begin(), essential.end()); // might be superfluous
 			
-			int stopAtTime = essential[this->parameters.stoppingFunction(t)];
+			int stopAtTime = essential[this->stoppingFunction(t)];
 			DenseVector<int> included(this->indices.begin(), this->indices.begin()+stopAtTime);
 
 			state.includes = included;
@@ -70,26 +73,29 @@ namespace ATEAMS {
 		}
 
 
-		Invasion::Invasion(
-			complexes::Complex<FINITE>* complex,
+		template <typename RingLike>
+		Invasion<RingLike>::Invasion(
+			complexes::Complex<RingLike>* complex,
 			ModelParameters parameters
-		) : Model<FINITE,DenseVector>( // parent constructor; initializes the field.
-			parameters.field > 0 ?	
-				Field(SparseRREF::FIELD_Fp, parameters.field) :
-				Field(SparseRREF::FIELD_QQ),
-			"Invasion"
+		) : Model<RingLike,DenseVector>(
+			parameters.coefficients,
+			parameters.dimension,
+			parameters.DEBUG
 		) {
-			this->parameters = parameters;
 			this->complex = complex;
+			this->stoppingFunction = parameters.stoppingFunction;
 
 			// Determine the field and build the boundary matrices for the Complex.
-			this->complex->constructBoundaryMatrices(this->field);
+			this->complex->constructBoundaryMatrices(this->coefficients);
 
-			if (this->parameters.field < 3) this->complex->constructFlatBoundaryMatrix();
-			else this->complex->constructFullBoundaryMatrix(this->field);
+			int mod = (int)this->coefficients->characteristic;
+			this->intuniform = std::uniform_int_distribution<int>(0,mod);
+
+			if (mod< 3) this->complex->constructFlatBoundaryMatrix();
+			else this->complex->constructFullBoundaryMatrix(this->coefficients);
 
 			// Initialize the indices so we don't have to re-create them over and over.
-			DenseVector<int> include(this->complex->Cells[this->parameters.dimension]);
+			DenseVector<int> include(this->complex->Cells[this->dimension]);
 			iota(begin(include), end(include), 0);
 			this->indices = include;
 
@@ -101,8 +107,43 @@ namespace ATEAMS {
 			// Initialize a random number generator.
 			std::random_device rd;
 			this->RNG = std::mt19937(rd());
-			this->intuniform = std::uniform_int_distribution<int>(0,this->parameters.field);
-		}
+		};
+
+		
+		template <typename RingLike>
+		Invasion<RingLike>::Invasion(
+			ATEAMS::complexes::Complex<RingLike>* complex,
+			Ring* R,
+			int dimension,
+			std::function<int(int)> stoppingFunction,
+			bool DEBUG
+		) : Model<RingLike,DenseVector>(R, dimension, DEBUG) {
+			this->complex = complex;
+			this->stoppingFunction = stoppingFunction;
+
+			// Determine the field and build the boundary matrices for the Complex.
+			this->complex->constructBoundaryMatrices(this->coefficients);
+
+			int mod = (int)this->coefficients->characteristic;
+			this->intuniform = std::uniform_int_distribution<int>(0,mod);
+
+			if (mod < 3) this->complex->constructFlatBoundaryMatrix();
+			else this->complex->constructFullBoundaryMatrix(this->coefficients);
+
+			// Initialize the indices so we don't have to re-create them over and over.
+			DenseVector<int> include(this->complex->Cells[this->dimension]);
+			iota(begin(include), end(include), 0);
+			this->indices = include;
+
+			// Also initialize the filtration.
+			DenseVector<int> filtration(this->complex->size());
+			iota(begin(filtration), end(filtration), 0);
+			this->filtration = filtration;
+
+			// Initialize a random number generator.
+			std::random_device rd;
+			this->RNG = std::mt19937(rd());
+		};
 	}
 }
 

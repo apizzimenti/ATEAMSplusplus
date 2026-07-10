@@ -1,5 +1,6 @@
 var class_a_t_e_a_m_s_1_1complexes_1_1_complex =
 [
+    [ "RingType", "class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a019cbd9f4f20c936dfb268d52b5d1e0a", null ],
     [ "constructBoundaryMatrices", "class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#aaef3b89d7151e0b6ac7e96e8b2c8bce7", null ],
     [ "constructFlatBoundaryMatrix", "class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a271a21d67a50656bbe743686c2ea9556", null ],
     [ "constructFullBoundaryMatrix", "class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a01aa572c027c6e8c3c88b3cc903b2542", null ],

@@ -12,16 +12,16 @@ namespace ATEAMS {
 	namespace statistics {
 		/**
 		 * @class Chain
-		 * @brief Simulates the Markov chains specified by each @ref ATEAMS::models::Model.
+		 * @brief Simulates the Markov chains specified by each @ref models::Model.
 		 * 
 		 * @var Chain::model
 		 * 	(Pointer to) a Model.
 		 * 
 		 * @var Chain::state
-		 * 	A @ref ATEAMS::models::ModelState.
+		 * 	A @ref models::ModelState.
 		 * 
 		 * @var Chain::options
-		 * 	Multithreaded computing options @ref ATEAMS::arithmetic::ThreadOptions.
+		 * 	Multithreaded computing options @ref arithmetic::ThreadOptions.
 		 * 
 		 * @var Chain::steps
 		 * 	Number of iterations.
@@ -29,26 +29,26 @@ namespace ATEAMS {
 		template <typename RingLike, template <typename> typename VectorLike>
 		class Chain {
 			public:
-				ATEAMS::models::Model<RingLike,VectorLike>* model;
-				ATEAMS::models::ModelState<RingLike,VectorLike> state;
-				ATEAMS::arithmetic::ThreadOptions options;
+				models::Model<RingLike,VectorLike>* model;
+				models::ModelState<RingLike,VectorLike> state;
+				arithmetic::ThreadOptions options;
 
 				int steps;
 
 				/**
-				 * @brief Constructor; uses default @ref ATEAMS::arithmetic::ThreadOptions.
+				 * @brief Constructor; uses default @ref arithmetic::ThreadOptions.
 				 * 
 				 * @param model (Pointer to) a Model instance.
 				 * @param steps Number of iterations.
 				 */
-				Chain(ATEAMS::models::Model<RingLike,VectorLike>* model, int steps) {
+				Chain(models::Model<RingLike,VectorLike>* model, int steps) {
 					this->model = model;
 					this->steps = steps;
 
-					ATEAMS::arithmetic::ThreadOptions options;
+					arithmetic::ThreadOptions options;
 					this->options = options;
 
-					ATEAMS::models::ModelState<RingLike,VectorLike> state;
+					models::ModelState<RingLike,VectorLike> state;
 					this->state = state;
 				};
 
@@ -59,12 +59,12 @@ namespace ATEAMS {
 				 * @param steps Number of iterations.
 				 * @param options User-provided compute options.
 				 */
-				Chain(ATEAMS::models::Model<RingLike,VectorLike>* model, int steps, ATEAMS::arithmetic::ThreadOptions options) {
+				Chain(models::Model<RingLike,VectorLike>* model, int steps, arithmetic::ThreadOptions options) {
 					this->model = model;
 					this->steps = steps;
 					this->options = options;
 
-					ATEAMS::models::ModelState<RingLike,VectorLike> state;
+					models::ModelState<RingLike,VectorLike> state;
 					this->state = state;
 				};
 
@@ -72,14 +72,14 @@ namespace ATEAMS {
 				 * @brief Model-generic iterator.
 				 * 
 				 * @code
-				 * 	for (models::ModelState<ATEAMS::ff,ATEAMS::SparseVector> State : M.simulate()) {
+				 * 	for (models::ModelState<Zp,SparseVector> State : M.simulate()) {
 				 * 		<do whatever>
 				 * 	}
 				 * @endcode
 				 * 
 				 * @returns A `std::generator`.
 				 */
-				std::generator<ATEAMS::models::ModelState<RingLike,VectorLike>> simulate() {
+				std::generator<models::ModelState<RingLike,VectorLike>> simulate() {
 					std::thread listener = options.spinUp();
 					this->model->initialize(this->state);
 

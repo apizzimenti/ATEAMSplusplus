@@ -8,9 +8,9 @@ using namespace std;
 using Model = models::Bernoulli;
 using Parameters = models::ModelParameters;
 
-using Structure = complexes::Cubical<Model::CoefficientType>;
-using State = models::ModelState<Model::CoefficientType,Model::VectorType>;
-using Chain = statistics::Chain<Model::CoefficientType,Model::VectorType>;
+using Structure = complexes::Cubical<Model::RingType>;
+using State = models::ModelState<Model::RingType,Model::VectorType>;
+using Chain = statistics::Chain<Model::RingType,Model::VectorType>;
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);

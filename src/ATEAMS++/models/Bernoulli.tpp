@@ -82,12 +82,11 @@ namespace ATEAMS {
 			return state;
 		}
 
-
 		Bernoulli::Bernoulli(
 			complexes::Complex<Z2>* complex,
 			ModelParameters parameters
 		) : Model<Z2,DenseVector>(
-			parameters.coefficients,
+			new Z2,
 			parameters.dimension,
 			parameters.DEBUG
 		) {

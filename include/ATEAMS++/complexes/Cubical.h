@@ -17,7 +17,7 @@ namespace ATEAMS {
 		 * 
 		 * @tparam RingLike A @ref Ring, like @ref Zp or @ref Q.
 		 * 
-		 * @var Cubical::kind
+		 * @var Cubical::name
 		 * 	Human-readable short name.
 		 * 
 		 * @var Cubical::corners
@@ -36,7 +36,7 @@ namespace ATEAMS {
 		template <typename RingLike>
 		class Cubical: public Complex<RingLike> {
 			public:
-				std::string kind = "cubical";
+				std::string name = "cubical";
 				std::vector<int> corners;
 
 				/**

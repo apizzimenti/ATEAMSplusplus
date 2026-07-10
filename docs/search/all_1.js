@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['abstractring_0',['abstractRing',['../namespace_a_t_e_a_m_s.html#ae80ef505614ae9f1c0b62bb0cb60ab29',1,'ATEAMS']]],
+  ['abstractring_0',['AbstractRing',['../namespace_a_t_e_a_m_s.html#a4cbb94314c6faf40168354c29480ac07',1,'ATEAMS']]],
   ['algebraic_20topology_20enabled_20algorithms_20for_20spin_20systems_20in_20c_20ateams_1',['Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)',['../index.html#autotoc_md0',1,'']]],
   ['algorithms_20for_20spin_20systems_20in_20c_20ateams_2',['Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)',['../index.html#autotoc_md0',1,'']]],
   ['ateams_3',['ATEAMS',['../index.html#autotoc_md0',1,'Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)'],['../namespace_a_t_e_a_m_s.html',1,'ATEAMS'],['../index.html',1,'ATEAMS++']]],

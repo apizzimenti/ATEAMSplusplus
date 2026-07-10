@@ -1,6 +1,6 @@
 var class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang =
 [
-    [ "CoefficientType", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#ab779bcbc3f387f71af0765385b1543be", null ],
+    [ "RingType", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a019cbd9f4f20c936dfb268d52b5d1e0a", null ],
     [ "VectorType", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a5bf49417840f2e21eca8e9d534436a73", null ],
     [ "SwendsenWang", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#ad50603e62b1fac05d23f3dc650926b6d", null ],
     [ "SwendsenWang", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a044e1ed814b7355b7668faf09f896ac4", null ],

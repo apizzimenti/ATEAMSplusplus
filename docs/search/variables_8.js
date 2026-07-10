@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['matrices_0',['Matrices',['../struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html#aa15b8139de9ef762c891066867695d4f',1,'ATEAMS::complexes::BoundaryData']]],
-  ['model_1',['model',['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#aad2d9d9b1041fff6385db7f2a697694c',1,'ATEAMS::statistics::Chain']]]
+  ['name_0',['name',['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a9b45b3e13bd9167aab02e17e08916231',1,'ATEAMS::complexes::Cubical::name'],['../class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a9b45b3e13bd9167aab02e17e08916231',1,'ATEAMS::models::Bernoulli::name'],['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a9b45b3e13bd9167aab02e17e08916231',1,'ATEAMS::models::Glauber::name'],['../class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a9b45b3e13bd9167aab02e17e08916231',1,'ATEAMS::models::InvadedCluster::name'],['../class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a9b45b3e13bd9167aab02e17e08916231',1,'ATEAMS::models::Invasion::name'],['../class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a9b45b3e13bd9167aab02e17e08916231',1,'ATEAMS::models::SwendsenWang::name']]]
 ];

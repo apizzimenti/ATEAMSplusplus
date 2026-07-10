@@ -152,7 +152,7 @@ namespace ATEAMS::models {
 		this->unituniform = std::uniform_real_distribution<double>(0,1);
 		this->indexuniform = std::uniform_int_distribution<int>(0, this->complex->Cells[this->dimension-1]);
 
-		int mod = (int)this->coefficients->ring.mod.n;
+		int mod = (int)this->coefficients->characteristic;
 		this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
 	};
 }

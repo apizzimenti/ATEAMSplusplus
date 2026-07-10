@@ -43,7 +43,7 @@ ATEAMS++ is a high-performance C++ library for simulating generalized Potts, ran
 	```
 	should give something like
 	```bash
-	-L/usr/local/lib -lATEAMS++ -lflint -I/usr/local/include -std=c++23
+	-I/usr/local/include -std=c++23 -L/usr/local/lib -lflint
 	```
 
 5. **Triple-check.** If you want to run pre-built tests, set the `TEST` variable in `CMakeLists.txt` to `TRUE`, á la
@@ -68,13 +68,12 @@ The below example samples plaquette Bernoulli percolation 1000 times on the scal
 using namespace ATEAMS;
 using namespace std;
 
-using Structure = complexes::Cubical<ATEAMS::ff>;
 using Model = models::Bernoulli;
+using Parameters = models::ModelParameters;
 
-// Tracks the state of the model; ATEAMS::ff is the finite-field data type,
-// and ATEAMS::DenseVector is just an alias of std::vector.
-using State = models::ModelState<ATEAMS::ff,ATEAMS::DenseVector>;
-using Chain = statistics::Chain<ATEAMS::ff,ATEAMS::DenseVector>;
+using Structure = complexes::Cubical<Model::RingType>;
+using State = models::ModelState<Model::RingType,Model::VectorType>;
+using Chain = statistics::Chain<Model::RingType,Model::VectorType>;
 
 int main() {
 	// Construct a cubical complex.
@@ -82,7 +81,7 @@ int main() {
 	Structure COMPLEX(corners, true);
 
 	// Parametrize the model.
-	models::ModelParameters PARAMETERS;
+	Parameters PARAMETERS;
 	PARAMETERS.dimension = 2;
 	PARAMETERS.p = 0.5;
 
@@ -116,7 +115,7 @@ $ ./main
 expected rank is 3.09
 ```
 
-When timed, this takes ~11 seconds. **If you plan to run large-scale simulations on an external machine, the [magnetizationplusplus workflow](https://github.com/apizzimenti/magnetizationplusplus) may be of use to you.**
+This takes ~11 seconds on a 2022 MacBook Air with an Apple M2 processor. **If you plan to run large-scale simulations on an external machine, the [magnetizationplusplus workflow](https://github.com/apizzimenti/magnetizationplusplus) may be of use to you.**
 
 ## Known issues
 * On some Linux systems, linking against ATEAMS++ after it's installed may cause some issues. In the event you get a linking error talking about undefined symbols in a `tbb` namespace, you may have to recompile your program with
@@ -128,6 +127,7 @@ When timed, this takes ~11 seconds. **If you plan to run large-scale simulations
 	for things to work.
 
 * Using `mimalloc` on macOS with GCC ≥ 16 can sometimes yield slower compute times and segfaults.
+* For most models, sampling with rational coefficients doesn't make sense (yet).
 
 
 ## Contributing

@@ -22,20 +22,20 @@
 namespace ATEAMS {
 	namespace models {
 
-		template <typename T>
-		ModelState<T,SparseVector> InvadedCluster<T>::sample(
+		template <typename RingLike>
+		ModelState<RingLike,SparseVector> InvadedCluster<RingLike>::sample(
 			int t,
-			ModelState<T,SparseVector>& state,
+			ModelState<RingLike,SparseVector>& state,
 			arithmetic::ThreadOptions& options
 		) {
-			int d = this->parameters.dimension;
+			int d = this->dimension;
 
 			// Determine which (d-1)-cells are "satisfiable" (i.e. those on which the
 			// current (d-1)-cochain vanishes).
-			SparseVector<T> coefficients = sparse_mat_dot_sparse_vec<T,INDEX>(
+			SparseVector<RingLike> satisfiable = sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
 				this->complex->Coboundary.Matrices[d],
 				state.cochain,
-				this->field
+				this->coefficients->ring
 			);
 
 			// The zero entries are those that don't show up in the indices, so we
@@ -44,8 +44,8 @@ namespace ATEAMS {
 			std::set<size_t> exclude;
 			std::vector<size_t> include;
 			
-			if (coefficients.size() > 0) {
-				for (int e=0; e < coefficients.size(); e++) exclude.insert((size_t)e);
+			if (satisfiable.size() > 0) {
+				for (int e=0; e < satisfiable.size(); e++) exclude.insert((size_t)e);
 			}
 
 			for (int i=0; i < N; i++) {
@@ -58,8 +58,8 @@ namespace ATEAMS {
 			std::vector<size_t> inside(include.begin(), include.end());
 			inside.insert(inside.end(), exclude.begin(), exclude.end());
 
-			int stop = this->complex->breaks[d][1];
-			int start = this->complex->breaks[d][0];
+			int stop = this->complex->Breaks[d][1];
+			int start = this->complex->Breaks[d][0];
 			
 			// Fill in all the indices for cells of dimension not equal to d.
 			// TODO a small optimization: we only have to do the persistence algorithm
@@ -70,16 +70,18 @@ namespace ATEAMS {
 			// Persist.
 			std::vector<int> essential;
 
-			if (this->parameters.field < 3) {
-				essential = arithmetic::PHATPersistence(this->complex, this->filtration, this->parameters.dimension);
+			int mod = (int)this->coefficients->characteristic;
+
+			if (mod < 3) {
+				essential = arithmetic::PHATPersistence<RingLike>(this->complex, this->filtration, this->dimension);
 			} else {
-				essential = arithmetic::TwistPersistence(this->complex, this->filtration, this->field, this->parameters.dimension);
+				essential = arithmetic::TwistPersistence<RingLike>(this->complex, this->filtration, this->coefficients, this->dimension);
 			}
 
 			std::erase_if(essential, [stop, start](int x) { return !((start <= x) && (x < stop)); });
 			std::sort(essential.begin(), essential.end());
 
-			if (this->parameters.DEBUG) {
+			if (this->DEBUG) {
 				cerr << "filtration:" << endl;
 				printvector<int>(this->filtration);
 				cerr << endl;
@@ -91,7 +93,7 @@ namespace ATEAMS {
 
 			// Now, sample from the kernel, excluding unoccupied columns *or* columns
 			// corresponding to cells included *after* percolating.
-			int stopat = essential[this->parameters.stoppingFunction(t)];
+			int stopat = essential[this->stoppingFunction(t)];
 			
 			std::set<size_t> leaveout;
 			std::vector<int> included(stopat-start, 0);
@@ -99,30 +101,30 @@ namespace ATEAMS {
 			for (int i=stopat; i < stop; i++) leaveout.insert(this->filtration[i]-start);
 			for (int i=start; i < stopat; i++) included[i-start] = this->filtration[i]-start;
 
-			SparseVector<T> sample = arithmetic::submatrixKernelSample(
+			SparseVector<RingLike> sample = arithmetic::submatrixKernelSample<RingLike>(
 				this->complex->Coboundary.Matrices[d],	// complete dth coboundary matrix
-				this->field,							// field
+				this->coefficients,							// field
 				leaveout,								// rows to exclude
 				this->intuniform,						// uniform random over field
 				this->RNG,								// RNG
 				options,								// compute options
-				this->parameters.DEBUG					// debugging
+				this->DEBUG					// debugging
 			);
 
 			// If we're debugging, check whether we actually sampled from the kernel.
-			if (this->parameters.DEBUG) {
+			if (this->DEBUG) {
 				// Copy and pare down the coboundary matrix.
-				SparseMatrix<T> cbd = this->complex->Coboundary.Matrices[d];
+				SparseMatrix<RingLike> cbd = this->complex->Coboundary.Matrices[d];
 				for (auto i : leaveout) cbd[i].zero();
 				cbd.clear_zero_row();
 				cbd.compress();
 
 				// Multiply, and check whether there's anything in the resulting std::vector;
 				// there shouldn't be (i.e. it should have size 0).
-				SparseVector<T> outcome = sparse_mat_dot_sparse_vec<T, INDEX>(
+				SparseVector<RingLike> outcome = sparse_mat_dot_sparse_vec<typename RingLike::dtype, INDEX>(
 					cbd,
 					sample,
-					this->field
+					this->coefficients->ring
 				);
 
 				assert(outcome.size() < 1);
@@ -137,16 +139,16 @@ namespace ATEAMS {
 		}
 
 
-		template <typename T>
-		ModelState<T,SparseVector> InvadedCluster<T>::initialize(
-			ModelState<T,SparseVector>& state
+		template <typename RingLike>
+		ModelState<RingLike,SparseVector> InvadedCluster<RingLike>::initialize(
+			ModelState<RingLike,SparseVector>& state
 		) {
-			size_t dimension = this->parameters.dimension-1;
+			size_t dimension = this->dimension-1;
 			int N = this->complex->Cells[dimension];
 
-			SparseVector<T> cochain;
+			SparseVector<RingLike> cochain;
 			for (int i=0; i < N; i++) cochain.push_back(
-				(INDEX)i, (T)this->intuniform(this->RNG)
+				(INDEX)i, (typename RingLike::dtype)this->intuniform(this->RNG)
 			);
 
 			cochain.compress();
@@ -155,36 +157,38 @@ namespace ATEAMS {
 		}
 
 
-		template <typename T>
-		ModelState<T,SparseVector> InvadedCluster<T>::initialize(
-			SparseVector<T> c,
-			ModelState<T,SparseVector>& state
+		template <typename RingLike>
+		ModelState<RingLike,SparseVector> InvadedCluster<RingLike>::initialize(
+			SparseVector<RingLike> c,
+			ModelState<RingLike,SparseVector>& state
 		) {
 			state.cochain = c;
 			return state;
 		}
 
 
-		template <typename T>
-		InvadedCluster<T>::InvadedCluster(
-			complexes::Complex<T>* complex,
+		template <typename RingLike>
+		InvadedCluster<RingLike>::InvadedCluster(
+			complexes::Complex<RingLike>* complex,
 			ModelParameters parameters
-		) : Model<T,SparseVector>( // parent constructor; initializes the field.
-			parameters.field > 0 ?
-				Field(SparseRREF::FIELD_Fp, parameters.field) :
-				Field(SparseRREF::FIELD_QQ),
-			"InvadedCluster"
+		) : Model<RingLike,SparseVector>(
+			parameters.coefficients,
+			parameters.dimension,
+			parameters.DEBUG
 		) {
-			this->parameters = parameters;
 			this->complex = complex;
 
 			// Determine the field and build the boundary matrices for the Complex.
-			this->complex->constructBoundaryMatrices(this->field);
+			this->complex->constructBoundaryMatrices(this->coefficients);
+			this->stoppingFunction = parameters.stoppingFunction;
 
-			if (this->parameters.field == 2){
+			int mod = (int)this->coefficients->characteristic;
+			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
+
+			if (mod == 2){
 				this->complex->constructFlatBoundaryMatrix();
 			} else {
-				this->complex->constructFullBoundaryMatrix(this->field);
+				this->complex->constructFullBoundaryMatrix(this->coefficients);
 			}
 
 			std::vector<int> filtration(this->complex->size());
@@ -194,8 +198,39 @@ namespace ATEAMS {
 			// Initialize a random number generator.
 			std::random_device rd;
 			this->RNG = std::mt19937(rd());
-			this->intuniform = std::uniform_int_distribution<int>(0,this->parameters.field > 0 ? this->parameters.field : 1);
-		}
+		};
+
+		template <typename RingLike>
+		InvadedCluster<RingLike>::InvadedCluster(
+			complexes::Complex<RingLike>* complex,
+			Ring* R,
+			int dimension,
+			std::function<int(int)> stoppingFunction,
+			bool DEBUG
+		) : Model<RingLike,SparseVector>(R, dimension, DEBUG) {
+			this->complex = complex;
+			this->stoppingFunction = stoppingFunction;
+
+			// Determine the field and build the boundary matrices for the Complex.
+			this->complex->constructBoundaryMatrices(this->coefficients);
+
+			int mod = (int)this->coefficients->characteristic;
+			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
+
+			if (mod == 2){
+				this->complex->constructFlatBoundaryMatrix();
+			} else {
+				this->complex->constructFullBoundaryMatrix(this->coefficients);
+			}
+
+			std::vector<int> filtration(this->complex->size());
+			std::iota(filtration.begin(), filtration.end(), 0);
+			this->filtration = filtration;
+
+			// Initialize a random number generator.
+			std::random_device rd;
+			this->RNG = std::mt19937(rd());
+		};
 	}
 }
 

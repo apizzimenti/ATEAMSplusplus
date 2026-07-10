@@ -28,7 +28,7 @@ namespace ATEAMS {
 	typedef SparseRREF::rat_t RATIONAL;
 
 	/** Type alias for a SparseRREF ring type. */
-	typedef SparseRREF::field_t abstractRing;
+	typedef SparseRREF::field_t AbstractRing;
 
 	/**
 	 * @class Ring
@@ -36,10 +36,14 @@ namespace ATEAMS {
 	 * 
 	 * @var Ring::ring
 	 * 	Abstract (SparseRREF) ring underlying this Ring.
+	 * 
+	 * @var Ring::char
+	 * 	(Integer) characteristic of the ring.
 	 */
 	struct Ring {
 		public:
-			abstractRing ring;
+			AbstractRing ring;
+			int characteristic;
 	};
 
 	/**
@@ -55,17 +59,19 @@ namespace ATEAMS {
 
 			/**
 			 * @brief Constructor.
-			 * @param characteristic Characteristic of the field; superfluous.
+			 * @param characteristic Superfluous.
 			 */
 			Q(int characteristic) {
-				this->ring = abstractRing(SparseRREF::FIELD_QQ);
+				this->ring = AbstractRing(SparseRREF::FIELD_QQ);
+				this->characteristic = 0;
 			};
 
 			/** 
 			 * @brief Constructor.
 			 */
 			Q() {
-				this->ring = abstractRing(SparseRREF::FIELD_QQ);
+				this->ring = AbstractRing(SparseRREF::FIELD_QQ);
+				this->characteristic = 0;
 			};
 	};
 
@@ -84,7 +90,8 @@ namespace ATEAMS {
 			 * @param characteristic Characteristic (modulus) of the ring.
 			 */
 			Zp(int characteristic) {
-				this->ring = abstractRing(SparseRREF::FIELD_Fp, characteristic);
+				this->ring = AbstractRing(SparseRREF::FIELD_Fp, characteristic);
+				this->characteristic = characteristic;
 			};
 	};
 
@@ -101,7 +108,19 @@ namespace ATEAMS {
 			/**
 			 * @brief Constructor.
 			 */
-			Z2() { this->ring = abstractRing(SparseRREF::FIELD_Fp, 2); };
+			Z2() {
+				this->ring = AbstractRing(SparseRREF::FIELD_Fp, 2);
+				this->characteristic = 2;
+			};
+
+			/**
+			 * @brief Constructor with an unused parameter.
+			 * @param characteristic Superfluous.
+			 */
+			Z2(int characteristic) {
+				this->ring = AbstractRing(SparseRREF::FIELD_Fp, 2);
+				this->characteristic = 2;
+			};
 	};
 
 	/**
@@ -151,7 +170,7 @@ namespace ATEAMS {
 	 * @tparam T Numeric type.
 	 */
 	template <typename T>
-	using DenseVector = std::vector<T,std::allocator<T>>;
+	using DenseVector = std::vector<T>;
 
 	/** @cond */
 	/** Flat boundary matrix. */

@@ -1,6 +1,6 @@
 var class_a_t_e_a_m_s_1_1models_1_1_bernoulli =
 [
-    [ "CoefficientType", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a739f538186290736563a552cb07f0851", null ],
+    [ "RingType", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a0de824a793d86fd7437bcb1aef34d3dd", null ],
     [ "VectorType", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#ae00b00fff77661c47e6bfc5092436f3e", null ],
     [ "Bernoulli", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a8df54a8e4554ea92d4391bad125f76b2", null ],
     [ "Bernoulli", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a0a987a419a985380ddfa6c9398cd8d95", null ],

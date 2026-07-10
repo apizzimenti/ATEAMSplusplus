@@ -7,14 +7,12 @@ var hierarchy =
     ] ],
     [ "DataWriter", "class_a_t_e_a_m_s_1_1_data_writer.html", null ],
     [ "Model&lt; RingLike, VectorLike &gt;", "class_a_t_e_a_m_s_1_1models_1_1_model.html", null ],
-    [ "Model&lt; ATEAMS::FINITE, SparseVector &gt;", "class_a_t_e_a_m_s_1_1models_1_1_model.html", [
-      [ "InvadedCluster< T >", "class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html", null ]
-    ] ],
-    [ "Model&lt; FINITE, DenseVector &gt;", "class_a_t_e_a_m_s_1_1models_1_1_model.html", [
-      [ "Invasion", "class_a_t_e_a_m_s_1_1models_1_1_invasion.html", null ]
+    [ "Model&lt; RingLike, DenseVector &gt;", "class_a_t_e_a_m_s_1_1models_1_1_model.html", [
+      [ "Invasion< RingLike >", "class_a_t_e_a_m_s_1_1models_1_1_invasion.html", null ]
     ] ],
     [ "Model&lt; RingLike, SparseVector &gt;", "class_a_t_e_a_m_s_1_1models_1_1_model.html", [
       [ "Glauber< RingLike >", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html", null ],
+      [ "InvadedCluster< RingLike >", "class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html", null ],
       [ "SwendsenWang< RingLike >", "class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html", null ]
     ] ],
     [ "Model&lt; Z2, DenseVector &gt;", "class_a_t_e_a_m_s_1_1models_1_1_model.html", [

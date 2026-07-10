@@ -12,7 +12,23 @@
 namespace ATEAMS::models {
 	/**
 	 * @class Bernoulli
-	 * @brief Implements Bernoulli percolation.
+	 * @brief Implements Bernoulli percolation. See @ref Z2.
+	 * 
+	 * @code
+	 * // Complexes must be constructed with the same underlying coefficient
+	 * // ring as the model. If the ring is known (e.g. for Bernoulli percolation it
+	 * // is always ATEAMS::Z2), you can name it explicitly; otherwise, the
+	 * // model exposes the ring type after it is declared. You can also create
+	 * // the complex *first* using a specific ring, which is exposed under the
+	 * // same type alias (i.e. ::RingType).
+	 * complexes::Cubical<models::Bernoulli::RingType> plex({4,4,4,4});
+	 * 
+	 * models::ModelParameters params;
+	 * params.dimension = 2;
+	 * params.p = 0.5;
+	 * 
+	 * models::Bernoulli percolation(&plex, params);
+	 * @endcode
 	 * 
 	 * @var Bernoulli::p
 	 * 	@brief Bernoulli trial density \f$p \in [0,1]\f$.
@@ -28,7 +44,7 @@ namespace ATEAMS::models {
 			/**
 			 * @brief Exposed coefficient ring type. See @ref Z2.
 			 */
-			using CoefficientType = Z2;
+			using RingType = Z2;
 
 			/**
 			 * @brief Exposed vector storage type. See @ref SparseVector.

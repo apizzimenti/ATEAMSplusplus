@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['name_0',['name',['../class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a9b45b3e13bd9167aab02e17e08916231',1,'ATEAMS::models::Bernoulli::name'],['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a9b45b3e13bd9167aab02e17e08916231',1,'ATEAMS::models::Glauber::name'],['../class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a9b45b3e13bd9167aab02e17e08916231',1,'ATEAMS::models::SwendsenWang::name']]]
+  ['offsets_0',['Offsets',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#af4dbfcfd4ffe8e565bfc5df5089ec9ce',1,'ATEAMS::complexes::Complex']]],
+  ['opt_1',['opt',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#a1f3b56a433fc78d01e9882a1a0e0cba5',1,'ATEAMS::arithmetic::ThreadOptions']]],
+  ['options_2',['options',['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a1930e89a9919e7828febcae544ec34ad',1,'ATEAMS::statistics::Chain']]]
 ];

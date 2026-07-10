@@ -43,20 +43,20 @@ namespace ATEAMS {
 			// multiplication, then checking which of the entries are zero.
 			size_t d = this->dimension;
 
-			SparseVector<RingLike> coefficients = sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
+			SparseVector<RingLike> coeffs = sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
 				this->complex->Coboundary.Matrices[d],
 				state.cochain,
 				this->coefficients->ring
 			);
-			coefficients.compress();
+			coeffs.compress();
 
 			// The zero entries are those that don't show up in the indices, so we
 			// automatically exclude these.
 			int N = this->complex->Cells[d];
 			std::set<size_t> exclude;
 			
-			if (coefficients.size() > 0) {
-				for (int e=0; e < coefficients.size(); e++) exclude.insert((size_t)e);
+			if (coeffs.size() > 0) {
+				for (int e=0; e < coeffs.size(); e++) exclude.insert((size_t)e);
 			}
 
 			// We then iterate over the remaining indices and flip a weighted coin (i.e.
@@ -165,7 +165,7 @@ namespace ATEAMS {
 			this->RNG = std::mt19937(rd());
 			this->unituniform = std::uniform_real_distribution<double>(0,1);
 
-			int mod = (int)R->ring.mod.n;
+			int mod = (int)R->characteristic;
 			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
 		};
 
@@ -194,7 +194,7 @@ namespace ATEAMS {
 			this->RNG = std::mt19937(rd());
 			this->unituniform = std::uniform_real_distribution<double>(0,1);
 
-			int mod = (int)R->ring.mod.n;
+			int mod = (int)R->characteristic;
 			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
 		};
 
@@ -202,7 +202,11 @@ namespace ATEAMS {
 		SwendsenWang<RingLike>::SwendsenWang(
 			complexes::Complex<RingLike>* complex,
 			ModelParameters parameters
-		) : Model<RingLike,SparseVector>(parameters.coefficients, parameters.dimension, parameters.DEBUG) {
+		) : Model<RingLike,SparseVector>(
+			parameters.coefficients,
+			parameters.dimension,
+			parameters.DEBUG
+		) {
 			this->complex = complex;
 			this->temperatureFunction = parameters.temperatureFunction;
 
@@ -220,7 +224,7 @@ namespace ATEAMS {
 			this->RNG = std::mt19937(rd());
 			this->unituniform = std::uniform_real_distribution<double>(0,1);
 
-			int mod = (int)this->coefficients->ring.mod.n;
+			int mod = (int)this->coefficients->characteristic;
 			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
 		}
 	}

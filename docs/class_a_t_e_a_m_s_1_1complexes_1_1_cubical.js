@@ -7,5 +7,5 @@ var class_a_t_e_a_m_s_1_1complexes_1_1_cubical =
     [ "constructFullBoundaryMatrix", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a7dccc3b83aec5b2425d3f93cc5cbcf4f", null ],
     [ "size", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a808525013fd8f811fabce39491042118", null ],
     [ "corners", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#acd2e31b75850ec31ea70d4ecf18330b1", null ],
-    [ "kind", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#aca87c2bbc26e697653e2d8461c76a361", null ]
+    [ "name", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a9b45b3e13bd9167aab02e17e08916231", null ]
 ];

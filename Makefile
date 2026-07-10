@@ -8,6 +8,9 @@ DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 clean:
 	rm -rf build
 
+reset: clean
+	sudo rm -rf /usr/local/include/ATEAMS++ /usr/local/include/ATEAMS++.h
+
 build:
 	cmake -B build
 	cmake --build build -v

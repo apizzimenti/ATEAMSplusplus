@@ -98,6 +98,8 @@ namespace ATEAMS {
 			// then the mapping should have entries
 			//
 			//				{... 12: 9, 9: 10, 10: 11, 19: 12, ...}
+
+			// TODO optimize, this takes way too long
 			map<int,int> remapping;
 			for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
 
@@ -110,6 +112,8 @@ namespace ATEAMS {
 
 			boundary.set_num_cols(complex->Boundary.Flat.size());
 
+			// this also takes an insane amount of time; no need to go all the way
+			// up.
 			for (int t=0; t < complex->Boundary.Flat.size(); t++) {
 				faces = complex->Boundary.Flat[t].size();
 

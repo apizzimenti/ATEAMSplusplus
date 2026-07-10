@@ -5,12 +5,12 @@
 using namespace ATEAMS;
 using namespace std;
 
-using Model = models::Invasion;
+using Model = models::Invasion<Zp>;
 using Parameters = models::ModelParameters;
 
-using Structure = complexes::Cubical<Model::dt>;
-using State = models::ModelState<Model::dt,Model::st>;
-using Chain = statistics::Chain<Model::dt,Model::st>;
+using Structure = complexes::Cubical<Model::RingType>;
+using State = models::ModelState<Model::RingType,Model::VectorType>;
+using Chain = statistics::Chain<Model::RingType,Model::VectorType>;
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);
@@ -20,8 +20,10 @@ int main(int argc, char *argv[]) {
 		vector<int> corners(dimension, 3);
 		Structure COMPLEX(corners);
 
+		Model::RingType R(FIELD);
+
 		Parameters PARAMETERS;
-		PARAMETERS.field = FIELD;
+		PARAMETERS.coefficients = &R;
 		PARAMETERS.dimension = dimension/2;
 		PARAMETERS.stoppingFunction = statistics::stopInvadingAt({1});
 		PARAMETERS.DEBUG = true;

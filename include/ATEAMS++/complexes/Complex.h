@@ -86,6 +86,11 @@ namespace ATEAMS {
 				bool periodic;
 
 				/**
+				 * @brief Exposed coefficient ring type. See @ref Ring.
+				 */
+				using RingType = RingLike;
+
+				/**
 				 * @brief Writes boundary matrices to file.
 				 * @param filename Destination.
 				 */

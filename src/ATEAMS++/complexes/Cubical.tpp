@@ -316,7 +316,7 @@ namespace ATEAMS {
 		template <typename RingLike>
 		SparseMatrices<RingLike> sparseBoundaryMatrices(Lattice L, Ring* R) {
 			SparseMatrices<RingLike> Boundary(L.size());
-			int mod = (int)R->ring.mod.n;
+			int mod = (int)R->characteristic;
 
 			for (int d=L.size()-1; d > 0; d--) {
 				// Get the dimensions of the matrix; instantiate.
@@ -371,7 +371,7 @@ namespace ATEAMS {
 		template <typename RingLike>
 		SparseMatrix<RingLike> sparseFullBoundaryMatrix(FlatBoundaryMatrix flat, Ring* R) {
 			SparseMatrix<RingLike> Full(flat.size(), flat.size());
-			int mod = (int)R->ring.mod.n;
+			int mod = (int)R->characteristic;
 
 			vector<int> cell;
 

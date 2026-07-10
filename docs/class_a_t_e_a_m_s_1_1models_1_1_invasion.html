@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: Invasion Class Reference</title>
+<title>ATEAMS++: Invasion&lt; RingLike &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Invasion Class Reference</div></div>
+  <div class="headertitle"><div class="title">Invasion&lt; RingLike &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -149,40 +149,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <p><code>#include &lt;<a class="el" href="_invasion_8h_source.html">Invasion.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for Invasion:</div>
+Inheritance diagram for Invasion&lt; RingLike &gt;:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="class_a_t_e_a_m_s_1_1models_1_1_invasion.png" usemap="#Invasion_map" alt=""/>
-  <map id="Invasion_map" name="Invasion_map">
-<area href="class_a_t_e_a_m_s_1_1models_1_1_model.html" alt="Model&lt; FINITE, DenseVector &gt;" shape="rect" coords="0,0,192,24"/>
+  <img src="class_a_t_e_a_m_s_1_1models_1_1_invasion.png" usemap="#Invasion_3C_20RingLike_20_3E_map" alt=""/>
+  <map id="Invasion_3C_20RingLike_20_3E_map" name="Invasion_3C_20RingLike_20_3E_map">
+<area href="class_a_t_e_a_m_s_1_1models_1_1_model.html" alt="Model&lt; RingLike, DenseVector &gt;" shape="rect" coords="0,0,202,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ab4838a2ef7e3f85cd2784c622fba438b" id="r_ab4838a2ef7e3f85cd2784c622fba438b"><td class="memItemLeft">typedef <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab4838a2ef7e3f85cd2784c622fba438b">dt</a></td></tr>
-<tr class="memitem:a5617a4f54bb3e646ce299c485782a3b3" id="r_a5617a4f54bb3e646ce299c485782a3b3"><td class="memTemplParams" colspan="2">template&lt;typename R&gt; </td></tr>
-<tr class="memitem:a5617a4f54bb3e646ce299c485782a3b3 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a5617a4f54bb3e646ce299c485782a3b3">st</a> = <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a>&lt;R&gt;</td></tr>
+<tr class="memitem:a019cbd9f4f20c936dfb268d52b5d1e0a" id="r_a019cbd9f4f20c936dfb268d52b5d1e0a"><td class="memItemLeft"><a id="a019cbd9f4f20c936dfb268d52b5d1e0a" name="a019cbd9f4f20c936dfb268d52b5d1e0a"></a>
+using&#160;</td><td class="memItemRight"><b>RingType</b> = RingLike</td></tr>
+<tr class="memdesc:a019cbd9f4f20c936dfb268d52b5d1e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exposed coefficient ring type. See <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>. <br /></td></tr>
+<tr class="memitem:ae00b00fff77661c47e6bfc5092436f3e" id="r_ae00b00fff77661c47e6bfc5092436f3e"><td class="memTemplParams" colspan="2"><a id="ae00b00fff77661c47e6bfc5092436f3e" name="ae00b00fff77661c47e6bfc5092436f3e"></a>
+template&lt;typename R&gt; </td></tr>
+<tr class="memitem:ae00b00fff77661c47e6bfc5092436f3e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><b>VectorType</b> = <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a>&lt;R&gt;</td></tr>
+<tr class="memdesc:ae00b00fff77661c47e6bfc5092436f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exposed vector storage type. See <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1" title="SparseVector">SparseVector</a>. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a638c6efe00eef7a315ef4534e9995527" id="r_a638c6efe00eef7a315ef4534e9995527"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a638c6efe00eef7a315ef4534e9995527">Invasion</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a> &gt; *complex, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a> parameters)</td></tr>
-<tr class="memdesc:a638c6efe00eef7a315ef4534e9995527"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
-<tr class="memitem:aab32ff550f334de4dc263bace6c7dbae" id="r_aab32ff550f334de4dc263bace6c7dbae"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aab32ff550f334de4dc263bace6c7dbae">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
-<tr class="memdesc:aab32ff550f334de4dc263bace6c7dbae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the plaquette invasion-percolation algorithm, which creates a random \(d\)-subcomplex \(X\) by (uniformly randomly) inserting \(d\)-cells into \(X\) until \(\rank(H_d(X))\) is "large enough" (set by the user).  <br /></td></tr>
-<tr class="memitem:a912e1145c4c1fa9cfa44e0e80fcf40e0" id="r_a912e1145c4c1fa9cfa44e0e80fcf40e0"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a912e1145c4c1fa9cfa44e0e80fcf40e0">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;state) override</td></tr>
-<tr class="memdesc:a912e1145c4c1fa9cfa44e0e80fcf40e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous.  <br /></td></tr>
-<tr class="memitem:a06b64bb21c37ba99756fa40729ac4e19" id="r_a06b64bb21c37ba99756fa40729ac4e19"><td class="memItemLeft"><a id="a06b64bb21c37ba99756fa40729ac4e19" name="a06b64bb21c37ba99756fa40729ac4e19"></a>
-<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><b>initialize</b> (std::vector&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a> &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;state) override</td></tr>
-<tr class="memdesc:a06b64bb21c37ba99756fa40729ac4e19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous. <br /></td></tr>
-<tr class="inherit_header pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">Model&lt; FINITE, DenseVector &gt;</a></td></tr>
+<tr class="memitem:af8b906ccee8a0b1fdcec8ee1539dc673" id="r_af8b906ccee8a0b1fdcec8ee1539dc673"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af8b906ccee8a0b1fdcec8ee1539dc673">Invasion</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; RingLike &gt; *complex, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ModelParameters</a> parameters)</td></tr>
+<tr class="memdesc:af8b906ccee8a0b1fdcec8ee1539dc673"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="memitem:a3aedf47be96ee6f80fa9734067423f6d" id="r_a3aedf47be96ee6f80fa9734067423f6d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3aedf47be96ee6f80fa9734067423f6d">Invasion</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; RingLike &gt; *complex, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, std::function&lt; int(int)&gt; stoppingFunction, bool DEBUG=false)</td></tr>
+<tr class="memdesc:a3aedf47be96ee6f80fa9734067423f6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="memitem:af7aa5b3333f1abfc6c724eb54be8fafa" id="r_af7aa5b3333f1abfc6c724eb54be8fafa"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af7aa5b3333f1abfc6c724eb54be8fafa">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
+<tr class="memdesc:af7aa5b3333f1abfc6c724eb54be8fafa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the plaquette invasion-percolation algorithm, which creates a random \(d\)-subcomplex \(X\) by (uniformly randomly) inserting \(d\)-cells into \(X\) until \(\rank(H_d(X))\) is "large enough" (set by the user).  <br /></td></tr>
+<tr class="memitem:a9450972a98f62d198929d084c288d9ff" id="r_a9450972a98f62d198929d084c288d9ff"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9450972a98f62d198929d084c288d9ff">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; &amp;state) override</td></tr>
+<tr class="memdesc:a9450972a98f62d198929d084c288d9ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous.  <br /></td></tr>
+<tr class="memitem:ad3357b9055939cc26afe73f47627dfbc" id="r_ad3357b9055939cc26afe73f47627dfbc"><td class="memItemLeft"><a id="ad3357b9055939cc26afe73f47627dfbc" name="ad3357b9055939cc26afe73f47627dfbc"></a>
+<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><b>initialize</b> (std::vector&lt; RingLike &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; &amp;state) override</td></tr>
+<tr class="memdesc:ad3357b9055939cc26afe73f47627dfbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous. <br /></td></tr>
+<tr class="inherit_header pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">Model&lt; RingLike, DenseVector &gt;</a></td></tr>
 <tr class="memitem:af4902cce023a35cb4c3201a4600e140b pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_af4902cce023a35cb4c3201a4600e140b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#af4902cce023a35cb4c3201a4600e140b">Model</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, bool DEBUG=false)</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">Model&lt; FINITE, DenseVector &gt;</a></td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:aebdbd879c076f085f1f2efc8f4e93f7a" id="r_aebdbd879c076f085f1f2efc8f4e93f7a"><td class="memItemLeft"><a id="aebdbd879c076f085f1f2efc8f4e93f7a" name="aebdbd879c076f085f1f2efc8f4e93f7a"></a>
+std::function&lt; int(int)&gt;&#160;</td><td class="memItemRight"><b>stoppingFunction</b></td></tr>
+<tr class="memdesc:aebdbd879c076f085f1f2efc8f4e93f7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies the number of homological percolation events before re-sampling the cochain. See <a class="el" href="namespace_a_t_e_a_m_s_1_1statistics.html#ace3c7a5ed5ec374798eac113b4b128d7" title="stopInvadingAt">stopInvadingAt</a>. <br /></td></tr>
+<tr class="memitem:a9b45b3e13bd9167aab02e17e08916231" id="r_a9b45b3e13bd9167aab02e17e08916231"><td class="memItemLeft"><a id="a9b45b3e13bd9167aab02e17e08916231" name="a9b45b3e13bd9167aab02e17e08916231"></a>
+std::string&#160;</td><td class="memItemRight"><b>name</b> = &quot;Invasion&quot;</td></tr>
+<tr class="memdesc:a9b45b3e13bd9167aab02e17e08916231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Human-readable name. <br /></td></tr>
+<tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">Model&lt; RingLike, DenseVector &gt;</a></td></tr>
 <tr class="memitem:aa9fb7501f4721a129cf3d6f6f0160d84 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_aa9fb7501f4721a129cf3d6f6f0160d84"><td class="memItemLeft">
-<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a> &gt; *&#160;</td><td class="memItemRight"><b>complex</b></td></tr>
+<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; RingLike &gt; *&#160;</td><td class="memItemRight"><b>complex</b></td></tr>
 <tr class="memdesc:aa9fb7501f4721a129cf3d6f6f0160d84 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" title="Complex">Complex</a>. <br /></td></tr>
 <tr class="memitem:a67c367e941d9cfa52dc173c8a0dc20f5 pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a67c367e941d9cfa52dc173c8a0dc20f5"><td class="memItemLeft">
 <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *&#160;</td><td class="memItemRight"><b>coefficients</b></td></tr>
@@ -195,51 +207,51 @@ bool&#160;</td><td class="memItemRight"><b>DEBUG</b></td></tr>
 <tr class="memdesc:a117352cc494cc62c6b2f1882786a332c pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are we debugging this <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a>? (Default is <span class="tt">false</span>.). <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implements the invaded-cluster algorithm for Potts lattice gauge theory (PLGT) and the plaquette random-cluster model (PRCM). </p>
-</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
-<a id="ab4838a2ef7e3f85cd2784c622fba438b" name="ab4838a2ef7e3f85cd2784c622fba438b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4838a2ef7e3f85cd2784c622fba438b">&#9670;&#160;</a></span>dt</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a> <a class="el" href="#ab4838a2ef7e3f85cd2784c622fba438b">dt</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Coefficients are of type <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71" title="FINITE">FINITE</a>. </p>
-
-</div>
-</div>
-<a id="a5617a4f54bb3e646ce299c485782a3b3" name="a5617a4f54bb3e646ce299c485782a3b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5617a4f54bb3e646ce299c485782a3b3">&#9670;&#160;</a></span>st</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename RingLike&gt;<br />
+class ATEAMS::models::Invasion&lt; RingLike &gt;</div><p>Implements the invaded-cluster algorithm for Potts lattice gauge theory (PLGT) and the plaquette random-cluster model (PRCM). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a> type, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><span class="comment">// Complexes must be constructed with the same underlying coefficient</span></div>
+<div class="line"><span class="comment">// ring as the model. If the ring is known (e.g. for Bernoulli percolation it</span></div>
+<div class="line"><span class="comment">// is always ATEAMS::Z2), you can name it explicitly; otherwise, the</span></div>
+<div class="line"><span class="comment">// model exposes the ring type after it is declared. You can also create</span></div>
+<div class="line"><span class="comment">// the complex *first* using a specific ring, which is exposed under the</span></div>
+<div class="line"><span class="comment">// same type alias (i.e. ::RingType).</span></div>
+<div class="line"><span class="keyword">using </span>CC = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">complexes::Cubical&lt;Zp&gt;</a>;</div>
+<div class="line"> </div>
+<div class="line">CC plex({4,4,4,4});</div>
+<div class="line">CC::RingType RR(3); <span class="comment">// equivalent to Zp RR(3);</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">models::ModelParameters</a> params;</div>
+<div class="line">params.<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f">dimension</a> = 2;</div>
+<div class="line">params.<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a67c367e941d9cfa52dc173c8a0dc20f5">coefficients</a> = &amp;RR;</div>
+<div class="line">params.<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#aebdbd879c076f085f1f2efc8f4e93f7a">stoppingFunction</a> = <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1statistics.html#ace3c7a5ed5ec374798eac113b4b128d7">statistics::stopInvadingAt</a>({3,4});</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html">models::Invasion&lt;CC::RingType&gt;</a> invasion(&amp;plex, params);</div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> Cubical.h:37</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_invasion_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html">ATEAMS::models::Invasion</a></div><div class="ttdoc">Implements the invaded-cluster algorithm for Potts lattice gauge theory (PLGT) and the plaquette rand...</div><div class="ttdef"><b>Definition</b> Invasion.h:48</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1statistics_html_ace3c7a5ed5ec374798eac113b4b128d7"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1statistics.html#ace3c7a5ed5ec374798eac113b4b128d7">ATEAMS::statistics::stopInvadingAt</a></div><div class="ttdeci">std::function&lt; int(int)&gt; stopInvadingAt(std::vector&lt; int &gt; ranks)</div><div class="ttdoc">A convenience function for deciding when to stop invading (i.e. when to re-sample the spins over the ...</div><div class="ttdef"><b>Definition</b> schedules.h:49</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ATEAMS::models::ModelParameters</a></div><div class="ttdoc">Typical parameters required for simulating a Model.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:32</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a1a8a8235879363159315091a1daed72f"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f">ATEAMS::models::ModelParameters::dimension</a></div><div class="ttdeci">int dimension</div><div class="ttdef"><b>Definition</b> ModelParameters.h:46</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a67c367e941d9cfa52dc173c8a0dc20f5"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a67c367e941d9cfa52dc173c8a0dc20f5">ATEAMS::models::ModelParameters::coefficients</a></div><div class="ttdeci">Ring * coefficients</div><div class="ttdoc">Coefficient ring.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:34</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_aebdbd879c076f085f1f2efc8f4e93f7a"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#aebdbd879c076f085f1f2efc8f4e93f7a">ATEAMS::models::ModelParameters::stoppingFunction</a></div><div class="ttdeci">std::function&lt; int(int)&gt; stoppingFunction</div><div class="ttdef"><b>Definition</b> ModelParameters.h:43</div></div>
+</div><!-- fragment --> </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af8b906ccee8a0b1fdcec8ee1539dc673" name="af8b906ccee8a0b1fdcec8ee1539dc673"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8b906ccee8a0b1fdcec8ee1539dc673">&#9670;&#160;</a></span>Invasion() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename R&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="#a5617a4f54bb3e646ce299c485782a3b3">st</a> = <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a>&lt;R&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Vectors are of type <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082" title="DenseVector">DenseVector</a>. </p>
-
-</div>
-</div>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a638c6efe00eef7a315ef4534e9995527" name="a638c6efe00eef7a315ef4534e9995527"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a638c6efe00eef7a315ef4534e9995527">&#9670;&#160;</a></span>Invasion()</h2>
-
-<div class="memitem">
-<div class="memproto">
+template&lt;typename RingLike&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">Invasion </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a> &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; RingLike &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -260,20 +272,72 @@ template&lt;typename R&gt; </div>
 
 </div>
 </div>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a912e1145c4c1fa9cfa44e0e80fcf40e0" name="a912e1145c4c1fa9cfa44e0e80fcf40e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a912e1145c4c1fa9cfa44e0e80fcf40e0">&#9670;&#160;</a></span>initialize()</h2>
+<a id="a3aedf47be96ee6f80fa9734067423f6d" name="a3aedf47be96ee6f80fa9734067423f6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3aedf47be96ee6f80fa9734067423f6d">&#9670;&#160;</a></span>Invasion() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Invasion </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a>&lt; RingLike &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dimension</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; int(int)&gt;</td>          <td class="paramname"><span class="paramname"><em>stoppingFunction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>DEBUG</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">complex</td><td>(Pointer to) a complex. </td></tr>
+    <tr><td class="paramname">R</td><td>(Pointer to) a coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </td></tr>
+    <tr><td class="paramname">dimension</td><td>Subcomplex dimension. </td></tr>
+    <tr><td class="paramname">stoppingFunction</td><td>A function that consumes a time-step and returns an integer number of giant cycles to be observed before invasion percolation is halted. </td></tr>
+    <tr><td class="paramname">DEBUG</td><td><em>(Optional, default <span class="tt">false</span>)</em> Are we debugging this <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a>? </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a9450972a98f62d198929d084c288d9ff" name="a9450972a98f62d198929d084c288d9ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9450972a98f62d198929d084c288d9ff">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; initialize </td>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; initialize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -286,28 +350,30 @@ template&lt;typename R&gt; </div>
 
 <p>Initialization; superfluous. </p>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a2b8f22c96cbee660fcfb8792d9fc42a0">Model&lt; FINITE, DenseVector &gt;</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a2b8f22c96cbee660fcfb8792d9fc42a0">Model&lt; RingLike, DenseVector &gt;</a>.</p>
 
 </div>
 </div>
-<a id="aab32ff550f334de4dc263bace6c7dbae" name="aab32ff550f334de4dc263bace6c7dbae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab32ff550f334de4dc263bace6c7dbae">&#9670;&#160;</a></span>sample()</h2>
+<a id="af7aa5b3333f1abfc6c724eb54be8fafa" name="af7aa5b3333f1abfc6c724eb54be8fafa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7aa5b3333f1abfc6c724eb54be8fafa">&#9670;&#160;</a></span>sample()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; sample </td>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; sample </td>
           <td>(</td>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#a029fc1c4a83bc38c71b55dba3ba76082">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -333,7 +399,7 @@ template&lt;typename R&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> state with <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a07fe4a6d18195cf882792dcc5d22e6f4" title="includes">includes</a>, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#affb9db935dc3e09600f19267b9593b9d" title="essential">essential</a>, and <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#ac310d9181e916ba43604099aee272c71" title="t">t</a> updated. </dd></dl>
 
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a4bf284e877ba348b401247c09b994881">Model&lt; FINITE, DenseVector &gt;</a>.</p>
+<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a4bf284e877ba348b401247c09b994881">Model&lt; RingLike, DenseVector &gt;</a>.</p>
 
 </div>
 </div>

@@ -15,10 +15,8 @@ namespace ATEAMS {
 		 * 	\f$\ln(1-\nicefrac{\sqrt p}{1+\sqrt p})\f$.
 		 */
 		inline std::function<double(int)> selfdual(Ring* R) {
-			int mod = (int)R->ring.mod.n;
-
 			double c = std::log(
-				1-(std::sqrt(mod)/(1+std::sqrt(mod)))
+				1-(std::sqrt(R->characteristic)/(1+std::sqrt(R->characteristic)))
 			);
 
 			return [c](int t) { return c; };

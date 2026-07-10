@@ -15,15 +15,51 @@ namespace ATEAMS {
 		 * @class Invasion
 		 * @brief Implements the invaded-cluster algorithm for Potts lattice gauge theory
 		 * 	(PLGT) and the plaquette random-cluster model (PRCM).
+		 * @tparam RingLike A coefficient @ref Ring type, like @ref Zp or @ref Q.
+		 * 
+		 * @code
+		 * // Complexes must be constructed with the same underlying coefficient
+		 * // ring as the model. If the ring is known (e.g. for Bernoulli percolation it
+		 * // is always ATEAMS::Z2), you can name it explicitly; otherwise, the
+		 * // model exposes the ring type after it is declared. You can also create
+		 * // the complex *first* using a specific ring, which is exposed under the
+		 * // same type alias (i.e. ::RingType).
+		 * using CC = complexes::Cubical<Zp>;
+		 * 
+		 * CC plex({4,4,4,4});
+		 * CC::RingType RR(3); // equivalent to Zp RR(3);
+		 * 
+		 * models::ModelParameters params;
+		 * params.dimension = 2;
+		 * params.coefficients = &RR;
+		 * params.stoppingFunction = statistics::stopInvadingAt({3,4});
+		 * 
+		 * models::Invasion<CC::RingType> invasion(&plex, params);
+		 * @endcode
+		 * 
+		 * @var Invasion::stoppingFunction
+		 * 	@brief Specifies the number of homological percolation events before
+		 * 	re-sampling the cochain. See @ref ATEAMS::statistics::stopInvadingAt.
+		 * 
+		 * @var Invasion::name
+		 * 	@brief Human-readable name.
 		 */
-		class Invasion: public Model<FINITE,DenseVector> {
+		template <typename RingLike>
+		class Invasion: public Model<RingLike,DenseVector> {
 			public:
-				/** Coefficients are of type @ref ATEAMS::FINITE. */
-				typedef FINITE dt;
+				std::function<int(int)> stoppingFunction;
+				std::string name = "Invasion";
 
-				/** Vectors are of type @ref ATEAMS::DenseVector. */
+				/**
+				 * @brief Exposed coefficient ring type. See @ref Ring.
+				 */
+				using RingType = RingLike;
+
+				/**
+				 * @brief Exposed vector storage type. See @ref SparseVector.
+				 */
 				template <typename R>
-				using st = DenseVector<R>;
+				using VectorType = DenseVector<R>;
 
 				/**
 				 * @brief Constructor.
@@ -31,7 +67,26 @@ namespace ATEAMS {
 				 * @param complex (Pointer to) a complex.
 				 * @param parameters Model parameters.
 				 */
-				Invasion(ATEAMS::complexes::Complex<FINITE>* complex, ModelParameters parameters);
+				Invasion(ATEAMS::complexes::Complex<RingLike>* complex, ModelParameters parameters);
+
+				/**
+				 * @brief Constructor.
+				 * 
+				 * @param complex (Pointer to) a complex.
+				 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
+				 * @param dimension Subcomplex dimension.
+				 * @param stoppingFunction A function that consumes a time-step and
+				 * 	returns an integer number of giant cycles to be observed before
+				 * 	invasion percolation is halted.
+				 * @param DEBUG _(Optional, default `false`)_ Are we debugging this Model?
+				 */
+				Invasion(
+					ATEAMS::complexes::Complex<RingLike>* complex,
+					Ring* R,
+					int dimension,
+					std::function<int(int)> stoppingFunction,
+					bool DEBUG=false
+				);
 
 				/**
 				 * @brief Implements the plaquette invasion-percolation algorithm,
@@ -46,13 +101,17 @@ namespace ATEAMS {
 				 * @return Model state with @ref ModelState::includes, @ref ModelState::essential,
 				 * and @ref ModelState::t updated.
 				 */
-				ModelState<FINITE,DenseVector> sample(int t, ModelState<FINITE,DenseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
+				ModelState<RingLike,DenseVector> sample(
+					int t,
+					ModelState<RingLike,DenseVector>& state,
+					ATEAMS::arithmetic::ThreadOptions& options
+				) override;
 
 				/** @brief Initialization; superfluous. */
-				ModelState<FINITE,DenseVector> initialize(ModelState<FINITE,DenseVector>& state) override { return state; };
+				ModelState<RingLike,DenseVector> initialize(ModelState<RingLike,DenseVector>& state) override { return state; };
 
 				/** @brief Initialization; superfluous. */
-				ModelState<FINITE,DenseVector> initialize(std::vector<FINITE> c, ModelState<FINITE,DenseVector>& state) override { return state; };
+				ModelState<RingLike,DenseVector> initialize(std::vector<RingLike> c, ModelState<RingLike,DenseVector>& state) override { return state; };
 
 			private:
 				std::mt19937 RNG;
