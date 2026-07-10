@@ -17,6 +17,8 @@ namespace ATEAMS {
 		 * 	(PLGT) and the plaquette random-cluster model (PRCM).
 		 * @tparam RingLike A coefficient @ref Ring type, like @ref Zp or @ref Q.
 		 * 
+		 * **Example Usage**
+		 * 
 		 * @code
 		 * // Complexes must be constructed with the same underlying coefficient
 		 * // ring as the model. If the ring is known (e.g. for Bernoulli percolation it

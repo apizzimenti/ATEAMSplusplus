@@ -98,7 +98,7 @@ namespace ATEAMS {
 	/**
 	 * @brief Quotient ring \f$\Z/2\Z\f$.
 	 */
-	struct Z2 : public Ring {
+	struct Z2 : public Zp {
 		public:
 			/**
 			 * @brief Data type @ref FINITE.
@@ -108,19 +108,13 @@ namespace ATEAMS {
 			/**
 			 * @brief Constructor.
 			 */
-			Z2() {
-				this->ring = AbstractRing(SparseRREF::FIELD_Fp, 2);
-				this->characteristic = 2;
-			};
+			Z2() : Zp(2) { };
 
 			/**
 			 * @brief Constructor with an unused parameter.
 			 * @param characteristic Superfluous.
 			 */
-			Z2(int characteristic) {
-				this->ring = AbstractRing(SparseRREF::FIELD_Fp, 2);
-				this->characteristic = 2;
-			};
+			Z2(int characteristic) : Zp(2) { };
 	};
 
 	/**
@@ -204,13 +198,13 @@ namespace ATEAMS {
 			 * @param S Storage.
 			 * @param destination Filepath.
 			 */
-			static inline void write(ATEAMS::SparseMatrix<Q> S, std::string destination) {
+			static inline void write(SparseMatrix<Q> S, std::string destination) {
 				checkDestinationExists(destination);
 
 				std::ofstream out;
 				out.open(destination);
 
-				SparseRREF::sparse_mat_write<Q::dtype,std::ofstream,ATEAMS::INDEX>(
+				SparseRREF::sparse_mat_write<Q::dtype,std::ofstream,INDEX>(
 					S, out, SparseRREF::SPARSE_FILE_TYPE_SMS
 				);
 
@@ -223,13 +217,13 @@ namespace ATEAMS {
 			 * @param S Storage.
 			 * @param destination Filepath.
 			 */
-			static inline void write(ATEAMS::SparseMatrix<Zp> S, std::string destination) {
+			static inline void write(SparseMatrix<Zp> S, std::string destination) {
 				checkDestinationExists(destination);
 
 				std::ofstream out;
 				out.open(destination);
 
-				SparseRREF::sparse_mat_write<Zp::dtype,std::ofstream,ATEAMS::INDEX>(
+				SparseRREF::sparse_mat_write<Zp::dtype,std::ofstream,INDEX>(
 					S, out, SparseRREF::SPARSE_FILE_TYPE_SMS
 				);
 
@@ -263,25 +257,6 @@ namespace ATEAMS {
 			 * @param destination Filepath.
 			 */
 			static inline void write(std::vector<double> S, std::string destination) {
-				checkDestinationExists(destination);
-
-				std::ofstream out;
-				out.open(destination);
-
-				for (auto k : S) {
-					out << std::format("{:.8f}", k) << std::endl;
-				}
-
-				out.close();
-			};
-
-			/**
-			 * @brief Writes a @ref ATEAMS::SparseMatrix to file.
-			 * 
-			 * @param S Storage.
-			 * @param destination Filepath.
-			 */
-			static inline void write(std::vector<float> S, std::string destination) {
 				checkDestinationExists(destination);
 
 				std::ofstream out;

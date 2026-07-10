@@ -9,32 +9,36 @@ namespace ATEAMS::models {
 	 * @struct ModelParameters
 	 * @brief Typical parameters required for simulating a Model.
 	 * 
+	 * **Example Usage**
+	 * 
+	 * See @ref ATEAMS::models::Bernoulli, or any other @ref ATEAMS::models::Model.
+	 * 
 	 * @var ModelParameters::coefficients
 	 * 	@brief Coefficient ring.
 	 * 
 	 * @var ModelParameters::dimension
-	 * 	Percolation subcomplex dimension. Used by every @ref Model.
+	 * 	@brief Percolation subcomplex dimension. Used by every @ref Model.
 	 * 
 	 * @var ModelParameters::p
-	 * 	Bernoulli trial density. Used by @ref Bernoulli.
+	 * 	@brief Bernoulli trial density. Used by @ref Bernoulli.
 	 * 
 	 * @var ModelParameters::temperatureFunction
-	 * 	Function that specifies the (inverse) temperature parameter at the current
+	 * 	@brief Function that specifies the (inverse) temperature parameter at the current
 	 * 	time-step. Used by @ref Glauber, @ref SwendsenWang.
 	 * 
 	 * @var ModelParameters::stoppingFunction
-	 * 	Function that specifies the number of giant cycles encountered before
+	 * 	@brief Function that specifies the number of giant cycles encountered before
 	 * 	re-sampling spins. Used by @ref InvadedCluster, @ref Invasion.
 	 * 
 	 * @var ModelParameters::DEBUG
-	 * Are we debugging the @ref Model?
+	 * 	@brief Are we debugging the @ref Model?
 	 */
 	struct ModelParameters {
 		// Used by: SwendsenWang, InvadedCluster, Invasion, Glauber
 		Ring* coefficients;
 
 		// Used by: Bernoulli
-		float p;
+		double p;
 
 		// Used by: SwendsenWang, Glauber
 		std::function<double(int)> temperatureFunction;

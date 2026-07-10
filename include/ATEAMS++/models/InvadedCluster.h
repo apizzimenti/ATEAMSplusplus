@@ -15,10 +15,11 @@ namespace ATEAMS::models {
 	 * @brief Implements the invaded-cluster algorithm.
 	 * @tparam RingLike A coefficient @ref Ring type, like @ref Zp or @ref Q.
 	 * 
+	 * **Example Usage**
+	 * 
 	 * @code
 	 * // Complexes must be constructed with the same underlying coefficient
-	 * // ring as the model. If the ring is known (e.g. for Bernoulli percolation it
-	 * // is always ATEAMS::Z2), you can name it explicitly; otherwise, the
+	 * // ring as the model. If the ring is known (e.g. for Bernoulli percolation, the ring is always ATEAMS::Z2) you can name it explicitly; otherwise, the
 	 * // model exposes the ring type after it is declared. You can also create
 	 * // the complex *first* using a specific ring, which is exposed under the
 	 * // same type alias (i.e. ::RingType).

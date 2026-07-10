@@ -13,6 +13,10 @@ namespace ATEAMS::models {
 	 * @tparam VectorLike Storage unit compatible with @p RingLike, like
 	 *  @ref DenseVector or @ref SparseVector.
 	 * 
+	 * **Example Usage**
+	 * 
+	 * See @ref ATEAMS::statistics::Chain.
+	 * 
 	 * @var ModelState::cochain
 	 * 	@brief Current cochain \f$ f_t \f$. Used by @ref InvadedCluster, @ref SwendsenWang.
 	 * 

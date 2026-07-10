@@ -111,7 +111,7 @@ namespace ATEAMS {
 		Bernoulli::Bernoulli(
 			complexes::Complex<Z2>* complex,
 			int dimension,
-			float p,
+			double p,
 			bool DEBUG
 		) : Model<Z2,DenseVector>(new Z2, dimension, DEBUG) {
 			this->complex = complex;

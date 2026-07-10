@@ -14,6 +14,36 @@ namespace ATEAMS {
 		 * @class Chain
 		 * @brief Simulates the Markov chains specified by each @ref models::Model.
 		 * 
+		 * @tparam RingLike A coefficient @ref Ring type, like @ref Zp or @ref Q.
+		 * @tparam VectorLike Storage unit compatible with @p RingLike, like
+	 	 *  @ref SparseVector or @ref DenseVector.
+		 * 
+		 * **Example Usage**
+		 * 
+		 * @code
+		 * using namespace ATEAMS;
+		 * 
+		 * using Model = models::Bernoulli;
+		 * using Parameters = models::ModelParameters;
+
+		 * using Complex = complexes::Cubical<Model::RingType>;
+		 * using State = models::ModelState<Model::RingType,Model::VectorType>;
+		 * using Chain = statistics::Chain<Model::RingType,Model::VectorType>;
+		 * 
+		 * Complex plex({4,4,4,4});
+		 * 
+		 * Parameters params;
+		 * params.p = 0.5;
+		 * params.dimension = 2;
+		 * 
+		 * Model percolation(&plex, parameters);
+		 * Chain M(&percolation, 1000);
+		 * 
+		 * for (State state : M.simulate()) {
+		 * 		<...>
+		 * }
+		 * @endcode
+		 * 
 		 * @var Chain::model
 		 * 	(Pointer to) a Model.
 		 * 
