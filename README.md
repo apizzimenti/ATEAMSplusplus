@@ -60,7 +60,7 @@ Most experiments follow a straightforward template:
 2. create a Model that consumes the Complex;
 3. run a Chain on the Model.
 
-The below example samples plaquette Bernoulli percolation 1000 times on the scale-6 4-fold torus:
+The below example samples plaquette Bernoulli percolation 1,000 times on the scale-$`6`$ $`4`$-fold torus $`\mathbb T_6^4`$:
 
 ```C++
 #include <ATEAMS++.h>
