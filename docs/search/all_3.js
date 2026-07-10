@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['c_20ateams_0',['Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)',['../index.html#autotoc_md0',1,'']]],
+  ['c_0',['Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++',['../index.html#autotoc_md0',1,'']]],
   ['cells_1',['Cells',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#aebe12edf5366ea3267642d96be4a2324',1,'ATEAMS::complexes::Complex']]],
   ['chain_2',['Chain',['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html',1,'Chain&lt; RingLike, VectorLike &gt;'],['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a36bfe59ebd570a3f00c0dd2861fb707c',1,'ATEAMS::statistics::Chain::Chain(models::Model&lt; RingLike, VectorLike &gt; *model, int steps)'],['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a976f4904d7137412cfcb84513707421a',1,'ATEAMS::statistics::Chain::Chain(models::Model&lt; RingLike, VectorLike &gt; *model, int steps, arithmetic::ThreadOptions options)']]],
   ['characteristic_3',['characteristic',['../struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9',1,'ATEAMS::Ring']]],
