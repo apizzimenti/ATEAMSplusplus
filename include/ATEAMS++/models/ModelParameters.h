@@ -14,13 +14,13 @@ namespace ATEAMS::models {
 	 * See @ref ATEAMS::models::Bernoulli, or any other @ref ATEAMS::models::Model.
 	 * 
 	 * @var ModelParameters::coefficients
-	 * 	@brief Coefficient ring.
+	 * 	@brief Coefficient @ref Ring. Used by every @ref ATEAMS::models::Model.
 	 * 
 	 * @var ModelParameters::dimension
 	 * 	@brief Percolation subcomplex dimension. Used by every @ref Model.
 	 * 
 	 * @var ModelParameters::p
-	 * 	@brief Bernoulli trial density. Used by @ref Bernoulli.
+	 * 	@brief Independent trial density. Used by @ref Bernoulli.
 	 * 
 	 * @var ModelParameters::temperatureFunction
 	 * 	@brief Function that specifies the (inverse) temperature parameter at the current

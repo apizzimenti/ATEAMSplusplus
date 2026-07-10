@@ -176,7 +176,7 @@ namespace ATEAMS::topology {
 					// within the column? SparseRREF/FLINT probably do that already tho.
 					typename RingLike::dtype s = scalar_neg(scalar_inv(youngestFaceCoefficient, R->ring), R->ring);
 
-					arithmetic::SparseVectorRescaling<RingLike>(youngestFace, s, R);
+					arithmetic::SparseVectorRescaling<RingLike>(s, youngestFace, R);
 					arithmetic::SparseVectorAddition(cell, youngestFace, R);
 
 					cell.compress();

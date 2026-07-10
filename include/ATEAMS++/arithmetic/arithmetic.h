@@ -9,7 +9,9 @@
 #include "ATEAMS++/arithmetic/options.h"
 
 namespace ATEAMS {
-	/** @brief Sparse, finite-field linear algebra and support routines. */
+	/**
+	 * @brief Sparse, finite-field linear algebra and support routines.
+	 */
 	namespace arithmetic {
 
 		/**
@@ -95,16 +97,16 @@ namespace ATEAMS {
 		 * @brief Sparse vector rescaling \f$ a \vec x \f$.
 		 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 		 * 
-		 * @param x Vector.
 		 * @param a Scalar.
+		 * @param x Vector.
 		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
 		 * 
 		 * @returns \f$ a \vec x \f$.
 		 */
 		template <typename RingLike>
 		inline SparseVector<RingLike> SparseVectorRescaling(
-			SparseVector<RingLike> &x,
 			typename RingLike::dtype a,
+			SparseVector<RingLike> &x,
 			Ring* R
 		) {
 			sparse_vec_rescale<INDEX,typename RingLike::dtype>(x, a, R->ring);
@@ -131,15 +133,16 @@ namespace ATEAMS {
 		};
 
 		/**
-		 * @brief Computes the kernel of the matrix \f$ \ker(\RREF(A)) \f$.
+		 * @brief Computes \f$ \ker(A) \f$, where \f$A\f$ is in reduced row
+		 * 	echelon form.
 		 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 		 * 
 		 * @param A Matrix.
 		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
-		 * @param pivots Pivot indices of \f$ \RREF(A) \f$.
+		 * @param pivots Pivot indices of \f$ A \f$.
 		 * @param options Multithreaded computing options.
 		 * 
-		 * @returns \f$ \ker(\RREF(A)) \f$.
+		 * @returns \f$ \ker(A) \f$.
 		 */
 		template <typename RingLike>
 		inline SparseMatrix<RingLike> SparseMatrixRREFKernel(
@@ -153,14 +156,14 @@ namespace ATEAMS {
 
 
 		/**
-		 * @brief Computes the kernel of the matrix \f$ \ker(\RREF(A)) \f$.
+		 * @brief Computes \f$ \ker(\RREF(A)) \f$.
 		 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 		 * 
 		 * @param A Matrix.
 		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
 		 * @param options Multithreaded computing options.
 		 * 
-		 * @returns \f$ \RREF(A) \f$.
+		 * @returns \f$ \ker(\RREF(A)) \f$.
 		 */
 		template <typename RingLike>
 		inline SparseMatrix<RingLike> SparseMatrixKernel(

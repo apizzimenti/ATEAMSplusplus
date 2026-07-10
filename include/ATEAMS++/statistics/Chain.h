@@ -45,16 +45,16 @@ namespace ATEAMS {
 		 * @endcode
 		 * 
 		 * @var Chain::model
-		 * 	(Pointer to) a Model.
+		 * 	@brief (Pointer to) a Model.
 		 * 
 		 * @var Chain::state
-		 * 	A @ref models::ModelState.
+		 * 	@brief A @ref models::ModelState.
 		 * 
 		 * @var Chain::options
-		 * 	Multithreaded computing options @ref arithmetic::ThreadOptions.
+		 * 	@brief Multithreaded computing options @ref arithmetic::ThreadOptions.
 		 * 
 		 * @var Chain::steps
-		 * 	Number of iterations.
+		 * 	@brief Number of iterations.
 		 */
 		template <typename RingLike, template <typename> typename VectorLike>
 		class Chain {
@@ -83,7 +83,7 @@ namespace ATEAMS {
 				};
 
 				/**
-				 * @brief Constructor; use user-provided @ref ATEAMS::arithmetic::ThreadOptions.
+				 * @brief Constructor; uses user-provided @ref ATEAMS::arithmetic::ThreadOptions.
 				 * 
 				 * @param model (Pointer to) a Model instance.
 				 * @param steps Number of iterations.
@@ -102,9 +102,12 @@ namespace ATEAMS {
 				 * @brief Model-generic iterator.
 				 * 
 				 * @code
-				 * 	for (models::ModelState<Zp,SparseVector> State : M.simulate()) {
-				 * 		<do whatever>
-				 * 	}
+				 * using Model = models::Bernoulli;
+				 * using State = models::ModelState<Model::RingType,Model::VectorType>;
+				 * 
+				 * for (State state : M.simulate()) {
+				 *     <do whatever>
+				 * }
 				 * @endcode
 				 * 
 				 * @returns A `std::generator`.

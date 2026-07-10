@@ -18,7 +18,7 @@ namespace ATEAMS::models {
 	 * See @ref ATEAMS::statistics::Chain.
 	 * 
 	 * @var ModelState::cochain
-	 * 	@brief Current cochain \f$ f_t \f$. Used by @ref InvadedCluster, @ref SwendsenWang.
+	 * 	@brief Current cochain \f$ f_t \f$. Used by @ref Glauber, @ref InvadedCluster, @ref SwendsenWang.
 	 * 
 	 * @var ModelState::includes
 	 * 	@brief Percolation subcomplex \f$ P_t \f$. Used by @ref Bernoulli, @ref InvadedCluster,

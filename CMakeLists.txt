@@ -35,7 +35,7 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST FALSE)
+set(TEST TRUE)
 set(PROFILE FALSE)
 
 if (TEST)
@@ -177,11 +177,11 @@ install(
 ################################################################################
 
 list(APPEND COMPLEXES
-	"Cubical"
+	# "Cubical"
 )
 
 list(APPEND ARITHMETIC
-	"kernel"
+	# "kernel"
 )
 
 list(APPEND TOPOLOGY
@@ -192,12 +192,12 @@ list(APPEND MODELS
 	"Bernoulli"
 	"Glauber"
 	"InvadedCluster"
-	"Invasion"
-	"SwendsenWang"
+	# "Invasion"
+	# "SwendsenWang"
 )
 
 list(APPEND TYPES
-	"Q"
+	# "Q"
 	"Zp"
 )
 

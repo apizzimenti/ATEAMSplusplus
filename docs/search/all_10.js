@@ -15,7 +15,7 @@ var searchData=
   ['sparserightmultiplication_12',['SparseRightMultiplication',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a82d167ee11276e76718aaaf943c9d5b3',1,'ATEAMS::arithmetic']]],
   ['sparsevector_13',['SparseVector',['../namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1',1,'ATEAMS']]],
   ['sparsevectoraddition_14',['SparseVectorAddition',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a8cbd65541e64ae96294838d39b0a000c',1,'ATEAMS::arithmetic::SparseVectorAddition(SparseVector&lt; Zp &gt; &amp;u, SparseVector&lt; Zp &gt; v, Ring *R)'],['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a8b902a34db5e1c48400059bf69b64191',1,'ATEAMS::arithmetic::SparseVectorAddition(SparseVector&lt; Q &gt; &amp;u, SparseVector&lt; Q &gt; &amp;v, Ring *R)']]],
-  ['sparsevectorrescaling_15',['SparseVectorRescaling',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#aace715443cbe29fd15148d987611ef77',1,'ATEAMS::arithmetic']]],
+  ['sparsevectorrescaling_15',['SparseVectorRescaling',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a6c86f14ac15de1dad41bc81d40b39449',1,'ATEAMS::arithmetic']]],
   ['sparsevectors_16',['SparseVectors',['../namespace_a_t_e_a_m_s.html#a7ef7ac8c9e8b5eb7dc057a51c07791a6',1,'ATEAMS']]],
   ['spin_20systems_20in_20c_20ateams_17',['Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)',['../index.html#autotoc_md0',1,'']]],
   ['spindown_18',['spinDown',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#a811b0a7568016bef9db2a19c9d67b3d3',1,'ATEAMS::arithmetic::ThreadOptions']]],

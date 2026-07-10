@@ -17,17 +17,17 @@ using namespace std;
 namespace ATEAMS::arithmetic {
 	template <typename RingLike>
 	SparseVector<RingLike> randomLinearCombination(
-		SparseMatrix<RingLike> kernel,
+		SparseMatrix<RingLike> K,
 		Ring* R,
 		std::uniform_int_distribution<int>& intuniform,
 		std::mt19937& RNG
 	) {
 		// Create a vector of random coefficients, multiply the kernel on the right, done.
 		SparseVector<RingLike> rcoeffs;
-		for (int i=0; i < kernel.ncol; i++) rcoeffs.push_back((INDEX)i, (typename RingLike::dtype)intuniform(RNG));
+		for (int i=0; i < K.ncol; i++) rcoeffs.push_back((INDEX)i, (typename RingLike::dtype)intuniform(RNG));
 		rcoeffs.compress();
 
-		return SparseRightMultiplication<RingLike>(kernel, rcoeffs, R);
+		return SparseRightMultiplication<RingLike>(K, rcoeffs, R);
 	}
 
 

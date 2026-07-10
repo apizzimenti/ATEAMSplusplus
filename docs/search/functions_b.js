@@ -10,7 +10,7 @@ var searchData=
   ['sparsematrixrrefkernel_7',['SparseMatrixRREFKernel',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a8820e57dde7f181caad5b6c17a625413',1,'ATEAMS::arithmetic']]],
   ['sparserightmultiplication_8',['SparseRightMultiplication',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a82d167ee11276e76718aaaf943c9d5b3',1,'ATEAMS::arithmetic']]],
   ['sparsevectoraddition_9',['SparseVectorAddition',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a8cbd65541e64ae96294838d39b0a000c',1,'ATEAMS::arithmetic::SparseVectorAddition(SparseVector&lt; Zp &gt; &amp;u, SparseVector&lt; Zp &gt; v, Ring *R)'],['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a8b902a34db5e1c48400059bf69b64191',1,'ATEAMS::arithmetic::SparseVectorAddition(SparseVector&lt; Q &gt; &amp;u, SparseVector&lt; Q &gt; &amp;v, Ring *R)']]],
-  ['sparsevectorrescaling_10',['SparseVectorRescaling',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#aace715443cbe29fd15148d987611ef77',1,'ATEAMS::arithmetic']]],
+  ['sparsevectorrescaling_10',['SparseVectorRescaling',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#a6c86f14ac15de1dad41bc81d40b39449',1,'ATEAMS::arithmetic']]],
   ['spindown_11',['spinDown',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#a811b0a7568016bef9db2a19c9d67b3d3',1,'ATEAMS::arithmetic::ThreadOptions']]],
   ['spinup_12',['spinUp',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#ab70b70876fadf31e281646d1f002525e',1,'ATEAMS::arithmetic::ThreadOptions']]],
   ['stopinvadingat_13',['stopInvadingAt',['../namespace_a_t_e_a_m_s_1_1statistics.html#ace3c7a5ed5ec374798eac113b4b128d7',1,'ATEAMS::statistics']]],

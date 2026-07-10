@@ -176,8 +176,12 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a9b45b3e13bd9167aab02e17e08916231" id="r_a9b45b3e13bd9167aab02e17e08916231"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a9b45b3e13bd9167aab02e17e08916231">name</a> = &quot;cubical&quot;</td></tr>
-<tr class="memitem:acd2e31b75850ec31ea70d4ecf18330b1" id="r_acd2e31b75850ec31ea70d4ecf18330b1"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#acd2e31b75850ec31ea70d4ecf18330b1">corners</a></td></tr>
+<tr class="memitem:a9b45b3e13bd9167aab02e17e08916231" id="r_a9b45b3e13bd9167aab02e17e08916231"><td class="memItemLeft"><a id="a9b45b3e13bd9167aab02e17e08916231" name="a9b45b3e13bd9167aab02e17e08916231"></a>
+std::string&#160;</td><td class="memItemRight"><b>name</b> = &quot;cubical&quot;</td></tr>
+<tr class="memdesc:a9b45b3e13bd9167aab02e17e08916231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Human-readable short name. <br /></td></tr>
+<tr class="memitem:acd2e31b75850ec31ea70d4ecf18330b1" id="r_acd2e31b75850ec31ea70d4ecf18330b1"><td class="memItemLeft"><a id="acd2e31b75850ec31ea70d4ecf18330b1" name="acd2e31b75850ec31ea70d4ecf18330b1"></a>
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>corners</b></td></tr>
+<tr class="memdesc:acd2e31b75850ec31ea70d4ecf18330b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Corners of the lattice. If <span class="tt"><a class="el" href="#acd2e31b75850ec31ea70d4ecf18330b1" title="Corners of the lattice. If corners is , then the integer lattice created is the product ; if periodic...">corners</a></span> is \((c_1, c_2, \dots, c_n)\), then the integer lattice created is the product \( \prod [0, c_i] \); if periodic boundary conditions are imposed, opposite vertices (and thus opposite \((d-1)\)-faces) are identified to form an \(n\)-fold torus. <br /></td></tr>
 <tr class="inherit_header pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex"><td colspan="2">Public Attributes inherited from <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">Complex&lt; RingLike &gt;</a></td></tr>
 <tr class="memitem:aa89e1ec672a7e657b16d6ef2b78a0441 pub_attribs_class_a_t_e_a_m_s_1_1complexes_1_1_complex" id="r_aa89e1ec672a7e657b16d6ef2b78a0441"><td class="memItemLeft">
 <a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html">BoundaryData</a>&lt; RingLike &gt;&#160;</td><td class="memItemRight"><b>Boundary</b></td></tr>
@@ -218,11 +222,18 @@ using&#160;</td><td class="memItemRight"><b>RingType</b> = RingLike</td></tr>
 class ATEAMS::complexes::Cubical&lt; RingLike &gt;</div><p><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html" title="Cubical complex.">Cubical</a> complex. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">RingLike</td><td>A <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </td></tr>
+    <tr><td class="paramname">RingLike</td><td>A <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
   </table>
   </dd>
 </dl>
-</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<p><b>Example Usage</b></p>
+<div class="fragment"><div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s_1_1complexes.html">ATEAMS::complexes</a>;</div>
+<div class="line"><a class="code hl_function" href="#a735e59180e360c2c6c94c896ba3fd261">Cubical&lt;Zp&gt;</a> C({3,3,3,3});           <span class="comment">// Assumes periodic boundary conditions</span></div>
+<div class="line"><a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">Cubical&lt;Zp&gt;</a> D({3,3,3,3}, <span class="keyword">false</span>);    <span class="comment">// Just a subcomplex of Z^4.</span></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> Cubical.h:39</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html_a735e59180e360c2c6c94c896ba3fd261"><div class="ttname"><a href="#a735e59180e360c2c6c94c896ba3fd261">ATEAMS::complexes::Cubical::Cubical</a></div><div class="ttdeci">Cubical(std::vector&lt; int &gt; corners, bool periodic)</div><div class="ttdoc">Constructor. See corners.</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1complexes_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1complexes.html">ATEAMS::complexes</a></div><div class="ttdoc">Data structures representing topological complexes.</div><div class="ttdef"><b>Definition</b> Complex.h:12</div></div>
+</div><!-- fragment --> </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a735e59180e360c2c6c94c896ba3fd261" name="a735e59180e360c2c6c94c896ba3fd261"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a735e59180e360c2c6c94c896ba3fd261">&#9670;&#160;</a></span>Cubical() <span class="overload">[1/2]</span></h2>
 
@@ -416,47 +427,6 @@ template&lt;typename RingLike&gt; </div>
 <p>Total number of cells. </p>
 
 <p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#acd603591b043f1e197b8a66207e70b91">Complex&lt; RingLike &gt;</a>.</p>
-
-</div>
-</div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="acd2e31b75850ec31ea70d4ecf18330b1" name="acd2e31b75850ec31ea70d4ecf18330b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd2e31b75850ec31ea70d4ecf18330b1">&#9670;&#160;</a></span>corners</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RingLike&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;int&gt; corners</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Corners of the lattice. If <span class="tt"><a class="el" href="#acd2e31b75850ec31ea70d4ecf18330b1">corners</a></span> is \((c_1, c_2, \dots, c_n)\), then the integer lattice created is the product \( \prod [0, c_i] \); if periodic boundary conditions are imposed, opposite vertices (and thus opposite \((d-1)\)-faces) are identified to form an \(n\)-fold torus.</p>
-<div class="fragment"><div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s_1_1complexes.html">ATEAMS::complexes</a>;</div>
-<div class="line"><a class="code hl_function" href="#a735e59180e360c2c6c94c896ba3fd261">Cubical&lt;Zp&gt;</a> C({3,3,3,3});           <span class="comment">// Assumes periodic boundary conditions</span></div>
-<div class="line"><a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">Cubical&lt;Zp&gt;</a> D({3,3,3,3}, <span class="keyword">false</span>);    <span class="comment">// Just a subcomplex of Z^4.</span></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> Cubical.h:37</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html_a735e59180e360c2c6c94c896ba3fd261"><div class="ttname"><a href="#a735e59180e360c2c6c94c896ba3fd261">ATEAMS::complexes::Cubical::Cubical</a></div><div class="ttdeci">Cubical(std::vector&lt; int &gt; corners, bool periodic)</div><div class="ttdoc">Constructor. See corners.</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1complexes_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1complexes.html">ATEAMS::complexes</a></div><div class="ttdoc">Data structures representing topological complexes.</div><div class="ttdef"><b>Definition</b> Complex.h:12</div></div>
-</div><!-- fragment --> 
-</div>
-</div>
-<a id="a9b45b3e13bd9167aab02e17e08916231" name="a9b45b3e13bd9167aab02e17e08916231"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b45b3e13bd9167aab02e17e08916231">&#9670;&#160;</a></span>name</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RingLike&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string name = &quot;cubical&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Human-readable short name. </p>
 
 </div>
 </div>

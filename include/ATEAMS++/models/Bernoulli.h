@@ -13,13 +13,14 @@
 namespace ATEAMS::models {
 	/**
 	 * @class Bernoulli
-	 * @brief Implements Bernoulli percolation. See @ref Z2.
+	 * @brief Implements Bernoulli percolation.
 	 * 
 	 * **Example Usage**
 	 * 
 	 * @code
 	 * // Complexes must be constructed with the same underlying coefficient
-	 * // ring as the model. If the ring is known (e.g. for Bernoulli percolation, the ring is always ATEAMS::Z2) you can name it explicitly; otherwise, the
+	 * // ring as the model. If the ring is known (e.g. for Bernoulli percolation,
+	 * // the ring is always ATEAMS::Z2) you can name it explicitly; otherwise, the
 	 * // model exposes the ring type after it is declared. You can also create
 	 * // the complex *first* using a specific ring, which is exposed under the
 	 * // same type alias (i.e. ::RingType).
@@ -49,7 +50,7 @@ namespace ATEAMS::models {
 			using RingType = Z2;
 
 			/**
-			 * @brief Exposed vector storage type. See @ref SparseVector.
+			 * @brief Exposed vector storage type. See @ref DenseVector.
 			 */
 			template <typename R>
 			using VectorType = DenseVector<R>;
@@ -83,7 +84,7 @@ namespace ATEAMS::models {
 				complexes::Complex<Z2>* complex,
 				int dimension,
 				double p=0.5,
-				bool DEBUG=true
+				bool DEBUG=false
 			);
 
 			/**

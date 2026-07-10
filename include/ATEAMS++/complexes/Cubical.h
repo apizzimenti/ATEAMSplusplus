@@ -17,21 +17,23 @@ namespace ATEAMS {
 		 * 
 		 * @tparam RingLike A @ref Ring, like @ref Zp or @ref Q.
 		 * 
-		 * @var Cubical::name
-		 * 	Human-readable short name.
-		 * 
-		 * @var Cubical::corners
-		 *  Corners of the lattice. If `corners` is \f$(c_1, c_2, \dots, c_n)\f$,
-		 *  then the integer lattice created is the product \f$ \prod [0, c_i] \f$; if
-		 *  periodic boundary conditions are imposed, opposite vertices
-		 *  (and thus opposite \f$(d-1)\f$-faces) are identified to form
-		 *  an \f$n\f$-fold torus.
+		 * **Example Usage**
 		 * 
 		 * @code
 		 * using namespace ATEAMS::complexes;
 		 * Cubical<Zp> C({3,3,3,3});			// Assumes periodic boundary conditions
 		 * Cubical<Zp> D({3,3,3,3}, false); 	// Just a subcomplex of Z^4.
 		 * @endcode
+		 * 
+		 * @var Cubical::name
+		 * 	@brief Human-readable short name.
+		 * 
+		 * @var Cubical::corners
+		 * @brief Corners of the lattice. If `corners` is \f$(c_1, c_2, \dots, c_n)\f$,
+		 * then the integer lattice created is the product \f$ \prod [0, c_i] \f$; if
+		 * periodic boundary conditions are imposed, opposite vertices
+		 * (and thus opposite \f$(d-1)\f$-faces) are identified to form
+		 * an \f$n\f$-fold torus.
 		 */
 		template <typename RingLike>
 		class Cubical: public Complex<RingLike> {

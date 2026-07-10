@@ -126,7 +126,7 @@ namespace ATEAMS::models {
 			) override;
 
 			/**
-			 * @brief Initializes \f$f_0\f$ to uniform random element of \f$\Z/p\Z\f$
+			 * @brief Initializes \f$f_0\f$ to uniform random vector over \f$\Z/p\Z\f$
 			 * or \f$ \Q \f$.
 			 * 
 			 * @param state Model state.
@@ -141,7 +141,8 @@ namespace ATEAMS::models {
 			 * @param c Cochain to which \f$f_0\f$ is initialized.
 			 * @param state Model state.
 			 * 
-			 * @returns Model state.
+			 * @returns @ref ModelState with @ref ModelState::cochain, @ref ModelState::energy,
+			 * and @ref ModelState::t updated.
 			 */
 			ModelState<RingLike,SparseVector> initialize(SparseVector<RingLike> c, ModelState<RingLike,SparseVector>& state) override;
 

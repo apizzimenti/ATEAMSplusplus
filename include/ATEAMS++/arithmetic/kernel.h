@@ -11,13 +11,13 @@
 
 namespace ATEAMS::arithmetic {
 	/**
-	 * @brief Generates a uniform random linear combination of the basis for
-	 * the (reduced) coboundary matrix \f$\delta^{d-1}\f$. See the implementation
-	 * of @ref ATEAMS::arithmetic::submatrixKernelSample.
+	 * @brief A uniform random linear combination of the rows of \f$K\f$,
+	 * typically the kernel of a reduced coboundary matrix \f$\delta^{d-1}\f$.
+	 * See the implementation of @ref ATEAMS::arithmetic::submatrixKernelSample.
 	 * 
 	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * 
-	 * @param kernel Kernel of the reduced coboundary matrix.
+	 * @param K Kernel.
 	 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * @param intuniform Uniform distribution over integers \f$[0, p)\f$.
 	 * @param RNG Mersenne twister PRNG.
@@ -26,7 +26,7 @@ namespace ATEAMS::arithmetic {
 	 */
 	template <typename RingLike>
 	SparseVector<RingLike> randomLinearCombination(
-		SparseMatrix<RingLike> kernel,
+		SparseMatrix<RingLike> K,
 		Ring* R,
 		std::uniform_int_distribution<int>& intuniform,
 		std::mt19937& RNG

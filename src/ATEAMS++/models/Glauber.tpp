@@ -57,6 +57,8 @@ namespace ATEAMS::models {
 			state.energy = original;
 		}
 
+		state.t = t;
+		
 		return state;
 	}
 

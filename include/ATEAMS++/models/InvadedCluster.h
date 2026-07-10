@@ -115,7 +115,7 @@ namespace ATEAMS::models {
 			) override;
 
 			/**
-			 * @brief Initializes \f$f_0\f$ to uniform random element of \f$\Z/p\Z\f$
+			 * @brief Initializes \f$f_0\f$ to uniform random vector over \f$\Z/p\Z\f$
 			 * or \f$ \Q \f$.
 			 * 
 			 * @param state Model state.

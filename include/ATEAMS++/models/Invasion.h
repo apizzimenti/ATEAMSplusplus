@@ -58,7 +58,7 @@ namespace ATEAMS {
 				using RingType = RingLike;
 
 				/**
-				 * @brief Exposed vector storage type. See @ref SparseVector.
+				 * @brief Exposed vector storage type. See @ref DenseVector.
 				 */
 				template <typename R>
 				using VectorType = DenseVector<R>;

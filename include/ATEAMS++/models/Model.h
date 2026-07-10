@@ -23,7 +23,7 @@ namespace ATEAMS::models {
 	 *  @brief Pointer to a @ref ATEAMS::complexes::Complex.
 	 * 
 	 * @var Model::coefficients
-	 *  @brief Coefficient @ref Ring, like @ref Zp or @ref Q.
+	 *  @brief Pointer to a coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * 
 	 * @var Model::dimension
 	 * 	@brief Subcomplex dimension.
