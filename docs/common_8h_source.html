@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_ring.html">   43</a></span>    <span class="keyword">struct </span><a class="code hl_class" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> {</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_ring.html#a61a9a9ee9c24493f82ca1e931e2fdb05">   45</a></span>            <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a4cbb94314c6faf40168354c29480ac07">AbstractRing</a> <a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a61a9a9ee9c24493f82ca1e931e2fdb05">ring</a>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keywordtype">int</span> characteristic;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">   46</a></span>            <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">characteristic</a>;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    };</div>
 </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_q.html#a5a2362d1e1c9cfcef4953442c7f624ea">   58</a></span>            <span class="keyword">typedef</span> <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#ae4a41e6d053c886a61012e49503be8bf">RATIONAL</a> <a class="code hl_typedef" href="struct_a_t_e_a_m_s_1_1_q.html#a5a2362d1e1c9cfcef4953442c7f624ea">dtype</a>;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
 <div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_q.html#aa4862696728f1aaefc917945e27d4716">   64</a></span>            <a class="code hl_function" href="struct_a_t_e_a_m_s_1_1_q.html#aa4862696728f1aaefc917945e27d4716">Q</a>(<span class="keywordtype">int</span> characteristic) {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_q.html#aa4862696728f1aaefc917945e27d4716">   64</a></span>            <a class="code hl_function" href="struct_a_t_e_a_m_s_1_1_q.html#aa4862696728f1aaefc917945e27d4716">Q</a>(<span class="keywordtype">int</span> <a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">characteristic</a>) {</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                this-&gt;<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a61a9a9ee9c24493f82ca1e931e2fdb05">ring</a> = <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a4cbb94314c6faf40168354c29480ac07">AbstractRing</a>(SparseRREF::FIELD_QQ);</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                this-&gt;characteristic = 0;</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            };</div>
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_q.html#a57426605b00772c329d240b02ef33c9d">   72</a></span>            <a class="code hl_function" href="struct_a_t_e_a_m_s_1_1_q.html#a57426605b00772c329d240b02ef33c9d">Q</a>() {</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                this-&gt;<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a61a9a9ee9c24493f82ca1e931e2fdb05">ring</a> = <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a4cbb94314c6faf40168354c29480ac07">AbstractRing</a>(SparseRREF::FIELD_QQ);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                this-&gt;characteristic = 0;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                this-&gt;<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">characteristic</a> = 0;</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            };</div>
 </div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    };</div>
@@ -179,9 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_zp.html#a7e4f3bd21a26074f79d2c5f6a39eb708">   86</a></span>            <span class="keyword">typedef</span> <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#ae7ebf83daee25db31a19d05cd6452e71">FINITE</a> <a class="code hl_typedef" href="struct_a_t_e_a_m_s_1_1_zp.html#a7e4f3bd21a26074f79d2c5f6a39eb708">dtype</a>;</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
 <div class="foldopen" id="foldopen00092" data-start="{" data-end="}">
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_zp.html#ae53ed0e6439b0631f09407e59a788eda">   92</a></span>            <a class="code hl_function" href="struct_a_t_e_a_m_s_1_1_zp.html#ae53ed0e6439b0631f09407e59a788eda">Zp</a>(<span class="keywordtype">int</span> characteristic) {</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                this-&gt;<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a61a9a9ee9c24493f82ca1e931e2fdb05">ring</a> = <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a4cbb94314c6faf40168354c29480ac07">AbstractRing</a>(SparseRREF::FIELD_Fp, characteristic);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                this-&gt;characteristic = characteristic;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_zp.html#ae53ed0e6439b0631f09407e59a788eda">   92</a></span>            <a class="code hl_function" href="struct_a_t_e_a_m_s_1_1_zp.html#ae53ed0e6439b0631f09407e59a788eda">Zp</a>(<span class="keywordtype">int</span> <a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">characteristic</a>) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                this-&gt;<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a61a9a9ee9c24493f82ca1e931e2fdb05">ring</a> = <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a4cbb94314c6faf40168354c29480ac07">AbstractRing</a>(SparseRREF::FIELD_Fp, <a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">characteristic</a>);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                this-&gt;characteristic = <a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">characteristic</a>;</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            };</div>
 </div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    };</div>
@@ -195,12 +195,12 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="foldopen" id="foldopen00111" data-start="{" data-end="}">
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_z2.html#af495d60a7cf4b277adecb01d538c1aae">  111</a></span>            <a class="code hl_function" href="struct_a_t_e_a_m_s_1_1_z2.html#af495d60a7cf4b277adecb01d538c1aae">Z2</a>() {</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                this-&gt;<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a61a9a9ee9c24493f82ca1e931e2fdb05">ring</a> = <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a4cbb94314c6faf40168354c29480ac07">AbstractRing</a>(SparseRREF::FIELD_Fp, 2);</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                this-&gt;characteristic = 2;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                this-&gt;<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">characteristic</a> = 2;</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            };</div>
 </div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span></div>
 <div class="foldopen" id="foldopen00120" data-start="{" data-end="}">
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_z2.html#a7d684ac99ba1817df7c5a058e1e2ebf9">  120</a></span>            <a class="code hl_function" href="struct_a_t_e_a_m_s_1_1_z2.html#a7d684ac99ba1817df7c5a058e1e2ebf9">Z2</a>(<span class="keywordtype">int</span> characteristic) {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="struct_a_t_e_a_m_s_1_1_z2.html#a7d684ac99ba1817df7c5a058e1e2ebf9">  120</a></span>            <a class="code hl_function" href="struct_a_t_e_a_m_s_1_1_z2.html#a7d684ac99ba1817df7c5a058e1e2ebf9">Z2</a>(<span class="keywordtype">int</span> <a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">characteristic</a>) {</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                this-&gt;<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a61a9a9ee9c24493f82ca1e931e2fdb05">ring</a> = <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a4cbb94314c6faf40168354c29480ac07">AbstractRing</a>(SparseRREF::FIELD_Fp, 2);</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                this-&gt;characteristic = 2;</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            };</div>
@@ -233,115 +233,101 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span></div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keyword">typedef</span> SparseRREF::pivot_t&lt;INDEX&gt; SparsePivot;</div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span></div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keyword">typedef</span> std::vector&lt;phat::index&gt; PHATColumn;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keyword">typedef</span> std::vector&lt;std::vector&lt;SparsePivot&gt;&gt; SparsePivots;</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span></div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keyword">typedef</span> phat::boundary_matrix&lt;phat::bit_tree_pivot_column&gt; PHATBoundaryMatrix;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keyword">typedef</span> std::vector&lt;phat::index&gt; PHATColumn;</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span></div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">typedef</span> phat::persistence_pairs PHATPairs;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">typedef</span> phat::boundary_matrix&lt;phat::bit_tree_pivot_column&gt; PHATBoundaryMatrix;</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span></div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keyword">typedef</span> phat::twist_reduction PHATTwist;</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span></div>
-<div class="foldopen" id="foldopen00199" data-start="{" data-end="};">
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="class_a_t_e_a_m_s_1_1_data_writer.html">  199</a></span>    <span class="keyword">class </span><a class="code hl_class" href="class_a_t_e_a_m_s_1_1_data_writer.html">DataWriter</a> {</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        <span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00207" data-start="{" data-end="}">
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="class_a_t_e_a_m_s_1_1_data_writer.html#abcc74c2f708e12ae3c1bf57f901df37f">  207</a></span>            <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_a_t_e_a_m_s_1_1_data_writer.html#abcc74c2f708e12ae3c1bf57f901df37f">write</a>(<a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">ATEAMS::SparseMatrix&lt;Q&gt;</a> S, std::string destination) {</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>                checkDestinationExists(destination);</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>                std::ofstream out;</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                out.open(destination);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keyword">typedef</span> phat::persistence_pairs PHATPairs;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keyword">typedef</span> phat::twist_reduction PHATTwist;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span></div>
+<div class="foldopen" id="foldopen00202" data-start="{" data-end="};">
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="class_a_t_e_a_m_s_1_1_data_writer.html">  202</a></span>    <span class="keyword">class </span><a class="code hl_class" href="class_a_t_e_a_m_s_1_1_data_writer.html">DataWriter</a> {</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00210" data-start="{" data-end="}">
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="class_a_t_e_a_m_s_1_1_data_writer.html#a1c1c4089d33ab17e3539d5cfa25e6abd">  210</a></span>            <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_a_t_e_a_m_s_1_1_data_writer.html#a1c1c4089d33ab17e3539d5cfa25e6abd">write</a>(<a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix&lt;Q&gt;</a> S, std::string destination) {</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                checkDestinationExists(destination);</div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                SparseRREF::sparse_mat_write&lt;Q::dtype,std::ofstream,ATEAMS::INDEX&gt;(</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                    S, out, SparseRREF::SPARSE_FILE_TYPE_SMS</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>                );</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                out.close();</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>            };</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                std::ofstream out;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                out.open(destination);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>                SparseRREF::sparse_mat_write&lt;Q::dtype,std::ofstream,INDEX&gt;(</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                    S, out, SparseRREF::SPARSE_FILE_TYPE_SMS</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                );</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>                out.close();</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>            };</div>
 </div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span></div>
-<div class="foldopen" id="foldopen00226" data-start="{" data-end="}">
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="class_a_t_e_a_m_s_1_1_data_writer.html#ab974ead98a2b349a079b30652c370d7b">  226</a></span>            <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_a_t_e_a_m_s_1_1_data_writer.html#ab974ead98a2b349a079b30652c370d7b">write</a>(<a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">ATEAMS::SparseMatrix&lt;Zp&gt;</a> S, std::string destination) {</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>                checkDestinationExists(destination);</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                std::ofstream out;</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                out.open(destination);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span></div>
+<div class="foldopen" id="foldopen00229" data-start="{" data-end="}">
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="class_a_t_e_a_m_s_1_1_data_writer.html#a8c993b2808c932dd5a7ab7de7f8e9474">  229</a></span>            <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_a_t_e_a_m_s_1_1_data_writer.html#a8c993b2808c932dd5a7ab7de7f8e9474">write</a>(<a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix&lt;Zp&gt;</a> S, std::string destination) {</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                checkDestinationExists(destination);</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                SparseRREF::sparse_mat_write&lt;Zp::dtype,std::ofstream,ATEAMS::INDEX&gt;(</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                    S, out, SparseRREF::SPARSE_FILE_TYPE_SMS</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>                );</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                out.close();</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>            };</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                std::ofstream out;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                out.open(destination);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>                SparseRREF::sparse_mat_write&lt;Zp::dtype,std::ofstream,INDEX&gt;(</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                    S, out, SparseRREF::SPARSE_FILE_TYPE_SMS</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                );</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                out.close();</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>            };</div>
 </div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span></div>
-<div class="foldopen" id="foldopen00245" data-start="{" data-end="}">
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="class_a_t_e_a_m_s_1_1_data_writer.html#aeb6c9882f28fe809c4782152cbb4d284">  245</a></span>            <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_a_t_e_a_m_s_1_1_data_writer.html#aeb6c9882f28fe809c4782152cbb4d284">write</a>(std::vector&lt;int&gt; S, std::string destination) {</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                checkDestinationExists(destination);</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                <span class="comment">// Check </span></div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                std::ofstream out;</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                out.open(destination);</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                <span class="keywordflow">for</span> (<span class="keyword">auto</span> k : S) {</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>                    out &lt;&lt; k &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                }</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                out.close();</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>            };</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span></div>
+<div class="foldopen" id="foldopen00248" data-start="{" data-end="}">
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="class_a_t_e_a_m_s_1_1_data_writer.html#aeb6c9882f28fe809c4782152cbb4d284">  248</a></span>            <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_a_t_e_a_m_s_1_1_data_writer.html#aeb6c9882f28fe809c4782152cbb4d284">write</a>(std::vector&lt;int&gt; S, std::string destination) {</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                checkDestinationExists(destination);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>                <span class="comment">// Check </span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                std::ofstream out;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>                out.open(destination);</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                <span class="keywordflow">for</span> (<span class="keyword">auto</span> k : S) {</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                    out &lt;&lt; k &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                }</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                out.close();</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>            };</div>
 </div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span></div>
-<div class="foldopen" id="foldopen00265" data-start="{" data-end="}">
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="class_a_t_e_a_m_s_1_1_data_writer.html#ae572b930e4a186f77ab073604f9e75f1">  265</a></span>            <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_a_t_e_a_m_s_1_1_data_writer.html#ae572b930e4a186f77ab073604f9e75f1">write</a>(std::vector&lt;double&gt; S, std::string destination) {</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                checkDestinationExists(destination);</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>                std::ofstream out;</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                out.open(destination);</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span></div>
+<div class="foldopen" id="foldopen00268" data-start="{" data-end="}">
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="class_a_t_e_a_m_s_1_1_data_writer.html#ae572b930e4a186f77ab073604f9e75f1">  268</a></span>            <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_a_t_e_a_m_s_1_1_data_writer.html#ae572b930e4a186f77ab073604f9e75f1">write</a>(std::vector&lt;double&gt; S, std::string destination) {</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                checkDestinationExists(destination);</div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>                <span class="keywordflow">for</span> (<span class="keyword">auto</span> k : S) {</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>                    out &lt;&lt; std::format(<span class="stringliteral">&quot;{:.8f}&quot;</span>, k) &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                }</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                out.close();</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>            };</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>                std::ofstream out;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>                out.open(destination);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>                <span class="keywordflow">for</span> (<span class="keyword">auto</span> k : S) {</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                    out &lt;&lt; std::format(<span class="stringliteral">&quot;{:.8f}&quot;</span>, k) &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                }</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                out.close();</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>            };</div>
 </div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span></div>
-<div class="foldopen" id="foldopen00284" data-start="{" data-end="}">
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno"><a class="line" href="class_a_t_e_a_m_s_1_1_data_writer.html#a721420c526c56c9136cc078fb507342b">  284</a></span>            <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_a_t_e_a_m_s_1_1_data_writer.html#a721420c526c56c9136cc078fb507342b">write</a>(std::vector&lt;float&gt; S, std::string destination) {</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>                checkDestinationExists(destination);</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                std::ofstream out;</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>                out.open(destination);</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                <span class="keywordflow">for</span> (<span class="keyword">auto</span> k : S) {</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>                    out &lt;&lt; std::format(<span class="stringliteral">&quot;{:.8f}&quot;</span>, k) &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>                }</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>            <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> checkDestinationExists(std::string destination) {</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                std::filesystem::path writable(destination);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>                <span class="keywordflow">if</span> (!std::filesystem::exists(writable.parent_path())) {</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>                    std::cerr &lt;&lt; std::format(<span class="stringliteral">&quot;Couldn&#39;t find filepath {}, forcibly writing...&quot;</span>, writable.parent_path().string()) &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                    std::filesystem::create_directory(writable.parent_path());</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>                }</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>            }</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    };</div>
+</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>}</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>                out.close();</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>            };</div>
-</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>            <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> checkDestinationExists(std::string destination) {</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>                std::filesystem::path writable(destination);</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>                <span class="keywordflow">if</span> (!std::filesystem::exists(writable.parent_path())) {</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>                    std::cerr &lt;&lt; std::format(<span class="stringliteral">&quot;Couldn&#39;t find filepath {}, forcibly writing...&quot;</span>, writable.parent_path().string()) &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>                    std::filesystem::create_directory(writable.parent_path());</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>                }</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>            }</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    };</div>
-</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>}</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1_data_writer_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1_data_writer.html">ATEAMS::DataWriter</a></div><div class="ttdoc">Utility function for writing various data types to file.</div><div class="ttdef"><b>Definition</b> common.h:199</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1_data_writer_html_a721420c526c56c9136cc078fb507342b"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1_data_writer.html#a721420c526c56c9136cc078fb507342b">ATEAMS::DataWriter::write</a></div><div class="ttdeci">static void write(std::vector&lt; float &gt; S, std::string destination)</div><div class="ttdoc">Writes a SparseMatrix to file.</div><div class="ttdef"><b>Definition</b> common.h:284</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1_data_writer_html_ab974ead98a2b349a079b30652c370d7b"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1_data_writer.html#ab974ead98a2b349a079b30652c370d7b">ATEAMS::DataWriter::write</a></div><div class="ttdeci">static void write(ATEAMS::SparseMatrix&lt; Zp &gt; S, std::string destination)</div><div class="ttdoc">Writes a SparseMatrix to file.</div><div class="ttdef"><b>Definition</b> common.h:226</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1_data_writer_html_abcc74c2f708e12ae3c1bf57f901df37f"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1_data_writer.html#abcc74c2f708e12ae3c1bf57f901df37f">ATEAMS::DataWriter::write</a></div><div class="ttdeci">static void write(ATEAMS::SparseMatrix&lt; Q &gt; S, std::string destination)</div><div class="ttdoc">Writes a SparseMatrix to file.</div><div class="ttdef"><b>Definition</b> common.h:207</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1_data_writer_html_ae572b930e4a186f77ab073604f9e75f1"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1_data_writer.html#ae572b930e4a186f77ab073604f9e75f1">ATEAMS::DataWriter::write</a></div><div class="ttdeci">static void write(std::vector&lt; double &gt; S, std::string destination)</div><div class="ttdoc">Writes a SparseMatrix to file.</div><div class="ttdef"><b>Definition</b> common.h:265</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1_data_writer_html_aeb6c9882f28fe809c4782152cbb4d284"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1_data_writer.html#aeb6c9882f28fe809c4782152cbb4d284">ATEAMS::DataWriter::write</a></div><div class="ttdeci">static void write(std::vector&lt; int &gt; S, std::string destination)</div><div class="ttdoc">Writes a SparseMatrix to file.</div><div class="ttdef"><b>Definition</b> common.h:245</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:9</div></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1_data_writer_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1_data_writer.html">ATEAMS::DataWriter</a></div><div class="ttdoc">Utility function for writing various data types to file.</div><div class="ttdef"><b>Definition</b> common.h:202</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1_data_writer_html_a1c1c4089d33ab17e3539d5cfa25e6abd"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1_data_writer.html#a1c1c4089d33ab17e3539d5cfa25e6abd">ATEAMS::DataWriter::write</a></div><div class="ttdeci">static void write(SparseMatrix&lt; Q &gt; S, std::string destination)</div><div class="ttdoc">Writes a SparseMatrix to file.</div><div class="ttdef"><b>Definition</b> common.h:210</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1_data_writer_html_a8c993b2808c932dd5a7ab7de7f8e9474"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1_data_writer.html#a8c993b2808c932dd5a7ab7de7f8e9474">ATEAMS::DataWriter::write</a></div><div class="ttdeci">static void write(SparseMatrix&lt; Zp &gt; S, std::string destination)</div><div class="ttdoc">Writes a SparseMatrix to file.</div><div class="ttdef"><b>Definition</b> common.h:229</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1_data_writer_html_ae572b930e4a186f77ab073604f9e75f1"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1_data_writer.html#ae572b930e4a186f77ab073604f9e75f1">ATEAMS::DataWriter::write</a></div><div class="ttdeci">static void write(std::vector&lt; double &gt; S, std::string destination)</div><div class="ttdoc">Writes a SparseMatrix to file.</div><div class="ttdef"><b>Definition</b> common.h:268</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1_data_writer_html_aeb6c9882f28fe809c4782152cbb4d284"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1_data_writer.html#aeb6c9882f28fe809c4782152cbb4d284">ATEAMS::DataWriter::write</a></div><div class="ttdeci">static void write(std::vector&lt; int &gt; S, std::string destination)</div><div class="ttdoc">Writes a SparseMatrix to file.</div><div class="ttdef"><b>Definition</b> common.h:248</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:11</div></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_html_a0e427c93d27bfcbf68a8b90853c7d9fc"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a0e427c93d27bfcbf68a8b90853c7d9fc">ATEAMS::INDEX</a></div><div class="ttdeci">uint32_t INDEX</div><div class="ttdef"><b>Definition</b> common.h:22</div></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_html_a2089ed26968a5b6636ac5a4bc2eef214"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a2089ed26968a5b6636ac5a4bc2eef214">ATEAMS::SparseMatrices</a></div><div class="ttdeci">std::vector&lt; SparseMatrix&lt; RingLike &gt; &gt; SparseMatrices</div><div class="ttdoc">Vector of SparseMatrix.</div><div class="ttdef"><b>Definition</b> common.h:145</div></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_html_a29b9327d3d72713cca4e2f68a4163435"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a29b9327d3d72713cca4e2f68a4163435">ATEAMS::SparseBases</a></div><div class="ttdeci">std::vector&lt; SparseBasis&lt; RingLike &gt; &gt; SparseBases</div><div class="ttdoc">Vector of SparseBasis.</div><div class="ttdef"><b>Definition</b> common.h:166</div></div>
@@ -358,7 +344,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1_q_html_aa4862696728f1aaefc917945e27d4716"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1_q.html#aa4862696728f1aaefc917945e27d4716">ATEAMS::Q::Q</a></div><div class="ttdeci">Q(int characteristic)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> common.h:64</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1_ring_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1_ring.html">ATEAMS::Ring</a></div><div class="ttdoc">Generic algebraic ring.</div><div class="ttdef"><b>Definition</b> common.h:43</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1_ring_html_a61a9a9ee9c24493f82ca1e931e2fdb05"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1_ring.html#a61a9a9ee9c24493f82ca1e931e2fdb05">ATEAMS::Ring::ring</a></div><div class="ttdeci">AbstractRing ring</div><div class="ttdef"><b>Definition</b> common.h:45</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1_z2_html_a7d684ac99ba1817df7c5a058e1e2ebf9"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1_z2.html#a7d684ac99ba1817df7c5a058e1e2ebf9">ATEAMS::Z2::Z2</a></div><div class="ttdeci">Z2(int characteristic)</div><div class="ttdoc">Constructor with an unused parameter.</div><div class="ttdef"><b>Definition</b> common.h:120</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1_ring_html_a937d0808cd7064cb8b2b1a15dc9048b9"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">ATEAMS::Ring::characteristic</a></div><div class="ttdeci">int characteristic</div><div class="ttdef"><b>Definition</b> common.h:46</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1_z2_html_a7d684ac99ba1817df7c5a058e1e2ebf9"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1_z2.html#a7d684ac99ba1817df7c5a058e1e2ebf9">ATEAMS::Z2::Z2</a></div><div class="ttdeci">Z2(int characteristic)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> common.h:120</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1_z2_html_a7e4f3bd21a26074f79d2c5f6a39eb708"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1_z2.html#a7e4f3bd21a26074f79d2c5f6a39eb708">ATEAMS::Z2::dtype</a></div><div class="ttdeci">FINITE dtype</div><div class="ttdoc">Data type FINITE.</div><div class="ttdef"><b>Definition</b> common.h:106</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1_z2_html_af495d60a7cf4b277adecb01d538c1aae"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1_z2.html#af495d60a7cf4b277adecb01d538c1aae">ATEAMS::Z2::Z2</a></div><div class="ttdeci">Z2()</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> common.h:111</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1_zp_html_a7e4f3bd21a26074f79d2c5f6a39eb708"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1_zp.html#a7e4f3bd21a26074f79d2c5f6a39eb708">ATEAMS::Zp::dtype</a></div><div class="ttdeci">FINITE dtype</div><div class="ttdoc">Data type FINITE.</div><div class="ttdef"><b>Definition</b> common.h:86</div></div>

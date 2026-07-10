@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 		Parameters PARAMETERS;
 		PARAMETERS.coefficients = &R;
 		PARAMETERS.dimension = dimension/2;
-		PARAMETERS.stoppingFunction = statistics::stopInvadingAt({1});
+		PARAMETERS.stoppingFunction = statistics::stopInvadingAt(STOPINVADING[dimension]);
 		PARAMETERS.DEBUG = true;
 
 		Model MODEL(&COMPLEX, PARAMETERS);

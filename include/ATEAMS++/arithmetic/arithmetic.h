@@ -54,6 +54,24 @@ namespace ATEAMS {
 			return u;
 		};
 
+		// /**
+		//  * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Z2.
+		//  * 
+		//  * @param u Vector.
+		//  * @param v Vector.
+		//  * @param R (Pointer to) the coefficient ring @ref Z2.
+		//  * 
+		//  * @returns \f$ \vec w = \vec u + \vec v \f$.
+		//  */
+		// inline SparseVector<Z2> SparseVectorAddition(
+		// 	SparseVector<Z2>& u,
+		// 	SparseVector<Z2> v,
+		// 	Ring* R
+		// ) {
+		// 	sparse_vec_add<INDEX>(u, v, R->ring);
+		// 	return u;
+		// };
+
 		/**
 		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Q.
 		 * 
@@ -65,7 +83,7 @@ namespace ATEAMS {
 		 */
 		inline SparseVector<Q> SparseVectorAddition(
 			SparseVector<Q>& u,
-			SparseVector<Q> v,
+			SparseVector<Q>& v,
 			Ring* R
 		) {
 			sfmpq_vec_addsub_mul<INDEX,false>(u, v, (Q::dtype)1);

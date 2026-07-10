@@ -39,6 +39,7 @@ window.MathJax = {
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
     GF: "{\\mathrm{GF}}",
+    RREF: "{\\mathrm{RREF}}",
     },
     packages: {
         '[+]': ['units']
@@ -144,15 +145,18 @@ document.addEventListener('DOMContentLoaded', () => {
 </div><!--header-->
 <div class="contents">
 
-<p>Convenience class for managing Flint and multithreading.  
+<p>Convenience class for managing Flint and multithreading. See <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html" title="Chain">Chain</a>; not something users should need.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="options_8h_source.html">options.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a7c845526e08ade244cab264f1b8c152b" id="r_a7c845526e08ade244cab264f1b8c152b"><td class="memItemLeft"><a id="a7c845526e08ade244cab264f1b8c152b" name="a7c845526e08ade244cab264f1b8c152b"></a>
+&#160;</td><td class="memItemRight"><b>ThreadOptions</b> ()</td></tr>
+<tr class="memdesc:a7c845526e08ade244cab264f1b8c152b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <br /></td></tr>
 <tr class="memitem:ab70b70876fadf31e281646d1f002525e" id="r_ab70b70876fadf31e281646d1f002525e"><td class="memItemLeft">std::thread&#160;</td><td class="memItemRight"><a class="el" href="#ab70b70876fadf31e281646d1f002525e">spinUp</a> ()</td></tr>
-<tr class="memdesc:ab70b70876fadf31e281646d1f002525e"><td class="mdescLeft">&#160;</td><td class="mdescRight">"Spins up" the appropriate multithreaded computing environment.  <br /></td></tr>
+<tr class="memdesc:ab70b70876fadf31e281646d1f002525e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a multithreaded computing environment.  <br /></td></tr>
 <tr class="memitem:a811b0a7568016bef9db2a19c9d67b3d3" id="r_a811b0a7568016bef9db2a19c9d67b3d3"><td class="memItemLeft"><a id="a811b0a7568016bef9db2a19c9d67b3d3" name="a811b0a7568016bef9db2a19c9d67b3d3"></a>
 void&#160;</td><td class="memItemRight"><b>spinDown</b> (std::thread *listener)</td></tr>
 <tr class="memdesc:a811b0a7568016bef9db2a19c9d67b3d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">"Spins down" the multithreaded computing environment. <br /></td></tr>
@@ -161,10 +165,10 @@ void&#160;</td><td class="memItemRight"><b>spinDown</b> (std::thread *listener)<
 Public Attributes</h2></td></tr>
 <tr class="memitem:a1f3b56a433fc78d01e9882a1a0e0cba5" id="r_a1f3b56a433fc78d01e9882a1a0e0cba5"><td class="memItemLeft"><a id="a1f3b56a433fc78d01e9882a1a0e0cba5" name="a1f3b56a433fc78d01e9882a1a0e0cba5"></a>
 <a class="el" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a17bece0311818ea0caba18ce7e4b7b36">ComputeOptions</a> *&#160;</td><td class="memItemRight"><b>opt</b></td></tr>
-<tr class="memdesc:a1f3b56a433fc78d01e9882a1a0e0cba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Pointer to) a <span class="tt">SparseRREF::rref_option</span> object; used to throw flags when computations are complete. <br /></td></tr>
+<tr class="memdesc:a1f3b56a433fc78d01e9882a1a0e0cba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a <a class="el" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a17bece0311818ea0caba18ce7e4b7b36" title="ComputeOptions">ComputeOptions</a> object used to keep track of the thread pool and process-killing keystrokes. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Convenience class for managing Flint and multithreading. </p>
+<div class="textblock"><p>Convenience class for managing Flint and multithreading. See <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html" title="Chain">Chain</a>; not something users should need. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="ab70b70876fadf31e281646d1f002525e" name="ab70b70876fadf31e281646d1f002525e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab70b70876fadf31e281646d1f002525e">&#9670;&#160;</a></span>spinUp()</h2>
@@ -189,7 +193,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>"Spins up" the appropriate multithreaded computing environment. </p>
+<p>Initializes a multithreaded computing environment. </p>
 <dl class="section return"><dt>Returns</dt><dd>An execution thread. </dd></dl>
 
 </div>

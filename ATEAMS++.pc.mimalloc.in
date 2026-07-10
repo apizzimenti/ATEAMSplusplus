@@ -9,4 +9,4 @@ Version: @PROJECT_VERSION@
 
 Requires:
 Libs: -L${libdir} -lflint -lmimalloc
-Cflags: -I${includedir} -std=c++23
+Cflags: -I${includedir} -std=c++23 -O3

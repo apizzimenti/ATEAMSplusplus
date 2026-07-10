@@ -44,7 +44,7 @@ bool checkReindexing(complexes::Complex<Q>* COMPLEX) {
 	// Swap, then reindex.
 	FILTRATION[FIRSTINDEX] = SECONDINDEX;
 	FILTRATION[SECONDINDEX] = FIRSTINDEX;
-	SparseMatrix<Q> REINDEXED = arithmetic::reindexSparseBoundaryMatrix<Q>(COMPLEX, FILTRATION, 2);
+	SparseMatrix<Q> REINDEXED = topology::reindexSparseBoundaryMatrix<Q>(COMPLEX, FILTRATION, 2);
 
 	bool FIRSTREINDEXED = false, SECONDREINDEXED = false;
 
@@ -65,9 +65,9 @@ bool checkPHATpersistence(complexes::Complex<Q>* COMPLEX) {
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
 
 	// We should have 1 + 4 + 6 + 4 + 1 = 16 giant components.
-	vector<int> times = arithmetic::PHATPersistence<Q>(COMPLEX, FILTRATION, 2);
+	vector<int> times = topology::PHATPersistence<Q>(COMPLEX, FILTRATION, 2);
 
-	return times.size() == 16;
+	return times.size() == 6;
 }
 
 bool checkTwistPersistence(complexes::Complex<Q>* COMPLEX, Ring* R) {
@@ -77,7 +77,7 @@ bool checkTwistPersistence(complexes::Complex<Q>* COMPLEX, Ring* R) {
 
 	// We should have 1 + 4 + 6 + 4 + 1 = 16 giant components, but only 6 of the
 	// desired dimension (2).
-	vector<int> times = arithmetic::TwistPersistence<Q>(COMPLEX, FILTRATION, R, 2);
+	vector<int> times = topology::twistPersistence<Q>(COMPLEX, FILTRATION, R, 2);
 
 	return times.size() == 6;
 }

@@ -122,48 +122,46 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s.html">ATEAMS</a> {</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s_1_1statistics.html">statistics</a> {</div>
-<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1statistics.html#adec1b3926f4354b27bda2d569c39f746">   17</a></span>        <span class="keyword">inline</span> std::function&lt;double(<span class="keywordtype">int</span>)&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1statistics.html#adec1b3926f4354b27bda2d569c39f746">selfdual</a>(<a class="code hl_class" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a>* R) {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            <span class="keywordtype">double</span> c = std::log(</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                1-(std::sqrt(R-&gt;characteristic)/(1+std::sqrt(R-&gt;characteristic)))</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            );</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <span class="keywordflow">return</span> [c](<span class="keywordtype">int</span> t) { <span class="keywordflow">return</span> c; };</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        }</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s_1_1statistics.html">ATEAMS::statistics</a> {</div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1statistics.html#adec1b3926f4354b27bda2d569c39f746">   16</a></span>    <span class="keyword">inline</span> std::function&lt;double(<span class="keywordtype">int</span>)&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1statistics.html#adec1b3926f4354b27bda2d569c39f746">selfdual</a>(<a class="code hl_class" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a>* R) {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keywordtype">double</span> c = std::log(</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            1-(std::sqrt(R-&gt;<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">characteristic</a>)/(1+std::sqrt(R-&gt;<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">characteristic</a>)))</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        );</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordflow">return</span> [c](<span class="keywordtype">int</span> t) { <span class="keywordflow">return</span> c; };</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    };</div>
 </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span></div>
-<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1statistics.html#a93b8c881b04c26a185ef87bc25e8372e">   34</a></span>        <span class="keyword">inline</span> std::function&lt;double(<span class="keywordtype">int</span>)&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1statistics.html#a93b8c881b04c26a185ef87bc25e8372e">constant</a>(<span class="keywordtype">double</span> C) {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            <span class="keywordflow">return</span> [C](<span class="keywordtype">int</span> t) { <span class="keywordflow">return</span> C; };</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        }</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span></div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1statistics.html#a93b8c881b04c26a185ef87bc25e8372e">   33</a></span>    <span class="keyword">inline</span> std::function&lt;double(<span class="keywordtype">int</span>)&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1statistics.html#a93b8c881b04c26a185ef87bc25e8372e">constant</a>(<span class="keywordtype">double</span> C) {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">return</span> [C](<span class="keywordtype">int</span> t) { <span class="keywordflow">return</span> C; };</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    };</div>
 </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
-<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1statistics.html#ace3c7a5ed5ec374798eac113b4b128d7">   49</a></span>        <span class="keyword">inline</span> std::function&lt;int(<span class="keywordtype">int</span>)&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1statistics.html#ace3c7a5ed5ec374798eac113b4b128d7">stopInvadingAt</a>(std::vector&lt;int&gt; ranks) {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <span class="keywordflow">return</span> [ranks](<span class="keywordtype">int</span> t) {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                std::random_device rd;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                std::mt19937 RNG(rd());</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                std::uniform_int_distribution&lt;int&gt; uniform(0,ranks.size()-1);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                <span class="keywordflow">return</span> ranks[uniform(RNG)]-1;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            };</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1statistics.html#ace3c7a5ed5ec374798eac113b4b128d7">   48</a></span>    <span class="keyword">inline</span> std::function&lt;int(<span class="keywordtype">int</span>)&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1statistics.html#ace3c7a5ed5ec374798eac113b4b128d7">stopInvadingAt</a>(std::vector&lt;int&gt; ranks) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">return</span> [ranks](<span class="keywordtype">int</span> t) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            std::random_device rd;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            std::mt19937 RNG(rd());</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            std::uniform_int_distribution&lt;int&gt; uniform(0,ranks.size()-1);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keywordflow">return</span> ranks[uniform(RNG)]-1;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        };</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    };</div>
 </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_1_1statistics_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1statistics.html">ATEAMS::statistics</a></div><div class="ttdoc">Statistical support.</div><div class="ttdef"><b>Definition</b> Chain.h:12</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1statistics_html_a93b8c881b04c26a185ef87bc25e8372e"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1statistics.html#a93b8c881b04c26a185ef87bc25e8372e">ATEAMS::statistics::constant</a></div><div class="ttdeci">std::function&lt; double(int)&gt; constant(double C)</div><div class="ttdoc">Constant-temperature.</div><div class="ttdef"><b>Definition</b> schedules.h:34</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1statistics_html_ace3c7a5ed5ec374798eac113b4b128d7"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1statistics.html#ace3c7a5ed5ec374798eac113b4b128d7">ATEAMS::statistics::stopInvadingAt</a></div><div class="ttdeci">std::function&lt; int(int)&gt; stopInvadingAt(std::vector&lt; int &gt; ranks)</div><div class="ttdoc">A convenience function for deciding when to stop invading (i.e. when to re-sample the spins over the ...</div><div class="ttdef"><b>Definition</b> schedules.h:49</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1statistics_html_adec1b3926f4354b27bda2d569c39f746"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1statistics.html#adec1b3926f4354b27bda2d569c39f746">ATEAMS::statistics::selfdual</a></div><div class="ttdeci">std::function&lt; double(int)&gt; selfdual(Ring *R)</div><div class="ttdoc">Determines the self-dual probability for the PLGT/PRCM.</div><div class="ttdef"><b>Definition</b> schedules.h:17</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:9</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1statistics_html_a93b8c881b04c26a185ef87bc25e8372e"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1statistics.html#a93b8c881b04c26a185ef87bc25e8372e">ATEAMS::statistics::constant</a></div><div class="ttdeci">std::function&lt; double(int)&gt; constant(double C)</div><div class="ttdoc">Constant-temperature.</div><div class="ttdef"><b>Definition</b> schedules.h:33</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1statistics_html_ace3c7a5ed5ec374798eac113b4b128d7"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1statistics.html#ace3c7a5ed5ec374798eac113b4b128d7">ATEAMS::statistics::stopInvadingAt</a></div><div class="ttdeci">std::function&lt; int(int)&gt; stopInvadingAt(std::vector&lt; int &gt; ranks)</div><div class="ttdoc">A convenience function for deciding when to stop invading (i.e. when to re-sample the spins over the ...</div><div class="ttdef"><b>Definition</b> schedules.h:48</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1statistics_html_adec1b3926f4354b27bda2d569c39f746"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1statistics.html#adec1b3926f4354b27bda2d569c39f746">ATEAMS::statistics::selfdual</a></div><div class="ttdeci">std::function&lt; double(int)&gt; selfdual(Ring *R)</div><div class="ttdoc">Determines the self-dual probability for the PLGT/PRCM.</div><div class="ttdef"><b>Definition</b> schedules.h:16</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1_ring_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1_ring.html">ATEAMS::Ring</a></div><div class="ttdoc">Generic algebraic ring.</div><div class="ttdef"><b>Definition</b> common.h:43</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1_ring_html_a937d0808cd7064cb8b2b1a15dc9048b9"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9">ATEAMS::Ring::characteristic</a></div><div class="ttdeci">int characteristic</div><div class="ttdef"><b>Definition</b> common.h:46</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

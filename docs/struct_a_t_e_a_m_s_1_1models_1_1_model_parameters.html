@@ -39,6 +39,7 @@ window.MathJax = {
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
     GF: "{\\mathrm{GF}}",
+    RREF: "{\\mathrm{RREF}}",
     },
     packages: {
         '[+]': ['units']
@@ -154,91 +155,27 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a67c367e941d9cfa52dc173c8a0dc20f5" id="r_a67c367e941d9cfa52dc173c8a0dc20f5"><td class="memItemLeft"><a id="a67c367e941d9cfa52dc173c8a0dc20f5" name="a67c367e941d9cfa52dc173c8a0dc20f5"></a>
 <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *&#160;</td><td class="memItemRight"><b>coefficients</b></td></tr>
 <tr class="memdesc:a67c367e941d9cfa52dc173c8a0dc20f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coefficient ring. <br /></td></tr>
-<tr class="memitem:a1922a551816a2725c69a086db7c12a03" id="r_a1922a551816a2725c69a086db7c12a03"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a1922a551816a2725c69a086db7c12a03">p</a></td></tr>
-<tr class="memitem:ab4e19b8573d2f42134f8d05ec289295f" id="r_ab4e19b8573d2f42134f8d05ec289295f"><td class="memItemLeft">std::function&lt; double(int)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab4e19b8573d2f42134f8d05ec289295f">temperatureFunction</a></td></tr>
-<tr class="memitem:aebdbd879c076f085f1f2efc8f4e93f7a" id="r_aebdbd879c076f085f1f2efc8f4e93f7a"><td class="memItemLeft">std::function&lt; int(int)&gt;&#160;</td><td class="memItemRight"><a class="el" href="#aebdbd879c076f085f1f2efc8f4e93f7a">stoppingFunction</a></td></tr>
-<tr class="memitem:a1a8a8235879363159315091a1daed72f" id="r_a1a8a8235879363159315091a1daed72f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a1a8a8235879363159315091a1daed72f">dimension</a></td></tr>
-<tr class="memitem:a117352cc494cc62c6b2f1882786a332c" id="r_a117352cc494cc62c6b2f1882786a332c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a117352cc494cc62c6b2f1882786a332c">DEBUG</a> = false</td></tr>
+<tr class="memitem:aace2d484b0e3651abd108f04803d316c" id="r_aace2d484b0e3651abd108f04803d316c"><td class="memItemLeft"><a id="aace2d484b0e3651abd108f04803d316c" name="aace2d484b0e3651abd108f04803d316c"></a>
+double&#160;</td><td class="memItemRight"><b>p</b></td></tr>
+<tr class="memdesc:aace2d484b0e3651abd108f04803d316c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation. See Z2.">Bernoulli</a> trial density. Used by <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Bernoulli">Bernoulli</a>. <br /></td></tr>
+<tr class="memitem:ab4e19b8573d2f42134f8d05ec289295f" id="r_ab4e19b8573d2f42134f8d05ec289295f"><td class="memItemLeft"><a id="ab4e19b8573d2f42134f8d05ec289295f" name="ab4e19b8573d2f42134f8d05ec289295f"></a>
+std::function&lt; double(int)&gt;&#160;</td><td class="memItemRight"><b>temperatureFunction</b></td></tr>
+<tr class="memdesc:ab4e19b8573d2f42134f8d05ec289295f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that specifies the (inverse) temperature parameter at the current time-step. Used by <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html" title="Glauber">Glauber</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html" title="SwendsenWang">SwendsenWang</a>. <br /></td></tr>
+<tr class="memitem:aebdbd879c076f085f1f2efc8f4e93f7a" id="r_aebdbd879c076f085f1f2efc8f4e93f7a"><td class="memItemLeft"><a id="aebdbd879c076f085f1f2efc8f4e93f7a" name="aebdbd879c076f085f1f2efc8f4e93f7a"></a>
+std::function&lt; int(int)&gt;&#160;</td><td class="memItemRight"><b>stoppingFunction</b></td></tr>
+<tr class="memdesc:aebdbd879c076f085f1f2efc8f4e93f7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that specifies the number of giant cycles encountered before re-sampling spins. Used by <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html" title="InvadedCluster">InvadedCluster</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html" title="Invasion">Invasion</a>. <br /></td></tr>
+<tr class="memitem:a1a8a8235879363159315091a1daed72f" id="r_a1a8a8235879363159315091a1daed72f"><td class="memItemLeft"><a id="a1a8a8235879363159315091a1daed72f" name="a1a8a8235879363159315091a1daed72f"></a>
+int&#160;</td><td class="memItemRight"><b>dimension</b></td></tr>
+<tr class="memdesc:a1a8a8235879363159315091a1daed72f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Percolation subcomplex dimension. Used by every <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Model">Model</a>. <br /></td></tr>
+<tr class="memitem:a117352cc494cc62c6b2f1882786a332c" id="r_a117352cc494cc62c6b2f1882786a332c"><td class="memItemLeft"><a id="a117352cc494cc62c6b2f1882786a332c" name="a117352cc494cc62c6b2f1882786a332c"></a>
+bool&#160;</td><td class="memItemRight"><b>DEBUG</b> = false</td></tr>
+<tr class="memdesc:a117352cc494cc62c6b2f1882786a332c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are we debugging the <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Model">Model</a>? <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Typical parameters required for simulating a <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a>. </p>
-</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a117352cc494cc62c6b2f1882786a332c" name="a117352cc494cc62c6b2f1882786a332c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a117352cc494cc62c6b2f1882786a332c">&#9670;&#160;</a></span>DEBUG</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool DEBUG = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Are we debugging the <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Model">Model</a>? </p>
-
-</div>
-</div>
-<a id="a1a8a8235879363159315091a1daed72f" name="a1a8a8235879363159315091a1daed72f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a8a8235879363159315091a1daed72f">&#9670;&#160;</a></span>dimension</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int dimension</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Percolation subcomplex dimension. Used by every <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Model">Model</a>. </p>
-
-</div>
-</div>
-<a id="a1922a551816a2725c69a086db7c12a03" name="a1922a551816a2725c69a086db7c12a03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1922a551816a2725c69a086db7c12a03">&#9670;&#160;</a></span>p</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float p</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation. See Z2.">Bernoulli</a> trial density. Used by <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Bernoulli">Bernoulli</a>. </p>
-
-</div>
-</div>
-<a id="aebdbd879c076f085f1f2efc8f4e93f7a" name="aebdbd879c076f085f1f2efc8f4e93f7a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebdbd879c076f085f1f2efc8f4e93f7a">&#9670;&#160;</a></span>stoppingFunction</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::function&lt;int(int)&gt; stoppingFunction</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function that specifies the number of giant cycles encountered before re-sampling spins. Used by <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html" title="InvadedCluster">InvadedCluster</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html" title="Invasion">Invasion</a>. </p>
-
-</div>
-</div>
-<a id="ab4e19b8573d2f42134f8d05ec289295f" name="ab4e19b8573d2f42134f8d05ec289295f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4e19b8573d2f42134f8d05ec289295f">&#9670;&#160;</a></span>temperatureFunction</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::function&lt;double(int)&gt; temperatureFunction</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function that specifies the (inverse) temperature parameter at the current time-step. Used by <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html" title="Glauber">Glauber</a>, <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html" title="SwendsenWang">SwendsenWang</a>. </p>
-
-</div>
-</div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<p><b>Example Usage</b></p>
+<p>See <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Bernoulli">Bernoulli</a>, or any other <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Model">Model</a>. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/ATEAMS++/models/<a class="el" href="_model_parameters_8h_source.html">ModelParameters.h</a></li>
 </ul>
 </div><!-- contents -->

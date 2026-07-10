@@ -39,6 +39,7 @@ window.MathJax = {
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
     GF: "{\\mathrm{GF}}",
+    RREF: "{\\mathrm{RREF}}",
     },
     packages: {
         '[+]': ['units']
@@ -151,22 +152,20 @@ document.addEventListener('DOMContentLoaded', () => {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:abcc74c2f708e12ae3c1bf57f901df37f" id="r_abcc74c2f708e12ae3c1bf57f901df37f"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#abcc74c2f708e12ae3c1bf57f901df37f">write</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">ATEAMS::SparseMatrix</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html">Q</a> &gt; S, std::string destination)</td></tr>
-<tr class="memdesc:abcc74c2f708e12ae3c1bf57f901df37f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a <a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8" title="SparseMatrix">SparseMatrix</a> to file.  <br /></td></tr>
-<tr class="memitem:ab974ead98a2b349a079b30652c370d7b" id="r_ab974ead98a2b349a079b30652c370d7b"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#ab974ead98a2b349a079b30652c370d7b">write</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">ATEAMS::SparseMatrix</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html">Zp</a> &gt; S, std::string destination)</td></tr>
-<tr class="memdesc:ab974ead98a2b349a079b30652c370d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a <a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8" title="SparseMatrix">SparseMatrix</a> to file.  <br /></td></tr>
+<tr class="memitem:a1c1c4089d33ab17e3539d5cfa25e6abd" id="r_a1c1c4089d33ab17e3539d5cfa25e6abd"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a1c1c4089d33ab17e3539d5cfa25e6abd">write</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html">Q</a> &gt; S, std::string destination)</td></tr>
+<tr class="memdesc:a1c1c4089d33ab17e3539d5cfa25e6abd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a <a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8" title="SparseMatrix">SparseMatrix</a> to file.  <br /></td></tr>
+<tr class="memitem:a8c993b2808c932dd5a7ab7de7f8e9474" id="r_a8c993b2808c932dd5a7ab7de7f8e9474"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a8c993b2808c932dd5a7ab7de7f8e9474">write</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html">Zp</a> &gt; S, std::string destination)</td></tr>
+<tr class="memdesc:a8c993b2808c932dd5a7ab7de7f8e9474"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a <a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8" title="SparseMatrix">SparseMatrix</a> to file.  <br /></td></tr>
 <tr class="memitem:aeb6c9882f28fe809c4782152cbb4d284" id="r_aeb6c9882f28fe809c4782152cbb4d284"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#aeb6c9882f28fe809c4782152cbb4d284">write</a> (std::vector&lt; int &gt; S, std::string destination)</td></tr>
 <tr class="memdesc:aeb6c9882f28fe809c4782152cbb4d284"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a <a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8" title="SparseMatrix">SparseMatrix</a> to file.  <br /></td></tr>
 <tr class="memitem:ae572b930e4a186f77ab073604f9e75f1" id="r_ae572b930e4a186f77ab073604f9e75f1"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#ae572b930e4a186f77ab073604f9e75f1">write</a> (std::vector&lt; double &gt; S, std::string destination)</td></tr>
 <tr class="memdesc:ae572b930e4a186f77ab073604f9e75f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a <a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8" title="SparseMatrix">SparseMatrix</a> to file.  <br /></td></tr>
-<tr class="memitem:a721420c526c56c9136cc078fb507342b" id="r_a721420c526c56c9136cc078fb507342b"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a721420c526c56c9136cc078fb507342b">write</a> (std::vector&lt; float &gt; S, std::string destination)</td></tr>
-<tr class="memdesc:a721420c526c56c9136cc078fb507342b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a <a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8" title="SparseMatrix">SparseMatrix</a> to file.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utility function for writing various data types to file. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="abcc74c2f708e12ae3c1bf57f901df37f" name="abcc74c2f708e12ae3c1bf57f901df37f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abcc74c2f708e12ae3c1bf57f901df37f">&#9670;&#160;</a></span>write() <span class="overload">[1/5]</span></h2>
+<a id="a1c1c4089d33ab17e3539d5cfa25e6abd" name="a1c1c4089d33ab17e3539d5cfa25e6abd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c1c4089d33ab17e3539d5cfa25e6abd">&#9670;&#160;</a></span>write() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,7 +176,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void write </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">ATEAMS::SparseMatrix</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html">Q</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>S</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html">Q</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>S</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -203,8 +202,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab974ead98a2b349a079b30652c370d7b" name="ab974ead98a2b349a079b30652c370d7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab974ead98a2b349a079b30652c370d7b">&#9670;&#160;</a></span>write() <span class="overload">[2/5]</span></h2>
+<a id="a8c993b2808c932dd5a7ab7de7f8e9474" name="a8c993b2808c932dd5a7ab7de7f8e9474"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c993b2808c932dd5a7ab7de7f8e9474">&#9670;&#160;</a></span>write() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -215,7 +214,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void write </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">ATEAMS::SparseMatrix</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html">Zp</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>S</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html">Zp</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>S</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -242,7 +241,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="ae572b930e4a186f77ab073604f9e75f1" name="ae572b930e4a186f77ab073604f9e75f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae572b930e4a186f77ab073604f9e75f1">&#9670;&#160;</a></span>write() <span class="overload">[3/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae572b930e4a186f77ab073604f9e75f1">&#9670;&#160;</a></span>write() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,46 +278,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a721420c526c56c9136cc078fb507342b" name="a721420c526c56c9136cc078fb507342b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a721420c526c56c9136cc078fb507342b">&#9670;&#160;</a></span>write() <span class="overload">[4/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void write </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; float &gt;</td>          <td class="paramname"><span class="paramname"><em>S</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>destination</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Writes a <a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8" title="SparseMatrix">SparseMatrix</a> to file. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">S</td><td>Storage. </td></tr>
-    <tr><td class="paramname">destination</td><td>Filepath. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="aeb6c9882f28fe809c4782152cbb4d284" name="aeb6c9882f28fe809c4782152cbb4d284"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb6c9882f28fe809c4782152cbb4d284">&#9670;&#160;</a></span>write() <span class="overload">[5/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb6c9882f28fe809c4782152cbb4d284">&#9670;&#160;</a></span>write() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

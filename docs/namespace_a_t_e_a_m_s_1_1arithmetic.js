@@ -3,8 +3,13 @@ var namespace_a_t_e_a_m_s_1_1arithmetic =
     [ "ThreadOptions", "class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html", "class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options" ],
     [ "ComputeOption", "namespace_a_t_e_a_m_s_1_1arithmetic.html#afc98998bdae89818c10abbdc31f59173", null ],
     [ "ComputeOptions", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a17bece0311818ea0caba18ce7e4b7b36", null ],
-    [ "PHATPersistence", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a10692014e1f613bb397ec488a5600507", null ],
     [ "randomLinearCombination", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a0380e4b8e176dfb6ae21015fb74910f3", null ],
-    [ "submatrixKernelSample", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a9d33e0d2f7d6b0902a7a4bde66fd2229", null ],
-    [ "TwistPersistence", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a364888faf3a42a159292dcfbbacd503e", null ]
+    [ "SparseMatrixKernel", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a6b9257da1c93b987f468d1cb86460d49", null ],
+    [ "SparseMatrixRREF", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a56e7670562f0c69600ea56c4439bf994", null ],
+    [ "SparseMatrixRREFKernel", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a8820e57dde7f181caad5b6c17a625413", null ],
+    [ "SparseRightMultiplication", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a82d167ee11276e76718aaaf943c9d5b3", null ],
+    [ "SparseVectorAddition", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a8b902a34db5e1c48400059bf69b64191", null ],
+    [ "SparseVectorAddition", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a8cbd65541e64ae96294838d39b0a000c", null ],
+    [ "SparseVectorRescaling", "namespace_a_t_e_a_m_s_1_1arithmetic.html#aace715443cbe29fd15148d987611ef77", null ],
+    [ "submatrixKernelSample", "namespace_a_t_e_a_m_s_1_1arithmetic.html#ac1b7b8d1bef66b51a413461523fd61e9", null ]
 ];

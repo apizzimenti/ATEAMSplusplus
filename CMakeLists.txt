@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 4.2)
 
 project(ATEAMS++
-	VERSION 1.5
+	VERSION 1.6
 	LANGUAGES C CXX
 	DESCRIPTION "Algebraic topology-enabled algorithms for spin systems."
 )
@@ -35,11 +35,10 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST TRUE)
+set(TEST FALSE)
 set(PROFILE FALSE)
 
 if (TEST)
-	# add_subdirectory(dependencies/Catch2)
 	enable_testing()
 endif()
 
@@ -68,8 +67,10 @@ list(APPEND SOURCE_HEADERS
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/arithmetic.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/kernel.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/persistence.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/options.h
+
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/topology.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence.h
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
@@ -93,8 +94,10 @@ list(APPEND SOURCE_HEADERS
 
 
 list(APPEND SOURCE_IMPLEMENTATIONS
+	# Templated implementations
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/arithmetic/kernel.tpp
-	${PROJECT_SOURCE_DIR}/src/ATEAMS++/arithmetic/persistence.tpp
+
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/topology/persistence.tpp
 
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/complexes/Cubical.tpp
 
@@ -179,6 +182,9 @@ list(APPEND COMPLEXES
 
 list(APPEND ARITHMETIC
 	"kernel"
+)
+
+list(APPEND TOPOLOGY
 	"persistence"
 )
 
@@ -225,6 +231,21 @@ if (TEST)
 	foreach(FUNCTION IN LISTS ARITHMETIC)
 		foreach(TYPE IN LISTS TYPES)
 			add_executable(tests.${FUNCTION}.${TYPE} tests/arithmetic/${FUNCTION}.${TYPE}.cpp)
+			target_include_directories(tests.${FUNCTION}.${TYPE} PUBLIC tests)
+			target_link_libraries(tests.${FUNCTION}.${TYPE} PUBLIC ATEAMS++)
+
+			if("${TYPE}" STREQUAL "Q")
+				add_test(NAME tests.${FUNCTION}.${TYPE} COMMAND tests.${FUNCTION}.${TYPE} 0)
+			else()
+				add_test(NAME tests.${FUNCTION}.${TYPE}.2 COMMAND tests.${FUNCTION}.${TYPE} 2)
+				add_test(NAME tests.${FUNCTION}.${TYPE}.3 COMMAND tests.${FUNCTION}.${TYPE} 3)
+			endif()
+		endforeach()
+	endforeach()
+
+	foreach(FUNCTION IN LISTS TOPOLOGY)
+		foreach(TYPE IN LISTS TYPES)
+			add_executable(tests.${FUNCTION}.${TYPE} tests/topology/${FUNCTION}.${TYPE}.cpp)
 			target_include_directories(tests.${FUNCTION}.${TYPE} PUBLIC tests)
 			target_link_libraries(tests.${FUNCTION}.${TYPE} PUBLIC ATEAMS++)
 

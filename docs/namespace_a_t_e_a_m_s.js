@@ -4,6 +4,11 @@ var namespace_a_t_e_a_m_s =
     [ "complexes", "namespace_a_t_e_a_m_s_1_1complexes.html", "namespace_a_t_e_a_m_s_1_1complexes" ],
     [ "models", "namespace_a_t_e_a_m_s_1_1models.html", "namespace_a_t_e_a_m_s_1_1models" ],
     [ "statistics", "namespace_a_t_e_a_m_s_1_1statistics.html", "namespace_a_t_e_a_m_s_1_1statistics" ],
+    [ "topology", "namespace_a_t_e_a_m_s_1_1topology.html", [
+      [ "persistence", "namespace_a_t_e_a_m_s_1_1topology.html#a4f3b986df7ce4786e4769864f289be8d", null ],
+      [ "PHATPersistence", "namespace_a_t_e_a_m_s_1_1topology.html#a10692014e1f613bb397ec488a5600507", null ],
+      [ "twistPersistence", "namespace_a_t_e_a_m_s_1_1topology.html#acd8515e2ecfeea265e36069df52ba101", null ]
+    ] ],
     [ "Ring", "struct_a_t_e_a_m_s_1_1_ring.html", "struct_a_t_e_a_m_s_1_1_ring" ],
     [ "Q", "struct_a_t_e_a_m_s_1_1_q.html", "struct_a_t_e_a_m_s_1_1_q" ],
     [ "Zp", "struct_a_t_e_a_m_s_1_1_zp.html", "struct_a_t_e_a_m_s_1_1_zp" ],

@@ -50,9 +50,6 @@ namespace ATEAMS::models {
 			this->dimension
 		);
 
-		// Make sure we shift the listed indices lower.
-		std::erase_if(essential, [stop, start](int x) { return !((start <= x) && (x < stop)); });
-
 		// Now, determine at what time we hit the desired number of giant cycles
 		// and return the indices of the d-cells included at or before that time.
 		std::for_each(essential.begin(), essential.end(), [offset](int &k) { k -= offset; });
@@ -84,11 +81,18 @@ namespace ATEAMS::models {
 		// Determine the field and build the boundary matrices for the Complex.
 		this->complex->constructBoundaryMatrices(this->coefficients);
 
-		int mod = (int)this->coefficients->characteristic;
-		this->intuniform = std::uniform_int_distribution<int>(0,mod);
-
-		if (mod< 3) this->complex->constructFlatBoundaryMatrix();
-		else this->complex->constructFullBoundaryMatrix(this->coefficients);
+		// Set up the arithmetic depending on the coefficient field. Currently,
+		// we use Z/2Z arithmetic when computing over the rationals.
+		if (this->coefficients->characteristic > 2) {
+			this->intuniform = std::uniform_int_distribution<int>(0, this->coefficients->characteristic);
+			this->complex->constructFullBoundaryMatrix(this->coefficients);
+		} else if (this->coefficients->characteristic == 2) {
+			this->intuniform = std::uniform_int_distribution<int>(0, 2);
+			this->complex->constructFlatBoundaryMatrix();
+		} else {
+			this->intuniform = std::uniform_int_distribution<int>(0, 2);
+			this->complex->constructFlatBoundaryMatrix();
+		}
 
 		// Initialize the indices so we don't have to re-create them over and over.
 		std::vector<int> include(this->complex->Cells[this->dimension]);
@@ -120,11 +124,18 @@ namespace ATEAMS::models {
 		// Determine the field and build the boundary matrices for the Complex.
 		this->complex->constructBoundaryMatrices(this->coefficients);
 
-		int mod = (int)this->coefficients->characteristic;
-		this->intuniform = std::uniform_int_distribution<int>(0,mod);
-
-		if (mod < 3) this->complex->constructFlatBoundaryMatrix();
-		else this->complex->constructFullBoundaryMatrix(this->coefficients);
+		// Set up the arithmetic depending on the coefficient field. Currently,
+		// we use Z/2Z arithmetic when computing over the rationals.
+		if (this->coefficients->characteristic > 2) {
+			this->intuniform = std::uniform_int_distribution<int>(0, this->coefficients->characteristic);
+			this->complex->constructFullBoundaryMatrix(this->coefficients);
+		} else if (this->coefficients->characteristic == 2) {
+			this->intuniform = std::uniform_int_distribution<int>(0, 2);
+			this->complex->constructFlatBoundaryMatrix();
+		} else {
+			this->intuniform = std::uniform_int_distribution<int>(0, 2);
+			this->complex->constructFlatBoundaryMatrix();
+		}
 
 		// Initialize the indices so we don't have to re-create them over and over.
 		std::vector<int> include(this->complex->Cells[this->dimension]);

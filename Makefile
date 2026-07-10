@@ -15,7 +15,7 @@ build:
 	cmake -B build
 	cmake --build build -v
 
-install: build
+install:
 	sudo cmake --install build -v
 
 .PHONY: clean build
@@ -30,6 +30,7 @@ test:
 ## DOCS ##
 ##########
 docs: FORCE
+	@sed -e 's|`\$$|\\f$$|g' -e 's|$$`|\\f$$|g' README.md > README.friendly.md
 	@doxygen
 
 FORCE: ;

@@ -128,10 +128,13 @@ namespace ATEAMS::topology {
 			all.insert(pairs.get_pair(i).second);
 		}
 
+		int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
 		vector<int> essential;
 
 		for (int t=0; t < filtration.size(); t++) {
-			if (!all.contains(filtration[t])) essential.push_back(filtration[t]);
+			if (!all.contains(filtration[t]) && (low <= filtration[t] && filtration[t] < high)){
+				essential.push_back(filtration[t]);
+			}
 		}
 
 		return essential;
@@ -206,8 +209,12 @@ namespace ATEAMS::topology {
 		Ring* R,
 		int dimension
 	) {
-		if (R->characteristic == 2) return PHATPersistence<RingLike>(complex, filtration, dimension);
-		else return twistPersistence<RingLike>(complex, filtration, R, dimension);
+		vector<int> essential;
+		if (R->characteristic < 3) essential = PHATPersistence<RingLike>(complex, filtration, dimension);
+		else essential = twistPersistence<RingLike>(complex, filtration, R, dimension);
+
+		std::sort(essential.begin(), essential.end());
+		return essential;
 	};
 }
 

@@ -63,7 +63,6 @@ namespace ATEAMS {
 			// the ones within the right window.
 			vector<int> essential = topology::persistence<Z2>(this->complex, this->filtration, this->coefficients, d);
 			std::erase_if(essential, [stop, included](int t) { return !((stop <= t) && (t < stop+included)); });
-			std::sort(essential.begin(), essential.end());
 
 			if (this->DEBUG) {
 				std::cerr << "outputting filtration to stdout..." << std::endl;

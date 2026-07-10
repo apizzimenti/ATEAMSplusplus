@@ -74,9 +74,6 @@ namespace ATEAMS {
 				this->coefficients,
 				this->dimension
 			);
-			
-			std::erase_if(essential, [stop, start](int x) { return !((start <= x) && (x < stop)); });
-			std::sort(essential.begin(), essential.end());
 
 			if (this->DEBUG) {
 				cerr << "filtration:" << endl;
@@ -178,13 +175,17 @@ namespace ATEAMS {
 			this->complex->constructBoundaryMatrices(this->coefficients);
 			this->stoppingFunction = parameters.stoppingFunction;
 
-			int mod = (int)this->coefficients->characteristic;
-			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
-
-			if (mod == 2){
+			// Set up the arithmetic depending on the coefficient field. Currently,
+			// we use Z/2Z arithmetic when computing over the rationals.
+			if (this->coefficients->characteristic > 2) {
+				this->intuniform = std::uniform_int_distribution<int>(0, this->coefficients->characteristic);
+				this->complex->constructFullBoundaryMatrix(this->coefficients);
+			} else if (this->coefficients->characteristic == 2) {
+				this->intuniform = std::uniform_int_distribution<int>(0, 2);
 				this->complex->constructFlatBoundaryMatrix();
 			} else {
-				this->complex->constructFullBoundaryMatrix(this->coefficients);
+				this->intuniform = std::uniform_int_distribution<int>(0, 2);
+				this->complex->constructFlatBoundaryMatrix();
 			}
 
 			std::vector<int> filtration(this->complex->size());
@@ -210,13 +211,17 @@ namespace ATEAMS {
 			// Determine the field and build the boundary matrices for the Complex.
 			this->complex->constructBoundaryMatrices(this->coefficients);
 
-			int mod = (int)this->coefficients->characteristic;
-			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
-
-			if (mod == 2){
+			// Set up the arithmetic depending on the coefficient field. Currently,
+			// we use Z/2Z arithmetic when computing over the rationals.
+			if (this->coefficients->characteristic > 2) {
+				this->intuniform = std::uniform_int_distribution<int>(0, this->coefficients->characteristic);
+				this->complex->constructFullBoundaryMatrix(this->coefficients);
+			} else if (this->coefficients->characteristic == 2) {
+				this->intuniform = std::uniform_int_distribution<int>(0, 2);
 				this->complex->constructFlatBoundaryMatrix();
 			} else {
-				this->complex->constructFullBoundaryMatrix(this->coefficients);
+				this->intuniform = std::uniform_int_distribution<int>(0, 2);
+				this->complex->constructFlatBoundaryMatrix();
 			}
 
 			std::vector<int> filtration(this->complex->size());

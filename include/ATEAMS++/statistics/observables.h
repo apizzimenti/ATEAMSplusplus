@@ -30,8 +30,8 @@ namespace ATEAMS::statistics {
 		int dimension
 	) {
 		// Perform the matrix multiplication.
-		SparseVector<RingLike> coefficients = arithmetic::SparseRightMultiplication(
-			complex->Coboundary.Matrices[dimension], f, R->ring
+		SparseVector<RingLike> coefficients = arithmetic::SparseRightMultiplication<RingLike>(
+			complex->Coboundary.Matrices[dimension], f, R
 		);
 		coefficients.compress();
 
@@ -60,8 +60,8 @@ namespace ATEAMS::statistics {
 		int dimension
 	) {
 		// Perform the matrix multiplication.
-		SparseVector<RingLike> coefficients = arithmetic::SparseRightMultiplication(
-			complex->Coboundary.Matrices[dimension], f, R->ring
+		SparseVector<RingLike> coefficients = arithmetic::SparseRightMultiplication<RingLike>(
+			complex->Coboundary.Matrices[dimension], f, R
 		);
 		coefficients.compress();
 
@@ -90,8 +90,8 @@ namespace ATEAMS::statistics {
 		int dimension
 	) {
 		// Perform the matrix multiplication.
-		SparseVector<RingLike> coefficients = arithmetic::SparseRightMultiplication(
-			complex->Coboundary.Matrices[dimension], f, R->ring
+		SparseVector<RingLike> coefficients = arithmetic::SparseRightMultiplication<RingLike>(
+			complex->Coboundary.Matrices[dimension], f, R
 		);
 		coefficients.compress();
 

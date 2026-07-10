@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: include/ATEAMS++/complexes Directory Reference</title>
+<title>ATEAMS++: include/ATEAMS++/topology/topology.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -20,34 +20,6 @@
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', init_search);
 </script>
-<script type="text/javascript">
-window.MathJax = {
-  options: {
-    ignoreHtmlClass: 'tex2jax_ignore',
-    processHtmlClass: 'tex2jax_process'
-  },
-  loader: {
-    load: ['[tex]/units']
-  },
-  tex: {
-    macros: {    Z: "{\\mathbb Z}",
-    Q: "{\\mathbb Q}",
-    ker: "{\\mathrm{ker}}",
-    PLGT: "{\\mathrm{PLGT}}",
-    PRCM: "{\\mathrm{PRCM}}",
-    PK: "{\\mathrm{PK}}",
-    rank: "{\\mathrm{rank}}",
-    H: "{\\mathrm{H}}",
-    GF: "{\\mathrm{GF}}",
-    RREF: "{\\mathrm{RREF}}",
-    },
-    packages: {
-        '[+]': ['units']
-    }
-  }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
 <script type="module">
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
@@ -101,7 +73,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('dir_870048f375fb966fffdf4611e77281e9.html','',''); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('topology_8h_source.html','',''); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
@@ -141,30 +113,30 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">complexes Directory Reference</div></div>
+  <div class="headertitle"><div class="title">topology.h</div></div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-files" class="groupheader"><a id="files" name="files"></a>
-Files</h2></td></tr>
-<tr class="memitem:Complex_2Eh" id="r_Complex_2Eh"><td class="memItemLeft"><a href="_complex_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><b>Complex.h</b></td></tr>
-<tr class="memitem:complexes_2Eh" id="r_complexes_2Eh"><td class="memItemLeft"><a href="complexes_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><b>complexes.h</b></td></tr>
-<tr class="memitem:Cubical_2Eh" id="r_Cubical_2Eh"><td class="memItemLeft"><a href="_cubical_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><b>Cubical.h</b></td></tr>
-</table>
-</div><!-- contents -->
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef ATEAMS_TOPOLOGY_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#define ATEAMS_TOPOLOGY_H</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s.html">ATEAMS</a> {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s_1_1topology.html">topology</a> { };</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>}</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;ATEAMS++/topology/persistence.h&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1topology_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1topology.html">ATEAMS::topology</a></div><div class="ttdoc">Topological support routines.</div><div class="ttdef"><b>Definition</b> persistence.h:11</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:11</div></div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div id="page-nav" class="page-nav-panel">
-<div id="page-nav-resize-handle"></div>
-<div id="page-nav-tree">
-<div id="page-nav-contents">
-</div><!-- page-nav-contents -->
-</div><!-- page-nav-tree -->
-</div><!-- page-nav -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>include</b></li><li class="navelem"><b>ATEAMS++</b></li><li class="navelem"><b>complexes</b></li>
+    <li class="navelem"><b>include</b></li><li class="navelem"><b>ATEAMS++</b></li><li class="navelem"><b>topology</b></li><li class="navelem"><b>topology.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
   </ul>
 </div>

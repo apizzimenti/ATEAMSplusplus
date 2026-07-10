@@ -6,7 +6,7 @@
 
 # Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)
 
-ATEAMS++ is a high-performance C++ library for simulating generalized Potts, random-cluster, and percolation models at scale. It depends directly on [SparseRREF](https://github.com/munuxi/SparseRREF) and PHAT [[1](https://www.sciencedirect.com/science/article/pii/S0747717116300098),[2](https://bitbucket.org/phat-code/phat/src/master/)] for fast linear algebra over finite fields. It is a C++ port of the original [ATEAMS](https://github.com/apizzimenti/ATEAMS) library.
+ATEAMS++ is a high-performance C++ library for simulating [generalized Potts, random-cluster, and percolation models](https://arxiv.org/abs/2507.13503) at scale. It depends directly on [SparseRREF](https://github.com/munuxi/SparseRREF) and PHAT [[1](https://www.sciencedirect.com/science/article/pii/S0747717116300098),[2](https://bitbucket.org/phat-code/phat/src/master/)] for fast linear algebra over finite fields. It is a C++ port of the original [ATEAMS](https://github.com/apizzimenti/ATEAMS) library.
 
 
 ## Installation
@@ -43,7 +43,7 @@ ATEAMS++ is a high-performance C++ library for simulating generalized Potts, ran
 	```
 	should give something like
 	```bash
-	-I/usr/local/include -std=c++23 -L/usr/local/lib -lflint
+	-I/usr/local/include -std=c++23 -O3 -L/usr/local/lib -lflint
 	```
 
 5. **Triple-check.** If you want to run pre-built tests, set the `TEST` variable in `CMakeLists.txt` to `TRUE`, á la
@@ -114,7 +114,7 @@ $ ./main
 expected rank is 3.09
 ```
 
-This takes ~11 seconds on a 2022 MacBook Air with an Apple M2 processor. **If you plan to run large-scale simulations on an external machine, the [magnetizationplusplus workflow](https://github.com/apizzimenti/magnetizationplusplus) may be of use to you.**
+This takes ~11 seconds on a 2022 MacBook Air with an Apple M2 processor. **If you plan to run large-scale simulations on an external machine, the [`magnetizationplusplus` workflow](https://github.com/apizzimenti/magnetizationplusplus) may be of use to you.**
 
 ## Known issues
 * On some Linux systems, linking against ATEAMS++ after it's installed may cause some issues. In the event you get a linking error talking about undefined symbols in a `tbb` namespace, you may have to recompile your program with
@@ -143,7 +143,7 @@ We welcome contributions. A few housekeeping rules:
 	title={{ATEAMS++: Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++}},
 	author={Pizzimenti, Anthony E. and Eldridge, Summer and Schweinhart, Ben and Duncan, Paul},
 	url={github.com/apizzimenti/ATEAMSplusplus},
-	version={1.5},
+	version={1.6},
 	doi={10.5281/zenodo.20817889}
 }
 ```

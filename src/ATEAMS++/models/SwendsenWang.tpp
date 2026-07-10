@@ -161,8 +161,10 @@ namespace ATEAMS {
 			this->RNG = std::mt19937(rd());
 			this->unituniform = std::uniform_real_distribution<double>(0,1);
 
-			int mod = (int)R->characteristic;
-			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
+			this->intuniform = std::uniform_int_distribution<int>(
+				0,
+				this->coefficients->characteristic > 0 ? this->coefficients->characteristic : 2
+			);
 		};
 
 		template <typename RingLike>
@@ -190,8 +192,10 @@ namespace ATEAMS {
 			this->RNG = std::mt19937(rd());
 			this->unituniform = std::uniform_real_distribution<double>(0,1);
 
-			int mod = (int)R->characteristic;
-			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
+			this->intuniform = std::uniform_int_distribution<int>(
+				0,
+				this->coefficients->characteristic > 0 ? this->coefficients->characteristic : 2
+			);
 		};
 
 		template <typename RingLike>
@@ -220,8 +224,10 @@ namespace ATEAMS {
 			this->RNG = std::mt19937(rd());
 			this->unituniform = std::uniform_real_distribution<double>(0,1);
 
-			int mod = (int)this->coefficients->characteristic;
-			this->intuniform = std::uniform_int_distribution<int>(0, mod > 0 ? mod : 1);
+			this->intuniform = std::uniform_int_distribution<int>(
+				0,
+				this->coefficients->characteristic > 0 ? this->coefficients->characteristic : 2
+			);
 		}
 	}
 }

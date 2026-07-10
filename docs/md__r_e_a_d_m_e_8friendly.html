@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: ATEAMS++</title>
+<title>ATEAMS++: README.friendly</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html','',''); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('md__r_e_a_d_m_e_8friendly.html','',''); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
@@ -141,14 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">ATEAMS++ </div></div>
+  <div class="headertitle"><div class="title">README.friendly </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e_8friendly"></a></p>
-<p><a href="https://apizzimenti.github.io/ATEAMSplusplus/"><img src="https://img.shields.io/badge/%E2%93%98-Documentation-red" alt="docs" class="inline"/></a> <a href="https://arxiv.org/abs/2507.13503"><img src="https://img.shields.io/badge/arXiv-2507.13503-green.svg" alt="arXiv" style="pointer-events: none;" class="inline"/></a> <a href="https://doi.org/10.5281/zenodo.20817889"><img src="https://img.shields.io/badge/DOI-10.5281/zenodo.20817889-blue" alt="DOI" class="inline"/></a></p>
+<div class="textblock"><p><a href="https://apizzimenti.github.io/ATEAMSplusplus/"><img src="https://img.shields.io/badge/%E2%93%98-Documentation-red" alt="docs" class="inline"/></a> <a href="https://arxiv.org/abs/2507.13503"><img src="https://img.shields.io/badge/arXiv-2507.13503-green.svg" alt="arXiv" style="pointer-events: none;" class="inline"/></a> <a href="https://doi.org/10.5281/zenodo.20817889"><img src="https://img.shields.io/badge/DOI-10.5281/zenodo.20817889-blue" alt="DOI" class="inline"/></a></p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
 Algebraic Topology-Enabled AlgorithMs for Spin systems in C++ (ATEAMS++)</h1>
-<p>ATEAMS++ is a high-performance C++ library for simulating <a href="https://arxiv.org/abs/2507.13503">generalized Potts, random-cluster, and percolation models</a> at scale. It depends directly on <a href="https://github.com/munuxi/SparseRREF">SparseRREF</a> and PHAT [<a href="https://www.sciencedirect.com/science/article/pii/S0747717116300098">1</a>,<a href="https://bitbucket.org/phat-code/phat/src/master/">2</a>] for fast linear algebra over finite fields. It is a C++ port of the original <a href="https://github.com/apizzimenti/ATEAMS">ATEAMS</a> library.</p>
+<p>ATEAMS++ is a high-performance C++ library for simulating generalized Potts, random-cluster, and percolation models at scale. It depends directly on <a href="https://github.com/munuxi/SparseRREF">SparseRREF</a> and PHAT [<a href="https://www.sciencedirect.com/science/article/pii/S0747717116300098">1</a>,<a href="https://bitbucket.org/phat-code/phat/src/master/">2</a>] for fast linear algebra over finite fields. It is a C++ port of the original <a href="https://github.com/apizzimenti/ATEAMS">ATEAMS</a> library.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 Installation</h2>
 <ol type="1">
@@ -167,7 +166,7 @@ Installation</h2>
 </div><!-- fragment --> will build ATEAMS++ to the <span class="tt">build</span> directory, then install its headers and bundled dependencies (SparseRREF, PHAT) to your system's default install location. If you want to install it somewhere else, <div class="fragment"><div class="line">$ sudo cmake --install build --prefix &quot;somewhere/else&quot;</div>
 </div><!-- fragment --> will do the trick.</li>
 <li><b>Double-check.</b> To verify that the library is installed correctly, running <div class="fragment"><div class="line">$ pkg-config --cflags --libs ATEAMS++</div>
-</div><!-- fragment --> should give something like <div class="fragment"><div class="line">-I/usr/local/include -std=c++23 -O3 -L/usr/local/lib -lflint</div>
+</div><!-- fragment --> should give something like <div class="fragment"><div class="line">-I/usr/local/include -std=c++23 -L/usr/local/lib -lflint</div>
 </div><!-- fragment --></li>
 <li><b>Triple-check.</b> If you want to run pre-built tests, set the <span class="tt">TEST</span> variable in <span class="tt">CMakeLists.txt</span> to <span class="tt">TRUE</span>, á la <div class="fragment"><div class="line">set(TEST TRUE)</div>
 </div><!-- fragment --> then run <span class="tt">make test</span>.</li>
@@ -180,7 +179,7 @@ Usage</h2>
 <li>create a Model that consumes the Complex;</li>
 <li>run a Chain on the Model.</li>
 </ol>
-<p>The below example samples plaquette Bernoulli percolation 1,000 times on the scale- \(6\) \(4\)-fold torus \(\mathbb T_6^4\):</p>
+<p>The below example samples plaquette Bernoulli percolation 1000 times on the scale-6 4-fold torus:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;ATEAMS++.h&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s.html">ATEAMS</a>;</div>
@@ -232,7 +231,7 @@ Usage</h2>
 <div class="fragment"><div class="line">$ $CXX main.cpp `pkg-config --libs --cflags ATEAMS++` -o main</div>
 <div class="line">$ ./main</div>
 <div class="line">expected rank is 3.09</div>
-</div><!-- fragment --><p>This takes ~11 seconds on a 2022 MacBook Air with an Apple M2 processor. <b>If you plan to run large-scale simulations on an external machine, the <a href="https://github.com/apizzimenti/magnetizationplusplus"><span class="tt">magnetizationplusplus</span> workflow</a> may be of use to you.</b></p>
+</div><!-- fragment --><p>This takes ~11 seconds on a 2022 MacBook Air with an Apple M2 processor. <b>If you plan to run large-scale simulations on an external machine, the <a href="https://github.com/apizzimenti/magnetizationplusplus">magnetizationplusplus workflow</a> may be of use to you.</b></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Known issues</h2>
 <ul>
@@ -257,13 +256,19 @@ Citing</h2>
 <div class="line">    title={{ATEAMS++: Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++}},</div>
 <div class="line">    author={Pizzimenti, Anthony E. and Eldridge, Summer and Schweinhart, Ben and Duncan, Paul},</div>
 <div class="line">    url={github.com/apizzimenti/ATEAMSplusplus},</div>
-<div class="line">    version={1.6},</div>
+<div class="line">    version={1.5},</div>
 <div class="line">    doi={10.5281/zenodo.20817889}</div>
 <div class="line">}</div>
-</div><!-- fragment --> </div></div><!-- PageDoc -->
-<a href="doxygen_crawl.html"></a>
-</div><!-- contents -->
+</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

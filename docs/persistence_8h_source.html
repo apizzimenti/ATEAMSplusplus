@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: include/ATEAMS++/arithmetic/persistence.h Source File</title>
+<title>ATEAMS++: include/ATEAMS++/topology/persistence.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -117,47 +117,55 @@ document.addEventListener('DOMContentLoaded', () => {
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef ATEAMS_ARITHMETIC_PERSISTENCE_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#define ATEAMS_ARITHMETIC_PERSISTENCE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef ATEAMS_TOPOLOGY_PERSISTENCE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#define ATEAMS_TOPOLOGY_PERSISTENCE_H</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;ATEAMS++/complexes/complexes.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;ATEAMS++/complexes/Complex.h&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;random&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;set&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s.html">ATEAMS</a> {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s_1_1arithmetic.html">arithmetic</a> {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> RingLike&gt;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a10692014e1f613bb397ec488a5600507">   29</a></span>        std::vector&lt;int&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a10692014e1f613bb397ec488a5600507">PHATPersistence</a>(</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex&lt;RingLike&gt;</a>* complex,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            std::vector&lt;int&gt; filtration,</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keywordtype">int</span> dimension</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        );</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> RingLike&gt;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a364888faf3a42a159292dcfbbacd503e">   52</a></span>        std::vector&lt;int&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a364888faf3a42a159292dcfbbacd503e">TwistPersistence</a>(</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex&lt;RingLike&gt;</a>* complex,</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            std::vector&lt;int&gt; filtration,</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <a class="code hl_class" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a>* R,</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <span class="keywordtype">int</span> dimension</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        );</div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1topology.html">   11</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s_1_1topology.html">ATEAMS::topology</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> RingLike&gt;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1topology.html#a10692014e1f613bb397ec488a5600507">   28</a></span>    std::vector&lt;int&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1topology.html#a10692014e1f613bb397ec488a5600507">PHATPersistence</a>(</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex&lt;RingLike&gt;</a>* complex,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        std::vector&lt;int&gt; filtration,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordtype">int</span> dimension</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    );</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> RingLike&gt;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1topology.html#acd8515e2ecfeea265e36069df52ba101">   52</a></span>    std::vector&lt;int&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1topology.html#acd8515e2ecfeea265e36069df52ba101">twistPersistence</a>(</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex&lt;RingLike&gt;</a>* complex,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        std::vector&lt;int&gt; filtration,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <a class="code hl_class" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a>* R,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordtype">int</span> dimension</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    );</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="comment">// Expose this for testing, but not for general use.</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> RingLike&gt;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix&lt;RingLike&gt;</a> reindexSparseBoundaryMatrix(<a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex&lt;RingLike&gt;</a>* complex, std::vector&lt;int&gt; filtration, <span class="keywordtype">int</span> dimension);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#include &quot;ATEAMS++/arithmetic/persistence.tpp&quot;</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> RingLike&gt;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="namespace_a_t_e_a_m_s_1_1topology.html#a4f3b986df7ce4786e4769864f289be8d">   77</a></span>    std::vector&lt;int&gt; <a class="code hl_function" href="namespace_a_t_e_a_m_s_1_1topology.html#a4f3b986df7ce4786e4769864f289be8d">persistence</a>(</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex&lt;RingLike&gt;</a>* complex,</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        std::vector&lt;int&gt; filtration,</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <a class="code hl_class" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a>* R,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordtype">int</span> dimension</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    );</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// Expose this for testing, but not for general use.</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> RingLike&gt;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_typedef" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix&lt;RingLike&gt;</a> reindexSparseBoundaryMatrix(<a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex&lt;RingLike&gt;</a>* complex, std::vector&lt;int&gt; filtration, <span class="keywordtype">int</span> dimension);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
+</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#include &quot;ATEAMS++/topology/persistence.tpp&quot;</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_complex_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a></div><div class="ttdoc">Template class for various complexes.</div><div class="ttdef"><b>Definition</b> Complex.h:76</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1arithmetic_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1arithmetic.html">ATEAMS::arithmetic</a></div><div class="ttdoc">Sparse, finite-field linear algebra and support routines.</div><div class="ttdef"><b>Definition</b> arithmetic.h:11</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1arithmetic_html_a10692014e1f613bb397ec488a5600507"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a10692014e1f613bb397ec488a5600507">ATEAMS::arithmetic::PHATPersistence</a></div><div class="ttdeci">std::vector&lt; int &gt; PHATPersistence(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; filtration, int dimension)</div><div class="ttdoc">Computes the persistent homology of a complex using  coefficients.</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1arithmetic_html_a364888faf3a42a159292dcfbbacd503e"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a364888faf3a42a159292dcfbbacd503e">ATEAMS::arithmetic::TwistPersistence</a></div><div class="ttdeci">std::vector&lt; int &gt; TwistPersistence(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; filtration, Ring *R, int dimension)</div><div class="ttdoc">Computes the persistent homology of a complex over  coefficients, where  is prime.</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:9</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1topology_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1topology.html">ATEAMS::topology</a></div><div class="ttdoc">Topological support routines.</div><div class="ttdef"><b>Definition</b> persistence.h:11</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1topology_html_a10692014e1f613bb397ec488a5600507"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1topology.html#a10692014e1f613bb397ec488a5600507">ATEAMS::topology::PHATPersistence</a></div><div class="ttdeci">std::vector&lt; int &gt; PHATPersistence(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; filtration, int dimension)</div><div class="ttdoc">Computes the persistent homology of a complex using  coefficients. See the implementation of Bernoull...</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1topology_html_a4f3b986df7ce4786e4769864f289be8d"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1topology.html#a4f3b986df7ce4786e4769864f289be8d">ATEAMS::topology::persistence</a></div><div class="ttdeci">std::vector&lt; int &gt; persistence(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; filtration, Ring *R, int dimension)</div><div class="ttdoc">Dispatch method for computing persistence; calls PHATPersistence or twistPersistence depending on the...</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1topology_html_acd8515e2ecfeea265e36069df52ba101"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1topology.html#acd8515e2ecfeea265e36069df52ba101">ATEAMS::topology::twistPersistence</a></div><div class="ttdeci">std::vector&lt; int &gt; twistPersistence(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; filtration, Ring *R, int dimension)</div><div class="ttdoc">Computes the persistent homology of a complex over  coefficients, where  is prime....</div></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_html_a300100047e4923c006886da5e51435c8"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">ATEAMS::SparseMatrix</a></div><div class="ttdeci">SparseRREF::sparse_mat&lt; typename RingLike::dtype, INDEX &gt; SparseMatrix</div><div class="ttdoc">Generic sparse matrix.</div><div class="ttdef"><b>Definition</b> common.h:131</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1_ring_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1_ring.html">ATEAMS::Ring</a></div><div class="ttdoc">Generic algebraic ring.</div><div class="ttdef"><b>Definition</b> common.h:43</div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -166,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>include</b></li><li class="navelem"><b>ATEAMS++</b></li><li class="navelem"><b>arithmetic</b></li><li class="navelem"><b>persistence.h</b></li>
+    <li class="navelem"><b>include</b></li><li class="navelem"><b>ATEAMS++</b></li><li class="navelem"><b>topology</b></li><li class="navelem"><b>persistence.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
   </ul>
 </div>

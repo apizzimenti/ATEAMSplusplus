@@ -39,6 +39,7 @@ window.MathJax = {
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
     GF: "{\\mathrm{GF}}",
+    RREF: "{\\mathrm{RREF}}",
     },
     packages: {
         '[+]': ['units']
@@ -150,80 +151,48 @@ document.addEventListener('DOMContentLoaded', () => {
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:ThreadOptions" id="r_ThreadOptions"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ThreadOptions</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience class for managing Flint and multithreading.  <a href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience class for managing Flint and multithreading. See <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html" title="Chain">Chain</a>; not something users should need.  <a href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a17bece0311818ea0caba18ce7e4b7b36" id="r_a17bece0311818ea0caba18ce7e4b7b36"><td class="memItemLeft"><a id="a17bece0311818ea0caba18ce7e4b7b36" name="a17bece0311818ea0caba18ce7e4b7b36"></a>
 typedef SparseRREF::rref_option&#160;</td><td class="memItemRight"><b>ComputeOptions</b></td></tr>
-<tr class="memdesc:a17bece0311818ea0caba18ce7e4b7b36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience renaming of <span class="tt">SparseRREF::rref_options</span>. <br /></td></tr>
+<tr class="memdesc:a17bece0311818ea0caba18ce7e4b7b36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias of <span class="tt">SparseRREF::rref_options</span>. <br /></td></tr>
 <tr class="memitem:afc98998bdae89818c10abbdc31f59173" id="r_afc98998bdae89818c10abbdc31f59173"><td class="memItemLeft"><a id="afc98998bdae89818c10abbdc31f59173" name="afc98998bdae89818c10abbdc31f59173"></a>
 typedef SparseRREF::rref_option_t&#160;</td><td class="memItemRight"><b>ComputeOption</b></td></tr>
-<tr class="memdesc:afc98998bdae89818c10abbdc31f59173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience renaming of <span class="tt">SparseRREF::rref_options</span>. <br /></td></tr>
+<tr class="memdesc:afc98998bdae89818c10abbdc31f59173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias of <span class="tt">SparseRREF::rref_options</span>. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a82d167ee11276e76718aaaf943c9d5b3" id="r_a82d167ee11276e76718aaaf943c9d5b3"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a82d167ee11276e76718aaaf943c9d5b3 template"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a82d167ee11276e76718aaaf943c9d5b3">SparseRightMultiplication</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; &amp;A, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; x, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R)</td></tr>
+<tr class="memdesc:a82d167ee11276e76718aaaf943c9d5b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sparse (right) matrix multiplication \( A \vec x \).  <br /></td></tr>
+<tr class="memitem:a8cbd65541e64ae96294838d39b0a000c" id="r_a8cbd65541e64ae96294838d39b0a000c"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html">Zp</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8cbd65541e64ae96294838d39b0a000c">SparseVectorAddition</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html">Zp</a> &gt; &amp;u, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html">Zp</a> &gt; v, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R)</td></tr>
+<tr class="memdesc:a8cbd65541e64ae96294838d39b0a000c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sparse vector addition \( \vec u + \vec v \) for vectors over <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a>.  <br /></td></tr>
+<tr class="memitem:a8b902a34db5e1c48400059bf69b64191" id="r_a8b902a34db5e1c48400059bf69b64191"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html">Q</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8b902a34db5e1c48400059bf69b64191">SparseVectorAddition</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html">Q</a> &gt; &amp;u, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html">Q</a> &gt; &amp;v, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R)</td></tr>
+<tr class="memdesc:a8b902a34db5e1c48400059bf69b64191"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sparse vector addition \( \vec u + \vec v \) for vectors over <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.  <br /></td></tr>
+<tr class="memitem:aace715443cbe29fd15148d987611ef77" id="r_aace715443cbe29fd15148d987611ef77"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:aace715443cbe29fd15148d987611ef77 template"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aace715443cbe29fd15148d987611ef77">SparseVectorRescaling</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;x, typename RingLike::dtype a, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R)</td></tr>
+<tr class="memdesc:aace715443cbe29fd15148d987611ef77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sparse vector rescaling \( a \vec x \).  <br /></td></tr>
+<tr class="memitem:a56e7670562f0c69600ea56c4439bf994" id="r_a56e7670562f0c69600ea56c4439bf994"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a56e7670562f0c69600ea56c4439bf994 template"><td class="memItemLeft">SparsePivots&#160;</td><td class="memItemRight"><a class="el" href="#a56e7670562f0c69600ea56c4439bf994">SparseMatrixRREF</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; &amp;A, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ThreadOptions</a> &amp;options)</td></tr>
+<tr class="memdesc:a56e7670562f0c69600ea56c4439bf994"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the reduced row echelon form \( \RREF(A) \).  <br /></td></tr>
+<tr class="memitem:a8820e57dde7f181caad5b6c17a625413" id="r_a8820e57dde7f181caad5b6c17a625413"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a8820e57dde7f181caad5b6c17a625413 template"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8820e57dde7f181caad5b6c17a625413">SparseMatrixRREFKernel</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; &amp;A, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, SparsePivots &amp;pivots, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ThreadOptions</a> &amp;options)</td></tr>
+<tr class="memdesc:a8820e57dde7f181caad5b6c17a625413"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the kernel of the matrix \( \ker(\RREF(A)) \).  <br /></td></tr>
+<tr class="memitem:a6b9257da1c93b987f468d1cb86460d49" id="r_a6b9257da1c93b987f468d1cb86460d49"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a6b9257da1c93b987f468d1cb86460d49 template"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6b9257da1c93b987f468d1cb86460d49">SparseMatrixKernel</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; &amp;A, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ThreadOptions</a> &amp;options)</td></tr>
+<tr class="memdesc:a6b9257da1c93b987f468d1cb86460d49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the kernel of the matrix \( \ker(\RREF(A)) \).  <br /></td></tr>
 <tr class="memitem:a0380e4b8e176dfb6ae21015fb74910f3" id="r_a0380e4b8e176dfb6ae21015fb74910f3"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a0380e4b8e176dfb6ae21015fb74910f3 template"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0380e4b8e176dfb6ae21015fb74910f3">randomLinearCombination</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; kernel, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, std::uniform_int_distribution&lt; int &gt; &amp;intuniform, std::mt19937 &amp;RNG)</td></tr>
-<tr class="memdesc:a0380e4b8e176dfb6ae21015fb74910f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a uniform random linear combination of the basis for the (reduced) coboundary matrix \(\delta^{d-1}\).  <br /></td></tr>
-<tr class="memitem:a9d33e0d2f7d6b0902a7a4bde66fd2229" id="r_a9d33e0d2f7d6b0902a7a4bde66fd2229"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:a9d33e0d2f7d6b0902a7a4bde66fd2229 template"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9d33e0d2f7d6b0902a7a4bde66fd2229">submatrixKernelSample</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; coboundary, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, std::set&lt; size_t &gt; exclude, std::uniform_int_distribution&lt; int &gt; &amp;intuniform, std::mt19937 &amp;RNG, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">arithmetic::ThreadOptions</a> &amp;options, bool DEBUG=false)</td></tr>
-<tr class="memdesc:a9d33e0d2f7d6b0902a7a4bde66fd2229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a cochain \(f\) at uniform random from \(\delta^{d-1}\) such that \(f\) is a cocycle on the \(d\)-cells corresponding to the rows not in <span class="tt">exclude</span>.  <br /></td></tr>
-<tr class="memitem:a10692014e1f613bb397ec488a5600507" id="r_a10692014e1f613bb397ec488a5600507"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:a10692014e1f613bb397ec488a5600507 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a10692014e1f613bb397ec488a5600507">PHATPersistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; filtration, int dimension)</td></tr>
-<tr class="memdesc:a10692014e1f613bb397ec488a5600507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex using \(\Z/2\Z\) coefficients.  <br /></td></tr>
-<tr class="memitem:a364888faf3a42a159292dcfbbacd503e" id="r_a364888faf3a42a159292dcfbbacd503e"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:a364888faf3a42a159292dcfbbacd503e template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a364888faf3a42a159292dcfbbacd503e">TwistPersistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension)</td></tr>
-<tr class="memdesc:a364888faf3a42a159292dcfbbacd503e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime.  <br /></td></tr>
+<tr class="memdesc:a0380e4b8e176dfb6ae21015fb74910f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a uniform random linear combination of the basis for the (reduced) coboundary matrix \(\delta^{d-1}\). See the implementation of <a class="el" href="#ac1b7b8d1bef66b51a413461523fd61e9" title="submatrixKernelSample">submatrixKernelSample</a>.  <br /></td></tr>
+<tr class="memitem:ac1b7b8d1bef66b51a413461523fd61e9" id="r_ac1b7b8d1bef66b51a413461523fd61e9"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:ac1b7b8d1bef66b51a413461523fd61e9 template"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac1b7b8d1bef66b51a413461523fd61e9">submatrixKernelSample</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; coboundary, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, std::set&lt; size_t &gt; exclude, std::uniform_int_distribution&lt; int &gt; &amp;intuniform, std::mt19937 &amp;RNG, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ThreadOptions</a> &amp;options, bool DEBUG=false)</td></tr>
+<tr class="memdesc:ac1b7b8d1bef66b51a413461523fd61e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a cochain \(f\) at uniform random from \(\delta^{d-1}\) such that \(f\) is a cocycle on the \(d\)-cells corresponding to the rows not in <span class="tt">exclude</span>. See the implementations of <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html" title="SwendsenWang">SwendsenWang</a> or <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html" title="InvadedCluster">InvadedCluster</a> for usage.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Sparse, finite-field linear algebra and support routines. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a10692014e1f613bb397ec488a5600507" name="a10692014e1f613bb397ec488a5600507"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10692014e1f613bb397ec488a5600507">&#9670;&#160;</a></span>PHATPersistence()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RingLike&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; int &gt; PHATPersistence </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>filtration</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dimension</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Computes the persistent homology of a complex using \(\Z/2\Z\) coefficients. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">complex</td><td>(Pointer to) a <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" title="Complex">Complex</a> with a flat boundary matrix. </td></tr>
-    <tr><td class="paramname">filtration</td><td>A vector that specifies the order in which to add the cells in the flat boundary matrix. For example, if we are doing 1-dimensional percolation in 2-d, then we switch up the ordering of the 1-d cells in the flat boundary matrix, but leave everything else. </td></tr>
-    <tr><td class="paramname">dimension</td><td>The percolation dimension.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A vector of percolation times. </dd></dl>
-
-</div>
-</div>
 <a id="a0380e4b8e176dfb6ae21015fb74910f3" name="a0380e4b8e176dfb6ae21015fb74910f3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0380e4b8e176dfb6ae21015fb74910f3">&#9670;&#160;</a></span>randomLinearCombination()</h2>
 
@@ -255,7 +224,7 @@ template&lt;typename RingLike&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Generates a uniform random linear combination of the basis for the (reduced) coboundary matrix \(\delta^{d-1}\). </p>
+<p>Generates a uniform random linear combination of the basis for the (reduced) coboundary matrix \(\delta^{d-1}\). See the implementation of <a class="el" href="#ac1b7b8d1bef66b51a413461523fd61e9" title="submatrixKernelSample">submatrixKernelSample</a>. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
@@ -275,8 +244,369 @@ template&lt;typename RingLike&gt; </div>
 
 </div>
 </div>
-<a id="a9d33e0d2f7d6b0902a7a4bde66fd2229" name="a9d33e0d2f7d6b0902a7a4bde66fd2229"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d33e0d2f7d6b0902a7a4bde66fd2229">&#9670;&#160;</a></span>submatrixKernelSample()</h2>
+<a id="a6b9257da1c93b987f468d1cb86460d49" name="a6b9257da1c93b987f468d1cb86460d49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b9257da1c93b987f468d1cb86460d49">&#9670;&#160;</a></span>SparseMatrixKernel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; SparseMatrixKernel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ThreadOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the kernel of the matrix \( \ker(\RREF(A)) \). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>Matrix. </td></tr>
+    <tr><td class="paramname">R</td><td>(Pointer to) a coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </td></tr>
+    <tr><td class="paramname">options</td><td>Multithreaded computing options.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>\( \RREF(A) \). </dd></dl>
+
+</div>
+</div>
+<a id="a56e7670562f0c69600ea56c4439bf994" name="a56e7670562f0c69600ea56c4439bf994"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56e7670562f0c69600ea56c4439bf994">&#9670;&#160;</a></span>SparseMatrixRREF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SparsePivots SparseMatrixRREF </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ThreadOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the reduced row echelon form \( \RREF(A) \). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>Matrix. </td></tr>
+    <tr><td class="paramname">R</td><td>(Pointer to) a coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </td></tr>
+    <tr><td class="paramname">options</td><td>Multithreaded computing options.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>\( \RREF(A) \). </dd></dl>
+
+</div>
+</div>
+<a id="a8820e57dde7f181caad5b6c17a625413" name="a8820e57dde7f181caad5b6c17a625413"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8820e57dde7f181caad5b6c17a625413">&#9670;&#160;</a></span>SparseMatrixRREFKernel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; SparseMatrixRREFKernel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SparsePivots &amp;</td>          <td class="paramname"><span class="paramname"><em>pivots</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ThreadOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the kernel of the matrix \( \ker(\RREF(A)) \). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>Matrix. </td></tr>
+    <tr><td class="paramname">R</td><td>(Pointer to) a coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </td></tr>
+    <tr><td class="paramname">pivots</td><td>Pivot indices of \( \RREF(A) \). </td></tr>
+    <tr><td class="paramname">options</td><td>Multithreaded computing options.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>\( \ker(\RREF(A)) \). </dd></dl>
+
+</div>
+</div>
+<a id="a82d167ee11276e76718aaaf943c9d5b3" name="a82d167ee11276e76718aaaf943c9d5b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82d167ee11276e76718aaaf943c9d5b3">&#9670;&#160;</a></span>SparseRightMultiplication()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; SparseRightMultiplication </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sparse (right) matrix multiplication \( A \vec x \). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>Matrix. </td></tr>
+    <tr><td class="paramname">x</td><td>Vector. </td></tr>
+    <tr><td class="paramname">R</td><td>(Pointer to) a coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>\( \vec y = A \vec x \). </dd></dl>
+
+</div>
+</div>
+<a id="a8b902a34db5e1c48400059bf69b64191" name="a8b902a34db5e1c48400059bf69b64191"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b902a34db5e1c48400059bf69b64191">&#9670;&#160;</a></span>SparseVectorAddition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html">Q</a> &gt; SparseVectorAddition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html">Q</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>u</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html">Q</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sparse vector addition \( \vec u + \vec v \) for vectors over <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>Vector. </td></tr>
+    <tr><td class="paramname">v</td><td>Vector. </td></tr>
+    <tr><td class="paramname">R</td><td>(Pointer to) the coefficient ring <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>\( \vec w = \vec u + \vec v \). </dd></dl>
+
+</div>
+</div>
+<a id="a8cbd65541e64ae96294838d39b0a000c" name="a8cbd65541e64ae96294838d39b0a000c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cbd65541e64ae96294838d39b0a000c">&#9670;&#160;</a></span>SparseVectorAddition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html">Zp</a> &gt; SparseVectorAddition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html">Zp</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>u</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html">Zp</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>v</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sparse vector addition \( \vec u + \vec v \) for vectors over <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>Vector. </td></tr>
+    <tr><td class="paramname">v</td><td>Vector. </td></tr>
+    <tr><td class="paramname">R</td><td>(Pointer to) the coefficient ring <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>\( \vec w = \vec u + \vec v \). </dd></dl>
+
+</div>
+</div>
+<a id="aace715443cbe29fd15148d987611ef77" name="aace715443cbe29fd15148d987611ef77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aace715443cbe29fd15148d987611ef77">&#9670;&#160;</a></span>SparseVectorRescaling()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; SparseVectorRescaling </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename RingLike::dtype</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sparse vector rescaling \( a \vec x \). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Vector. </td></tr>
+    <tr><td class="paramname">a</td><td>Scalar. </td></tr>
+    <tr><td class="paramname">R</td><td>(Pointer to) a coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>\( a \vec x \). </dd></dl>
+
+</div>
+</div>
+<a id="ac1b7b8d1bef66b51a413461523fd61e9" name="ac1b7b8d1bef66b51a413461523fd61e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1b7b8d1bef66b51a413461523fd61e9">&#9670;&#160;</a></span>submatrixKernelSample()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -311,7 +641,7 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">arithmetic::ThreadOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>, </td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ThreadOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -321,7 +651,7 @@ template&lt;typename RingLike&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Draws a cochain \(f\) at uniform random from \(\delta^{d-1}\) such that \(f\) is a cocycle on the \(d\)-cells corresponding to the rows not in <span class="tt">exclude</span>. </p>
+<p>Draws a cochain \(f\) at uniform random from \(\delta^{d-1}\) such that \(f\) is a cocycle on the \(d\)-cells corresponding to the rows not in <span class="tt">exclude</span>. See the implementations of <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html" title="SwendsenWang">SwendsenWang</a> or <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html" title="InvadedCluster">InvadedCluster</a> for usage. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
@@ -330,68 +660,17 @@ template&lt;typename RingLike&gt; </div>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">coboundary</td><td>Coboundary matrix \(\delta^{d-1}\). See <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" title="Complex">Complex</a>. </td></tr>
+    <tr><td class="paramname">coboundary</td><td>Coboundary matrix \(\delta^{d-1}\). See <a class="el" href="struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html" title="BoundaryData">BoundaryData</a>. </td></tr>
     <tr><td class="paramname">R</td><td>(Pointer to) a coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </td></tr>
     <tr><td class="paramname">exclude</td><td>Row indices to exclude. </td></tr>
     <tr><td class="paramname">intuniform</td><td>Uniform distribution over integers \([0, p)\). </td></tr>
     <tr><td class="paramname">RNG</td><td>Mersenne twister PRNG. </td></tr>
     <tr><td class="paramname">options</td><td>Reference to a <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ThreadOptions">ThreadOptions</a> instance. </td></tr>
-    <tr><td class="paramname">DEBUG</td><td><em>(Optional)</em> Are we debugging the arithmetic?</td></tr>
+    <tr><td class="paramname">DEBUG</td><td><em>(Optional, default <span class="tt">false</span>)</em> Are we debugging the arithmetic?</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>(Sparse) uniform vector in \(\ker(\delta^{d-1})\). </dd></dl>
-
-</div>
-</div>
-<a id="a364888faf3a42a159292dcfbbacd503e" name="a364888faf3a42a159292dcfbbacd503e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a364888faf3a42a159292dcfbbacd503e">&#9670;&#160;</a></span>TwistPersistence()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RingLike&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; int &gt; TwistPersistence </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>filtration</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dimension</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">complex</td><td>A (pointer to) a <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" title="Complex">Complex</a> with a flat boundary matrix. </td></tr>
-    <tr><td class="paramname">filtration</td><td>A vector that specifies the order in which to add the cells in the flat boundary matrix. For example, if we are doing 1-dimensional percolation in 2-d, then we switch up the ordering of the 1-d cells in the flat boundary matrix, but leave everything else. </td></tr>
-    <tr><td class="paramname">R</td><td>(Pointer to) a coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </td></tr>
-    <tr><td class="paramname">dimension</td><td>The percolation dimension.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A vector of percolation times. </dd></dl>
 
 </div>
 </div>

@@ -21,6 +21,13 @@ std::map<int,int> HOMOLOGICALRANK{
 	{4, 6}
 };
 
+// When to stop invading.
+std::map<int,std::vector<int>> STOPINVADING{
+	{2,{1}},
+	{3,{1,2}},
+	{4,{3,4}}
+};
+
 // Defines pass/fail, default number of iterations.
 const int PASS = 0;
 const int FAIL = 1;
@@ -29,8 +36,9 @@ const int ITERATIONS = 10;
 // Checks whether a vector is in the kernel of a matrix.
 template <typename RingLike>
 inline bool inKernel(ATEAMS::SparseMatrix<RingLike> K, ATEAMS::SparseVector<RingLike> v, ATEAMS::Ring* R, bool DEBUG=true) {
-	ATEAMS::SparseVector<RingLike> w = SparseRREF::sparse_mat_dot_sparse_vec<typename RingLike::dtype,ATEAMS::INDEX>(
-		K, v, R->ring
+
+	ATEAMS::SparseVector<RingLike> w = ATEAMS::arithmetic::SparseRightMultiplication<RingLike>(
+		K, v, R
 	);
 
 	if (DEBUG) {

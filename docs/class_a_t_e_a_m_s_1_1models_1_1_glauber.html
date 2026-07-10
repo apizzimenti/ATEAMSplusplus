@@ -39,6 +39,7 @@ window.MathJax = {
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
     GF: "{\\mathrm{GF}}",
+    RREF: "{\\mathrm{RREF}}",
     },
     packages: {
         '[+]': ['units']
@@ -216,9 +217,10 @@ class ATEAMS::models::Glauber&lt; RingLike &gt;</div><p>Implements the <a class=
   </table>
   </dd>
 </dl>
+<p><b>Example Usage</b></p>
 <div class="fragment"><div class="line"><span class="comment">// Complexes must be constructed with the same underlying coefficient</span></div>
-<div class="line"><span class="comment">// ring as the model. If the ring is known (e.g. for Bernoulli percolation it</span></div>
-<div class="line"><span class="comment">// is always ATEAMS::Z2), you can name it explicitly; otherwise, the</span></div>
+<div class="line"><span class="comment">// ring as the model. If the ring is known (e.g. for Bernoulli percolation,</span></div>
+<div class="line"><span class="comment">// the ring is always ATEAMS::Z2) you can name it explicitly; otherwise, the</span></div>
 <div class="line"><span class="comment">// model exposes the ring type after it is declared. You can also create</span></div>
 <div class="line"><span class="comment">// the complex *first* using a specific ring, which is exposed under the</span></div>
 <div class="line"><span class="comment">// same type alias (i.e. ::RingType).</span></div>
@@ -234,12 +236,12 @@ class ATEAMS::models::Glauber&lt; RingLike &gt;</div><p>Implements the <a class=
 <div class="line"> </div>
 <div class="line"><a class="code hl_class" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">models::Glauber&lt;CC::RingType&gt;</a> glauber(&amp;plex, params);</div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> Cubical.h:37</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_glauber_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber</a></div><div class="ttdoc">Implements the Glauber dynamics algorithm.</div><div class="ttdef"><b>Definition</b> Glauber.h:45</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1statistics_html_adec1b3926f4354b27bda2d569c39f746"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1statistics.html#adec1b3926f4354b27bda2d569c39f746">ATEAMS::statistics::selfdual</a></div><div class="ttdeci">std::function&lt; double(int)&gt; selfdual(Ring *R)</div><div class="ttdoc">Determines the self-dual probability for the PLGT/PRCM.</div><div class="ttdef"><b>Definition</b> schedules.h:17</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ATEAMS::models::ModelParameters</a></div><div class="ttdoc">Typical parameters required for simulating a Model.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:32</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a1a8a8235879363159315091a1daed72f"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f">ATEAMS::models::ModelParameters::dimension</a></div><div class="ttdeci">int dimension</div><div class="ttdef"><b>Definition</b> ModelParameters.h:46</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a67c367e941d9cfa52dc173c8a0dc20f5"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a67c367e941d9cfa52dc173c8a0dc20f5">ATEAMS::models::ModelParameters::coefficients</a></div><div class="ttdeci">Ring * coefficients</div><div class="ttdoc">Coefficient ring.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:34</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_ab4e19b8573d2f42134f8d05ec289295f"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#ab4e19b8573d2f42134f8d05ec289295f">ATEAMS::models::ModelParameters::temperatureFunction</a></div><div class="ttdeci">std::function&lt; double(int)&gt; temperatureFunction</div><div class="ttdef"><b>Definition</b> ModelParameters.h:40</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_glauber_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html">ATEAMS::models::Glauber</a></div><div class="ttdoc">Implements the Glauber dynamics algorithm.</div><div class="ttdef"><b>Definition</b> Glauber.h:47</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_1_1statistics_html_adec1b3926f4354b27bda2d569c39f746"><div class="ttname"><a href="namespace_a_t_e_a_m_s_1_1statistics.html#adec1b3926f4354b27bda2d569c39f746">ATEAMS::statistics::selfdual</a></div><div class="ttdeci">std::function&lt; double(int)&gt; selfdual(Ring *R)</div><div class="ttdoc">Determines the self-dual probability for the PLGT/PRCM.</div><div class="ttdef"><b>Definition</b> schedules.h:16</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ATEAMS::models::ModelParameters</a></div><div class="ttdoc">Typical parameters required for simulating a Model.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:36</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a1a8a8235879363159315091a1daed72f"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f">ATEAMS::models::ModelParameters::dimension</a></div><div class="ttdeci">int dimension</div><div class="ttdoc">Percolation subcomplex dimension. Used by every Model.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:50</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a67c367e941d9cfa52dc173c8a0dc20f5"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a67c367e941d9cfa52dc173c8a0dc20f5">ATEAMS::models::ModelParameters::coefficients</a></div><div class="ttdeci">Ring * coefficients</div><div class="ttdoc">Coefficient ring.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:38</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_ab4e19b8573d2f42134f8d05ec289295f"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#ab4e19b8573d2f42134f8d05ec289295f">ATEAMS::models::ModelParameters::temperatureFunction</a></div><div class="ttdeci">std::function&lt; double(int)&gt; temperatureFunction</div><div class="ttdoc">Function that specifies the (inverse) temperature parameter at the current time-step....</div><div class="ttdef"><b>Definition</b> ModelParameters.h:44</div></div>
 </div><!-- fragment --> </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae1467a1fcdaf33d02265b99d0d1f3f3c" name="ae1467a1fcdaf33d02265b99d0d1f3f3c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae1467a1fcdaf33d02265b99d0d1f3f3c">&#9670;&#160;</a></span>Glauber() <span class="overload">[1/3]</span></h2>

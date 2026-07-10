@@ -39,6 +39,7 @@ window.MathJax = {
     rank: "{\\mathrm{rank}}",
     H: "{\\mathrm{H}}",
     GF: "{\\mathrm{GF}}",
+    RREF: "{\\mathrm{RREF}}",
     },
     packages: {
         '[+]': ['units']
@@ -168,7 +169,44 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt;<br />
 class ATEAMS::statistics::Chain&lt; RingLike, VectorLike &gt;</div><p>Simulates the Markov chains specified by each <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Model">Model</a>. </p>
-</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a> type, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </td></tr>
+    <tr><td class="paramname">VectorLike</td><td>Storage unit compatible with <code class="param">RingLike</code>, like <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1" title="SparseVector">SparseVector</a> or <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617" title="DenseVector">DenseVector</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><b>Example Usage</b></p>
+<div class="fragment"><div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s.html">ATEAMS</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using </span>Model = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">models::Bernoulli</a>;</div>
+<div class="line"><span class="keyword">using </span>Parameters = <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">models::ModelParameters</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using </span>Complex = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">complexes::Cubical&lt;Model::RingType&gt;</a>;</div>
+<div class="line"><span class="keyword">using </span>State = <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">models::ModelState&lt;Model::RingType,Model::VectorType&gt;</a>;</div>
+<div class="line"><span class="keyword">using </span><a class="code hl_function" href="#a36bfe59ebd570a3f00c0dd2861fb707c">Chain</a> = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">statistics::Chain&lt;Model::RingType,Model::VectorType&gt;</a>;</div>
+<div class="line"> </div>
+<div class="line">Complex plex({4,4,4,4});</div>
+<div class="line"> </div>
+<div class="line">Parameters params;</div>
+<div class="line">params.p = 0.5;</div>
+<div class="line">params.dimension = 2;</div>
+<div class="line"> </div>
+<div class="line">Model percolation(&amp;plex, parameters);</div>
+<div class="line"><a class="code hl_class" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">Chain</a> M(&amp;percolation, 1000);</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">for</span> (State <a class="code hl_variable" href="#a5888ae7f502f87ae2528b2727d6afb74">state</a> : M.simulate()) {</div>
+<div class="line">        &lt;...&gt;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> Cubical.h:37</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">ATEAMS::models::Bernoulli</a></div><div class="ttdoc">Implements Bernoulli percolation. See Z2.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:41</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a></div><div class="ttdoc">Simulates the Markov chains specified by each Model.</div><div class="ttdef"><b>Definition</b> Chain.h:60</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a36bfe59ebd570a3f00c0dd2861fb707c"><div class="ttname"><a href="#a36bfe59ebd570a3f00c0dd2861fb707c">ATEAMS::statistics::Chain::Chain</a></div><div class="ttdeci">Chain(models::Model&lt; RingLike, VectorLike &gt; *model, int steps)</div><div class="ttdoc">Constructor; uses default ThreadOptions.</div><div class="ttdef"><b>Definition</b> Chain.h:74</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a5888ae7f502f87ae2528b2727d6afb74"><div class="ttname"><a href="#a5888ae7f502f87ae2528b2727d6afb74">ATEAMS::statistics::Chain::state</a></div><div class="ttdeci">models::ModelState&lt; RingLike, VectorLike &gt; state</div><div class="ttdef"><b>Definition</b> Chain.h:63</div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:11</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ATEAMS::models::ModelParameters</a></div><div class="ttdoc">Typical parameters required for simulating a Model.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:36</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a></div><div class="ttdoc">Maintains state for this Model.</div><div class="ttdef"><b>Definition</b> ModelState.h:42</div></div>
+</div><!-- fragment --> </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a36bfe59ebd570a3f00c0dd2861fb707c" name="a36bfe59ebd570a3f00c0dd2861fb707c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a36bfe59ebd570a3f00c0dd2861fb707c">&#9670;&#160;</a></span>Chain() <span class="overload">[1/2]</span></h2>
 
@@ -285,7 +323,6 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
 <div class="fragment"><div class="line"><span class="keywordflow">for</span> (<a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">models::ModelState&lt;Zp,SparseVector&gt;</a> State : M.simulate()) {</div>
 <div class="line">    &lt;<span class="keywordflow">do</span> whatever&gt;</div>
 <div class="line">}</div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a></div><div class="ttdoc">Maintains state for this Model.</div><div class="ttdef"><b>Definition</b> ModelState.h:38</div></div>
 </div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>A <span class="tt">std::generator</span>. </dd></dl>
 
 </div>

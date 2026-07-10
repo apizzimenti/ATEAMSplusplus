@@ -7,3 +7,4 @@
 \newcommand{\rank}{\mathrm{rank}}
 \newcommand{\H}{\mathrm{H}}
 \newcommand{\GF}{\mathrm{GF}}
+\newcommand{\RREF}{\mathrm{RREF}}

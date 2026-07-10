@@ -6,16 +6,17 @@ using namespace ATEAMS;
 using namespace std;
 
 
-vector<int> homologySizes(complexes::Complex<Q>* COMPLEX, int dimension) {
+vector<int> homologySizes(complexes::Complex<Q>* COMPLEX, Ring* QQ, int dimension) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
-
-	// Compute 
-	vector<int> times = arithmetic::PHATPersistence<Q>(COMPLEX, FILTRATION, dimension/2);
+	
 	vector<int> sizes;
 
 	for (int d=0; d < COMPLEX->Breaks.size(); d++) {
+		vector<int> times = topology::persistence<Q>(COMPLEX, FILTRATION, QQ, d);
+		printvector<int>(times);
+
 		sizes.push_back(
 			std::count_if(times.begin(), times.end(), [=](int t) {
 				return COMPLEX->Breaks[d][0] <= t && t < COMPLEX->Breaks[d][1];
@@ -51,10 +52,13 @@ int main() {
 
 	for (int dimension : dimensions) {
 		vector<int> corners(dimension, 3);
+		Q QQ;
+
 		complexes::Cubical<Q> CUBICAL(corners);
+		CUBICAL.constructBoundaryMatrices(&QQ);
 		CUBICAL.constructFlatBoundaryMatrix();
 
-		vector<int> sizes = homologySizes(&CUBICAL, dimension);
+		vector<int> sizes = homologySizes(&CUBICAL, &QQ, dimension);
 
 		if (sizes != homologies[dimension]) {
 			options.spinDown(&listener);

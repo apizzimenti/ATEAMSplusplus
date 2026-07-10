@@ -1,6 +1,8 @@
 
 .DS_Store
 .vscode
+README.friendly.md
+
 build
 
 *megltower*
