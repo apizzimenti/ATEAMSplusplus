@@ -9,8 +9,8 @@ using Model = models::Invasion<Q>;
 using Parameters = models::ModelParameters;
 
 using Structure = complexes::Cubical<Model::RingType>;
-using State = models::ModelState<Model::RingType,Model::VectorType>;
-using Chain = statistics::Chain<Model::RingType,Model::VectorType>;
+using State = Model::State;
+using Chain = statistics::Chain<Model>;
 
 int main(int argc, char *argv[]) {
 	int FIELD = stoi(argv[1]);

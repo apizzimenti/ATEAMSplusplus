@@ -32,6 +32,7 @@ window.MathJax = {
   tex: {
     macros: {    Z: "{\\mathbb Z}",
     Q: "{\\mathbb Q}",
+    T: "{\\mathbb T}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
@@ -168,6 +169,9 @@ using&#160;</td><td class="memItemRight"><b>RingType</b> = <a class="el" href="s
 template&lt;typename R&gt; </td></tr>
 <tr class="memitem:ae00b00fff77661c47e6bfc5092436f3e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><b>VectorType</b> = <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a>&lt;R&gt;</td></tr>
 <tr class="memdesc:ae00b00fff77661c47e6bfc5092436f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exposed vector storage type. See <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617" title="DenseVector">DenseVector</a>. <br /></td></tr>
+<tr class="memitem:ab667b40199ae176bcd63b0a1142c4e69" id="r_ab667b40199ae176bcd63b0a1142c4e69"><td class="memItemLeft"><a id="ab667b40199ae176bcd63b0a1142c4e69" name="ab667b40199ae176bcd63b0a1142c4e69"></a>
+using&#160;</td><td class="memItemRight"><b>State</b> = <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt;<a class="el" href="#a0de824a793d86fd7437bcb1aef34d3dd">RingType</a>,<a class="el" href="#ae00b00fff77661c47e6bfc5092436f3e">VectorType</a>&gt;</td></tr>
+<tr class="memdesc:ab667b40199ae176bcd63b0a1142c4e69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exposed model state type. See <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html" title="ModelState">ModelState</a>. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -175,15 +179,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a2789b146457a005d35b274d4024ad2a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
 <tr class="memitem:a341318e560c722aef2d842f7c067f55a" id="r_a341318e560c722aef2d842f7c067f55a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a341318e560c722aef2d842f7c067f55a">Bernoulli</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a> &gt; *complex, int dimension, double p=0.5, bool DEBUG=false)</td></tr>
 <tr class="memdesc:a341318e560c722aef2d842f7c067f55a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
-<tr class="memitem:a935c92afdd178da603034a3950779643" id="r_a935c92afdd178da603034a3950779643"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a935c92afdd178da603034a3950779643">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
-<tr class="memdesc:a935c92afdd178da603034a3950779643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directly samples <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation.">Bernoulli</a> percolation at the desired dimension.  <br /></td></tr>
-<tr class="memitem:a6d43a99909752c931c22673de19d73db" id="r_a6d43a99909752c931c22673de19d73db"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6d43a99909752c931c22673de19d73db">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; &amp;state) override</td></tr>
-<tr class="memdesc:a6d43a99909752c931c22673de19d73db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous.  <br /></td></tr>
-<tr class="memitem:ad620e3862493e235b39b0bd0952e99c1" id="r_ad620e3862493e235b39b0bd0952e99c1"><td class="memItemLeft"><a id="ad620e3862493e235b39b0bd0952e99c1" name="ad620e3862493e235b39b0bd0952e99c1"></a>
-<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><b>initialize</b> (std::vector&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a> &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; &amp;state) override</td></tr>
-<tr class="memdesc:ad620e3862493e235b39b0bd0952e99c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous. <br /></td></tr>
+<tr class="memitem:a2bbd8e4ade9f5c4b621a7e1526fb76e1" id="r_a2bbd8e4ade9f5c4b621a7e1526fb76e1"><td class="memItemLeft"><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2bbd8e4ade9f5c4b621a7e1526fb76e1">sample</a> (int t, <a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
+<tr class="memdesc:a2bbd8e4ade9f5c4b621a7e1526fb76e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directly samples <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Implements Bernoulli percolation.">Bernoulli</a> percolation at the desired dimension.  <br /></td></tr>
+<tr class="memitem:ada0b8474c0031645d1c9fbf4ba7fe4b3" id="r_ada0b8474c0031645d1c9fbf4ba7fe4b3"><td class="memItemLeft"><a id="ada0b8474c0031645d1c9fbf4ba7fe4b3" name="ada0b8474c0031645d1c9fbf4ba7fe4b3"></a>
+<a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a>&#160;</td><td class="memItemRight"><b>initialize</b> (<a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> &amp;state) override</td></tr>
+<tr class="memdesc:ada0b8474c0031645d1c9fbf4ba7fe4b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous. <br /></td></tr>
+<tr class="memitem:a22452bb7e567713f4c1691305ff035b4" id="r_a22452bb7e567713f4c1691305ff035b4"><td class="memItemLeft"><a id="a22452bb7e567713f4c1691305ff035b4" name="a22452bb7e567713f4c1691305ff035b4"></a>
+<a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a>&#160;</td><td class="memItemRight"><b>initialize</b> (std::vector&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a> &gt; c, <a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> &amp;state) override</td></tr>
+<tr class="memdesc:a22452bb7e567713f4c1691305ff035b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization; superfluous. <br /></td></tr>
 <tr class="inherit_header pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">Model&lt; Z2, DenseVector &gt;</a></td></tr>
 <tr class="memitem:af4902cce023a35cb4c3201a4600e140b pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_af4902cce023a35cb4c3201a4600e140b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#af4902cce023a35cb4c3201a4600e140b">Model</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, bool DEBUG=false)</td></tr>
+<tr class="memitem:a4bf284e877ba348b401247c09b994881 pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a4bf284e877ba348b401247c09b994881"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a4bf284e877ba348b401247c09b994881">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options)=0</td></tr>
+<tr class="memdesc:a4bf284e877ba348b401247c09b994881 pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sample from the model.  <br /></td></tr>
+<tr class="memitem:a2b8f22c96cbee660fcfb8792d9fc42a0 pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a2b8f22c96cbee660fcfb8792d9fc42a0"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a2b8f22c96cbee660fcfb8792d9fc42a0">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; &amp;state)=0</td></tr>
+<tr class="memdesc:a2b8f22c96cbee660fcfb8792d9fc42a0 pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the model.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -302,8 +311,8 @@ bool&#160;</td><td class="memItemRight"><b>DEBUG</b></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a6d43a99909752c931c22673de19d73db" name="a6d43a99909752c931c22673de19d73db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d43a99909752c931c22673de19d73db">&#9670;&#160;</a></span>initialize()</h2>
+<a id="a2bbd8e4ade9f5c4b621a7e1526fb76e1" name="a2bbd8e4ade9f5c4b621a7e1526fb76e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bbd8e4ade9f5c4b621a7e1526fb76e1">&#9670;&#160;</a></span>sample()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -312,43 +321,14 @@ bool&#160;</td><td class="memItemRight"><b>DEBUG</b></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; initialize </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Initialization; superfluous. </p>
-
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a2b8f22c96cbee660fcfb8792d9fc42a0">Model&lt; Z2, DenseVector &gt;</a>.</p>
-
-</div>
-</div>
-<a id="a935c92afdd178da603034a3950779643" name="a935c92afdd178da603034a3950779643"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a935c92afdd178da603034a3950779643">&#9670;&#160;</a></span>sample()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; sample </td>
+          <td class="memname"><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> sample </td>
           <td>(</td>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; <a class="el" href="struct_a_t_e_a_m_s_1_1_z2.html">Z2</a>, <a class="el" href="namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617">DenseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+          <td class="paramtype"><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -358,7 +338,7 @@ bool&#160;</td><td class="memItemRight"><b>DEBUG</b></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -373,8 +353,6 @@ bool&#160;</td><td class="memItemRight"><b>DEBUG</b></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html" title="ModelState">ModelState</a> with <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#affb9db935dc3e09600f19267b9593b9d" title="essential">essential</a>, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a07fe4a6d18195cf882792dcc5d22e6f4" title="includes">includes</a>, and <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#ac310d9181e916ba43604099aee272c71" title="t">t</a> modified. </dd></dl>
-
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a4bf284e877ba348b401247c09b994881">Model&lt; Z2, DenseVector &gt;</a>.</p>
 
 </div>
 </div>

@@ -32,6 +32,7 @@ window.MathJax = {
   tex: {
     macros: {    Z: "{\\mathbb Z}",
     Q: "{\\mathbb Q}",
+    T: "{\\mathbb T}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
@@ -187,31 +188,33 @@ Usage</h2>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using </span>Model = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">models::Bernoulli</a>;</div>
-<div class="line"><span class="keyword">using </span>Parameters = <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">models::ModelParameters</a>;</div>
-<div class="line"> </div>
 <div class="line"><span class="keyword">using </span>Complex = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">complexes::Cubical&lt;Model::RingType&gt;</a>;</div>
-<div class="line"><span class="keyword">using </span>State = <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">models::ModelState&lt;Model::RingType,Model::VectorType&gt;</a>;</div>
-<div class="line"><span class="keyword">using </span>Chain = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">statistics::Chain&lt;Model::RingType,Model::VectorType&gt;</a>;</div>
+<div class="line"><span class="keyword">using </span>Parameters = <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">models::ModelParameters</a>;</div>
+<div class="line"><span class="keyword">using </span>Chain = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">statistics::Chain&lt;Model&gt;</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main() {</div>
 <div class="line">    <span class="comment">// Construct a cubical complex.</span></div>
-<div class="line">    Complex COMPLEX({6,6,6,6});</div>
+<div class="line">    vector&lt;int&gt; corners = {6,6,6,6};</div>
+<div class="line">    Complex COMPLEX(corners, <span class="keyword">true</span>);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Parametrize the model.</span></div>
 <div class="line">    Parameters PARAMETERS;</div>
 <div class="line">    PARAMETERS.dimension = 2;</div>
 <div class="line">    PARAMETERS.p = 0.5;</div>
+<div class="line">    <span class="keywordtype">int</span> iterations = 1000;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Construct the model, then the chain.</span></div>
 <div class="line">    Model MODEL(&amp;COMPLEX, PARAMETERS);</div>
-<div class="line">    Chain CHAIN(&amp;MODEL, 1000);</div>
+<div class="line">    Chain CHAIN(&amp;MODEL, iterations);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Iterate over the chain, storing the rank of the 2nd homology group as we</span></div>
 <div class="line">    <span class="comment">// go.</span></div>
-<div class="line">    vector&lt;int&gt; ranks;</div>
+<div class="line">    vector&lt;int&gt; ranks(iterations, 0);</div>
+<div class="line">    <span class="keywordtype">int</span> t = 0;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">for</span> (State STATE : CHAIN.simulate()) {</div>
-<div class="line">        ranks.push_back(STATE.rank);</div>
+<div class="line">    <span class="keywordflow">for</span> (Chain::State state : CHAIN.simulate()) {</div>
+<div class="line">        ranks[t] = state.rank;</div>
+<div class="line">        t++;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Compute the expected rank of the 2nd homology group.</span></div>
@@ -224,10 +227,9 @@ Usage</h2>
 <div class="line">}</div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> Cubical.h:39</div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">ATEAMS::models::Bernoulli</a></div><div class="ttdoc">Implements Bernoulli percolation.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:42</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a></div><div class="ttdoc">Simulates the Markov chains specified by each Model.</div><div class="ttdef"><b>Definition</b> Chain.h:60</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a></div><div class="ttdoc">Simulates the Markov chains specified by each Model.</div><div class="ttdef"><b>Definition</b> Chain.h:59</div></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:11</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ATEAMS::models::ModelParameters</a></div><div class="ttdoc">Typical parameters required for simulating a Model.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:36</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a></div><div class="ttdoc">Maintains state for this Model.</div><div class="ttdef"><b>Definition</b> ModelState.h:42</div></div>
 </div><!-- fragment --><p>If the above snippet is in a file called <span class="tt">main.cpp</span>, then compiling the program and running the executable should give something like</p>
 <div class="fragment"><div class="line">$ $CXX main.cpp `pkg-config --libs --cflags ATEAMS++` -o main</div>
 <div class="line">$ ./main</div>

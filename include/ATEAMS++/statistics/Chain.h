@@ -14,21 +14,20 @@ namespace ATEAMS {
 		 * @class Chain
 		 * @brief Simulates the Markov chains specified by each @ref models::Model.
 		 * 
-		 * @tparam RingLike A coefficient @ref Ring type, like @ref Zp or @ref Q.
-		 * @tparam VectorLike Storage unit compatible with @p RingLike, like
-	 	 *  @ref SparseVector or @ref DenseVector.
+		 * @tparam ModelType A @ref ATEAMS::models::Model type, like @ref ATEAMS::models::Bernoulli.
 		 * 
 		 * **Example Usage**
 		 * 
+		 * The below code draws 1,000 samples from plaquette Bernoulli percolation
+		 * on \f$\T^4_6\f$, the \f$4\f$-fold torus of scale \f$6\f$.
 		 * @code
 		 * using namespace ATEAMS;
 		 * 
 		 * using Model = models::Bernoulli;
-		 * using Parameters = models::ModelParameters;
-
 		 * using Complex = complexes::Cubical<Model::RingType>;
-		 * using State = models::ModelState<Model::RingType,Model::VectorType>;
-		 * using Chain = statistics::Chain<Model::RingType,Model::VectorType>;
+		 * 
+		 * using Parameters = models::ModelParameters;
+		 * using Chain = statistics::Chain<Model>;
 		 * 
 		 * Complex plex({4,4,4,4});
 		 * 
@@ -39,7 +38,7 @@ namespace ATEAMS {
 		 * Model percolation(&plex, parameters);
 		 * Chain M(&percolation, 1000);
 		 * 
-		 * for (State state : M.simulate()) {
+		 * for (Chain::State state : M.simulate()) {
 		 * 		<...>
 		 * }
 		 * @endcode
@@ -59,12 +58,16 @@ namespace ATEAMS {
 		template <typename ModelType>
 		class Chain {
 			public:
-				// models::Model<typename ModelType::RingType,typename ModelType::VectorType>* model;
 				ModelType* model;
 				typename ModelType::State state;
 				arithmetic::ThreadOptions options;
 
 				int steps;
+
+				/**
+				 * @brief Exposed typename for the model state.
+				 */
+				using State = typename ModelType::State;
 
 				/**
 				 * @brief Constructor; uses default @ref arithmetic::ThreadOptions.
@@ -79,7 +82,7 @@ namespace ATEAMS {
 					arithmetic::ThreadOptions options;
 					this->options = options;
 
-					typename ModelType::State state;
+					State state;
 					this->state = state;
 				};
 
@@ -95,7 +98,7 @@ namespace ATEAMS {
 					this->steps = steps;
 					this->options = options;
 
-					typename ModelType::State state;
+					State state;
 					this->state = state;
 				};
 
@@ -113,7 +116,7 @@ namespace ATEAMS {
 				 * 
 				 * @returns A `std::generator`.
 				 */
-				std::generator<typename ModelType::State> simulate() {
+				std::generator<State> simulate() {
 					std::thread listener = options.spinUp();
 					this->model->initialize(this->state);
 

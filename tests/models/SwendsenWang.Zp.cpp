@@ -22,12 +22,12 @@ int main(int argc, char *argv[]) {
 		vector<int> corners(dimension, 3);
 		Structure CUBICAL(corners);
 
-		Zp ZZ(FIELD);
+		Model::RingType R(FIELD);
 
 		Parameters PARAMETERS;
-		PARAMETERS.coefficients = &ZZ;
+		PARAMETERS.coefficients = &R;
 		PARAMETERS.dimension = dimension/2;
-		PARAMETERS.temperatureFunction = statistics::selfdual(&ZZ);
+		PARAMETERS.temperatureFunction = statistics::selfdual(&R);
 		PARAMETERS.DEBUG = true;
 
 		Model MODEL(&CUBICAL, PARAMETERS);

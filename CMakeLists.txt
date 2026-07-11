@@ -35,7 +35,7 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST TRUE)
+set(TEST FALSE)
 set(PROFILE FALSE)
 
 if (TEST)
@@ -185,13 +185,13 @@ list(APPEND ARITHMETIC
 )
 
 list(APPEND TOPOLOGY
-	"persistence"
+	# "persistence"
 )
 
 list(APPEND MODELS
 	"Bernoulli"
-	"Glauber"
-	"InvadedCluster"
+	# "Glauber"
+	# "InvadedCluster"
 	# "Invasion"
 	# "SwendsenWang"
 )

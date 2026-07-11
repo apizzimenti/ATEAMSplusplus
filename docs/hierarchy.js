@@ -1,7 +1,7 @@
 var hierarchy =
 [
     [ "BoundaryData&lt; RingLike &gt;", "struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html", null ],
-    [ "Chain&lt; RingLike, VectorLike &gt;", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html", null ],
+    [ "Chain&lt; ModelType &gt;", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html", null ],
     [ "Complex&lt; RingLike &gt;", "class_a_t_e_a_m_s_1_1complexes_1_1_complex.html", [
       [ "Cubical< RingLike >", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html", null ]
     ] ],

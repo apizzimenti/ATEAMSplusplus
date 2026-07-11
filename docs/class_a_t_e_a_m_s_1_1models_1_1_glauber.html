@@ -32,6 +32,7 @@ window.MathJax = {
   tex: {
     macros: {    Z: "{\\mathbb Z}",
     Q: "{\\mathbb Q}",
+    T: "{\\mathbb T}",
     ker: "{\\mathrm{ker}}",
     PLGT: "{\\mathrm{PLGT}}",
     PRCM: "{\\mathrm{PRCM}}",
@@ -168,6 +169,9 @@ using&#160;</td><td class="memItemRight"><b>RingType</b> = RingLike</td></tr>
 template&lt;typename R&gt; </td></tr>
 <tr class="memitem:a5bf49417840f2e21eca8e9d534436a73 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><b>VectorType</b> = <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt;R&gt;</td></tr>
 <tr class="memdesc:a5bf49417840f2e21eca8e9d534436a73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exposed vector storage type. See <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1" title="SparseVector">SparseVector</a>. <br /></td></tr>
+<tr class="memitem:ab667b40199ae176bcd63b0a1142c4e69" id="r_ab667b40199ae176bcd63b0a1142c4e69"><td class="memItemLeft"><a id="ab667b40199ae176bcd63b0a1142c4e69" name="ab667b40199ae176bcd63b0a1142c4e69"></a>
+using&#160;</td><td class="memItemRight"><b>State</b> = <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt;<a class="el" href="#a019cbd9f4f20c936dfb268d52b5d1e0a">RingType</a>,<a class="el" href="#a5bf49417840f2e21eca8e9d534436a73">VectorType</a>&gt;</td></tr>
+<tr class="memdesc:ab667b40199ae176bcd63b0a1142c4e69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exposed model state type. See <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html" title="ModelState">ModelState</a>. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -177,14 +181,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a66346480812812f2c53f8c04e4c0d7fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
 <tr class="memitem:a8aa1cdb7971840174e3529daadf0a1b4" id="r_a8aa1cdb7971840174e3529daadf0a1b4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8aa1cdb7971840174e3529daadf0a1b4">Glauber</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, std::function&lt; double(int)&gt; temperatureFunction, bool DEBUG=false)</td></tr>
 <tr class="memdesc:a8aa1cdb7971840174e3529daadf0a1b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
-<tr class="memitem:a1e3e0fafb4ffcc16010bdda5b7e42de6" id="r_a1e3e0fafb4ffcc16010bdda5b7e42de6"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1e3e0fafb4ffcc16010bdda5b7e42de6">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
-<tr class="memdesc:a1e3e0fafb4ffcc16010bdda5b7e42de6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches the spin of a uniform random cell.  <br /></td></tr>
-<tr class="memitem:ad71bbc2872102a39443a2947bdc9d361" id="r_ad71bbc2872102a39443a2947bdc9d361"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad71bbc2872102a39443a2947bdc9d361">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt; &amp;state) override</td></tr>
-<tr class="memdesc:ad71bbc2872102a39443a2947bdc9d361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes \(f_0\) to uniform random vector over \(\Z/p\Z\) or \( \Q \).  <br /></td></tr>
-<tr class="memitem:a0251e6f5743390ef4b131e2ee7cf114a" id="r_a0251e6f5743390ef4b131e2ee7cf114a"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0251e6f5743390ef4b131e2ee7cf114a">initialize</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt; &amp;state) override</td></tr>
-<tr class="memdesc:a0251e6f5743390ef4b131e2ee7cf114a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes \(f_0 = c\).  <br /></td></tr>
+<tr class="memitem:a2bbd8e4ade9f5c4b621a7e1526fb76e1" id="r_a2bbd8e4ade9f5c4b621a7e1526fb76e1"><td class="memItemLeft"><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2bbd8e4ade9f5c4b621a7e1526fb76e1">sample</a> (int t, <a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">arithmetic::ThreadOptions</a> &amp;options) override</td></tr>
+<tr class="memdesc:a2bbd8e4ade9f5c4b621a7e1526fb76e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches the spin of a uniform random cell.  <br /></td></tr>
+<tr class="memitem:ada0b8474c0031645d1c9fbf4ba7fe4b3" id="r_ada0b8474c0031645d1c9fbf4ba7fe4b3"><td class="memItemLeft"><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#ada0b8474c0031645d1c9fbf4ba7fe4b3">initialize</a> (<a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> &amp;state) override</td></tr>
+<tr class="memdesc:ada0b8474c0031645d1c9fbf4ba7fe4b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes \(f_0\) to uniform random vector over \(\Z/p\Z\) or \( \Q \).  <br /></td></tr>
+<tr class="memitem:a7b030c9a0aa70a4e8981234022509394" id="r_a7b030c9a0aa70a4e8981234022509394"><td class="memItemLeft"><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#a7b030c9a0aa70a4e8981234022509394">initialize</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; c, <a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> &amp;state) override</td></tr>
+<tr class="memdesc:a7b030c9a0aa70a4e8981234022509394"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes \(f_0 = c\).  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td colspan="2">Public Member Functions inherited from <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html">Model&lt; RingLike, SparseVector &gt;</a></td></tr>
 <tr class="memitem:af4902cce023a35cb4c3201a4600e140b pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_af4902cce023a35cb4c3201a4600e140b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#af4902cce023a35cb4c3201a4600e140b">Model</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, bool DEBUG=false)</td></tr>
+<tr class="memitem:a4bf284e877ba348b401247c09b994881 pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a4bf284e877ba348b401247c09b994881"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a4bf284e877ba348b401247c09b994881">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options)=0</td></tr>
+<tr class="memdesc:a4bf284e877ba348b401247c09b994881 pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sample from the model.  <br /></td></tr>
+<tr class="memitem:a2b8f22c96cbee660fcfb8792d9fc42a0 pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a2b8f22c96cbee660fcfb8792d9fc42a0"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a2b8f22c96cbee660fcfb8792d9fc42a0">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt; &amp;state)=0</td></tr>
+<tr class="memdesc:a2b8f22c96cbee660fcfb8792d9fc42a0 pub_methods_class_a_t_e_a_m_s_1_1models_1_1_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the model.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -371,8 +379,8 @@ template&lt;typename RingLike&gt; </div>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="ad71bbc2872102a39443a2947bdc9d361" name="ad71bbc2872102a39443a2947bdc9d361"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad71bbc2872102a39443a2947bdc9d361">&#9670;&#160;</a></span>initialize() <span class="overload">[1/2]</span></h2>
+<a id="a7b030c9a0aa70a4e8981234022509394" name="a7b030c9a0aa70a4e8981234022509394"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b030c9a0aa70a4e8981234022509394">&#9670;&#160;</a></span>initialize() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -383,52 +391,14 @@ template&lt;typename RingLike&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt; initialize </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Initializes \(f_0\) to uniform random vector over \(\Z/p\Z\) or \( \Q \). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">state</td><td><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> state.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> state. </dd></dl>
-
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a2b8f22c96cbee660fcfb8792d9fc42a0">Model&lt; RingLike, SparseVector &gt;</a>.</p>
-
-</div>
-</div>
-<a id="a0251e6f5743390ef4b131e2ee7cf114a" name="a0251e6f5743390ef4b131e2ee7cf114a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0251e6f5743390ef4b131e2ee7cf114a">&#9670;&#160;</a></span>initialize() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RingLike&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt; initialize </td>
+          <td class="memname"><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> initialize </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -450,8 +420,8 @@ template&lt;typename RingLike&gt; </div>
 
 </div>
 </div>
-<a id="a1e3e0fafb4ffcc16010bdda5b7e42de6" name="a1e3e0fafb4ffcc16010bdda5b7e42de6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e3e0fafb4ffcc16010bdda5b7e42de6">&#9670;&#160;</a></span>sample()</h2>
+<a id="ada0b8474c0031645d1c9fbf4ba7fe4b3" name="ada0b8474c0031645d1c9fbf4ba7fe4b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada0b8474c0031645d1c9fbf4ba7fe4b3">&#9670;&#160;</a></span>initialize() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -462,14 +432,50 @@ template&lt;typename RingLike&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt; sample </td>
+          <td class="memname"><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> initialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes \(f_0\) to uniform random vector over \(\Z/p\Z\) or \( \Q \). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> state.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a> state. </dd></dl>
+
+</div>
+</div>
+<a id="a2bbd8e4ade9f5c4b621a7e1526fb76e1" name="a2bbd8e4ade9f5c4b621a7e1526fb76e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bbd8e4ade9f5c4b621a7e1526fb76e1">&#9670;&#160;</a></span>sample()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> sample </td>
           <td>(</td>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, <a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+          <td class="paramtype"><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69">State</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -479,7 +485,7 @@ template&lt;typename RingLike&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -493,9 +499,7 @@ template&lt;typename RingLike&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>State with modified <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a334b77423f585fe61bcb7e640b56f6b5" title="cochain">cochain</a>, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a4ec8c7cb48771b844a6d50e2150e3f63" title="energy">energy</a>, and <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#ac310d9181e916ba43604099aee272c71" title="t">t</a>. </dd></dl>
-
-<p>Implements <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a4bf284e877ba348b401247c09b994881">Model&lt; RingLike, SparseVector &gt;</a>.</p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="#ab667b40199ae176bcd63b0a1142c4e69" title="Exposed model state type. See ModelState.">State</a> with modified <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a334b77423f585fe61bcb7e640b56f6b5" title="cochain">cochain</a>, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a4ec8c7cb48771b844a6d50e2150e3f63" title="energy">energy</a>, and <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#ac310d9181e916ba43604099aee272c71" title="t">t</a>. </dd></dl>
 
 </div>
 </div>

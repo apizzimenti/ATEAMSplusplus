@@ -8,9 +8,9 @@ using namespace std;
 using Model = models::SwendsenWang<Q>;
 using Parameters = models::ModelParameters;
 
-using Structure = complexes::Cubical<Q>;
-using State = models::ModelState<Q,SparseVector>;
-using Chain = statistics::Chain<Q,SparseVector>;
+using Structure = complexes::Cubical<Model::RingType>;
+using State = Model::State;
+using Chain = statistics::Chain<Model>;
 
 
 int main(int argc, char *argv[]) {
@@ -21,10 +21,10 @@ int main(int argc, char *argv[]) {
 		vector<int> corners(dimension, 3);
 		Structure CUBICAL(corners);
 
-		Q QQ;
+		Model::RingType R(FIELD);
 
 		Parameters PARAMETERS;
-		PARAMETERS.coefficients = &QQ;
+		PARAMETERS.coefficients = &R;
 		PARAMETERS.dimension = dimension/2;
 		PARAMETERS.temperatureFunction = statistics::constant(1/2);
 		PARAMETERS.DEBUG = true;

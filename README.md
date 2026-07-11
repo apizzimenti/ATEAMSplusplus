@@ -63,37 +63,40 @@ Most experiments follow a straightforward template:
 The below example samples plaquette Bernoulli percolation 1,000 times on the scale-$`6`$ $`4`$-fold torus $`\mathbb T_6^4`$:
 
 ```C++
+
 #include <ATEAMS++.h>
 
 using namespace ATEAMS;
 using namespace std;
 
 using Model = models::Bernoulli;
-using Parameters = models::ModelParameters;
-
 using Complex = complexes::Cubical<Model::RingType>;
-using State = models::ModelState<Model::RingType,Model::VectorType>;
-using Chain = statistics::Chain<Model::RingType,Model::VectorType>;
+using Parameters = models::ModelParameters;
+using Chain = statistics::Chain<Model>;
 
 int main() {
 	// Construct a cubical complex.
-	Complex COMPLEX({6,6,6,6});
+	vector<int> corners = {6,6,6,6};
+	Complex COMPLEX(corners, true);
 
 	// Parametrize the model.
 	Parameters PARAMETERS;
 	PARAMETERS.dimension = 2;
 	PARAMETERS.p = 0.5;
+	int iterations = 1000;
 
 	// Construct the model, then the chain.
 	Model MODEL(&COMPLEX, PARAMETERS);
-	Chain CHAIN(&MODEL, 1000);
+	Chain CHAIN(&MODEL, iterations);
 
 	// Iterate over the chain, storing the rank of the 2nd homology group as we
 	// go.
-	vector<int> ranks;
+	vector<int> ranks(iterations, 0);
+	int t = 0;
 
-	for (State STATE : CHAIN.simulate()) {
-		ranks.push_back(STATE.rank);
+	for (Chain::State state : CHAIN.simulate()) {
+		ranks[t] = state.rank;
+		t++;
 	}
 
 	// Compute the expected rank of the 2nd homology group.
