@@ -55,6 +55,9 @@ namespace ATEAMS::models {
 			template <typename R>
 			using VectorType = DenseVector<R>;
 
+			
+			using State = ModelState<Z2,DenseVector>;
+
 			/**
 			 * @brief Constructor.
 			 * 

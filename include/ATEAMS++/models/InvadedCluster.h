@@ -61,6 +61,11 @@ namespace ATEAMS::models {
 			using VectorType = SparseVector<R>;
 
 			/**
+			 * @brief Exposed State type. See @ref ATEAMS::models::ModelState.
+			 */
+			using State = ModelState<RingLike,SparseVector>;
+
+			/**
 			 * @brief Constructor.
 			 * 
 			 * @param complex (Pointer to) a complex.
@@ -108,9 +113,9 @@ namespace ATEAMS::models {
 			 * @return Model state with @ref ModelState::cochain, @ref ModelState::includes,
 			 * @ref ModelState::essential, and @ref ModelState::t updated.
 			 */
-			ModelState<RingLike,SparseVector> sample(
+			State sample(
 				int t,
-				ModelState<RingLike,SparseVector>& state,
+				State& state,
 				ATEAMS::arithmetic::ThreadOptions& options
 			) override;
 
@@ -122,7 +127,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @returns Model state.
 			 */
-			ModelState<RingLike,SparseVector> initialize(ModelState<RingLike,SparseVector>& state) override;
+			State initialize(State& state) override;
 
 			/**
 			 * @brief Initializes \f$f_0 = c\f$.
@@ -132,9 +137,9 @@ namespace ATEAMS::models {
 			 * 
 			 * @returns Model state.
 			 */
-			ModelState<RingLike,SparseVector> initialize(
+			State initialize(
 				SparseVector<RingLike> c,
-				ModelState<RingLike,SparseVector>& state
+				State& state
 			) override;
 
 		private:

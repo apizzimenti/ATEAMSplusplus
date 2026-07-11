@@ -14,9 +14,9 @@
 
 namespace ATEAMS {
 	namespace models {
-		ModelState<Z2,DenseVector> Bernoulli::sample(
+		Bernoulli::State Bernoulli::sample(
 			int t,
-			ModelState<Z2,DenseVector>& state,
+			Bernoulli::State& state,
 			arithmetic::ThreadOptions& options
 		) {
 			// If we're debugging, check that the inclusion probability is a probability

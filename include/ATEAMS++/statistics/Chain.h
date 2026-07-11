@@ -56,11 +56,12 @@ namespace ATEAMS {
 		 * @var Chain::steps
 		 * 	@brief Number of iterations.
 		 */
-		template <typename RingLike, template <typename> typename VectorLike>
+		template <typename ModelType>
 		class Chain {
 			public:
-				models::Model<RingLike,VectorLike>* model;
-				models::ModelState<RingLike,VectorLike> state;
+				// models::Model<typename ModelType::RingType,typename ModelType::VectorType>* model;
+				ModelType* model;
+				typename ModelType::State state;
 				arithmetic::ThreadOptions options;
 
 				int steps;
@@ -71,14 +72,14 @@ namespace ATEAMS {
 				 * @param model (Pointer to) a Model instance.
 				 * @param steps Number of iterations.
 				 */
-				Chain(models::Model<RingLike,VectorLike>* model, int steps) {
+				Chain(ModelType* model, int steps) {
 					this->model = model;
 					this->steps = steps;
 
 					arithmetic::ThreadOptions options;
 					this->options = options;
 
-					models::ModelState<RingLike,VectorLike> state;
+					typename ModelType::State state;
 					this->state = state;
 				};
 
@@ -89,12 +90,12 @@ namespace ATEAMS {
 				 * @param steps Number of iterations.
 				 * @param options User-provided compute options.
 				 */
-				Chain(models::Model<RingLike,VectorLike>* model, int steps, arithmetic::ThreadOptions options) {
+				Chain(ModelType* model, int steps, arithmetic::ThreadOptions options) {
 					this->model = model;
 					this->steps = steps;
 					this->options = options;
 
-					models::ModelState<RingLike,VectorLike> state;
+					typename ModelType::State state;
 					this->state = state;
 				};
 
@@ -112,7 +113,7 @@ namespace ATEAMS {
 				 * 
 				 * @returns A `std::generator`.
 				 */
-				std::generator<models::ModelState<RingLike,VectorLike>> simulate() {
+				std::generator<typename ModelType::State> simulate() {
 					std::thread listener = options.spinUp();
 					this->model->initialize(this->state);
 
