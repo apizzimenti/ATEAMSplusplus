@@ -59,6 +59,11 @@ namespace ATEAMS::models {
 			 */
 			template <typename R>
 			using VectorType = SparseVector<R>;
+
+			/**
+			 * @brief Exposed model state type. See @ref ATEAMS::models::ModelState.
+			 */
+			using State = ModelState<RingType,VectorType>;
 			
 			/**
 			 * @brief Constructor.
@@ -119,9 +124,9 @@ namespace ATEAMS::models {
 			 * @return State with modified @ref ModelState::cochain,
 			 * @ref ModelState::energy, and @ref ModelState::t.
 			 */
-			ModelState<RingLike,SparseVector> sample(
+			State sample(
 				int t,
-				ModelState<RingLike,SparseVector>& state,
+				State& state,
 				arithmetic::ThreadOptions& options
 			) override;
 
@@ -133,7 +138,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @returns Model state.
 			 */
-			ModelState<RingLike,SparseVector> initialize(ModelState<RingLike,SparseVector>& state) override;
+			State initialize(State& state) override;
 
 			/**
 			 * @brief Initializes \f$f_0 = c\f$.
@@ -144,7 +149,7 @@ namespace ATEAMS::models {
 			 * @returns @ref ModelState with @ref ModelState::cochain, @ref ModelState::energy,
 			 * and @ref ModelState::t updated.
 			 */
-			ModelState<RingLike,SparseVector> initialize(SparseVector<RingLike> c, ModelState<RingLike,SparseVector>& state) override;
+			State initialize(SparseVector<RingLike> c, State& state) override;
 
 		private:
 			std::mt19937 RNG;

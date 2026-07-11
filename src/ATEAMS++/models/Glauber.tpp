@@ -21,9 +21,9 @@
 namespace ATEAMS::models {
 		
 	template <typename RingLike>
-	ModelState<RingLike,SparseVector> Glauber<RingLike>::sample(
+	Glauber<RingLike>::State Glauber<RingLike>::sample(
 		int t,
-		ModelState<RingLike,SparseVector>& state,
+		Glauber<RingLike>::State& state,
 		arithmetic::ThreadOptions& options
 	) {
 		// Compute the temperature and probability of including particular (d-1)-cells.
@@ -64,7 +64,7 @@ namespace ATEAMS::models {
 
 
 	template <typename RingLike>
-	ModelState<RingLike,SparseVector> Glauber<RingLike>::initialize(ModelState<RingLike,SparseVector>& state) {
+	Glauber<RingLike>::State Glauber<RingLike>::initialize(Glauber<RingLike>::State& state) {
 		size_t dimension = this->dimension-1;
 		int N = this->complex->Cells[dimension];
 
@@ -81,9 +81,9 @@ namespace ATEAMS::models {
 
 
 	template <typename RingLike>
-	ModelState<RingLike,SparseVector> Glauber<RingLike>::initialize(
+	Glauber<RingLike>::State Glauber<RingLike>::initialize(
 		SparseVector<RingLike> c,
-		ModelState<RingLike,SparseVector>& state
+		Glauber<RingLike>::State& state
 	) {
 		state.cochain = c;
 		return state;

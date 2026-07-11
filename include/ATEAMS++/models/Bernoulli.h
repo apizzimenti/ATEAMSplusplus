@@ -55,8 +55,10 @@ namespace ATEAMS::models {
 			template <typename R>
 			using VectorType = DenseVector<R>;
 
-			
-			using State = ModelState<Z2,DenseVector>;
+			/**
+			 * @brief Exposed model state type. See @ref ATEAMS::models::ModelState.
+			 */
+			using State = ModelState<RingType,VectorType>;
 
 			/**
 			 * @brief Constructor.
@@ -100,17 +102,17 @@ namespace ATEAMS::models {
 			 * @returns @ref ModelState with @ref ModelState::essential,
 			 * @ref ModelState::includes, and @ref ModelState::t modified.
 			 */
-			ModelState<Z2,DenseVector> sample(
+			State sample(
 				int t, 
-				ModelState<Z2,DenseVector>& state,
+				State& state,
 				arithmetic::ThreadOptions& options
 			) override;
 
 			/** @brief Initialization; superfluous. */
-			ModelState<Z2,DenseVector> initialize(ModelState<Z2,DenseVector>& state) override { return state; };
+			State initialize(State& state) override { return state; };
 
 			/** @brief Initialization; superfluous. */
-			ModelState<Z2,DenseVector> initialize(std::vector<Z2> c, ModelState<Z2,DenseVector>& state) override { return state; };
+			State initialize(std::vector<Z2> c, State& state) override { return state; };
 
 		private:
 			std::mt19937 RNG;
