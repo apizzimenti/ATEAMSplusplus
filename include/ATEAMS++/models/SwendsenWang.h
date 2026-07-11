@@ -62,6 +62,11 @@ namespace ATEAMS::models {
 			using VectorType = SparseVector<R>;
 
 			/**
+			 * @brief Exposed State type. See @ref ATEAMS::models::ModelState.
+			 */
+			using State = ModelState<RingType,VectorType>;
+
+			/**
 			 * @brief Constructor.
 			 * 
 			 * Using this constructor, typical model parameters can be passed
@@ -127,7 +132,7 @@ namespace ATEAMS::models {
 			 * @return Model state, with @ref ModelState::cochain, @ref ModelState::includes,
 			 * and @ref ModelState::t updated.
 			 */
-			ModelState<RingLike,SparseVector> sample(int t, ModelState<RingLike,SparseVector>& state, ATEAMS::arithmetic::ThreadOptions& options) override;
+			State sample(int t, State& state, ATEAMS::arithmetic::ThreadOptions& options) override;
 
 			/**
 			 * @brief Initializes \f$f_0\f$ to uniform random element of \f$\Z/p\Z\f$
@@ -137,7 +142,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @returns Modified State.
 			 */
-			ModelState<RingLike,SparseVector> initialize(ModelState<RingLike,SparseVector>& state) override;
+			State initialize(State& state) override;
 
 			/**
 			 * @brief Initializes \f$f_0 = c\f$.
@@ -147,7 +152,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @returns Modified State.
 			 */
-			ModelState<RingLike,SparseVector> initialize(SparseVector<RingLike> c, ModelState<RingLike,SparseVector>& state) override;
+			State initialize(SparseVector<RingLike> c, State& state) override;
 
 		private:
 			std::mt19937 RNG;

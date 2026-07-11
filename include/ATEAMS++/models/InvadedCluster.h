@@ -63,7 +63,7 @@ namespace ATEAMS::models {
 			/**
 			 * @brief Exposed State type. See @ref ATEAMS::models::ModelState.
 			 */
-			using State = ModelState<RingLike,SparseVector>;
+			using State = ModelState<RingType,VectorType>;
 
 			/**
 			 * @brief Constructor.

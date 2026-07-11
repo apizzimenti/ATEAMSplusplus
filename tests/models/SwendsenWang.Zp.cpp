@@ -5,12 +5,13 @@
 using namespace ATEAMS;
 using namespace std;
 
+
 using Model = models::SwendsenWang<Zp>;
 using Parameters = models::ModelParameters;
 
-using Structure = complexes::Cubical<Zp>;
-using State = models::ModelState<Zp,SparseVector>;
-using Chain = statistics::Chain<Zp,SparseVector>;
+using Structure = complexes::Cubical<Model::RingType>;
+using State = Model::State;
+using Chain = statistics::Chain<Model>;
 
 
 int main(int argc, char *argv[]) {

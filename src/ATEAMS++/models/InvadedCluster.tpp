@@ -23,9 +23,9 @@ namespace ATEAMS {
 	namespace models {
 
 		template <typename RingLike>
-		ModelState<RingLike,SparseVector> InvadedCluster<RingLike>::sample(
+		InvadedCluster<RingLike>::State InvadedCluster<RingLike>::sample(
 			int t,
-			ModelState<RingLike,SparseVector>& state,
+			InvadedCluster<RingLike>::State& state,
 			arithmetic::ThreadOptions& options
 		) {
 			int d = this->dimension;
@@ -133,8 +133,8 @@ namespace ATEAMS {
 
 
 		template <typename RingLike>
-		ModelState<RingLike,SparseVector> InvadedCluster<RingLike>::initialize(
-			ModelState<RingLike,SparseVector>& state
+		InvadedCluster<RingLike>::State InvadedCluster<RingLike>::initialize(
+			InvadedCluster<RingLike>::State& state
 		) {
 			size_t dimension = this->dimension-1;
 			int N = this->complex->Cells[dimension];
@@ -151,9 +151,9 @@ namespace ATEAMS {
 
 
 		template <typename RingLike>
-		ModelState<RingLike,SparseVector> InvadedCluster<RingLike>::initialize(
+		InvadedCluster<RingLike>::State InvadedCluster<RingLike>::initialize(
 			SparseVector<RingLike> c,
-			ModelState<RingLike,SparseVector>& state
+			InvadedCluster<RingLike>::State& state
 		) {
 			state.cochain = c;
 			return state;

@@ -22,9 +22,9 @@ using namespace std;
 
 namespace ATEAMS::models {
 	template <typename RingLike>
-	ModelState<RingLike,DenseVector> Invasion<RingLike>::sample(
+	Invasion<RingLike>::State Invasion<RingLike>::sample(
 		int t,
-		ModelState<RingLike,DenseVector>& state,
+		Invasion<RingLike>::State& state,
 		arithmetic::ThreadOptions& options
 	) {
 		int d = this->dimension;

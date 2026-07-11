@@ -20,9 +20,9 @@ namespace ATEAMS {
 	namespace models {
 
 		template <typename RingLike>
-		ModelState<RingLike,SparseVector> SwendsenWang<RingLike>::sample(
+		SwendsenWang<RingLike>::State SwendsenWang<RingLike>::sample(
 			int t,
-			ModelState<RingLike,SparseVector>& state,
+			SwendsenWang<RingLike>::State& state,
 			arithmetic::ThreadOptions& options
 		) {
 			// Compute the temperature and probability of including particular (d-1)-cells.
@@ -110,8 +110,8 @@ namespace ATEAMS {
 		}
 
 		template <typename RingLike>
-		ModelState<RingLike,SparseVector> SwendsenWang<RingLike>::initialize(
-			ModelState<RingLike,SparseVector>& state
+		SwendsenWang<RingLike>::State SwendsenWang<RingLike>::initialize(
+			SwendsenWang<RingLike>::State& state
 		) {
 			size_t dimension = this->dimension-1;
 			int N = this->complex->Cells[dimension];
@@ -128,9 +128,9 @@ namespace ATEAMS {
 
 
 		template <typename RingLike>
-		ModelState<RingLike,SparseVector> SwendsenWang<RingLike>::initialize(
+		SwendsenWang<RingLike>::State SwendsenWang<RingLike>::initialize(
 			SparseVector<RingLike> c,
-			ModelState<RingLike,SparseVector>& state
+			SwendsenWang<RingLike>::State& state
 		) {
 			state.cochain = c;
 			return state;
