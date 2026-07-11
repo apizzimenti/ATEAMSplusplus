@@ -69,32 +69,27 @@ The below example samples plaquette Bernoulli percolation 1,000 times on the sca
 using namespace ATEAMS;
 using namespace std;
 
-using Model = models::Bernoulli;
-using Complex = complexes::Cubical<Model::RingType>;
-using Parameters = models::ModelParameters;
-using Chain = statistics::Chain<Model>;
-
 int main() {
 	// Construct a cubical complex.
 	vector<int> corners = {6,6,6,6};
-	Complex COMPLEX(corners, true);
+	complexes::Cubical::<models::Bernoulli::RingType> COMPLEX(corners, true);
 
 	// Parametrize the model.
-	Parameters PARAMETERS;
+	models::ModelParameters PARAMETERS;
 	PARAMETERS.dimension = 2;
 	PARAMETERS.p = 0.5;
 	int iterations = 1000;
 
 	// Construct the model, then the chain.
-	Model MODEL(&COMPLEX, PARAMETERS);
-	Chain CHAIN(&MODEL, iterations);
+	models::Bernoulli MODEL(&COMPLEX, PARAMETERS);
+	statistics::Chain CHAIN(&MODEL, iterations);
 
 	// Iterate over the chain, storing the rank of the 2nd homology group as we
 	// go.
 	vector<int> ranks(iterations, 0);
 	int t = 0;
 
-	for (Chain::State state : CHAIN.simulate()) {
+	for (statistics::Chain::State state : CHAIN.simulate()) {
 		ranks[t] = state.rank;
 		t++;
 	}
@@ -146,7 +141,7 @@ We welcome contributions. A few housekeeping rules:
 	title={{ATEAMS++: Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++}},
 	author={Pizzimenti, Anthony E. and Eldridge, Summer and Schweinhart, Ben and Duncan, Paul},
 	url={github.com/apizzimenti/ATEAMSplusplus},
-	version={1.6},
+	version={1.7},
 	doi={10.5281/zenodo.20817889}
 }
 ```
