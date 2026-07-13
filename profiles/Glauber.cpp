@@ -4,12 +4,13 @@
 using namespace ATEAMS;
 using namespace std;
 
+
 using Model = models::Glauber<Zp>;
 using Parameters = models::ModelParameters;
 
 using Structure = complexes::Cubical<Model::RingType>;
-using State = models::ModelState<Model::RingType,Model::VectorType>;
-using Chain = statistics::Chain<Model::RingType,Model::VectorType>;
+using State = Model::State;
+using Chain = statistics::Chain<Model>;
 
 
 std::map<int,vector<int>> stopat = {

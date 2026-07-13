@@ -1,12 +1,20 @@
 #!/bin/zsh
 
-MODELS=("Bernoulli" "Glauber" "InvadedCluster" "Invasion" "SwendsenWang")
-SCALES=(3 4 6 8 11 16)
-FIELDS=(2 3 5 7)
-TOPDIMENSIONS=(2 4)
-ITERATIONS=10
+# MODELS=("Bernoulli" "Glauber" "InvadedCluster" "Invasion" "SwendsenWang")
+# SCALES=(3 4 6 8 11 16)
+# FIELDS=(2 3 5 7)
+# TOPDIMENSIONS=(2 4)
+# ITERATIONS=10
+
+MODELS=("Bernoulli")
+SCALES=(10)
+FIELDS=(2)
+TOPDIMENSIONS=(2)
+ITERATIONS=1000
 
 EXECPREFIX="../build"
+
+root="ATEAMS::models::Bernoulli::sample"
 
 for MODEL in "${MODELS[@]}"; do
 	for FIELD in "${FIELDS[@]}"; do
@@ -15,7 +23,7 @@ for MODEL in "${MODELS[@]}"; do
 				# Delete existing ones first.
 				PADDED=${(l(2)(0))SCALE}
 				prefix="$MODEL.$FIELD.$PADDED.$TOPDIMENSION"
-				rm profiles/reports/$prefix.*
+				rm -f profiles/reports/$prefix.*
 
 				echo "########################################"
 				echo "## $prefix"
@@ -28,6 +36,12 @@ for MODEL in "${MODELS[@]}"; do
 				# Find bottlenecks.
 				perf record -g -o profiles/reports/$prefix.record ./build/profiles.$MODEL $SCALE $TOPDIMENSION $((TOPDIMENSION/2)) $FIELD $ITERATIONS &
 				wait $!
+
+				# Make a plot?
+				perf script --input=profiles/reports/$prefix.record \
+					| c++filt \
+					| gprof2dot --format=perf --depth=3 --strip --node-thres=5 \
+					| dot -Tpng -o profiles/reports/$prefix.png
 
 				echo "\n\n"
 				# perf report --input=profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.record --output=profiles/reports/$MODEL.$FIELD.$SCALE.$TOPDIMENSION.record.csv &

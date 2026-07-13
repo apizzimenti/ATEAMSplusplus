@@ -26,6 +26,12 @@ profile: FORCE
 test:
 	@cd build; ctest
 
+push: FORCE
+	@./push.sh -p
+
+pull: FORCE
+	@./retrieve.sh -p
+
 ##########
 ## DOCS ##
 ##########

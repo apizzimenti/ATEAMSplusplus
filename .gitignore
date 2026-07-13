@@ -5,6 +5,9 @@ README.friendly.md
 
 build
 
+profiles/reports
+
 *megltower*
 *pangolin*
 push.sh
+retrieve.sh

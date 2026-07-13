@@ -35,7 +35,7 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST FALSE)
+set(TEST TRUE)
 set(PROFILE FALSE)
 
 if (TEST)
@@ -43,7 +43,7 @@ if (TEST)
 endif()
 
 if (PROFILE)
-	add_compile_options(-g)
+	add_compile_options(-pg -fno-omit-frame-pointer -fno-inline-functions -fno-inline-functions-called-once -fno-optimize-sibling-calls)
 endif()
 
 
@@ -177,27 +177,27 @@ install(
 ################################################################################
 
 list(APPEND COMPLEXES
-	# "Cubical"
+	"Cubical"
 )
 
 list(APPEND ARITHMETIC
-	# "kernel"
+	"kernel"
 )
 
 list(APPEND TOPOLOGY
-	# "persistence"
+	"persistence"
 )
 
 list(APPEND MODELS
 	"Bernoulli"
-	# "Glauber"
-	# "InvadedCluster"
-	# "Invasion"
-	# "SwendsenWang"
+	"Glauber"
+	"InvadedCluster"
+	"Invasion"
+	"SwendsenWang"
 )
 
 list(APPEND TYPES
-	# "Q"
+	"Q"
 	"Zp"
 )
 
@@ -263,7 +263,6 @@ endif()
 if (PROFILE)
 	foreach(MODEL IN LISTS MODELS)
 		add_executable(profiles.${MODEL} profiles/${MODEL}.cpp)
-		add_compile_options(-g)
-		target_link_libraries(profiles.${MODEL} PRIVATE ATEAMS++)
+		target_link_libraries(profiles.${MODEL} PUBLIC ATEAMS++)
 	endforeach()
 endif()

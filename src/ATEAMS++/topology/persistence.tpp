@@ -28,7 +28,7 @@ namespace ATEAMS::topology {
 		int dimension
 	) {
 		// Construct an index mapping.
-		map<int,int> remapping;
+		vector<int> remapping(filtration.size(), 0);
 		for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
 
 		// Wow, this is going to be annoying.
@@ -80,7 +80,7 @@ namespace ATEAMS::topology {
 		//				{... 12: 9, 9: 10, 10: 11, 19: 12, ...}
 
 		// TODO optimize, this takes way too long
-		map<int,int> remapping;
+		vector<int> remapping(filtration.size(), 0);
 		for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
 
 		PHATBoundaryMatrix boundary;
