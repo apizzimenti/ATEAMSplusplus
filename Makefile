@@ -32,6 +32,7 @@ test:
 docs: FORCE
 	@sed -e 's|`\$$|\\f$$|g' -e 's|$$`|\\f$$|g' README.md > README.friendly.md
 	@doxygen
+	@open file:///Users/apizzimenti/Dropbox/School/GMU/Research/Software/ATEAMS++/docs/index.html
 
 FORCE: ;
 
