@@ -35,8 +35,8 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST TRUE)
-set(PROFILE FALSE)
+set(TEST FALSE)
+set(PROFILE TRUE)
 
 if (TEST)
 	enable_testing()
@@ -177,15 +177,15 @@ install(
 ################################################################################
 
 list(APPEND COMPLEXES
-	"Cubical"
+	# "Cubical"
 )
 
 list(APPEND ARITHMETIC
-	"kernel"
+	# "kernel"
 )
 
 list(APPEND TOPOLOGY
-	"persistence"
+	# "persistence"
 )
 
 list(APPEND MODELS
@@ -197,7 +197,7 @@ list(APPEND MODELS
 )
 
 list(APPEND TYPES
-	"Q"
+	# "Q"
 	"Zp"
 )
 

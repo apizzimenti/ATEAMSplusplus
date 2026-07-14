@@ -26,6 +26,6 @@ var annotated_dup =
       [ "Q", "struct_a_t_e_a_m_s_1_1_q.html", "struct_a_t_e_a_m_s_1_1_q" ],
       [ "Zp", "struct_a_t_e_a_m_s_1_1_zp.html", "struct_a_t_e_a_m_s_1_1_zp" ],
       [ "Z2", "struct_a_t_e_a_m_s_1_1_z2.html", "struct_a_t_e_a_m_s_1_1_z2" ],
-      [ "DataWriter", "class_a_t_e_a_m_s_1_1_data_writer.html", null ]
+      [ "DataWriter", "class_a_t_e_a_m_s_1_1_data_writer.html", "class_a_t_e_a_m_s_1_1_data_writer" ]
     ] ]
 ];

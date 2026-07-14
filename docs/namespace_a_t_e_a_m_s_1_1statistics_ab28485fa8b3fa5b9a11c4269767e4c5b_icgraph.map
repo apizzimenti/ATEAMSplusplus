@@ -1,0 +1,7 @@
+<map id="unsatisfied" name="unsatisfied">
+<area shape="rect" id="Node000001" title="Computes the indices of unsatisfied &#45;cells in the complex with respect to : that is,..." alt="" coords="124,29,208,55"/>
+<area shape="poly" id="edge3_Node000001_Node000001" title=" " alt="" coords="185,14,179,10,166,8,153,10,147,14,145,20,149,30,144,28,140,21,142,11,151,5,166,3,182,5,191,15"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1statistics.html#ad65f2bb1f9628f12f8a86326d991702f" title="Computes the indices of satisfied &#45;cells in the complex with respect to : that is,..." alt="" coords="5,29,76,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,43,76,45,76,40,111,42"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="60,14,54,10,40,8,28,10,21,14,20,20,24,29,18,29,14,21,17,11,26,5,41,3,56,5,65,14"/>
+</map>

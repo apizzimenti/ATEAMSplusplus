@@ -160,6 +160,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a4f3b986df7ce4786e4769864f289be8d" id="r_a4f3b986df7ce4786e4769864f289be8d"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a4f3b986df7ce4786e4769864f289be8d template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4f3b986df7ce4786e4769864f289be8d">persistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension)</td></tr>
 <tr class="memdesc:a4f3b986df7ce4786e4769864f289be8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatch method for computing persistence; calls <a class="el" href="#a10692014e1f613bb397ec488a5600507" title="PHATPersistence">PHATPersistence</a> or <a class="el" href="#acd8515e2ecfeea265e36069df52ba101" title="twistPersistence">twistPersistence</a> depending on the characteristic of <code class="param">R</code>.  <br /></td></tr>
+<tr class="memitem:ac8f847202bcaa2de63266f3272ac3ead" id="r_ac8f847202bcaa2de63266f3272ac3ead"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:ac8f847202bcaa2de63266f3272ac3ead template"><td class="memItemLeft">vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac8f847202bcaa2de63266f3272ac3ead">PHATPersistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, vector&lt; int &gt; filtration, int dimension)</td></tr>
+<tr class="memitem:a37984d86a1e638c72f8fc17204dd8cb9" id="r_a37984d86a1e638c72f8fc17204dd8cb9"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a37984d86a1e638c72f8fc17204dd8cb9 template"><td class="memItemLeft">vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a37984d86a1e638c72f8fc17204dd8cb9">twistPersistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, vector&lt; int &gt; filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Topological support routines. </p>
@@ -212,11 +216,38 @@ template&lt;typename RingLike&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A vector of percolation times. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_a4f3b986df7ce4786e4769864f289be8d_cgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_a4f3b986df7ce4786e4769864f289be8d_cgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1topology_a4f3b986df7ce4786e4769864f289be8d_cgraph" id="anamespace_a_t_e_a_m_s_1_1topology_a4f3b986df7ce4786e4769864f289be8d_cgraph">
+<area shape="rect" title="Dispatch method for computing persistence; calls PHATPersistence or twistPersistence depending on the..." alt="" coords="5,31,94,56"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology.html#a10692014e1f613bb397ec488a5600507" title="Computes the persistent homology of a complex using &#160;coefficients. See the implementation of Bernoull..." alt="" coords="142,5,267,31"/>
+<area shape="poly" title=" " alt="" coords="93,34,129,30,124,32,95,39"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology.html#acd8515e2ecfeea265e36069df52ba101" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="145,55,264,80"/>
+<area shape="poly" title=" " alt="" coords="94,48,133,55,127,57,94,53"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_a4f3b986df7ce4786e4769864f289be8d_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_a4f3b986df7ce4786e4769864f289be8d_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1topology_a4f3b986df7ce4786e4769864f289be8d_icgraph" id="anamespace_a_t_e_a_m_s_1_1topology_a4f3b986df7ce4786e4769864f289be8d_icgraph">
+<area shape="rect" title="Dispatch method for computing persistence; calls PHATPersistence or twistPersistence depending on the..." alt="" coords="275,102,363,128"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a99ddf966c148b257a892adf7aca4754b" title="Directly samples Bernoulli percolation at the desired dimension." alt="" coords="24,5,208,46"/>
+<area shape="poly" title=" " alt="" coords="284,94,226,61,195,49,195,44,228,57,289,93"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#acde24300693b2423e1267113ea8a9140" title="Implements the plaquette invaded&#45;cluster algorithm, which inserts satisfied cells (i...." alt="" coords="5,95,227,135"/>
+<area shape="poly" title=" " alt="" coords="256,116,228,118,227,112,261,114"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a4ac8f715a9759723985029d1e8bde81d" title="Implements the plaquette invasion&#45;percolation algorithm, which creates a random &#45;subcomplex &#160;by (unif..." alt="" coords="25,160,207,201"/>
+<area shape="poly" title=" " alt="" coords="269,133,228,150,188,162,187,157,226,144,264,134"/>
+<area shape="poly" title=" " alt="" coords="147,80,137,76,116,73,97,75,85,80,81,86,83,94,77,94,76,85,82,76,96,70,116,68,138,70,153,79"/>
+</map>
+</div>
 
 </div>
 </div>
 <a id="a10692014e1f613bb397ec488a5600507" name="a10692014e1f613bb397ec488a5600507"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10692014e1f613bb397ec488a5600507">&#9670;&#160;</a></span>PHATPersistence()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a10692014e1f613bb397ec488a5600507">&#9670;&#160;</a></span>PHATPersistence() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -257,11 +288,56 @@ template&lt;typename RingLike&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A vector of percolation times. </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_a10692014e1f613bb397ec488a5600507_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_a10692014e1f613bb397ec488a5600507_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1topology_a10692014e1f613bb397ec488a5600507_icgraph" id="anamespace_a_t_e_a_m_s_1_1topology_a10692014e1f613bb397ec488a5600507_icgraph">
+<area shape="rect" title="Computes the persistent homology of a complex using &#160;coefficients. See the implementation of Bernoull..." alt="" coords="411,102,536,128"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology.html#a4f3b986df7ce4786e4769864f289be8d" title="Dispatch method for computing persistence; calls PHATPersistence or twistPersistence depending on the..." alt="" coords="275,102,363,128"/>
+<area shape="poly" title=" " alt="" coords="392,115,364,118,363,112,398,115"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a99ddf966c148b257a892adf7aca4754b" title="Directly samples Bernoulli percolation at the desired dimension." alt="" coords="24,5,208,46"/>
+<area shape="poly" title=" " alt="" coords="284,94,226,61,195,49,195,44,228,57,289,93"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#acde24300693b2423e1267113ea8a9140" title="Implements the plaquette invaded&#45;cluster algorithm, which inserts satisfied cells (i...." alt="" coords="5,95,227,135"/>
+<area shape="poly" title=" " alt="" coords="256,116,228,118,227,112,261,114"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a4ac8f715a9759723985029d1e8bde81d" title="Implements the plaquette invasion&#45;percolation algorithm, which creates a random &#45;subcomplex &#160;by (unif..." alt="" coords="25,160,207,201"/>
+<area shape="poly" title=" " alt="" coords="269,133,228,150,188,162,187,157,226,144,264,134"/>
+<area shape="poly" title=" " alt="" coords="147,80,137,76,116,73,97,75,85,80,81,86,83,94,77,94,76,85,82,76,96,70,116,68,138,70,153,79"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac8f847202bcaa2de63266f3272ac3ead" name="ac8f847202bcaa2de63266f3272ac3ead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8f847202bcaa2de63266f3272ac3ead">&#9670;&#160;</a></span>PHATPersistence() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; int &gt; PHATPersistence </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>filtration</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dimension</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <a id="acd8515e2ecfeea265e36069df52ba101" name="acd8515e2ecfeea265e36069df52ba101"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd8515e2ecfeea265e36069df52ba101">&#9670;&#160;</a></span>twistPersistence()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acd8515e2ecfeea265e36069df52ba101">&#9670;&#160;</a></span>twistPersistence() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -308,6 +384,70 @@ template&lt;typename RingLike&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A vector of percolation times. </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_acd8515e2ecfeea265e36069df52ba101_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_acd8515e2ecfeea265e36069df52ba101_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1topology_acd8515e2ecfeea265e36069df52ba101_icgraph" id="anamespace_a_t_e_a_m_s_1_1topology_acd8515e2ecfeea265e36069df52ba101_icgraph">
+<area shape="rect" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="411,102,529,128"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology.html#a4f3b986df7ce4786e4769864f289be8d" title="Dispatch method for computing persistence; calls PHATPersistence or twistPersistence depending on the..." alt="" coords="275,102,363,128"/>
+<area shape="poly" title=" " alt="" coords="393,115,364,118,363,112,398,115"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a99ddf966c148b257a892adf7aca4754b" title="Directly samples Bernoulli percolation at the desired dimension." alt="" coords="24,5,208,46"/>
+<area shape="poly" title=" " alt="" coords="284,94,226,61,195,49,195,44,228,57,289,93"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#acde24300693b2423e1267113ea8a9140" title="Implements the plaquette invaded&#45;cluster algorithm, which inserts satisfied cells (i...." alt="" coords="5,95,227,135"/>
+<area shape="poly" title=" " alt="" coords="256,116,228,118,227,112,261,114"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a4ac8f715a9759723985029d1e8bde81d" title="Implements the plaquette invasion&#45;percolation algorithm, which creates a random &#45;subcomplex &#160;by (unif..." alt="" coords="25,160,207,201"/>
+<area shape="poly" title=" " alt="" coords="269,133,228,150,188,162,187,157,226,144,264,134"/>
+<area shape="poly" title=" " alt="" coords="147,80,137,76,116,73,97,75,85,80,81,86,83,94,77,94,76,85,82,76,96,70,116,68,138,70,153,79"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a37984d86a1e638c72f8fc17204dd8cb9" name="a37984d86a1e638c72f8fc17204dd8cb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37984d86a1e638c72f8fc17204dd8cb9">&#9670;&#160;</a></span>twistPersistence() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; int &gt; twistPersistence </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *</td>          <td class="paramname"><span class="paramname"><em>complex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>filtration</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dimension</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_a37984d86a1e638c72f8fc17204dd8cb9_cgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_a37984d86a1e638c72f8fc17204dd8cb9_cgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1topology_a37984d86a1e638c72f8fc17204dd8cb9_cgraph" id="anamespace_a_t_e_a_m_s_1_1topology_a37984d86a1e638c72f8fc17204dd8cb9_cgraph">
+<area shape="rect" title=" " alt="" coords="5,78,124,104"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#acd603591b043f1e197b8a66207e70b91" title="Total number of cells." alt="" coords="178,5,332,46"/>
+<area shape="poly" title=" " alt="" coords="103,75,181,50,177,54,105,80"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a8cbd65541e64ae96294838d39b0a000c" title="Sparse vector addition &#160;for vectors over Zp." alt="" coords="177,71,332,111"/>
+<area shape="poly" title=" " alt="" coords="124,88,164,90,159,92,125,94"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a6c86f14ac15de1dad41bc81d40b39449" title="Sparse vector rescaling ." alt="" coords="172,136,338,177"/>
+<area shape="poly" title=" " alt="" coords="105,102,181,129,177,132,104,107"/>
+</map>
+</div>
 
 </div>
 </div>

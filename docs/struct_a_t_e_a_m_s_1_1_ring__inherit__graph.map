@@ -1,0 +1,9 @@
+<map id="Ring" name="Ring">
+<area shape="rect" id="Node000001" title="Generic algebraic ring." alt="" coords="63,5,111,31"/>
+<area shape="rect" id="Node000002" href="$struct_a_t_e_a_m_s_1_1_q.html" title="Rationals ." alt="" coords="5,79,44,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,44,37,80,33,77,64,41"/>
+<area shape="rect" id="Node000003" href="$struct_a_t_e_a_m_s_1_1_z2.html" title="Quotient ring ." alt="" coords="68,79,106,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="89,45,90,79,85,78,85,48"/>
+<area shape="rect" id="Node000004" href="$struct_a_t_e_a_m_s_1_1_zp.html" title="Quotient ring ." alt="" coords="131,79,169,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="109,40,142,78,137,79,106,45"/>
+</map>

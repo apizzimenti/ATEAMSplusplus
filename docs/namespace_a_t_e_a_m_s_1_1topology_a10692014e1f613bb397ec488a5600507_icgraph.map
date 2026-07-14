@@ -1,0 +1,12 @@
+<map id="PHATPersistence" name="PHATPersistence">
+<area shape="rect" id="Node000001" title="Computes the persistent homology of a complex using &#160;coefficients. See the implementation of Bernoull..." alt="" coords="411,102,536,128"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology.html#a4f3b986df7ce4786e4769864f289be8d" title="Dispatch method for computing persistence; calls PHATPersistence or twistPersistence depending on the..." alt="" coords="275,102,363,128"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="392,115,364,118,363,112,398,115"/>
+<area shape="rect" id="Node000003" href="$class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a99ddf966c148b257a892adf7aca4754b" title="Directly samples Bernoulli percolation at the desired dimension." alt="" coords="24,5,208,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="284,94,226,61,195,49,195,44,228,57,289,93"/>
+<area shape="rect" id="Node000004" href="$class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#acde24300693b2423e1267113ea8a9140" title="Implements the plaquette invaded&#45;cluster algorithm, which inserts satisfied cells (i...." alt="" coords="5,95,227,135"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="256,116,228,118,227,112,261,114"/>
+<area shape="rect" id="Node000005" href="$class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a4ac8f715a9759723985029d1e8bde81d" title="Implements the plaquette invasion&#45;percolation algorithm, which creates a random &#45;subcomplex &#160;by (unif..." alt="" coords="25,160,207,201"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="269,133,228,150,188,162,187,157,226,144,264,134"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="147,80,137,76,116,73,97,75,85,80,81,86,83,94,77,94,76,85,82,76,96,70,116,68,138,70,153,79"/>
+</map>

@@ -156,12 +156,10 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a17bece0311818ea0caba18ce7e4b7b36" id="r_a17bece0311818ea0caba18ce7e4b7b36"><td class="memItemLeft"><a id="a17bece0311818ea0caba18ce7e4b7b36" name="a17bece0311818ea0caba18ce7e4b7b36"></a>
-typedef SparseRREF::rref_option&#160;</td><td class="memItemRight"><b>ComputeOptions</b></td></tr>
-<tr class="memdesc:a17bece0311818ea0caba18ce7e4b7b36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias of <span class="tt">SparseRREF::rref_options</span>. <br /></td></tr>
-<tr class="memitem:afc98998bdae89818c10abbdc31f59173" id="r_afc98998bdae89818c10abbdc31f59173"><td class="memItemLeft"><a id="afc98998bdae89818c10abbdc31f59173" name="afc98998bdae89818c10abbdc31f59173"></a>
-typedef SparseRREF::rref_option_t&#160;</td><td class="memItemRight"><b>ComputeOption</b></td></tr>
-<tr class="memdesc:afc98998bdae89818c10abbdc31f59173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias of <span class="tt">SparseRREF::rref_options</span>. <br /></td></tr>
+<tr class="memitem:a17bece0311818ea0caba18ce7e4b7b36" id="r_a17bece0311818ea0caba18ce7e4b7b36"><td class="memItemLeft">typedef SparseRREF::rref_option&#160;</td><td class="memItemRight"><a class="el" href="#a17bece0311818ea0caba18ce7e4b7b36">ComputeOptions</a></td></tr>
+<tr class="memdesc:a17bece0311818ea0caba18ce7e4b7b36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias of <span class="tt">SparseRREF::rref_options</span>.  <br /></td></tr>
+<tr class="memitem:afc98998bdae89818c10abbdc31f59173" id="r_afc98998bdae89818c10abbdc31f59173"><td class="memItemLeft">typedef SparseRREF::rref_option_t&#160;</td><td class="memItemRight"><a class="el" href="#afc98998bdae89818c10abbdc31f59173">ComputeOption</a></td></tr>
+<tr class="memdesc:afc98998bdae89818c10abbdc31f59173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias of <span class="tt">SparseRREF::rref_options</span>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -190,10 +188,45 @@ Functions</h2></td></tr>
 <tr class="memitem:ac1b7b8d1bef66b51a413461523fd61e9" id="r_ac1b7b8d1bef66b51a413461523fd61e9"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:ac1b7b8d1bef66b51a413461523fd61e9 template"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac1b7b8d1bef66b51a413461523fd61e9">submatrixKernelSample</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; coboundary, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, std::set&lt; size_t &gt; exclude, std::uniform_int_distribution&lt; int &gt; &amp;intuniform, std::mt19937 &amp;RNG, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ThreadOptions</a> &amp;options, bool DEBUG=false)</td></tr>
 <tr class="memdesc:ac1b7b8d1bef66b51a413461523fd61e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a cochain \(f\) at uniform random from \(\delta^{d-1}\) such that \(f\) is a cocycle on the \(d\)-cells corresponding to the rows not in <span class="tt">exclude</span>. See the implementations of <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html" title="SwendsenWang">SwendsenWang</a> or <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html" title="InvadedCluster">InvadedCluster</a> for usage.  <br /></td></tr>
+<tr class="memitem:a6c798576337e879a0e5577f2009e12dd" id="r_a6c798576337e879a0e5577f2009e12dd"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a6c798576337e879a0e5577f2009e12dd template"><td class="memItemLeft"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6c798576337e879a0e5577f2009e12dd">submatrixKernelSample</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; coboundary, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, set&lt; size_t &gt; exclude, std::uniform_int_distribution&lt; int &gt; &amp;intuniform, std::mt19937 &amp;RNG, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ThreadOptions</a> &amp;options, bool DEBUG)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Sparse, finite-field linear algebra and support routines. </p>
-</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="afc98998bdae89818c10abbdc31f59173" name="afc98998bdae89818c10abbdc31f59173"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc98998bdae89818c10abbdc31f59173">&#9670;&#160;</a></span>ComputeOption</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef SparseRREF::rref_option_t <a class="el" href="#afc98998bdae89818c10abbdc31f59173">ComputeOption</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias of <span class="tt">SparseRREF::rref_options</span>. </p>
+
+</div>
+</div>
+<a id="a17bece0311818ea0caba18ce7e4b7b36" name="a17bece0311818ea0caba18ce7e4b7b36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17bece0311818ea0caba18ce7e4b7b36">&#9670;&#160;</a></span>ComputeOptions</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef SparseRREF::rref_option <a class="el" href="#a17bece0311818ea0caba18ce7e4b7b36">ComputeOptions</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias of <span class="tt">SparseRREF::rref_options</span>. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="abffbe7b96444e63af12b3814385506f6" name="abffbe7b96444e63af12b3814385506f6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abffbe7b96444e63af12b3814385506f6">&#9670;&#160;</a></span>randomLinearCombination()</h2>
 
@@ -242,6 +275,26 @@ template&lt;typename RingLike&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>(Sparse) uniform vector in \(\ker(\delta^{d-1})\). </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1arithmetic_abffbe7b96444e63af12b3814385506f6_cgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1arithmetic_abffbe7b96444e63af12b3814385506f6_cgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1arithmetic_abffbe7b96444e63af12b3814385506f6_cgraph" id="anamespace_a_t_e_a_m_s_1_1arithmetic_abffbe7b96444e63af12b3814385506f6_cgraph">
+<area shape="rect" title="A uniform random linear combination of the rows of , typically the kernel of a reduced coboundary mat..." alt="" coords="5,5,178,31"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a82d167ee11276e76718aaaf943c9d5b3" title="Sparse (right) matrix multiplication ." alt="" coords="226,5,395,31"/>
+<area shape="poly" title=" " alt="" coords="178,16,213,18,207,18,178,21"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1arithmetic_abffbe7b96444e63af12b3814385506f6_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1arithmetic_abffbe7b96444e63af12b3814385506f6_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1arithmetic_abffbe7b96444e63af12b3814385506f6_icgraph" id="anamespace_a_t_e_a_m_s_1_1arithmetic_abffbe7b96444e63af12b3814385506f6_icgraph">
+<area shape="rect" title="A uniform random linear combination of the rows of , typically the kernel of a reduced coboundary mat..." alt="" coords="213,5,385,31"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a6c798576337e879a0e5577f2009e12dd" title=" " alt="" coords="5,5,165,31"/>
+<area shape="poly" title=" " alt="" coords="194,18,165,21,165,16,200,18"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -295,6 +348,26 @@ template&lt;typename RingLike&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>\( \ker(\RREF(A)) \). </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1arithmetic_a6b9257da1c93b987f468d1cb86460d49_cgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1arithmetic_a6b9257da1c93b987f468d1cb86460d49_cgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1arithmetic_a6b9257da1c93b987f468d1cb86460d49_cgraph" id="anamespace_a_t_e_a_m_s_1_1arithmetic_a6b9257da1c93b987f468d1cb86460d49_cgraph">
+<area shape="rect" title="Computes ." alt="" coords="5,5,141,31"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a56e7670562f0c69600ea56c4439bf994" title="Computes the reduced row echelon form ." alt="" coords="189,5,324,31"/>
+<area shape="poly" title=" " alt="" coords="141,16,176,18,171,18,141,21"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1arithmetic_a6b9257da1c93b987f468d1cb86460d49_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1arithmetic_a6b9257da1c93b987f468d1cb86460d49_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1arithmetic_a6b9257da1c93b987f468d1cb86460d49_icgraph" id="anamespace_a_t_e_a_m_s_1_1arithmetic_a6b9257da1c93b987f468d1cb86460d49_icgraph">
+<area shape="rect" title="Computes ." alt="" coords="213,5,348,31"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a6c798576337e879a0e5577f2009e12dd" title=" " alt="" coords="5,5,165,31"/>
+<area shape="poly" title=" " alt="" coords="194,18,165,21,165,16,200,18"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -348,6 +421,19 @@ template&lt;typename RingLike&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>\( \RREF(A) \). </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1arithmetic_a56e7670562f0c69600ea56c4439bf994_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1arithmetic_a56e7670562f0c69600ea56c4439bf994_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1arithmetic_a56e7670562f0c69600ea56c4439bf994_icgraph" id="anamespace_a_t_e_a_m_s_1_1arithmetic_a56e7670562f0c69600ea56c4439bf994_icgraph">
+<area shape="rect" title="Computes the reduced row echelon form ." alt="" coords="396,31,531,56"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a6b9257da1c93b987f468d1cb86460d49" title="Computes ." alt="" coords="213,5,348,31"/>
+<area shape="poly" title=" " alt="" coords="378,32,348,30,348,25,383,32"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a6c798576337e879a0e5577f2009e12dd" title=" " alt="" coords="5,31,165,56"/>
+<area shape="poly" title=" " alt="" coords="380,46,165,46,165,41,381,41"/>
+<area shape="poly" title=" " alt="" coords="194,29,166,36,165,30,200,29"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -407,6 +493,16 @@ template&lt;typename RingLike&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>\( \ker(A) \). </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1arithmetic_a8820e57dde7f181caad5b6c17a625413_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1arithmetic_a8820e57dde7f181caad5b6c17a625413_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1arithmetic_a8820e57dde7f181caad5b6c17a625413_icgraph" id="anamespace_a_t_e_a_m_s_1_1arithmetic_a8820e57dde7f181caad5b6c17a625413_icgraph">
+<area shape="rect" title="Computes , where &#160;is in reduced row echelon form." alt="" coords="213,5,385,31"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a6c798576337e879a0e5577f2009e12dd" title=" " alt="" coords="5,5,165,31"/>
+<area shape="poly" title=" " alt="" coords="194,18,165,21,165,16,200,18"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -460,6 +556,37 @@ template&lt;typename RingLike&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>\( \vec y = A \vec x \). </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1arithmetic_a82d167ee11276e76718aaaf943c9d5b3_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1arithmetic_a82d167ee11276e76718aaaf943c9d5b3_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1arithmetic_a82d167ee11276e76718aaaf943c9d5b3_icgraph" id="anamespace_a_t_e_a_m_s_1_1arithmetic_a82d167ee11276e76718aaaf943c9d5b3_icgraph">
+<area shape="rect" title="Sparse (right) matrix multiplication ." alt="" coords="501,217,670,242"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1statistics.html#a84057b52565f61ccb4a02ec1dd01796e" title="Computes the total energy of the given configuration." alt="" coords="274,5,410,46"/>
+<area shape="poly" title=" " alt="" coords="568,203,523,133,490,94,452,61,411,42,411,36,454,57,494,90,527,130,573,203"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1statistics.html#abb392f63461f412585f1864b963ac02a" title="Computes the number of satisfied &#45;cells in the complex with respect to : that is, the number of &#45;cell..." alt="" coords="274,71,410,111"/>
+<area shape="poly" title=" " alt="" coords="558,206,512,166,452,125,411,109,410,103,454,121,515,162,564,206"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#abffbe7b96444e63af12b3814385506f6" title="A uniform random linear combination of the rows of , typically the kernel of a reduced coboundary mat..." alt="" coords="256,136,428,161"/>
+<area shape="poly" title=" " alt="" coords="540,210,452,176,410,164,410,159,454,171,546,209"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#acde24300693b2423e1267113ea8a9140" title="Implements the plaquette invaded&#45;cluster algorithm, which inserts satisfied cells (i...." alt="" coords="232,209,453,250"/>
+<area shape="poly" title=" " alt="" coords="483,230,454,232,453,227,488,229"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#af9f8229ea781a6574abcbe91b32895c5" title="Model sampler." alt="" coords="245,299,440,339"/>
+<area shape="poly" title=" " alt="" coords="532,249,401,301,399,296,537,247"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1statistics.html#ad65f2bb1f9628f12f8a86326d991702f" title="Computes the indices of satisfied &#45;cells in the complex with respect to : that is,..." alt="" coords="26,396,163,437"/>
+<area shape="poly" title=" " alt="" coords="567,253,520,306,488,332,454,353,400,372,323,388,164,411,162,406,322,382,398,366,452,349,485,328,516,303,563,256"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1statistics.html#ab28485fa8b3fa5b9a11c4269767e4c5b" title="Computes the indices of unsatisfied &#45;cells in the complex with respect to : that is,..." alt="" coords="274,437,410,478"/>
+<area shape="poly" title=" " alt="" coords="570,254,523,324,490,362,455,397,423,420,390,439,388,434,420,416,451,393,486,359,518,321,566,257"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_glauber.html#aca3184161762457fab4a82bcc08cf3cc" title="Switches the spin of a uniform random cell." alt="" coords="5,5,184,46"/>
+<area shape="poly" title=" " alt="" coords="257,27,185,28,183,23,261,24"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a6c798576337e879a0e5577f2009e12dd" title=" " alt="" coords="15,136,174,161"/>
+<area shape="poly" title=" " alt="" coords="238,150,176,151,174,146,243,147"/>
+<area shape="poly" title=" " alt="" coords="381,194,367,190,342,188,319,190,305,195,300,201,302,209,297,208,294,199,302,190,318,185,342,183,369,185,386,193"/>
+<area shape="poly" title=" " alt="" coords="380,283,367,280,342,277,319,279,305,284,300,290,302,299,297,297,294,289,302,280,318,274,342,272,369,274,386,283"/>
+<area shape="poly" title=" " alt="" coords="133,381,120,377,94,375,71,377,56,381,51,387,53,396,48,395,46,386,53,377,70,371,95,369,121,372,139,380"/>
+<area shape="poly" title=" " alt="" coords="257,445,163,430,163,425,262,443"/>
+<area shape="poly" title=" " alt="" coords="380,421,367,418,342,416,319,418,305,423,300,429,301,438,297,435,294,427,302,418,318,413,342,411,369,413,386,422"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -550,6 +677,16 @@ template&lt;typename RingLike&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>\( \vec w = \vec u + \vec v \). </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1arithmetic_a8cbd65541e64ae96294838d39b0a000c_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1arithmetic_a8cbd65541e64ae96294838d39b0a000c_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1arithmetic_a8cbd65541e64ae96294838d39b0a000c_icgraph" id="anamespace_a_t_e_a_m_s_1_1arithmetic_a8cbd65541e64ae96294838d39b0a000c_icgraph">
+<area shape="rect" title="Sparse vector addition &#160;for vectors over Zp." alt="" coords="291,5,438,31"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology.html#a37984d86a1e638c72f8fc17204dd8cb9" title=" " alt="" coords="5,5,243,31"/>
+<area shape="poly" title=" " alt="" coords="273,18,243,21,243,16,278,18"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -603,11 +740,88 @@ template&lt;typename RingLike&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>\( a \vec x \). </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1arithmetic_a6c86f14ac15de1dad41bc81d40b39449_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1arithmetic_a6c86f14ac15de1dad41bc81d40b39449_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1arithmetic_a6c86f14ac15de1dad41bc81d40b39449_icgraph" id="anamespace_a_t_e_a_m_s_1_1arithmetic_a6c86f14ac15de1dad41bc81d40b39449_icgraph">
+<area shape="rect" title="Sparse vector rescaling ." alt="" coords="291,5,449,31"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology.html#a37984d86a1e638c72f8fc17204dd8cb9" title=" " alt="" coords="5,5,243,31"/>
+<area shape="poly" title=" " alt="" coords="273,18,243,21,243,16,278,18"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6c798576337e879a0e5577f2009e12dd" name="a6c798576337e879a0e5577f2009e12dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c798576337e879a0e5577f2009e12dd">&#9670;&#160;</a></span>submatrixKernelSample() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; submatrixKernelSample </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>coboundary</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; size_t &gt;</td>          <td class="paramname"><span class="paramname"><em>exclude</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uniform_int_distribution&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>intuniform</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::mt19937 &amp;</td>          <td class="paramname"><span class="paramname"><em>RNG</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ThreadOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>DEBUG</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1arithmetic_a6c798576337e879a0e5577f2009e12dd_cgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1arithmetic_a6c798576337e879a0e5577f2009e12dd_cgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1arithmetic_a6c798576337e879a0e5577f2009e12dd_cgraph" id="anamespace_a_t_e_a_m_s_1_1arithmetic_a6c798576337e879a0e5577f2009e12dd_cgraph">
+<area shape="rect" title=" " alt="" coords="5,80,165,106"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#abffbe7b96444e63af12b3814385506f6" title="A uniform random linear combination of the rows of , typically the kernel of a reduced coboundary mat..." alt="" coords="213,5,385,31"/>
+<area shape="poly" title=" " alt="" coords="116,77,212,40,235,35,230,37,214,45,118,82"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a6b9257da1c93b987f468d1cb86460d49" title="Computes ." alt="" coords="231,55,366,80"/>
+<area shape="poly" title=" " alt="" coords="164,81,218,76,213,78,166,86"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a56e7670562f0c69600ea56c4439bf994" title="Computes the reduced row echelon form ." alt="" coords="450,80,585,106"/>
+<area shape="poly" title=" " alt="" coords="165,90,436,90,434,95,165,95"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a8820e57dde7f181caad5b6c17a625413" title="Computes , where &#160;is in reduced row echelon form." alt="" coords="213,156,385,182"/>
+<area shape="poly" title=" " alt="" coords="124,104,248,149,244,152,123,109"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1arithmetic.html#a82d167ee11276e76718aaaf943c9d5b3" title="Sparse (right) matrix multiplication ." alt="" coords="433,5,602,31"/>
+<area shape="poly" title=" " alt="" coords="385,16,420,18,415,19,386,21"/>
+<area shape="poly" title=" " alt="" coords="367,73,437,83,432,84,367,78"/>
+</map>
+</div>
 
 </div>
 </div>
 <a id="ac1b7b8d1bef66b51a413461523fd61e9" name="ac1b7b8d1bef66b51a413461523fd61e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1b7b8d1bef66b51a413461523fd61e9">&#9670;&#160;</a></span>submatrixKernelSample()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1b7b8d1bef66b51a413461523fd61e9">&#9670;&#160;</a></span>submatrixKernelSample() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -672,6 +886,20 @@ template&lt;typename RingLike&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>(Sparse) uniform vector in \(\ker(\delta^{d-1})\). </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1arithmetic_ac1b7b8d1bef66b51a413461523fd61e9_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1arithmetic_ac1b7b8d1bef66b51a413461523fd61e9_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1arithmetic_ac1b7b8d1bef66b51a413461523fd61e9_icgraph" id="anamespace_a_t_e_a_m_s_1_1arithmetic_ac1b7b8d1bef66b51a413461523fd61e9_icgraph">
+<area shape="rect" title="Draws a cochain &#160;at uniform random from &#160;such that &#160;is a cocycle on the &#45;cells corresponding to the r..." alt="" coords="275,82,434,108"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#acde24300693b2423e1267113ea8a9140" title="Implements the plaquette invaded&#45;cluster algorithm, which inserts satisfied cells (i...." alt="" coords="5,29,227,70"/>
+<area shape="poly" title=" " alt="" coords="265,79,226,73,226,68,271,78"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#af9f8229ea781a6574abcbe91b32895c5" title="Model sampler." alt="" coords="19,119,213,159"/>
+<area shape="poly" title=" " alt="" coords="269,111,214,124,213,118,264,112"/>
+<area shape="poly" title=" " alt="" coords="153,14,140,10,116,8,93,10,79,15,74,21,76,29,71,28,69,19,76,10,92,5,116,3,142,5,159,13"/>
+<area shape="poly" title=" " alt="" coords="153,103,140,100,116,97,93,99,79,104,74,110,76,119,71,117,69,109,76,100,92,94,116,92,142,94,159,103"/>
+</map>
+</div>
 
 </div>
 </div>

@@ -1,0 +1,7 @@
+<map id="sample" name="sample">
+<area shape="rect" id="Node000001" title="Switches the spin of a uniform random cell." alt="" coords="5,13,69,38"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1statistics.html#a84057b52565f61ccb4a02ec1dd01796e" title="Computes the total energy of the given configuration." alt="" coords="117,5,253,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,23,104,25,99,26,69,28"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1arithmetic.html#a82d167ee11276e76718aaaf943c9d5b3" title="Sparse (right) matrix multiplication ." alt="" coords="301,5,478,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="253,23,288,26,283,26,254,28"/>
+</map>

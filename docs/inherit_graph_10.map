@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$struct_a_t_e_a_m_s_1_1_ring.html" title="Generic algebraic ring." alt="" coords="5,55,54,80"/>
+<area shape="rect" id="Node000001" href="$struct_a_t_e_a_m_s_1_1_q.html" title="Rationals ." alt="" coords="102,5,140,31"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="66,45,103,26,100,30,69,49"/>
+<area shape="rect" id="Node000002" href="$struct_a_t_e_a_m_s_1_1_z2.html" title="Quotient ring ." alt="" coords="102,55,140,80"/>
+<area shape="poly" id="edge8_Node000000_Node000002" title=" " alt="" coords="69,65,104,66,99,69,70,70"/>
+<area shape="rect" id="Node000003" href="$struct_a_t_e_a_m_s_1_1_zp.html" title="Quotient ring ." alt="" coords="102,104,140,130"/>
+<area shape="poly" id="edge9_Node000000_Node000003" title=" " alt="" coords="68,85,104,106,99,108,67,90"/>
+</map>

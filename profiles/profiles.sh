@@ -1,15 +1,9 @@
 #!/bin/zsh
 
-# MODELS=("Bernoulli" "Glauber" "InvadedCluster" "Invasion" "SwendsenWang")
-# SCALES=(3 4 6 8 11 16)
-# FIELDS=(2 3 5 7)
-# TOPDIMENSIONS=(2 4)
-# ITERATIONS=10
-
-MODELS=("Bernoulli")
-SCALES=(10)
-FIELDS=(2)
-TOPDIMENSIONS=(2)
+MODELS=("Bernoulli" "Glauber" "InvadedCluster" "Invasion" "SwendsenWang")
+SCALES=(3 4)
+FIELDS=(2 3)
+TOPDIMENSIONS=(2 4)
 ITERATIONS=1000
 
 EXECPREFIX="../build"

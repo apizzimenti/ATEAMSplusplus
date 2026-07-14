@@ -1,0 +1,13 @@
+<map id="size" name="size">
+<area shape="rect" id="Node000001" title="Total number of cells." alt="" coords="291,144,336,169"/>
+<area shape="rect" id="Node000002" href="$class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a1bebef6b2454697712d7c3533f8b2324" title="Constructor." alt="" coords="13,5,235,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="297,129,274,94,259,76,241,61,221,49,221,44,244,57,263,73,278,91,302,130"/>
+<area shape="rect" id="Node000003" href="$class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#afafbbd71d932120047091ab7281c867f" title="Constructor." alt="" coords="13,71,235,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="274,139,242,127,206,115,205,109,244,122,279,138"/>
+<area shape="rect" id="Node000004" href="$class_a_t_e_a_m_s_1_1models_1_1_invasion.html#af8b906ccee8a0b1fdcec8ee1539dc673" title="Constructor." alt="" coords="33,136,215,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="273,157,216,159,215,154,278,155"/>
+<area shape="rect" id="Node000005" href="$class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a3aedf47be96ee6f80fa9734067423f6d" title="Constructor." alt="" coords="33,201,215,242"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="274,175,244,191,206,203,204,198,242,186,279,173"/>
+<area shape="rect" id="Node000006" href="$namespace_a_t_e_a_m_s_1_1topology.html#a37984d86a1e638c72f8fc17204dd8cb9" title=" " alt="" coords="5,266,243,292"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="302,182,279,222,263,240,244,256,220,268,218,263,241,251,259,237,275,219,298,184"/>
+</map>

@@ -1,0 +1,14 @@
+<map id="sample" name="sample">
+<area shape="rect" id="Node000001" title="Implements the plaquette invaded&#45;cluster algorithm, which inserts satisfied cells (i...." alt="" coords="8,87,72,112"/>
+<area shape="poly" id="edge4_Node000001_Node000001" title=" " alt="" coords="9,87,3,78,7,68,19,62,40,60,62,63,75,71,70,72,61,68,40,65,21,67,11,72,8,77,14,85"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology.html#a4f3b986df7ce4786e4769864f289be8d" title="Dispatch method for computing persistence; calls PHATPersistence or twistPersistence depending on the..." alt="" coords="120,29,327,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,84,119,65,149,58,145,61,121,70,72,88"/>
+<area shape="rect" id="Node000005" href="$namespace_a_t_e_a_m_s_1_1arithmetic.html#a82d167ee11276e76718aaaf943c9d5b3" title="Sparse (right) matrix multiplication ." alt="" coords="135,79,312,120"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="71,97,121,98,117,101,73,102"/>
+<area shape="rect" id="Node000006" href="$namespace_a_t_e_a_m_s_1_1arithmetic.html#ac1b7b8d1bef66b51a413461523fd61e9" title="Draws a cochain &#160;at uniform random from &#160;such that &#160;is a cocycle on the &#45;cells corresponding to the r..." alt="" coords="140,144,307,185"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="72,110,121,129,144,139,139,139,119,134,72,115"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology.html#a10692014e1f613bb397ec488a5600507" title="Computes the persistent homology of a complex using &#160;coefficients. See the implementation of Bernoull..." alt="" coords="375,5,619,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="327,30,362,30,357,31,328,36"/>
+<area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1topology.html#acd8515e2ecfeea265e36069df52ba101" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="379,55,616,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="327,49,366,55,360,56,328,54"/>
+</map>

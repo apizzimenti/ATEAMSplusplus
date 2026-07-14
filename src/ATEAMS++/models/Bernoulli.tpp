@@ -94,7 +94,7 @@ namespace ATEAMS::models {
 		// From those boundary matrices, construct the "full" (i.e. up to dimension d+1)
 		// PHAT boundary matrix.
 		this->complex->constructFlatBoundaryMatrix();
-		this->complex->constructFullBoundaryMatrix(this->coefficients);
+		// this->complex->constructFullBoundaryMatrix(this->coefficients);
 
 		// Default filtration.
 		vector<int> filtration(this->complex->Offsets[this->dimension+1], 0);
@@ -117,7 +117,6 @@ namespace ATEAMS::models {
 		// From those boundary matrices, construct the "full" (i.e. up to dimension d+1)
 		// PHAT boundary matrix.
 		this->complex->constructFlatBoundaryMatrix();
-		this->complex->constructFullBoundaryMatrix(this->coefficients);
 
 		// Default filtration.
 		vector<int> filtration(this->complex->Offsets[this->dimension+1], 0);

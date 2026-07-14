@@ -1,0 +1,5 @@
+<map id="Chain&lt; ModelType &gt;" name="Chain&lt; ModelType &gt;">
+<area shape="rect" id="Node000001" title="Simulates the Markov chains specified by each Model." alt="" coords="5,102,148,128"/>
+<area shape="rect" id="Node000002" href="$class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="Convenience class for managing Flint and multithreading. See Chain; not something users should need." alt="" coords="23,5,130,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,45,79,102,74,101,74,48"/>
+</map>

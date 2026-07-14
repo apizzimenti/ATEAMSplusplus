@@ -1,0 +1,9 @@
+<map id="SwendsenWang" name="SwendsenWang">
+<area shape="rect" id="Node000001" title="Constructor." alt="" coords="5,100,121,126"/>
+<area shape="rect" id="Node000002" href="$class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#aaef3b89d7151e0b6ac7e96e8b2c8bce7" title="Constructs boundary matrices." alt="" coords="169,5,359,61"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,97,180,65,176,69,99,102"/>
+<area shape="rect" id="Node000003" href="$class_a_t_e_a_m_s_1_1models_1_1_model.html#af4902cce023a35cb4c3201a4600e140b" title=" " alt="" coords="178,85,350,141"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="121,111,165,112,160,114,122,116"/>
+<area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1statistics.html#adec1b3926f4354b27bda2d569c39f746" title="Determines the self&#45;dual probability for the PLGT/PRCM." alt="" coords="196,165,332,206"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="99,124,170,151,189,159,183,159,168,156,98,129"/>
+</map>

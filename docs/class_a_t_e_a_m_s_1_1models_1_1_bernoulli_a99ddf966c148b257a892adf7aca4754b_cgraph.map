@@ -1,0 +1,9 @@
+<map id="sample" name="sample">
+<area shape="rect" id="Node000001" title="Directly samples Bernoulli percolation at the desired dimension." alt="" coords="5,31,69,56"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology.html#a4f3b986df7ce4786e4769864f289be8d" title="Dispatch method for computing persistence; calls PHATPersistence or twistPersistence depending on the..." alt="" coords="117,31,324,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,41,103,42,99,45,69,46"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology.html#a10692014e1f613bb397ec488a5600507" title="Computes the persistent homology of a complex using &#160;coefficients. See the implementation of Bernoull..." alt="" coords="372,5,616,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="324,31,359,31,354,31,325,37"/>
+<area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1topology.html#acd8515e2ecfeea265e36069df52ba101" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="376,55,613,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="325,50,363,56,357,56,325,55"/>
+</map>
