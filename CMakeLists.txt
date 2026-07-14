@@ -35,8 +35,9 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST TRUE)
+set(TEST FALSE)
 set(PROFILE FALSE)
+set(TIMINGDATA TRUE)
 
 if (TEST)
 	enable_testing()
@@ -185,11 +186,11 @@ list(APPEND ARITHMETIC
 )
 
 list(APPEND TOPOLOGY
-	# "persistence"
+	"persistence"
 )
 
 list(APPEND MODELS
-	"Bernoulli"
+	# "Bernoulli"
 	# "Glauber"
 	# "InvadedCluster"
 	# "Invasion"
@@ -197,7 +198,7 @@ list(APPEND MODELS
 )
 
 list(APPEND TYPES
-	"Q"
+	# "Q"
 	"Zp"
 )
 
@@ -259,10 +260,17 @@ if (TEST)
 	endforeach()
 endif()
 
-
 if (PROFILE)
 	foreach(MODEL IN LISTS MODELS)
 		add_executable(profiles.${MODEL} profiles/${MODEL}.cpp)
 		target_link_libraries(profiles.${MODEL} PUBLIC ATEAMS++)
+	endforeach()
+endif()
+
+
+if (TIMINGDATA)
+	foreach(FUNCTION IN LISTS TOPOLOGY)
+		add_executable(timing.${FUNCTION} profiles/${FUNCTION}.cpp)
+		target_link_libraries(timing.${FUNCTION} PUBLIC ATEAMS++)
 	endforeach()
 endif()

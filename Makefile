@@ -21,7 +21,10 @@ install:
 .PHONY: clean build
 
 profile: FORCE
-	@screen -dmS profiling ./profiles/profiles.sh
+	@screen -dmS profiling ./profiles/profiles.models.sh
+
+timing: FORCE
+	@screen -dmS timing ./profiles/timing.persistence.sh
 
 test:
 	@cd build; ctest
