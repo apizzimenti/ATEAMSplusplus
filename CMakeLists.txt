@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 4.2)
 
 project(ATEAMS++
-	VERSION 1.7
+	VERSION 1.8
 	LANGUAGES C CXX
 	DESCRIPTION "Algebraic topology-enabled algorithms for spin systems."
 )
@@ -35,8 +35,8 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST FALSE)
-set(PROFILE TRUE)
+set(TEST TRUE)
+set(PROFILE FALSE)
 
 if (TEST)
 	enable_testing()
@@ -177,15 +177,15 @@ install(
 ################################################################################
 
 list(APPEND COMPLEXES
-	# "Cubical"
+	"Cubical"
 )
 
 list(APPEND ARITHMETIC
-	# "kernel"
+	"kernel"
 )
 
 list(APPEND TOPOLOGY
-	# "persistence"
+	"persistence"
 )
 
 list(APPEND MODELS
@@ -197,7 +197,7 @@ list(APPEND MODELS
 )
 
 list(APPEND TYPES
-	# "Q"
+	"Q"
 	"Zp"
 )
 
