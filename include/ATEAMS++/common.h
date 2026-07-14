@@ -57,15 +57,6 @@ namespace ATEAMS {
 			 */
 			typedef RATIONAL dtype;
 
-			/**
-			 * @brief Constructor.
-			 * @param characteristic Superfluous.
-			 */
-			Q(int characteristic) {
-				this->ring = AbstractRing(SparseRREF::FIELD_QQ);
-				this->characteristic = 0;
-			};
-
 			/** 
 			 * @brief Constructor.
 			 */
@@ -73,6 +64,12 @@ namespace ATEAMS {
 				this->ring = AbstractRing(SparseRREF::FIELD_QQ);
 				this->characteristic = 0;
 			};
+
+			/**
+			 * @brief Constructor.
+			 * @param characteristic Superfluous.
+			 */
+			Q(int characteristic) : Q() { };
 	};
 
 	/**
@@ -117,10 +114,7 @@ namespace ATEAMS {
 			 * @brief Constructor.
 			 * @param characteristic Superfluous.
 			 */
-			Z2(int characteristic) {
-				this->ring = AbstractRing(SparseRREF::FIELD_Fp, 2);
-				this->characteristic = 2;
-			};
+			Z2(int characteristic) : Z2() { };
 	};
 
 	/**

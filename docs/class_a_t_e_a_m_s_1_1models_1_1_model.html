@@ -161,15 +161,22 @@ Collaboration diagram for Model&lt; RingLike, VectorLike &gt;:</div>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a9d1fca03a41cf8986aba5ade07767c3a" id="r_a9d1fca03a41cf8986aba5ade07767c3a"><td class="memTemplParams" colspan="2">template&lt;typename R&gt; </td></tr>
+<tr class="memitem:a9d1fca03a41cf8986aba5ade07767c3a template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a9d1fca03a41cf8986aba5ade07767c3a">VectorType</a> = VectorLike&lt;R&gt;</td></tr>
+<tr class="memitem:a019cbd9f4f20c936dfb268d52b5d1e0a" id="r_a019cbd9f4f20c936dfb268d52b5d1e0a"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a019cbd9f4f20c936dfb268d52b5d1e0a">RingType</a> = RingLike</td></tr>
+<tr class="memitem:a4acb906988ee43ce29046d7e8d35d126" id="r_a4acb906988ee43ce29046d7e8d35d126"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> = <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt;RingLike,VectorLike&gt;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af4902cce023a35cb4c3201a4600e140b" id="r_af4902cce023a35cb4c3201a4600e140b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af4902cce023a35cb4c3201a4600e140b">Model</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, bool DEBUG=false)</td></tr>
-<tr class="memitem:a4bf284e877ba348b401247c09b994881" id="r_a4bf284e877ba348b401247c09b994881"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4bf284e877ba348b401247c09b994881">sample</a> (int t, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options)=0</td></tr>
-<tr class="memdesc:a4bf284e877ba348b401247c09b994881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sample from the model.  <br /></td></tr>
-<tr class="memitem:a2b8f22c96cbee660fcfb8792d9fc42a0" id="r_a2b8f22c96cbee660fcfb8792d9fc42a0"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2b8f22c96cbee660fcfb8792d9fc42a0">initialize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; &amp;state)=0</td></tr>
-<tr class="memdesc:a2b8f22c96cbee660fcfb8792d9fc42a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the model.  <br /></td></tr>
-<tr class="memitem:affe5983deec91f7e42843d617eecde81" id="r_affe5983deec91f7e42843d617eecde81"><td class="memItemLeft">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt;&#160;</td><td class="memItemRight"><a class="el" href="#affe5983deec91f7e42843d617eecde81">initialize</a> (VectorLike&lt; RingLike &gt; c, <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; &amp;state)=0</td></tr>
-<tr class="memdesc:affe5983deec91f7e42843d617eecde81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the user.  <br /></td></tr>
+<tr class="memitem:a70a23b72a4802f62b6ebb03e9c52ce9a" id="r_a70a23b72a4802f62b6ebb03e9c52ce9a"><td class="memItemLeft">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#a70a23b72a4802f62b6ebb03e9c52ce9a">sample</a> (int t, <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options)=0</td></tr>
+<tr class="memdesc:a70a23b72a4802f62b6ebb03e9c52ce9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sample from the model.  <br /></td></tr>
+<tr class="memitem:a8461a036202b67cd329481cd12d44338" id="r_a8461a036202b67cd329481cd12d44338"><td class="memItemLeft">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8461a036202b67cd329481cd12d44338">initialize</a> (<a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;state)=0</td></tr>
+<tr class="memdesc:a8461a036202b67cd329481cd12d44338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the model.  <br /></td></tr>
+<tr class="memitem:aad3020f7fa4df3aaddda33d8114986f5" id="r_aad3020f7fa4df3aaddda33d8114986f5"><td class="memItemLeft">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#aad3020f7fa4df3aaddda33d8114986f5">initialize</a> (VectorLike&lt; RingLike &gt; c, <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;state)=0</td></tr>
+<tr class="memdesc:aad3020f7fa4df3aaddda33d8114986f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the user.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -192,7 +199,58 @@ class ATEAMS::models::Model&lt; RingLike, VectorLike &gt;</div><p>Abstract (temp
   </table>
   </dd>
 </dl>
-</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="a019cbd9f4f20c936dfb268d52b5d1e0a" name="a019cbd9f4f20c936dfb268d52b5d1e0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a019cbd9f4f20c936dfb268d52b5d1e0a">&#9670;&#160;</a></span>RingType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a019cbd9f4f20c936dfb268d52b5d1e0a">RingType</a> = RingLike</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4acb906988ee43ce29046d7e8d35d126" name="a4acb906988ee43ce29046d7e8d35d126"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4acb906988ee43ce29046d7e8d35d126">&#9670;&#160;</a></span>State</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> = <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt;RingLike,VectorLike&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9d1fca03a41cf8986aba5ade07767c3a" name="a9d1fca03a41cf8986aba5ade07767c3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d1fca03a41cf8986aba5ade07767c3a">&#9670;&#160;</a></span>VectorType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt; </div>
+<div class="memtemplate">
+template&lt;typename R&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a9d1fca03a41cf8986aba5ade07767c3a">VectorType</a> = VectorLike&lt;R&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af4902cce023a35cb4c3201a4600e140b" name="af4902cce023a35cb4c3201a4600e140b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af4902cce023a35cb4c3201a4600e140b">&#9670;&#160;</a></span>Model()</h2>
 
@@ -231,8 +289,8 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a2b8f22c96cbee660fcfb8792d9fc42a0" name="a2b8f22c96cbee660fcfb8792d9fc42a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b8f22c96cbee660fcfb8792d9fc42a0">&#9670;&#160;</a></span>initialize() <span class="overload">[1/2]</span></h2>
+<a id="a8461a036202b67cd329481cd12d44338" name="a8461a036202b67cd329481cd12d44338"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8461a036202b67cd329481cd12d44338">&#9670;&#160;</a></span>initialize() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,9 +301,9 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; initialize </td>
+          <td class="memname">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> initialize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -267,8 +325,8 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
 
 </div>
 </div>
-<a id="affe5983deec91f7e42843d617eecde81" name="affe5983deec91f7e42843d617eecde81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affe5983deec91f7e42843d617eecde81">&#9670;&#160;</a></span>initialize() <span class="overload">[2/2]</span></h2>
+<a id="aad3020f7fa4df3aaddda33d8114986f5" name="aad3020f7fa4df3aaddda33d8114986f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad3020f7fa4df3aaddda33d8114986f5">&#9670;&#160;</a></span>initialize() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,14 +337,14 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; initialize </td>
+          <td class="memname">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> initialize </td>
           <td>(</td>
           <td class="paramtype">VectorLike&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -308,8 +366,8 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
 
 </div>
 </div>
-<a id="a4bf284e877ba348b401247c09b994881" name="a4bf284e877ba348b401247c09b994881"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4bf284e877ba348b401247c09b994881">&#9670;&#160;</a></span>sample()</h2>
+<a id="a70a23b72a4802f62b6ebb03e9c52ce9a" name="a70a23b72a4802f62b6ebb03e9c52ce9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70a23b72a4802f62b6ebb03e9c52ce9a">&#9670;&#160;</a></span>sample()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -320,14 +378,14 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; sample </td>
+          <td class="memname">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> sample </td>
           <td>(</td>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ModelState</a>&lt; RingLike, VectorLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+          <td class="paramtype"><a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

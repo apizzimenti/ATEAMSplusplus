@@ -181,54 +181,34 @@ Usage</h2>
 <li>create a Model that consumes the Complex;</li>
 <li>run a Chain on the Model.</li>
 </ol>
-<p>The below example samples plaquette Bernoulli percolation 1,000 times on the scale- \(6\) \(4\)-fold torus \(\mathbb T_6^4\):</p>
+<p>The below example samples \(2\)-dimensional plaquette Bernoulli percolation 1,000 times on the scale- \(6\) \(4\)-fold torus \(\mathbb T_6^4\):</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;ATEAMS++.h&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_a_t_e_a_m_s.html">ATEAMS</a>;</div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main() {</div>
-<div class="line">    <span class="comment">// Construct a cubical complex.</span></div>
-<div class="line">    vector&lt;int&gt; corners = {6,6,6,6};</div>
-<div class="line">    <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">complexes::Cubical</a>::&lt;<a class="code hl_typedef" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a0de824a793d86fd7437bcb1aef34d3dd">models::Bernoulli::RingType</a>&gt; COMPLEX(corners, <span class="keyword">true</span>);</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">// Parametrize the model.</span></div>
-<div class="line">    <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">models::ModelParameters</a> PARAMETERS;</div>
-<div class="line">    PARAMETERS.<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f">dimension</a> = 2;</div>
-<div class="line">    PARAMETERS.<a class="code hl_variable" href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#aace2d484b0e3651abd108f04803d316c">p</a> = 0.5;</div>
 <div class="line">    <span class="keywordtype">int</span> iterations = 1000;</div>
+<div class="line">    <span class="keywordtype">int</span> dimension = 2;</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Construct the model, then the chain.</span></div>
-<div class="line">    <a class="code hl_class" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">models::Bernoulli</a> MODEL(&amp;COMPLEX, PARAMETERS);</div>
-<div class="line">    <a class="code hl_class" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">statistics::Chain</a> CHAIN(&amp;MODEL, iterations);</div>
+<div class="line">    <a class="code hl_class" href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">complexes::Cubical&lt;Z2&gt;</a> plex({6,6,6,6});</div>
+<div class="line">    <a class="code hl_class" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">models::Bernoulli</a> percolation(&amp;plex, dimension);</div>
+<div class="line">    <a class="code hl_class" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">statistics::Chain&lt;models::Bernoulli&gt;</a> M(&amp;percolation, iterations);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Iterate over the chain, storing the rank of the 2nd homology group as we</span></div>
-<div class="line">    <span class="comment">// go.</span></div>
-<div class="line">    vector&lt;int&gt; ranks(iterations, 0);</div>
-<div class="line">    <span class="keywordtype">int</span> t = 0;</div>
+<div class="line">    vector&lt;int&gt; ranks(M.steps, 0);</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">for</span> (<a class="code hl_typedef" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a8740963cfa2e5b218c4382c6eaa41af1">statistics::Chain::State</a> state : CHAIN.simulate()) {</div>
-<div class="line">        ranks[t] = state.rank;</div>
-<div class="line">        t++;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">for</span> (<a class="code hl_typedef" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#ab667b40199ae176bcd63b0a1142c4e69">models::Bernoulli::State</a> state : M.simulate()) { ranks[state.t] = state.rank; }</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Compute the expected rank of the 2nd homology group.</span></div>
-<div class="line">    <span class="keywordtype">int</span> T = std::accumulate(ranks.begin(), ranks.end(), 0);</div>
-<div class="line">    <span class="keywordtype">double</span> e = (double)T/(<span class="keywordtype">double</span>)CHAIN.steps;</div>
+<div class="line">    <span class="keywordtype">double</span> e = (double)accumulate(ranks.begin(), ranks.end(), 0)/(double)M.steps;</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;expected rank is &quot;</span> &lt;&lt; format(<span class="stringliteral">&quot;{:.2f}&quot;</span>, e) &lt;&lt; endl;</div>
 <div class="line"> </div>
-<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;expected rank is &quot;</span> &lt;&lt; std::format(<span class="stringliteral">&quot;{:.2f}&quot;</span>, e) &lt;&lt; std::endl;</div>
-<div class="line">    </div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> Cubical.h:39</div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">ATEAMS::models::Bernoulli</a></div><div class="ttdoc">Implements Bernoulli percolation.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:42</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html_a0de824a793d86fd7437bcb1aef34d3dd"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a0de824a793d86fd7437bcb1aef34d3dd">ATEAMS::models::Bernoulli::RingType</a></div><div class="ttdeci">Z2 RingType</div><div class="ttdoc">Exposed coefficient ring type. See Z2.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:50</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html_ab667b40199ae176bcd63b0a1142c4e69"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#ab667b40199ae176bcd63b0a1142c4e69">ATEAMS::models::Bernoulli::State</a></div><div class="ttdeci">ModelState&lt; RingType, VectorType &gt; State</div><div class="ttdoc">Exposed model state type. See ModelState.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:61</div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a></div><div class="ttdoc">Simulates the Markov chains specified by each Model.</div><div class="ttdef"><b>Definition</b> Chain.h:59</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a8740963cfa2e5b218c4382c6eaa41af1"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a8740963cfa2e5b218c4382c6eaa41af1">ATEAMS::statistics::Chain::State</a></div><div class="ttdeci">typename ModelType::State State</div><div class="ttdoc">Exposed typename for the model state.</div><div class="ttdef"><b>Definition</b> Chain.h:70</div></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:11</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ATEAMS::models::ModelParameters</a></div><div class="ttdoc">Typical parameters required for simulating a Model.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:36</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_a1a8a8235879363159315091a1daed72f"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f">ATEAMS::models::ModelParameters::dimension</a></div><div class="ttdeci">int dimension</div><div class="ttdoc">Percolation subcomplex dimension. Used by every Model.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:50</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html_aace2d484b0e3651abd108f04803d316c"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#aace2d484b0e3651abd108f04803d316c">ATEAMS::models::ModelParameters::p</a></div><div class="ttdeci">double p</div><div class="ttdoc">Independent trial density. Used by Bernoulli.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:41</div></div>
 </div><!-- fragment --><p>If the above snippet is in a file called <span class="tt">main.cpp</span>, then compiling the program and running the executable should give something like</p>
 <div class="fragment"><div class="line">$ $CXX main.cpp `pkg-config --libs --cflags ATEAMS++` -o main</div>
 <div class="line">$ ./main</div>

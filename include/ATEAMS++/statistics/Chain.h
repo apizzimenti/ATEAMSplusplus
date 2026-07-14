@@ -59,7 +59,6 @@ namespace ATEAMS {
 		class Chain {
 			public:
 				ModelType* model;
-				typename ModelType::State state;
 				arithmetic::ThreadOptions options;
 
 				int steps;
@@ -68,6 +67,7 @@ namespace ATEAMS {
 				 * @brief Exposed typename for the model state.
 				 */
 				using State = typename ModelType::State;
+				State state;
 
 				/**
 				 * @brief Constructor; uses default @ref arithmetic::ThreadOptions.

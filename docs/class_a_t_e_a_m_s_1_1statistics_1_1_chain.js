@@ -6,6 +6,6 @@ var class_a_t_e_a_m_s_1_1statistics_1_1_chain =
     [ "simulate", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a8a3f02d7974740554249fa6a095b753a", null ],
     [ "model", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#aa8a377c009c421897c7e9e683ab62f4e", null ],
     [ "options", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a1930e89a9919e7828febcae544ec34ad", null ],
-    [ "state", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#af317ea41460b7d99b6202ab7035fd209", null ],
+    [ "state", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a876b486d3a5241a126bd5751c5f70f79", null ],
     [ "steps", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#ab4ae7205573977222eadd0795db193e2", null ]
 ];

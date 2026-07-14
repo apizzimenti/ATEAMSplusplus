@@ -61,46 +61,29 @@ Most experiments follow a straightforward template:
 2. create a Model that consumes the Complex;
 3. run a Chain on the Model.
 
-The below example samples plaquette Bernoulli percolation 1,000 times on the scale-$`6`$ $`4`$-fold torus $`\mathbb T_6^4`$:
+The below example samples $`2`$-dimensional plaquette Bernoulli percolation 1,000 times on the scale-$`6`$ $`4`$-fold torus $`\mathbb T_6^4`$:
 
-```C++
-
+```cpp
 #include <ATEAMS++.h>
 
 using namespace ATEAMS;
 using namespace std;
 
 int main() {
-	// Construct a cubical complex.
-	vector<int> corners = {6,6,6,6};
-	complexes::Cubical::<models::Bernoulli::RingType> COMPLEX(corners, true);
-
-	// Parametrize the model.
-	models::ModelParameters PARAMETERS;
-	PARAMETERS.dimension = 2;
-	PARAMETERS.p = 0.5;
 	int iterations = 1000;
+	int dimension = 2;
 
-	// Construct the model, then the chain.
-	models::Bernoulli MODEL(&COMPLEX, PARAMETERS);
-	statistics::Chain CHAIN(&MODEL, iterations);
+	complexes::Cubical<Z2> plex({6,6,6,6});
+	models::Bernoulli percolation(&plex, dimension);
+	statistics::Chain<models::Bernoulli> M(&percolation, iterations);
 
-	// Iterate over the chain, storing the rank of the 2nd homology group as we
-	// go.
-	vector<int> ranks(iterations, 0);
-	int t = 0;
+	vector<int> ranks(M.steps, 0);
 
-	for (statistics::Chain::State state : CHAIN.simulate()) {
-		ranks[t] = state.rank;
-		t++;
-	}
+	for (models::Bernoulli::State state : M.simulate()) { ranks[state.t] = state.rank; }
 
-	// Compute the expected rank of the 2nd homology group.
-	int T = std::accumulate(ranks.begin(), ranks.end(), 0);
-	double e = (double)T/(double)CHAIN.steps;
+	double e = (double)accumulate(ranks.begin(), ranks.end(), 0)/(double)M.steps;
+	cout << "expected rank is " << format("{:.2f}", e) << endl;
 
-	std::cout << "expected rank is " << std::format("{:.2f}", e) << std::endl;
-	
 	return 0;
 }
 ```

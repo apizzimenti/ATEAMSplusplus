@@ -40,6 +40,11 @@ namespace ATEAMS::models {
 			int dimension;
 			bool DEBUG = false;
 
+			template <typename R>
+			using VectorType = VectorLike<R>;
+			using RingType = RingLike;
+			using State = ModelState<RingLike,VectorLike>;
+
 			/** Constructor. */
 			Model(
 				Ring* R,
@@ -58,7 +63,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @returns Modified state.
 			 */
-			virtual ModelState<RingLike,VectorLike> sample(int t, ModelState<RingLike,VectorLike>& state, ATEAMS::arithmetic::ThreadOptions& options) = 0;
+			virtual State sample(int t, State& state, ATEAMS::arithmetic::ThreadOptions& options) = 0;
 
 			/**
 			 * @brief Initializes the state as determined by the model.
@@ -67,7 +72,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @returns Modified state.
 			 */
-			virtual ModelState<RingLike,VectorLike> initialize(ModelState<RingLike,VectorLike>& state) = 0;
+			virtual State initialize(State& state) = 0;
 
 			/**
 			 * @brief Initializes the state as determined by the user.
@@ -77,7 +82,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @returns Modified state.
 			 */
-			virtual ModelState<RingLike,VectorLike> initialize(VectorLike<RingLike> c, ModelState<RingLike,VectorLike>& state) = 0;
+			virtual State initialize(VectorLike<RingLike> c, State& state) = 0;
 	};
 }
 

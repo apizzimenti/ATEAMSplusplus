@@ -113,6 +113,7 @@ namespace ATEAMS::models {
 		bool DEBUG
 	) : Model<Z2,DenseVector>(new Z2, dimension, DEBUG) {
 		this->complex = complex;
+		this->p = p;
 
 		// From those boundary matrices, construct the "full" (i.e. up to dimension d+1)
 		// PHAT boundary matrix.

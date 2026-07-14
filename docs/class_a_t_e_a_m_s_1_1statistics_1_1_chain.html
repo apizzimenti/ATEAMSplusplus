@@ -179,12 +179,12 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aa8a377c009c421897c7e9e683ab62f4e" id="r_aa8a377c009c421897c7e9e683ab62f4e"><td class="memItemLeft">ModelType *&#160;</td><td class="memItemRight"><a class="el" href="#aa8a377c009c421897c7e9e683ab62f4e">model</a></td></tr>
 <tr class="memdesc:aa8a377c009c421897c7e9e683ab62f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Pointer to) a Model.  <br /></td></tr>
-<tr class="memitem:af317ea41460b7d99b6202ab7035fd209" id="r_af317ea41460b7d99b6202ab7035fd209"><td class="memItemLeft">ModelType::State&#160;</td><td class="memItemRight"><a class="el" href="#af317ea41460b7d99b6202ab7035fd209">state</a></td></tr>
-<tr class="memdesc:af317ea41460b7d99b6202ab7035fd209"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html" title="ModelState">ModelState</a>.  <br /></td></tr>
 <tr class="memitem:a1930e89a9919e7828febcae544ec34ad" id="r_a1930e89a9919e7828febcae544ec34ad"><td class="memItemLeft"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">arithmetic::ThreadOptions</a>&#160;</td><td class="memItemRight"><a class="el" href="#a1930e89a9919e7828febcae544ec34ad">options</a></td></tr>
 <tr class="memdesc:a1930e89a9919e7828febcae544ec34ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multithreaded computing options <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ThreadOptions">ThreadOptions</a>.  <br /></td></tr>
 <tr class="memitem:ab4ae7205573977222eadd0795db193e2" id="r_ab4ae7205573977222eadd0795db193e2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ab4ae7205573977222eadd0795db193e2">steps</a></td></tr>
 <tr class="memdesc:ab4ae7205573977222eadd0795db193e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of iterations.  <br /></td></tr>
+<tr class="memitem:a876b486d3a5241a126bd5751c5f70f79" id="r_a876b486d3a5241a126bd5751c5f70f79"><td class="memItemLeft"><a class="el" href="#a8740963cfa2e5b218c4382c6eaa41af1">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#a876b486d3a5241a126bd5751c5f70f79">state</a></td></tr>
+<tr class="memdesc:a876b486d3a5241a126bd5751c5f70f79"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html" title="ModelState">ModelState</a>.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename ModelType&gt;<br />
@@ -213,15 +213,15 @@ class ATEAMS::statistics::Chain&lt; ModelType &gt;</div><p>Simulates the Markov 
 <div class="line">Model percolation(&amp;plex, parameters);</div>
 <div class="line"><a class="code hl_class" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">Chain</a> M(&amp;percolation, 1000);</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordflow">for</span> (<a class="code hl_typedef" href="#a8740963cfa2e5b218c4382c6eaa41af1">Chain::State</a> <a class="code hl_variable" href="#af317ea41460b7d99b6202ab7035fd209">state</a> : M.simulate()) {</div>
+<div class="line"><span class="keywordflow">for</span> (<a class="code hl_typedef" href="#a8740963cfa2e5b218c4382c6eaa41af1">Chain::State</a> <a class="code hl_variable" href="#a876b486d3a5241a126bd5751c5f70f79">state</a> : M.simulate()) {</div>
 <div class="line">        &lt;...&gt;</div>
 <div class="line">}</div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> Cubical.h:39</div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">ATEAMS::models::Bernoulli</a></div><div class="ttdoc">Implements Bernoulli percolation.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:42</div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a></div><div class="ttdoc">Simulates the Markov chains specified by each Model.</div><div class="ttdef"><b>Definition</b> Chain.h:59</div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a3dda99d3acfd636f587263a24b3d8f5d"><div class="ttname"><a href="#a3dda99d3acfd636f587263a24b3d8f5d">ATEAMS::statistics::Chain::Chain</a></div><div class="ttdeci">Chain(ModelType *model, int steps)</div><div class="ttdoc">Constructor; uses default ThreadOptions.</div><div class="ttdef"><b>Definition</b> Chain.h:78</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a8740963cfa2e5b218c4382c6eaa41af1"><div class="ttname"><a href="#a8740963cfa2e5b218c4382c6eaa41af1">ATEAMS::statistics::Chain::State</a></div><div class="ttdeci">typename ModelType::State State</div><div class="ttdoc">Exposed typename for the model state.</div><div class="ttdef"><b>Definition</b> Chain.h:70</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_af317ea41460b7d99b6202ab7035fd209"><div class="ttname"><a href="#af317ea41460b7d99b6202ab7035fd209">ATEAMS::statistics::Chain::state</a></div><div class="ttdeci">ModelType::State state</div><div class="ttdoc">A ModelState.</div><div class="ttdef"><b>Definition</b> Chain.h:62</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a8740963cfa2e5b218c4382c6eaa41af1"><div class="ttname"><a href="#a8740963cfa2e5b218c4382c6eaa41af1">ATEAMS::statistics::Chain::State</a></div><div class="ttdeci">typename ModelType::State State</div><div class="ttdoc">Exposed typename for the model state.</div><div class="ttdef"><b>Definition</b> Chain.h:69</div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a876b486d3a5241a126bd5751c5f70f79"><div class="ttname"><a href="#a876b486d3a5241a126bd5751c5f70f79">ATEAMS::statistics::Chain::state</a></div><div class="ttdeci">State state</div><div class="ttdoc">A ModelState.</div><div class="ttdef"><b>Definition</b> Chain.h:70</div></div>
 <div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:11</div></div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ATEAMS::models::ModelParameters</a></div><div class="ttdoc">Typical parameters required for simulating a Model.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:36</div></div>
 </div><!-- fragment --> </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
@@ -360,7 +360,7 @@ template&lt;typename ModelType&gt; </div>
 <div class="fragment"><div class="line"><span class="keyword">using </span>Model = <a class="code hl_class" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">models::Bernoulli</a>;</div>
 <div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="#a8740963cfa2e5b218c4382c6eaa41af1">State</a> = <a class="code hl_struct" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">models::ModelState&lt;Model::RingType,Model::VectorType&gt;</a>;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordflow">for</span> (<a class="code hl_typedef" href="#a8740963cfa2e5b218c4382c6eaa41af1">State</a> <a class="code hl_variable" href="#af317ea41460b7d99b6202ab7035fd209">state</a> : M.simulate()) {</div>
+<div class="line"><span class="keywordflow">for</span> (<a class="code hl_typedef" href="#a8740963cfa2e5b218c4382c6eaa41af1">State</a> <a class="code hl_variable" href="#a876b486d3a5241a126bd5751c5f70f79">state</a> : M.simulate()) {</div>
 <div class="line">    &lt;<span class="keywordflow">do</span> whatever&gt;</div>
 <div class="line">}</div>
 <div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a></div><div class="ttdoc">Maintains state for this Model.</div><div class="ttdef"><b>Definition</b> ModelState.h:42</div></div>
@@ -405,8 +405,8 @@ template&lt;typename ModelType&gt; </div>
 
 </div>
 </div>
-<a id="af317ea41460b7d99b6202ab7035fd209" name="af317ea41460b7d99b6202ab7035fd209"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af317ea41460b7d99b6202ab7035fd209">&#9670;&#160;</a></span>state</h2>
+<a id="a876b486d3a5241a126bd5751c5f70f79" name="a876b486d3a5241a126bd5751c5f70f79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a876b486d3a5241a126bd5751c5f70f79">&#9670;&#160;</a></span>state</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -414,7 +414,7 @@ template&lt;typename ModelType&gt; </div>
 template&lt;typename ModelType&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">ModelType::State state</td>
+          <td class="memname"><a class="el" href="#a8740963cfa2e5b218c4382c6eaa41af1">State</a> state</td>
         </tr>
       </table>
 </div><div class="memdoc">
