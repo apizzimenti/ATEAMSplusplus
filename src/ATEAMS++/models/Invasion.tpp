@@ -86,9 +86,6 @@ namespace ATEAMS::models {
 		if (this->coefficients->characteristic > 2) {
 			this->intuniform = std::uniform_int_distribution<int>(0, this->coefficients->characteristic);
 			this->complex->constructFullBoundaryMatrix(this->coefficients);
-		} else if (this->coefficients->characteristic == 2) {
-			this->intuniform = std::uniform_int_distribution<int>(0, 2);
-			this->complex->constructFlatBoundaryMatrix();
 		} else {
 			this->intuniform = std::uniform_int_distribution<int>(0, 2);
 			this->complex->constructFlatBoundaryMatrix();
@@ -129,9 +126,6 @@ namespace ATEAMS::models {
 		if (this->coefficients->characteristic > 2) {
 			this->intuniform = std::uniform_int_distribution<int>(0, this->coefficients->characteristic);
 			this->complex->constructFullBoundaryMatrix(this->coefficients);
-		} else if (this->coefficients->characteristic == 2) {
-			this->intuniform = std::uniform_int_distribution<int>(0, 2);
-			this->complex->constructFlatBoundaryMatrix();
 		} else {
 			this->intuniform = std::uniform_int_distribution<int>(0, 2);
 			this->complex->constructFlatBoundaryMatrix();

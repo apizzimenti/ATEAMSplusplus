@@ -9,10 +9,6 @@ var class_a_t_e_a_m_s_1_1models_1_1_glauber =
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a7b030c9a0aa70a4e8981234022509394", null ],
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ada0b8474c0031645d1c9fbf4ba7fe4b3", null ],
     [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#aca3184161762457fab4a82bcc08cf3cc", null ],
-    [ "indexuniform", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ad0895da017eb93ef8933c741fb8c3b30", null ],
-    [ "intuniform", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#aa676cafb5b370bf1f101a88cfd1c27e6", null ],
     [ "name", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a9b45b3e13bd9167aab02e17e08916231", null ],
-    [ "RNG", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#aa42724ee58af31cab24b8a21c5f5bae7", null ],
-    [ "temperatureFunction", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ab4e19b8573d2f42134f8d05ec289295f", null ],
-    [ "unituniform", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a391ae86127a80930d86bdcd6a12860fb", null ]
+    [ "temperatureFunction", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ab4e19b8573d2f42134f8d05ec289295f", null ]
 ];

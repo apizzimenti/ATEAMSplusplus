@@ -8,9 +8,6 @@ var class_a_t_e_a_m_s_1_1models_1_1_bernoulli =
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#ada0b8474c0031645d1c9fbf4ba7fe4b3", null ],
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a22452bb7e567713f4c1691305ff035b4", null ],
     [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a99ddf966c148b257a892adf7aca4754b", null ],
-    [ "filtration", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a5af3c5c5dba40a4a462f9f399f87ad8d", null ],
     [ "name", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a9b45b3e13bd9167aab02e17e08916231", null ],
-    [ "p", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#aace2d484b0e3651abd108f04803d316c", null ],
-    [ "RNG", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#aa42724ee58af31cab24b8a21c5f5bae7", null ],
-    [ "unituniform", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a391ae86127a80930d86bdcd6a12860fb", null ]
+    [ "p", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#aace2d484b0e3651abd108f04803d316c", null ]
 ];

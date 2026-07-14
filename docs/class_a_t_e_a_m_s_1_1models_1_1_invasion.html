@@ -217,13 +217,6 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a1a8a8235879363159315091a1daed72f pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subcomplex dimension.  <br /></td></tr>
 <tr class="memitem:a117352cc494cc62c6b2f1882786a332c pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model" id="r_a117352cc494cc62c6b2f1882786a332c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html#a117352cc494cc62c6b2f1882786a332c">DEBUG</a></td></tr>
 <tr class="memdesc:a117352cc494cc62c6b2f1882786a332c pub_attribs_class_a_t_e_a_m_s_1_1models_1_1_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are we debugging this <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a>? (Default is <span class="tt">false</span>.).  <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:aa42724ee58af31cab24b8a21c5f5bae7" id="r_aa42724ee58af31cab24b8a21c5f5bae7"><td class="memItemLeft">std::mt19937&#160;</td><td class="memItemRight"><a class="el" href="#aa42724ee58af31cab24b8a21c5f5bae7">RNG</a></td></tr>
-<tr class="memitem:aa676cafb5b370bf1f101a88cfd1c27e6" id="r_aa676cafb5b370bf1f101a88cfd1c27e6"><td class="memItemLeft">std::uniform_int_distribution&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa676cafb5b370bf1f101a88cfd1c27e6">intuniform</a></td></tr>
-<tr class="memitem:a09b99bec043972ddf991b62d86d7807d" id="r_a09b99bec043972ddf991b62d86d7807d"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a09b99bec043972ddf991b62d86d7807d">indices</a></td></tr>
-<tr class="memitem:a5af3c5c5dba40a4a462f9f399f87ad8d" id="r_a5af3c5c5dba40a4a462f9f399f87ad8d"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5af3c5c5dba40a4a462f9f399f87ad8d">filtration</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename RingLike&gt;<br />
@@ -552,78 +545,6 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a5af3c5c5dba40a4a462f9f399f87ad8d" name="a5af3c5c5dba40a4a462f9f399f87ad8d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5af3c5c5dba40a4a462f9f399f87ad8d">&#9670;&#160;</a></span>filtration</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RingLike&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;int&gt; filtration</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a09b99bec043972ddf991b62d86d7807d" name="a09b99bec043972ddf991b62d86d7807d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09b99bec043972ddf991b62d86d7807d">&#9670;&#160;</a></span>indices</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RingLike&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;int&gt; indices</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aa676cafb5b370bf1f101a88cfd1c27e6" name="aa676cafb5b370bf1f101a88cfd1c27e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa676cafb5b370bf1f101a88cfd1c27e6">&#9670;&#160;</a></span>intuniform</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RingLike&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::uniform_int_distribution&lt;int&gt; intuniform</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a9b45b3e13bd9167aab02e17e08916231" name="a9b45b3e13bd9167aab02e17e08916231"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9b45b3e13bd9167aab02e17e08916231">&#9670;&#160;</a></span>name</h2>
 
@@ -639,30 +560,6 @@ template&lt;typename RingLike&gt; </div>
 </div><div class="memdoc">
 
 <p>Human-readable name. </p>
-
-</div>
-</div>
-<a id="aa42724ee58af31cab24b8a21c5f5bae7" name="aa42724ee58af31cab24b8a21c5f5bae7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa42724ee58af31cab24b8a21c5f5bae7">&#9670;&#160;</a></span>RNG</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RingLike&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::mt19937 RNG</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>
