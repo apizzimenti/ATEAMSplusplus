@@ -5,10 +5,10 @@ README.friendly.md
 
 build
 
-profiles/reports
-profiles/timing
+performance/profiling
+performance/timing
 
 *megltower*
 *pangolin*
 push.sh
-retrieve.sh
+pull.sh

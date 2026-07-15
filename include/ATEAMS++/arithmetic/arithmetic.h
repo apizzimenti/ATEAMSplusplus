@@ -27,7 +27,7 @@ namespace ATEAMS {
 		template <typename RingLike>
 		inline SparseVector<RingLike> SparseRightMultiplication(
 			SparseMatrix<RingLike>& A,
-			SparseVector<RingLike> x,
+			SparseVector<RingLike>& x,
 			Ring* R
 		) {
 			SparseVector<RingLike> y = sparse_mat_dot_sparse_vec<typename RingLike::dtype,INDEX>(
@@ -49,7 +49,7 @@ namespace ATEAMS {
 		 */
 		inline SparseVector<Zp> SparseVectorAddition(
 			SparseVector<Zp>& u,
-			SparseVector<Zp> v,
+			SparseVector<Zp>& v,
 			Ring* R
 		) {
 			sparse_vec_add<INDEX>(u, v, R->ring);

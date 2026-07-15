@@ -24,7 +24,7 @@ namespace ATEAMS::topology {
 	template <typename RingLike>
 	SparseMatrix<RingLike> reindexSparseBoundaryMatrix(
 		complexes::Complex<RingLike>* complex,
-		vector<int> filtration,
+		vector<int>& filtration,
 		int dimension
 	) {
 		// Construct an index mapping.
@@ -63,7 +63,7 @@ namespace ATEAMS::topology {
 	template <typename RingLike>
 	vector<int> PHATPersistence(
 		complexes::Complex<RingLike>* complex,
-		vector<int> filtration,
+		vector<int>& filtration,
 		int dimension
 	) {
 		// The filtration specifies the order in which we add the cells of all
@@ -144,7 +144,7 @@ namespace ATEAMS::topology {
 	template <typename RingLike>
 	vector<int> twistPersistence(
 		complexes::Complex<RingLike>* complex,
-		vector<int> filtration,
+		vector<int>& filtration,
 		Ring* R,
 		int dimension
 	) {
@@ -179,8 +179,11 @@ namespace ATEAMS::topology {
 					arithmetic::SparseVectorRescaling<RingLike>(s, youngestFace, R);
 					arithmetic::SparseVectorAddition(cell, youngestFace, R);
 
-					cell.compress();
+					// cell.compress();
+					// cell.sort_indices();
 				}
+
+				// cell.compress();
 
 				if (cell.size() > 0) {
 					nextColumnAdded[youngestFaceIndexOf<RingLike>(cell)] = j;
@@ -205,7 +208,7 @@ namespace ATEAMS::topology {
 	template <typename RingLike>
 	std::vector<int> persistence(
 		complexes::Complex<RingLike>* complex,
-		std::vector<int> filtration,
+		std::vector<int>& filtration,
 		Ring* R,
 		int dimension
 	) {

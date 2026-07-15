@@ -20,20 +20,23 @@ install:
 
 .PHONY: clean build
 
-profile: FORCE
-	@screen -dmS profiling ./profiles/profiles.models.sh
+push: FORCE
+	@./push.sh -p
+	@./push.sh -m
+
+pull: FORCE
+	@./pull.sh -p
+	@./pull.sh -m
+
+profiling: FORCE
+# 	@screen -dmS profiling.models ./performance/profiling.models.sh
+	@screen -dmS profiling.topology ./performance/profiling.topology.sh
 
 timing: FORCE
-	@screen -dmS timing ./profiles/timing.persistence.sh
+	@screen -dmS timing.topology ./performance/timing.topology.sh
 
 test:
 	@cd build; ctest
-
-push: FORCE
-	@./push.sh -p
-
-pull: FORCE
-	@./retrieve.sh -p
 
 ##########
 ## DOCS ##

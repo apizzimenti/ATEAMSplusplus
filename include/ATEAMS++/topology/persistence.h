@@ -27,7 +27,7 @@ namespace ATEAMS::topology {
 	template <typename RingLike>
 	std::vector<int> PHATPersistence(
 		complexes::Complex<RingLike>* complex,
-		std::vector<int> filtration,
+		std::vector<int>& filtration,
 		int dimension
 	);
 
@@ -51,7 +51,7 @@ namespace ATEAMS::topology {
 	template <typename RingLike>
 	std::vector<int> twistPersistence(
 		complexes::Complex<RingLike>* complex,
-		std::vector<int> filtration,
+		std::vector<int>& filtration,
 		Ring* R,
 		int dimension
 	);
@@ -76,7 +76,7 @@ namespace ATEAMS::topology {
 	template <typename RingLike>
 	std::vector<int> persistence(
 		complexes::Complex<RingLike>* complex,
-		std::vector<int> filtration,
+		std::vector<int>& filtration,
 		Ring* R,
 		int dimension
 	);
@@ -84,7 +84,11 @@ namespace ATEAMS::topology {
 	/** @cond */
 	// Expose this for testing, but not for general use.
 	template <typename RingLike>
-	SparseMatrix<RingLike> reindexSparseBoundaryMatrix(complexes::Complex<RingLike>* complex, std::vector<int> filtration, int dimension);
+	SparseMatrix<RingLike> reindexSparseBoundaryMatrix(
+		complexes::Complex<RingLike>* complex,
+		std::vector<int>& filtration,
+		int dimension
+	);
 	/** @endcond */
 }
 

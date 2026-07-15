@@ -25,7 +25,7 @@ pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 
 # If we want to use mimalloc (which we should, by default) then set this to
 # TRUE. Otherwise, set it to FALSE.
-set(mimalloc FALSE)
+set(mimalloc TRUE)
 
 if(mimalloc)
 	find_package(mimalloc REQUIRED)
@@ -35,9 +35,9 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST FALSE)
+set(TEST TRUE)
 set(PROFILE FALSE)
-set(TIMINGDATA TRUE)
+set(TIMING FALSE)
 
 if (TEST)
 	enable_testing()
@@ -186,13 +186,13 @@ list(APPEND ARITHMETIC
 )
 
 list(APPEND TOPOLOGY
-	"persistence"
+	# "persistence"
 )
 
 list(APPEND MODELS
-	# "Bernoulli"
+	"Bernoulli"
 	# "Glauber"
-	# "InvadedCluster"
+	"InvadedCluster"
 	# "Invasion"
 	# "SwendsenWang"
 )
@@ -262,15 +262,20 @@ endif()
 
 if (PROFILE)
 	foreach(MODEL IN LISTS MODELS)
-		add_executable(profiles.${MODEL} profiles/${MODEL}.cpp)
-		target_link_libraries(profiles.${MODEL} PUBLIC ATEAMS++)
+		add_executable(profiling.${MODEL} performance/profiling.${MODEL}.cpp)
+		target_link_libraries(profiling.${MODEL} PUBLIC ATEAMS++)
+	endforeach()
+
+	foreach(FUNCTION IN LISTS TOPOLOGY)
+		add_executable(profiling.${FUNCTION} performance/profiling.${FUNCTION}.cpp)
+		target_link_libraries(profiling.${FUNCTION} PUBLIC ATEAMS++)
 	endforeach()
 endif()
 
 
-if (TIMINGDATA)
+if (TIMING)
 	foreach(FUNCTION IN LISTS TOPOLOGY)
-		add_executable(timing.${FUNCTION} profiles/${FUNCTION}.cpp)
+		add_executable(timing.${FUNCTION} performance/timing.${FUNCTION}.cpp)
 		target_link_libraries(timing.${FUNCTION} PUBLIC ATEAMS++)
 	endforeach()
 endif()

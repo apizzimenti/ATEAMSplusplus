@@ -1,5 +1,5 @@
 
-#include <ATEAMS++.h>
+#include <ATEAMS++/ATEAMS++.h>
 
 using namespace ATEAMS;
 using namespace std;
