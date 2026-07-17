@@ -178,12 +178,9 @@ namespace ATEAMS::topology {
 
 					arithmetic::SparseVectorRescaling<RingLike>(s, youngestFace, R);
 					arithmetic::SparseVectorAddition(cell, youngestFace, R);
-
-					// cell.compress();
-					// cell.sort_indices();
 				}
 
-				// cell.compress();
+				cell.compress();
 
 				if (cell.size() > 0) {
 					nextColumnAdded[youngestFaceIndexOf<RingLike>(cell)] = j;

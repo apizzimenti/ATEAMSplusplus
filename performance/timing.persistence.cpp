@@ -6,8 +6,8 @@ using namespace std;
 
 vector<int> filtrate(
 	complexes::Complex<Zp>* complex,
-	vector<int> filtration,
-	vector<int> include,
+	vector<int>& filtration,
+	vector<int>& include,
 	int DIMENSION
 ) {
 	random_device rd;

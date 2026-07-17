@@ -35,6 +35,10 @@ profiling: FORCE
 timing: FORCE
 	@screen -dmS timing.topology ./performance/timing.topology.sh
 
+gauntlet: FORCE
+	rm -f ./performance/profiling/*(N) ./performance/timing/*(N)
+	screen -dmS gauntlet.topology ./performance/gauntlet.topology.sh
+
 test:
 	@cd build; ctest
 

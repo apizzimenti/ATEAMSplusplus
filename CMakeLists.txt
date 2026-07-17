@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_compile_options(-O3)
+add_compile_options(-march=native -flto)
 
 
 ################################################################################
@@ -35,16 +35,19 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST TRUE)
-set(PROFILE FALSE)
-set(TIMING FALSE)
+set(TEST FALSE)
+set(PROFILE TRUE)
+set(TIMING TRUE)
+set(PROFILE_COMPILE_OPTIONS -p -fno-omit-frame-pointer -fno-inline-functions -fno-inline-functions-called-once -fno-optimize-sibling-calls)
 
 if (TEST)
 	enable_testing()
 endif()
 
 if (PROFILE)
-	add_compile_options(-pg -fno-omit-frame-pointer -fno-inline-functions -fno-inline-functions-called-once -fno-optimize-sibling-calls)
+	add_compile_options(-O2)
+else()
+	add_compile_options(-O3)
 endif()
 
 
@@ -186,15 +189,15 @@ list(APPEND ARITHMETIC
 )
 
 list(APPEND TOPOLOGY
-	# "persistence"
+	"persistence"
 )
 
 list(APPEND MODELS
 	"Bernoulli"
-	# "Glauber"
+	"Glauber"
 	"InvadedCluster"
-	# "Invasion"
-	# "SwendsenWang"
+	"Invasion"
+	"SwendsenWang"
 )
 
 list(APPEND TYPES
@@ -260,15 +263,18 @@ if (TEST)
 	endforeach()
 endif()
 
+
 if (PROFILE)
 	foreach(MODEL IN LISTS MODELS)
 		add_executable(profiling.${MODEL} performance/profiling.${MODEL}.cpp)
 		target_link_libraries(profiling.${MODEL} PUBLIC ATEAMS++)
+		target_compile_options(profiling.${MODEL} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 	endforeach()
 
 	foreach(FUNCTION IN LISTS TOPOLOGY)
 		add_executable(profiling.${FUNCTION} performance/profiling.${FUNCTION}.cpp)
 		target_link_libraries(profiling.${FUNCTION} PUBLIC ATEAMS++)
+		target_compile_options(profiling.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 	endforeach()
 endif()
 

@@ -102,7 +102,7 @@ template <typename MapStorage>
 inline void printmap(MapStorage m) {
 	std::cout << "{ ";
 	for (const auto& [k, v] : m) {
-		std::cout << (int)k << ": " << (int)v << ", ";
+		std::cout << k << ": " << v << ", ";
 	}
 	std::cout << " }" << std::endl;
 }

@@ -106,7 +106,7 @@ namespace ATEAMS {
 		template <typename RingLike>
 		inline SparseVector<RingLike> SparseVectorRescaling(
 			typename RingLike::dtype a,
-			SparseVector<RingLike> &x,
+			SparseVector<RingLike>& x,
 			Ring* R
 		) {
 			sparse_vec_rescale<INDEX,typename RingLike::dtype>(x, a, R->ring);
