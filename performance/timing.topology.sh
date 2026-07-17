@@ -11,19 +11,20 @@ HOST=$(hostname -f)
 DIR="performance"
 mkdir -p ./$DIR/timing
 
-for PARALLEL in "${PARALLELS[@]}"; do
-	if [[ $PARALLEL == 1 ]]; then
-		SUFFIX="PARALLEL"
-	else
-		SUFFIX="SERIAL"
-	fi
-	
+
+for EXEC in "${EXECS[@]}"; do
 	for DIMENSION in "${DIMENSIONS[@]}"; do
-		for EXEC in "${EXECS[@]}"; do
-			for FIELD in "${FIELDS[@]}"; do
+		for FIELD in "${FIELDS[@]}"; do
+			for PARALLEL in "${PARALLELS[@]}"; do
+				if [[ $PARALLEL == 1 ]]; then
+					SUFFIX="PARALLEL"
+				else
+					SUFFIX="SERIAL"
+				fi
+
 				for SCALE in "${SCALES[@]}"; do
 					PADDED=${(l(3)(0))SCALE}
-					PREFIX="$HOST.$EXEC.$PADDED.$DIMENSION.$FIELD.$ATTEMPTS.$SUFFIX"
+					PREFIX="$HOST.$EXEC.$FIELD.$DIMENSION.$PADDED.$SUFFIX"
 
 					echo $PREFIX
 					./build/timing.$EXEC $SCALE $((DIMENSION/2)) $FIELD $ATTEMPTS $PARALLEL >> ./$DIR/timing/$PREFIX.data

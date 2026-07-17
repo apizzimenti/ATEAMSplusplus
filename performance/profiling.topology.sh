@@ -1,9 +1,9 @@
 #!/bin/zsh
 
 EXECS=("persistence")
-SCALES=(11 16 22)
-FIELDS=(3)
-DIMENSIONS=(4)
+SCALES=(8 11)
+FIELDS=(2 3)
+DIMENSIONS=(2 4)
 PARALLELS=(0 1)
 ATTEMPTS=1
 
@@ -11,19 +11,20 @@ HOST=$(hostname -f)
 DIR="performance"
 mkdir -p ./$DIR/profiling
 
-for PARALLEL in "${PARALLELS[@]}"; do
-	if [[ $PARALLEL == 1 ]]; then
-		SUFFIX="PARALLEL"
-	else
-		SUFFIX="SERIAL"
-	fi
 
-	for EXEC in "${EXECS[@]}"; do
-		for SCALE in "${SCALES[@]}"; do
-			for DIMENSION in "${DIMENSIONS[@]}"; do
-				for FIELD in "${FIELDS[@]}"; do
+for EXEC in "${EXECS[@]}"; do
+	for DIMENSION in "${DIMENSIONS[@]}"; do
+		for FIELD in "${FIELDS[@]}"; do
+			for PARALLEL in "${PARALLELS[@]}"; do
+				if [[ $PARALLEL == 1 ]]; then
+					SUFFIX="PARALLEL"
+				else
+					SUFFIX="SERIAL"
+				fi
+
+				for SCALE in "${SCALES[@]}"; do
 					PADDED=${(l(3)(0))SCALE}
-					PREFIX="$HOST.$EXEC.$PADDED.$DIMENSION.$FIELD.$ATTEMPTS.$SUFFIX"
+					PREFIX="$HOST.$EXEC.$FIELD.$DIMENSION.$PADDED.$SUFFIX"
 
 					echo "## $PREFIX"
 

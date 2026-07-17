@@ -5,11 +5,16 @@ import matplotlib.pyplot as plt
 HOST = "pangolin"
 EXECS = ["persistence"]
 FIELDS = [2, 3]
-DIMENSIONS = [2, 4]
-ATTEMPTS=51
+DIMENSIONS = [2]
+
+MODES = ["SERIAL", "PARALLEL"]
+COLORS = ["#DDAA33", "#BB5566"]
+
+OFFSET = 0.2
+POSITIONS = [-OFFSET, OFFSET]
 
 SCALES = {
-	2: [2, 4, 5, 8, 11, 16, 22, 32, 45, 64, 90, 128, 181, 256, 362, 512],
+	2: [2, 4, 5, 8, 11, 16, 22, 32, 45, 64, 90],
 	4: [2, 4, 5, 8]
 }
 
@@ -49,11 +54,12 @@ flierprops = dict(
 )
 
 medianprops = dict(
-	linewidth=lw
+	linewidth=0,
+	color="none"
 )
 
 boxprops = dict(
-	linewidth=lw
+	linewidth=0
 )
 
 whiskerprops = dict(
@@ -71,7 +77,6 @@ plotprops = dict(
 	capprops=capprops,
 	flierprops=flierprops,
 	medianprops=medianprops,
-	boxprops=boxprops,
 	whiskerprops=whiskerprops
 )
 
@@ -84,36 +89,39 @@ plt.rcParams.update({
 for EXEC in EXECS:
 	for FIELD in FIELDS:
 		for DIMENSION in DIMENSIONS:
-			boxes = [
-				np.loadtxt(f"timing/{HOST}.{EXEC}.{str(SCALE).zfill(3)}.{DIMENSION}.{FIELD}.{ATTEMPTS}.data", dtype=float)[:-1]/UNIT
-				for SCALE in SCALES[DIMENSION]
-			]
-
-			lo, hi = boxes[0].min(), boxes[-1].max()
-
 			fig, ax = plt.subplots(figsize=(4,4))
-			boxplot = ax.boxplot(
-				boxes,
-				# positions=[cellcounts[DIMENSION][SCALE] for SCALE in SCALES[DIMENSION]],
-				**plotprops
-			)
+
+			PREFIX = f"{HOST}.{EXEC}.{FIELD}.{DIMENSION}"
+
+			lo = np.inf
+			hi = 0
+			
+			for POSITION, COLOR, MODE in zip(POSITIONS, COLORS, MODES):
+				boxes = [
+					np.loadtxt(f"timing/{PREFIX}.{str(SCALE).zfill(3)}.{MODE}.data")
+					for SCALE in SCALES[DIMENSION]
+				]
+
+				if boxes[0].min() < lo: lo = boxes[0].min()
+				if boxes[-1].max() > hi: hi = boxes[-1].max()
+
+				boxplot = ax.boxplot(
+					boxes,
+					positions=[k+POSITION for k in range(len(boxes))],
+					patch_artist=True,
+					boxprops={"facecolor": COLOR, **boxprops},
+					**plotprops
+				)
+
+				for j, box in enumerate(boxes):
+					ax.scatter(j+POSITION, np.median(box), marker="D", s=5, color="k" , zorder=1000)
 
 			ax.set_yscale("log")
 			ax.set_ylabel(r"$\log_{10}(\mu\mathrm{s})$", fontsize=8)
 			ax.set_ylim(lo, hi)
 
-			# ax.set_xlabel("linear scale\n(cells)\n(density)", fontsize=8)
-			# ax.set_xticks([cellcounts[DIMENSION][SCALE] for SCALE in SCALES])
-			# ax.set_xticklabels(
-			# 	[
-			# 		f"{SCALE}\n({cellcounts[DIMENSION][SCALE]:,})\n({density[DIMENSION][SCALE]*100:.3f}\%)"
-			# 		for SCALE in SCALES
-			# 	],
-			# 	fontsize=6
-			# )
-
 			ax.set_xlabel("cells (linear scale)", fontsize=8)
-
+			ax.set_xticks(range(len(boxes)))
 			ax.set_xticklabels(
 				[
 					f"{cellcounts[DIMENSION][SCALE]:,} ({SCALE})"
@@ -124,14 +132,13 @@ for EXEC in EXECS:
 				ha="left"
 			)
 
-			ax.set_xlim(0,len(boxes)+1)
-			# ax.set_xscale("log", base=np.sqrt(2))
+			ax.set_xlim(-1,len(boxes)+1)
 
 			for tick, label in labels.items():
 				if lo <= tick <= hi:
 					ax.text(0.05, tick, label, fontsize=6, ha="left", alpha=1/2, va="bottom")
-					ax.hlines(tick, xmin=0, xmax=len(boxes)+1, color="k", alpha=1/4, zorder=-1000)
-			plt.savefig(f"./timing/{EXEC}.{DIMENSION}.{FIELD}.{ATTEMPTS}.jpeg", dpi=300, bbox_inches="tight")
+					ax.hlines(tick, xmin=-1, xmax=len(boxes)+1, color="k", alpha=1/4, zorder=-1000)
+			plt.savefig(f"./timing/{PREFIX}.jpeg", dpi=300, bbox_inches="tight")
 
 			plt.clf()
 			plt.close()

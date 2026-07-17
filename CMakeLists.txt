@@ -25,7 +25,7 @@ pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 
 # If we want to use mimalloc (which we should, by default) then set this to
 # TRUE. Otherwise, set it to FALSE.
-set(mimalloc FALSE)
+set(mimalloc TRUE)
 
 if(mimalloc)
 	find_package(mimalloc REQUIRED)
@@ -35,8 +35,8 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST TRUE)
-set(PROFILE FALSE)
+set(TEST FALSE)
+set(PROFILE TRUE)
 set(TIMING TRUE)
 set(PROFILE_COMPILE_OPTIONS -p -fno-omit-frame-pointer -fno-inline-functions -fno-inline-functions-called-once -fno-optimize-sibling-calls)
 
