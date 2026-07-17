@@ -45,6 +45,7 @@ namespace ATEAMS::topology {
 	 * 	the 1-d cells in the flat boundary matrix, but leave everything else.
 	 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * @param dimension The percolation dimension.
+	 * @param options Parallel computing environment options.
 	 * 
 	 * @returns A vector of percolation times.
 	 */
@@ -53,7 +54,8 @@ namespace ATEAMS::topology {
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
-		int dimension
+		int dimension,
+		arithmetic::ThreadOptions& options
 	);
 
 	/**
@@ -78,7 +80,8 @@ namespace ATEAMS::topology {
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
-		int dimension
+		int dimension,
+		arithmetic::ThreadOptions& options
 	);
 
 	/** @cond */

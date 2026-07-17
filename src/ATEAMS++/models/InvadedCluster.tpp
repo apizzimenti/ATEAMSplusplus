@@ -72,7 +72,8 @@ namespace ATEAMS {
 				this->complex,
 				this->filtration,
 				this->coefficients,
-				this->dimension
+				this->dimension,
+				options
 			);
 
 			if (this->DEBUG) {

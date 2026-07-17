@@ -29,10 +29,15 @@ namespace ATEAMS::arithmetic {
 	 * @var ThreadOptions::opt
 	 * 	@brief Pointer to a @ref ATEAMS::arithmetic::ComputeOptions object
 	 * 	used to keep track of the thread pool and process-killing keystrokes.
+	 * 
+	 * @var ThreadOptions::parallelSparseAddition
+	 * 	@brief Enables parallelization for @ref ATEAMS::arithmetic::SparseVectorAddition.
+	 * 	Default `true`.
 	 */
 	class ThreadOptions {
 		public:
 			ComputeOptions* opt;
+			bool parallelSparseAddition = true;
 
 			/**
 			 * @brief Constructor.

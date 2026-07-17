@@ -47,7 +47,8 @@ namespace ATEAMS::models {
 			this->complex,
 			this->filtration,
 			this->coefficients,
-			this->dimension
+			this->dimension,
+			options
 		);
 
 		// Now, determine at what time we hit the desired number of giant cycles

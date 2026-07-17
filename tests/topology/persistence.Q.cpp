@@ -70,14 +70,14 @@ bool checkPHATpersistence(complexes::Complex<Q>* COMPLEX) {
 	return times.size() == 6;
 }
 
-bool checkTwistPersistence(complexes::Complex<Q>* COMPLEX, Ring* R) {
+bool checkTwistPersistence(complexes::Complex<Q>* COMPLEX, Ring* R, arithmetic::ThreadOptions& options) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
 
 	// We should have 1 + 4 + 6 + 4 + 1 = 16 giant components, but only 6 of the
 	// desired dimension (2).
-	vector<int> times = topology::twistPersistence<Q>(COMPLEX, FILTRATION, R, 2);
+	vector<int> times = topology::twistPersistence<Q>(COMPLEX, FILTRATION, R, 2, options);
 
 	return times.size() == 6;
 }

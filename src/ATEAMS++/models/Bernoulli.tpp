@@ -60,7 +60,7 @@ namespace ATEAMS::models {
 
 		// Now, compute the persistence times, then filter over them to capture only
 		// the ones within the right window.
-		vector<int> essential = topology::persistence<Z2>(this->complex, this->filtration, this->coefficients, d);
+		vector<int> essential = topology::persistence<Z2>(this->complex, this->filtration, this->coefficients, d, options);
 		std::erase_if(essential, [stop, included](int t) { return !((stop <= t) && (t < stop+included)); });
 
 		if (this->DEBUG) {

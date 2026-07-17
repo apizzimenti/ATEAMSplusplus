@@ -146,7 +146,8 @@ namespace ATEAMS::topology {
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		Ring* R,
-		int dimension
+		int dimension,
+		arithmetic::ThreadOptions& options
 	) {
 		// Doing row operations on the coboundary is equivalent to column operations
 		// on the boundary.
@@ -177,7 +178,7 @@ namespace ATEAMS::topology {
 					typename RingLike::dtype s = scalar_neg(scalar_inv(youngestFaceCoefficient, R->ring), R->ring);
 
 					arithmetic::SparseVectorRescaling<RingLike>(s, youngestFace, R);
-					arithmetic::SparseVectorAddition(cell, youngestFace, R);
+					arithmetic::SparseVectorAddition(cell, youngestFace, R, options);
 				}
 
 				cell.compress();
@@ -207,11 +208,12 @@ namespace ATEAMS::topology {
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
-		int dimension
+		int dimension,
+		arithmetic::ThreadOptions& options
 	) {
 		vector<int> essential;
 		if (R->characteristic < 3) essential = PHATPersistence<RingLike>(complex, filtration, dimension);
-		else essential = twistPersistence<RingLike>(complex, filtration, R, dimension);
+		else essential = twistPersistence<RingLike>(complex, filtration, R, dimension, options);
 
 		std::sort(essential.begin(), essential.end());
 		return essential;
