@@ -30,6 +30,7 @@ int main(int argc, char* argv[]) {
 	int DIMENSION = stoi(argv[2]);
 	int FIELD = stoi(argv[3]);
 	int ATTEMPTS = stoi(argv[4]);
+	int PARALLEL = stoi(argv[5]);
 
 	// Construct a cubical complex and the ingredients for a filtration.
 	Zp R(FIELD);
@@ -47,12 +48,13 @@ int main(int argc, char* argv[]) {
 	iota(begin(include), end(include), 0);
 
 	arithmetic::ThreadOptions options;
+	options.parallelSparseAddition = (bool)PARALLEL;
 	thread listener = options.spinUp();
 
 	for (int t=0; t < ATTEMPTS; t++) {
 		// Create the filtration.
 		vector<int> K = filtrate(&plex, filtration, include, DIMENSION);
-		topology::persistence<Zp>(&plex, K, &R, DIMENSION);
+		topology::persistence<Zp>(&plex, K, &R, DIMENSION, options);
 	}
 
 	options.spinDown(&listener);
