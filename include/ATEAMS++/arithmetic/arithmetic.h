@@ -61,7 +61,8 @@ namespace ATEAMS {
 
 			// Get the number of threads, then the max/min of the largest/smallest
 			// indices in u and v.
-			int threads = options.opt->pool.get_thread_count();
+			int _threads = options.opt->pool.get_thread_count();
+			int threads = _threads*_threads;
 			INDEX maxindex = std::max(u(u.size()-1), v(v.size()-1));
 			INDEX minindex = std::min(u(0), v(0));
 
@@ -69,7 +70,7 @@ namespace ATEAMS {
 			int mod = (maxindex-minindex)/threads;
 			int width = mod + 1;
 
-			if (width < 2) {
+			if (width < options.parallelSparseAdditionChunkWidth) {
 				sparse_vec_add<INDEX>(u, v, R->ring);
 			} else {
 				// Specify the index ranges for each thread.

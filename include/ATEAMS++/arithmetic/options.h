@@ -33,11 +33,16 @@ namespace ATEAMS::arithmetic {
 	 * @var ThreadOptions::parallelSparseAddition
 	 * 	@brief Enables parallelization for @ref ATEAMS::arithmetic::SparseVectorAddition.
 	 * 	Default `true`.
+	 * 
+	 * @var ThreadOptions::parallelSparseAdditionChunkWidth
+	 * 	@brief The width a chunk needs to be before using multiple threads. Default
+	 * 	`512`.
 	 */
 	class ThreadOptions {
 		public:
 			ComputeOptions* opt;
 			bool parallelSparseAddition = true;
+			int parallelSparseAdditionChunkWidth = 512;
 
 			/**
 			 * @brief Constructor.

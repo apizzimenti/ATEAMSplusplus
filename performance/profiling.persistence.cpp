@@ -31,6 +31,7 @@ int main(int argc, char* argv[]) {
 	int FIELD = stoi(argv[3]);
 	int ATTEMPTS = stoi(argv[4]);
 	int PARALLEL = stoi(argv[5]);
+	int WIDTH = stoi(argv[6]);
 
 	// Construct a cubical complex and the ingredients for a filtration.
 	Zp R(FIELD);
@@ -49,6 +50,8 @@ int main(int argc, char* argv[]) {
 
 	arithmetic::ThreadOptions options;
 	options.parallelSparseAddition = (bool)PARALLEL;
+	options.parallelSparseAdditionChunkWidth = WIDTH;
+	
 	thread listener = options.spinUp();
 
 	for (int t=0; t < ATTEMPTS; t++) {

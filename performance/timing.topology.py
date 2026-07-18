@@ -20,6 +20,8 @@ SCALES = {
 
 UNIT = 1
 
+WIDTHS = [512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072]
+
 cellcounts = {
 	2: { 2: 16, 4: 64, 5: 100, 8: 256, 11: 484, 16: 1024, 22: 1936, 32: 4096, 45: 8100, 64: 16384, 90: 32400, 128: 65536, 181: 131044, 256: 262144, 362: 524176, 512: 1048576,  },
 	4: { 2: 256, 4: 4096, 5: 10000, 8: 65536, 11: 234256, 16: 1048576, 22: 3748096, 32: 16777216,  }
@@ -114,7 +116,7 @@ for EXEC in EXECS:
 				)
 
 				for j, box in enumerate(boxes):
-					ax.scatter(j+POSITION, np.median(box), marker="D", s=5, color="k" , zorder=1000)
+					ax.scatter(j+POSITION, np.median(box), marker="D", s=2, color="k" , zorder=1000)
 
 			ax.set_yscale("log")
 			ax.set_ylabel(r"$\log_{10}(\mu\mathrm{s})$", fontsize=8)
