@@ -2,83 +2,51 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
 import sys
 
 from config import CONFIG
 
 metadata = CONFIG.metadata
+addition = CONFIG.topics.addition
 
-boxplots = CONFIG.plots.boxplots
-addition = boxplots.addition
+defaults = addition.plots.defaults
+timeByDensity = addition.plots.timeByDensity
 
+# Initialize the plot.
 metadata.initialize(plt)
 
-# First, within each host and length, plot density against time.
-densityByTime = addition.subplots.densityByTime
-
 for host in metadata.hosts:
-	data = boxplots.addition.data(host)
-	base = data.BASE[0]
+	data = addition.data(host)
 
-	lengths = data.LENGTH.unique()
+	lengths = data.N.unique()
 
 	for length in lengths:
-		subset = data[data.LENGTH == length]
-		grouped = subset.groupby("POWER")
+		subset = data[data.N == length]
+		print(host, length, len(subset))
 
-		entries = np.array([int(base**power*length) for power, _ in grouped])
-		boxes = [group.TTC for _, group in grouped]
+		# time-by-density scatterplot.
+		fig, ax = plt.subplots(**defaults.subplots)
+		ax.scatter(subset.OVERLAP, subset.TTC, **timeByDensity.scatter)
 
-		# Viewing only the last 12-16 boxes.
-		window = 16
-		rightward = 1
-		ll = len(boxes)-window-rightward
-		ul = len(boxes)-rightward
+		# Prepare horizontal and vertical axes.
+		timeByDensity.xaxis(ax)
+		timeByDensity.yaxis(ax)
 
-		viewboxes = boxes[ll:ul]
-		viewentries = entries[ll:ul]
+		# Perform a linear least squares fit.
+		popt, pcov = curve_fit(timeByDensity.lsq.f, subset.OVERLAP, subset.TTC)
+		m, b = popt
 
-		# Boxplot; plot medians.
-		fig, ax = plt.subplots(**boxplots.defaults.subplots)
-		ax.boxplot(
-			viewboxes,
-			**boxplots.defaults.plotprops
-		)
+		X = np.linspace(-1, 2, 1000)
+		Y = m*X + b
+		ax.plot(X, Y, **timeByDensity.lsq.plot)
 
-		boxplots.defaults.medians(ax, viewboxes, ax.get_xticks())
-
-		# Configure horizontal axis.
-		boxplots.defaults.xaxis.boxedLabeled(
-			ax,
-			[f"{e:,}" for e in viewentries]
-		)
-
-		# Configure vertical axis.
-		ax.set_yscale("log")
-		boxplots.defaults.yaxis.boxedYlim(ax, viewboxes)
-		boxplots.defaults.yaxis.logTime(ax, viewboxes)
-
-		# Plot some guide ranges.
-		X = np.arange(0, window+2)
-		rescale = 1/100
-
-		Y = entries[ll-1:ul+1]*rescale
-		wiggle = np.sqrt(10)
-
-		# ax.plot(X, Y, lw=1/2, color="k", zorder=-10000)
-
-		ax.fill_between(
-			X, Y*(1/wiggle), Y*wiggle,
-			alpha=1/10,
-			color="k",
-			zorder=-10000,
-			edgecolor="none"
-		)
-
+		xlo, xhi = ax.get_xlim()
+		ax.text(xhi, m*xhi+b, rf"$\mathrm{{O}}(d)$", **timeByDensity.lsq.text)
 
 		plt.savefig(
-			densityByTime.out(host, length),
-			**densityByTime.savefig
+			timeByDensity.out(host, length),
+			**timeByDensity.savefig
 		)
 		plt.close()
 		plt.clf()

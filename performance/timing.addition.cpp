@@ -24,25 +24,21 @@ double vectorIndexOverlap(SparseVector<Zp> u, SparseVector<Zp> v) {
 
 
 SparseVector<Zp> randomizedVector(
-	int N,
-	double density,
-	Ring* R
+	int L,
+	int entries,
+	uniform_int_distribution<int>& uniformValues,
+	mt19937& RNG
 ) {
-	vector<int> _random(N, 0);
+	vector<int> _random(L, 0);
 	SparseVector<Zp> random;
-
-	random_device rd;
-	mt19937 RNG(rd());
-	uniform_int_distribution<int> intuniform(0, R->characteristic);
 
 	// Create a vector of length N*density with random entries, insert it into
 	// `random`, then shuffle.
-	int entries = N*density;
-	for (int t=0; t < entries; t++) _random[t] = intuniform(RNG);
+	for (int t=0; t < entries; t++) _random[t] = uniformValues(RNG);
 	shuffle(_random.begin(), _random.end(), RNG);
 
 	// Populate the SparseVector.
-	for (int t=0; t < N; t++) {
+	for (int t=0; t < L; t++) {
 		if (_random[t] > 0) {
 			random.push_back((INDEX)t, (typename Zp::dtype)_random[t]);
 		}
@@ -52,58 +48,73 @@ SparseVector<Zp> randomizedVector(
 }
 
 
+void writeData(string filename, string data) {
+	ofstream file(filename, ios_base::app | ios_base::out);
+	file << data;
+}
+
+
 int main(int argc, char* argv[]) {
 	// Get arguments for the number of trials, the vector length.
-	int TRIALS = stoi(argv[1]);
-	int LENGTH = stoi(argv[2]);
-
-	// Densities are BASE^-smallestPower, in decreasing order.
-	double base = sqrt(2);
-	int smallestPower = 36;
+	string HOSTNAME = argv[1];
+	int TRIALS = stoi(argv[2]);
+	int LENGTH = stoi(argv[3]);
 
 	// Column separation character.
-	string sep = "\t";
-
+	string sep = ",";
+	
 	// Field; thread options.
 	Zp R(3);
 
-	arithmetic::ThreadOptions options;
-	options.parallelSparseAddition = false;
+	// RNGs and stuff.
+	random_device rd;
+	mt19937 RNG(rd());
 
+	uniform_int_distribution<int> uniformValues(1, R.characteristic);
+	uniform_int_distribution<int> uniformEntries(1, LENGTH);
+
+	arithmetic::ThreadOptions options;
 	thread listener = options.spinUp();
 
-	// vector<string> columns = {"width", "density", "overlap", "mus"};
+	vector<int> lN(TRIALS);
+	vector<int> rN(TRIALS);
+	vector<double> OVERLAP(TRIALS);
+	vector<int> TTC(TRIALS);
 
-	// for (string col : columns) {
-	// 	cout << format("{:<16}", col) << "\t";
-	// }
+	for (int t=0; t < TRIALS; t++) {
+		// Create two random vectors; check how much their indices overlap.
+		int ulength = uniformEntries(RNG);
+		int vlength = uniformEntries(RNG);
 
-	// cout << endl;
+		SparseVector<Zp> u = randomizedVector(LENGTH, ulength, uniformValues, RNG);
+		SparseVector<Zp> v = randomizedVector(LENGTH, vlength, uniformValues, RNG);
 
-	for (int power=smallestPower; power >= 0; power--) {
-		if (LENGTH*pow(base,-power) <= 5) continue;
+		long double overlap = vectorIndexOverlap(u, v);
 
-		for (int t=0; t < TRIALS; t++) {
-			// Create two random vectors; check how much their indices overlap.
-			SparseVector<Zp> u = randomizedVector(LENGTH, pow(base,-power), &R);
-			SparseVector<Zp> v = randomizedVector(LENGTH, pow(base,-power), &R);
+		auto start = chrono::high_resolution_clock::now();
+		arithmetic::SparseVectorAddition(u, v, &R);
+		auto end = chrono::high_resolution_clock::now();
 
-			long double overlap = vectorIndexOverlap(u, v);
-
-			auto start = chrono::high_resolution_clock::now();
-			arithmetic::SparseVectorAddition(u, v, &R);
-			auto end = chrono::high_resolution_clock::now();
-
-			auto duration = chrono::duration_cast<chrono::microseconds>(end-start);
-			cout << format("{:<12}", LENGTH) << sep;
-			cout << format("{:<12.12f}", base) << sep;
-			cout << format("{:<12}", power) << sep;
-			cout << format("{:<12.12f}", pow(base,-power)) << sep;
-			cout << format("{:<12.12f}", overlap) << sep;
-			cout << format("{:<12}",duration.count()) << endl;
-		}
+		auto duration = chrono::duration_cast<chrono::microseconds>(end-start);
+		lN[t] = ulength;
+		rN[t] = vlength;
+		OVERLAP[t] = overlap;
+		TTC[t] = duration.count();
 	}
 
 	options.spinDown(&listener);
+
+	string csv = "";
+
+	for (int t=0; t < TRIALS; t++) {
+		csv = csv + format("{},{},{},{:.12f},{}\n", LENGTH, lN[t], rN[t], OVERLAP[t], TTC[t]);
+	}
+
+	// APPEND to file.
+	ofstream file;
+	file.open(format("./performance/timing/{}.arithmetic.{}.csv", HOSTNAME, TRIALS), fstream::app);
+	file << csv;
+	file.close();
+
 	return 0;
 }

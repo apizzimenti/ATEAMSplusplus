@@ -34,6 +34,7 @@ profiling: FORCE
 
 timing: FORCE
 # 	@screen -dmS timing.topology ./performance/timing.topology.sh
+	screen -dmS timing.addition.default ./performance/timing.addition.sh 50
 
 gauntlet: FORCE
 	rm -f ./performance/profiling/*(N) ./performance/timing/*(N)

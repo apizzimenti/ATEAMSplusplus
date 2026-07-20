@@ -37,15 +37,6 @@ namespace ATEAMS {
 			return y;
 		};
 
-		inline SparseVector<Zp> SparseVectorAddition(
-			SparseVector<Zp>& u,
-			SparseVector<Zp>& v,
-			Ring* R
-		) {
-			sparse_vec_add<INDEX>(u, v, R->ring);
-			return u;
-		};
-		
 		/**
 		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Zp.
 		 * 
@@ -58,14 +49,30 @@ namespace ATEAMS {
 		inline SparseVector<Zp> SparseVectorAddition(
 			SparseVector<Zp>& u,
 			SparseVector<Zp>& v,
+			Ring* R
+		) {
+			sparse_vec_add<INDEX>(u, v, R->ring);
+			return u;
+		};
+		
+		
+		/**
+		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Zp,
+		 * in parallel.
+		 * 
+		 * @param u Vector.
+		 * @param v Vector.
+		 * @param R (Pointer to) the coefficient ring @ref Zp.
+		 * @param options Parallel computing options.
+		 * 
+		 * @returns \f$ \vec w = \vec u + \vec v \f$.
+		 */
+		inline SparseVector<Zp> SparseVectorAddition(
+			SparseVector<Zp>& u,
+			SparseVector<Zp>& v,
 			Ring* R,
 			arithmetic::ThreadOptions& options
 		) {
-			// If we're NOT using parallelization, then skip everything else.
-			if (!options.parallelSparseAddition) {
-				sparse_vec_add<INDEX>(u, v, R->ring);
-				return u;
-			}
 
 			// Get the number of threads, then the max/min of the largest/smallest
 			// indices in u and v.
@@ -78,55 +85,50 @@ namespace ATEAMS {
 			int mod = (maxindex-minindex)/threads;
 			int width = mod + 1;
 
-			if (width < options.parallelSparseAdditionChunkWidth) {
-				sparse_vec_add<INDEX>(u, v, R->ring);
-			} else {
-				// Specify the index ranges for each thread.
-				std::vector<std::vector<int>> ranges(threads, std::vector<int>(2,0));
-				ranges[0][0] = minindex;
-				ranges[0][1] = minindex+width;
+			std::vector<std::vector<int>> ranges(threads, std::vector<int>(2,0));
+			ranges[0][0] = minindex;
+			ranges[0][1] = minindex+width;
 
-				for (int t=1; t < threads; t++) {
-					ranges[t][0] = ranges[t-1][1];
-					ranges[t][1] = ranges[t][0] + width;
-				}
+			for (int t=1; t < threads; t++) {
+				ranges[t][0] = ranges[t-1][1];
+				ranges[t][1] = ranges[t][0] + width;
+			}
 
-				ranges[threads-1][1] = maxindex+1;
+			ranges[threads-1][1] = maxindex+1;
 
-				// Create a bucket for a vector on each thread; specify the length
-				// ahead-of-time, so that no vectors are overwriting one another.
-				std::vector<SparseVector<Zp>> chunks(threads);
+			// Create a bucket for a vector on each thread; specify the length
+			// ahead-of-time, so that no vectors are overwriting one another.
+			std::vector<SparseVector<Zp>> chunks(threads);
 
-				// Now, on each thread, copy each chunk of each sparse vector, then
-				// add to `chunks`.
-				for (int thread=0; thread < threads; thread++) {
-					options.opt->pool.detach_task([thread, ranges, &u, &v, &R, &chunks] {
-						SparseVector<Zp> upart, vpart;
-						int lo = ranges[thread][0], hi = ranges[thread][1];
+			// Now, on each thread, copy each chunk of each sparse vector, then
+			// add to `chunks`.
+			for (int thread=0; thread < threads; thread++) {
+				options.opt->pool.detach_task([thread, ranges, &u, &v, &R, &chunks] {
+					SparseVector<Zp> upart, vpart;
+					int lo = ranges[thread][0], hi = ranges[thread][1];
 
-						// Get the relevant parts of u and v.
-						for (int i=0; i < u.size(); i++) {
-							if (lo <= u(i) && u(i) < hi) upart.push_back(u(i),u[i]);
-						}
-
-						for (int i=0; i < v.size(); i++) {
-							if (lo <= v(i) && v(i) < hi) vpart.push_back(v(i),v[i]);
-						}
-
-						// Now, perform the addition, then write to the vector of chunks.
-						sparse_vec_add<INDEX>(upart, vpart, R->ring);
-						chunks[thread] = upart;
-					});
-				}
-				options.opt->pool.wait();
-
-				// Once we're done waiting, reconstitute the vector.
-				u.zero();
-
-				for (int thread=0; thread < threads; thread++) {
-					for (int i=0; i < chunks[thread].size(); i++) {
-						u.push_back(chunks[thread](i), chunks[thread][i]);
+					// Get the relevant parts of u and v.
+					for (int i=0; i < u.size(); i++) {
+						if (lo <= u(i) && u(i) < hi) upart.push_back(u(i),u[i]);
 					}
+
+					for (int i=0; i < v.size(); i++) {
+						if (lo <= v(i) && v(i) < hi) vpart.push_back(v(i),v[i]);
+					}
+
+					// Now, perform the addition, then write to the vector of chunks.
+					sparse_vec_add<INDEX>(upart, vpart, R->ring);
+					chunks[thread] = upart;
+				});
+			}
+			options.opt->pool.wait();
+
+			// Once we're done waiting, reconstitute the vector.
+			u.zero();
+
+			for (int thread=0; thread < threads; thread++) {
+				for (int i=0; i < chunks[thread].size(); i++) {
+					u.push_back(chunks[thread](i), chunks[thread][i]);
 				}
 			}
 

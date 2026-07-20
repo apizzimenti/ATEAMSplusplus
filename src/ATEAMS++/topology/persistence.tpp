@@ -178,7 +178,7 @@ namespace ATEAMS::topology {
 					typename RingLike::dtype s = scalar_neg(scalar_inv(youngestFaceCoefficient, R->ring), R->ring);
 
 					arithmetic::SparseVectorRescaling<RingLike>(s, youngestFace, R);
-					arithmetic::SparseVectorAddition(cell, youngestFace, R, options);
+					arithmetic::SparseVectorAddition(cell, youngestFace, R);
 				}
 
 				cell.compress();
