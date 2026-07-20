@@ -36,7 +36,7 @@ endif()
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
 set(TEST FALSE)
-set(PROFILE TRUE)
+set(PROFILE FALSE)
 set(TIMING TRUE)
 set(PROFILE_COMPILE_OPTIONS -p -fno-omit-frame-pointer -fno-inline-functions -fno-inline-functions-called-once -fno-optimize-sibling-calls)
 
@@ -185,11 +185,11 @@ list(APPEND COMPLEXES
 )
 
 list(APPEND ARITHMETIC
-	# "kernel"
+	"addition"
 )
 
 list(APPEND TOPOLOGY
-	"persistence"
+	# "persistence"
 )
 
 list(APPEND MODELS
@@ -281,6 +281,11 @@ endif()
 
 if (TIMING)
 	foreach(FUNCTION IN LISTS TOPOLOGY)
+		add_executable(timing.${FUNCTION} performance/timing.${FUNCTION}.cpp)
+		target_link_libraries(timing.${FUNCTION} PUBLIC ATEAMS++)
+	endforeach()
+
+	foreach(FUNCTION IN LISTS ARITHMETIC)
 		add_executable(timing.${FUNCTION} performance/timing.${FUNCTION}.cpp)
 		target_link_libraries(timing.${FUNCTION} PUBLIC ATEAMS++)
 	endforeach()

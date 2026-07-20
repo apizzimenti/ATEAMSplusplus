@@ -37,6 +37,14 @@ namespace ATEAMS {
 			return y;
 		};
 
+		inline SparseVector<Zp> SparseVectorAddition(
+			SparseVector<Zp>& u,
+			SparseVector<Zp>& v,
+			Ring* R
+		) {
+			sparse_vec_add<INDEX>(u, v, R->ring);
+			return u;
+		};
 		
 		/**
 		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Zp.

@@ -1,13 +1,16 @@
 
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
 
-HOST = "pangolin"
-EXECS = ["persistence"]
-FIELDS = [2, 3]
-DIMENSIONS = [2]
+EXECS = ["addition"]
+HOSTS = ["pangolin", "meglTower"]
+TRIALSS = ["1000"]
 
-MODES = ["SERIAL", "PARALLEL"]
+HEADER = ["LENGTH", "DENSITY", "OVERLAP", "mus"]
+HEADERTYPES = [int, float, float, int]
+
 COLORS = ["#DDAA33", "#BB5566"]
 
 OFFSET = 0.2
@@ -19,8 +22,6 @@ SCALES = {
 }
 
 UNIT = 1
-
-WIDTHS = [512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072]
 
 cellcounts = {
 	2: { 2: 16, 4: 64, 5: 100, 8: 256, 11: 484, 16: 1024, 22: 1936, 32: 4096, 45: 8100, 64: 16384, 90: 32400, 128: 65536, 181: 131044, 256: 262144, 362: 524176, 512: 1048576,  },
@@ -89,61 +90,87 @@ plt.rcParams.update({
 })
 
 for EXEC in EXECS:
-	for FIELD in FIELDS:
-		for DIMENSION in DIMENSIONS:
-			fig, ax = plt.subplots(figsize=(4,4))
+	for TRIALS in TRIALSS:
+		for HOST in HOSTS:
+			PREFIX = f"{HOST}.{EXEC}.{TRIALS}"
+			DATA = pd.read_csv(f"./timing/{PREFIX}.tsv", sep="\t", names=HEADER)
 
-			PREFIX = f"{HOST}.{EXEC}.{FIELD}.{DIMENSION}"
+			for i, NAME in enumerate(HEADER): DATA[NAME].astype(HEADERTYPES[i])
 
-			lo = np.inf
-			hi = 0
+			# Within each length, go density by time.
+			LENGTHS = DATA["LENGTH"].unique()
+
+			for LENGTH in LENGTHS:
+				SUBSET = DATA[DATA.LENGTH == LENGTH]
+				GROUPED = SUBSET.groupby("DENSITY")
+
+				boxes = [group.mus for _, group in GROUPED][20:]
+
+				fig, ax = plt.subplots(figsize=(4,4))
+
+				ax.boxplot(boxes, **plotprops)
+
+				ax.set_yscale("log")
+				ax.set_ylabel(r"$\log_{10}(\mu\mathrm{s})$", fontsize=8)
+				# ax.set_ylim(lo, hi)
+
+				# ax.set_xticks([])
+				ax.set_xticklabels([])
+
+				plt.savefig(f"./timing/{PREFIX}.{LENGTH}.DENSITY.jpeg", bbox_inches="tight", dpi=300)
+				plt.close()
+				plt.clf()
+				# sys.exit(1)
+
+			# lo = np.inf
+			# hi = 0
 			
-			for POSITION, COLOR, MODE in zip(POSITIONS, COLORS, MODES):
-				boxes = [
-					np.loadtxt(f"timing/{PREFIX}.{str(SCALE).zfill(3)}.{MODE}.data")
-					for SCALE in SCALES[DIMENSION]
-				]
+			# for POSITION, COLOR, MODE in zip(POSITIONS, COLORS, MODES):
+			# 	boxes = [
+			# 		np.loadtxt(f"timing/{PREFIX}.{str(SCALE).zfill(3)}.{MODE}.data")
+			# 		for SCALE in SCALES[DIMENSION]
+			# 	]
 
-				if boxes[0].min() < lo: lo = boxes[0].min()
-				if boxes[-1].max() > hi: hi = boxes[-1].max()
+			# 	if boxes[0].min() < lo: lo = boxes[0].min()
+			# 	if boxes[-1].max() > hi: hi = boxes[-1].max()
 
-				boxplot = ax.boxplot(
-					boxes,
-					positions=[k+POSITION for k in range(len(boxes))],
-					patch_artist=True,
-					boxprops={"facecolor": COLOR, **boxprops},
-					**plotprops
-				)
+			# 	boxplot = ax.boxplot(
+			# 		boxes,
+			# 		positions=[k+POSITION for k in range(len(boxes))],
+			# 		patch_artist=True,
+			# 		boxprops={"facecolor": COLOR, **boxprops},
+			# 		**plotprops
+			# 	)
 
-				for j, box in enumerate(boxes):
-					ax.scatter(j+POSITION, np.median(box), marker="D", s=2, color="k" , zorder=1000)
+			# 	for j, box in enumerate(boxes):
+			# 		ax.scatter(j+POSITION, np.median(box), marker="D", s=2, color="k" , zorder=1000)
 
-			ax.set_yscale("log")
-			ax.set_ylabel(r"$\log_{10}(\mu\mathrm{s})$", fontsize=8)
-			ax.set_ylim(lo, hi)
+			# ax.set_yscale("log")
+			# ax.set_ylabel(r"$\log_{10}(\mu\mathrm{s})$", fontsize=8)
+			# ax.set_ylim(lo, hi)
 
-			ax.set_xlabel("cells (linear scale)", fontsize=8)
-			ax.set_xticks(range(len(boxes)))
-			ax.set_xticklabels(
-				[
-					f"{cellcounts[DIMENSION][SCALE]:,} ({SCALE})"
-					for SCALE in SCALES[DIMENSION]
-				],
-				fontsize=6,
-				rotation=315,
-				ha="left"
-			)
+			# ax.set_xlabel("cells (linear scale)", fontsize=8)
+			# ax.set_xticks(range(len(boxes)))
+			# ax.set_xticklabels(
+			# 	[
+			# 		f"{cellcounts[DIMENSION][SCALE]:,} ({SCALE})"
+			# 		for SCALE in SCALES[DIMENSION]
+			# 	],
+			# 	fontsize=6,
+			# 	rotation=315,
+			# 	ha="left"
+			# )
 
-			ax.set_xlim(-1,len(boxes)+1)
+			# ax.set_xlim(-1,len(boxes)+1)
 
-			for tick, label in labels.items():
-				if lo <= tick <= hi:
-					ax.text(0.05, tick, label, fontsize=6, ha="left", alpha=1/2, va="bottom")
-					ax.hlines(tick, xmin=-1, xmax=len(boxes)+1, color="k", alpha=1/4, zorder=-1000)
-			plt.savefig(f"./timing/{PREFIX}.jpeg", dpi=300, bbox_inches="tight")
+			# for tick, label in labels.items():
+			# 	if lo <= tick <= hi:
+			# 		ax.text(0.05, tick, label, fontsize=6, ha="left", alpha=1/2, va="bottom")
+			# 		ax.hlines(tick, xmin=-1, xmax=len(boxes)+1, color="k", alpha=1/4, zorder=-1000)
+			# plt.savefig(f"./timing/{PREFIX}.jpeg", dpi=300, bbox_inches="tight")
 
-			plt.clf()
-			plt.close()
+			# plt.clf()
+			# plt.close()
 
 
 ## A plot of matrix density vs time?
