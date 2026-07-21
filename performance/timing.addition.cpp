@@ -73,9 +73,6 @@ int main(int argc, char* argv[]) {
 	uniform_int_distribution<int> uniformValues(1, R.characteristic);
 	uniform_int_distribution<int> uniformEntries(1, LENGTH);
 
-	arithmetic::ThreadOptions options;
-	thread listener = options.spinUp();
-
 	vector<int> lN(TRIALS);
 	vector<int> rN(TRIALS);
 	vector<double> OVERLAP(TRIALS);
@@ -102,8 +99,6 @@ int main(int argc, char* argv[]) {
 		TTC[t] = duration.count();
 	}
 
-	options.spinDown(&listener);
-
 	string csv = "";
 
 	for (int t=0; t < TRIALS; t++) {
@@ -112,7 +107,7 @@ int main(int argc, char* argv[]) {
 
 	// APPEND to file.
 	ofstream file;
-	file.open(format("./performance/timing/{}.arithmetic.{}.csv", HOSTNAME, TRIALS), fstream::app);
+	file.open(format("./performance/timing/{}.addition.{}.csv", HOSTNAME, TRIALS), fstream::app);
 	file << csv;
 	file.close();
 

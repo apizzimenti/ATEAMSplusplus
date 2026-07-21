@@ -33,14 +33,14 @@ profiling: FORCE
 	@screen -dmS profiling.topology ./performance/profiling.topology.sh
 
 timing: FORCE
-# 	@screen -dmS timing.topology ./performance/timing.topology.sh
-	screen -dmS timing.addition.default ./performance/timing.addition.sh 50
+	./performance/timing.addition.sh &> ./performance/timing.addition.log &
 
 gauntlet: FORCE
-	rm -f ./performance/profiling/*(N) ./performance/timing/*(N)
+# 	rm -f ./performance/profiling/*(N) ./performance/timing/*(N)
 # 	screen -dmS gauntlet.topology ./performance/gauntlet.topology.sh
 # 	screen -dmS timing.addition.sample ./performance/timing.addition.sh 50
-	screen -dmS timing.addition.default ./performance/timing.addition.sh
+# 	screen -dmS timing.addition.default ./performance/timing.addition.sh
+	./performance/timing.addition.sh &> ./performance/timing.addition.log &
 
 test:
 	@cd build; ctest
