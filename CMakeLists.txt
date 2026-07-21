@@ -35,17 +35,26 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST TRUE)
-set(PROFILE FALSE)
+set(TEST FALSE)
+set(PROFILE TRUE)
 set(TIMING FALSE)
-set(PROFILE_COMPILE_OPTIONS -p -fno-omit-frame-pointer -fno-inline-functions -fno-inline-functions-called-once -fno-optimize-sibling-calls)
+
+set(PROFILE_COMPILE_OPTIONS
+	-pg
+	-fno-omit-frame-pointer
+	-fno-inline-functions
+)
+
+set(PROFILE_LINK_OPTIONS
+	-pg
+)
 
 if (TEST)
 	enable_testing()
 endif()
 
 if (PROFILE)
-	add_compile_options(-O2)
+
 else()
 	add_compile_options(-O3)
 endif()
@@ -142,6 +151,11 @@ if(APPLE)
 	set_target_properties(ATEAMS++ PROPERTIES INSTALL_NAME_DIR ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR})
 endif()
 
+if(LINUX)
+	find_package(TBB REQUIRED)
+	link_libraries(tbb)
+endif()
+
 
 # Install headers.
 install(DIRECTORY "${PROJECT_SOURCE_DIR}/dependencies/phat/"
@@ -186,7 +200,7 @@ list(APPEND COMPLEXES
 )
 
 list(APPEND ARITHMETIC
-	# "addition"
+	"addition"
 )
 
 list(APPEND TOPOLOGY
@@ -282,6 +296,7 @@ if (PROFILE)
 		add_executable(profiling.${FUNCTION} performance/profiling.${FUNCTION}.cpp)
 		target_link_libraries(profiling.${FUNCTION} PUBLIC ATEAMS++)
 		target_compile_options(profiling.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
+		target_link_options(profiling.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 	endforeach()
 endif()
 
