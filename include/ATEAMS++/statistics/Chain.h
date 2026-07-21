@@ -59,7 +59,7 @@ namespace ATEAMS {
 		class Chain {
 			public:
 				ModelType* model;
-				arithmetic::ComputeOptions options;
+				arithmetic::ComputeOptions<typename ModelType::RingType> options;
 
 				int steps;
 
@@ -79,7 +79,7 @@ namespace ATEAMS {
 					this->model = model;
 					this->steps = steps;
 
-					arithmetic::ComputeOptions options;
+					arithmetic::ComputeOptions<typename ModelType::RingType> options;
 					this->options = options;
 
 					State state;
@@ -93,7 +93,11 @@ namespace ATEAMS {
 				 * @param steps Number of iterations.
 				 * @param options User-provided compute options.
 				 */
-				Chain(ModelType* model, int steps, arithmetic::ComputeOptions options) {
+				Chain(
+					ModelType* model,
+					int steps,
+					arithmetic::ComputeOptions<typename ModelType::RingType> options
+				) {
 					this->model = model;
 					this->steps = steps;
 					this->options = options;

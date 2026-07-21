@@ -116,7 +116,7 @@ namespace ATEAMS::models {
 			State sample(
 				int t,
 				State& state,
-				ATEAMS::arithmetic::ComputeOptions& options
+				ATEAMS::arithmetic::ComputeOptions<RingLike>& options
 			) override;
 
 			/**

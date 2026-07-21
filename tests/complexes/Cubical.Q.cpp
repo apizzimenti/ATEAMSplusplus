@@ -6,7 +6,12 @@ using namespace ATEAMS;
 using namespace std;
 
 
-vector<int> homologySizes(complexes::Complex<Q>* COMPLEX, Ring* QQ, int dimension) {
+vector<int> homologySizes(
+	complexes::Complex<Q>* COMPLEX,
+	Ring* QQ,
+	int dimension,
+	arithmetic::ComputeOptions<Q>& options
+) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
@@ -14,7 +19,7 @@ vector<int> homologySizes(complexes::Complex<Q>* COMPLEX, Ring* QQ, int dimensio
 	vector<int> sizes;
 
 	for (int d=0; d < COMPLEX->Breaks.size(); d++) {
-		vector<int> times = topology::persistence<Q>(COMPLEX, FILTRATION, QQ, d);
+		vector<int> times = topology::persistence<Q>(COMPLEX, FILTRATION, QQ, d, options);
 		printvector<int>(times);
 
 		sizes.push_back(
@@ -30,7 +35,7 @@ vector<int> homologySizes(complexes::Complex<Q>* COMPLEX, Ring* QQ, int dimensio
 
 int main() {
 	// Construct arithmetic options.
-	arithmetic::ComputeOptions options;
+	arithmetic::ComputeOptions<Q> options;
 	std::thread listener = options.spinUp();
 
 	// Construct Cubical complexes of varying dimensions/boundary conditions,
@@ -58,7 +63,7 @@ int main() {
 		CUBICAL.constructBoundaryMatrices(&QQ);
 		CUBICAL.constructFlatBoundaryMatrix();
 
-		vector<int> sizes = homologySizes(&CUBICAL, &QQ, dimension);
+		vector<int> sizes = homologySizes(&CUBICAL, &QQ, dimension, options);
 
 		if (sizes != homologies[dimension]) {
 			options.spinDown(&listener);

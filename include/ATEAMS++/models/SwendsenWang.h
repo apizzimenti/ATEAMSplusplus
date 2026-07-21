@@ -133,7 +133,11 @@ namespace ATEAMS::models {
 			 * @return Model state, with @ref ModelState::cochain, @ref ModelState::includes,
 			 * and @ref ModelState::t updated.
 			 */
-			State sample(int t, State& state, ATEAMS::arithmetic::ComputeOptions& options) override;
+			State sample(
+				int t,
+				State& state,
+				ATEAMS::arithmetic::ComputeOptions<RingLike>& options
+			) override;
 
 			/**
 			 * @brief Initializes \f$f_0\f$ to uniform random element of \f$\Z/p\Z\f$

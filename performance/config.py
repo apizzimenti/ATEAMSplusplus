@@ -13,6 +13,7 @@ CONFIG.topics = Bunch()
 metadata = Bunch()
 
 metadata.hosts = ["pangolin", "meglTower"]
+metadata.computing = ["serial", "parallel"]
 
 metadata.initialize = lambda p: p.rcParams.update({
 	"text.usetex": True,
@@ -408,9 +409,10 @@ CONFIG._defaults.yaxis.logTime = \
 CONFIG.topics.addition = Bunch()
 
 CONFIG.topics.addition.exec = "addition"
+CONFIG.topics.addition.computing = CONFIG.metadata.computing
 CONFIG.topics.addition.trials = 1000
 CONFIG.topics.addition.sep = ","
-CONFIG.topics.addition.prefix = lambda host: f"{host}.{CONFIG.topics.addition.exec}.{CONFIG.topics.addition.trials}"
+CONFIG.topics.addition.prefix = lambda host, computing: f"{host}.{CONFIG.topics.addition.exec}.{computing}.{CONFIG.topics.addition.trials}"
 
 CONFIG.topics.addition.columns = [
 	"N",
@@ -429,7 +431,7 @@ CONFIG.topics.addition.dtypes = {
 }
 
 
-CONFIG.topics.addition.data = lambda host: _additionReadFile(host, CONFIG.topics.addition)
+CONFIG.topics.addition.data = lambda host, computing: _additionReadFile(host, computing, CONFIG.topics.addition)
 
 ################################################################################
 ## PLOTS #######################################################################
@@ -486,15 +488,15 @@ CONFIG.topics.addition.plots.timeByOverlap.lsq.text = dict(
 
 ## OUTPUT ##########
 CONFIG.topics.addition.plots.timeByOverlap.ext = "jpeg"
-CONFIG.topics.addition.plots.timeByOverlap.out = lambda host, length: f"./timing/{CONFIG.topics.addition.prefix(host)}.{length}.timeByOverlap.{CONFIG.topics.addition.plots.timeByOverlap.ext}"
+CONFIG.topics.addition.plots.timeByOverlap.out = lambda host, length, computing: f"./timing/{CONFIG.topics.addition.prefix(host, computing)}.{length}.timeByOverlap.{CONFIG.topics.addition.plots.timeByOverlap.ext}"
 CONFIG.topics.addition.plots.timeByOverlap.savefig = CONFIG._defaults.savefig
 
 
 ################################################################################
 ## MISCELLANEOUS FUNCTIONS #####################################################
 ################################################################################
-def _additionReadFile(host, topic):
-	pref = topic.prefix(host)
+def _additionReadFile(host, computing, topic):
+	pref = topic.prefix(host, computing)
 	data = pd.read_csv(f"./timing/{pref}.csv", sep=topic.sep, names=topic.columns)
 
 	for column in topic.columns: data[column] = data[column].astype(topic.dtypes[column])

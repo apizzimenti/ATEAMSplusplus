@@ -16,7 +16,7 @@ namespace ATEAMS::models {
 	Bernoulli::State Bernoulli::sample(
 		int t,
 		Bernoulli::State& state,
-		arithmetic::ComputeOptions& options
+		arithmetic::ComputeOptions<RingType>& options
 	) {
 		// If we're debugging, check that the inclusion probability is a probability
 		// to begin with.
@@ -60,7 +60,7 @@ namespace ATEAMS::models {
 
 		// Now, compute the persistence times, then filter over them to capture only
 		// the ones within the right window.
-		vector<int> essential = topology::persistence<Z2>(this->complex, this->filtration, this->coefficients, d, options);
+		vector<int> essential = topology::persistence<RingType>(this->complex, this->filtration, this->coefficients, d, options);
 		std::erase_if(essential, [stop, included](int t) { return !((stop <= t) && (t < stop+included)); });
 
 		if (this->DEBUG) {
@@ -81,10 +81,10 @@ namespace ATEAMS::models {
 	}
 
 	Bernoulli::Bernoulli(
-		complexes::Complex<Z2>* complex,
+		complexes::Complex<RingType>* complex,
 		ModelParameters parameters
-	) : Model<Z2,DenseVector>(
-		new Z2,
+	) : Model<RingType,DenseVector>(
+		new RingType,
 		parameters.dimension,
 		parameters.DEBUG
 	) {
@@ -107,11 +107,11 @@ namespace ATEAMS::models {
 	};
 
 	Bernoulli::Bernoulli(
-		complexes::Complex<Z2>* complex,
+		complexes::Complex<RingType>* complex,
 		int dimension,
 		double p,
 		bool DEBUG
-	) : Model<Z2,DenseVector>(new Z2, dimension, DEBUG) {
+	) : Model<RingType,DenseVector>(new RingType, dimension, DEBUG) {
 		this->complex = complex;
 		this->p = p;
 

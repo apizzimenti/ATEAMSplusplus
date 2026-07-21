@@ -70,7 +70,7 @@ namespace ATEAMS::models {
 			 * @param parameters Model parameters.
 			 */
 			Bernoulli(
-				complexes::Complex<Z2>* complex,
+				complexes::Complex<RingType>* complex,
 				ModelParameters parameters
 			);
 
@@ -86,7 +86,7 @@ namespace ATEAMS::models {
 			 * @param DEBUG _(Optional, default `false`)_ Are we debugging this Model?
 			 */
 			Bernoulli(
-				complexes::Complex<Z2>* complex,
+				complexes::Complex<RingType>* complex,
 				int dimension,
 				double p=0.5,
 				bool DEBUG=false
@@ -105,14 +105,14 @@ namespace ATEAMS::models {
 			State sample(
 				int t, 
 				State& state,
-				arithmetic::ComputeOptions& options
+				arithmetic::ComputeOptions<RingType>& options
 			) override;
 
 			/** @brief Initialization; superfluous. */
 			State initialize(State& state) override { return state; };
 
 			/** @brief Initialization; superfluous. */
-			State initialize(std::vector<Z2> c, State& state) override { return state; };
+			State initialize(std::vector<RingType> c, State& state) override { return state; };
 
 		private:
 			std::mt19937 RNG;

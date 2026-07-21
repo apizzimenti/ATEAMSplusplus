@@ -59,7 +59,9 @@ bool checkReindexing(complexes::Complex<Q>* COMPLEX) {
 }
 
 
-bool checkPHATpersistence(complexes::Complex<Q>* COMPLEX) {
+bool checkPHATpersistence(
+	complexes::Complex<Q>* COMPLEX
+) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
@@ -70,7 +72,11 @@ bool checkPHATpersistence(complexes::Complex<Q>* COMPLEX) {
 	return times.size() == 6;
 }
 
-bool checkTwistPersistence(complexes::Complex<Q>* COMPLEX, Ring* R, arithmetic::ComputeOptions& options) {
+bool checkTwistPersistence(
+	complexes::Complex<Q>* COMPLEX,
+	Ring* R,
+	arithmetic::ComputeOptions<Q>& options
+) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
 	iota(FILTRATION.begin(), FILTRATION.end(), 0);
@@ -96,7 +102,7 @@ int main(int argc, char *argv[]) {
 	COMPLEX.constructFullBoundaryMatrix(&QQ);
 
 	// Construct arithmetic options.
-	arithmetic::ComputeOptions options;
+	arithmetic::ComputeOptions<Q> options;
 	std::thread listener = options.spinUp();
 
 	// Check (for fields > 2) that we're reindexing (co)boundary matrices
@@ -109,7 +115,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	if (FIELD > 2) {
-		if (!checkTwistPersistence(&COMPLEX, &QQ)) {
+		if (!checkTwistPersistence(&COMPLEX, &QQ, options)) {
 			options.spinDown(&listener);
 			return FAIL;
 		}

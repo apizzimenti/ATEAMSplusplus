@@ -35,9 +35,9 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST FALSE)
+set(TEST TRUE)
 set(PROFILE FALSE)
-set(TIMING TRUE)
+set(TIMING FALSE)
 set(PROFILE_COMPILE_OPTIONS -p -fno-omit-frame-pointer -fno-inline-functions -fno-inline-functions-called-once -fno-optimize-sibling-calls)
 
 if (TEST)
@@ -99,6 +99,7 @@ list(APPEND SOURCE_HEADERS
 
 list(APPEND SOURCE_IMPLEMENTATIONS
 	# Templated implementations
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/arithmetic/arithmetic.tpp
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/arithmetic/kernel.tpp
 
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/topology/persistence.tpp
@@ -181,15 +182,15 @@ install(
 ################################################################################
 
 list(APPEND COMPLEXES
-	# "Cubical"
+	"Cubical"
 )
 
 list(APPEND ARITHMETIC
-	"addition"
+	# "addition"
 )
 
 list(APPEND TOPOLOGY
-	# "persistence"
+	"persistence"
 )
 
 list(APPEND MODELS
@@ -201,7 +202,7 @@ list(APPEND MODELS
 )
 
 list(APPEND TYPES
-	# "Q"
+	"Q"
 	"Zp"
 )
 
@@ -275,6 +276,11 @@ if (PROFILE)
 		add_executable(profiling.${FUNCTION} performance/profiling.${FUNCTION}.cpp)
 		target_link_libraries(profiling.${FUNCTION} PUBLIC ATEAMS++)
 		target_compile_options(profiling.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
+	endforeach()
+
+	foreach(FUNCTION IN LISTS ARITHMETIC)
+		add_executable(profiling.${FUNCTION} performance/profiling.${FUNCTION}.cpp)
+		target_link_libraries(profiling.${FUNCTION} PUBLIC ATEAMS++)
 	endforeach()
 endif()
 

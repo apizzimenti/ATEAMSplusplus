@@ -25,7 +25,7 @@ namespace ATEAMS::models {
 	Invasion<RingLike>::State Invasion<RingLike>::sample(
 		int t,
 		Invasion<RingLike>::State& state,
-		arithmetic::ComputeOptions& options
+		arithmetic::ComputeOptions<RingLike>& options
 	) {
 		int d = this->dimension;
 

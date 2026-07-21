@@ -58,7 +58,7 @@ namespace ATEAMS::arithmetic {
 		std::set<size_t> exclude,
 		std::uniform_int_distribution<int>& intuniform,
 		std::mt19937& RNG,
-		ComputeOptions& options,
+		ComputeOptions<RingLike>& options,
 		bool DEBUG=false
 	);
 }

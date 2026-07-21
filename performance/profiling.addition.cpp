@@ -60,9 +60,6 @@ int main(int argc, char* argv[]) {
 	int TRIALS = stoi(argv[2]);
 	int LENGTH = stoi(argv[3]);
 	bool PARALLEL = (bool)stoi(argv[4]);
-
-	// Column separation character.
-	string sep = ",";
 	
 	// Field; thread options.
 	Zp R(3);
@@ -74,11 +71,6 @@ int main(int argc, char* argv[]) {
 	uniform_int_distribution<int> uniformValues(1, R.characteristic);
 	uniform_int_distribution<int> uniformEntries(1, LENGTH);
 
-	vector<int> lN(TRIALS);
-	vector<int> rN(TRIALS);
-	vector<double> OVERLAP(TRIALS);
-	vector<int> TTC(TRIALS);
-
 	arithmetic::ComputeOptions options;
 	thread listener = options.spinUp();
 
@@ -89,36 +81,12 @@ int main(int argc, char* argv[]) {
 
 		SparseVector<Zp> u = randomizedVector(LENGTH, ulength, uniformValues, RNG);
 		SparseVector<Zp> v = randomizedVector(LENGTH, vlength, uniformValues, RNG);
-
-		long double overlap = vectorIndexOverlap(u, v);
-
-		auto start = chrono::high_resolution_clock::now();
+		
 		if (PARALLEL) arithmetic::SparseVectorAddition(u, v, &R, options);
 		else arithmetic::SparseVectorAddition(u, v, &R);
-		auto end = chrono::high_resolution_clock::now();
-
-		auto duration = chrono::duration_cast<chrono::microseconds>(end-start);
-		lN[t] = ulength;
-		rN[t] = vlength;
-		OVERLAP[t] = overlap;
-		TTC[t] = duration.count();
 	}
 
 	options.spinDown(&listener);
-
-	string csv = "";
-
-	for (int t=0; t < TRIALS; t++) {
-		csv = csv + format("{},{},{},{:.12f},{}\n", LENGTH, lN[t], rN[t], OVERLAP[t], TTC[t]);
-	}
-
-	string KIND = PARALLEL ? "parallel" : "serial";
-
-	// APPEND to file.
-	ofstream file;
-	file.open(format("./performance/timing/{}.addition.{}.{}.csv", HOSTNAME, KIND, TRIALS), fstream::app);
-	file << csv;
-	file.close();
 
 	return 0;
 }

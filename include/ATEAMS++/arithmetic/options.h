@@ -21,6 +21,23 @@ namespace ATEAMS::arithmetic {
 	 */
 	typedef SparseRREF::rref_option_t RREFOptionType;
 
+	// enum class Strategy { MIXED, PARALLEL, SERIAL };
+
+	/**
+	 * @class ParallelOptions
+	 * @brief Facilities for more efficient parallel computing.
+	 */
+	template <typename RingLike>
+	struct ParallelOptions {
+		int threads;
+		bool enabled = false;
+		std::vector<std::vector<int>> indexBlocks;
+		std::vector<SparseVector<RingLike>> vectorBlocks;
+		std::vector<SparseVector<RingLike>> reusableBlocks;
+
+		// Strategy computeStrategy = Strategy::MIXED;
+	};
+
 	/**
 	 * @class ComputeOptions
 	 * @brief Convenience class for managing Flint and multithreading. See
@@ -38,15 +55,21 @@ namespace ATEAMS::arithmetic {
 	 * 	@brief The width a chunk needs to be before using multiple threads. Default
 	 * 	`512`.
 	 */
+	template <typename RingLike>
 	class ComputeOptions {
 		public:
 			RREFOptions* opt;
+			ParallelOptions<RingLike>* parallel;
 
 			/**
 			 * @brief Constructor.
 			 */
 			ComputeOptions() {
 				this->opt = new RREFOptionType;
+				
+				ParallelOptions<RingLike> p;
+				this->parallel = &p;
+				this->initializeParallelism();
 			};
 
 			/**
@@ -69,6 +92,22 @@ namespace ATEAMS::arithmetic {
 				Flint::clear_cache();
 				listener->join();
 				// listener->detach();
+			};
+
+		private:
+			void initializeParallelism() {
+				// Determine how many threads we're using; this probably won't
+				// change during execution.
+				int _threads = this->opt->pool.get_thread_count();
+				int threads = _threads*_threads;
+
+				this->parallel->enabled = true;
+
+				std::vector<std::vector<int>> indexBlocks(threads, std::vector<int>(2,0));
+				this->parallel->indexBlocks = indexBlocks;
+
+				std::vector<SparseVector<RingLike>> vectorBlocks(threads);
+				this->parallel->vectorBlocks = vectorBlocks;
 			};
 	};
 }

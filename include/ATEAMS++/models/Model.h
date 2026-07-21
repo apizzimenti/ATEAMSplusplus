@@ -63,7 +63,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @returns Modified state.
 			 */
-			virtual State sample(int t, State& state, ATEAMS::arithmetic::ComputeOptions& options) = 0;
+			virtual State sample(int t, State& state, ATEAMS::arithmetic::ComputeOptions<RingLike>& options) = 0;
 
 			/**
 			 * @brief Initializes the state as determined by the model.

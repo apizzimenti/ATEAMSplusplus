@@ -15,6 +15,81 @@ namespace ATEAMS {
 	namespace arithmetic {
 
 		/**
+		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors;
+		 * 	empty template declaration.
+		 * @tparam Ring type.
+		 * 
+		 * @param u Vector.
+		 * @param v Vector.
+		 * @param R (Pointer to) the coefficient ring @ref Zp.
+		 * 
+		 * @returns \f$ \vec w = \vec u + \vec v \f$.
+		 */
+		template <typename RingLike>
+		SparseVector<RingLike> SparseVectorAddition(
+			SparseVector<RingLike>& u,
+			SparseVector<RingLike>& v,
+			Ring* R,
+			arithmetic::ComputeOptions<RingLike>& options
+		);
+
+		/**
+		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Zp.
+		 * @tparam Ring type.
+		 * 
+		 * @param u Vector.
+		 * @param v Vector.
+		 * @param R (Pointer to) the coefficient ring @ref Zp.
+		 * 
+		 * @returns \f$ \vec w = \vec u + \vec v \f$.
+		 */
+		template <>
+		SparseVector<Zp> SparseVectorAddition<Zp>(
+			SparseVector<Zp>& u,
+			SparseVector<Zp>& v,
+			Ring* R,
+			arithmetic::ComputeOptions<Zp>& options
+		);
+
+		/**
+		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Z2.
+		 * @tparam Ring type.
+		 * 
+		 * @param u Vector.
+		 * @param v Vector.
+		 * @param R (Pointer to) the coefficient ring @ref Zp.
+		 * 
+		 * @returns \f$ \vec w = \vec u + \vec v \f$.
+		 */
+		template <>
+		SparseVector<Z2> SparseVectorAddition<Z2>(
+			SparseVector<Z2>& u,
+			SparseVector<Z2>& v,
+			Ring* R,
+			arithmetic::ComputeOptions<Z2>& options
+		);
+
+		/**
+		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Q.
+		 * 
+		 * @param u Vector.
+		 * @param v Vector.
+		 * @param R (Pointer to) the coefficient ring @ref Q.
+		 * 
+		 * @returns \f$ \vec w = \vec u + \vec v \f$.
+		 */
+		template <>
+		inline SparseVector<Q> SparseVectorAddition<Q>(
+			SparseVector<Q>& u,
+			SparseVector<Q>& v,
+			Ring* R,
+			arithmetic::ComputeOptions<Q>& options
+		) {
+			sfmpq_vec_addsub_mul<INDEX,false>(u, v, (Q::dtype)1);
+			return u;
+		}
+
+		/**
 		 * @brief Sparse (right) matrix multiplication \f$ A \vec x \f$.
 		 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 		 * 
@@ -35,140 +110,6 @@ namespace ATEAMS {
 			);
 			
 			return y;
-		};
-
-		/**
-		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Zp.
-		 * 
-		 * @param u Vector.
-		 * @param v Vector.
-		 * @param R (Pointer to) the coefficient ring @ref Zp.
-		 * 
-		 * @returns \f$ \vec w = \vec u + \vec v \f$.
-		 */
-		inline SparseVector<Zp> SparseVectorAddition(
-			SparseVector<Zp>& u,
-			SparseVector<Zp>& v,
-			Ring* R
-		) {
-			sparse_vec_add<INDEX>(u, v, R->ring);
-			return u;
-		};
-		
-		
-		/**
-		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Zp,
-		 * in parallel.
-		 * 
-		 * @param u Vector.
-		 * @param v Vector.
-		 * @param R (Pointer to) the coefficient ring @ref Zp.
-		 * @param options Parallel computing options.
-		 * 
-		 * @returns \f$ \vec w = \vec u + \vec v \f$.
-		 */
-		inline SparseVector<Zp> SparseVectorAddition(
-			SparseVector<Zp>& u,
-			SparseVector<Zp>& v,
-			Ring* R,
-			arithmetic::ComputeOptions& options
-		) {
-			// Get the number of threads, then the max/min of the largest/smallest
-			// indices in u and v.
-			int _threads = options.opt->pool.get_thread_count();
-			int threads = _threads*_threads;
-			INDEX maxindex = std::max(u(u.size()-1), v(v.size()-1));
-			INDEX minindex = std::min(u(0), v(0));
-
-			// Specify the index ranges.
-			int mod = (maxindex-minindex)/threads;
-			int width = mod + 1;
-
-			std::vector<std::vector<int>> ranges(threads, std::vector<int>(2,0));
-			ranges[0][0] = minindex;
-			ranges[0][1] = minindex+width;
-
-			for (int t=1; t < threads; t++) {
-				ranges[t][0] = ranges[t-1][1];
-				ranges[t][1] = ranges[t][0] + width;
-			}
-
-			ranges[threads-1][1] = maxindex+1;
-
-			// Create a bucket for a vector on each thread; specify the length
-			// ahead-of-time, so that no vectors are overwriting one another.
-			std::vector<SparseVector<Zp>> chunks(threads);
-
-			// Now, on each thread, copy each chunk of each sparse vector, then
-			// add to `chunks`.
-			for (int thread=0; thread < threads; thread++) {
-				options.opt->pool.detach_task([thread, ranges, &u, &v, &R, &chunks] {
-					SparseVector<Zp> upart, vpart;
-					int lo = ranges[thread][0], hi = ranges[thread][1];
-
-					// Get the relevant parts of u and v.
-					for (int i=0; i < u.size(); i++) {
-						if (lo <= u(i) && u(i) < hi) upart.push_back(u(i),u[i]);
-					}
-
-					for (int i=0; i < v.size(); i++) {
-						if (lo <= v(i) && v(i) < hi) vpart.push_back(v(i),v[i]);
-					}
-
-					// Now, perform the addition, then write to the vector of chunks.
-					sparse_vec_add<INDEX>(upart, vpart, R->ring);
-					chunks[thread] = upart;
-				});
-			}
-			options.opt->pool.wait();
-
-			// Once we're done waiting, reconstitute the vector.
-			u.zero();
-
-			for (int thread=0; thread < threads; thread++) {
-				for (int i=0; i < chunks[thread].size(); i++) {
-					u.push_back(chunks[thread](i), chunks[thread][i]);
-				}
-			}
-
-			return u;
-		};
-
-		// /**
-		//  * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Z2.
-		//  * 
-		//  * @param u Vector.
-		//  * @param v Vector.
-		//  * @param R (Pointer to) the coefficient ring @ref Z2.
-		//  * 
-		//  * @returns \f$ \vec w = \vec u + \vec v \f$.
-		//  */
-		// inline SparseVector<Z2> SparseVectorAddition(
-		// 	SparseVector<Z2>& u,
-		// 	SparseVector<Z2> v,
-		// 	Ring* R
-		// ) {
-		// 	sparse_vec_add<INDEX>(u, v, R->ring);
-		// 	return u;
-		// };
-
-		/**
-		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Q.
-		 * 
-		 * @param u Vector.
-		 * @param v Vector.
-		 * @param R (Pointer to) the coefficient ring @ref Q.
-		 * 
-		 * @returns \f$ \vec w = \vec u + \vec v \f$.
-		 */
-		inline SparseVector<Q> SparseVectorAddition(
-			SparseVector<Q>& u,
-			SparseVector<Q>& v,
-			Ring* R,
-			arithmetic::ComputeOptions& options
-		) {
-			sfmpq_vec_addsub_mul<INDEX,false>(u, v, (Q::dtype)1);
-			return u;
 		};
 
 
@@ -206,7 +147,7 @@ namespace ATEAMS {
 		inline SparsePivots SparseMatrixRREF(
 			SparseMatrix<RingLike>& A,
 			Ring* R,
-			ComputeOptions& options
+			ComputeOptions<RingLike>& options
 		) {
 			return SparseRREF::sparse_mat_rref<typename RingLike::dtype,INDEX>(A, R->ring, options.opt);
 		};
@@ -228,7 +169,7 @@ namespace ATEAMS {
 			SparseMatrix<RingLike>& A,
 			Ring* R,
 			SparsePivots& pivots,
-			ComputeOptions& options
+			ComputeOptions<RingLike>& options
 		) {
 			return SparseRREF::sparse_mat_rref_kernel<typename RingLike::dtype,INDEX>(A, pivots, R->ring, options.opt);
 		};
@@ -248,7 +189,7 @@ namespace ATEAMS {
 		inline SparseMatrix<RingLike> SparseMatrixKernel(
 			SparseMatrix<RingLike>& A,
 			Ring* R,
-			ComputeOptions& options
+			ComputeOptions<RingLike>& options
 		) {
 			SparsePivots pivots = SparseMatrixRREF<RingLike>(A, R, options);
 			return SparseRREF::sparse_mat_rref_kernel<typename RingLike::dtype,INDEX>(A, pivots, R->ring, options.opt);
@@ -256,6 +197,7 @@ namespace ATEAMS {
 	};
 }
 
+#include "ATEAMS++/arithmetic/arithmetic.tpp"
 #include "ATEAMS++/arithmetic/kernel.h"
 
 #endif

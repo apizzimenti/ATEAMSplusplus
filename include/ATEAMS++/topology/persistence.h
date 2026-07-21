@@ -55,7 +55,7 @@ namespace ATEAMS::topology {
 		std::vector<int>& filtration,
 		Ring* R,
 		int dimension,
-		arithmetic::ComputeOptions& options
+		arithmetic::ComputeOptions<RingLike>& options
 	);
 
 	/**
@@ -81,7 +81,7 @@ namespace ATEAMS::topology {
 		std::vector<int>& filtration,
 		Ring* R,
 		int dimension,
-		arithmetic::ComputeOptions& options
+		arithmetic::ComputeOptions<RingLike>& options
 	);
 
 	/** @cond */

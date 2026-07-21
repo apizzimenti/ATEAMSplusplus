@@ -30,7 +30,8 @@ pull: FORCE
 
 profiling: FORCE
 # 	@screen -dmS profiling.models ./performance/profiling.models.sh
-	@screen -dmS profiling.topology ./performance/profiling.topology.sh
+# 	@screen -dmS profiling.topology ./performance/profiling.topology.sh
+	./performance/profiling.addition.sh &> ./performance/profiling.addition.log &
 
 timing: FORCE
 	./performance/timing.addition.sh &> ./performance/timing.addition.log &
