@@ -26,7 +26,7 @@ namespace ATEAMS {
 		InvadedCluster<RingLike>::State InvadedCluster<RingLike>::sample(
 			int t,
 			InvadedCluster<RingLike>::State& state,
-			arithmetic::ThreadOptions& options
+			arithmetic::ComputeOptions& options
 		) {
 			int d = this->dimension;
 

@@ -50,7 +50,7 @@ namespace ATEAMS {
 		 * 	@brief A @ref models::ModelState.
 		 * 
 		 * @var Chain::options
-		 * 	@brief Multithreaded computing options @ref arithmetic::ThreadOptions.
+		 * 	@brief Multithreaded computing options @ref arithmetic::ComputeOptions.
 		 * 
 		 * @var Chain::steps
 		 * 	@brief Number of iterations.
@@ -59,7 +59,7 @@ namespace ATEAMS {
 		class Chain {
 			public:
 				ModelType* model;
-				arithmetic::ThreadOptions options;
+				arithmetic::ComputeOptions options;
 
 				int steps;
 
@@ -70,7 +70,7 @@ namespace ATEAMS {
 				State state;
 
 				/**
-				 * @brief Constructor; uses default @ref arithmetic::ThreadOptions.
+				 * @brief Constructor; uses default @ref arithmetic::ComputeOptions.
 				 * 
 				 * @param model (Pointer to) a Model instance.
 				 * @param steps Number of iterations.
@@ -79,7 +79,7 @@ namespace ATEAMS {
 					this->model = model;
 					this->steps = steps;
 
-					arithmetic::ThreadOptions options;
+					arithmetic::ComputeOptions options;
 					this->options = options;
 
 					State state;
@@ -87,13 +87,13 @@ namespace ATEAMS {
 				};
 
 				/**
-				 * @brief Constructor; uses user-provided @ref ATEAMS::arithmetic::ThreadOptions.
+				 * @brief Constructor; uses user-provided @ref ATEAMS::arithmetic::ComputeOptions.
 				 * 
 				 * @param model (Pointer to) a Model instance.
 				 * @param steps Number of iterations.
 				 * @param options User-provided compute options.
 				 */
-				Chain(ModelType* model, int steps, arithmetic::ThreadOptions options) {
+				Chain(ModelType* model, int steps, arithmetic::ComputeOptions options) {
 					this->model = model;
 					this->steps = steps;
 					this->options = options;

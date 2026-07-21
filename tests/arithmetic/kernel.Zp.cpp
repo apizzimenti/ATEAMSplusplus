@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
 	C.constructBoundaryMatrices(&ZZ);
 
 	// Construct arithmetic options.
-	arithmetic::ThreadOptions options;
+	arithmetic::ComputeOptions options;
 	std::thread listener = options.spinUp();
 
 	// Include all the rows and perform the computation.

@@ -16,7 +16,7 @@ namespace ATEAMS::models {
 	Bernoulli::State Bernoulli::sample(
 		int t,
 		Bernoulli::State& state,
-		arithmetic::ThreadOptions& options
+		arithmetic::ComputeOptions& options
 	) {
 		// If we're debugging, check that the inclusion probability is a probability
 		// to begin with.

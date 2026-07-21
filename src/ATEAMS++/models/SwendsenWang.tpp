@@ -23,7 +23,7 @@ namespace ATEAMS {
 		SwendsenWang<RingLike>::State SwendsenWang<RingLike>::sample(
 			int t,
 			SwendsenWang<RingLike>::State& state,
-			arithmetic::ThreadOptions& options
+			arithmetic::ComputeOptions& options
 		) {
 			// Compute the temperature and probability of including particular (d-1)-cells.
 			double temp = this->temperatureFunction(t);

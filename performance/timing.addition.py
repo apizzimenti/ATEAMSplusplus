@@ -11,7 +11,7 @@ metadata = CONFIG.metadata
 addition = CONFIG.topics.addition
 
 defaults = addition.plots.defaults
-timeByDensity = addition.plots.timeByDensity
+timeByOverlap = addition.plots.timeByOverlap
 
 # Initialize the plot.
 metadata.initialize(plt)
@@ -23,30 +23,29 @@ for host in metadata.hosts:
 
 	for length in lengths:
 		subset = data[data.N == length]
-		print(host, length, len(subset))
 
 		# time-by-density scatterplot.
 		fig, ax = plt.subplots(**defaults.subplots)
-		ax.scatter(subset.OVERLAP, subset.TTC, **timeByDensity.scatter)
+		ax.scatter(subset.OVERLAP, subset.TTC, **timeByOverlap.scatter)
 
 		# Prepare horizontal and vertical axes.
-		timeByDensity.xaxis(ax)
-		timeByDensity.yaxis(ax)
+		timeByOverlap.xaxis(ax)
+		timeByOverlap.yaxis(ax)
 
 		# Perform a linear least squares fit.
-		popt, pcov = curve_fit(timeByDensity.lsq.f, subset.OVERLAP, subset.TTC)
+		popt, pcov = curve_fit(timeByOverlap.lsq.f, subset.OVERLAP, subset.TTC)
 		m, b = popt
 
 		X = np.linspace(-1, 2, 1000)
 		Y = m*X + b
-		ax.plot(X, Y, **timeByDensity.lsq.plot)
+		ax.plot(X, Y, **timeByOverlap.lsq.plot)
 
 		xlo, xhi = ax.get_xlim()
-		ax.text(xhi, m*xhi+b, rf"$\mathrm{{O}}(d)$", **timeByDensity.lsq.text)
+		ax.text(xhi, m*xhi+b, rf"$\mathrm{{O}}(d)$", **timeByOverlap.lsq.text)
 
 		plt.savefig(
-			timeByDensity.out(host, length),
-			**timeByDensity.savefig
+			timeByOverlap.out(host, length),
+			**timeByOverlap.savefig
 		)
 		plt.close()
 		plt.clf()

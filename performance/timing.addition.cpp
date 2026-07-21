@@ -78,6 +78,9 @@ int main(int argc, char* argv[]) {
 	vector<double> OVERLAP(TRIALS);
 	vector<int> TTC(TRIALS);
 
+	arithmetic::ComputeOptions options;
+	thread listener = options.spinUp();
+
 	for (int t=0; t < TRIALS; t++) {
 		// Create two random vectors; check how much their indices overlap.
 		int ulength = uniformEntries(RNG);
@@ -89,7 +92,7 @@ int main(int argc, char* argv[]) {
 		long double overlap = vectorIndexOverlap(u, v);
 
 		auto start = chrono::high_resolution_clock::now();
-		arithmetic::SparseVectorAddition(u, v, &R);
+		arithmetic::SparseVectorAddition(u, v, &R, options);
 		auto end = chrono::high_resolution_clock::now();
 
 		auto duration = chrono::duration_cast<chrono::microseconds>(end-start);
@@ -99,6 +102,8 @@ int main(int argc, char* argv[]) {
 		TTC[t] = duration.count();
 	}
 
+	options.spinDown(&listener);
+
 	string csv = "";
 
 	for (int t=0; t < TRIALS; t++) {
@@ -107,7 +112,7 @@ int main(int argc, char* argv[]) {
 
 	// APPEND to file.
 	ofstream file;
-	file.open(format("./performance/timing/{}.addition.{}.csv", HOSTNAME, TRIALS), fstream::app);
+	file.open(format("./performance/timing/{}.addition.parallel.{}.csv", HOSTNAME, TRIALS), fstream::app);
 	file << csv;
 	file.close();
 

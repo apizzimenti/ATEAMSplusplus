@@ -14,41 +14,39 @@ namespace ATEAMS::arithmetic {
 	/**
 	 * @brief Alias of `SparseRREF::rref_options`.
 	 */
-	typedef SparseRREF::rref_option ComputeOptions;
+	typedef SparseRREF::rref_option RREFOptions;
 
 	/**
 	 * @brief Alias of `SparseRREF::rref_options`.
 	 */
-	typedef SparseRREF::rref_option_t ComputeOption;
+	typedef SparseRREF::rref_option_t RREFOptionType;
 
 	/**
-	 * @class ThreadOptions
+	 * @class ComputeOptions
 	 * @brief Convenience class for managing Flint and multithreading. See
 	 * 	@ref ATEAMS::statistics::Chain; not something users should need.
 	 * 
-	 * @var ThreadOptions::opt
+	 * @var ComputeOptions::opt
 	 * 	@brief Pointer to a @ref ATEAMS::arithmetic::ComputeOptions object
 	 * 	used to keep track of the thread pool and process-killing keystrokes.
 	 * 
-	 * @var ThreadOptions::parallelSparseAddition
+	 * @var ComputeOptions::parallelSparseAddition
 	 * 	@brief Enables parallelization for @ref ATEAMS::arithmetic::SparseVectorAddition.
 	 * 	Default `true`.
 	 * 
-	 * @var ThreadOptions::parallelSparseAdditionChunkWidth
+	 * @var ComputeOptions::parallelSparseAdditionChunkWidth
 	 * 	@brief The width a chunk needs to be before using multiple threads. Default
 	 * 	`512`.
 	 */
-	class ThreadOptions {
+	class ComputeOptions {
 		public:
-			ComputeOptions* opt;
-			bool parallelSparseAddition = true;
-			int parallelSparseAdditionChunkWidth = 512;
+			RREFOptions* opt;
 
 			/**
 			 * @brief Constructor.
 			 */
-			ThreadOptions() {
-				this->opt = new ComputeOption;
+			ComputeOptions() {
+				this->opt = new RREFOptionType;
 			};
 
 			/**
@@ -72,7 +70,6 @@ namespace ATEAMS::arithmetic {
 				listener->join();
 				// listener->detach();
 			};
-
 	};
 }
 

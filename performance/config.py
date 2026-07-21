@@ -448,16 +448,16 @@ CONFIG.topics.addition.plots.defaults.scatter = CONFIG._defaults.scatter
 ## ADDITION, DENSITY BY TIME ###################################
 ################################################################
 
-CONFIG.topics.addition.plots.timeByDensity = Bunch()
+CONFIG.topics.addition.plots.timeByOverlap = Bunch()
 
-CONFIG.topics.addition.plots.timeByDensity.scatter = CONFIG.topics.addition.plots.defaults.scatter
+CONFIG.topics.addition.plots.timeByOverlap.scatter = CONFIG.topics.addition.plots.defaults.scatter
 
 
 ## AXES ############
-def _timeByDensityVaxis(ax):
+def _timeByOverlapVaxis(ax):
 	CONFIG._defaults.yaxis.logTime(ax)
 
-def _timeByDensityHaxis(ax):
+def _timeByOverlapHaxis(ax):
 	ax.set_xlim(-0.05,1.05)
 	ax.set_xticks([0, 1/4, 1/2, 3/4, 1])
 
@@ -465,19 +465,19 @@ def _timeByDensityHaxis(ax):
 		f"${t}$" for t in [r"0", r"\nicefrac 14", r"\nicefrac 12", r"\nicefrac 34", r"1"]
 	])
 
-CONFIG.topics.addition.plots.timeByDensity.yaxis = _timeByDensityVaxis
-CONFIG.topics.addition.plots.timeByDensity.xaxis = _timeByDensityHaxis
+CONFIG.topics.addition.plots.timeByOverlap.yaxis = _timeByOverlapVaxis
+CONFIG.topics.addition.plots.timeByOverlap.xaxis = _timeByOverlapHaxis
 
 ## LSQ #############
 
-CONFIG.topics.addition.plots.timeByDensity.lsq = Bunch()
-CONFIG.topics.addition.plots.timeByDensity.lsq.f = lambda x, m, b: m*x + b
-CONFIG.topics.addition.plots.timeByDensity.lsq.plot = dict(
+CONFIG.topics.addition.plots.timeByOverlap.lsq = Bunch()
+CONFIG.topics.addition.plots.timeByOverlap.lsq.f = lambda x, m, b: m*x + b
+CONFIG.topics.addition.plots.timeByOverlap.lsq.plot = dict(
 	c=CONFIG.colors.tol.vibrant.red,
 	zorder=-10000
 )
 
-CONFIG.topics.addition.plots.timeByDensity.lsq.text = dict(
+CONFIG.topics.addition.plots.timeByOverlap.lsq.text = dict(
 	ha="right",
 	va="bottom",
 	fontsize=4,
@@ -485,9 +485,9 @@ CONFIG.topics.addition.plots.timeByDensity.lsq.text = dict(
 )
 
 ## OUTPUT ##########
-CONFIG.topics.addition.plots.timeByDensity.ext = "jpeg"
-CONFIG.topics.addition.plots.timeByDensity.out = lambda host, length: f"./timing/{CONFIG.topics.addition.prefix(host)}.{length}.timeByDensity.{CONFIG.topics.addition.plots.timeByDensity.ext}"
-CONFIG.topics.addition.plots.timeByDensity.savefig = CONFIG._defaults.savefig
+CONFIG.topics.addition.plots.timeByOverlap.ext = "jpeg"
+CONFIG.topics.addition.plots.timeByOverlap.out = lambda host, length: f"./timing/{CONFIG.topics.addition.prefix(host)}.{length}.timeByOverlap.{CONFIG.topics.addition.plots.timeByOverlap.ext}"
+CONFIG.topics.addition.plots.timeByOverlap.savefig = CONFIG._defaults.savefig
 
 
 ################################################################################

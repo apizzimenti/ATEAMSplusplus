@@ -46,7 +46,7 @@ namespace ATEAMS::arithmetic {
 	 * @param exclude Row indices to exclude.
 	 * @param intuniform Uniform distribution over integers \f$[0, p)\f$.
 	 * @param RNG Mersenne twister PRNG.
-	 * @param options Reference to a @ref arithmetic::ThreadOptions instance.
+	 * @param options Reference to a @ref arithmetic::ComputeOptions instance.
 	 * @param DEBUG _(Optional, default `false`)_ Are we debugging the arithmetic?
 	 * 
 	 * @return (Sparse) uniform vector in \f$\ker(\delta^{d-1})\f$.
@@ -58,7 +58,7 @@ namespace ATEAMS::arithmetic {
 		std::set<size_t> exclude,
 		std::uniform_int_distribution<int>& intuniform,
 		std::mt19937& RNG,
-		ThreadOptions& options,
+		ComputeOptions& options,
 		bool DEBUG=false
 	);
 }

@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
 	vector<int> include(plex.Cells[DIMENSION]);
 	iota(begin(include), end(include), 0);
 
-	arithmetic::ThreadOptions options;
+	arithmetic::ComputeOptions options;
 	options.parallelSparseAddition = (bool)PARALLEL;
 	options.parallelSparseAdditionChunkWidth = WIDTH;
 	

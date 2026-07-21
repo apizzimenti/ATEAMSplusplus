@@ -71,9 +71,8 @@ namespace ATEAMS {
 			SparseVector<Zp>& u,
 			SparseVector<Zp>& v,
 			Ring* R,
-			arithmetic::ThreadOptions& options
+			arithmetic::ComputeOptions& options
 		) {
-
 			// Get the number of threads, then the max/min of the largest/smallest
 			// indices in u and v.
 			int _threads = options.opt->pool.get_thread_count();
@@ -166,7 +165,7 @@ namespace ATEAMS {
 			SparseVector<Q>& u,
 			SparseVector<Q>& v,
 			Ring* R,
-			arithmetic::ThreadOptions& options
+			arithmetic::ComputeOptions& options
 		) {
 			sfmpq_vec_addsub_mul<INDEX,false>(u, v, (Q::dtype)1);
 			return u;
@@ -207,7 +206,7 @@ namespace ATEAMS {
 		inline SparsePivots SparseMatrixRREF(
 			SparseMatrix<RingLike>& A,
 			Ring* R,
-			ThreadOptions& options
+			ComputeOptions& options
 		) {
 			return SparseRREF::sparse_mat_rref<typename RingLike::dtype,INDEX>(A, R->ring, options.opt);
 		};
@@ -229,7 +228,7 @@ namespace ATEAMS {
 			SparseMatrix<RingLike>& A,
 			Ring* R,
 			SparsePivots& pivots,
-			ThreadOptions& options
+			ComputeOptions& options
 		) {
 			return SparseRREF::sparse_mat_rref_kernel<typename RingLike::dtype,INDEX>(A, pivots, R->ring, options.opt);
 		};
@@ -249,7 +248,7 @@ namespace ATEAMS {
 		inline SparseMatrix<RingLike> SparseMatrixKernel(
 			SparseMatrix<RingLike>& A,
 			Ring* R,
-			ThreadOptions& options
+			ComputeOptions& options
 		) {
 			SparsePivots pivots = SparseMatrixRREF<RingLike>(A, R, options);
 			return SparseRREF::sparse_mat_rref_kernel<typename RingLike::dtype,INDEX>(A, pivots, R->ring, options.opt);

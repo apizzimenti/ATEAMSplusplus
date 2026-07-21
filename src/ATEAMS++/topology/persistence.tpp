@@ -147,7 +147,7 @@ namespace ATEAMS::topology {
 		vector<int>& filtration,
 		Ring* R,
 		int dimension,
-		arithmetic::ThreadOptions& options
+		arithmetic::ComputeOptions& options
 	) {
 		// Doing row operations on the coboundary is equivalent to column operations
 		// on the boundary.
@@ -178,7 +178,7 @@ namespace ATEAMS::topology {
 					typename RingLike::dtype s = scalar_neg(scalar_inv(youngestFaceCoefficient, R->ring), R->ring);
 
 					arithmetic::SparseVectorRescaling<RingLike>(s, youngestFace, R);
-					arithmetic::SparseVectorAddition(cell, youngestFace, R);
+					arithmetic::SparseVectorAddition(cell, youngestFace, R, options);
 				}
 
 				cell.compress();
@@ -209,7 +209,7 @@ namespace ATEAMS::topology {
 		std::vector<int>& filtration,
 		Ring* R,
 		int dimension,
-		arithmetic::ThreadOptions& options
+		arithmetic::ComputeOptions& options
 	) {
 		vector<int> essential;
 		if (R->characteristic < 3) essential = PHATPersistence<RingLike>(complex, filtration, dimension);

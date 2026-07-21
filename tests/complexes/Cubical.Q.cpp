@@ -30,7 +30,7 @@ vector<int> homologySizes(complexes::Complex<Q>* COMPLEX, Ring* QQ, int dimensio
 
 int main() {
 	// Construct arithmetic options.
-	arithmetic::ThreadOptions options;
+	arithmetic::ComputeOptions options;
 	std::thread listener = options.spinUp();
 
 	// Construct Cubical complexes of varying dimensions/boundary conditions,
