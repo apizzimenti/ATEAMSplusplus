@@ -509,10 +509,16 @@ def _defaultLogTimeVerticalAxis(ax, textprops, lineprops):
 	ax.set_yscale("log")
 	ylo, yhi = ax.get_ylim()
 
-	ylo = 10**(int(np.log10(ylo)))
-	yhi = 10**(int(np.log10(yhi))+1)
+	loglo = int(np.log10(ylo))
+	loghi = int(np.log10(yhi))
 
-	ax.set_ylim(ylo, yhi)
+	ax.set_yticks([10**k for k in range(loglo, loghi+2)])
+
+	print(loglo, loghi+1)
+
+	ylo = 10**loglo
+	yhi = 10**(loghi+1)
+	ax.set_ylim(ylo, yhi+10)
 
 	xlo, xhi = ax.get_xlim()
 

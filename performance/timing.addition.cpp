@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
 	random_device rd;
 	mt19937 RNG(rd());
 
-	uniform_int_distribution<int> uniformValues(1, R.characteristic);
+	uniform_int_distribution<int> uniformValues(1, R.characteristic-1);
 	uniform_int_distribution<int> uniformEntries(1, LENGTH);
 
 	vector<int> lN(TRIALS);
@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
 	vector<double> OVERLAP(TRIALS);
 	vector<int> TTC(TRIALS);
 
-	arithmetic::ComputeOptions options;
+	arithmetic::ComputeOptions<Zp> options;
 	thread listener = options.spinUp();
 
 	for (int t=0; t < TRIALS; t++) {
@@ -93,11 +93,14 @@ int main(int argc, char* argv[]) {
 		long double overlap = vectorIndexOverlap(u, v);
 
 		auto start = chrono::high_resolution_clock::now();
-		if (PARALLEL) arithmetic::SparseVectorAddition(u, v, &R, options);
-		else arithmetic::SparseVectorAddition(u, v, &R);
+
+		if (PARALLEL) arithmetic::parallelSparseVectorAddition<Zp>(u, v, &R, options);
+		else arithmetic::serialSparseVectorAddition<Zp>(u, v, &R);
+
 		auto end = chrono::high_resolution_clock::now();
 
 		auto duration = chrono::duration_cast<chrono::microseconds>(end-start);
+
 		lN[t] = ulength;
 		rN[t] = vlength;
 		OVERLAP[t] = overlap;

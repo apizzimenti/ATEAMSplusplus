@@ -28,20 +28,16 @@ pull: FORCE
 	@./pull.sh -p
 	@./pull.sh -m
 
+
 profiling: FORCE
-# 	@screen -dmS profiling.models ./performance/profiling.models.sh
-# 	@screen -dmS profiling.topology ./performance/profiling.topology.sh
+	@rm -f performance/profiling/*(N)
 	./performance/profiling.addition.sh &> ./performance/profiling.addition.log &
 
+
 timing: FORCE
+	@rm -f performance/timing/*(N)
 	./performance/timing.addition.sh &> ./performance/timing.addition.log &
 
-gauntlet: FORCE
-# 	rm -f ./performance/profiling/*(N) ./performance/timing/*(N)
-# 	screen -dmS gauntlet.topology ./performance/gauntlet.topology.sh
-# 	screen -dmS timing.addition.sample ./performance/timing.addition.sh 50
-# 	screen -dmS timing.addition.default ./performance/timing.addition.sh
-	./performance/timing.addition.sh &> ./performance/timing.addition.log &
 
 test:
 	@cd build; ctest

@@ -190,7 +190,7 @@ list(APPEND ARITHMETIC
 )
 
 list(APPEND TOPOLOGY
-	"persistence"
+	# "persistence"
 )
 
 list(APPEND MODELS
@@ -202,7 +202,7 @@ list(APPEND MODELS
 )
 
 list(APPEND TYPES
-	"Q"
+	# "Q"
 	"Zp"
 )
 
@@ -281,6 +281,7 @@ if (PROFILE)
 	foreach(FUNCTION IN LISTS ARITHMETIC)
 		add_executable(profiling.${FUNCTION} performance/profiling.${FUNCTION}.cpp)
 		target_link_libraries(profiling.${FUNCTION} PUBLIC ATEAMS++)
+		target_compile_options(profiling.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 	endforeach()
 endif()
 

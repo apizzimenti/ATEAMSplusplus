@@ -62,6 +62,7 @@ int main() {
 		complexes::Cubical<Zp> CUBICAL(corners);
 		CUBICAL.constructBoundaryMatrices(&QQ);
 		CUBICAL.constructFlatBoundaryMatrix();
+		CUBICAL.constructFullBoundaryMatrix(&QQ);
 
 		vector<int> sizes = homologySizes(&CUBICAL, &QQ, dimension, options);
 

@@ -1,5 +1,6 @@
 
 #include <ATEAMS++/ATEAMS++.h>
+#include "tests.h"
 
 using namespace ATEAMS;
 using namespace std;
@@ -48,45 +49,61 @@ SparseVector<Zp> randomizedVector(
 }
 
 
-void writeData(string filename, string data) {
-	ofstream file(filename, ios_base::app | ios_base::out);
-	file << data;
-}
-
-
 int main(int argc, char* argv[]) {
-	// Get arguments for the number of trials, the vector length.
-	string HOSTNAME = argv[1];
-	int TRIALS = stoi(argv[2]);
-	int LENGTH = stoi(argv[3]);
-	bool PARALLEL = (bool)stoi(argv[4]);
-	
 	// Field; thread options.
-	Zp R(3);
+	Zp R(stoi(argv[1]));
+	int N = 10000;
+	int TRIALS = 10;
+	int RESULT = PASS;
 
 	// RNGs and stuff.
 	random_device rd;
 	mt19937 RNG(rd());
 
 	uniform_int_distribution<int> uniformValues(1, R.characteristic-1);
-	uniform_int_distribution<int> uniformEntries(1, LENGTH);
+	uniform_int_distribution<int> uniformEntries(1, N);
 
 	arithmetic::ComputeOptions<Zp> options;
 	thread listener = options.spinUp();
+
 
 	for (int t=0; t < TRIALS; t++) {
 		// Create two random vectors; check how much their indices overlap.
 		int ulength = uniformEntries(RNG);
 		int vlength = uniformEntries(RNG);
 
-		SparseVector<Zp> u = randomizedVector(LENGTH, ulength, uniformValues, RNG);
-		SparseVector<Zp> v = randomizedVector(LENGTH, vlength, uniformValues, RNG);
+		SparseVector<Zp> lu = randomizedVector(N, ulength, uniformValues, RNG);
+		SparseVector<Zp> ru;
+
+		for (int i=0; i < lu.size(); i++) ru.push_back(lu(i), lu[i]);
 		
-		if (PARALLEL) arithmetic::parallelSparseVectorAddition<Zp>(u, v, &R, options);
-		else arithmetic::serialSparseVectorAddition<Zp>(u, v, &R);
+
+		SparseVector<Zp> lv = randomizedVector(N, vlength, uniformValues, RNG);
+		SparseVector<Zp> rv;
+
+		for (int i=0; i < lv.size(); i++) rv.push_back(lv(i), lv[i]);
+
+		SparseVector<Zp> lr = arithmetic::serialSparseVectorAddition<Zp>(lu, lv, &R);
+		SparseVector<Zp> rr = arithmetic::parallelSparseVectorAddition<Zp>(ru, rv, &R, options);
+
+		if (lr != rr) {
+			RESULT = FAIL;
+			print_vec_info<INDEX,typename Zp::dtype>(lu);
+			print_vec_info<INDEX,typename Zp::dtype>(lv);
+			print_vec_info<INDEX,typename Zp::dtype>(lr);
+
+			cout << endl;
+
+			print_vec_info<INDEX,typename Zp::dtype>(ru);
+			print_vec_info<INDEX,typename Zp::dtype>(rv);
+			print_vec_info<INDEX,typename Zp::dtype>(rr);
+
+			cout << endl << endl << endl;
+			break;
+		}
 	}
 
 	options.spinDown(&listener);
 
-	return 0;
+	return RESULT;
 }

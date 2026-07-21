@@ -29,13 +29,11 @@ namespace ATEAMS::arithmetic {
 	 */
 	template <typename RingLike>
 	struct ParallelOptions {
-		int threads;
-		bool enabled = false;
-		std::vector<std::vector<int>> indexBlocks;
-		std::vector<SparseVector<RingLike>> vectorBlocks;
-		std::vector<SparseVector<RingLike>> reusableBlocks;
-
-		// Strategy computeStrategy = Strategy::MIXED;
+		public:
+			int threads;
+			bool enabled = false;
+			std::vector<std::vector<int>> indexBlocks;
+			std::vector<SparseVector<RingLike>> vectorBlocks;
 	};
 
 	/**
@@ -66,10 +64,6 @@ namespace ATEAMS::arithmetic {
 			 */
 			ComputeOptions() {
 				this->opt = new RREFOptionType;
-				
-				ParallelOptions<RingLike> p;
-				this->parallel = &p;
-				this->initializeParallelism();
 			};
 
 			/**
@@ -80,6 +74,8 @@ namespace ATEAMS::arithmetic {
 				Flint::set_memory_functions();
 				this->opt->pool.reset();
 				this->opt->method = 0;
+
+				this->initializeParallelism();
 
 				return std::thread(key_listener, std::ref(this->opt->abort));
 			};
@@ -98,16 +94,19 @@ namespace ATEAMS::arithmetic {
 			void initializeParallelism() {
 				// Determine how many threads we're using; this probably won't
 				// change during execution.
+				this->parallel = new ParallelOptions<RingLike>;
+				this->parallel->enabled = true;
+
 				int _threads = this->opt->pool.get_thread_count();
 				int threads = _threads*_threads;
 
-				this->parallel->enabled = true;
+				this->parallel->threads = threads;
 
-				std::vector<std::vector<int>> indexBlocks(threads, std::vector<int>(2,0));
-				this->parallel->indexBlocks = indexBlocks;
+				std::vector<std::vector<int>> ib(threads, std::vector<int>(2,0));
+				this->parallel->indexBlocks = ib;
 
-				std::vector<SparseVector<RingLike>> vectorBlocks(threads);
-				this->parallel->vectorBlocks = vectorBlocks;
+				std::vector<SparseVector<RingLike>> vb(threads);
+				this->parallel->vectorBlocks = vb;
 			};
 	};
 }
