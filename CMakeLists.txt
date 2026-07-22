@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_compile_options()
+add_compile_options(-march=native -flto -O3)
 
 
 ################################################################################
@@ -27,6 +27,7 @@ pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 # TRUE. Otherwise, set it to FALSE.
 set(mimalloc FALSE)
 
+
 if(mimalloc)
 	find_package(mimalloc REQUIRED)
 	pkg_check_modules(mimalloc REQUIRED IMPORTED_TARGET mimalloc)
@@ -36,8 +37,8 @@ endif()
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
 set(TEST FALSE)
-set(PROFILE TRUE)
-set(TIMING FALSE)
+set(PROFILE FALSE)
+set(TIMING TRUE)
 
 set(PROFILE_COMPILE_OPTIONS
 	-pg
@@ -53,11 +54,6 @@ if (TEST)
 	enable_testing()
 endif()
 
-if (PROFILE)
-
-else()
-	add_compile_options(-O3)
-endif()
 
 
 
@@ -196,7 +192,7 @@ install(
 ################################################################################
 
 list(APPEND COMPLEXES
-	"Cubical"
+	# "Cubical"
 )
 
 list(APPEND ARITHMETIC
@@ -256,8 +252,13 @@ if (TEST)
 			if("${TYPE}" STREQUAL "Q")
 				add_test(NAME tests.${FUNCTION}.${TYPE} COMMAND tests.${FUNCTION}.${TYPE} 0)
 			else()
-				add_test(NAME tests.${FUNCTION}.${TYPE}.2 COMMAND tests.${FUNCTION}.${TYPE} 2)
-				add_test(NAME tests.${FUNCTION}.${TYPE}.3 COMMAND tests.${FUNCTION}.${TYPE} 3)
+				# Test at 1,000,000 entries over 100 trials.
+				add_test(NAME tests.${FUNCTION}.${TYPE}.2.e6.100 COMMAND tests.${FUNCTION}.${TYPE} 2 1000000 100)
+				add_test(NAME tests.${FUNCTION}.${TYPE}.3.e6.100 COMMAND tests.${FUNCTION}.${TYPE} 3 1000000 100)
+
+				# Test at 10,000,000 entries over 10 trials.
+				add_test(NAME tests.${FUNCTION}.${TYPE}.2.e7.10 COMMAND tests.${FUNCTION}.${TYPE} 2 10000000 10)
+				add_test(NAME tests.${FUNCTION}.${TYPE}.3.e7.10 COMMAND tests.${FUNCTION}.${TYPE} 3 10000000 10)
 			endif()
 		endforeach()
 	endforeach()

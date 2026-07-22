@@ -52,8 +52,8 @@ SparseVector<Zp> randomizedVector(
 int main(int argc, char* argv[]) {
 	// Field; thread options.
 	Zp R(stoi(argv[1]));
-	int N = 10000;
-	int TRIALS = 10;
+	int N = stoi(argv[2]);
+	int TRIALS = stoi(argv[3]);
 	int RESULT = PASS;
 
 	// RNGs and stuff.

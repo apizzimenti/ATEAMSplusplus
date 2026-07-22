@@ -39,7 +39,7 @@ namespace ATEAMS::arithmetic {
 		// Get the number of threads, then the max/min of the largest/smallest
 		// indices in u and v.
 		int threads = options.parallel->threads;
-		INDEX maxindex = max(u(u.size()-1), v(v.size()-1));
+		INDEX maxindex = max(u(u._nnz-1), v(v._nnz-1));
 		INDEX minindex = min(u(0), v(0));
 
 		// Specify index blocks for this run.
@@ -56,38 +56,89 @@ namespace ATEAMS::arithmetic {
 
 		options.parallel->indexBlocks[threads-1][1] = maxindex+1;
 
-		// Now, on each thread, copy each chunk of each sparse vector, then
-		// add to `chunks`.
 		for (int thread=0; thread < threads; thread++) {
 			options.opt->pool.detach_task([thread, &u, &v, &R, &options] {
+				// Determine which blocks of indices we're working with.
 				int lo = options.parallel->indexBlocks[thread][0];
 				int hi = options.parallel->indexBlocks[thread][1];
-				SparseVector<RingLike> upart, vpart;
 
-				// Get the relevant parts of u and v.
-				for (int i=0; i < u.size(); i++) {
-					if (lo <= u(i) && u(i) < hi) upart.push_back(u(i),u[i]);
+				// Follow a
+				//
+				//	1. reserve max space,
+				//	2. overwrite entries,
+				//	4. resize
+				//
+				// pattern for each vector in the scratch space. Hopefully this
+				// saves us some memory, since we'll be re-sizing fewer times
+				// than if we used push_back. Not calling .reserve() a second time
+				// (to cut the vector down to size) may have some effects, but
+				// we'll see what the profiling data says.
+				options.parallel->lScratch[thread].reserve(hi-lo, false);
+				options.parallel->rScratch[thread].reserve(hi-lo, false);
+				int lnnz = 0, rnnz = 0;
+
+				for (int i=0; i < max(u._nnz, v._nnz); i++) {
+					// Check for entries in the first vector.
+					if (i < u._nnz && lo <= u(i) && u(i) < hi) {
+						options.parallel->lScratch[thread].indices[lnnz] = u(i);
+						options.parallel->lScratch[thread].entries[lnnz] = u[i];
+						lnnz++;
+					}
+
+					// Check for entries in the second vector.
+					if (i < v._nnz && lo <= v(i) && v(i) < hi) {
+						options.parallel->rScratch[thread].indices[rnnz] = v(i);
+						options.parallel->rScratch[thread].entries[rnnz] = v[i];
+						rnnz++;
+					}
 				}
 
-				for (int i=0; i < v.size(); i++) {
-					if (lo <= v(i) && v(i) < hi) vpart.push_back(v(i),v[i]);
-				}
+				// Resize vectors.
+				options.parallel->lScratch[thread]._nnz = lnnz;
+				options.parallel->rScratch[thread]._nnz = rnnz;
 
-				// Now, perform the addition, then write to the vector of chunks.
-				sparse_vec_add<INDEX>(upart, vpart, R->ring);
-				options.parallel->vectorBlocks[thread] = upart; // IS THIS WHERE THE COPY HAPPENS???
+				// Add.
+				sparse_vec_add(
+					options.parallel->lScratch[thread],
+					options.parallel->rScratch[thread],
+					R->ring
+				);
 			});
 		}
 		options.opt->pool.wait();
 
-		// Once we're done waiting, reconstitute the vector.
-		u.zero();
+		// Since the number of threads is constant and the call to .size() is
+		// constant, this is constant-time. Maybe use ._nnz instead?
+		int nnz = 0;
+		for (int thread=0; thread < threads; thread++) {
+			nnz += options.parallel->lScratch[thread]._nnz;
+		}
+
+		// Zero the vector, then re-size it so we can write directly into it
+		// rather than pushing back.
+		u.reserve(nnz, false);
+		u._nnz = nnz;
+
+		int t = 0;
 
 		for (int thread=0; thread < threads; thread++) {
-			for (int i=0; i < options.parallel->vectorBlocks[thread].size(); i++) {
-				u.push_back(options.parallel->vectorBlocks[thread](i), options.parallel->vectorBlocks[thread][i]);
+			for (int i=0; i < options.parallel->lScratch[thread]._nnz; i++) {
+				u.indices[t] = options.parallel->lScratch[thread](i);
+				u.entries[t] = options.parallel->lScratch[thread][i];
+				t++;
 			}
 		}
+
+		// u.zero();
+
+		// for (int thread=0; thread < threads; thread++) {
+		// 	for (int i=0; i < options.parallel->lScratch[thread].size(); i++) {
+		// 		u.push_back(
+		// 			options.parallel->lScratch[thread](i),
+		// 			options.parallel->lScratch[thread][i]
+		// 		);
+		// 	}
+		// }
 
 		return u;
 	};

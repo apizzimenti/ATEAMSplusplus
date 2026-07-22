@@ -33,7 +33,8 @@ namespace ATEAMS::arithmetic {
 			int threads;
 			bool enabled = false;
 			std::vector<std::vector<int>> indexBlocks;
-			std::vector<SparseVector<RingLike>> vectorBlocks;
+			std::vector<SparseVector<RingLike>> lScratch;
+			std::vector<SparseVector<RingLike>> rScratch;
 	};
 
 	/**
@@ -97,16 +98,12 @@ namespace ATEAMS::arithmetic {
 				this->parallel = new ParallelOptions<RingLike>;
 				this->parallel->enabled = true;
 
-				int _threads = this->opt->pool.get_thread_count();
-				int threads = _threads*_threads;
+				int threads = this->opt->pool.get_thread_count();
+				this->parallel->threads = 2*threads + 1;
 
-				this->parallel->threads = threads;
-
-				std::vector<std::vector<int>> ib(threads, std::vector<int>(2,0));
-				this->parallel->indexBlocks = ib;
-
-				std::vector<SparseVector<RingLike>> vb(threads);
-				this->parallel->vectorBlocks = vb;
+				this->parallel->indexBlocks = std::vector<std::vector<int>>(this->parallel->threads, std::vector<int>(2,0));
+				this->parallel->lScratch = std::vector<SparseVector<RingLike>>(this->parallel->threads);
+				this->parallel->rScratch = std::vector<SparseVector<RingLike>>(this->parallel->threads);
 			};
 	};
 }

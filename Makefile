@@ -14,7 +14,6 @@ reset: clean
 build:
 	cmake -B build
 	cmake --build build -v
-
 install:
 	sudo cmake --install build -v
 
