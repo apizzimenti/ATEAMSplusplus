@@ -7,12 +7,11 @@
 #endif
 
 #include "ATEAMS++/arithmetic/arithmetic.h"
+#include "ATEAMS++/arithmetic/options.h"
 
 #include <SparseRREF/sparse_mat.h>
 #include <SparseRREF/sparse_vec.h>
 #include <SparseRREF/scalar.h>
-
-#include "ATEAMS++/arithmetic/options.h"
 
 using namespace SparseRREF;
 using namespace std;
@@ -128,17 +127,6 @@ namespace ATEAMS::arithmetic {
 				t++;
 			}
 		}
-
-		// u.zero();
-
-		// for (int thread=0; thread < threads; thread++) {
-		// 	for (int i=0; i < options.parallel->lScratch[thread].size(); i++) {
-		// 		u.push_back(
-		// 			options.parallel->lScratch[thread](i),
-		// 			options.parallel->lScratch[thread][i]
-		// 		);
-		// 	}
-		// }
 
 		return u;
 	};

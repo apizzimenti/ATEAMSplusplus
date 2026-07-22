@@ -82,6 +82,20 @@ namespace ATEAMS::arithmetic {
 			};
 
 			/**
+			 * @brief Initializes a multithreaded computing environment.
+			 * @returns An execution thread.
+			 */
+			std::thread spinUp(int strategy) {
+				Flint::set_memory_functions();
+				this->opt->pool.reset();
+				this->opt->method = 0;
+
+				this->initializeParallelism(strategy);
+
+				return std::thread(key_listener, std::ref(this->opt->abort));
+			};
+
+			/**
 			 * @brief "Spins down" the multithreaded computing environment.
 			 */
 			void spinDown(std::thread* listener) {
@@ -92,14 +106,29 @@ namespace ATEAMS::arithmetic {
 			};
 
 		private:
-			void initializeParallelism() {
+			void initializeParallelism(int strategy) {
 				// Determine how many threads we're using; this probably won't
 				// change during execution.
 				this->parallel = new ParallelOptions<RingLike>;
 				this->parallel->enabled = true;
 
 				int threads = this->opt->pool.get_thread_count();
-				this->parallel->threads = 2*threads + 1;
+				this->parallel->threads = std::max(1, (int)(pow(2, -strategy)*threads));
+				this->opt->pool.reset(this->parallel->threads);
+
+				this->parallel->indexBlocks = std::vector<std::vector<int>>(this->parallel->threads, std::vector<int>(2,0));
+				this->parallel->lScratch = std::vector<SparseVector<RingLike>>(this->parallel->threads);
+				this->parallel->rScratch = std::vector<SparseVector<RingLike>>(this->parallel->threads);
+			};
+
+			void initializeParallelism() {
+				// Determine how many threads we're using; this probably won't
+				// change during execution.
+				this->parallel = new ParallelOptions<RingLike>;
+				this->parallel->enabled = true;
+				
+				int threads = this->opt->pool.get_thread_count();
+				this->parallel->threads = 2*threads+1;
 
 				this->parallel->indexBlocks = std::vector<std::vector<int>>(this->parallel->threads, std::vector<int>(2,0));
 				this->parallel->lScratch = std::vector<SparseVector<RingLike>>(this->parallel->threads);

@@ -6,53 +6,52 @@ using namespace std;
 
 
 double vectorIndexOverlap(SparseVector<Zp> u, SparseVector<Zp> v) {
-	set<int> uentries, ventries, intersection;
+	vector<int> uentries(u.size()), ventries(v.size()), intersection;
 
-	for (int t=0; t < u.size(); t++) {
-		uentries.insert((int)u(t));
-		ventries.insert((int)v(t));
-	}
+	for (int t=0; t < u.size(); t++) uentries[t] = (int)u(t);
+	for (int t=0; t < v.size(); t++) ventries[t] = (int)v(t);
 
 	set_intersection(
 		uentries.begin(), uentries.end(),
 		ventries.begin(), ventries.end(),
-		inserter(intersection, intersection.begin())
+		back_inserter(intersection)
 	);
 
 	return (double)intersection.size()/(double)u.size();
 }
 
 
-SparseVector<Zp> randomizedVector(
+vector<SparseVector<Zp>> randomizedVectors(
 	int L,
 	int entries,
-	uniform_int_distribution<int>& uniformValues,
 	mt19937& RNG
 ) {
 	vector<int> _random(L, 0);
-	SparseVector<Zp> random;
+	SparseVector<Zp> lrandom;
+	SparseVector<Zp> rrandom;
 
-	// Create a vector of length N*density with random entries, insert it into
-	// `random`, then shuffle.
-	for (int t=0; t < entries; t++) _random[t] = uniformValues(RNG);
+	// Create a vector of length N*density with all-1 entries.
+	for (int t=0; t < entries; t++) _random[t] = 1;
+
+	// Populate the first SparseVector.
 	shuffle(_random.begin(), _random.end(), RNG);
-
-	// Populate the SparseVector.
 	for (int t=0; t < L; t++) {
 		if (_random[t] > 0) {
-			random.push_back((INDEX)t, (typename Zp::dtype)_random[t]);
+			lrandom.push_back((INDEX)t, (typename Zp::dtype)_random[t]);
 		}
 	}
 
-	return random;
+	// Populate the second SparseVector.
+	shuffle(_random.begin(), _random.end(), RNG);
+	for (int t=0; t < L; t++) {
+		if (_random[t] > 0) {
+			rrandom.push_back((INDEX)t, (typename Zp::dtype)_random[t]);
+		}
+	}
+
+	vector<SparseVector<Zp>> cont = {lrandom, rrandom};
+	return cont;
 }
-
-
-void writeData(string filename, string data) {
-	ofstream file(filename, ios_base::app | ios_base::out);
-	file << data;
-}
-
 
 int main(int argc, char* argv[]) {
 	// Get arguments for the number of trials, the vector length.
@@ -60,6 +59,7 @@ int main(int argc, char* argv[]) {
 	int TRIALS = stoi(argv[2]);
 	int LENGTH = stoi(argv[3]);
 	bool PARALLEL = (bool)stoi(argv[4]);
+	int STRATEGY = stoi(argv[5]);
 
 	// Column separation character.
 	string sep = ",";
@@ -71,38 +71,32 @@ int main(int argc, char* argv[]) {
 	random_device rd;
 	mt19937 RNG(rd());
 
-	uniform_int_distribution<int> uniformValues(1, R.characteristic-1);
-	uniform_int_distribution<int> uniformEntries(1, LENGTH);
+	uniform_int_distribution<int> uniformLength(1, LENGTH);
 
-	vector<int> lN(TRIALS);
-	vector<int> rN(TRIALS);
+	vector<int> l(TRIALS);
 	vector<double> OVERLAP(TRIALS);
 	vector<int> TTC(TRIALS);
 
 	arithmetic::ComputeOptions<Zp> options;
-	thread listener = options.spinUp();
+	thread listener = options.spinUp(STRATEGY);
 
 	for (int t=0; t < TRIALS; t++) {
 		// Create two random vectors; check how much their indices overlap.
-		int ulength = uniformEntries(RNG);
-		int vlength = uniformEntries(RNG);
+		int length = uniformLength(RNG);
+		vector<SparseVector<Zp>> randoms = randomizedVectors(LENGTH, length, RNG);
 
-		SparseVector<Zp> u = randomizedVector(LENGTH, ulength, uniformValues, RNG);
-		SparseVector<Zp> v = randomizedVector(LENGTH, vlength, uniformValues, RNG);
-
-		long double overlap = vectorIndexOverlap(u, v);
+		long double overlap = vectorIndexOverlap(randoms[0], randoms[1]);
 
 		auto start = chrono::high_resolution_clock::now();
 
-		if (PARALLEL) arithmetic::parallelSparseVectorAddition<Zp>(u, v, &R, options);
-		else arithmetic::serialSparseVectorAddition<Zp>(u, v, &R);
+		if (PARALLEL) arithmetic::parallelSparseVectorAddition<Zp>(randoms[0], randoms[1], &R, options);
+		else arithmetic::serialSparseVectorAddition<Zp>(randoms[0], randoms[1], &R);
 
 		auto end = chrono::high_resolution_clock::now();
 
 		auto duration = chrono::duration_cast<chrono::microseconds>(end-start);
 
-		lN[t] = ulength;
-		rN[t] = vlength;
+		l[t] = length;
 		OVERLAP[t] = overlap;
 		TTC[t] = duration.count();
 	}
@@ -112,7 +106,14 @@ int main(int argc, char* argv[]) {
 	string csv = "";
 
 	for (int t=0; t < TRIALS; t++) {
-		csv = csv + format("{},{},{},{:.12f},{}\n", LENGTH, lN[t], rN[t], OVERLAP[t], TTC[t]);
+		csv = csv + format(
+			"{},{},{:.12f},{},{}\n",
+			LENGTH,
+			l[t],
+			OVERLAP[t],
+			TTC[t],
+			PARALLEL ? options.parallel->threads : 1
+		);
 	}
 
 	string KIND = PARALLEL ? "parallel" : "serial";

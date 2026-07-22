@@ -29,12 +29,13 @@ pull: FORCE
 
 
 profiling: FORCE
-	@rm -f performance/profiling/*(N)
+# 	@rm -f performance/profiling/*(N)
 	./performance/profiling.addition.sh &> ./performance/profiling.addition.log &
 
 
 timing: FORCE
 	@rm -f performance/timing/*(N)
+	@rm -f performance/timing/timing.addition.log
 	./performance/timing.addition.sh &> ./performance/timing.addition.log &
 
 

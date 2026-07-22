@@ -201,207 +201,6 @@ CONFIG._defaults.yaxis.logTime = \
 		_defaultLogTimeVerticalAxis(ax, textprops, lineprops)
 
 
-
-################################################################################
-## BOXPLOTS ####################################################################
-################################################################################
-
-# boxplots = Bunch()
-# defaults = Bunch()
-
-# boxplots.defaults = defaults
-# CONFIG.plots.boxplots = boxplots
-
-# defaults.offsets = Bunch(
-# 	two=lambda w: [-w, w],
-# 	three=lambda w: [-2/3*w, 0, 2/3*w],
-# 	four=lambda w: [-w, -w/2, w/2, w]
-# )
-
-# defaults.subplots = dict(
-# 	figsize=(4,4)
-# )
-
-# defaults.lw = 2/3
-
-# defaults.flierprops = dict(
-# 	marker="x",
-# 	markersize=4
-# )
-
-# defaults.medianprops = dict(
-# 	linewidth=0,
-# 	color="none"
-# )
-
-# defaults.boxprops = dict(
-# 	linewidth=0,
-# 	facecolor=f"#{tol.highcontrast.yellow}"
-# )
-
-# defaults.whiskerprops = dict(
-# 	linewidth=defaults.lw
-# )
-
-# defaults.capprops = dict(
-# 	linewidth=defaults.lw
-# )
-
-# defaults.plotprops = dict(
-# 	widths=0.35,
-# 	whis=(1,99),
-# 	showfliers=False,
-# 	patch_artist=True,
-# 	boxprops=defaults.boxprops,
-# 	capprops=defaults.capprops,
-# 	flierprops=defaults.flierprops,
-# 	medianprops=defaults.medianprops,
-# 	whiskerprops=defaults.whiskerprops
-# )
-
-# defaults.savefig = dict(
-# 	dpi=600,
-# 	bbox_inches="tight"
-# )
-
-# defaults.medianscatter = dict(
-# 	marker="D",
-# 	s=2,
-# 	color="k"
-# )
-
-# defaults.xaxis = Bunch()
-
-# defaults.xaxis.fontsize = 6
-# defaults.xaxis.rotation = -35
-# defaults.xaxis.labelpad = -0.5
-# defaults.xaxis.ha = "left"
-
-# defaults.xaxis.labelprops = dict(
-# 	fontsize=defaults.xaxis.fontsize,
-# 	rotation=defaults.xaxis.rotation,
-# 	ha=defaults.xaxis.ha
-# )
-
-# defaults.xaxis.tickprops = dict(
-# 	pad=defaults.xaxis.labelpad
-# )
-
-
-# def _defaultLabeledXaxis(ax, labels, labelprops, tickprops):
-# 	ax.set_xlim(1/2, len(labels)+1/2)
-# 	ax.set_xticklabels(labels, **labelprops)
-# 	ax.tick_params(**tickprops)
-
-# defaults.xaxis.boxedLabeled = lambda ax, labels, labelprops=defaults.xaxis.labelprops, tickprops=defaults.xaxis.tickprops: \
-# 	_defaultLabeledXaxis(ax, labels, labelprops, tickprops)
-
-
-# def _defaultLabeledLogXaxis(ax, base, ticks, labels, labelprops, tickprops):
-# 	ax.set_logscale("log", base=base)
-# 	ax.set_xlim(1/2, labels[-1]+1/2)
-# 	ax.set_xticklabels(labels, **labelprops)
-# 	ax.tick_params(**tickprops)
-
-# defaults.yaxis = Bunch()
-
-
-# # Adjusts the vertical axis limits relative to a set of boxes.
-# def _defaultYlim(ax, boxset):
-# 	if not isinstance(boxset[0], list): boxset = [boxset]
-
-# 	lo = min(ax.get_ylim()[0], min(boxes[0].min() for boxes in boxset))
-# 	hi = min(ax.get_ylim()[1], max(boxes[-1].max() for boxes in boxset))
-
-# 	ax.set_ylim(lo, hi)
-
-# defaults.yaxis.boxedYlim = lambda ax, boxset: _defaultYlim(ax, boxset)
-
-
-# def _defaultBoxplotMedians(ax, boxes, locs, props):
-# 	for loc, box in zip(locs, boxes):
-# 		ax.scatter(loc, np.median(box), **props)
-
-# defaults.medians = lambda ax, boxes, locs, props=defaults.medianscatter: _defaultBoxplotMedians(ax, boxes, locs, props)
-
-
-# def _defaultlogTimeLabels(ax, boxes, textprops, lineprops):
-# 	lo, hi = ax.get_ylim()
-# 	xlo, _ = ax.get_xlim()
-
-# 	for tick, label in metadata.logTimeLabels.items():
-# 		if lo <= tick <= hi:
-# 			ax.text(xlo+0.075, tick, label, fontsize=6, ha="left", alpha=1/2, va="bottom")
-# 			ax.hlines(tick, xmin=-1, xmax=len(boxes)+1, color="k", alpha=1/4, zorder=-1000)
-
-# defaults._logTime = Bunch()
-# defaults._logTime.textprops = dict(
-# 	fontsize=6,
-# 	ha="left",
-# 	alpha=1/2,
-# 	va="bottom"
-# )
-
-# defaults._logTime.lineprops = dict(
-# 	color="k",
-# 	alpha=1/4,
-# 	zorder=-1000
-# )
-
-# defaults.yaxis.logTime = \
-# 	lambda ax, boxes, textprops=defaults._logTime.textprops, lineprops=defaults._logTime.lineprops: \
-# 		_defaultlogTimeLabels(ax, boxes, textprops, lineprops)
-
-# ################################################################################
-# ## ADDITION (BOXPLOT) ##########################################################
-# ################################################################################
-
-# addition = Bunch()
-# addition.subplots = Bunch()
-
-# boxplots.addition = addition
-
-# addition.exec = "addition"
-# addition.trials = 1000
-
-# addition.sep = ","
-# addition.prefix = lambda host: f"{host}.{addition.exec}.{addition.trials}"
-
-# addition.columns = [
-# 	"N", "lN", "rN", "OVERLAP", "TTC"
-# ]
-
-# addition.dtypes = {
-# 	"N": int,
-# 	"lN": int,
-# 	"rN": int,
-# 	"OVERLAP": float,
-# 	"TTC": int
-# }
-
-# def _additionReadFile(host):
-# 	pref = addition.prefix(host)
-# 	data = pd.read_csv(f"./timing/{pref}.csv", sep=addition.sep, names=addition.columns)
-
-# 	for column in addition.columns: data[column] = data[column].astype(addition.dtypes[column])
-
-# 	return data
-
-# addition.data = lambda host: _additionReadFile(host)
-
-# ###############################
-# ## ADDITION, DENSITY BY TIME ##
-# ###############################
-
-# densityByTime = Bunch()
-# addition.subplots.densityByTime = densityByTime
-
-# densityByTime.ext = "jpeg"
-# densityByTime.out = lambda host, length: f"./timing/{addition.prefix(host)}.{length}.densityByTime.{densityByTime.ext}"
-# densityByTime.savefig = defaults.savefig
-
-
-
 ################################################################################
 ## TOPIC: ADDITION #############################################################
 ################################################################################
@@ -410,24 +209,25 @@ CONFIG.topics.addition = Bunch()
 
 CONFIG.topics.addition.exec = "addition"
 CONFIG.topics.addition.computing = CONFIG.metadata.computing
+CONFIG.topics.addition.hosts = CONFIG.metadata.hosts
 CONFIG.topics.addition.trials = 1000
 CONFIG.topics.addition.sep = ","
 CONFIG.topics.addition.prefix = lambda host, computing: f"{host}.{CONFIG.topics.addition.exec}.{computing}.{CONFIG.topics.addition.trials}"
 
 CONFIG.topics.addition.columns = [
 	"N",
-	"lN",
-	"rN",
+	"L",
 	"OVERLAP",
-	"TTC"
+	"TTC",
+	"CORES"
 ]
 
 CONFIG.topics.addition.dtypes = {
 	"N": int,
-	"lN": int,
-	"rN": int,
+	"L": int,
 	"OVERLAP": float,
-	"TTC": int
+	"TTC": int,
+	"CORES": int
 }
 
 
@@ -456,24 +256,12 @@ CONFIG.topics.addition.plots.timeByOverlap.scatter = CONFIG.topics.addition.plot
 
 
 ## AXES ############
-def _timeByOverlapVaxis(ax):
-	CONFIG._defaults.yaxis.logTime(ax)
-
-def _timeByOverlapHaxis(ax):
-	ax.set_xlim(-0.05,1.05)
-	ax.set_xticks([0, 1/4, 1/2, 3/4, 1])
-
-	ax.set_xticklabels([
-		f"${t}$" for t in [r"0", r"\nicefrac 14", r"\nicefrac 12", r"\nicefrac 34", r"1"]
-	])
-
-CONFIG.topics.addition.plots.timeByOverlap.yaxis = _timeByOverlapVaxis
-CONFIG.topics.addition.plots.timeByOverlap.xaxis = _timeByOverlapHaxis
+CONFIG.topics.addition.plots.timeByOverlap.yaxis = lambda ax: _timeByOverlapVaxis(ax)
+CONFIG.topics.addition.plots.timeByOverlap.xaxis = lambda ax, lo, hi: _timeByOverlapHaxis(ax, lo, hi)
 
 ## LSQ #############
-
 CONFIG.topics.addition.plots.timeByOverlap.lsq = Bunch()
-CONFIG.topics.addition.plots.timeByOverlap.lsq.f = lambda x, m, b: m*x + b
+CONFIG.topics.addition.plots.timeByOverlap.lsq.f = lambda x, a, k: a*x**k
 CONFIG.topics.addition.plots.timeByOverlap.lsq.plot = dict(
 	c=CONFIG.colors.tol.vibrant.red,
 	zorder=-10000
@@ -488,8 +276,45 @@ CONFIG.topics.addition.plots.timeByOverlap.lsq.text = dict(
 
 ## OUTPUT ##########
 CONFIG.topics.addition.plots.timeByOverlap.ext = "jpeg"
-CONFIG.topics.addition.plots.timeByOverlap.out = lambda host, length, computing: f"./timing/{CONFIG.topics.addition.prefix(host, computing)}.{length}.timeByOverlap.{CONFIG.topics.addition.plots.timeByOverlap.ext}"
+CONFIG.topics.addition.plots.timeByOverlap.out = lambda host, length, computing, cores: f"./timing/{CONFIG.topics.addition.prefix(host, computing)}.{length}.{cores}.timeByOverlap.{CONFIG.topics.addition.plots.timeByOverlap.ext}"
 CONFIG.topics.addition.plots.timeByOverlap.savefig = CONFIG._defaults.savefig
+
+
+################################################################
+## ADDITION, DENSITY BY TIME, OVERLAID #########################
+################################################################
+
+CONFIG.topics.addition.plots.timeByOverlapOverlaid = Bunch()
+
+CONFIG.topics.addition.plots.timeByOverlapOverlaid.scatter = CONFIG.topics.addition.plots.defaults.scatter
+
+## AXES ############
+CONFIG.topics.addition.plots.timeByOverlapOverlaid.yaxis = CONFIG.topics.addition.plots.timeByOverlap.yaxis
+CONFIG.topics.addition.plots.timeByOverlapOverlaid.xaxis = CONFIG.topics.addition.plots.timeByOverlap.xaxis
+
+## LSQ #############
+CONFIG.topics.addition.plots.timeByOverlapOverlaid.lsq = Bunch()
+CONFIG.topics.addition.plots.timeByOverlapOverlaid.lsq.f = CONFIG.topics.addition.plots.timeByOverlap.lsq.f
+CONFIG.topics.addition.plots.timeByOverlapOverlaid.lsq.plot = lambda color: dict(
+	c=color,
+	zorder=-10000
+)
+
+CONFIG.topics.addition.plots.timeByOverlapOverlaid.lsq.text = lambda color: dict(
+	ha="right",
+	va="bottom",
+	fontsize=4,
+	color=color
+)
+
+## OUTPUT ##########
+CONFIG.topics.addition.plots.timeByOverlapOverlaid.ext = "jpeg"
+
+CONFIG.topics.addition.plots.timeByOverlapOverlaid.out = lambda host, length, computing="overlaid": \
+	f"./timing/{CONFIG.topics.addition.prefix(host, computing)}.{length}.timeByOverlap.{CONFIG.topics.addition.plots.timeByOverlapOverlaid.ext}"
+
+CONFIG.topics.addition.plots.timeByOverlapOverlaid.savefig = CONFIG._defaults.savefig
+
 
 
 ################################################################################
@@ -525,4 +350,15 @@ def _defaultLogTimeVerticalAxis(ax, textprops, lineprops):
 			ax.text(xlo+0.005, tick, label, **textprops)
 			ax.plot([xlo, xhi], [tick, tick], **lineprops)
 
+
+def _timeByOverlapVaxis(ax):
+	CONFIG._defaults.yaxis.logTime(ax)
+
+def _timeByOverlapHaxis(ax, lo, hi):
+	ax.set_xlim(lo, hi)
+	ax.set_xticks([hi*k for k in [0, 1/4, 1/2, 3/4, 1]])
+
+	ax.set_xticklabels([
+		f"${t}$" for t in [r"0", r"\nicefrac 14", r"\nicefrac 12", r"\nicefrac 34", r"1"]
+	])
 

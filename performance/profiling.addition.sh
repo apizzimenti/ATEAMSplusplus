@@ -1,9 +1,9 @@
 #!/bin/zsh
 
 EXECS=("addition")
-LENGTHS=(219615 983040 3513840 15728640)
+LENGTHS=(3513840 15728640)
 TRIALS=${1:-100}
-PARALLELS=(0 1)
+PARALLELS=(1)
 
 HOST=$(hostname -f)
 DIR="performance"
@@ -33,7 +33,6 @@ for EXEC in "${EXECS[@]}"; do
 			# # Find bottlenecks.
 			# perf record --call-graph fp -o $DIR/profiling/$PREFIX.record ./build/profiling.$EXEC $HOST $TRIALS $LENGTH $PARALLEL
 			./build/profiling.$EXEC $HOST $TRIALS $LENGTH $PARALLEL &&
-
 			gprof ./build/profiling.$EXEC ./gmon.out > ./$DIR/profiling/$PREFIX.gprof &&
 			gprof ./build/profiling.$EXEC | gprof2dot --strip $ROOT | dot -Tpng -o ./$DIR/profiling/$PREFIX.gprof.png &&
 			
