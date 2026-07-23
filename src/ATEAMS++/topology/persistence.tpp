@@ -41,7 +41,6 @@ namespace ATEAMS::topology {
 				typename RingLike::dtype q = *youngestChain.find(youngestFaceIndexOf<RingLike>(cell));
 
 				typename RingLike::dtype  s = scalar_neg(scalar_inv(q, R->ring), R->ring);
-
 				arithmetic::SparseVectorRescaling<RingLike>(s, youngestChain, R);
 				arithmetic::SparseVectorAddition<RingLike>(cell, youngestChain, R, options);
 			}
@@ -53,7 +52,6 @@ namespace ATEAMS::topology {
 				// a face) a cycle, so we mark the index of its youngest face.
 				youngestChainLookup[youngestFaceIndexOf<RingLike>(cell)] = j;
 				Full.rows[youngestFaceIndexOf<RingLike>(cell)].zero();
-				printSparseRREFmat<RingLike>(Full, youngestChainLookup, youngestFaceIndexOf<RingLike>(cell));
 			} else {
 				// Induces a cycle, so we mark the cell.
 				marked.insert(j);
@@ -199,13 +197,10 @@ namespace ATEAMS::topology {
 		set<int> marked;
 
 		// Top dimension of the complex; indices at which we stop and start.
-		int topDimension = complex->Cells.size(), start, stop;
+		int topDimension = complex->Cells.size();
+		int start, stop;
 
-		printSparseRREFmat<RingLike>(Full);
-		cout << endl;
-		cout << endl;
-
-		for (int d=dimension; d < topDimension; d++) {
+		for (int d=dimension-1; d < topDimension-1; d++) {
 			start = complex->Breaks[d][0];
 			stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
 			reduceChains<RingLike>(Full, start, stop, youngestChainSharingFace, marked, R, options);
@@ -239,7 +234,8 @@ namespace ATEAMS::topology {
 		set<int> marked;
 
 		// Top dimension of the complex; indices at which we stop and start.
-		int topDimension = complex->Cells.size(), start, stop;
+		int topDimension = complex->Cells.size();
+		int start, stop;
 
 		for (int d=topDimension-1; d > dimension-1; d--) {
 			start = complex->Breaks[d][0];
