@@ -38,7 +38,7 @@ endif()
 ################################################################################
 set(TEST TRUE)
 set(PROFILE FALSE)
-set(TIMING TRUE)
+set(TIMING FALSE)
 
 set(PROFILE_COMPILE_OPTIONS
 	-pg
@@ -129,6 +129,7 @@ target_sources(ATEAMS++
 
 set_target_properties(ATEAMS++ PROPERTIES PUBLIC_HEADER include/ATEAMS++/ATEAMS++.h)
 target_link_libraries(ATEAMS++ INTERFACE PkgConfig::FLINT)
+target_link_libraries(ATEAMS++ INTERFACE OpenMP::OpenMP_CXX)
 
 if(mimalloc)
 	target_link_libraries(ATEAMS++ INTERFACE PkgConfig::mimalloc)

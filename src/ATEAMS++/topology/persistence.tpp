@@ -10,6 +10,7 @@
 #include "ATEAMS++/arithmetic/arithmetic.h"
 
 #include <phat/compute_persistence_pairs.h>
+#include <phat/helpers/misc.h>
 
 using namespace SparseRREF;
 using namespace std;
@@ -225,32 +226,56 @@ namespace ATEAMS::topology {
 		int start, stop;
 
 		if (options.parallel->enabled) {
-			// Dispatch one task per dimension.
-			for (int d=dimension; d <= topDimension; d++) {
-				// Specify start/stop indices.
-				start = complex->Breaks[d][0];
-				stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
 
-				options.opt->pool.detach_task(
-					[d, start, stop, &Full, &youngestChainSharingFace, &R, &options] {
-						// Flush the "marked" cells.
-						options.parallel->dimensionBlocks[d].clear();
+			// Use half the threads to work on one task, and half on the other.
+			#pragma omp parallel num_threads(topDimension-dimension)
+			{
+				int teamSize = omp_get_max_threads()/(topDimension-dimension+1);
+				omp_set_num_threads(teamSize);
 
-						// Reduce the chains of this dimension.
-						reduceChains<RingLike>(
-							Full,
-							start,
-							stop,
-							youngestChainSharingFace,
-							options.parallel->dimensionBlocks[d],
-							R,
-							options,
-							standardMatrixPolicy<RingLike>
-						);
-					}
-				);
+				#pragma omp for
+				for (int d=dimension; d <= topDimension; d++) {
+					// Specify start/stop indices.
+					start = complex->Breaks[d][0];
+					stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
+
+					options.parallel->dimensionBlocks[d].clear();
+
+					// Reduce the chains of this dimension.
+					reduceChains<RingLike>(
+						Full,
+						start,
+						stop,
+						youngestChainSharingFace,
+						options.parallel->dimensionBlocks[d],
+						R,
+						options,
+						standardMatrixPolicy<RingLike>
+					);
+
+					// options.opt->pool.detach_task(
+					// 	[d, start, stop, &Full, &youngestChainSharingFace, &R, &options] {
+					// 		// Flush the "marked" cells.
+					// 		options.parallel->dimensionBlocks[d].clear();
+
+					// 		// Reduce the chains of this dimension.
+					// 		reduceChains<RingLike>(
+					// 			Full,
+					// 			start,
+					// 			stop,
+					// 			youngestChainSharingFace,
+					// 			options.parallel->dimensionBlocks[d],
+					// 			R,
+					// 			options,
+					// 			standardMatrixPolicy<RingLike>
+					// 		);
+					// 	}
+					// );
+				}
 			}
-			options.opt->pool.wait();
+			// #pragma omp barrier
+
+			// options.opt->pool.wait();
 
 			// This is constant-time, since the dimensions of the homology groups
 			// are known.
@@ -259,7 +284,6 @@ namespace ATEAMS::topology {
 					marked.insert(k);
 				}
 			}
-
 		} else {
 			for (int d=dimension; d <= topDimension; d++) {
 				start = complex->Breaks[d][0];
