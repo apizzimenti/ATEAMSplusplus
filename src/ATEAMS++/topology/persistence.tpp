@@ -17,9 +17,33 @@ using namespace std;
 namespace ATEAMS::topology {
 	/** @cond */
 	template <typename RingLike>
-	INDEX youngestFaceIndexOf(SparseVector<RingLike> cell) {
+	inline INDEX youngestFaceIndexOf(SparseVector<RingLike> cell) {
 		return cell(cell.size()-1);
 	}
+
+	/**
+	 * @brief 
+	 */
+	template <typename RingLike>
+	inline void standardMatrixPolicy(
+		SparseMatrix<RingLike>& Full,
+		vector<int>& youngestChainLookup,
+		int youngestFaceIndex,
+		int markedIndex
+	) {
+		youngestChainLookup[youngestFaceIndex] = markedIndex;
+	};
+
+	template <typename RingLike>
+	inline void twistMatrixPolicy(
+		SparseMatrix<RingLike>& Full,
+		vector<int>& youngestChainLookup,
+		int youngestFaceIndex,
+		int markedIndex
+	) {
+		youngestChainLookup[youngestFaceIndex] = markedIndex;
+		Full.rows[youngestFaceIndex].zero();
+	};
 
 	template <typename RingLike>
 	inline void reduceChains(
@@ -29,7 +53,8 @@ namespace ATEAMS::topology {
 		vector<int>& youngestChainLookup,
 		set<int>& marked,
 		Ring* R,
-		arithmetic::ComputeOptions<RingLike>& options
+		arithmetic::ComputeOptions<RingLike>& options,
+		function<void(SparseMatrix<RingLike>&,vector<int>&,int,int)> matrixPolicy
 	) {
 		SparseVector<RingLike> youngestChain;
 
@@ -40,7 +65,7 @@ namespace ATEAMS::topology {
 				youngestChain = Full.rows[youngestChainLookup[youngestFaceIndexOf<RingLike>(cell)]];
 				typename RingLike::dtype q = *youngestChain.find(youngestFaceIndexOf<RingLike>(cell));
 
-				typename RingLike::dtype  s = scalar_neg(scalar_inv(q, R->ring), R->ring);
+				typename RingLike::dtype s = scalar_neg(scalar_inv(q, R->ring), R->ring);
 				arithmetic::SparseVectorRescaling<RingLike>(s, youngestChain, R);
 				arithmetic::SparseVectorAddition<RingLike>(cell, youngestChain, R, options);
 			}
@@ -50,8 +75,7 @@ namespace ATEAMS::topology {
 			if (cell.size() > 0) {
 				// Not a cell that makes the youngest chain (with which it shares
 				// a face) a cycle, so we mark the index of its youngest face.
-				youngestChainLookup[youngestFaceIndexOf<RingLike>(cell)] = j;
-				Full.rows[youngestFaceIndexOf<RingLike>(cell)].zero();
+				matrixPolicy(Full, youngestChainLookup, youngestFaceIndexOf<RingLike>(cell), j);
 			} else {
 				// Induces a cycle, so we mark the cell.
 				marked.insert(j);
@@ -60,7 +84,7 @@ namespace ATEAMS::topology {
 	}
 
 	template <typename RingLike>
-	SparseMatrix<RingLike> reindexSparseBoundaryMatrix(
+	inline SparseMatrix<RingLike> reindexSparseBoundaryMatrix(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		int dimension
@@ -100,7 +124,7 @@ namespace ATEAMS::topology {
 	/** @endcond */
 
 	template <typename RingLike>
-	vector<int> PHATPersistence(
+	inline vector<int> PHATPersistence(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		int dimension
@@ -181,7 +205,7 @@ namespace ATEAMS::topology {
 
 
 	template <typename RingLike>
-	vector<int> standardPersistence(
+	inline vector<int> standardPersistence(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		Ring* R,
@@ -197,13 +221,60 @@ namespace ATEAMS::topology {
 		set<int> marked;
 
 		// Top dimension of the complex; indices at which we stop and start.
-		int topDimension = complex->Cells.size();
+		int topDimension = min(dimension+1, (int)complex->Cells.size());
 		int start, stop;
 
-		for (int d=dimension-1; d < topDimension-1; d++) {
-			start = complex->Breaks[d][0];
-			stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
-			reduceChains<RingLike>(Full, start, stop, youngestChainSharingFace, marked, R, options);
+		if (options.parallel->enabled) {
+			// Dispatch one task per dimension.
+			for (int d=dimension; d <= topDimension; d++) {
+				// Specify start/stop indices.
+				start = complex->Breaks[d][0];
+				stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
+
+				options.opt->pool.detach_task(
+					[d, start, stop, &Full, &youngestChainSharingFace, &R, &options] {
+						// Flush the "marked" cells.
+						options.parallel->dimensionBlocks[d].clear();
+
+						// Reduce the chains of this dimension.
+						reduceChains<RingLike>(
+							Full,
+							start,
+							stop,
+							youngestChainSharingFace,
+							options.parallel->dimensionBlocks[d],
+							R,
+							options,
+							standardMatrixPolicy<RingLike>
+						);
+					}
+				);
+			}
+			options.opt->pool.wait();
+
+			// This is constant-time, since the dimensions of the homology groups
+			// are known.
+			for (int d=dimension; d<= topDimension; d++) {
+				for (auto k : options.parallel->dimensionBlocks[d]) {
+					marked.insert(k);
+				}
+			}
+
+		} else {
+			for (int d=dimension; d <= topDimension; d++) {
+				start = complex->Breaks[d][0];
+				stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
+				reduceChains<RingLike>(
+					Full,
+					start,
+					stop,
+					youngestChainSharingFace,
+					marked,
+					R,
+					options,
+					standardMatrixPolicy<RingLike>
+				);
+			}
 		}
 
 		int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
@@ -215,10 +286,9 @@ namespace ATEAMS::topology {
 
 		return essential;
 	};
-
 
 	template <typename RingLike>
-	vector<int> twistPersistence(
+	inline vector<int> twistPersistence(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		Ring* R,
@@ -234,13 +304,13 @@ namespace ATEAMS::topology {
 		set<int> marked;
 
 		// Top dimension of the complex; indices at which we stop and start.
-		int topDimension = complex->Cells.size();
+		int topDimension = min(dimension+1, (int)complex->Cells.size());
 		int start, stop;
 
-		for (int d=topDimension-1; d > dimension-1; d--) {
+		for (int d=topDimension; d >= dimension; d--) {
 			start = complex->Breaks[d][0];
 			stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
-			reduceChains<RingLike>(Full, start, stop, youngestChainSharingFace, marked, R, options);
+			reduceChains<RingLike>(Full, start, stop, youngestChainSharingFace, marked, R, options, twistMatrixPolicy<RingLike>);
 		}
 
 		int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
@@ -252,7 +322,6 @@ namespace ATEAMS::topology {
 
 		return essential;
 	};
-
 
 	template <typename RingLike>
 	std::vector<int> persistence(
@@ -263,8 +332,12 @@ namespace ATEAMS::topology {
 		arithmetic::ComputeOptions<RingLike>& options
 	) {
 		vector<int> essential;
+
 		if (R->characteristic < 3) essential = PHATPersistence<RingLike>(complex, filtration, dimension);
-		else essential = twistPersistence<RingLike>(complex, filtration, R, dimension, options);
+		else {
+			if (options.parallel->enabled) essential = standardPersistence(complex, filtration, R, dimension, options);
+			else essential = twistPersistence<RingLike>(complex, filtration, R, dimension, options);
+		}
 
 		std::sort(essential.begin(), essential.end());
 		return essential;

@@ -59,9 +59,10 @@ bool checkReindexing(complexes::Complex<Zp>* COMPLEX, int dimension) {
 }
 
 template <typename RingLike>
-bool checkPersistence(
+bool checkTwistPersistence(
 	complexes::Complex<RingLike>* COMPLEX,
 	int dimension,
+	int expectedRank,
 	Ring* R,
 	arithmetic::ComputeOptions<RingLike>& options
 ) {
@@ -71,15 +72,35 @@ bool checkPersistence(
 
 	// We should have 1 + 4 + 6 + 4 + 1 = 16 giant components, but only 6 of the
 	// desired dimension (2).
-	vector<int> times = topology::persistence<RingLike>(COMPLEX, FILTRATION, R, dimension, options);
+	vector<int> times = topology::twistPersistence<RingLike>(COMPLEX, FILTRATION, R, dimension, options);
 	printvector<int>(times);
-	return times.size() == 6;
+	return times.size() == expectedRank;
+}
+
+template <typename RingLike>
+bool checkPHATPersistence(
+	complexes::Complex<RingLike>* COMPLEX,
+	int dimension,
+	int expectedRank,
+	Ring* R,
+	arithmetic::ComputeOptions<RingLike>& options
+) {
+	// Swap two elements and verify they are reindexed correctly.
+	vector<int> FILTRATION(COMPLEX->size(), 0);
+	iota(FILTRATION.begin(), FILTRATION.end(), 0);
+
+	// We should have 1 + 4 + 6 + 4 + 1 = 16 giant components, but only 6 of the
+	// desired dimension (2).
+	vector<int> times = topology::PHATPersistence<RingLike>(COMPLEX, FILTRATION, dimension);
+	printvector<int>(times);
+	return times.size() == expectedRank;
 }
 
 template <typename RingLike>
 bool checkStandardPersistence(
 	complexes::Complex<RingLike>* COMPLEX,
 	int dimension,
+	int expectedRank,
 	Ring* R,
 	arithmetic::ComputeOptions<RingLike>& options
 ) {
@@ -91,48 +112,53 @@ bool checkStandardPersistence(
 	// desired dimension (2).
 	vector<int> times = topology::standardPersistence<RingLike>(COMPLEX, FILTRATION, R, dimension, options);
 	printvector<int>(times);
-	return times.size() == 6;
+	return times.size() == expectedRank;
 }
 
 
 int main(int argc, char *argv[]) {
+	int RESULT = PASS;
+
 	int FIELD = stoi(argv[1]);
 	Zp ZZ(FIELD);
-
-	int dimension = 2;
-
-	// Construct a Complex.
-	complexes::Cubical<Zp> COMPLEX(vector<int>(dimension*2, 3));
-
-	// Construct boundary matrices.
-	COMPLEX.constructBoundaryMatrices(&ZZ);
-	COMPLEX.constructFlatBoundaryMatrix();
-	COMPLEX.constructFullBoundaryMatrix(&ZZ);
 
 	// Construct arithmetic options.
 	arithmetic::ComputeOptions<Zp> options;
 	std::thread listener = options.spinUp();
 
-	// Check (for fields > 2) that we're reindexing (co)boundary matrices
-	// correctly. The reindexing check relies on the complex being cubical.
-	if (FIELD > 2) {
-		if (!checkReindexing(&COMPLEX, dimension)) {
-			options.spinDown(&listener);
-			return FAIL;
+	for (auto [dimension, rank] : HOMOLOGICALRANK) {
+		// Construct a Complex.
+		complexes::Cubical<Zp> COMPLEX(vector<int>(dimension, 3));
+
+		// Construct boundary matrices.
+		COMPLEX.constructBoundaryMatrices(&ZZ);
+		COMPLEX.constructFlatBoundaryMatrix();
+		COMPLEX.constructFullBoundaryMatrix(&ZZ);
+
+		options.initializeParallelism(COMPLEX.Cells.size()+1);
+
+		// Check (for fields > 2) that we're reindexing (co)boundary matrices
+		// correctly. The reindexing check relies on the complex being cubical.
+		if (FIELD > 2) {
+			if (!checkReindexing(&COMPLEX, dimension/2)) {
+				RESULT = FAIL;
+				goto exit;
+			}
+		}
+
+		if (!checkTwistPersistence(&COMPLEX, dimension/2, rank, &ZZ, options)) {
+			RESULT = FAIL;
+			goto exit;
+		}
+
+		if (!checkStandardPersistence(&COMPLEX, dimension/2, rank, &ZZ, options)) {
+			RESULT = FAIL;
+			goto exit;
 		}
 	}
 
-	// if (!checkPersistence(&COMPLEX, dimension, &ZZ, options)) {
-	// 	options.spinDown(&listener);
-	// 	return FAIL;
-	// }
-
-	if (!checkStandardPersistence(&COMPLEX, dimension, &ZZ, options)) {
+	exit:
+		// Now, check that we're getting the persistence correct.
 		options.spinDown(&listener);
-		return FAIL;
-	}
-
-	// Now, check that we're getting the persistence correct.
-	options.spinDown(&listener);
-	return PASS;
+		return RESULT;
 }

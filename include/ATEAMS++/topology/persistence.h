@@ -87,9 +87,10 @@ namespace ATEAMS::topology {
 	);
 
 	/**
-	 * @brief Dispatch method for computing persistence; calls @ref ATEAMS::topology::PHATPersistence
-	 * or @ref ATEAMS::topology::twistPersistence depending on the characteristic
-	 * of @p R.	
+	 * @brief Dispatch method for computing persistence; dispatches to 
+	 * @ref ATEAMS::topology::PHATPersistence, @ref ATEAMS::topology::twistPersistence,
+	 * or @ref ATEAMS::topology::standardPersistence depending on the characteristic
+	 * of @p R and parallelization options.
 	 * 
 	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * 
