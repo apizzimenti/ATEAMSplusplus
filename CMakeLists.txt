@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_compile_options(-march=native -flto -O3)
+# add_compile_options(-march=native -flto -O3)
 
 
 ################################################################################
@@ -36,9 +36,9 @@ endif()
 ################################################################################
 ## TESTING/PROFILING?                                                         ##
 ################################################################################
-set(TEST FALSE)
+set(TEST TRUE)
 set(PROFILE FALSE)
-set(TIMING TRUE)
+set(TIMING FALSE)
 
 set(PROFILE_COMPILE_OPTIONS
 	-pg
@@ -196,11 +196,11 @@ list(APPEND COMPLEXES
 )
 
 list(APPEND ARITHMETIC
-	"addition"
+	# "addition"
 )
 
 list(APPEND TOPOLOGY
-	# "persistence"
+	"persistence"
 )
 
 list(APPEND MODELS

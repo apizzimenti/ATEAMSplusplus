@@ -58,13 +58,20 @@ inline void key_listener(std::atomic<bool>& stop_flag) {
 
 
 // Helper method for printing SparseRREF matrices.
-template <typename Matrix>
-inline void printSparseRREFmat(Matrix A) {
+template <typename T>
+void printSparseRREFmat(ATEAMS::SparseMatrix<T> A) {
 	int rows, columns;
 	rows = A.nrow;
 	columns = A.ncol;
 
 	std::vector<std::vector<int>> M(rows, std::vector<int>(columns, 0));
+
+	std::cout << "   |";
+	for (int i=0; i < columns; i++) std::cout << std::format("{:^3}", i);
+	std::cout << std::endl;
+
+	for (int i=0; i < columns; i++) std::cout << "———";
+	std::cout << std::endl;
 
 	for (int i=0; i<rows; i++) {
 		for (auto [j,v] : A.rows[i]) {
@@ -73,10 +80,127 @@ inline void printSparseRREFmat(Matrix A) {
 	}
 
 	for (int i=0; i<rows; i++) {
+		std::cout << std::format("{:^3}|", i);
 		for (int j=0; j<columns; j++) {
-			std::cout << M[i][j] << " ";
+			std::cout << std::format("{:^3}",M[i][j]);
 		}
 		std::cout << std::endl;
+	}
+}
+
+// Helper method for printing SparseRREF matrices.
+template <typename T>
+void printSparseRREFmat(ATEAMS::SparseMatrix<T> A, int brow, bool edited) {
+	int rows, columns;
+	rows = A.nrow;
+	columns = A.ncol;
+
+	std::string col = edited ? "\e[31m" : "\e[34m";
+
+	std::vector<std::vector<int>> M(rows, std::vector<int>(columns, 0));
+
+	std::cout << "   |";
+	for (int i=0; i < columns; i++) std::cout << std::format("{:^3}", i);
+	std::cout << std::endl;
+
+	for (int i=0; i < columns+1; i++) std::cout << "———";
+	std::cout << std::endl;
+
+	for (int i=0; i<rows; i++) {
+		for (auto [j,v] : A.rows[i]) {
+			M[i][j] = (int)v;
+		}
+	}
+
+	for (int i=0; i<rows; i++) {
+		if (i == brow) std::cout << col << "\e[1m";
+		std::cout << std::format("{:^3}|", i);
+		for (int j=0; j<columns; j++) {
+			std::cout << std::format("{:^3}",M[i][j]);
+		}
+		std::cout << "\e[0m\e[0m" << std::endl;
+	}
+}
+
+// Helper method for printing SparseRREF matrices.
+template <typename T>
+void printSparseRREFmat(ATEAMS::SparseMatrix<T> A, int fixed, int edited) {
+	int rows, columns;
+	rows = A.nrow;
+	columns = A.ncol;
+
+	std::string fixedcol = "\e[31m";
+	std::string editedcol = "\e[32m";
+
+	std::vector<std::vector<int>> M(rows, std::vector<int>(columns, 0));
+
+	std::cout << "   |";
+	for (int i=0; i < columns; i++) std::cout << std::format("{:^3}", i);
+	std::cout << std::endl;
+
+	for (int i=0; i < columns+1; i++) std::cout << "———";
+	std::cout << std::endl;
+
+	for (int i=0; i<rows; i++) {
+		for (auto [j,v] : A.rows[i]) {
+			M[i][j] = (int)v;
+		}
+	}
+
+	for (int i=0; i<rows; i++) {
+		if (i == fixed) std::cout << fixedcol << "\e[1m";
+		if (i == edited) std::cout << editedcol << "\e[1m";
+
+		std::cout << std::format("{:^3}|", i);
+		for (int j=0; j<columns; j++) {
+			std::cout << std::format("{:^3}",M[i][j]);
+		}
+
+		if (i == fixed) std::cout << "<<< youngest \e[0m";
+		if (i == edited) std::cout << "<<< cell \e[0m";
+		std::cout << "\e[0m" << std::endl;
+	}
+}
+
+
+// Helper method for printing SparseRREF matrices.
+template <typename T>
+void printSparseRREFmat(ATEAMS::SparseMatrix<T> A, std::vector<int> nextColumnAdded, int zeroed) {
+	int rows, columns;
+	rows = A.nrow;
+	columns = A.ncol;
+
+	std::string zeroedcol = "\e[34m";
+
+	std::vector<std::vector<int>> M(rows, std::vector<int>(columns, 0));
+
+	std::cout << "   |";
+	for (int i=0; i < columns; i++) std::cout << std::format("{:^3}", i);
+	std::cout << std::endl;
+
+	for (int i=0; i < columns+1; i++) std::cout << "———";
+	std::cout << std::endl;
+
+	for (int i=0; i<rows; i++) {
+		for (auto [j,v] : A.rows[i]) {
+			M[i][j] = (int)v;
+		}
+	}
+
+	for (int i=0; i<rows; i++) {
+		if (i == zeroed) std::cout << zeroedcol << "\e[1m";
+		if (i == nextColumnAdded[zeroed]) std::cout << "\e[31m";
+
+		std::cout << std::format("{:^3}|", i);
+		for (int j=0; j<columns; j++) {
+			std::cout << std::format("{:^3}",M[i][j]);
+		}
+
+		std::cout << std::format(" | {:^3}", nextColumnAdded[i]);
+
+		if (i == nextColumnAdded[zeroed]) std::cout << "<<< next added \e[0m";
+		if (i == zeroed) std::cout << "<<< zeroed \e[0m";
+		std::cout << "\e[0m" << std::endl;
 	}
 }
 

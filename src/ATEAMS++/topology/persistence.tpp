@@ -17,10 +17,49 @@ using namespace std;
 namespace ATEAMS::topology {
 	/** @cond */
 	template <typename RingLike>
-	INDEX youngestFaceIndexOf(SparseVector<RingLike> cell) {
-		return cell(cell.size()-1);
+	INDEX youngestFaceIndexOf(SparseVector<RingLike> targetChain) {
+		return targetChain(targetChain.size()-1);
 	}
 
+	template <typename RingLike>
+	inline void reduceChains(
+		SparseMatrix<RingLike>& Full,
+		int start,
+		int stop,
+		vector<int>& youngestChainLookup,
+		set<int>& marked,
+		Ring* R,
+		arithmetic::ComputeOptions<RingLike>& options
+	) {
+		SparseVector<RingLike> youngestChain;
+
+		for (int j=start; j < stop; j++) {
+			SparseVector<RingLike>& targetChain = Full.rows[j];
+
+			while (targetChain.size() > 0 && youngestChainLookup[youngestFaceIndexOf<RingLike>(targetChain)] != 0) {
+				youngestChain = Full.rows[youngestChainLookup[youngestFaceIndexOf<RingLike>(targetChain)]];
+				typename RingLike::dtype q = *youngestChain.find(youngestFaceIndexOf<RingLike>(targetChain));
+				int t = youngestFaceIndexOf<RingLike>(targetChain);
+
+				// TODO parallelization stuff here? Can't go across columns, so maybe
+				// within the column? SparseRREF/FLINT probably do that already tho.
+				typename RingLike::dtype  s = scalar_neg(scalar_inv(q, R->ring), R->ring);
+
+				arithmetic::SparseVectorRescaling<RingLike>(s, youngestChain, R);
+				arithmetic::SparseVectorAddition<RingLike>(targetChain, youngestChain, R, options);
+			}
+
+			targetChain.compress();
+
+			if (targetChain.size() > 0) {
+				youngestChainLookup[youngestFaceIndexOf<RingLike>(targetChain)] = j;
+				Full.rows[youngestFaceIndexOf<RingLike>(targetChain)].zero();
+				printSparseRREFmat<RingLike>(Full, youngestChainLookup, youngestFaceIndexOf<RingLike>(targetChain));
+			} else {
+				marked.insert(j);
+			}
+		}
+	}
 
 	template <typename RingLike>
 	SparseMatrix<RingLike> reindexSparseBoundaryMatrix(
@@ -28,6 +67,7 @@ namespace ATEAMS::topology {
 		vector<int>& filtration,
 		int dimension
 	) {
+		// TODO this can be parallelized as well!
 		// Construct an index mapping.
 		vector<int> remapping(filtration.size(), 0);
 		for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
@@ -68,7 +108,7 @@ namespace ATEAMS::topology {
 		int dimension
 	) {
 		// The filtration specifies the order in which we add the cells of all
-		// dimensions. Create a map that specifies to which position each cell was
+		// dimensions. Create a map that specifies to which position each targetChain was
 		// moved. For example, if the filtration has
 		//
 		//				[... 12, 9, 10, 19, ...]
@@ -143,6 +183,46 @@ namespace ATEAMS::topology {
 
 
 	template <typename RingLike>
+	vector<int> standardPersistence(
+		complexes::Complex<RingLike>* complex,
+		vector<int>& filtration,
+		Ring* R,
+		int dimension,
+		arithmetic::ComputeOptions<RingLike>& options
+	) {
+		// Doing row operations on the coboundary is equivalent to column operations
+		// on the boundary.
+		SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);
+
+		// Track which column is to be added next; track which ones are marked.
+		vector<int> youngestChainSharingFace(complex->size(), 0);
+		set<int> marked;
+
+		// Top dimension of the complex; indices at which we stop and start.
+		int topDimension = complex->Cells.size(), start, stop;
+
+		printSparseRREFmat<RingLike>(Full);
+		cout << endl;
+		cout << endl;
+
+		for (int d=dimension; d < topDimension; d++) {
+			start = complex->Breaks[d][0];
+			stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
+			reduceChains<RingLike>(Full, start, stop, youngestChainSharingFace, marked, R, options);
+		}
+
+		int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
+		vector<int> essential;
+
+		for (auto k : marked) {
+			if (youngestChainSharingFace[k] == 0 && (low <= k && k < high)) essential.push_back(k);
+		}
+
+		return essential;
+	};
+
+
+	template <typename RingLike>
 	vector<int> twistPersistence(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
@@ -153,51 +233,25 @@ namespace ATEAMS::topology {
 		// Doing row operations on the coboundary is equivalent to column operations
 		// on the boundary.
 		SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);
-		SparseVector<RingLike> youngestFace;
 
 		// Track which column is to be added next; track which ones are marked.
-		vector<int> nextColumnAdded(complex->size(), 0);
+		vector<int> youngestChainSharingFace(complex->size(), 0);
 		set<int> marked;
 
 		// Top dimension of the complex; indices at which we stop and start.
-		int topDimension = complex->Cells.size(), lowestCellIndex, highestCellIndex;
-		typename RingLike::dtype youngestFaceCoefficient;
+		int topDimension = complex->Cells.size(), start, stop;
 
 		for (int d=topDimension-1; d > dimension-1; d--) {
-			lowestCellIndex = complex->Breaks[d][0];
-			highestCellIndex = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
-
-			for (int j=lowestCellIndex; j < highestCellIndex; j++) {
-				SparseVector<RingLike>& cell = Full.rows[j];
-
-				while (cell.size() > 0 && nextColumnAdded[youngestFaceIndexOf<RingLike>(cell)] != 0) {
-					youngestFace = Full.rows[nextColumnAdded[youngestFaceIndexOf<RingLike>(cell)]];
-					youngestFaceCoefficient = *youngestFace.find(youngestFaceIndexOf<RingLike>(cell));
-
-					// TODO parallelization stuff here? Can't go across columns, so maybe
-					// within the column? SparseRREF/FLINT probably do that already tho.
-					typename RingLike::dtype s = scalar_neg(scalar_inv(youngestFaceCoefficient, R->ring), R->ring);
-
-					arithmetic::SparseVectorRescaling<RingLike>(s, youngestFace, R);
-					arithmetic::SparseVectorAddition<RingLike>(cell, youngestFace, R, options);
-				}
-
-				cell.compress();
-
-				if (cell.size() > 0) {
-					nextColumnAdded[youngestFaceIndexOf<RingLike>(cell)] = j;
-					Full.rows[youngestFaceIndexOf<RingLike>(cell)].zero();
-				} else {
-					marked.insert(j);
-				}
-			}
+			start = complex->Breaks[d][0];
+			stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
+			reduceChains<RingLike>(Full, start, stop, youngestChainSharingFace, marked, R, options);
 		}
 
 		int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
 		vector<int> essential;
 
 		for (auto k : marked) {
-			if (nextColumnAdded[k] == 0 && (low <= k && k < high)) essential.push_back(k);
+			if (youngestChainSharingFace[k] == 0 && (low <= k && k < high)) essential.push_back(k);
 		}
 
 		return essential;

@@ -141,7 +141,8 @@ namespace ATEAMS::arithmetic {
 		Ring* R,
 		arithmetic::ComputeOptions<Zp>& options
 	) {
-		if (options.parallel->enabled) return parallelSparseVectorAddition<Zp>(u, v, R, options);
+		// if (options.parallel->enabled) return parallelSparseVectorAddition<Zp>(u, v, R, options);
+		// return serialSparseVectorAddition<Zp>(u, v, R);
 		return serialSparseVectorAddition<Zp>(u, v, R);
 	};
 
@@ -153,7 +154,8 @@ namespace ATEAMS::arithmetic {
 		Ring* R,
 		arithmetic::ComputeOptions<Z2>& options
 	) {
-		if (options.parallel->enabled) return parallelSparseVectorAddition<Z2>(u, v, R, options);
+		// if (options.parallel->enabled) return parallelSparseVectorAddition<Z2>(u, v, R, options);
+		// return serialSparseVectorAddition<Z2>(u, v, R);
 		return serialSparseVectorAddition<Z2>(u, v, R);
 	};
 }
