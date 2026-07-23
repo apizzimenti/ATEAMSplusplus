@@ -17,8 +17,8 @@ using namespace std;
 namespace ATEAMS::topology {
 	/** @cond */
 	template <typename RingLike>
-	INDEX youngestFaceIndexOf(SparseVector<RingLike> targetChain) {
-		return targetChain(targetChain.size()-1);
+	INDEX youngestFaceIndexOf(SparseVector<RingLike> cell) {
+		return cell(cell.size()-1);
 	}
 
 	template <typename RingLike>
@@ -34,28 +34,28 @@ namespace ATEAMS::topology {
 		SparseVector<RingLike> youngestChain;
 
 		for (int j=start; j < stop; j++) {
-			SparseVector<RingLike>& targetChain = Full.rows[j];
+			SparseVector<RingLike>& cell = Full.rows[j];
 
-			while (targetChain.size() > 0 && youngestChainLookup[youngestFaceIndexOf<RingLike>(targetChain)] != 0) {
-				youngestChain = Full.rows[youngestChainLookup[youngestFaceIndexOf<RingLike>(targetChain)]];
-				typename RingLike::dtype q = *youngestChain.find(youngestFaceIndexOf<RingLike>(targetChain));
-				int t = youngestFaceIndexOf<RingLike>(targetChain);
+			while (cell.size() > 0 && youngestChainLookup[youngestFaceIndexOf<RingLike>(cell)] != 0) {
+				youngestChain = Full.rows[youngestChainLookup[youngestFaceIndexOf<RingLike>(cell)]];
+				typename RingLike::dtype q = *youngestChain.find(youngestFaceIndexOf<RingLike>(cell));
 
-				// TODO parallelization stuff here? Can't go across columns, so maybe
-				// within the column? SparseRREF/FLINT probably do that already tho.
 				typename RingLike::dtype  s = scalar_neg(scalar_inv(q, R->ring), R->ring);
 
 				arithmetic::SparseVectorRescaling<RingLike>(s, youngestChain, R);
-				arithmetic::SparseVectorAddition<RingLike>(targetChain, youngestChain, R, options);
+				arithmetic::SparseVectorAddition<RingLike>(cell, youngestChain, R, options);
 			}
 
-			targetChain.compress();
+			cell.compress();
 
-			if (targetChain.size() > 0) {
-				youngestChainLookup[youngestFaceIndexOf<RingLike>(targetChain)] = j;
-				Full.rows[youngestFaceIndexOf<RingLike>(targetChain)].zero();
-				printSparseRREFmat<RingLike>(Full, youngestChainLookup, youngestFaceIndexOf<RingLike>(targetChain));
+			if (cell.size() > 0) {
+				// Not a cell that makes the youngest chain (with which it shares
+				// a face) a cycle, so we mark the index of its youngest face.
+				youngestChainLookup[youngestFaceIndexOf<RingLike>(cell)] = j;
+				Full.rows[youngestFaceIndexOf<RingLike>(cell)].zero();
+				printSparseRREFmat<RingLike>(Full, youngestChainLookup, youngestFaceIndexOf<RingLike>(cell));
 			} else {
+				// Induces a cycle, so we mark the cell.
 				marked.insert(j);
 			}
 		}
@@ -108,7 +108,7 @@ namespace ATEAMS::topology {
 		int dimension
 	) {
 		// The filtration specifies the order in which we add the cells of all
-		// dimensions. Create a map that specifies to which position each targetChain was
+		// dimensions. Create a map that specifies to which position each cell was
 		// moved. For example, if the filtration has
 		//
 		//				[... 12, 9, 10, 19, ...]
