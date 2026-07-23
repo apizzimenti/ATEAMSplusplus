@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# add_compile_options(-march=native -flto -O3)
+add_compile_options(-march=native -flto -O3)
 
 
 ################################################################################
@@ -38,7 +38,7 @@ endif()
 ################################################################################
 set(TEST TRUE)
 set(PROFILE FALSE)
-set(TIMING FALSE)
+set(TIMING TRUE)
 
 set(PROFILE_COMPILE_OPTIONS
 	-pg
@@ -200,8 +200,13 @@ list(APPEND ARITHMETIC
 )
 
 list(APPEND TOPOLOGY
-	"standardPersistence"
+	"standardPersistence.parallel"
+	"standardPersistence.serial"
 	"twistPersistence"
+)
+
+list(APPEND TOPOLOGY.TIMING
+	"persistence"
 )
 
 list(APPEND MODELS
@@ -225,10 +230,10 @@ if (TEST)
 			target_link_libraries(tests.${MODEL}.${TYPE} PUBLIC ATEAMS++)
 
 			if("${TYPE}" STREQUAL "Q")
-				add_test(NAME tests.${MODEL}.${TYPE} COMMAND tests.${MODEL}.${TYPE} 0)
+				add_test(NAME ${MODEL}.${TYPE} COMMAND tests.${MODEL}.${TYPE} 0)
 			else()
-				add_test(NAME tests.${MODEL}.${TYPE}.2 COMMAND tests.${MODEL}.${TYPE} 2)
-				add_test(NAME tests.${MODEL}.${TYPE}.3 COMMAND tests.${MODEL}.${TYPE} 3)
+				add_test(NAME ${MODEL}.${TYPE}.2 COMMAND tests.${MODEL}.${TYPE} 2)
+				add_test(NAME ${MODEL}.${TYPE}.3 COMMAND tests.${MODEL}.${TYPE} 3)
 			endif()
 		endforeach()
 	endforeach()
@@ -239,7 +244,7 @@ if (TEST)
 			add_executable(tests.${COMPLEX}.${TYPE} tests/complexes/${COMPLEX}.${TYPE}.cpp)
 			target_include_directories(tests.${COMPLEX}.${TYPE} PUBLIC tests)
 			target_link_libraries(tests.${COMPLEX}.${TYPE} PUBLIC ATEAMS++)
-			add_test(NAME tests.${COMPLEX}.${TYPE} COMMAND tests.${COMPLEX}.${TYPE})
+			add_test(NAME ${COMPLEX}.${TYPE} COMMAND tests.${COMPLEX}.${TYPE})
 		endforeach()
 	endforeach()
 
@@ -251,15 +256,15 @@ if (TEST)
 			target_link_libraries(tests.${FUNCTION}.${TYPE} PUBLIC ATEAMS++)
 
 			if("${TYPE}" STREQUAL "Q")
-				add_test(NAME tests.${FUNCTION}.${TYPE} COMMAND tests.${FUNCTION}.${TYPE} 0)
+				add_test(NAME ${FUNCTION}.${TYPE} COMMAND tests.${FUNCTION}.${TYPE} 0)
 			else()
 				# Test at 1,000,000 entries over 100 trials.
-				add_test(NAME tests.${FUNCTION}.${TYPE}.2.e6.100 COMMAND tests.${FUNCTION}.${TYPE} 2 1000000 100)
-				add_test(NAME tests.${FUNCTION}.${TYPE}.3.e6.100 COMMAND tests.${FUNCTION}.${TYPE} 3 1000000 100)
+				add_test(NAME ${FUNCTION}.${TYPE}.2.e6.100 COMMAND tests.${FUNCTION}.${TYPE} 2 1000000 100)
+				add_test(NAME ${FUNCTION}.${TYPE}.3.e6.100 COMMAND tests.${FUNCTION}.${TYPE} 3 1000000 100)
 
 				# Test at 10,000,000 entries over 10 trials.
-				add_test(NAME tests.${FUNCTION}.${TYPE}.2.e7.10 COMMAND tests.${FUNCTION}.${TYPE} 2 10000000 10)
-				add_test(NAME tests.${FUNCTION}.${TYPE}.3.e7.10 COMMAND tests.${FUNCTION}.${TYPE} 3 10000000 10)
+				add_test(NAME ${FUNCTION}.${TYPE}.2.e7.10 COMMAND tests.${FUNCTION}.${TYPE} 2 10000000 10)
+				add_test(NAME ${FUNCTION}.${TYPE}.3.e7.10 COMMAND tests.${FUNCTION}.${TYPE} 3 10000000 10)
 			endif()
 		endforeach()
 	endforeach()
@@ -271,10 +276,10 @@ if (TEST)
 			target_link_libraries(tests.${FUNCTION}.${TYPE} PUBLIC ATEAMS++)
 
 			if("${TYPE}" STREQUAL "Q")
-				add_test(NAME tests.${FUNCTION}.${TYPE} COMMAND tests.${FUNCTION}.${TYPE} 0)
+				add_test(NAME ${FUNCTION}.${TYPE} COMMAND tests.${FUNCTION}.${TYPE} 0)
 			else()
-				add_test(NAME tests.${FUNCTION}.${TYPE}.2 COMMAND tests.${FUNCTION}.${TYPE} 2)
-				add_test(NAME tests.${FUNCTION}.${TYPE}.3 COMMAND tests.${FUNCTION}.${TYPE} 3)
+				add_test(NAME ${FUNCTION}.${TYPE}.2 COMMAND tests.${FUNCTION}.${TYPE} 2)
+				add_test(NAME ${FUNCTION}.${TYPE}.3 COMMAND tests.${FUNCTION}.${TYPE} 3)
 			endif()
 		endforeach()
 	endforeach()
@@ -304,7 +309,7 @@ endif()
 
 
 if (TIMING)
-	foreach(FUNCTION IN LISTS TOPOLOGY)
+	foreach(FUNCTION IN LISTS TOPOLOGY.TIMING)
 		add_executable(timing.${FUNCTION} performance/timing.${FUNCTION}.cpp)
 		target_link_libraries(timing.${FUNCTION} PUBLIC ATEAMS++)
 	endforeach()

@@ -35,8 +35,10 @@ profiling: FORCE
 
 timing: FORCE
 	@rm -f performance/timing/*(N)
-	@rm -f performance/timing/timing.addition.log
-	./performance/timing.addition.sh &> ./performance/timing.addition.log &
+# 	@rm -f performance/timing/timing.addition.log
+# 	./performance/timing.addition.sh &> ./performance/timing.addition.log &
+	rm -f performance/timing/timing.persistence.log
+	./performance/timing.persistence.sh &> ./performance/timing.persistence.log &
 
 
 test:

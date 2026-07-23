@@ -26,48 +26,76 @@ vector<int> filtrate(
 
 
 int main(int argc, char* argv[]) {
-	int SCALE = stoi(argv[1]);
-	int DIMENSION = stoi(argv[2]);
-	int FIELD = stoi(argv[3]);
-	int ATTEMPTS = stoi(argv[4]);
-	int PARALLEL = stoi(argv[5]);
-	int WIDTH = stoi(argv[6]);
+	string HOSTNAME = argv[1];
+	int SCALE = stoi(argv[2]);
+	int DIMENSION = stoi(argv[3]);
+	int FIELD = stoi(argv[4]);
+	int TRIALS = stoi(argv[5]);
+	string STRATEGY = argv[6];
+	int PARALLEL = stoi(argv[7]);
 
 	// Construct a cubical complex and the ingredients for a filtration.
 	Zp R(FIELD);
-	complexes::Cubical<Zp> plex(vector<int>(DIMENSION*2, SCALE));
-
+	complexes::Cubical<Zp> plex(vector<int>(DIMENSION, SCALE));
 	plex.constructBoundaryMatrices(&R);
-	plex.constructFlatBoundaryMatrix();
 	plex.constructFullBoundaryMatrix(&R);
 
 	// Create reusable indices for filtrations.
-	vector<int> filtration(plex.size());
+	vector<int> filtration(plex.size(), 0);
 	iota(begin(filtration), end(filtration), 0);
 
-	vector<int> include(plex.Cells[DIMENSION]);
+	vector<int> include(plex.Cells[DIMENSION/2], 0);
 	iota(begin(include), end(include), 0);
 
-	arithmetic::ComputeOptions options;
-	options.parallelSparseAddition = (bool)PARALLEL;
-	options.parallelSparseAdditionChunkWidth = WIDTH;
+	// Create compute options.
+	arithmetic::ComputeOptions<Zp> options;
+	thread listener = options.spinUp(plex.Cells.size());
+	options.parallel->enabled = (bool)PARALLEL;
 	
-	thread listener = options.spinUp();
 
-	for (int t=0; t < ATTEMPTS; t++) {
+	// Create a bucket for storing times to completion.
+	vector<int> TTC(TRIALS);
+
+	for (int t=0; t < TRIALS; t++) {
 		// Create the filtration.
-		vector<int> K = filtrate(&plex, filtration, include, DIMENSION);
+		vector<int> K = filtrate(&plex, filtration, include, DIMENSION/2);
+		vector<int> times;
 
 		auto start = chrono::high_resolution_clock::now();
 
-		topology::persistence<Zp>(&plex, K, &R, DIMENSION, options);
+		if (STRATEGY == "standard") times = topology::standardPersistence<Zp>(&plex, K, &R, DIMENSION/2, options);
+		else times = topology::twistPersistence<Zp>(&plex, K, &R, DIMENSION/2, options);
 
 		auto end = chrono::high_resolution_clock::now();
 		auto duration = chrono::duration_cast<chrono::microseconds>(end-start);
-		cout << duration.count() << endl;
+
+		// Write data to storage.
+		TTC[t] = duration.count();
 	}
 
+	// Write data to file.
+	string csv = "";
+
+	for (int t=0; t < TRIALS; t++) {
+		csv = csv + format(
+			"{},{},{},{}\n",
+			SCALE,
+			DIMENSION,
+			TTC[t],
+			(int)(PARALLEL ? options.opt->pool.get_thread_count() : 1)
+		);
+	}
+
+	// Spin down the listener.
 	options.spinDown(&listener);
+
+	string KIND = PARALLEL ? "parallel" : "serial";
+
+	// APPEND to file.
+	ofstream file;
+	file.open(format("./performance/timing/{}.persistence.{}.{}.csv", HOSTNAME, STRATEGY, TRIALS), fstream::app);
+	file << csv;
+	file.close();
 
 	return 0;
 }

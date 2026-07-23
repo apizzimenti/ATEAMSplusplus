@@ -62,6 +62,7 @@ inline bool checkPersistence(
 	int expectedrank,
 	ATEAMS::Ring* R,
 	ATEAMS::arithmetic::ComputeOptions<RingLike>& options,
+	std::mt19937 RNG,
 	std::function<
 		std::vector<int>
 		(
@@ -75,6 +76,16 @@ inline bool checkPersistence(
 ) {
 	std::vector<int> filtration(complex->size(), 0);
 	std::iota(filtration.begin(), filtration.end(), 0);
+
+	std::vector<int> subset(complex->Cells[dimension]);
+	std::iota(subset.begin(), subset.end(), 0);
+
+	std::shuffle(subset.begin(), subset.end(), RNG);
+	int offset = (dimension > 0) ? complex->Offsets[dimension-1] : 0;
+
+	for (int t=complex->Offsets[dimension-1]; t < complex->Offsets[dimension]; t++) {
+		filtration[t] = subset[t-offset]+offset;
+	}
 
 	std::vector<int> times = persistenceAlgorithm(complex, filtration, R, dimension, options);
 	return times.size() == expectedrank;
@@ -145,7 +156,8 @@ inline int persistenceDispatcher(
 			int,
 			ATEAMS::arithmetic::ComputeOptions<RingLike>&
 		)
-	> persistenceAlgorithm
+	> persistenceAlgorithm,
+	bool parallel=true
 ) {
 	int RESULT = PASS;
 	int FIELD = std::stoi(argv[1]);
@@ -155,6 +167,10 @@ inline int persistenceDispatcher(
 	ATEAMS::arithmetic::ComputeOptions<RingLike> options;
 	std::thread listener = options.spinUp();
 
+	// Create the RNG.
+	std::random_device rd;
+	std::mt19937 RNG(rd());
+	
 	for (auto [dimension, rank] : HOMOLOGICALRANK) {
 		// Construct a Complex.
 		ATEAMS::complexes::Cubical<RingLike> complex(std::vector<int>(dimension, 3));
@@ -165,6 +181,7 @@ inline int persistenceDispatcher(
 		complex.constructFullBoundaryMatrix(&R);
 
 		options.initializeParallelism(complex.Cells.size()+1);
+		options.parallel->enabled = parallel;
 
 		// Check whether we're re-indexing properly.
 		if (!checkReindexing<RingLike>(&complex, dimension/2)) {
@@ -173,9 +190,11 @@ inline int persistenceDispatcher(
 		}
 
 		// Check whether we're persisting properly.
-		if (!checkPersistence<RingLike>(&complex, dimension/2, rank, &R, options, persistenceAlgorithm)) {
-			RESULT = FAIL;
-			goto EXIT;
+		for (int t=0; t < 100; t++) {
+			if (!checkPersistence<RingLike>(&complex, dimension/2, rank, &R, options, RNG, persistenceAlgorithm)) {
+				RESULT = FAIL;
+				goto EXIT;
+			}
 		}
 	}
 

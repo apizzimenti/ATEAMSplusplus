@@ -33,9 +33,9 @@ namespace ATEAMS::arithmetic {
 			int threads;
 			bool enabled = false;
 			std::vector<std::set<int>> dimensionBlocks;
-			std::vector<std::vector<int>> indexBlocks;
-			std::vector<SparseVector<RingLike>> lScratch;
-			std::vector<SparseVector<RingLike>> rScratch;
+			// std::vector<std::vector<int>> indexBlocks;
+			// std::vector<SparseVector<RingLike>> lScratch;
+			// std::vector<SparseVector<RingLike>> rScratch;
 	};
 
 	/**

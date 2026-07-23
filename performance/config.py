@@ -317,6 +317,83 @@ CONFIG.topics.addition.plots.timeByOverlapOverlaid.savefig = CONFIG._defaults.sa
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################################################################
+## TOPIC: PERSISTENCE ##########################################################
+################################################################################
+
+CONFIG.topics.persistence = Bunch()
+
+CONFIG.topics.persistence.exec = "persistence"
+CONFIG.topics.persistence.computing = CONFIG.metadata.computing
+CONFIG.topics.persistence.hosts = CONFIG.metadata.hosts
+CONFIG.topics.persistence.trials = 100
+CONFIG.topics.persistence.sep = ","
+CONFIG.topics.persistence.prefix = lambda host, computing: f"{host}.{CONFIG.topics.persistence.exec}.{computing}.{CONFIG.topics.persistence.trials}"
+
+CONFIG.topics.persistence.columns = [
+	"SCALE",
+	"DIMENSION",
+	"TTC",
+	"CORES"
+]
+
+CONFIG.topics.persistence.dtypes = {
+	"SCALE": int,
+	"DIMENSION": int,
+	"TTC": int,
+	"CORES": int
+}
+
+
+CONFIG.topics.persistence.data = lambda host, computing: _additionReadFile(host, computing, CONFIG.topics.persistence)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ################################################################################
 ## MISCELLANEOUS FUNCTIONS #####################################################
 ################################################################################
@@ -361,4 +438,3 @@ def _timeByOverlapHaxis(ax, lo, hi):
 	ax.set_xticklabels([
 		f"${t}$" for t in [r"0", r"\nicefrac 14", r"\nicefrac 12", r"\nicefrac 34", r"1"]
 	])
-
