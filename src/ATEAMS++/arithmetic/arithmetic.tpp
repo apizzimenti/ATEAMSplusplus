@@ -55,6 +55,8 @@ namespace ATEAMS::arithmetic {
 
 		options.parallel->indexBlocks[threads-1][1] = maxindex+1;
 
+		// I think parallelizing in this way creates a ton of overhead just from
+		// submitting to the thread pool. May need to re-think.
 		for (int thread=0; thread < threads; thread++) {
 			options.opt->pool.detach_task([thread, &u, &v, &R, &options] {
 				// Determine which blocks of indices we're working with.
