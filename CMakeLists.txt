@@ -200,7 +200,8 @@ list(APPEND ARITHMETIC
 )
 
 list(APPEND TOPOLOGY
-	"persistence"
+	"standardPersistence"
+	"twistPersistence"
 )
 
 list(APPEND MODELS
