@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_compile_options(-march=native -flto -O3)
+add_compile_options(-march=native -flto)
 
 
 ################################################################################
@@ -39,6 +39,7 @@ endif()
 set(TEST TRUE)
 set(PROFILE FALSE)
 set(TIMING FALSE)
+set(DEBUG TRUE)
 
 set(PROFILE_COMPILE_OPTIONS
 	-pg
@@ -52,6 +53,12 @@ set(PROFILE_LINK_OPTIONS
 
 if (TEST)
 	enable_testing()
+endif()
+
+if (DEBUG)
+	add_compile_options(-g -O1)
+else()
+	add_compile_options(-Ofast)
 endif()
 
 
@@ -202,12 +209,12 @@ list(APPEND ARITHMETIC
 
 list(APPEND TOPOLOGY
 	"standardPersistence.parallel"
-	"standardPersistence.serial"
-	"twistPersistence"
+	# "standardPersistence.serial"
+	# "twistPersistence"
 )
 
 list(APPEND TOPOLOGY.TIMING
-	"persistence"
+	# "persistence"
 )
 
 list(APPEND MODELS

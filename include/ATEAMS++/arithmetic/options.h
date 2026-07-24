@@ -7,6 +7,7 @@
 #include <SparseRREF/sparse_mat.h>
 #include <SparseRREF/sparse_rref.h>
 
+#include <omp.h>
 #include <thread>
 
 
@@ -32,10 +33,18 @@ namespace ATEAMS::arithmetic {
 		public:
 			int threads;
 			bool enabled = false;
-			std::vector<std::set<int>> dimensionBlocks;
-			// std::vector<std::vector<int>> indexBlocks;
-			// std::vector<SparseVector<RingLike>> lScratch;
-			// std::vector<SparseVector<RingLike>> rScratch;
+
+			std::vector<std::set<int>> markedByThread;
+			std::vector<std::vector<int>> chainSharingByThread;
+
+			void build(int blocks, int length) {
+				this->markedByThread =  std::vector<std::set<int>>(blocks, std::set<int>());
+			}
+
+			void flush(int block) {
+				// Flushes stored data for container re-use.
+				this->markedByThread[block].clear();
+			};
 	};
 
 	/**
@@ -111,7 +120,6 @@ namespace ATEAMS::arithmetic {
 				// change during execution.
 				this->parallel = new ParallelOptions<RingLike>;
 				this->parallel->enabled = true;
-				this->parallel->dimensionBlocks = std::vector<std::set<int>>(this->opt->pool.get_thread_count(), std::set<int>());
 			};
 
 			void initializeParallelism(int blocks) {
@@ -119,7 +127,6 @@ namespace ATEAMS::arithmetic {
 				// change during execution.
 				this->parallel = new ParallelOptions<RingLike>;
 				this->parallel->enabled = true;
-				this->parallel->dimensionBlocks = std::vector<std::set<int>>(blocks, std::set<int>());
 			};
 	};
 }

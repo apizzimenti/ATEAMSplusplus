@@ -47,7 +47,7 @@ namespace ATEAMS::topology {
 	};
 
 	template <typename RingLike>
-	inline void reduceChains(
+	void reduceChains(
 		SparseMatrix<RingLike>& Full,
 		int start,
 		int stop,
@@ -215,7 +215,7 @@ namespace ATEAMS::topology {
 	) {
 		// Doing row operations on the coboundary is equivalent to column operations
 		// on the boundary.
-		SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);
+		SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);		
 
 		// Track which column is to be added next; track which ones are marked.
 		vector<int> youngestChainSharingFace(complex->size(), 0);
@@ -227,19 +227,26 @@ namespace ATEAMS::topology {
 
 		if (options.parallel->enabled) {
 
-			// Use half the threads to work on one task, and half on the other.
-			#pragma omp parallel num_threads(topDimension-dimension)
-			{
-				int teamSize = omp_get_max_threads()/(topDimension-dimension+1);
-				omp_set_num_threads(teamSize);
+			// Break the matrix into blocks, then reduce over each block
+			// independently.
+			omp_set_max_active_levels(2);
 
-				#pragma omp for
+			int blocks = topDimension-dimension+1;
+			int threadsPerBlock = omp_get_max_threads()/blocks;
+
+			// Create reusable containers for marking indices.
+			options.parallel->build(complex->Cells.size(), complex->size());
+
+			#pragma omp task default(shared) private(start, stop)
+			{
+				#pragma omp parallel for num_threads(threadsPerBlock)
 				for (int d=dimension; d <= topDimension; d++) {
 					// Specify start/stop indices.
 					start = complex->Breaks[d][0];
 					stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
 
-					options.parallel->dimensionBlocks[d].clear();
+					// Clear the data from the cache.
+					options.parallel->flush(d);
 
 					// Reduce the chains of this dimension.
 					reduceChains<RingLike>(
@@ -247,47 +254,27 @@ namespace ATEAMS::topology {
 						start,
 						stop,
 						youngestChainSharingFace,
-						options.parallel->dimensionBlocks[d],
+						options.parallel->markedByThread[d],
 						R,
 						options,
 						standardMatrixPolicy<RingLike>
 					);
-
-					// options.opt->pool.detach_task(
-					// 	[d, start, stop, &Full, &youngestChainSharingFace, &R, &options] {
-					// 		// Flush the "marked" cells.
-					// 		options.parallel->dimensionBlocks[d].clear();
-
-					// 		// Reduce the chains of this dimension.
-					// 		reduceChains<RingLike>(
-					// 			Full,
-					// 			start,
-					// 			stop,
-					// 			youngestChainSharingFace,
-					// 			options.parallel->dimensionBlocks[d],
-					// 			R,
-					// 			options,
-					// 			standardMatrixPolicy<RingLike>
-					// 		);
-					// 	}
-					// );
 				}
 			}
-			// #pragma omp barrier
+			#pragma omp barrier
 
-			// options.opt->pool.wait();
-
-			// This is constant-time, since the dimensions of the homology groups
-			// are known.
+			// Re-constitute the marked columns from across individual threads;
+			// this is (effectively) constant-time, since we know the number of
+			// marked columns is capped.
 			for (int d=dimension; d<= topDimension; d++) {
-				for (auto k : options.parallel->dimensionBlocks[d]) {
-					marked.insert(k);
-				}
+				for (auto k : options.parallel->markedByThread[d]) marked.insert(k);
 			}
+
 		} else {
 			for (int d=dimension; d <= topDimension; d++) {
 				start = complex->Breaks[d][0];
 				stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
+
 				reduceChains<RingLike>(
 					Full,
 					start,
@@ -301,6 +288,8 @@ namespace ATEAMS::topology {
 			}
 		}
 
+		// Check which columns are marked, have no chains with which they share
+		// faces (i.e. are cycles), and are between the target idnices.
 		int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
 		vector<int> essential;
 

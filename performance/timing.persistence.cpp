@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
 
 	// Create compute options.
 	arithmetic::ComputeOptions<Zp> options;
-	thread listener = options.spinUp(plex.Cells.size());
+	thread listener = options.spinUp(plex.Cells.size()+1);
 	options.parallel->enabled = (bool)PARALLEL;
 	
 
@@ -82,7 +82,7 @@ int main(int argc, char* argv[]) {
 			SCALE,
 			DIMENSION,
 			TTC[t],
-			(int)(PARALLEL ? options.opt->pool.get_thread_count() : 1)
+			(int)(PARALLEL ? omp_get_max_threads() : 1)
 		);
 	}
 
