@@ -229,16 +229,15 @@ namespace ATEAMS::topology {
 
 			// Break the matrix into blocks, then reduce over each block
 			// independently.
-			omp_set_max_active_levels(2);
 			int blocks = topDimension-dimension+1;
-			int threadsPerBlock = omp_get_max_threads()/blocks;
 
-			#pragma omp task default(shared)
+			#pragma omp parallel shared(blocks,youngestChainSharingFace)
+			#pragma omp single
 			{
-				#pragma omp parallel for num_threads(threadsPerBlock) firstprivate(Full)
+				#pragma omp taskloop firstprivate(Full) shared(youngestChainSharingFace) num_tasks(blocks)
 				for (int d=dimension; d <= topDimension; d++) {
 					// Specify start/stop indices.
-					cout << threadsPerBlock << " " << omp_get_num_threads() << endl;
+					// cout << omp_get_num_threads() << endl;
 					int start = complex->Breaks[d][0];
 					int stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
 
@@ -258,7 +257,7 @@ namespace ATEAMS::topology {
 					);
 				}
 			}
-			#pragma omp barrier
+			#pragma omp taskwait
 
 			// Re-constitute the marked columns from across individual threads;
 			// this is (effectively) constant-time, since we know the number of
@@ -295,9 +294,6 @@ namespace ATEAMS::topology {
 		for (auto k : marked) {
 			if (youngestChainSharingFace[k] == 0 && (low <= k && k < high)) essential.push_back(k);
 		}
-
-		printvector<int>(essential);
-
 		return essential;
 	};
 

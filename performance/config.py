@@ -18,7 +18,7 @@ metadata.computing = ["serial", "parallel"]
 metadata.initialize = lambda p: p.rcParams.update({
 	"text.usetex": True,
 	"font.family": "Times New Roman",
-	"text.latex.preamble": r"\usepackage{nicefrac}"
+	"text.latex.preamble": r"\usepackage{nicefrac}\usepackage{amsfonts}"
 })
 
 # Cell counts by dimension and scale.
@@ -357,6 +357,7 @@ CONFIG.topics.persistence.prefix = lambda host, computing: f"{host}.{CONFIG.topi
 CONFIG.topics.persistence.columns = [
 	"SCALE",
 	"DIMENSION",
+	"FIELD",
 	"TTC",
 	"CORES"
 ]
@@ -364,6 +365,7 @@ CONFIG.topics.persistence.columns = [
 CONFIG.topics.persistence.dtypes = {
 	"SCALE": int,
 	"DIMENSION": int,
+	"FIELD": int,
 	"TTC": int,
 	"CORES": int
 }
@@ -385,6 +387,23 @@ CONFIG.topics.persistence.plots.defaults.subplots = dict(
 
 CONFIG.topics.persistence.plots.defaults.scatter = CONFIG._defaults.scatter
 
+
+CONFIG.topics.persistence.plots.defaults.boxplot = Bunch()
+CONFIG.topics.persistence.plots.defaults.boxplot.lw = 2/3
+
+CONFIG.topics.persistence.plots.defaults.boxplot.medianprops = dict(
+	lw=CONFIG.topics.persistence.plots.defaults.boxplot.lw,
+	color="k"
+)
+
+CONFIG.topics.persistence.plots.defaults.boxplot.props = lambda color: dict(
+	showfliers=False,
+	widths=0.2,
+	whis=(1,99),
+	patch_artist=True,
+	boxprops=dict(facecolor=color),
+	medianprops=CONFIG.topics.persistence.plots.defaults.boxplot.medianprops
+)
 
 
 

@@ -9,6 +9,7 @@ from config import CONFIG
 
 metadata = CONFIG.metadata
 persistence = CONFIG.topics.persistence
+colors = CONFIG.colors
 
 # Specify available data.
 persistence.trials = 100
@@ -25,33 +26,43 @@ for host in persistence.hosts:
 
 	scales = standard.SCALE.unique()
 	dimensions = standard.DIMENSION.unique()
+	fields = standard.FIELD.unique()
 
 	# sgrouped = standard.groupby(["SCALE", "DIMENSION"])
 	# tgrouped = twist.groupby(["SCALE", "DIMENSION"])
 
-	for dimension in dimensions:
-		sgroup = standard[standard.DIMENSION == dimension]
-		tgroup = twist[twist.DIMENSION == dimension]
+	for field in fields:
+		for dimension in dimensions:
+			sgroup = standard[(standard.DIMENSION == dimension) & (standard.FIELD == field)]
+			tgroup = twist[(twist.DIMENSION == dimension) & (twist.FIELD == field)]
 
-		sboxes = [
-			sgroup[sgroup.SCALE == scale].TTC for scale in sgroup.SCALE.unique()
-		]
+			sboxes = [
+				sgroup[sgroup.SCALE == scale].TTC for scale in sgroup.SCALE.unique()
+			]
 
-		tboxes = [
-			tgroup[tgroup.SCALE == scale].TTC for scale in tgroup.SCALE.unique()
-		]
-			
-		fig, ax = plt.subplots()
+			tboxes = [
+				tgroup[tgroup.SCALE == scale].TTC for scale in tgroup.SCALE.unique()
+			]
 
-		ax.boxplot(sboxes, widths=0.2, positions=[k-0.25 for k in range(1, len(sboxes)+1)], patch_artist=True, boxprops=dict(facecolor="k"))
-		ax.boxplot(tboxes, widths=0.2, positions=[k+0.25 for k in range(1, len(tboxes)+1)])
+			if len(tboxes) != len(sboxes): continue
+				
+			fig, ax = plt.subplots(figsize=(2.5,4))
 
-		ax.set_xticks(range(1,len(sboxes)+1))
-		ax.set_xticklabels(sgroup.SCALE.unique())
-		ax.set_title(f"dim {dimension}")
+			OFFSET = 0.15
+			pos = np.arange(1, len(sboxes)+1)
+			L = pos-OFFSET
+			R = pos+OFFSET
 
-		ax.set_yscale("log")
+			ax.boxplot(sboxes, positions=L, **persistence.plots.defaults.boxplot.props(colors.tol.highcontrast.red))
+			ax.boxplot(tboxes, positions=R, **persistence.plots.defaults.boxplot.props(colors.tol.highcontrast.yellow))
 
-		plt.savefig(f"./timing/{host}.{dimension}.jpeg")
-		# sys.exit(1)
+			ax.set_xticks(range(1,len(sboxes)+1))
+			ax.set_xticklabels(sgroup.SCALE.unique())
+			ax.set_title(rf"{host}, $\mathbb Z^{{{dimension}}}$, $\mathbb Z/{{{field}}}\mathbb Z$", fontsize=8)
+
+			CONFIG._defaults.yaxis.logTime(ax)
+
+			plt.savefig(f"./timing/{host}.{dimension}.{field}.jpeg", **CONFIG._defaults.savefig)
+			plt.close()
+			plt.clf()
 

@@ -1,9 +1,9 @@
 #!/bin/zsh
 
 EXECS=("persistence")
-SCALES=(2 4 5 8 11 16)
+SCALES=(2 4 5 8 11 16 23 32 45)
 DIMENSIONS=(4)
-FIELDS=(3)
+FIELDS=(2 3)
 TRIALS=${1:-100}
 STRATEGIES=("standard" "twist")
 PARALLELS=(1)

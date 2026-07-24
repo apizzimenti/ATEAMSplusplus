@@ -81,9 +81,10 @@ int main(int argc, char* argv[]) {
 
 	for (int t=0; t < TRIALS; t++) {
 		csv = csv + format(
-			"{},{},{},{}\n",
+			"{},{},{},{},{}\n",
 			SCALE,
 			DIMENSION,
+			FIELD,
 			TTC[t],
 			(int)(PARALLEL ? omp_get_max_threads()/2 : 1)
 		);

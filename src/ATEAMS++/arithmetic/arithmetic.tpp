@@ -37,7 +37,7 @@ namespace ATEAMS::arithmetic {
 	) {
 		// Get the number of threads, then the max/min of the largest/smallest
 		// indices in u and v.
-		int threads = options.parallel->threads;
+		int threads = omp_get_num_threads();
 		INDEX maxindex = max(u(u._nnz-1), v(v._nnz-1));
 		INDEX minindex = min(u(0), v(0));
 
