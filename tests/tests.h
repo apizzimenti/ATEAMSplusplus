@@ -179,9 +179,10 @@ inline int persistenceDispatcher(
 		complex.constructBoundaryMatrices(&R);
 		complex.constructFlatBoundaryMatrix();
 		complex.constructFullBoundaryMatrix(&R);
-
-		options.initializeParallelism(complex.Cells.size()+1);
+		
+		// Make sure we've set the parallel computing options correctly.
 		options.parallel->enabled = parallel;
+		if (parallel) options.parallel->build(complex.Cells.size(), complex.size());
 
 		// Check whether we're re-indexing properly.
 		if (!checkReindexing<RingLike>(&complex, dimension/2)) {
@@ -190,7 +191,7 @@ inline int persistenceDispatcher(
 		}
 
 		// Check whether we're persisting properly.
-		for (int t=0; t < 100; t++) {
+		for (int t=0; t < 2048; t++) {
 			if (!checkPersistence<RingLike>(&complex, dimension/2, rank, &R, options, RNG, persistenceAlgorithm)) {
 				RESULT = FAIL;
 				goto EXIT;

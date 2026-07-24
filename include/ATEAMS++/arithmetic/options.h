@@ -92,20 +92,6 @@ namespace ATEAMS::arithmetic {
 			};
 
 			/**
-			 * @brief Initializes a multithreaded computing environment.
-			 * @returns An execution thread.
-			 */
-			std::thread spinUp(int blocks) {
-				Flint::set_memory_functions();
-				this->opt->pool.reset();
-				this->opt->method = 0;
-
-				this->initializeParallelism(blocks);
-
-				return std::thread(key_listener, std::ref(this->opt->abort));
-			};
-
-			/**
 			 * @brief "Spins down" the multithreaded computing environment.
 			 */
 			void spinDown(std::thread* listener) {
@@ -116,13 +102,6 @@ namespace ATEAMS::arithmetic {
 			};
 			
 			void initializeParallelism() {
-				// Determine how many threads we're using; this probably won't
-				// change during execution.
-				this->parallel = new ParallelOptions<RingLike>;
-				this->parallel->enabled = true;
-			};
-
-			void initializeParallelism(int blocks) {
 				// Determine how many threads we're using; this probably won't
 				// change during execution.
 				this->parallel = new ParallelOptions<RingLike>;

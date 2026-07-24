@@ -39,7 +39,7 @@ endif()
 set(TEST TRUE)
 set(PROFILE FALSE)
 set(TIMING FALSE)
-set(DEBUG TRUE)
+set(DEBUG FALSE)
 
 set(PROFILE_COMPILE_OPTIONS
 	-pg
@@ -58,7 +58,7 @@ endif()
 if (DEBUG)
 	add_compile_options(-g -O1)
 else()
-	add_compile_options(-Ofast)
+	add_compile_options(-O3)
 endif()
 
 
@@ -207,14 +207,18 @@ list(APPEND ARITHMETIC
 	# "addition"
 )
 
-list(APPEND TOPOLOGY
+list(APPEND TOPOLOGY.TESTING
 	"standardPersistence.parallel"
 	# "standardPersistence.serial"
-	# "twistPersistence"
+	"twistPersistence"
 )
 
 list(APPEND TOPOLOGY.TIMING
-	# "persistence"
+	"persistence"
+)
+
+list(APPEND TOPOLOGY.PROFILING
+	"persistence"
 )
 
 list(APPEND MODELS
@@ -277,7 +281,7 @@ if (TEST)
 		endforeach()
 	endforeach()
 
-	foreach(FUNCTION IN LISTS TOPOLOGY)
+	foreach(FUNCTION IN LISTS TOPOLOGY.TESTING)
 		foreach(TYPE IN LISTS TYPES)
 			add_executable(tests.${FUNCTION}.${TYPE} tests/topology/${FUNCTION}.${TYPE}.cpp)
 			target_include_directories(tests.${FUNCTION}.${TYPE} PUBLIC tests)
@@ -301,7 +305,7 @@ if (PROFILE)
 		target_compile_options(profiling.${MODEL} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 	endforeach()
 
-	foreach(FUNCTION IN LISTS TOPOLOGY)
+	foreach(FUNCTION IN LISTS TOPOLOGY.PROFILING)
 		add_executable(profiling.${FUNCTION} performance/profiling.${FUNCTION}.cpp)
 		target_link_libraries(profiling.${FUNCTION} PUBLIC ATEAMS++)
 		target_compile_options(profiling.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})

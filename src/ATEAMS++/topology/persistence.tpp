@@ -47,7 +47,7 @@ namespace ATEAMS::topology {
 	};
 
 	template <typename RingLike>
-	void reduceChains(
+	inline void reduceChains(
 		SparseMatrix<RingLike>& Full,
 		int start,
 		int stop,
@@ -71,7 +71,7 @@ namespace ATEAMS::topology {
 				arithmetic::SparseVectorAddition<RingLike>(cell, youngestChain, R, options);
 			}
 
-			cell.compress();
+			// cell.compress();
 
 			if (cell.size() > 0) {
 				// Not a cell that makes the youngest chain (with which it shares
@@ -215,7 +215,8 @@ namespace ATEAMS::topology {
 	) {
 		// Doing row operations on the coboundary is equivalent to column operations
 		// on the boundary.
-		SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);		
+		// SparseMatrix<RingLike> Full;
+		SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);
 
 		// Track which column is to be added next; track which ones are marked.
 		vector<int> youngestChainSharingFace(complex->size(), 0);
@@ -223,27 +224,23 @@ namespace ATEAMS::topology {
 
 		// Top dimension of the complex; indices at which we stop and start.
 		int topDimension = min(dimension+1, (int)complex->Cells.size());
-		int start, stop;
 
 		if (options.parallel->enabled) {
 
 			// Break the matrix into blocks, then reduce over each block
 			// independently.
 			omp_set_max_active_levels(2);
-
 			int blocks = topDimension-dimension+1;
 			int threadsPerBlock = omp_get_max_threads()/blocks;
 
-			// Create reusable containers for marking indices.
-			options.parallel->build(complex->Cells.size(), complex->size());
-
-			#pragma omp task default(shared) private(start, stop)
+			#pragma omp task default(shared)
 			{
-				#pragma omp parallel for num_threads(threadsPerBlock)
+				#pragma omp parallel for num_threads(threadsPerBlock) firstprivate(Full)
 				for (int d=dimension; d <= topDimension; d++) {
 					// Specify start/stop indices.
-					start = complex->Breaks[d][0];
-					stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
+					cout << threadsPerBlock << " " << omp_get_num_threads() << endl;
+					int start = complex->Breaks[d][0];
+					int stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
 
 					// Clear the data from the cache.
 					options.parallel->flush(d);
@@ -271,9 +268,11 @@ namespace ATEAMS::topology {
 			}
 
 		} else {
+			// SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);
+
 			for (int d=dimension; d <= topDimension; d++) {
-				start = complex->Breaks[d][0];
-				stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
+				int start = complex->Breaks[d][0];
+				int stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
 
 				reduceChains<RingLike>(
 					Full,
@@ -296,6 +295,8 @@ namespace ATEAMS::topology {
 		for (auto k : marked) {
 			if (youngestChainSharingFace[k] == 0 && (low <= k && k < high)) essential.push_back(k);
 		}
+
+		printvector<int>(essential);
 
 		return essential;
 	};

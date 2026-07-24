@@ -26,41 +26,41 @@ vector<int> filtrate(
 
 
 int main(int argc, char* argv[]) {
-	int SCALE = stoi(argv[1]);
-	int DIMENSION = stoi(argv[2]);
-	int FIELD = stoi(argv[3]);
-	int ATTEMPTS = stoi(argv[4]);
-	int PARALLEL = stoi(argv[5]);
-	int WIDTH = stoi(argv[6]);
+	string HOSTNAME = argv[1];
+	int SCALE = stoi(argv[2]);
+	int DIMENSION = stoi(argv[3]);
+	int FIELD = stoi(argv[4]);
+	int TRIALS = stoi(argv[5]);
+	string STRATEGY = argv[6];
+	int PARALLEL = stoi(argv[7]);
 
 	// Construct a cubical complex and the ingredients for a filtration.
 	Zp R(FIELD);
-	complexes::Cubical<Zp> plex(vector<int>(DIMENSION*2, SCALE));
-	
+	complexes::Cubical<Zp> plex(vector<int>(DIMENSION, SCALE));
 	plex.constructBoundaryMatrices(&R);
-	plex.constructFlatBoundaryMatrix();
 	plex.constructFullBoundaryMatrix(&R);
 
 	// Create reusable indices for filtrations.
-	vector<int> filtration(plex.size());
+	vector<int> filtration(plex.size(), 0);
 	iota(begin(filtration), end(filtration), 0);
 
-	vector<int> include(plex.Cells[DIMENSION]);
+	vector<int> include(plex.Cells[DIMENSION/2], 0);
 	iota(begin(include), end(include), 0);
 
-	arithmetic::ComputeOptions options;
-	options.parallelSparseAddition = (bool)PARALLEL;
-	options.parallelSparseAdditionChunkWidth = WIDTH;
-	
+	// Create compute options.
+	arithmetic::ComputeOptions<Zp> options;
 	thread listener = options.spinUp();
 
-	for (int t=0; t < ATTEMPTS; t++) {
-		// Create the filtration.
-		vector<int> K = filtrate(&plex, filtration, include, DIMENSION);
-		topology::persistence<Zp>(&plex, K, &R, DIMENSION, options);
-	}
+	// Make sure we've set the parallel computing options correctly.
+	options.parallel->enabled = (bool)PARALLEL;
+	if ((bool)PARALLEL) options.parallel->build(plex.Cells.size(), plex.size());
 
-	options.spinDown(&listener);
+	vector<int> K = filtrate(&plex, filtration, include, DIMENSION/2);
+
+	for (int t=0; t < TRIALS; t++) {
+		if (STRATEGY == "standard")topology::standardPersistence<Zp>(&plex, K, &R, DIMENSION/2, options);
+		else topology::twistPersistence<Zp>(&plex, K, &R, DIMENSION/2, options);
+	}
 
 	return 0;
 }

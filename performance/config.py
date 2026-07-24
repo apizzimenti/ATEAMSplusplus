@@ -348,7 +348,7 @@ CONFIG.topics.addition.plots.timeByOverlapOverlaid.savefig = CONFIG._defaults.sa
 CONFIG.topics.persistence = Bunch()
 
 CONFIG.topics.persistence.exec = "persistence"
-CONFIG.topics.persistence.computing = CONFIG.metadata.computing
+CONFIG.topics.persistence.computing = ["standard", "twist"]
 CONFIG.topics.persistence.hosts = CONFIG.metadata.hosts
 CONFIG.topics.persistence.trials = 100
 CONFIG.topics.persistence.sep = ","
@@ -371,6 +371,19 @@ CONFIG.topics.persistence.dtypes = {
 
 CONFIG.topics.persistence.data = lambda host, computing: _additionReadFile(host, computing, CONFIG.topics.persistence)
 
+
+################################################################################
+## PLOTS #######################################################################
+################################################################################
+
+CONFIG.topics.persistence.plots = Bunch()
+CONFIG.topics.persistence.plots.defaults = Bunch()
+
+CONFIG.topics.persistence.plots.defaults.subplots = dict(
+	figsize=(5,2.5)
+)
+
+CONFIG.topics.persistence.plots.defaults.scatter = CONFIG._defaults.scatter
 
 
 

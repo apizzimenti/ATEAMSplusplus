@@ -49,8 +49,11 @@ int main(int argc, char* argv[]) {
 
 	// Create compute options.
 	arithmetic::ComputeOptions<Zp> options;
-	thread listener = options.spinUp(plex.Cells.size()+1);
+	thread listener = options.spinUp();
+
+	// Make sure we've set the parallel computing options correctly.
 	options.parallel->enabled = (bool)PARALLEL;
+	if ((bool)PARALLEL) options.parallel->build(plex.Cells.size(), plex.size());
 	
 
 	// Create a bucket for storing times to completion.
@@ -82,7 +85,7 @@ int main(int argc, char* argv[]) {
 			SCALE,
 			DIMENSION,
 			TTC[t],
-			(int)(PARALLEL ? omp_get_max_threads() : 1)
+			(int)(PARALLEL ? omp_get_max_threads()/2 : 1)
 		);
 	}
 
