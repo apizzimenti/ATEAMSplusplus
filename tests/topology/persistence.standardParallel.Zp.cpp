@@ -7,6 +7,6 @@ using namespace std;
 
 
 int main(int argc, char *argv[]) {
-	using R = Q;
-	return persistenceDispatcher<R>(argc, argv, topology::twistPersistence<R>);
+	using R = Zp;
+	return persistenceDispatcher<R>(argc, argv, topology::persistence::standardParallel<R>);
 }

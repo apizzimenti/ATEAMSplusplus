@@ -8,5 +8,5 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 	using R = Zp;
-	return persistenceDispatcher<R>(argc, argv, topology::twistPersistence<R>);
+	return persistenceDispatcher<R>(argc, argv, topology::persistence::JIT<R>);
 }

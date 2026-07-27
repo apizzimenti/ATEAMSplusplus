@@ -43,7 +43,7 @@ namespace ATEAMS::models {
 		for (int j=0; j < this->indices.size(); j++) this->filtration[j+start] = this->indices[j]+start;
 
 		// Persist.
-		std::vector<int> essential = topology::persistence<RingLike>(
+		std::vector<int> essential = topology::persistence::persistence<RingLike>(
 			this->complex,
 			this->filtration,
 			this->coefficients,

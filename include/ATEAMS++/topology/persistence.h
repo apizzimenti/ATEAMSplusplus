@@ -8,7 +8,7 @@
 #include <vector>
 #include <set>
 
-namespace ATEAMS::topology {
+namespace ATEAMS::topology::persistence {
 	/**
 	 * @brief Computes the persistent homology of a complex using \f$\Z/2\Z\f$
 	 * coefficients. See the implementation of @ref ATEAMS::models::Bernoulli.
@@ -25,7 +25,7 @@ namespace ATEAMS::topology {
 	 * @returns A vector of percolation times.
 	 */
 	template <typename RingLike>
-	std::vector<int> PHATPersistence(
+	std::vector<int> PHAT(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		int dimension
@@ -50,14 +50,14 @@ namespace ATEAMS::topology {
 	 * 
 	 * @returns A vector of percolation times.
 	 */
-	// template <typename RingLike>
-	// std::vector<int> twistPersistence(
-	// 	complexes::Complex<RingLike>* complex,
-	// 	std::vector<int>& filtration,
-	// 	Ring* R,
-	// 	int dimension,
-	// 	arithmetic::ComputeOptions<RingLike>& options
-	// );
+	template <typename RingLike>
+	std::vector<int> twist(
+		complexes::Complex<RingLike>* complex,
+		std::vector<int>& filtration,
+		Ring* R,
+		int dimension,
+		arithmetic::ComputeOptions<RingLike>& options
+	);
 
 	/**
 	 * @brief Computes the persistent homology of a complex over \f$\Z/p\Z\f$
@@ -78,7 +78,7 @@ namespace ATEAMS::topology {
 	 * @returns A vector of percolation times.
 	 */
 	template <typename RingLike>
-	std::vector<int> standardPersistence(
+	std::vector<int> standard(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
@@ -107,7 +107,36 @@ namespace ATEAMS::topology {
 	 * @returns A vector of percolation times.
 	 */
 	template <typename RingLike>
-	std::vector<int> standardParallelPersistence(
+	std::vector<int> standardParallel(
+		complexes::Complex<RingLike>* complex,
+		std::vector<int>& filtration,
+		Ring* R,
+		int dimension,
+		arithmetic::ComputeOptions<RingLike>& options
+	);
+
+	/**
+	 * @brief Computes the persistent homology of a complex over \f$\Z/p\Z\f$
+	 * coefficients, where \f$p\f$ is prime. Implements a parallelized version
+	 * of the standard persistence algorithm in line with that of Edelsbrunner
+	 * and Harer, incorporating a just-in-time (JIT) versio nof the twist
+	 * optimization.
+	 * 
+	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
+	 * 
+	 * @param complex A (pointer to) a @ref ATEAMS::complexes::Complex with a flat boundary matrix.
+	 * @param filtration A vector that specifies the order in which to add
+	 * 	the cells in the flat boundary matrix. For example, if we are doing
+	 * 	1-dimensional percolation in 2-d, then we switch up the ordering of
+	 * 	the 1-d cells in the flat boundary matrix, but leave everything else.
+	 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
+	 * @param dimension The percolation dimension.
+	 * @param options Parallel computing environment options.
+	 * 
+	 * @returns A vector of percolation times.
+	 */
+	template <typename RingLike>
+	std::vector<int> JIT(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,

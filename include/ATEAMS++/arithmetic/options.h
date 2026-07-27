@@ -35,15 +35,19 @@ namespace ATEAMS::arithmetic {
 			bool enabled = false;
 
 			std::vector<std::set<int>> markedByThread;
-			std::vector<std::vector<int>> chainSharingByThread;
+			std::vector<std::set<int>> zeroedByThread;
 
 			void build(int blocks, int length) {
 				this->markedByThread =  std::vector<std::set<int>>(blocks, std::set<int>());
+				this->zeroedByThread =  std::vector<std::set<int>>(blocks, std::set<int>());
 			}
 
-			void flush(int block) {
+			void flush() {
 				// Flushes stored data for container re-use.
-				this->markedByThread[block].clear();
+				for (int b=0; b < this->markedByThread.size(); b++) {
+					this->markedByThread[b].clear();
+					this->zeroedByThread[b].clear();
+				}
 			};
 	};
 

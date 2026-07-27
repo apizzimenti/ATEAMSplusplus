@@ -164,7 +164,7 @@ inline bool checkReindexing(
 	// Swap, then reindex.
 	filtration[firstIndex] = secondIndex;
 	filtration[secondIndex] = firstIndex;
-	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension, options);
+	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::helpers::reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension, options);
 
 	bool firstReindexed = false, secondReindexed = false;
 
@@ -227,7 +227,7 @@ inline int persistenceDispatcher(
 		}
 
 		// Check whether we're persisting properly.
-		for (int t=0; t < 128; t++) {
+		for (int t=0; t < 2048; t++) {
 			if (!checkPersistence<RingLike>(&complex, dimension/2, rank, &R, options, RNG, persistenceAlgorithm)) {
 				RESULT = FAIL;
 				goto EXIT;

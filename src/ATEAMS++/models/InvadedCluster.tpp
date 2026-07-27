@@ -68,7 +68,7 @@ namespace ATEAMS {
 			for (int j=0; j < inside.size(); j++) this->filtration[j+start] = inside[j]+start;
 
 			// Persist.
-			std::vector<int> essential = topology::persistence<RingLike>(
+			std::vector<int> essential = topology::persistence::persistence<RingLike>(
 				this->complex,
 				this->filtration,
 				this->coefficients,

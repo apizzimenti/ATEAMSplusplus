@@ -87,6 +87,7 @@ list(APPEND SOURCE_HEADERS
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/topology.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/helpers.h
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
@@ -207,9 +208,10 @@ list(APPEND ARITHMETIC.TESTING
 )
 
 list(APPEND TOPOLOGY.TESTING
-	"standardPersistence"
-	"twistPersistence"
-	"standardParallelPersistence"
+	"JIT"
+	"standard"
+	"twist"
+	"standardParallel"
 	"persistence"
 )
 
@@ -272,15 +274,15 @@ if (TEST)
 
 		# Topological support subroutines
 		foreach(FUNCTION IN LISTS TOPOLOGY.TESTING)
-			add_executable(tests.${FUNCTION}.${TYPE} tests/topology/${FUNCTION}.${TYPE}.cpp)
-			target_include_directories(tests.${FUNCTION}.${TYPE} PUBLIC tests)
-			target_link_libraries(tests.${FUNCTION}.${TYPE} PUBLIC ATEAMS++)
+			add_executable(tests.persistence.${FUNCTION}.${TYPE} tests/topology/persistence.${FUNCTION}.${TYPE}.cpp)
+			target_include_directories(tests.persistence.${FUNCTION}.${TYPE} PUBLIC tests)
+			target_link_libraries(tests.persistence.${FUNCTION}.${TYPE} PUBLIC ATEAMS++)
 
 			if("${TYPE}" STREQUAL "Q")
-				add_test(NAME ${FUNCTION}.${TYPE} COMMAND tests.${FUNCTION}.${TYPE} 0)
+				add_test(NAME topology::persistence::${FUNCTION}.${TYPE} COMMAND tests.persistence.${FUNCTION}.${TYPE} 0)
 			else()
-				add_test(NAME ${FUNCTION}.${TYPE}.2 COMMAND tests.${FUNCTION}.${TYPE} 2)
-				add_test(NAME ${FUNCTION}.${TYPE}.3 COMMAND tests.${FUNCTION}.${TYPE} 3)
+				add_test(NAME topology::persistence::${FUNCTION}.${TYPE}.2 COMMAND tests.persistence.${FUNCTION}.${TYPE} 2)
+				add_test(NAME topology::persistence::${FUNCTION}.${TYPE}.3 COMMAND tests.persistence.${FUNCTION}.${TYPE} 3)
 			endif()
 		endforeach()
 	endforeach()
