@@ -207,9 +207,10 @@ list(APPEND ARITHMETIC.TESTING
 )
 
 list(APPEND TOPOLOGY.TESTING
-	"standardPersistence.parallel"
-	# "standardPersistence.serial"
+	"standardPersistence"
 	"twistPersistence"
+	"standardParallelPersistence"
+	"persistence"
 )
 
 list(APPEND MODELS.TESTING

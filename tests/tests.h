@@ -34,6 +34,27 @@ const int PASS = 0;
 const int FAIL = 1;
 const int ITERATIONS = 10;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ################################################################################
+// ## ARITHMETIC TESTS ############################################################
+// ################################################################################
+
 // Checks whether a vector is in the kernel of a matrix.
 template <typename RingLike>
 inline bool inKernel(ATEAMS::SparseMatrix<RingLike> K, ATEAMS::SparseVector<RingLike> v, ATEAMS::Ring* R, bool DEBUG=true) {
@@ -101,8 +122,13 @@ inline bool checkPersistence(
 	return times.size() == expectedrank;
 }
 
+
 template <typename RingLike>
-inline bool checkReindexing(ATEAMS::complexes::Complex<RingLike>* complex, int dimension) {
+inline bool checkReindexing(
+	ATEAMS::complexes::Complex<RingLike>* complex,
+	int dimension,
+	ATEAMS::arithmetic::ComputeOptions<RingLike>& options
+) {
 	ATEAMS::SparseMatrix<RingLike> Full = complex->Coboundary.Full;
 
 	// Swap two elements and verify they are reindexed correctly.
@@ -138,7 +164,7 @@ inline bool checkReindexing(ATEAMS::complexes::Complex<RingLike>* complex, int d
 	// Swap, then reindex.
 	filtration[firstIndex] = secondIndex;
 	filtration[secondIndex] = firstIndex;
-	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);
+	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension, options);
 
 	bool firstReindexed = false, secondReindexed = false;
 
@@ -195,13 +221,13 @@ inline int persistenceDispatcher(
 		options.parallel->build(complex.Cells.size(), complex.size());
 
 		// Check whether we're re-indexing properly.
-		if (!checkReindexing<RingLike>(&complex, dimension/2)) {
+		if (!checkReindexing<RingLike>(&complex, dimension/2, options)) {
 			RESULT = FAIL;
 			goto EXIT;
 		}
 
 		// Check whether we're persisting properly.
-		for (int t=0; t < 100; t++) {
+		for (int t=0; t < 128; t++) {
 			if (!checkPersistence<RingLike>(&complex, dimension/2, rank, &R, options, RNG, persistenceAlgorithm)) {
 				RESULT = FAIL;
 				goto EXIT;
