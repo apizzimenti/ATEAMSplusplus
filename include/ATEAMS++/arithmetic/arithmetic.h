@@ -14,60 +14,30 @@ namespace ATEAMS {
 	 */
 	namespace arithmetic {
 
-		/**
-		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors;
-		 * 	empty template declaration.
-		 * @tparam Ring type.
-		 * 
-		 * @param u Vector.
-		 * @param v Vector.
-		 * @param R (Pointer to) the coefficient ring @ref Zp.
-		 * 
-		 * @returns \f$ \vec w = \vec u + \vec v \f$.
-		 */
 		template <typename RingLike>
-		SparseVector<RingLike> SparseVectorAddition(
+		inline void SparseVectorAddition(
 			SparseVector<RingLike>& u,
 			SparseVector<RingLike>& v,
-			Ring* R,
-			arithmetic::ComputeOptions<RingLike>& options
+			Ring* R
 		);
 
-		/**
-		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Zp.
-		 * @tparam Ring type.
-		 * 
-		 * @param u Vector.
-		 * @param v Vector.
-		 * @param R (Pointer to) the coefficient ring @ref Zp.
-		 * 
-		 * @returns \f$ \vec w = \vec u + \vec v \f$.
-		 */
 		template <>
-		SparseVector<Zp> SparseVectorAddition<Zp>(
-			SparseVector<Zp>& u,
-			SparseVector<Zp>& v,
-			Ring* R,
-			arithmetic::ComputeOptions<Zp>& options
-		);
-
-		/**
-		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Z2.
-		 * @tparam Ring type.
-		 * 
-		 * @param u Vector.
-		 * @param v Vector.
-		 * @param R (Pointer to) the coefficient ring @ref Zp.
-		 * 
-		 * @returns \f$ \vec w = \vec u + \vec v \f$.
-		 */
-		template <>
-		SparseVector<Z2> SparseVectorAddition<Z2>(
+		inline void SparseVectorAddition<Z2>(
 			SparseVector<Z2>& u,
 			SparseVector<Z2>& v,
-			Ring* R,
-			arithmetic::ComputeOptions<Z2>& options
-		);
+			Ring* R
+		) {
+			sparse_vec_add<INDEX>(u, v, R->ring);
+		};
+
+		template <>
+		inline void SparseVectorAddition<Zp>(
+			SparseVector<Zp>& u,
+			SparseVector<Zp>& v,
+			Ring* R
+		) {
+			sparse_vec_add<INDEX>(u, v, R->ring);
+		};
 
 		/**
 		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Q.
@@ -79,14 +49,12 @@ namespace ATEAMS {
 		 * @returns \f$ \vec w = \vec u + \vec v \f$.
 		 */
 		template <>
-		inline SparseVector<Q> SparseVectorAddition<Q>(
+		inline void SparseVectorAddition<Q>(
 			SparseVector<Q>& u,
 			SparseVector<Q>& v,
-			Ring* R,
-			arithmetic::ComputeOptions<Q>& options
+			Ring* R
 		) {
 			sfmpq_vec_addsub_mul<INDEX,false>(u, v, (Q::dtype)1);
-			return u;
 		}
 
 		/**
@@ -197,7 +165,6 @@ namespace ATEAMS {
 	};
 }
 
-#include "ATEAMS++/arithmetic/arithmetic.tpp"
 #include "ATEAMS++/arithmetic/kernel.h"
 
 #endif

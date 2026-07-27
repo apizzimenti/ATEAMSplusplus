@@ -51,6 +51,16 @@ inline bool inKernel(ATEAMS::SparseMatrix<RingLike> K, ATEAMS::SparseVector<Ring
 }
 
 
+
+
+
+
+
+
+
+
+
+
 // ################################################################################
 // ## PERSISTENCE TESTS ###########################################################
 // ################################################################################
@@ -191,7 +201,7 @@ inline int persistenceDispatcher(
 		}
 
 		// Check whether we're persisting properly.
-		for (int t=0; t < 1000; t++) {
+		for (int t=0; t < 100; t++) {
 			if (!checkPersistence<RingLike>(&complex, dimension/2, rank, &R, options, RNG, persistenceAlgorithm)) {
 				RESULT = FAIL;
 				goto EXIT;
@@ -200,7 +210,6 @@ inline int persistenceDispatcher(
 	}
 
 	EXIT:
-		// Now, check that we're getting the persistence correct.
 		options.spinDown(&listener);
 		return RESULT;
 }

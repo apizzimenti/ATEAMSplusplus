@@ -38,8 +38,8 @@ endif()
 ################################################################################
 set(TEST TRUE)
 set(PROFILE FALSE)
-set(TIMING TRUE)
-set(DEBUG FALSE)
+set(TIMING FALSE)
+set(DEBUG TRUE)
 
 set(PROFILE_COMPILE_OPTIONS
 	-pg
@@ -111,7 +111,6 @@ list(APPEND SOURCE_HEADERS
 
 list(APPEND SOURCE_IMPLEMENTATIONS
 	# Templated implementations
-	${PROJECT_SOURCE_DIR}/src/ATEAMS++/arithmetic/arithmetic.tpp
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/arithmetic/kernel.tpp
 
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/topology/persistence.tpp
@@ -196,14 +195,14 @@ install(
 
 
 ################################################################################
-## TESTING                                                                    ##
+## TESTING  ####################################################################
 ################################################################################
 
-list(APPEND COMPLEXES
+list(APPEND COMPLEXES.TESTING
 	# "Cubical"
 )
 
-list(APPEND ARITHMETIC
+list(APPEND ARITHMETIC.TESTING
 	# "addition"
 )
 
@@ -213,20 +212,12 @@ list(APPEND TOPOLOGY.TESTING
 	"twistPersistence"
 )
 
-list(APPEND TOPOLOGY.TIMING
-	"persistence"
-)
-
-list(APPEND TOPOLOGY.PROFILING
-	"persistence"
-)
-
-list(APPEND MODELS
+list(APPEND MODELS.TESTING
 	# "Bernoulli"
-	# "Glauber"
 	# "InvadedCluster"
 	# "Invasion"
 	# "SwendsenWang"
+	# "Glauber"
 )
 
 list(APPEND TYPES
@@ -235,8 +226,9 @@ list(APPEND TYPES
 )
 
 if (TEST)
-	foreach(MODEL IN LISTS MODELS)
-		foreach(TYPE IN LISTS TYPES)
+	foreach(TYPE IN LISTS TYPES)
+		# Making sure models are calling all the required subroutines appropriately
+		foreach(MODEL IN LISTS MODELS.TESTING)
 			add_executable(tests.${MODEL}.${TYPE} tests/models/${MODEL}.${TYPE}.cpp)
 			target_include_directories(tests.${MODEL}.${TYPE} PUBLIC tests)
 			target_link_libraries(tests.${MODEL}.${TYPE} PUBLIC ATEAMS++)
@@ -248,21 +240,18 @@ if (TEST)
 				add_test(NAME ${MODEL}.${TYPE}.3 COMMAND tests.${MODEL}.${TYPE} 3)
 			endif()
 		endforeach()
-	endforeach()
 
-
-	foreach(COMPLEX IN LISTS COMPLEXES)
-		foreach(TYPE IN LISTS TYPES)
+		# Making sure complexes work the way we want
+		foreach(COMPLEX IN LISTS COMPLEXES.TESTING)
 			add_executable(tests.${COMPLEX}.${TYPE} tests/complexes/${COMPLEX}.${TYPE}.cpp)
 			target_include_directories(tests.${COMPLEX}.${TYPE} PUBLIC tests)
 			target_link_libraries(tests.${COMPLEX}.${TYPE} PUBLIC ATEAMS++)
+
 			add_test(NAME ${COMPLEX}.${TYPE} COMMAND tests.${COMPLEX}.${TYPE})
 		endforeach()
-	endforeach()
 
-
-	foreach(FUNCTION IN LISTS ARITHMETIC)
-		foreach(TYPE IN LISTS TYPES)
+		# Arithmetic subroutines
+		foreach(FUNCTION IN LISTS ARITHMETIC.TESTING)
 			add_executable(tests.${FUNCTION}.${TYPE} tests/arithmetic/${FUNCTION}.${TYPE}.cpp)
 			target_include_directories(tests.${FUNCTION}.${TYPE} PUBLIC tests)
 			target_link_libraries(tests.${FUNCTION}.${TYPE} PUBLIC ATEAMS++)
@@ -279,10 +268,9 @@ if (TEST)
 				add_test(NAME ${FUNCTION}.${TYPE}.3.e7.10 COMMAND tests.${FUNCTION}.${TYPE} 3 10000000 10)
 			endif()
 		endforeach()
-	endforeach()
 
-	foreach(FUNCTION IN LISTS TOPOLOGY.TESTING)
-		foreach(TYPE IN LISTS TYPES)
+		# Topological support subroutines
+		foreach(FUNCTION IN LISTS TOPOLOGY.TESTING)
 			add_executable(tests.${FUNCTION}.${TYPE} tests/topology/${FUNCTION}.${TYPE}.cpp)
 			target_include_directories(tests.${FUNCTION}.${TYPE} PUBLIC tests)
 			target_link_libraries(tests.${FUNCTION}.${TYPE} PUBLIC ATEAMS++)
@@ -298,8 +286,32 @@ if (TEST)
 endif()
 
 
+
+
+################################################################################
+## PROFILING  ##################################################################
+################################################################################
+
+list(APPEND ARITHMETIC.PROFILING
+	# "addition"
+)
+
+list(APPEND MODELS.PROFILING
+	# "Bernoulli"
+	# "InvadedCluster"
+	# "Invasion"
+	# "SwendsenWang"
+	# "Glauber"
+)
+
+list(APPEND TOPOLOGY.PROFILING
+	"standardPersistence.parallel"
+	"standardPersistence.serial"
+	"twistPersistence"
+)
+
 if (PROFILE)
-	foreach(MODEL IN LISTS MODELS)
+	foreach(MODEL IN LISTS MODELS.PROFILING)
 		add_executable(profiling.${MODEL} performance/profiling.${MODEL}.cpp)
 		target_link_libraries(profiling.${MODEL} PUBLIC ATEAMS++)
 		target_compile_options(profiling.${MODEL} PUBLIC ${PROFILE_COMPILE_OPTIONS})
@@ -311,7 +323,7 @@ if (PROFILE)
 		target_compile_options(profiling.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 	endforeach()
 
-	foreach(FUNCTION IN LISTS ARITHMETIC)
+	foreach(FUNCTION IN LISTS ARITHMETIC.PROFILING)
 		add_executable(profiling.${FUNCTION} performance/profiling.${FUNCTION}.cpp)
 		target_link_libraries(profiling.${FUNCTION} PUBLIC ATEAMS++)
 		target_compile_options(profiling.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
@@ -320,14 +332,52 @@ if (PROFILE)
 endif()
 
 
+
+
+
+
+################################################################################
+## TIMING ######################################################################
+################################################################################
+
+
+list(APPEND ARITHMETIC.TIMING
+	# "addition"
+)
+
+list(APPEND MODELS.TIMING
+	# "Bernoulli"
+	# "InvadedCluster"
+	# "Invasion"
+	# "SwendsenWang"
+	# "Glauber"
+)
+
+list(APPEND TOPOLOGY.TIMING
+	"standardPersistence.parallel"
+	"standardPersistence.serial"
+	"twistPersistence"
+)
+
 if (TIMING)
+	foreach(MODEL IN LISTS MODELS.TIMING)
+		add_executable(timing.${MODEL} performance/timing.${MODEL}.cpp)
+		target_link_libraries(timing.${MODEL} PUBLIC ATEAMS++)
+		target_compile_options(timing.${MODEL} PUBLIC ${PROFILE_COMPILE_OPTIONS})
+		target_link_options(timing.${MODEL} PUBLIC ${PROFILE_COMPILE_OPTIONS})
+	endforeach()
+
 	foreach(FUNCTION IN LISTS TOPOLOGY.TIMING)
 		add_executable(timing.${FUNCTION} performance/timing.${FUNCTION}.cpp)
 		target_link_libraries(timing.${FUNCTION} PUBLIC ATEAMS++)
+		target_compile_options(timing.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
+		target_link_options(timing.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 	endforeach()
 
-	foreach(FUNCTION IN LISTS ARITHMETIC)
+	foreach(FUNCTION IN LISTS ARITHMETIC.TIMING)
 		add_executable(timing.${FUNCTION} performance/timing.${FUNCTION}.cpp)
 		target_link_libraries(timing.${FUNCTION} PUBLIC ATEAMS++)
+		target_compile_options(timing.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
+		target_link_options(timing.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 	endforeach()
 endif()

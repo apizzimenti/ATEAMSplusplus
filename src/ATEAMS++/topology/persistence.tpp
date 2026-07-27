@@ -18,71 +18,10 @@ using namespace std;
 namespace ATEAMS::topology {
 	/** @cond */
 	template <typename RingLike>
-	inline INDEX youngestFaceIndexOf(SparseVector<RingLike> cell) {
+	inline INDEX youngestOf(SparseVector<RingLike> cell) {
 		return cell(cell.size()-1);
 	}
 
-	/**
-	 * @brief 
-	 */
-	template <typename RingLike>
-	inline void standardMatrixPolicy(
-		SparseMatrix<RingLike>& Full,
-		vector<int>& youngestChainLookup,
-		int youngestFaceIndex,
-		int markedIndex
-	) {
-		youngestChainLookup[youngestFaceIndex] = markedIndex;
-	};
-
-	template <typename RingLike>
-	inline void twistMatrixPolicy(
-		SparseMatrix<RingLike>& Full,
-		vector<int>& youngestChainLookup,
-		int youngestFaceIndex,
-		int markedIndex
-	) {
-		youngestChainLookup[youngestFaceIndex] = markedIndex;
-		Full.rows[youngestFaceIndex].zero();
-	};
-
-	template <typename RingLike>
-	inline void reduceChains(
-		SparseMatrix<RingLike>& Full,
-		int start,
-		int stop,
-		vector<int>& youngestChainLookup,
-		set<int>& marked,
-		Ring* R,
-		arithmetic::ComputeOptions<RingLike>& options,
-		function<void(SparseMatrix<RingLike>&,vector<int>&,int,int)> matrixPolicy
-	) {
-		SparseVector<RingLike> youngestChain;
-
-		for (int j=start; j < stop; j++) {
-			SparseVector<RingLike>& cell = Full.rows[j];
-
-			while (cell.size() > 0 && youngestChainLookup[youngestFaceIndexOf<RingLike>(cell)] != 0) {
-				youngestChain = Full.rows[youngestChainLookup[youngestFaceIndexOf<RingLike>(cell)]];
-				typename RingLike::dtype q = *youngestChain.find(youngestFaceIndexOf<RingLike>(cell));
-
-				typename RingLike::dtype s = scalar_neg(scalar_inv(q, R->ring), R->ring);
-				arithmetic::SparseVectorRescaling<RingLike>(s, youngestChain, R);
-				arithmetic::SparseVectorAddition<RingLike>(cell, youngestChain, R, options);
-			}
-
-			// cell.compress();
-
-			if (cell.size() > 0) {
-				// Not a cell that makes the youngest chain (with which it shares
-				// a face) a cycle, so we mark the index of its youngest face.
-				matrixPolicy(Full, youngestChainLookup, youngestFaceIndexOf<RingLike>(cell), j);
-			} else {
-				// Induces a cycle, so we mark the cell.
-				marked.insert(j);
-			}
-		}
-	}
 
 	template <typename RingLike>
 	inline SparseMatrix<RingLike> reindexSparseBoundaryMatrix(
@@ -102,6 +41,7 @@ namespace ATEAMS::topology {
 		int startDimension = complex->Breaks[dimension][0];
 		int stopDimension = complex->Breaks[dimension][1];
 
+		// TODO parallelize this loop
 		for (int t=0; t < Full.nrow; t++) {
 			if ((startDimension <= t) && (t < stopDimension)) {
 				Reindexed.rows[t] = Full.rows[filtration[t]];
@@ -122,7 +62,192 @@ namespace ATEAMS::topology {
 		return Reindexed;
 	}
 
+
+	template <typename RingLike>
+	inline void standardDestructionPolicy(
+		SparseMatrix<RingLike>& Full,
+		vector<int>& youngestChainLookup,
+		int youngestFaceIndex,
+		int markedIndex
+	) {
+		youngestChainLookup[youngestFaceIndex] = markedIndex;
+	};
+
+
+	template <typename RingLike>
+	inline void twistDestructionPolicy(
+		SparseMatrix<RingLike>& Full,
+		vector<int>& youngestChainLookup,
+		int youngestFaceIndex,
+		int markedIndex
+	) {
+		youngestChainLookup[youngestFaceIndex] = markedIndex;
+		Full.rows[youngestFaceIndex].zero();
+	};
+
+
+	template <typename RingLike>
+	inline void reduceChain(
+		SparseMatrix<RingLike>& Full,
+		vector<int>& lookup,
+		SparseVector<RingLike>& cell,
+		Ring* R
+	) {
+		// Get the youngest chain (column) sharing a face with `cell` and zero
+		// out the pivot row.
+		SparseVector<RingLike> youngest = Full.rows[lookup[youngestOf<RingLike>(cell)]];
+
+		typename RingLike::dtype q = *youngest.find(youngestOf<RingLike>(cell));
+		typename RingLike::dtype s = scalar_neg(scalar_inv(q, R->ring), R->ring);
+
+		arithmetic::SparseVectorRescaling<RingLike>(s, youngest, R);
+		arithmetic::SparseVectorAddition<RingLike>(cell, youngest, R);
+	}
+
+
+	template <typename RingLike>
+	inline void reduceChains(
+		SparseMatrix<RingLike>& Full,
+		int start,
+		int stop,
+		vector<int>& lookup,
+		set<int>& marked,
+		Ring* R,
+		function<void(SparseMatrix<RingLike>&,vector<int>&,int,int)> destructionPolicy,
+		arithmetic::ComputeOptions<RingLike>& options
+	) {
+		for (int j=start; j < stop; j++) {
+			SparseVector<RingLike>& cell = Full.rows[j];
+
+			while (cell.size() > 0 && lookup[youngestOf<RingLike>(cell)] != 0) {
+				reduceChain<RingLike>(Full, lookup, cell, R);
+			}
+
+			if (cell.size() > 0) destructionPolicy(Full, lookup, youngestOf<RingLike>(cell), j);
+			else marked.insert(j);
+		}
+	}
+
 	/** @endcond */
+
+
+	template <typename RingLike>
+	inline vector<int> standardPersistence(
+		complexes::Complex<RingLike>* complex,
+		vector<int>& filtration,
+		Ring* R,
+		int dimension,
+		arithmetic::ComputeOptions<RingLike>& options
+	) {
+		// Doing row operations on the coboundary is equivalent to column operations
+		// on the boundary.
+		// SparseMatrix<RingLike> Full;
+		SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);
+
+		// Track which column is to be added next; track which ones are marked.
+		vector<int> youngestChainSharingFace(complex->size(), 0);
+		set<int> marked;
+
+		// Top dimension of the complex; indices at which we stop and start.
+		int topDimension = min(dimension+1, (int)complex->Cells.size());
+
+		if (options.parallel->enabled) {
+			#pragma omp parallel for firstprivate(Full) shared(youngestChainSharingFace)
+			for (int d=dimension; d <= topDimension; d++) {
+				// Specify start/stop indices.
+				// cout << omp_get_num_threads() << endl;
+				int start = complex->Breaks[d][0];
+				int stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
+
+				// Clear the data from the cache.
+				options.parallel->flush(d);
+
+				// Reduce the chains of this dimension.
+				reduceChains<RingLike>(
+					Full,
+					start,
+					stop,
+					youngestChainSharingFace,
+					options.parallel->markedByThread[d],
+					R,
+					standardDestructionPolicy<RingLike>,
+					options
+				);
+			}
+
+			// Re-constitute the marked columns from across individual threads;
+			// this is (effectively) constant-time, since we know the number of
+			// marked columns is capped.
+			for (int d=dimension; d<= topDimension; d++) {
+				for (auto k : options.parallel->markedByThread[d]) marked.insert(k);
+			}
+
+		} else {
+			// SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);
+
+			for (int d=dimension; d <= topDimension; d++) {
+				int start = complex->Breaks[d][0];
+				int stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
+
+				reduceChains<RingLike>(
+					Full,
+					start,
+					stop,
+					youngestChainSharingFace,
+					marked,
+					R,
+					standardDestructionPolicy<RingLike>,
+					options
+				);
+			}
+		}
+
+		// Check which columns are marked, have no chains with which they share
+		// faces (i.e. are cycles), and are between the target idnices.
+		int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
+		vector<int> essential;
+
+		for (auto k : marked) {
+			if (youngestChainSharingFace[k] == 0 && (low <= k && k < high)) essential.push_back(k);
+		}
+		return essential;
+	};
+
+	template <typename RingLike>
+	inline vector<int> twistPersistence(
+		complexes::Complex<RingLike>* complex,
+		vector<int>& filtration,
+		Ring* R,
+		int dimension,
+		arithmetic::ComputeOptions<RingLike>& options
+	) {
+		// Doing row operations on the coboundary is equivalent to column operations
+		// on the boundary.
+		SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);
+
+		// Track which column is to be added next; track which ones are marked.
+		vector<int> youngestChainSharingFace(complex->size(), 0);
+		set<int> marked;
+
+		// Top dimension of the complex; indices at which we stop and start.
+		int topDimension = min(dimension+1, (int)complex->Cells.size());
+		int start, stop;
+
+		for (int d=topDimension; d >= dimension; d--) {
+			start = complex->Breaks[d][0];
+			stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
+			reduceChains<RingLike>(Full, start, stop, youngestChainSharingFace, marked, R, twistDestructionPolicy<RingLike>, options);
+		}
+
+		int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
+		vector<int> essential;
+
+		for (auto k : marked) {
+			if (youngestChainSharingFace[k] == 0 && (low <= k && k < high)) essential.push_back(k);
+		}
+
+		return essential;
+	};
 
 	template <typename RingLike>
 	inline vector<int> PHATPersistence(
@@ -204,134 +329,6 @@ namespace ATEAMS::topology {
 		return essential;
 	}
 
-
-	template <typename RingLike>
-	inline vector<int> standardPersistence(
-		complexes::Complex<RingLike>* complex,
-		vector<int>& filtration,
-		Ring* R,
-		int dimension,
-		arithmetic::ComputeOptions<RingLike>& options
-	) {
-		// Doing row operations on the coboundary is equivalent to column operations
-		// on the boundary.
-		// SparseMatrix<RingLike> Full;
-		SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);
-
-		// Track which column is to be added next; track which ones are marked.
-		vector<int> youngestChainSharingFace(complex->size(), 0);
-		set<int> marked;
-
-		// Top dimension of the complex; indices at which we stop and start.
-		int topDimension = min(dimension+1, (int)complex->Cells.size());
-
-		if (options.parallel->enabled) {
-
-			// Break the matrix into blocks, then reduce over each block
-			// independently.
-			int blocks = topDimension-dimension+1;
-
-			#pragma omp parallel shared(blocks,youngestChainSharingFace)
-			#pragma omp single
-			{
-				#pragma omp taskloop firstprivate(Full) shared(youngestChainSharingFace) num_tasks(blocks)
-				for (int d=dimension; d <= topDimension; d++) {
-					// Specify start/stop indices.
-					// cout << omp_get_num_threads() << endl;
-					int start = complex->Breaks[d][0];
-					int stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
-
-					// Clear the data from the cache.
-					options.parallel->flush(d);
-
-					// Reduce the chains of this dimension.
-					reduceChains<RingLike>(
-						Full,
-						start,
-						stop,
-						youngestChainSharingFace,
-						options.parallel->markedByThread[d],
-						R,
-						options,
-						standardMatrixPolicy<RingLike>
-					);
-				}
-			}
-			#pragma omp taskwait
-
-			// Re-constitute the marked columns from across individual threads;
-			// this is (effectively) constant-time, since we know the number of
-			// marked columns is capped.
-			for (int d=dimension; d<= topDimension; d++) {
-				for (auto k : options.parallel->markedByThread[d]) marked.insert(k);
-			}
-
-		} else {
-			// SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);
-
-			for (int d=dimension; d <= topDimension; d++) {
-				int start = complex->Breaks[d][0];
-				int stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
-
-				reduceChains<RingLike>(
-					Full,
-					start,
-					stop,
-					youngestChainSharingFace,
-					marked,
-					R,
-					options,
-					standardMatrixPolicy<RingLike>
-				);
-			}
-		}
-
-		// Check which columns are marked, have no chains with which they share
-		// faces (i.e. are cycles), and are between the target idnices.
-		int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
-		vector<int> essential;
-
-		for (auto k : marked) {
-			if (youngestChainSharingFace[k] == 0 && (low <= k && k < high)) essential.push_back(k);
-		}
-		return essential;
-	};
-
-	template <typename RingLike>
-	inline vector<int> twistPersistence(
-		complexes::Complex<RingLike>* complex,
-		vector<int>& filtration,
-		Ring* R,
-		int dimension,
-		arithmetic::ComputeOptions<RingLike>& options
-	) {
-		// Doing row operations on the coboundary is equivalent to column operations
-		// on the boundary.
-		SparseMatrix<RingLike> Full = reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension);
-
-		// Track which column is to be added next; track which ones are marked.
-		vector<int> youngestChainSharingFace(complex->size(), 0);
-		set<int> marked;
-
-		// Top dimension of the complex; indices at which we stop and start.
-		int topDimension = min(dimension+1, (int)complex->Cells.size());
-		int start, stop;
-
-		for (int d=topDimension; d >= dimension; d--) {
-			start = complex->Breaks[d][0];
-			stop = (d+1 >= complex->Cells.size()) ? complex->size() : complex->Breaks[d][1];
-			reduceChains<RingLike>(Full, start, stop, youngestChainSharingFace, marked, R, options, twistMatrixPolicy<RingLike>);
-		}
-
-		int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
-		vector<int> essential;
-
-		for (auto k : marked) {
-			if (youngestChainSharingFace[k] == 0 && (low <= k && k < high)) essential.push_back(k);
-		}
-
-		return essential;
-	};
 
 	template <typename RingLike>
 	std::vector<int> persistence(
