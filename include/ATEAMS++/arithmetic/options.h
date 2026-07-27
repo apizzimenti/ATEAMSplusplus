@@ -34,20 +34,14 @@ namespace ATEAMS::arithmetic {
 			int threads;
 			bool enabled = false;
 
-			std::vector<std::set<int>> markedByThread;
-			std::vector<std::set<int>> zeroedByThread;
+			std::vector<std::set<int>> marked;
 
 			void build(int blocks, int length) {
-				this->markedByThread =  std::vector<std::set<int>>(blocks, std::set<int>());
-				this->zeroedByThread =  std::vector<std::set<int>>(blocks, std::set<int>());
+				this->marked = std::vector<std::set<int>>(blocks, std::set<int>());
 			}
 
 			void flush() {
-				// Flushes stored data for container re-use.
-				for (int b=0; b < this->markedByThread.size(); b++) {
-					this->markedByThread[b].clear();
-					this->zeroedByThread[b].clear();
-				}
+				for (int b=0; b < this->marked.size(); b++) this->marked[b].clear();
 			};
 	};
 

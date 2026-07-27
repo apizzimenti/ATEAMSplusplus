@@ -5,8 +5,7 @@ SCALES=(2 4 5 8 11 16 23 32 45)
 DIMENSIONS=(4)
 FIELDS=(2 3)
 TRIALS=${1:-100}
-STRATEGIES=("standard" "twist")
-PARALLELS=(1)
+STRATEGIES=("twist" "JIT" "standardParallel" "standard")
 
 HOST=$(hostname -f)
 
@@ -17,8 +16,8 @@ for EXEC in "${EXECS[@]}"; do
 			for FIELD in "${FIELDS[@]}"; do
 				for STRATEGY in "${STRATEGIES[@]}"; do
 					for PARALLEL in "${PARALLELS[@]}"; do
-						./build/timing.$EXEC $HOST $SCALE $DIMENSION $FIELD $TRIALS $STRATEGY $PARALLEL
-						echo "completed $HOST $SCALE $DIMENSION $FIELD $TRIALS $STRATEGY $PARALLEL"
+						./build/timing.$EXEC $HOST $SCALE $DIMENSION $FIELD $TRIALS $STRATEGY
+						echo "completed $HOST $SCALE $DIMENSION $FIELD $TRIALS $STRATEGY"
 						# echo $?
 					done
 				done

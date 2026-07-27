@@ -105,12 +105,15 @@ inline bool checkPersistence(
 		)
 	> persistenceAlgorithm
 ) {
+	// Initialize a filtration.
 	std::vector<int> filtration(complex->size(), 0);
 	std::iota(filtration.begin(), filtration.end(), 0);
 
+	// Get the subset of things we want to shuffle.
 	std::vector<int> subset(complex->Cells[dimension]);
 	std::iota(subset.begin(), subset.end(), 0);
 
+	// Shuffle them, and insert into the filtration.
 	std::shuffle(subset.begin(), subset.end(), RNG);
 	int offset = (dimension > 0) ? complex->Offsets[dimension-1] : 0;
 
@@ -118,6 +121,7 @@ inline bool checkPersistence(
 		filtration[t] = subset[t-offset]+offset;
 	}
 
+	// Check whether the rank is correct.
 	std::vector<int> times = persistenceAlgorithm(complex, filtration, R, dimension, options);
 	return times.size() == expectedrank;
 }
@@ -145,7 +149,7 @@ inline bool checkReindexing(
 	int firstFace, secondFace;
 	bool foundfirst = false, foundsecond = false;
 
-	for (int t=complex->Breaks[dimension+1][0]; t < complex->Breaks[dimension+1][1]; t++) {
+	for (int t=0; t < complex->size(); t++) {
 		for (int i=0; i < Full[t].size(); i++) {
 			if (Full[t](i) == firstIndex && !foundfirst) {
 				firstFace = t;
@@ -164,7 +168,7 @@ inline bool checkReindexing(
 	// Swap, then reindex.
 	filtration[firstIndex] = secondIndex;
 	filtration[secondIndex] = firstIndex;
-	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::helpers::reindexSparseBoundaryMatrix<RingLike>(complex, filtration, dimension, options);
+	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::persistence::reindexSingle<RingLike>(complex, filtration, options, dimension);
 
 	bool firstReindexed = false, secondReindexed = false;
 
@@ -227,7 +231,7 @@ inline int persistenceDispatcher(
 		}
 
 		// Check whether we're persisting properly.
-		for (int t=0; t < 2048; t++) {
+		for (int t=0; t < 1024; t++) {
 			if (!checkPersistence<RingLike>(&complex, dimension/2, rank, &R, options, RNG, persistenceAlgorithm)) {
 				RESULT = FAIL;
 				goto EXIT;

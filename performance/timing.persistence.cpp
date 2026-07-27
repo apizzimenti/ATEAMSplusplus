@@ -32,7 +32,6 @@ int main(int argc, char* argv[]) {
 	int FIELD = stoi(argv[4]);
 	int TRIALS = stoi(argv[5]);
 	string STRATEGY = argv[6];
-	int PARALLEL = stoi(argv[7]);
 
 	// Construct a cubical complex and the ingredients for a filtration.
 	Zp R(FIELD);
