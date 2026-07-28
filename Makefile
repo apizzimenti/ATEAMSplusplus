@@ -39,15 +39,16 @@ pull: FORCE
 
 
 samples: FORCE
-# 	@rm -f performance/timing/samples.*(N)
 	./performance/performance.samples.sh
 
 
 profiling: FORCE
+	@rm -f performance/profiling/*(N)
 	screen -dmS profiling.persistence ./performance/profiling.persistence.sh
 
 
 timing: FORCE
+	@rm -f performance/timing/*(N)
 	screen -dmS timing.persistence ./performance/timing.persistence.sh
 
 
