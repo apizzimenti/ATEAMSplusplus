@@ -155,9 +155,11 @@ Collaboration diagram for Chain&lt; ModelType &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_a_t_e_a_m_s_1_1statistics_1_1_chain__coll__graph.png" border="0" usemap="#a_chain_3_01_model_type_01_4_coll__map" loading="lazy" alt="Collaboration graph"/></div>
 <map name="a_chain_3_01_model_type_01_4_coll__map" id="a_chain_3_01_model_type_01_4_coll__map">
-<area shape="rect" title="Simulates the Markov chains specified by each Model." alt="" coords="5,102,148,128"/>
-<area shape="rect" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="Convenience class for managing Flint and multithreading. See Chain; not something users should need." alt="" coords="23,5,130,31"/>
-<area shape="poly" title=" " alt="" coords="79,45,79,102,74,101,74,48"/>
+<area shape="rect" title="Simulates the Markov chains specified by each Model." alt="" coords="28,229,171,254"/>
+<area shape="rect" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html" title=" " alt="" coords="5,117,194,158"/>
+<area shape="poly" title=" " alt="" coords="102,172,102,229,97,227,97,175"/>
+<area shape="rect" href="struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_options.html" title=" " alt="" coords="10,5,189,46"/>
+<area shape="poly" title=" " alt="" coords="101,59,102,117,97,116,98,64"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -169,9 +171,9 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3dda99d3acfd636f587263a24b3d8f5d" id="r_a3dda99d3acfd636f587263a24b3d8f5d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3dda99d3acfd636f587263a24b3d8f5d">Chain</a> (ModelType *model, int steps)</td></tr>
-<tr class="memdesc:a3dda99d3acfd636f587263a24b3d8f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor; uses default <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ThreadOptions">ThreadOptions</a>.  <br /></td></tr>
-<tr class="memitem:a58e64888ae411cafe21be0618387593a" id="r_a58e64888ae411cafe21be0618387593a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a58e64888ae411cafe21be0618387593a">Chain</a> (ModelType *model, int steps, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">arithmetic::ThreadOptions</a> options)</td></tr>
-<tr class="memdesc:a58e64888ae411cafe21be0618387593a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor; uses user-provided <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ThreadOptions">ThreadOptions</a>.  <br /></td></tr>
+<tr class="memdesc:a3dda99d3acfd636f587263a24b3d8f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor; uses default <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html" title="ComputeOptions">ComputeOptions</a>.  <br /></td></tr>
+<tr class="memitem:a414025ccc7db57096288799da6e2851b" id="r_a414025ccc7db57096288799da6e2851b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a414025ccc7db57096288799da6e2851b">Chain</a> (ModelType *model, int steps, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; typename ModelType::RingType &gt; options)</td></tr>
+<tr class="memdesc:a414025ccc7db57096288799da6e2851b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor; uses user-provided <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html" title="ComputeOptions">ComputeOptions</a>.  <br /></td></tr>
 <tr class="memitem:a8a3f02d7974740554249fa6a095b753a" id="r_a8a3f02d7974740554249fa6a095b753a"><td class="memItemLeft">std::generator&lt; <a class="el" href="#a8740963cfa2e5b218c4382c6eaa41af1">State</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8a3f02d7974740554249fa6a095b753a">simulate</a> ()</td></tr>
 <tr class="memdesc:a8a3f02d7974740554249fa6a095b753a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Model-generic iterator.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -179,8 +181,8 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aa8a377c009c421897c7e9e683ab62f4e" id="r_aa8a377c009c421897c7e9e683ab62f4e"><td class="memItemLeft">ModelType *&#160;</td><td class="memItemRight"><a class="el" href="#aa8a377c009c421897c7e9e683ab62f4e">model</a></td></tr>
 <tr class="memdesc:aa8a377c009c421897c7e9e683ab62f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Pointer to) a Model.  <br /></td></tr>
-<tr class="memitem:a1930e89a9919e7828febcae544ec34ad" id="r_a1930e89a9919e7828febcae544ec34ad"><td class="memItemLeft"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">arithmetic::ThreadOptions</a>&#160;</td><td class="memItemRight"><a class="el" href="#a1930e89a9919e7828febcae544ec34ad">options</a></td></tr>
-<tr class="memdesc:a1930e89a9919e7828febcae544ec34ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multithreaded computing options <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ThreadOptions">ThreadOptions</a>.  <br /></td></tr>
+<tr class="memitem:aa8de49641cd7dbfece4c0b4b669509a3" id="r_aa8de49641cd7dbfece4c0b4b669509a3"><td class="memItemLeft"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; typename ModelType::RingType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa8de49641cd7dbfece4c0b4b669509a3">options</a></td></tr>
+<tr class="memdesc:aa8de49641cd7dbfece4c0b4b669509a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multithreaded computing options <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html" title="ComputeOptions">ComputeOptions</a>.  <br /></td></tr>
 <tr class="memitem:ab4ae7205573977222eadd0795db193e2" id="r_ab4ae7205573977222eadd0795db193e2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ab4ae7205573977222eadd0795db193e2">steps</a></td></tr>
 <tr class="memdesc:ab4ae7205573977222eadd0795db193e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of iterations.  <br /></td></tr>
 <tr class="memitem:a876b486d3a5241a126bd5751c5f70f79" id="r_a876b486d3a5241a126bd5751c5f70f79"><td class="memItemLeft"><a class="el" href="#a8740963cfa2e5b218c4382c6eaa41af1">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#a876b486d3a5241a126bd5751c5f70f79">state</a></td></tr>
@@ -216,15 +218,17 @@ class ATEAMS::statistics::Chain&lt; ModelType &gt;</div><p>Simulates the Markov 
 <div class="line"><span class="keywordflow">for</span> (<a class="code hl_typedef" href="#a8740963cfa2e5b218c4382c6eaa41af1">Chain::State</a> <a class="code hl_variable" href="#a876b486d3a5241a126bd5751c5f70f79">state</a> : M.simulate()) {</div>
 <div class="line">        &lt;...&gt;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> Cubical.h:39</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">ATEAMS::models::Bernoulli</a></div><div class="ttdoc">Implements Bernoulli percolation.</div><div class="ttdef"><b>Definition</b> Bernoulli.h:42</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a></div><div class="ttdoc">Simulates the Markov chains specified by each Model.</div><div class="ttdef"><b>Definition</b> Chain.h:59</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a3dda99d3acfd636f587263a24b3d8f5d"><div class="ttname"><a href="#a3dda99d3acfd636f587263a24b3d8f5d">ATEAMS::statistics::Chain::Chain</a></div><div class="ttdeci">Chain(ModelType *model, int steps)</div><div class="ttdoc">Constructor; uses default ThreadOptions.</div><div class="ttdef"><b>Definition</b> Chain.h:78</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a8740963cfa2e5b218c4382c6eaa41af1"><div class="ttname"><a href="#a8740963cfa2e5b218c4382c6eaa41af1">ATEAMS::statistics::Chain::State</a></div><div class="ttdeci">typename ModelType::State State</div><div class="ttdoc">Exposed typename for the model state.</div><div class="ttdef"><b>Definition</b> Chain.h:69</div></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a876b486d3a5241a126bd5751c5f70f79"><div class="ttname"><a href="#a876b486d3a5241a126bd5751c5f70f79">ATEAMS::statistics::Chain::state</a></div><div class="ttdeci">State state</div><div class="ttdoc">A ModelState.</div><div class="ttdef"><b>Definition</b> Chain.h:70</div></div>
-<div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> arithmetic.h:11</div></div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ATEAMS::models::ModelParameters</a></div><div class="ttdoc">Typical parameters required for simulating a Model.</div><div class="ttdef"><b>Definition</b> ModelParameters.h:36</div></div>
-</div><!-- fragment --> </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_cubical_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html">ATEAMS::complexes::Cubical</a></div><div class="ttdoc">Cubical complex.</div><div class="ttdef"><b>Definition</b> <a href="_cubical_8h_source.html#l00039">Cubical.h:39</a></div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html">ATEAMS::models::Bernoulli</a></div><div class="ttdoc">Implements Bernoulli percolation.</div><div class="ttdef"><b>Definition</b> <a href="_bernoulli_8h_source.html#l00042">Bernoulli.h:42</a></div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html">ATEAMS::statistics::Chain</a></div><div class="ttdoc">Simulates the Markov chains specified by each Model.</div><div class="ttdef"><b>Definition</b> <a href="_chain_8h_source.html#l00059">Chain.h:59</a></div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a3dda99d3acfd636f587263a24b3d8f5d"><div class="ttname"><a href="#a3dda99d3acfd636f587263a24b3d8f5d">ATEAMS::statistics::Chain::Chain</a></div><div class="ttdeci">Chain(ModelType *model, int steps)</div><div class="ttdoc">Constructor; uses default ComputeOptions.</div><div class="ttdef"><b>Definition</b> <a href="_chain_8h_source.html#l00078">Chain.h:78</a></div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a8740963cfa2e5b218c4382c6eaa41af1"><div class="ttname"><a href="#a8740963cfa2e5b218c4382c6eaa41af1">ATEAMS::statistics::Chain::State</a></div><div class="ttdeci">typename ModelType::State State</div><div class="ttdoc">Exposed typename for the model state.</div><div class="ttdef"><b>Definition</b> <a href="_chain_8h_source.html#l00069">Chain.h:69</a></div></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1statistics_1_1_chain_html_a876b486d3a5241a126bd5751c5f70f79"><div class="ttname"><a href="#a876b486d3a5241a126bd5751c5f70f79">ATEAMS::statistics::Chain::state</a></div><div class="ttdeci">State state</div><div class="ttdoc">A ModelState.</div><div class="ttdef"><b>Definition</b> <a href="_chain_8h_source.html#l00070">Chain.h:70</a></div></div>
+<div class="ttc" id="anamespace_a_t_e_a_m_s_html"><div class="ttname"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></div><div class="ttdoc">Global namespace.</div><div class="ttdef"><b>Definition</b> <a href="arithmetic_8h_source.html#l00011">arithmetic.h:11</a></div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_parameters_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html">ATEAMS::models::ModelParameters</a></div><div class="ttdoc">Typical parameters required for simulating a Model.</div><div class="ttdef"><b>Definition</b> <a href="_model_parameters_8h_source.html#l00036">ModelParameters.h:36</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="_chain_8h_source.html#l00059">59</a> of file <a class="el" href="_chain_8h_source.html">Chain.h</a>.</p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a8740963cfa2e5b218c4382c6eaa41af1" name="a8740963cfa2e5b218c4382c6eaa41af1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8740963cfa2e5b218c4382c6eaa41af1">&#9670;&#160;</a></span>State</h2>
 
@@ -240,6 +244,8 @@ template&lt;typename ModelType&gt; </div>
 </div><div class="memdoc">
 
 <p>Exposed typename for the model state. </p>
+
+<p class="definition">Definition at line <a class="el" href="_chain_8h_source.html#l00069">69</a> of file <a class="el" href="_chain_8h_source.html">Chain.h</a>.</p>
 
 </div>
 </div>
@@ -273,7 +279,7 @@ template&lt;typename ModelType&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Constructor; uses default <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ThreadOptions">ThreadOptions</a>. </p>
+<p>Constructor; uses default <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html" title="ComputeOptions">ComputeOptions</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">model</td><td>(Pointer to) a Model instance. </td></tr>
@@ -282,10 +288,12 @@ template&lt;typename ModelType&gt; </div>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="_chain_8h_source.html#l00078">78</a> of file <a class="el" href="_chain_8h_source.html">Chain.h</a>.</p>
+
 </div>
 </div>
-<a id="a58e64888ae411cafe21be0618387593a" name="a58e64888ae411cafe21be0618387593a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58e64888ae411cafe21be0618387593a">&#9670;&#160;</a></span>Chain() <span class="overload">[2/2]</span></h2>
+<a id="a414025ccc7db57096288799da6e2851b" name="a414025ccc7db57096288799da6e2851b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a414025ccc7db57096288799da6e2851b">&#9670;&#160;</a></span>Chain() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -308,7 +316,7 @@ template&lt;typename ModelType&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">arithmetic::ThreadOptions</a></td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; typename ModelType::RingType &gt;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -318,7 +326,7 @@ template&lt;typename ModelType&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Constructor; uses user-provided <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ThreadOptions">ThreadOptions</a>. </p>
+<p>Constructor; uses user-provided <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html" title="ComputeOptions">ComputeOptions</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">model</td><td>(Pointer to) a Model instance. </td></tr>
@@ -327,6 +335,8 @@ template&lt;typename ModelType&gt; </div>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="_chain_8h_source.html#l00096">96</a> of file <a class="el" href="_chain_8h_source.html">Chain.h</a>.</p>
 
 </div>
 </div>
@@ -363,8 +373,10 @@ template&lt;typename ModelType&gt; </div>
 <div class="line"><span class="keywordflow">for</span> (<a class="code hl_typedef" href="#a8740963cfa2e5b218c4382c6eaa41af1">State</a> <a class="code hl_variable" href="#a876b486d3a5241a126bd5751c5f70f79">state</a> : M.simulate()) {</div>
 <div class="line">    &lt;<span class="keywordflow">do</span> whatever&gt;</div>
 <div class="line">}</div>
-<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a></div><div class="ttdoc">Maintains state for this Model.</div><div class="ttdef"><b>Definition</b> ModelState.h:42</div></div>
+<div class="ttc" id="astruct_a_t_e_a_m_s_1_1models_1_1_model_state_html"><div class="ttname"><a href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html">ATEAMS::models::ModelState</a></div><div class="ttdoc">Maintains state for this Model.</div><div class="ttdef"><b>Definition</b> <a href="_model_state_8h_source.html#l00042">ModelState.h:42</a></div></div>
 </div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>A <span class="tt">std::generator</span>. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_chain_8h_source.html#l00123">123</a> of file <a class="el" href="_chain_8h_source.html">Chain.h</a>.</p>
 
 </div>
 </div>
@@ -385,10 +397,12 @@ template&lt;typename ModelType&gt; </div>
 
 <p>(Pointer to) a Model. </p>
 
+<p class="definition">Definition at line <a class="el" href="_chain_8h_source.html#l00061">61</a> of file <a class="el" href="_chain_8h_source.html">Chain.h</a>.</p>
+
 </div>
 </div>
-<a id="a1930e89a9919e7828febcae544ec34ad" name="a1930e89a9919e7828febcae544ec34ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1930e89a9919e7828febcae544ec34ad">&#9670;&#160;</a></span>options</h2>
+<a id="aa8de49641cd7dbfece4c0b4b669509a3" name="aa8de49641cd7dbfece4c0b4b669509a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8de49641cd7dbfece4c0b4b669509a3">&#9670;&#160;</a></span>options</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -396,12 +410,14 @@ template&lt;typename ModelType&gt; </div>
 template&lt;typename ModelType&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">arithmetic::ThreadOptions</a> options</td>
+          <td class="memname"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt;typename ModelType::RingType&gt; options</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Multithreaded computing options <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html" title="ThreadOptions">ThreadOptions</a>. </p>
+<p>Multithreaded computing options <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html" title="ComputeOptions">ComputeOptions</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_chain_8h_source.html#l00062">62</a> of file <a class="el" href="_chain_8h_source.html">Chain.h</a>.</p>
 
 </div>
 </div>
@@ -421,6 +437,8 @@ template&lt;typename ModelType&gt; </div>
 
 <p>A <a class="el" href="struct_a_t_e_a_m_s_1_1models_1_1_model_state.html" title="ModelState">ModelState</a>. </p>
 
+<p class="definition">Definition at line <a class="el" href="_chain_8h_source.html#l00070">70</a> of file <a class="el" href="_chain_8h_source.html">Chain.h</a>.</p>
+
 </div>
 </div>
 <a id="ab4ae7205573977222eadd0795db193e2" name="ab4ae7205573977222eadd0795db193e2"></a>
@@ -438,6 +456,8 @@ template&lt;typename ModelType&gt; </div>
 </div><div class="memdoc">
 
 <p>Number of iterations. </p>
+
+<p class="definition">Definition at line <a class="el" href="_chain_8h_source.html#l00064">64</a> of file <a class="el" href="_chain_8h_source.html">Chain.h</a>.</p>
 
 </div>
 </div>

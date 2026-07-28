@@ -1,0 +1,11 @@
+<map id="twist" name="twist">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,55,106"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a4433efb10c26d41f817b0b3dbb9936c6" title=" " alt="" coords="153,5,237,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="45,78,71,58,102,40,140,28,136,31,104,45,74,62,49,81"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a93fc2d02b7022a292de383a3e4fcea42" title=" " alt="" coords="103,55,287,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="54,87,94,81,90,85,56,92"/>
+<area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ada13964f51e14a0a6d1518b288cbe992" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="170,104,220,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="55,94,157,109,153,113,55,99"/>
+<area shape="rect" id="Node000005" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ab8a3bba079032c0fc3a3b49cfc424b09" title=" " alt="" coords="115,153,275,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="47,103,74,122,104,140,119,148,114,148,101,145,71,127,46,109"/>
+</map>

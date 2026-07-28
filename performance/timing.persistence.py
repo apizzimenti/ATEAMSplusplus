@@ -15,49 +15,59 @@ colors = CONFIG.colors
 persistence.trials = 100
 
 defaults = persistence.plots.defaults
-# timeByOverlap = persistence.plots.timeByOverlap
 
 # Initialize the plot.
 metadata.initialize(plt)
 
 for host in persistence.hosts:
-	standard = persistence.data(host, "standard")
-	twist = persistence.data(host, "twist")
+	for field in persistence.fields:
+		for dimension in persistence.dimensions:
 
-	scales = standard.SCALE.unique()
-	dimensions = standard.DIMENSION.unique()
-	fields = standard.FIELD.unique()
+			fig, ax = plt.subplots(**persistence.plots.defaults.subplots)
+			positions = [-0.3, -0.15, 0, 0.15, 0.3]
 
-	# sgrouped = standard.groupby(["SCALE", "DIMENSION"])
-	# tgrouped = twist.groupby(["SCALE", "DIMENSION"])
+			xticks = []
+			labeled = [False, False, False, False, False]
 
-	for field in fields:
-		for dimension in dimensions:
-			sgroup = standard[(standard.DIMENSION == dimension) & (standard.FIELD == field)]
-			tgroup = twist[(twist.DIMENSION == dimension) & (twist.FIELD == field)]
+			for i, (color, pos, name) in enumerate(zip(persistence.colors, positions, persistence.computing)):
+				try: data = persistence.data(host, name)
+				except: break
 
-			sboxes = [
-				sgroup[sgroup.SCALE == scale].TTC for scale in sgroup.SCALE.unique()
-			]
+				subset = data[(data.DIMENSION == dimension) & (data.FIELD == field)]
 
-			tboxes = [
-				tgroup[tgroup.SCALE == scale].TTC for scale in tgroup.SCALE.unique()
-			]
+				boxes = [
+					subset[subset.SCALE == scale].TTC for scale in subset.SCALE.unique()
+				]
 
-			if len(tboxes) != len(sboxes): continue
-				
-			fig, ax = plt.subplots(figsize=(2.5,4))
+				# Plot boxes.
+				if not len(boxes): continue
+				if len(boxes) >= len(xticks): xticks = subset.SCALE.unique()
 
-			OFFSET = 0.15
-			pos = np.arange(1, len(sboxes)+1)
-			L = pos-OFFSET
-			R = pos+OFFSET
+				posns = np.arange(1, len(boxes)+1) + pos
+				ax.boxplot(boxes, positions=posns, **persistence.plots.defaults.boxplot.props(color))
 
-			ax.boxplot(sboxes, positions=L, **persistence.plots.defaults.boxplot.props(colors.tol.highcontrast.red))
-			ax.boxplot(tboxes, positions=R, **persistence.plots.defaults.boxplot.props(colors.tol.highcontrast.yellow))
+				if not all(labeled):
+					ax.text(
+						posns[0], np.percentile(boxes[0], 99, axis=None),
+						rf".~~{name}",
+						fontsize=5,
+						rotation=90,
+						ha="center",
+						va="bottom"
+					)
+					labeled[i] = True
 
-			ax.set_xticks(range(1,len(sboxes)+1))
-			ax.set_xticklabels(sgroup.SCALE.unique())
+				# Plot medians.
+				medians = np.array([
+					np.median(box) for box in boxes
+				])
+
+				ax.scatter(posns, medians, **persistence.plots.defaults.boxplot.medians(color))
+
+			ax.set_xticks(range(1,len(xticks)+1))
+			ax.set_xticklabels([f"{metadata.cells[dimension][x]:,}" for x in xticks], fontsize=6)
+			ax.set_xlim(1/2, len(xticks)+1/2)
+
 			ax.set_title(rf"{host}, $\mathbb Z^{{{dimension}}}$, $\mathbb Z/{{{field}}}\mathbb Z$", fontsize=8)
 
 			CONFIG._defaults.yaxis.logTime(ax)

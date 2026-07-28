@@ -1,0 +1,17 @@
+<map id="sample" name="sample">
+<area shape="rect" id="Node000001" title="Implements the plaquette invaded&#45;cluster algorithm, which inserts satisfied cells (i...." alt="" coords="8,128,72,154"/>
+<area shape="poly" id="edge6_Node000001_Node000001" title=" " alt="" coords="9,128,3,119,7,110,19,104,40,101,62,104,75,112,70,114,61,109,40,107,21,109,11,113,8,119,14,127"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a95b8f3e3c67102ac805e68289bf942e8" title="Dispatch method for computing persistence; dispatches to ATEAMS::topology::PHATPersistence,..." alt="" coords="120,55,327,96"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,125,119,106,143,100,139,103,121,111,73,130"/>
+<area shape="rect" id="Node000006" href="$namespace_a_t_e_a_m_s_1_1arithmetic.html#a0030f1b3f6243a3f8094596eef404c5f" title="Sparse (right) matrix multiplication ." alt="" coords="135,120,312,161"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="71,138,121,139,117,142,73,143"/>
+<area shape="rect" id="Node000007" href="$namespace_a_t_e_a_m_s_1_1arithmetic.html#ad8cbc5b9193eefdee6988cdb6dbf0051" title="Draws a cochain &#160;at uniform random from &#160;such that &#160;is a cocycle on the &#45;cells corresponding to the r..." alt="" coords="140,186,307,226"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="72,151,121,170,144,180,139,181,119,175,72,157"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="188,54,187,45,192,36,205,31,223,29,243,31,257,39,251,40,242,36,223,34,206,36,196,40,192,46,193,55"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a302f91064244f8be2cde174812295fe8" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="375,5,609,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="321,52,416,34,411,36,323,57"/>
+<area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients...." alt="" coords="389,55,596,96"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="327,73,376,75,371,76,328,78"/>
+<area shape="rect" id="Node000005" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ada13964f51e14a0a6d1518b288cbe992" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="389,120,596,161"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="310,94,394,116,388,117,310,99"/>
+</map>

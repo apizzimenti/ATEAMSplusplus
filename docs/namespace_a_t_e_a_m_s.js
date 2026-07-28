@@ -4,13 +4,7 @@ var namespace_a_t_e_a_m_s =
     [ "complexes", "namespace_a_t_e_a_m_s_1_1complexes.html", "namespace_a_t_e_a_m_s_1_1complexes" ],
     [ "models", "namespace_a_t_e_a_m_s_1_1models.html", "namespace_a_t_e_a_m_s_1_1models" ],
     [ "statistics", "namespace_a_t_e_a_m_s_1_1statistics.html", "namespace_a_t_e_a_m_s_1_1statistics" ],
-    [ "topology", "namespace_a_t_e_a_m_s_1_1topology.html", [
-      [ "persistence", "namespace_a_t_e_a_m_s_1_1topology.html#a4f3b986df7ce4786e4769864f289be8d", null ],
-      [ "PHATPersistence", "namespace_a_t_e_a_m_s_1_1topology.html#a10692014e1f613bb397ec488a5600507", null ],
-      [ "PHATPersistence", "namespace_a_t_e_a_m_s_1_1topology.html#ac8f847202bcaa2de63266f3272ac3ead", null ],
-      [ "twistPersistence", "namespace_a_t_e_a_m_s_1_1topology.html#acd8515e2ecfeea265e36069df52ba101", null ],
-      [ "twistPersistence", "namespace_a_t_e_a_m_s_1_1topology.html#a37984d86a1e638c72f8fc17204dd8cb9", null ]
-    ] ],
+    [ "topology", "namespace_a_t_e_a_m_s_1_1topology.html", "namespace_a_t_e_a_m_s_1_1topology" ],
     [ "Ring", "struct_a_t_e_a_m_s_1_1_ring.html", "struct_a_t_e_a_m_s_1_1_ring" ],
     [ "Q", "struct_a_t_e_a_m_s_1_1_q.html", "struct_a_t_e_a_m_s_1_1_q" ],
     [ "Zp", "struct_a_t_e_a_m_s_1_1_zp.html", "struct_a_t_e_a_m_s_1_1_zp" ],

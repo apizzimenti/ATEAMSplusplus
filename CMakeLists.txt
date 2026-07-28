@@ -27,7 +27,6 @@ pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 # TRUE. Otherwise, set it to FALSE.
 set(mimalloc FALSE)
 
-
 if(mimalloc)
 	find_package(mimalloc REQUIRED)
 	pkg_check_modules(mimalloc REQUIRED IMPORTED_TARGET mimalloc)
@@ -39,16 +38,16 @@ endif()
 set(TEST TRUE)
 set(PROFILE FALSE)
 set(TIMING FALSE)
-set(DEBUG TRUE)
+set(DEBUG FALSE)
 
 set(PROFILE_COMPILE_OPTIONS
-	-pg
+	-g
 	-fno-omit-frame-pointer
-	-fno-inline-functions
+	# -fno-inline-functions
 )
 
 set(PROFILE_LINK_OPTIONS
-	-pg
+	-g
 )
 
 if (TEST)
@@ -56,7 +55,7 @@ if (TEST)
 endif()
 
 if (DEBUG)
-	add_compile_options(-g -O1)
+	add_compile_options(-g -O0)
 else()
 	add_compile_options(-O3)
 endif()
@@ -86,8 +85,8 @@ list(APPEND SOURCE_HEADERS
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/options.h
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/topology.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/helpers.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence.h
+	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/helpers.h
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
@@ -208,11 +207,12 @@ list(APPEND ARITHMETIC.TESTING
 )
 
 list(APPEND TOPOLOGY.TESTING
-	"JIT"
-	"standard"
-	"twist"
-	"standardParallel"
-	"persistence"
+	"stagger"
+	# "JIT"
+	# "standard"
+	# "twist"
+	# "standardParallel"
+	# "persistence"
 )
 
 list(APPEND MODELS.TESTING
@@ -308,9 +308,7 @@ list(APPEND MODELS.PROFILING
 )
 
 list(APPEND TOPOLOGY.PROFILING
-	"standardPersistence.parallel"
-	"standardPersistence.serial"
-	"twistPersistence"
+	"persistence"
 )
 
 if (PROFILE)
@@ -323,6 +321,7 @@ if (PROFILE)
 	foreach(FUNCTION IN LISTS TOPOLOGY.PROFILING)
 		add_executable(profiling.${FUNCTION} performance/profiling.${FUNCTION}.cpp)
 		target_link_libraries(profiling.${FUNCTION} PUBLIC ATEAMS++)
+		target_link_options(profiling.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 		target_compile_options(profiling.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 	endforeach()
 
@@ -335,8 +334,10 @@ if (PROFILE)
 endif()
 
 
-
-
+if (PROFILE OR TIMING)
+	add_executable(performance.samples performance/performance.samples.cpp)
+	target_link_libraries(performance.samples PUBLIC ATEAMS++)
+endif()
 
 
 ################################################################################
@@ -357,30 +358,22 @@ list(APPEND MODELS.TIMING
 )
 
 list(APPEND TOPOLOGY.TIMING
-	"standardPersistence.parallel"
-	"standardPersistence.serial"
-	"twistPersistence"
+	"persistence"
 )
 
 if (TIMING)
 	foreach(MODEL IN LISTS MODELS.TIMING)
 		add_executable(timing.${MODEL} performance/timing.${MODEL}.cpp)
 		target_link_libraries(timing.${MODEL} PUBLIC ATEAMS++)
-		target_compile_options(timing.${MODEL} PUBLIC ${PROFILE_COMPILE_OPTIONS})
-		target_link_options(timing.${MODEL} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 	endforeach()
 
 	foreach(FUNCTION IN LISTS TOPOLOGY.TIMING)
 		add_executable(timing.${FUNCTION} performance/timing.${FUNCTION}.cpp)
 		target_link_libraries(timing.${FUNCTION} PUBLIC ATEAMS++)
-		target_compile_options(timing.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
-		target_link_options(timing.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 	endforeach()
 
 	foreach(FUNCTION IN LISTS ARITHMETIC.TIMING)
 		add_executable(timing.${FUNCTION} performance/timing.${FUNCTION}.cpp)
 		target_link_libraries(timing.${FUNCTION} PUBLIC ATEAMS++)
-		target_compile_options(timing.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
-		target_link_options(timing.${FUNCTION} PUBLIC ${PROFILE_COMPILE_OPTIONS})
 	endforeach()
 endif()

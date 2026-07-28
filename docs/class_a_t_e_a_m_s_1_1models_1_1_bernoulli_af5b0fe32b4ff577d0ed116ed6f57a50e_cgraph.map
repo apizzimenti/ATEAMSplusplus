@@ -1,0 +1,12 @@
+<map id="sample" name="sample">
+<area shape="rect" id="Node000001" title="Directly samples Bernoulli percolation at the desired dimension." alt="" coords="5,63,69,88"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a95b8f3e3c67102ac805e68289bf942e8" title="Dispatch method for computing persistence; dispatches to ATEAMS::topology::PHATPersistence,..." alt="" coords="117,55,324,96"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,73,103,74,99,77,70,78"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="185,54,184,45,189,36,202,31,220,29,240,31,254,39,248,40,239,36,220,34,203,36,193,40,189,46,190,56"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a302f91064244f8be2cde174812295fe8" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="372,5,606,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="318,52,413,34,408,36,320,57"/>
+<area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients...." alt="" coords="386,55,593,96"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="324,73,373,75,367,76,325,78"/>
+<area shape="rect" id="Node000005" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ada13964f51e14a0a6d1518b288cbe992" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="386,120,593,161"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="307,94,391,116,385,116,307,99"/>
+</map>

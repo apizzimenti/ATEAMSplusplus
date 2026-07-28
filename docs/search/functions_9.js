@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['q_0',['Q',['../struct_a_t_e_a_m_s_1_1_q.html#a57426605b00772c329d240b02ef33c9d',1,'ATEAMS::Q::Q()'],['../struct_a_t_e_a_m_s_1_1_q.html#aa4862696728f1aaefc917945e27d4716',1,'ATEAMS::Q::Q(int characteristic)']]]
+  ['persistence_0',['persistence',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a95b8f3e3c67102ac805e68289bf942e8',1,'ATEAMS::topology::persistence::persistence(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, Ring *R, int dimension, arithmetic::ComputeOptions&lt; RingLike &gt; &amp;options)'],['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a9e6019160c47e80764976cd171c5fb14',1,'ATEAMS::topology::persistence::persistence(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, Ring *R, arithmetic::ComputeOptions&lt; RingLike &gt; &amp;options)']]],
+  ['phat_1',['PHAT',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f',1,'ATEAMS::topology::persistence::PHAT(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, int dimension)'],['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a00835b80bb5945f84ff4e3b3ca99e49c',1,'ATEAMS::topology::persistence::PHAT(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration)']]]
 ];

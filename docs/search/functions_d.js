@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['unsatisfied_0',['unsatisfied',['../namespace_a_t_e_a_m_s_1_1statistics.html#ab28485fa8b3fa5b9a11c4269767e4c5b',1,'ATEAMS::statistics']]]
+  ['tofile_0',['toFile',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a436c8ebfd74bdc792bc8050baba8ad8d',1,'ATEAMS::complexes::Complex']]],
+  ['twist_1',['twist',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ada13964f51e14a0a6d1518b288cbe992',1,'ATEAMS::topology::persistence::twist(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, Ring *R, int dimension, arithmetic::ComputeOptions&lt; RingLike &gt; &amp;options)'],['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a8ea34af1cdce8f873c1451b14bb674dc',1,'ATEAMS::topology::persistence::twist(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, Ring *R, arithmetic::ComputeOptions&lt; RingLike &gt; &amp;options, ReindexingPolicy&lt; RingLike &gt; reindexingPolicy, TraversalPolicy&lt; RingLike &gt; traversalPolicy, ReportingPolicy&lt; RingLike &gt; reportingPolicy)'],['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a64287f03daad5493cd9e166ceb00e248',1,'ATEAMS::topology::persistence::twist(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, Ring *R, arithmetic::ComputeOptions&lt; RingLike &gt; &amp;options)']]],
+  ['twistdestructionpolicy_2',['twistDestructionPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a969dfc53408fc94c3dc65d1d7365e810',1,'ATEAMS::topology::persistence']]],
+  ['twistfulltraversalpolicy_3',['twistFullTraversalPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ab8a3bba079032c0fc3a3b49cfc424b09',1,'ATEAMS::topology::persistence']]],
+  ['twistrestrictedtraversalpolicy_4',['twistRestrictedTraversalPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a55de4b78fb2d9e4cc91b69f4c31b76ed',1,'ATEAMS::topology::persistence']]]
 ];

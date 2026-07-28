@@ -1,0 +1,14 @@
+<map id="SparseRightMultiplication" name="SparseRightMultiplication">
+<area shape="rect" id="Node000001" title="Sparse (right) matrix multiplication ." alt="" coords="374,108,543,133"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1statistics.html#a84057b52565f61ccb4a02ec1dd01796e" title="Computes the total energy of the given configuration." alt="" coords="190,5,326,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="413,101,303,49,303,44,418,100"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1statistics.html#abb392f63461f412585f1864b963ac02a" title="Computes the number of satisfied &#45;cells in the complex with respect to : that is, the number of &#45;cell..." alt="" coords="190,71,326,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="356,106,327,104,326,98,362,105"/>
+<area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1statistics.html#ad65f2bb1f9628f12f8a86326d991702f" title="Computes the indices of satisfied &#45;cells in the complex with respect to : that is,..." alt="" coords="5,169,142,210"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="368,139,142,180,141,175,369,134"/>
+<area shape="rect" id="Node000005" href="$namespace_a_t_e_a_m_s_1_1statistics.html#ab28485fa8b3fa5b9a11c4269767e4c5b" title="Computes the indices of unsatisfied &#45;cells in the complex with respect to : that is,..." alt="" coords="190,209,326,250"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="423,140,298,211,296,206,417,141"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="102,154,92,150,73,148,56,150,46,154,42,160,43,169,38,169,37,159,42,150,55,145,74,143,94,145,107,153"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="172,212,142,207,142,202,177,211"/>
+<area shape="poly" id="edge7_Node000005_Node000005" title=" " alt="" coords="286,193,276,190,258,188,240,190,230,194,226,200,227,210,223,207,221,199,227,190,239,185,258,183,278,185,291,194"/>
+</map>

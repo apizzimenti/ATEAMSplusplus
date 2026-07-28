@@ -1,28 +1,11 @@
 
 #include <ATEAMS++/ATEAMS++.h>
+#include "helpers.h"
 
 using namespace ATEAMS;
+using namespace ATEAMS::topology;
 using namespace std;
 
-vector<int> filtrate(
-	complexes::Complex<Zp>* complex,
-	vector<int>& filtration,
-	vector<int>& include,
-	int DIMENSION
-) {
-	random_device rd;
-	mt19937 RNG(rd());
-
-	shuffle(include.begin(), include.end(), RNG);
-
-	int start = complex->Breaks[DIMENSION][0];
-	int stop = complex->Breaks[DIMENSION][1];
-	int offset = (DIMENSION > 0) ? complex->Offsets[DIMENSION-1] : 0;
-
-	for (int j=0; j < include.size(); j++) filtration[j+start] = include[j]+start;
-
-	return filtration;
-}
 
 
 int main(int argc, char* argv[]) {
@@ -33,40 +16,39 @@ int main(int argc, char* argv[]) {
 	int TRIALS = stoi(argv[5]);
 	string STRATEGY = argv[6];
 
+	if (DIMENSION >= 6 && SCALE >= 11) return 1;
+
 	// Construct a cubical complex and the ingredients for a filtration.
 	Zp R(FIELD);
 	complexes::Cubical<Zp> plex(vector<int>(DIMENSION, SCALE));
 	plex.constructBoundaryMatrices(&R);
 	plex.constructFullBoundaryMatrix(&R);
 
-	// Create reusable indices for filtrations.
-	vector<int> filtration(plex.size(), 0);
-	iota(begin(filtration), end(filtration), 0);
-
-	vector<int> include(plex.Cells[DIMENSION/2], 0);
-	iota(begin(include), end(include), 0);
-
+	// Read in the sample filtrations.
+	vector<vector<int>> filtrations = filtrationData(plex.size(), SCALE, DIMENSION, TRIALS);
+	
 	// Create compute options.
 	arithmetic::ComputeOptions<Zp> options;
-	thread listener = options.spinUp();
 
-	// Make sure we've set the parallel computing options correctly.
-	options.parallel->enabled = (bool)PARALLEL;
-	if ((bool)PARALLEL) options.parallel->build(plex.Cells.size(), plex.size());
-	
+	thread listener = options.spinUp();
+	options.parallel->enabled = true;
+	options.parallel->build(plex.Cells.size(), plex.size());
 
 	// Create a bucket for storing times to completion.
 	vector<int> TTC(TRIALS);
 
 	for (int t=0; t < TRIALS; t++) {
 		// Create the filtration.
-		vector<int> K = filtrate(&plex, filtration, include, DIMENSION/2);
-		vector<int> times;
+		vector<int> K = filtrations[t];
 
 		auto start = chrono::high_resolution_clock::now();
 
-		if (STRATEGY == "standard") times = topology::standardPersistence<Zp>(&plex, K, &R, DIMENSION/2, options);
-		else times = topology::twistPersistence<Zp>(&plex, K, &R, DIMENSION/2, options);
+		// ik it's lazy but whatever
+		if (STRATEGY == "JIT") persistence::JIT<Zp>(&plex, K, &R, options);
+		else if (STRATEGY == "twist") persistence::twist<Zp>(&plex, K, &R, options);
+		else if (STRATEGY == "standard") persistence::standard<Zp>(&plex, K, &R, options);
+		else if (STRATEGY == "stagger")persistence::stagger<Zp>(&plex, K, &R, options);
+		else persistence::standardParallel<Zp>(&plex, K, &R, options);
 
 		auto end = chrono::high_resolution_clock::now();
 		auto duration = chrono::duration_cast<chrono::microseconds>(end-start);
@@ -80,19 +62,16 @@ int main(int argc, char* argv[]) {
 
 	for (int t=0; t < TRIALS; t++) {
 		csv = csv + format(
-			"{},{},{},{},{}\n",
+			"{},{},{},{}\n",
 			SCALE,
 			DIMENSION,
 			FIELD,
-			TTC[t],
-			(int)(PARALLEL ? omp_get_max_threads()/2 : 1)
+			TTC[t]
 		);
 	}
 
 	// Spin down the listener.
 	options.spinDown(&listener);
-
-	string KIND = PARALLEL ? "parallel" : "serial";
 
 	// APPEND to file.
 	ofstream file;

@@ -7,7 +7,7 @@ var class_a_t_e_a_m_s_1_1models_1_1_invasion =
     [ "Invasion", "class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a3aedf47be96ee6f80fa9734067423f6d", null ],
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_invasion.html#ada0b8474c0031645d1c9fbf4ba7fe4b3", null ],
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a60da9a453bcd9b53814806a4d9a20149", null ],
-    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a4ac8f715a9759723985029d1e8bde81d", null ],
+    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a7a4c3f4a33cee0a361fb730aec16b1a8", null ],
     [ "name", "class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a9b45b3e13bd9167aab02e17e08916231", null ],
     [ "stoppingFunction", "class_a_t_e_a_m_s_1_1models_1_1_invasion.html#aebdbd879c076f085f1f2efc8f4e93f7a", null ]
 ];

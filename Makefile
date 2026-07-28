@@ -4,6 +4,16 @@
 #########
 SHELL := /bin/zsh
 DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+NPROCS := 1
+OS := $(shell uname -s)
+
+ifeq ($(OS),Linux)
+	NPROCS := $(shell grep -c ^processor /proc/cpuinfo)
+endif
+
+ifeq ($(OS),Darwin)
+	NPROCS := $(shell sysctl -n hw.ncpu)
+endif
 
 clean:
 	rm -rf build
@@ -13,7 +23,7 @@ reset: clean
 
 build:
 	cmake -B build
-	cmake --build build -v
+	cmake --build build -v -- -j $(NPROCS)
 install:
 	sudo cmake --install build -v
 
@@ -28,17 +38,17 @@ pull: FORCE
 	@./pull.sh -m
 
 
+samples: FORCE
+# 	@rm -f performance/timing/samples.*(N)
+	./performance/performance.samples.sh
+
+
 profiling: FORCE
-# 	@rm -f performance/profiling/*(N)
-	./performance/profiling.addition.sh &> ./performance/profiling.addition.log &
+	screen -dmS profiling.persistence ./performance/profiling.persistence.sh
 
 
 timing: FORCE
-	@rm -f performance/timing/*(N)
-# 	@rm -f performance/timing/timing.addition.log
-# 	./performance/timing.addition.sh &> ./performance/timing.addition.log &
-	rm -f performance/timing/timing.persistence.log
-	./performance/timing.persistence.sh &> ./performance/timing.persistence.log &
+	screen -dmS timing.persistence ./performance/timing.persistence.sh
 
 
 test:

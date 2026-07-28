@@ -8,7 +8,7 @@ var class_a_t_e_a_m_s_1_1models_1_1_glauber =
     [ "Glauber", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a8aa1cdb7971840174e3529daadf0a1b4", null ],
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a7b030c9a0aa70a4e8981234022509394", null ],
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ada0b8474c0031645d1c9fbf4ba7fe4b3", null ],
-    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#aca3184161762457fab4a82bcc08cf3cc", null ],
+    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#afdce842fbc560b0c9a9d364a690781d6", null ],
     [ "name", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a9b45b3e13bd9167aab02e17e08916231", null ],
     [ "temperatureFunction", "class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ab4e19b8573d2f42134f8d05ec289295f", null ]
 ];

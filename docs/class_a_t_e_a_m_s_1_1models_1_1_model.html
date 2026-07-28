@@ -171,8 +171,8 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af4902cce023a35cb4c3201a4600e140b" id="r_af4902cce023a35cb4c3201a4600e140b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af4902cce023a35cb4c3201a4600e140b">Model</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, bool DEBUG=false)</td></tr>
-<tr class="memitem:a70a23b72a4802f62b6ebb03e9c52ce9a" id="r_a70a23b72a4802f62b6ebb03e9c52ce9a"><td class="memItemLeft">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#a70a23b72a4802f62b6ebb03e9c52ce9a">sample</a> (int t, <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;options)=0</td></tr>
-<tr class="memdesc:a70a23b72a4802f62b6ebb03e9c52ce9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sample from the model.  <br /></td></tr>
+<tr class="memitem:a0049ae5e614585d9abdc8ec577be932c" id="r_a0049ae5e614585d9abdc8ec577be932c"><td class="memItemLeft">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#a0049ae5e614585d9abdc8ec577be932c">sample</a> (int t, <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">ATEAMS::arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)=0</td></tr>
+<tr class="memdesc:a0049ae5e614585d9abdc8ec577be932c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sample from the model.  <br /></td></tr>
 <tr class="memitem:a8461a036202b67cd329481cd12d44338" id="r_a8461a036202b67cd329481cd12d44338"><td class="memItemLeft">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8461a036202b67cd329481cd12d44338">initialize</a> (<a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;state)=0</td></tr>
 <tr class="memdesc:a8461a036202b67cd329481cd12d44338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the model.  <br /></td></tr>
 <tr class="memitem:aad3020f7fa4df3aaddda33d8114986f5" id="r_aad3020f7fa4df3aaddda33d8114986f5"><td class="memItemLeft">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#aad3020f7fa4df3aaddda33d8114986f5">initialize</a> (VectorLike&lt; RingLike &gt; c, <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;state)=0</td></tr>
@@ -199,6 +199,8 @@ class ATEAMS::models::Model&lt; RingLike, VectorLike &gt;</div><p>Abstract (temp
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="_model_8h_source.html#l00035">35</a> of file <a class="el" href="_model_8h_source.html">Model.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a019cbd9f4f20c936dfb268d52b5d1e0a" name="a019cbd9f4f20c936dfb268d52b5d1e0a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a019cbd9f4f20c936dfb268d52b5d1e0a">&#9670;&#160;</a></span>RingType</h2>
@@ -213,6 +215,8 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_model_8h_source.html#l00045">45</a> of file <a class="el" href="_model_8h_source.html">Model.h</a>.</p>
 
 </div>
 </div>
@@ -229,6 +233,8 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_model_8h_source.html#l00046">46</a> of file <a class="el" href="_model_8h_source.html">Model.h</a>.</p>
 
 </div>
 </div>
@@ -247,6 +253,8 @@ template&lt;typename R&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_model_8h_source.html#l00044">44</a> of file <a class="el" href="_model_8h_source.html">Model.h</a>.</p>
 
 </div>
 </div>
@@ -285,6 +293,8 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
 </table>
 </div><div class="memdoc">
 <p>Constructor. </p>
+
+<p class="definition">Definition at line <a class="el" href="_model_8h_source.html#l00049">49</a> of file <a class="el" href="_model_8h_source.html">Model.h</a>.</p>
 
 </div>
 </div>
@@ -366,8 +376,8 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
 
 </div>
 </div>
-<a id="a70a23b72a4802f62b6ebb03e9c52ce9a" name="a70a23b72a4802f62b6ebb03e9c52ce9a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70a23b72a4802f62b6ebb03e9c52ce9a">&#9670;&#160;</a></span>sample()</h2>
+<a id="a0049ae5e614585d9abdc8ec577be932c" name="a0049ae5e614585d9abdc8ec577be932c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0049ae5e614585d9abdc8ec577be932c">&#9670;&#160;</a></span>sample()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -390,7 +400,7 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html">ATEAMS::arithmetic::ThreadOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">ATEAMS::arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -430,6 +440,8 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
 
 <p>Pointer to a coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>. </p>
 
+<p class="definition">Definition at line <a class="el" href="_model_8h_source.html#l00039">39</a> of file <a class="el" href="_model_8h_source.html">Model.h</a>.</p>
+
 </div>
 </div>
 <a id="aa9fb7501f4721a129cf3d6f6f0160d84" name="aa9fb7501f4721a129cf3d6f6f0160d84"></a>
@@ -447,6 +459,8 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
 </div><div class="memdoc">
 
 <p>Pointer to a <a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html" title="Complex">Complex</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_model_8h_source.html#l00037">37</a> of file <a class="el" href="_model_8h_source.html">Model.h</a>.</p>
 
 </div>
 </div>
@@ -466,6 +480,8 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
 
 <p>Are we debugging this <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_model.html" title="Abstract (template) class for various Models.">Model</a>? (Default is <span class="tt">false</span>.). </p>
 
+<p class="definition">Definition at line <a class="el" href="_model_8h_source.html#l00041">41</a> of file <a class="el" href="_model_8h_source.html">Model.h</a>.</p>
+
 </div>
 </div>
 <a id="a1a8a8235879363159315091a1daed72f" name="a1a8a8235879363159315091a1daed72f"></a>
@@ -483,6 +499,8 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
 </div><div class="memdoc">
 
 <p>Subcomplex dimension. </p>
+
+<p class="definition">Definition at line <a class="el" href="_model_8h_source.html#l00040">40</a> of file <a class="el" href="_model_8h_source.html">Model.h</a>.</p>
 
 </div>
 </div>

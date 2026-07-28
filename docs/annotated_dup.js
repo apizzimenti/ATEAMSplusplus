@@ -2,7 +2,8 @@ var annotated_dup =
 [
     [ "ATEAMS", "namespace_a_t_e_a_m_s.html", [
       [ "arithmetic", "namespace_a_t_e_a_m_s_1_1arithmetic.html", [
-        [ "ThreadOptions", "class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options.html", "class_a_t_e_a_m_s_1_1arithmetic_1_1_thread_options" ]
+        [ "ParallelOptions", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_options.html", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_options" ],
+        [ "ComputeOptions", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options" ]
       ] ],
       [ "complexes", "namespace_a_t_e_a_m_s_1_1complexes.html", [
         [ "BoundaryData", "struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html", "struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data" ],

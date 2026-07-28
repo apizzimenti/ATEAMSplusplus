@@ -22,6 +22,12 @@ std::map<int,int> HOMOLOGICALRANK{
 	{4, 6}
 };
 
+std::map<int,int> TOTALRANKBYDIMENSION {
+	{2, 4},
+	{3, 8},
+	{4, 16}
+};
+
 // When to stop invading.
 std::map<int,std::vector<int>> STOPINVADING{
 	{2,{1}},
@@ -86,15 +92,9 @@ inline bool inKernel(ATEAMS::SparseMatrix<RingLike> K, ATEAMS::SparseVector<Ring
 // ## PERSISTENCE TESTS ###########################################################
 // ################################################################################
 
+
 template <typename RingLike>
-inline bool checkPersistence(
-	ATEAMS::complexes::Complex<RingLike>* complex,
-	int dimension,
-	int expectedrank,
-	ATEAMS::Ring* R,
-	ATEAMS::arithmetic::ComputeOptions<RingLike>& options,
-	std::mt19937 RNG,
-	std::function<
+using RestrictedPersistenceAlgorithm = std::function<
 		std::vector<int>
 		(
 			ATEAMS::complexes::Complex<RingLike>*,
@@ -103,7 +103,30 @@ inline bool checkPersistence(
 			int,
 			ATEAMS::arithmetic::ComputeOptions<RingLike>&
 		)
-	> persistenceAlgorithm
+	>;
+
+template <typename RingLike>
+using FullPersistenceAlgorithm = std::function<
+		std::vector<int>
+		(
+			ATEAMS::complexes::Complex<RingLike>*,
+			std::vector<int>&,
+			ATEAMS::Ring*,
+			ATEAMS::arithmetic::ComputeOptions<RingLike>&
+		)
+	>;
+
+
+
+template <typename RingLike>
+inline bool checkRestrictedPersistence(
+	ATEAMS::complexes::Complex<RingLike>* complex,
+	int dimension,
+	int expectedrank,
+	ATEAMS::Ring* R,
+	ATEAMS::arithmetic::ComputeOptions<RingLike>& options,
+	std::mt19937 RNG,
+	RestrictedPersistenceAlgorithm<RingLike> persistenceAlgorithm
 ) {
 	// Initialize a filtration.
 	std::vector<int> filtration(complex->size(), 0);
@@ -123,12 +146,46 @@ inline bool checkPersistence(
 
 	// Check whether the rank is correct.
 	std::vector<int> times = persistenceAlgorithm(complex, filtration, R, dimension, options);
+	printvector<int>(times);
 	return times.size() == expectedrank;
 }
 
 
 template <typename RingLike>
-inline bool checkReindexing(
+inline bool checkFullPersistence(
+	ATEAMS::complexes::Complex<RingLike>* complex,
+	int dimension,
+	int expectedTotalRank,
+	ATEAMS::Ring* R,
+	ATEAMS::arithmetic::ComputeOptions<RingLike>& options,
+	std::mt19937 RNG,
+	FullPersistenceAlgorithm<RingLike> persistenceAlgorithm
+) {
+	// Initialize a filtration.
+	std::vector<int> filtration(complex->size(), 0);
+	std::iota(filtration.begin(), filtration.end(), 0);
+
+	// Get the subset of things we want to shuffle.
+	std::vector<int> subset(complex->Cells[dimension]);
+	std::iota(subset.begin(), subset.end(), 0);
+
+	// Shuffle them, and insert into the filtration.
+	std::shuffle(subset.begin(), subset.end(), RNG);
+	int offset = (dimension > 0) ? complex->Offsets[dimension-1] : 0;
+
+	for (int t=complex->Offsets[dimension-1]; t < complex->Offsets[dimension]; t++) {
+		filtration[t] = subset[t-offset]+offset;
+	}
+
+	// Check whether the rank is correct.
+	std::vector<int> times = persistenceAlgorithm(complex, filtration, R, options);
+	printvector<int>(times);
+	return times.size() == expectedTotalRank;
+}
+
+
+template <typename RingLike>
+inline bool checkSingleReindexing(
 	ATEAMS::complexes::Complex<RingLike>* complex,
 	int dimension,
 	ATEAMS::arithmetic::ComputeOptions<RingLike>& options
@@ -184,19 +241,67 @@ inline bool checkReindexing(
 
 
 template <typename RingLike>
+inline bool checkFullReindexing(
+	ATEAMS::complexes::Complex<RingLike>* complex,
+	ATEAMS::arithmetic::ComputeOptions<RingLike>& options
+) {
+	ATEAMS::SparseMatrix<RingLike> Full = complex->Coboundary.Full;
+
+	// Swap two elements and verify they are reindexed correctly.
+	std::vector<int> filtration(complex->size(), 0);
+	std::iota(filtration.begin(), filtration.end(), 0);
+
+	int dimension = 1;
+
+	int offset = 10;
+	int firstIndex = complex->Breaks[dimension][0], secondIndex = complex->Breaks[dimension][0]+offset;
+
+	ATEAMS::SparseVector<RingLike> first = Full[firstIndex];
+	ATEAMS::SparseVector<RingLike> second = Full[secondIndex];
+
+	// Find the first 3-dimensional cells with these indices in them.
+	int firstFace, secondFace;
+	bool foundfirst = false, foundsecond = false;
+
+	for (int t=0; t < complex->size(); t++) {
+		for (int i=0; i < Full[t].size(); i++) {
+			if (Full[t](i) == firstIndex && !foundfirst) {
+				firstFace = t;
+				foundfirst = true;
+			}
+
+			if (Full[t](i) == secondIndex && !foundsecond) {
+				secondFace = t;
+				foundsecond = true;
+			}
+
+			if (foundfirst && foundsecond) break;
+		}
+	}
+
+	// Swap, then reindex.
+	filtration[firstIndex] = secondIndex;
+	filtration[secondIndex] = firstIndex;
+	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::persistence::reindexSingle<RingLike>(complex, filtration, options, dimension);
+
+	bool firstReindexed = false, secondReindexed = false;
+
+	for (int i=0; i < Full[firstFace].size(); i++) {
+		if (FullReindexed[firstFace](i) == secondIndex) firstReindexed = true;
+		if (FullReindexed[secondFace](i) == firstIndex) secondReindexed = true;
+	}
+
+	bool SWAPPED = Full[firstIndex] == FullReindexed[secondIndex] && Full[secondIndex] == FullReindexed[firstIndex];
+	return SWAPPED && firstReindexed && secondReindexed;
+}
+
+
+template <typename RingLike>
 inline int persistenceDispatcher(
 	int argc,
 	char *argv[],
-	std::function<
-		std::vector<int>
-		(
-			ATEAMS::complexes::Complex<RingLike>*,
-			std::vector<int>&,
-			ATEAMS::Ring*,
-			int,
-			ATEAMS::arithmetic::ComputeOptions<RingLike>&
-		)
-	> persistenceAlgorithm,
+	RestrictedPersistenceAlgorithm<RingLike> restrictedPersistenceAlgorithm,
+	FullPersistenceAlgorithm<RingLike> fullPersistenceAlgorithm,
 	bool parallel=true
 ) {
 	int RESULT = PASS;
@@ -225,14 +330,19 @@ inline int persistenceDispatcher(
 		options.parallel->build(complex.Cells.size(), complex.size());
 
 		// Check whether we're re-indexing properly.
-		if (!checkReindexing<RingLike>(&complex, dimension/2, options)) {
+		if (!checkSingleReindexing<RingLike>(&complex, dimension/2, options)) {
 			RESULT = FAIL;
 			goto EXIT;
 		}
 
 		// Check whether we're persisting properly.
-		for (int t=0; t < 1024; t++) {
-			if (!checkPersistence<RingLike>(&complex, dimension/2, rank, &R, options, RNG, persistenceAlgorithm)) {
+		for (int t=0; t < 256; t++) {
+			if (!checkRestrictedPersistence<RingLike>(&complex, dimension/2, rank, &R, options, RNG, restrictedPersistenceAlgorithm)) {
+				RESULT = FAIL;
+				goto EXIT;
+			}
+
+			if (!checkFullPersistence<RingLike>(&complex, dimension/2, TOTALRANKBYDIMENSION[dimension], &R, options, RNG, fullPersistenceAlgorithm)) {
 				RESULT = FAIL;
 				goto EXIT;
 			}

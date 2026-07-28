@@ -1,0 +1,9 @@
+<map id="standardReductionPolicy" name="standardReductionPolicy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="168,55,334,80"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a736df264667dc2be8c3699cc4c2db982" title=" " alt="" coords="27,5,98,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,52,99,30,99,25,186,49"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a04d205d5b410c0b6cbbae889a2b2153a" title=" " alt="" coords="5,55,120,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,68,120,70,119,65,155,67"/>
+<area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ab6d98f5095a2304924539efcbea9f594" title=" " alt="" coords="38,104,87,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="185,87,88,113,87,108,183,82"/>
+</map>

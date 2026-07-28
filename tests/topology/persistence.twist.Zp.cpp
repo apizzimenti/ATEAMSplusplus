@@ -6,7 +6,7 @@ using namespace ATEAMS;
 using namespace std;
 
 template <typename RingLike>
-vector<int> wrapper(
+vector<int> restrictedWrapper(
 	ATEAMS::complexes::Complex<RingLike>* complex,
 	std::vector<int>& filtration,
 	ATEAMS::Ring* R,
@@ -22,8 +22,23 @@ vector<int> wrapper(
 	);
 }
 
+template <typename RingLike>
+vector<int> fullWrapper(
+	ATEAMS::complexes::Complex<RingLike>* complex,
+	std::vector<int>& filtration,
+	ATEAMS::Ring* R,
+	ATEAMS::arithmetic::ComputeOptions<RingLike>& options
+) {
+	return topology::persistence::twist<RingLike>(
+		complex,
+		filtration,
+		R,
+		options
+	);
+}
+
 
 int main(int argc, char *argv[]) {
 	using R = Zp;
-	return persistenceDispatcher<R>(argc, argv, wrapper<R>);
+	return persistenceDispatcher<R>(argc, argv, restrictedWrapper<R>, fullWrapper<R>);
 }

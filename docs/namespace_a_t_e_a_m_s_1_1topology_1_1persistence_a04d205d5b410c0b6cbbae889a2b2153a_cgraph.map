@@ -1,0 +1,11 @@
+<map id="standardParallel" name="standardParallel">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,100,120,125"/>
+<area shape="rect" id="Node000002" href="$class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#acd603591b043f1e197b8a66207e70b91" title="Total number of cells." alt="" coords="178,5,332,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,97,167,55,183,51,178,54,169,60,89,101"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#aef1f8d71842d8b06bfcd3ea10b5460c5" title=" " alt="" coords="168,70,342,96"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="119,101,154,97,150,100,121,106"/>
+<area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a98975b39431941103b998ac17f0bba6f" title=" " alt="" coords="173,120,336,161"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="120,118,160,125,155,127,121,123"/>
+<area shape="rect" id="Node000005" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ae38dc36ad31a37f5eb50346daf01de04" title=" " alt="" coords="172,185,338,210"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="84,123,123,147,169,170,189,180,184,180,167,175,121,151,83,128"/>
+</map>

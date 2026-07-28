@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['known_20issues_0',['Known issues',['../index.html#autotoc_md3',1,'']]]
+  ['jit_0',['JIT',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a302f91064244f8be2cde174812295fe8',1,'ATEAMS::topology::persistence::JIT(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, Ring *R, int dimension, arithmetic::ComputeOptions&lt; RingLike &gt; &amp;options)'],['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a908e15fcb03d13d6e9dce4b1cd5155d7',1,'ATEAMS::topology::persistence::JIT(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, Ring *R, arithmetic::ComputeOptions&lt; RingLike &gt; &amp;options, ReindexingPolicy&lt; RingLike &gt; reindexingPolicy, TraversalPolicy&lt; RingLike &gt; traversalPolicy, ReportingPolicy&lt; RingLike &gt; reportingPolicy)'],['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a939a3c9d706439e740cafe7548e6f5d6',1,'ATEAMS::topology::persistence::JIT(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, Ring *R, arithmetic::ComputeOptions&lt; RingLike &gt; &amp;options)']]],
+  ['jitdestructionpolicy_1',['JITDestructionPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a5effcd335c1740cd021a01724eb7694c',1,'ATEAMS::topology::persistence']]],
+  ['jitreductionpolicy_2',['JITReductionPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a3b116b881d2b98abe2607dbde3b945d5',1,'ATEAMS::topology::persistence']]]
 ];

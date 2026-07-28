@@ -1,0 +1,7 @@
+<map id="standardDestructionPolicy" name="standardDestructionPolicy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="168,31,342,56"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a736df264667dc2be8c3699cc4c2db982" title=" " alt="" coords="27,5,98,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,31,99,25,99,20,155,29"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a04d205d5b410c0b6cbbae889a2b2153a" title=" " alt="" coords="5,55,120,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,57,121,63,120,58,155,56"/>
+</map>

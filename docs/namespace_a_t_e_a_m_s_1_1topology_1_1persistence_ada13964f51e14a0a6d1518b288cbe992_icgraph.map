@@ -1,0 +1,22 @@
+<map id="twist" name="twist">
+<area shape="rect" id="Node000001" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="411,129,460,155"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a9e6019160c47e80764976cd171c5fb14" title="Dispatch method for computing persistence; dispatches to ATEAMS::topology::PHATPersistence,..." alt="" coords="72,5,160,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="414,116,391,92,362,70,310,48,256,34,204,25,161,22,159,17,205,20,257,28,312,43,364,65,395,88,419,117"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a95b8f3e3c67102ac805e68289bf942e8" title="Dispatch method for computing persistence; dispatches to ATEAMS::topology::PHATPersistence,..." alt="" coords="275,104,363,130"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="393,134,364,129,363,124,399,133"/>
+<area shape="rect" id="Node000008" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a31225e3713cdb9669c700d5fc7bc1fdf" title=" " alt="" coords="294,153,344,179"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="393,151,345,164,343,159,398,149"/>
+<area shape="rect" id="Node000009" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a34f40739ef98ea5ef0e5f036a2f06c39" title=" " alt="" coords="294,203,344,228"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="406,163,364,194,345,205,343,200,362,189,401,166"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="292,93,262,68,225,45,193,33,161,25,160,20,194,27,228,40,266,64,297,93"/>
+<area shape="poly" id="edge5_Node000003_Node000003" title=" " alt="" coords="337,89,331,85,319,83,307,85,301,89,300,95,303,104,298,103,294,95,297,86,305,80,319,77,334,80,342,89"/>
+<area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a939a3c9d706439e740cafe7548e6f5d6" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="96,55,136,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="257,102,226,95,137,74,136,69,227,90,262,100"/>
+<area shape="rect" id="Node000005" href="$class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#af5b0fe32b4ff577d0ed116ed6f57a50e" title="Directly samples Bernoulli percolation at the desired dimension." alt="" coords="24,104,208,145"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="256,120,209,124,207,119,261,118"/>
+<area shape="rect" id="Node000006" href="$class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a7e13c46f1892bfcc5fb3f9f9dd301a4f" title="Implements the plaquette invaded&#45;cluster algorithm, which inserts satisfied cells (i...." alt="" coords="5,194,227,234"/>
+<area shape="poly" id="edge7_Node000003_Node000006" title=" " alt="" coords="274,138,161,196,159,191,279,135"/>
+<area shape="rect" id="Node000007" href="$class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a02e7aa0ba6a5e42e3e6f77a2782cfcbf" title="Implements the plaquette invasion&#45;percolation algorithm, which creates a random &#45;subcomplex &#160;by (unif..." alt="" coords="25,259,207,300"/>
+<area shape="poly" id="edge9_Node000003_Node000007" title=" " alt="" coords="278,138,277,142,260,169,255,196,248,222,241,235,228,248,209,261,207,257,225,244,236,232,243,220,250,194,255,168,273,139,274,141"/>
+<area shape="poly" id="edge8_Node000006_Node000006" title=" " alt="" coords="147,179,137,175,116,172,97,174,85,179,81,185,83,194,77,193,76,184,82,175,96,169,116,167,138,170,153,178"/>
+</map>

@@ -18,7 +18,7 @@ metadata.computing = ["serial", "parallel"]
 metadata.initialize = lambda p: p.rcParams.update({
 	"text.usetex": True,
 	"font.family": "Times New Roman",
-	"text.latex.preamble": r"\usepackage{nicefrac}\usepackage{amsfonts}"
+	"text.latex.preamble": r"\usepackage{nicefrac}\usepackage{amsfonts}\usepackage{graphicx}\usepackage{xcolor}"
 })
 
 # Cell counts by dimension and scale.
@@ -50,6 +50,12 @@ metadata.cells = {
 		16: 1048576,
 		22: 3748096,
 		32: 16777216
+	},
+	6: {
+		2: 4096,
+		4: 262144,
+		5: 1000000,
+		8: 16777216
 	}
 }
 
@@ -165,7 +171,7 @@ CONFIG._defaults.xaxis = Bunch()
 
 # Saved figure properties.
 CONFIG._defaults.savefig = dict(
-	dpi=600,
+	dpi=1200,
 	bbox_inches="tight"
 )
 
@@ -183,13 +189,13 @@ CONFIG._defaults.yaxis.logTime = Bunch()
 CONFIG._defaults.yaxis.logTime.textprops = dict(
 	fontsize=6,
 	ha="left",
-	alpha=1/2,
+	alpha=1/8,
 	va="bottom"
 )
 
 CONFIG._defaults.yaxis.logTime.lineprops = dict(
 	color="k",
-	alpha=1/4,
+	alpha=1/8,
 	zorder=-1000
 )
 
@@ -348,8 +354,10 @@ CONFIG.topics.addition.plots.timeByOverlapOverlaid.savefig = CONFIG._defaults.sa
 CONFIG.topics.persistence = Bunch()
 
 CONFIG.topics.persistence.exec = "persistence"
-CONFIG.topics.persistence.computing = ["standard", "twist"]
-CONFIG.topics.persistence.hosts = CONFIG.metadata.hosts
+CONFIG.topics.persistence.computing = ["twist", "stagger", "JIT", "standardParallel", "standard"]
+CONFIG.topics.persistence.fields = [2, 3, 5]
+CONFIG.topics.persistence.dimensions = [2, 4, 6]
+CONFIG.topics.persistence.hosts = ["meglTower"]
 CONFIG.topics.persistence.trials = 100
 CONFIG.topics.persistence.sep = ","
 CONFIG.topics.persistence.prefix = lambda host, computing: f"{host}.{CONFIG.topics.persistence.exec}.{computing}.{CONFIG.topics.persistence.trials}"
@@ -358,17 +366,23 @@ CONFIG.topics.persistence.columns = [
 	"SCALE",
 	"DIMENSION",
 	"FIELD",
-	"TTC",
-	"CORES"
+	"TTC"
 ]
 
 CONFIG.topics.persistence.dtypes = {
 	"SCALE": int,
 	"DIMENSION": int,
 	"FIELD": int,
-	"TTC": int,
-	"CORES": int
+	"TTC": int
 }
+
+CONFIG.topics.persistence.colors = [
+	CONFIG.colors.tol.muted.cyan,
+	CONFIG.colors.tol.muted.teal,
+	CONFIG.colors.tol.muted.green,
+	CONFIG.colors.tol.muted.olive,
+	CONFIG.colors.tol.muted.sand
+]
 
 
 CONFIG.topics.persistence.data = lambda host, computing: _additionReadFile(host, computing, CONFIG.topics.persistence)
@@ -382,27 +396,52 @@ CONFIG.topics.persistence.plots = Bunch()
 CONFIG.topics.persistence.plots.defaults = Bunch()
 
 CONFIG.topics.persistence.plots.defaults.subplots = dict(
-	figsize=(5,2.5)
+	figsize=(2.5,5)
 )
 
 CONFIG.topics.persistence.plots.defaults.scatter = CONFIG._defaults.scatter
 
 
 CONFIG.topics.persistence.plots.defaults.boxplot = Bunch()
-CONFIG.topics.persistence.plots.defaults.boxplot.lw = 2/3
+CONFIG.topics.persistence.plots.defaults.boxplot.lw = 1/2
+CONFIG.topics.persistence.plots.defaults.boxplot.boxwidths = 0.1
 
 CONFIG.topics.persistence.plots.defaults.boxplot.medianprops = dict(
-	lw=CONFIG.topics.persistence.plots.defaults.boxplot.lw,
+	lw=0,
 	color="k"
+)
+
+CONFIG.topics.persistence.plots.defaults.boxplot.boxprops = lambda color: dict(
+	facecolor=color,
+	lw=0
+)
+
+CONFIG.topics.persistence.plots.defaults.boxplot.whiskerprops = dict(
+	lw=CONFIG.topics.persistence.plots.defaults.boxplot.lw
+)
+
+CONFIG.topics.persistence.plots.defaults.boxplot.capprops = dict(
+	lw=CONFIG.topics.persistence.plots.defaults.boxplot.lw
+)
+
+CONFIG.topics.persistence.plots.defaults.boxplot.medians = lambda color: dict(
+	zorder=1000,
+	marker="D",
+	facecolor=color,
+	edgecolor="k",
+	s=4,
+	lw=CONFIG.topics.persistence.plots.defaults.boxplot.lw
 )
 
 CONFIG.topics.persistence.plots.defaults.boxplot.props = lambda color: dict(
 	showfliers=False,
-	widths=0.2,
+	widths=CONFIG.topics.persistence.plots.defaults.boxplot.boxwidths,
 	whis=(1,99),
 	patch_artist=True,
-	boxprops=dict(facecolor=color),
-	medianprops=CONFIG.topics.persistence.plots.defaults.boxplot.medianprops
+	boxprops=CONFIG.topics.persistence.plots.defaults.boxplot.boxprops(color),
+	medianprops=CONFIG.topics.persistence.plots.defaults.boxplot.medianprops,
+	whiskerprops=CONFIG.topics.persistence.plots.defaults.boxplot.whiskerprops,
+	capprops=CONFIG.topics.persistence.plots.defaults.boxplot.capprops
 )
 
 
@@ -464,7 +503,7 @@ def _timeByOverlapVaxis(ax):
 	CONFIG._defaults.yaxis.logTime(ax)
 
 def _timeByOverlapHaxis(ax, lo, hi):
-	ax.set_xlim(lo, hi)
+	ax.set_xlim(lo+1/2, hi-1/2)
 	ax.set_xticks([hi*k for k in [0, 1/4, 1/2, 3/4, 1]])
 
 	ax.set_xticklabels([
