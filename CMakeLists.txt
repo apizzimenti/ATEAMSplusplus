@@ -57,7 +57,7 @@ endif()
 if (DEBUG)
 	add_compile_options(-g -O0)
 else()
-	add_compile_options(-O3)
+	add_compile_options(-Ofast)
 endif()
 
 
@@ -208,11 +208,11 @@ list(APPEND ARITHMETIC.TESTING
 
 list(APPEND TOPOLOGY.TESTING
 	"stagger"
-	# "JIT"
-	# "standard"
-	# "twist"
-	# "standardParallel"
-	# "persistence"
+	"JIT"
+	"standard"
+	"twist"
+	"parallel"
+	"persistence"
 )
 
 list(APPEND MODELS.TESTING

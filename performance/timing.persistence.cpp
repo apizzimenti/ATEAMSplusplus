@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
 		else if (STRATEGY == "twist") persistence::twist<Zp>(&plex, K, &R, options);
 		else if (STRATEGY == "standard") persistence::standard<Zp>(&plex, K, &R, options);
 		else if (STRATEGY == "stagger")persistence::stagger<Zp>(&plex, K, &R, options);
-		else persistence::standardParallel<Zp>(&plex, K, &R, options);
+		else persistence::parallel<Zp>(&plex, K, &R, options);
 
 		auto end = chrono::high_resolution_clock::now();
 		auto duration = chrono::duration_cast<chrono::microseconds>(end-start);

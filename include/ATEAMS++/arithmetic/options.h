@@ -24,25 +24,61 @@ namespace ATEAMS::arithmetic {
 
 	// enum class Strategy { MIXED, PARALLEL, SERIAL };
 
-	/**
-	 * @class ParallelOptions
-	 * @brief Facilities for more efficient parallel computing.
-	 */
-	template <typename RingLike>
-	struct ParallelOptions {
+	// /**
+	//  * @class ParallelOptions
+	//  * @brief Facilities for more efficient parallel computing.
+	//  */
+	// template <typename RingLike>
+	// struct ParallelOptions {
+	// 	public:
+	// 		int threads;
+	// 		bool enabled = false;
+
+	// 		std::vector<std::set<int>> marked;
+
+	// 		void build(int blocks, int length) {
+	// 			this->marked = std::vector<std::set<int>>(blocks, std::set<int>());
+	// 		}
+
+	// 		void flush() {
+	// 			for (int b=0; b < this->marked.size(); b++) this->marked[b].clear();
+	// 		};
+	// };
+
+	struct SerialContainers {
 		public:
-			int threads;
-			bool enabled = false;
+			std::set<int> marked;
+			std::vector<int> lookup;
 
+		void build(int cells) {
+			this->lookup = std::vector<int>(cells, 0);
+		}
+
+		void flush() {
+			this->marked.clear();
+			std::fill(this->lookup.begin(), this->lookup.end(), 0);
+			// for (int t=0; t < this->lookup.size(); t++) this->lookup[t] = 0;
+		}
+	};
+
+	struct ParallelContainers {
+		public:
 			std::vector<std::set<int>> marked;
+			std::vector<int> lookup;
+			std::vector<bool> zeroed;
+			bool enabled = true;
 
-			void build(int blocks, int length) {
+			void build(int cells, int blocks) {
+				this->zeroed = std::vector<bool>(cells, false);
+				this->lookup = std::vector<int>(cells, 0);
 				this->marked = std::vector<std::set<int>>(blocks, std::set<int>());
 			}
 
 			void flush() {
-				for (int b=0; b < this->marked.size(); b++) this->marked[b].clear();
-			};
+				for (int t=0; t < this->marked.size(); t++) this->marked[t].clear();
+				std::fill(this->lookup.begin(), this->lookup.end(), 0);
+				std::fill(this->zeroed.begin(), this->zeroed.end(), false);
+			}
 	};
 
 	/**
@@ -66,13 +102,19 @@ namespace ATEAMS::arithmetic {
 	class ComputeOptions {
 		public:
 			RREFOptions* opt;
-			ParallelOptions<RingLike>* parallel;
+			SerialContainers* serial;
+			ParallelContainers* parallel;
 
 			/**
 			 * @brief Constructor.
 			 */
 			ComputeOptions() {
 				this->opt = new RREFOptionType;
+
+				this->parallel = new ParallelContainers;
+				this->parallel->enabled = true;
+
+				this->serial = new SerialContainers;
 			};
 
 			/**
@@ -84,8 +126,6 @@ namespace ATEAMS::arithmetic {
 				this->opt->pool.reset();
 				this->opt->method = 0;
 
-				this->initializeParallelism();
-
 				return std::thread(key_listener, std::ref(this->opt->abort));
 			};
 
@@ -96,14 +136,6 @@ namespace ATEAMS::arithmetic {
 				this->opt->abort = true;
 				Flint::clear_cache();
 				listener->join();
-				// listener->detach();
-			};
-			
-			void initializeParallelism() {
-				// Determine how many threads we're using; this probably won't
-				// change during execution.
-				this->parallel = new ParallelOptions<RingLike>;
-				this->parallel->enabled = true;
 			};
 	};
 }

@@ -131,10 +131,9 @@ namespace ATEAMS::topology::persistence {
 
 
 	template <typename RingLike>
-	inline void standardParallelCreationPolicy(
+	inline void parallelCreationPolicy(
 		int markedIndex,
 		int dim,
-		set<int>& marked,
 		arithmetic::ComputeOptions<RingLike>& options
 	) {
 		options.parallel->marked[dim].insert(markedIndex);

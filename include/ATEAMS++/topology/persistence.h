@@ -243,7 +243,7 @@ namespace ATEAMS::topology::persistence {
 	 * @returns A vector of percolation times.
 	 */
 	template <typename RingLike>
-	std::vector<int> standardParallel(
+	std::vector<int> parallel(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
@@ -272,7 +272,7 @@ namespace ATEAMS::topology::persistence {
 	 * @returns A vector of percolation times.
 	 */
 	template <typename RingLike>
-	std::vector<int> standardParallel(
+	std::vector<int> parallel(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
@@ -302,7 +302,7 @@ namespace ATEAMS::topology::persistence {
 	 * @returns A vector of percolation times.
 	 */
 	template <typename RingLike>
-	std::vector<int> standardParallel(
+	std::vector<int> parallel(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,

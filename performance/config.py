@@ -354,7 +354,7 @@ CONFIG.topics.addition.plots.timeByOverlapOverlaid.savefig = CONFIG._defaults.sa
 CONFIG.topics.persistence = Bunch()
 
 CONFIG.topics.persistence.exec = "persistence"
-CONFIG.topics.persistence.computing = ["twist", "stagger", "JIT", "standardParallel", "standard"]
+CONFIG.topics.persistence.computing = ["twist", "stagger", "JIT", "parallel", "standard"]
 CONFIG.topics.persistence.fields = [2, 3, 5]
 CONFIG.topics.persistence.dimensions = [2, 4, 6]
 CONFIG.topics.persistence.hosts = ["meglTower"]

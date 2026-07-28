@@ -76,16 +76,14 @@ namespace ATEAMS::topology::persistence {
 		// Determine the endpoints and reindex the boundary matrix accordingly.
 		SparseMatrix<RingLike> Full = reindexingPolicy(complex, filtration, options);
 
-		// Track which column is to be added next; track which ones are marked.
-		vector<int> youngestChainLookup(complex->size(), 0);
-		set<int> marked;
+		options.serial->flush();
 
 		// Cycle creation policy.
 		auto creationPolicy = std::bind(
 			standardCreationPolicy<RingLike>,	// using the standard creation policy
 			placeholders::_1,					// placeholder for `markedIndex`
 			placeholders::_2,					// placeholder for `dim`
-			std::ref(marked)					// a reference to `marked`.
+			std::ref(options.serial->marked)					// a reference to `marked`.
 		);
 
 		// Cycle destruction policy.
@@ -94,7 +92,7 @@ namespace ATEAMS::topology::persistence {
 			placeholders::_1,						// placeholder for `cell`
 			placeholders::_2,						// placeholder for `markedIndex`
 			placeholders::_3,						// placeholder for `dim`,
-			std::ref(youngestChainLookup)			// reference to `youngestChainLookup`.
+			std::ref(options.serial->lookup)			// reference to `youngestChainLookup`.
 		);
 
 		// Reduce the blocks of the matrix.
@@ -104,7 +102,7 @@ namespace ATEAMS::topology::persistence {
 			reduceBlock<RingLike>(
 				Full,
 				complex->Breaks[d],
-				youngestChainLookup,
+				options.serial->lookup,
 				d,
 				R,
 				standardReductionPolicy<RingLike>,
@@ -117,8 +115,8 @@ namespace ATEAMS::topology::persistence {
 		// Find essential cycles.
 		return reportingPolicy(
 			complex,
-			youngestChainLookup,
-			marked
+			options.serial->lookup,
+			options.serial->marked
 		);
 	}
 
@@ -198,16 +196,14 @@ namespace ATEAMS::topology::persistence {
 		// Determine the endpoints and reindex the boundary matrix accordingly.
 		SparseMatrix<RingLike> Full = reindexingPolicy(complex, filtration, options);
 
-		// Track which column is to be added next; track which ones are marked.
-		vector<int> youngestChainLookup(complex->size(), 0);
-		set<int> marked;
+		options.serial->flush();
 
 		// Cycle creation policy.
 		auto creationPolicy = std::bind(
 			standardCreationPolicy<RingLike>,	// using the standard creation policy
 			placeholders::_1,					// placeholder for `markedIndex`
 			placeholders::_2,					// placeholder for `dim`
-			std::ref(marked)					// a reference to `marked`.
+			std::ref(options.serial->marked)	// a reference to `marked`.
 		);
 
 		// Cycle destruction policy.
@@ -216,7 +212,7 @@ namespace ATEAMS::topology::persistence {
 			placeholders::_1,					// placeholder for `cell`
 			placeholders::_2,					// placeholer for `markedIndex`
 			placeholders::_3,					// placeholder for `dim`
-			std::ref(youngestChainLookup),		// reference to `youngestChainLookup`
+			std::ref(options.serial->lookup),	// reference to `youngestChainLookup`
 			std::ref(Full)						// reference to `Full`, for clearing
 		);
 
@@ -227,7 +223,7 @@ namespace ATEAMS::topology::persistence {
 			reduceBlock<RingLike>(
 				Full,
 				complex->Breaks[d],
-				youngestChainLookup,
+				options.serial->lookup,
 				d,
 				R,
 				standardReductionPolicy<RingLike>,
@@ -240,8 +236,8 @@ namespace ATEAMS::topology::persistence {
 		// Find essential cycles.
 		return reportingPolicy(
 			complex,
-			youngestChainLookup,
-			marked
+			options.serial->lookup,
+			options.serial->marked
 		);
 	};
 
@@ -307,7 +303,7 @@ namespace ATEAMS::topology::persistence {
 
 
 	template <typename RingLike>
-	inline vector<int> standardParallel(
+	inline vector<int> parallel(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		Ring* R,
@@ -319,19 +315,14 @@ namespace ATEAMS::topology::persistence {
 		// Determine the endpoints and reindex the boundary matrix accordingly.
 		SparseMatrix<RingLike> Full = reindexingPolicy(complex, filtration, options);
 
-		// Track which column is to be added next; track which ones are marked.
-		vector<int> youngestChainLookup(complex->size(), 0);
-		set<int> marked;
-
 		// Flush data structures.
 		options.parallel->flush();
 
 		// Cycle creation policy.
 		auto creationPolicy = std::bind(
-			standardParallelCreationPolicy<RingLike>,	// using the standard parallel creation policy
+			parallelCreationPolicy<RingLike>,	// using the standard parallel creation policy
 			placeholders::_1,							// placeholder for `markedIndex`
 			placeholders::_2,							// placeholder for `dim`
-			std::ref(marked),							// a dummy reference to `marked`
 			std::ref(options)							// a reference to `options`, for marking in parallel.
 		);
 
@@ -341,18 +332,18 @@ namespace ATEAMS::topology::persistence {
 			placeholders::_1,						// placeholder for `cell`
 			placeholders::_2,						// placeholder for `markedIndex`
 			placeholders::_3,						// placeholder for `dim`,
-			std::ref(youngestChainLookup)			// reference to `youngestChainLookup`.
+			std::ref(options.parallel->lookup)		// reference to `youngestChainLookup`.
 		);
 
 		// Reduce the blocks in parallel, since they are independent of one another.
 		vector<int> endpoints = traversalPolicy(complex);
 
-		#pragma omp parallel for firstprivate(Full) shared(youngestChainLookup)
+		#pragma omp parallel for firstprivate(Full) default(shared) schedule(static)
 		for (int d=endpoints[0]; d <= endpoints[1]; d++) {
 			reduceBlock<RingLike>(
 				Full,
 				complex->Breaks[d],
-				youngestChainLookup,
+				options.parallel->lookup,
 				d,
 				R,
 				standardReductionPolicy<RingLike>,
@@ -363,6 +354,7 @@ namespace ATEAMS::topology::persistence {
 		}
 
 		// Re-constitute the marked columns.
+		set<int> marked;
 		for (int d=endpoints[0]; d <= endpoints[1]; d++) {
 			for (auto& k : options.parallel->marked[d]) marked.insert(k);
 		}
@@ -370,14 +362,14 @@ namespace ATEAMS::topology::persistence {
 		// Find essential cycles.
 		return reportingPolicy(
 			complex,
-			youngestChainLookup,
+			options.parallel->lookup,
 			marked
 		);
 	}
 
 
 	template <typename RingLike>
-	inline vector<int> standardParallel(
+	inline vector<int> parallel(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		Ring* R,
@@ -406,7 +398,7 @@ namespace ATEAMS::topology::persistence {
 			dimension
 		);
 
-		return standardParallel<RingLike>(
+		return parallel<RingLike>(
 			complex,
 			filtration,
 			R,
@@ -419,13 +411,13 @@ namespace ATEAMS::topology::persistence {
 
 
 	template <typename RingLike>
-	inline vector<int> standardParallel(
+	inline vector<int> parallel(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		Ring* R,
 		arithmetic::ComputeOptions<RingLike>& options
 	) {
-		return standardParallel<RingLike>(
+		return parallel<RingLike>(
 			complex,
 			filtration,
 			R,
@@ -450,21 +442,14 @@ namespace ATEAMS::topology::persistence {
 		// Determine the endpoints and reindex the boundary matrix accordingly.
 		SparseMatrix<RingLike> Full = reindexingPolicy(complex, filtration, options);
 
-		// Track which column is to be added next; track which ones are zeroed;
-		// track which ones are marked.
-		vector<int> youngestChainLookup(complex->size(), 0);
-		vector<bool> zeroed(complex->size(), 0);
-		set<int> marked;
-
 		// Flush data structures.
 		options.parallel->flush();
 
 		// Cycle creation policy.
 		auto creationPolicy = std::bind(
-			standardParallelCreationPolicy<RingLike>,	// using the standard parallel creation policy
+			parallelCreationPolicy<RingLike>,	// using the standard parallel creation policy
 			placeholders::_1,							// placeholder for `markedIndex`
 			placeholders::_2,							// placeholder for `dim`
-			std::ref(marked),							// a dummy reference to `marked`
 			std::ref(options)							// a reference to `options`, for marking in parallel.
 		);
 
@@ -474,8 +459,8 @@ namespace ATEAMS::topology::persistence {
 			placeholders::_1,				// placeholder for `cell`
 			placeholders::_2,				// placeholder for `markedIndex`
 			placeholders::_3,				// placeholder for `dim`,
-			std::ref(youngestChainLookup),	// reference to `youngestChainLookup`,
-			std::ref(zeroed)				// reference to `zeroed`.
+			std::ref(options.parallel->lookup),	// reference to `youngestChainLookup`,
+			std::ref(options.parallel->zeroed)				// reference to `zeroed`.
 		);
 
 		// Reduction policy.
@@ -485,18 +470,18 @@ namespace ATEAMS::topology::persistence {
 			placeholders::_2,				// placeholder for `lookup`
 			placeholders::_3,				// placeholder for `cellIndex`
 			placeholders::_4,				// placeholder for `dim`
-			std::ref(zeroed)				// reference to `zeroed`.
+			std::ref(options.parallel->zeroed)				// reference to `zeroed`.
 		);
 
 		// Reduce the blocks in parallel, since they are independent of one another.
 		vector<int> endpoints = traversalPolicy(complex);
 
-		#pragma omp parallel for firstprivate(Full) shared(youngestChainLookup,zeroed)
+		#pragma omp parallel for firstprivate(Full) default(shared) schedule(static)
 		for (int d=endpoints[0]; d >= endpoints[1]; d--) {
 			reduceBlock<RingLike>(
 				Full,
 				complex->Breaks[d],
-				youngestChainLookup,
+				options.parallel->lookup,
 				d,
 				R,
 				reductionPolicy,
@@ -507,6 +492,7 @@ namespace ATEAMS::topology::persistence {
 		}
 
 		// Re-constitute the marked columns.
+		set<int> marked;
 		for (int d=endpoints[0]; d >= endpoints[1]; d--) {
 			for (auto& k : options.parallel->marked[d]) marked.insert(k);
 		}
@@ -514,7 +500,7 @@ namespace ATEAMS::topology::persistence {
 		// Find essential cycles.
 		return reportingPolicy(
 			complex,
-			youngestChainLookup,
+			options.parallel->lookup,
 			marked
 		);
 	}
@@ -594,20 +580,15 @@ namespace ATEAMS::topology::persistence {
 		// Determine the endpoints and reindex the boundary matrix accordingly.
 		SparseMatrix<RingLike> Full = reindexingPolicy(complex, filtration, options);
 
-		// Track which column is to be added next; track which ones are marked.
-		vector<int> youngestChainLookup(complex->size(), 0);
-		set<int> marked;
-
 		// Flush data structures.
 		options.parallel->flush();
 
 		// Cycle creation policy.
 		auto creationPolicy = std::bind(
-			standardParallelCreationPolicy<RingLike>,	// using the standard parallel creation policy
-			placeholders::_1,							// placeholder for `markedIndex`
-			placeholders::_2,							// placeholder for `dim`
-			std::ref(marked),							// a dummy reference to `marked`
-			std::ref(options)							// a reference to `options`, for marking in parallel.
+			parallelCreationPolicy<RingLike>,	// using the standard parallel creation policy
+			placeholders::_1,						// placeholder for `markedIndex`
+			placeholders::_2,						// placeholder for `dim`
+			std::ref(options)						// a reference to `options`, for marking in parallel.
 		);
 
 		// Cycle destruction policy.
@@ -616,7 +597,7 @@ namespace ATEAMS::topology::persistence {
 			placeholders::_1,					// placeholder for `cell`
 			placeholders::_2,					// placeholer for `markedIndex`
 			placeholders::_3,					// placeholder for `dim`
-			std::ref(youngestChainLookup),		// reference to `youngestChainLookup`
+			std::ref(options.parallel->lookup),	// reference to `youngestChainLookup`
 			std::ref(Full)						// reference to `Full`, for clearing
 		);
 
@@ -624,37 +605,41 @@ namespace ATEAMS::topology::persistence {
 		// clearing optimization benefits.
 		vector<int> endpoints = traversalPolicy(complex);
 
-		#pragma omp parallel for shared(youngestChainLookup, Full)
-		for (int d=endpoints[0]; d >= endpoints[1]; d -= 2) {
-			reduceBlock<RingLike>(
-				Full,
-				complex->Breaks[d],
-				youngestChainLookup,
-				d,
-				R,
-				standardReductionPolicy<RingLike>,
-				creationPolicy,
-				destructionPolicy,
-				options
-			);
-		}
+		#pragma omp parallel default(shared)
+		{
+			#pragma omp for schedule(static)
+			for (int d=endpoints[0]; d >= endpoints[1]; d -= 2) {
+				reduceBlock<RingLike>(
+					Full,
+					complex->Breaks[d],
+					options.parallel->lookup,
+					d,
+					R,
+					standardReductionPolicy<RingLike>,
+					creationPolicy,
+					destructionPolicy,
+					options
+				);
+			}
 
-		#pragma omp parallel for shared(youngestChainLookup, Full)
-		for (int d=endpoints[0]; d >= endpoints[1]; d -= 2) {
-			reduceBlock<RingLike>(
-				Full,
-				complex->Breaks[d],
-				youngestChainLookup,
-				d,
-				R,
-				standardReductionPolicy<RingLike>,
-				creationPolicy,
-				destructionPolicy,
-				options
-			);
+			#pragma omp for schedule(static)
+			for (int d=endpoints[0]-1; d >= endpoints[1]; d -= 2) {
+				reduceBlock<RingLike>(
+					Full,
+					complex->Breaks[d],
+					options.parallel->lookup,
+					d,
+					R,
+					standardReductionPolicy<RingLike>,
+					creationPolicy,
+					destructionPolicy,
+					options
+				);
+			}
 		}
 
 		// Re-constitute the marked columns.
+		set<int> marked;
 		for (int d=endpoints[0]; d >= endpoints[1]; d--) {
 			for (auto& k : options.parallel->marked[d]) marked.insert(k);
 		}
@@ -662,7 +647,7 @@ namespace ATEAMS::topology::persistence {
 		// Find essential cycles.
 		return reportingPolicy(
 			complex,
-			youngestChainLookup,
+			options.parallel->lookup,
 			marked
 		);
 	}

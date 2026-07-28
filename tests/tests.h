@@ -327,7 +327,8 @@ inline int persistenceDispatcher(
 		
 		// Make sure we've set the parallel computing options correctly.
 		options.parallel->enabled = true;
-		options.parallel->build(complex.Cells.size(), complex.size());
+		options.parallel->build(complex.size(), complex.Cells.size());
+		options.serial->build(complex.size());
 
 		// Check whether we're re-indexing properly.
 		if (!checkSingleReindexing<RingLike>(&complex, dimension/2, options)) {

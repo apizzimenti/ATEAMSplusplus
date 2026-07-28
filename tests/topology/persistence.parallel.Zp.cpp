@@ -13,7 +13,7 @@ vector<int> restrictedWrapper(
 	int dimension,
 	ATEAMS::arithmetic::ComputeOptions<RingLike>& options
 ) {
-	return topology::persistence::standardParallel<RingLike>(
+	return topology::persistence::parallel<RingLike>(
 		complex,
 		filtration,
 		R,
@@ -29,7 +29,7 @@ vector<int> fullWrapper(
 	ATEAMS::Ring* R,
 	ATEAMS::arithmetic::ComputeOptions<RingLike>& options
 ) {
-	return topology::persistence::standardParallel<RingLike>(
+	return topology::persistence::parallel<RingLike>(
 		complex,
 		filtration,
 		R,
