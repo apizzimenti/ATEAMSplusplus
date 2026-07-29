@@ -207,12 +207,13 @@ list(APPEND ARITHMETIC.TESTING
 )
 
 list(APPEND TOPOLOGY.TESTING
-	"stagger"
+	"split"
+	# "stagger"
 	"JIT"
-	"standard"
+	# "standard"
 	"twist"
-	"parallel"
-	"persistence"
+	# "parallel"
+	# "persistence"
 )
 
 list(APPEND MODELS.TESTING

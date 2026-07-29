@@ -30,7 +30,7 @@ metadata.cells = {
 		8: 256,
 		11: 484,
 		16: 1024,
-		22: 1936,
+		23: 1936,
 		32: 4096,
 		45: 8100,
 		64: 16384,
@@ -48,7 +48,7 @@ metadata.cells = {
 		8: 65536,
 		11: 234256,
 		16: 1048576,
-		22: 3748096,
+		23: 3748096,
 		32: 16777216
 	},
 	6: {
@@ -354,7 +354,8 @@ CONFIG.topics.addition.plots.timeByOverlapOverlaid.savefig = CONFIG._defaults.sa
 CONFIG.topics.persistence = Bunch()
 
 CONFIG.topics.persistence.exec = "persistence"
-CONFIG.topics.persistence.computing = ["twist", "stagger", "JIT", "parallel", "standard"]
+# CONFIG.topics.persistence.computing = ["twist", "split", "JIT", "stagger", "parallel", "standard"]
+CONFIG.topics.persistence.computing = ["twist", "JIT", "split", "stagger", "standard"]
 CONFIG.topics.persistence.fields = [2, 3, 5]
 CONFIG.topics.persistence.dimensions = [2, 4, 6]
 CONFIG.topics.persistence.hosts = ["meglTower"]
@@ -381,7 +382,8 @@ CONFIG.topics.persistence.colors = [
 	CONFIG.colors.tol.muted.teal,
 	CONFIG.colors.tol.muted.green,
 	CONFIG.colors.tol.muted.olive,
-	CONFIG.colors.tol.muted.sand
+	CONFIG.colors.tol.muted.sand,
+	CONFIG.colors.tol.muted.rose
 ]
 
 
@@ -396,7 +398,7 @@ CONFIG.topics.persistence.plots = Bunch()
 CONFIG.topics.persistence.plots.defaults = Bunch()
 
 CONFIG.topics.persistence.plots.defaults.subplots = dict(
-	figsize=(2.5,5)
+	figsize=(4,5)
 )
 
 CONFIG.topics.persistence.plots.defaults.scatter = CONFIG._defaults.scatter
@@ -495,7 +497,7 @@ def _defaultLogTimeVerticalAxis(ax, textprops, lineprops):
 
 	for tick, label in CONFIG.metadata.logTimeLabels.items():
 		if ylo <= tick <= yhi:
-			ax.text(xlo+0.005, tick, label, **textprops)
+			ax.text(xlo+0.05, tick, f"{label}", **textprops)
 			ax.plot([xlo, xhi], [tick, tick], **lineprops)
 
 

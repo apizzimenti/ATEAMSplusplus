@@ -1,19 +1,19 @@
 #!/bin/zsh
 
 EXECS=("persistence")
-SCALES=(5 8 11 16 23 32)
+SCALES=(5 8 11 16)
 DIMENSIONS=(4 6)
-FIELDS=(2 3 5)
+FIELDS=(2)
 TRIALS=${1:-10}
-STRATEGIES=("twist" "stagger" "JIT" "parallel" "standard")
+STRATEGIES=("twist" "split" "stagger" "JIT" "parallel" "standard")
 
 HOST=$(hostname -f)
 
 # Test persistence.
 for EXEC in "${EXECS[@]}"; do
-	for SCALE in "${SCALES[@]}"; do
-		for DIMENSION in "${DIMENSIONS[@]}"; do
-			for FIELD in "${FIELDS[@]}"; do
+	for DIMENSION in "${DIMENSIONS[@]}"; do
+		for FIELD in "${FIELDS[@]}"; do
+			for SCALE in "${SCALES[@]}"; do
 				for STRATEGY in "${STRATEGIES[@]}"; do
 
 					PADDEDSCALE=${(l(2)(0))SCALE}

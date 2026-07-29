@@ -44,12 +44,12 @@ samples: FORCE
 
 profiling: FORCE
 	@rm -f performance/profiling/*(N)
-	screen -dmS profiling.persistence ./performance/profiling.persistence.sh
+	screen -L -Logfile performance/profiling.persistence.log -dmS profiling.persistence ./performance/profiling.persistence.sh
 
 
 timing: FORCE
 	@rm -f performance/timing/*(N)
-	screen -dmS timing.persistence ./performance/timing.persistence.sh
+	screen -L -Logfile performance/timing.persistence.log -dmS timing.persistence ./performance/timing.persistence.sh
 
 
 test:

@@ -26,7 +26,7 @@ for host in persistence.hosts:
 			fig, ax = plt.subplots(**persistence.plots.defaults.subplots)
 			positions = [-0.3, -0.15, 0, 0.15, 0.3]
 
-			xticks = []
+			xticks = np.array([])
 			labeled = [False, False, False, False, False]
 
 			for i, (color, pos, name) in enumerate(zip(persistence.colors, positions, persistence.computing)):
@@ -64,11 +64,13 @@ for host in persistence.hosts:
 
 				ax.scatter(posns, medians, **persistence.plots.defaults.boxplot.medians(color))
 
-			ax.set_xticks(range(1,len(xticks)+1))
-			ax.set_xticklabels([f"{metadata.cells[dimension][x]:,}" for x in xticks], fontsize=6)
+			ticks = range(1,len(xticks)+1)
+			ax.set_xticks(ticks)
+			ax.set_xticklabels([f"{t}\n({metadata.cells[dimension][t]:,})" for t in xticks], fontsize=6)
 			ax.set_xlim(1/2, len(xticks)+1/2)
 
-			ax.set_title(rf"{host}, $\mathbb Z^{{{dimension}}}$, $\mathbb Z/{{{field}}}\mathbb Z$", fontsize=8)
+			ax.set_title(rf"$\mathbb T^{{{dimension}}}_k$, $\mathbb Z/{{{field}}}\mathbb Z$", fontsize=8)
+			# ax.set_title(rf"{host}, $\mathbb T^{{{dimension}}}_k$, $\mathbb Z/{{{field}}}\mathbb Z$", fontsize=8)
 
 			CONFIG._defaults.yaxis.logTime(ax)
 

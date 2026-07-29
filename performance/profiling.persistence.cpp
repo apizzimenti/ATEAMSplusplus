@@ -31,7 +31,8 @@ int main(int argc, char* argv[]) {
 
 	thread listener = options.spinUp();
 	options.parallel->enabled = true;
-	options.parallel->build(plex.Cells.size(), plex.size());
+	options.parallel->build(plex.size(), plex.Cells.size());
+	options.serial->build(plex.size());
 
 	// Create a bucket for storing times to completion.
 	vector<int> TTC(TRIALS);
@@ -44,7 +45,8 @@ int main(int argc, char* argv[]) {
 		if (STRATEGY == "JIT") persistence::JIT<Zp>(&plex, K, &R, options);
 		else if (STRATEGY == "twist") persistence::twist<Zp>(&plex, K, &R, options);
 		else if (STRATEGY == "standard") persistence::standard<Zp>(&plex, K, &R, options);
-		else if (STRATEGY == "stagger")persistence::stagger<Zp>(&plex, K, &R, options);
+		else if (STRATEGY == "stagger") persistence::stagger<Zp>(&plex, K, &R, options);
+		else if (STRATEGY == "split") persistence::split<Zp>(&plex, K, &R, options);
 		else persistence::parallel<Zp>(&plex, K, &R, options);
 
 	}

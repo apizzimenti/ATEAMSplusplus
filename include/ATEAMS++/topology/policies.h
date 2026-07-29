@@ -178,7 +178,21 @@ namespace ATEAMS::topology::persistence {
 		vector<bool>& zeroed
 	) {
 		lookup[helpers::youngestOf<RingLike>(cell)] = markedIndex;
-		zeroed[markedIndex] = true;
+		zeroed[helpers::youngestOf<RingLike>(cell)] = true;
+	}
+
+	template <typename RingLike>
+	inline void splitDestructionPolicy(
+		SparseVector<RingLike>& cell,
+		int markedIndex,
+		int dim,
+		vector<int>& lookup,
+		vector<bool>& zeroed,
+		SparseMatrix<RingLike>& Full
+	) {
+		lookup[helpers::youngestOf<RingLike>(cell)] = markedIndex;
+		zeroed[helpers::youngestOf<RingLike>(cell)] = true;
+		Full.rows[helpers::youngestOf<RingLike>(cell)].zero();
 	}
 
 
