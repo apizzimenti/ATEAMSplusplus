@@ -101,7 +101,7 @@ using RestrictedPersistenceAlgorithm = std::function<
 			std::vector<int>&,
 			ATEAMS::Ring*,
 			int,
-			ATEAMS::arithmetic::ComputeOptions<RingLike>&
+			ATEAMS::arithmetic::ComputeResources<RingLike>&
 		)
 	>;
 
@@ -112,7 +112,7 @@ using FullPersistenceAlgorithm = std::function<
 			ATEAMS::complexes::Complex<RingLike>*,
 			std::vector<int>&,
 			ATEAMS::Ring*,
-			ATEAMS::arithmetic::ComputeOptions<RingLike>&
+			ATEAMS::arithmetic::ComputeResources<RingLike>&
 		)
 	>;
 
@@ -124,7 +124,7 @@ inline bool checkRestrictedPersistence(
 	int dimension,
 	int expectedrank,
 	ATEAMS::Ring* R,
-	ATEAMS::arithmetic::ComputeOptions<RingLike>& options,
+	ATEAMS::arithmetic::ComputeResources<RingLike>& options,
 	std::mt19937 RNG,
 	RestrictedPersistenceAlgorithm<RingLike> persistenceAlgorithm
 ) {
@@ -157,7 +157,7 @@ inline bool checkFullPersistence(
 	int dimension,
 	int expectedTotalRank,
 	ATEAMS::Ring* R,
-	ATEAMS::arithmetic::ComputeOptions<RingLike>& options,
+	ATEAMS::arithmetic::ComputeResources<RingLike>& options,
 	std::mt19937 RNG,
 	FullPersistenceAlgorithm<RingLike> persistenceAlgorithm
 ) {
@@ -188,7 +188,7 @@ template <typename RingLike>
 inline bool checkSingleReindexing(
 	ATEAMS::complexes::Complex<RingLike>* complex,
 	int dimension,
-	ATEAMS::arithmetic::ComputeOptions<RingLike>& options
+	ATEAMS::arithmetic::ComputeResources<RingLike>& options
 ) {
 	ATEAMS::SparseMatrix<RingLike> Full = complex->Coboundary.Full;
 
@@ -243,7 +243,7 @@ inline bool checkSingleReindexing(
 template <typename RingLike>
 inline bool checkFullReindexing(
 	ATEAMS::complexes::Complex<RingLike>* complex,
-	ATEAMS::arithmetic::ComputeOptions<RingLike>& options
+	ATEAMS::arithmetic::ComputeResources<RingLike>& options
 ) {
 	ATEAMS::SparseMatrix<RingLike> Full = complex->Coboundary.Full;
 
@@ -309,7 +309,7 @@ inline int persistenceDispatcher(
 	RingLike R(FIELD);
 
 	// Construct arithmetic options.
-	ATEAMS::arithmetic::ComputeOptions<RingLike> options;
+	ATEAMS::arithmetic::ComputeResources<RingLike> options(&R);
 	std::thread listener = options.spinUp();
 
 	// Create the RNG.

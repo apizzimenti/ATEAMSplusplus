@@ -41,7 +41,7 @@ namespace ATEAMS::topology::persistence {
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
-		arithmetic::ComputeOptions<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& options
 	) {
 		std::vector<int> essential;
 
@@ -81,7 +81,7 @@ namespace ATEAMS::topology::persistence {
 		std::vector<int>& filtration,
 		Ring* R,
 		int dimension,
-		arithmetic::ComputeOptions<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& options
 	) {
 		std::vector<int> essential;
 

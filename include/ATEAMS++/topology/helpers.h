@@ -17,7 +17,7 @@ namespace ATEAMS::topology::helpers {
 	inline SparseMatrix<RingLike> reindexSparseBoundaryMatrix(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
-		arithmetic::ComputeOptions<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& options
 	) {
 		// Construct an index mapping.
 		vector<int> remapping(filtration.size());
@@ -52,7 +52,7 @@ namespace ATEAMS::topology::helpers {
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		int dimension,
-		arithmetic::ComputeOptions<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& options
 	) {
 		// Construct an index mapping.
 		vector<int> remapping(filtration.size());

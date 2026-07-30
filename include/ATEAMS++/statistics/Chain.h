@@ -50,7 +50,7 @@ namespace ATEAMS {
 		 * 	@brief A @ref models::ModelState.
 		 * 
 		 * @var Chain::options
-		 * 	@brief Multithreaded computing options @ref arithmetic::ComputeOptions.
+		 * 	@brief Multithreaded computing options @ref arithmetic::ComputeResources.
 		 * 
 		 * @var Chain::steps
 		 * 	@brief Number of iterations.
@@ -59,7 +59,7 @@ namespace ATEAMS {
 		class Chain {
 			public:
 				ModelType* model;
-				arithmetic::ComputeOptions<typename ModelType::RingType> options;
+				arithmetic::ComputeResources<typename ModelType::RingType> options;
 
 				int steps;
 
@@ -70,7 +70,7 @@ namespace ATEAMS {
 				State state;
 
 				/**
-				 * @brief Constructor; uses default @ref arithmetic::ComputeOptions.
+				 * @brief Constructor; uses default @ref arithmetic::ComputeResources.
 				 * 
 				 * @param model (Pointer to) a Model instance.
 				 * @param steps Number of iterations.
@@ -79,7 +79,7 @@ namespace ATEAMS {
 					this->model = model;
 					this->steps = steps;
 
-					arithmetic::ComputeOptions<typename ModelType::RingType> options;
+					arithmetic::ComputeResources<typename ModelType::RingType> options;
 					this->options = options;
 
 					// Initialize parallel computing capability.
@@ -92,7 +92,7 @@ namespace ATEAMS {
 				};
 
 				/**
-				 * @brief Constructor; uses default @ref arithmetic::ComputeOptions.
+				 * @brief Constructor; uses default @ref arithmetic::ComputeResources.
 				 * 
 				 * @param model (Pointer to) a Model instance.
 				 * @param steps Number of iterations.
@@ -102,7 +102,7 @@ namespace ATEAMS {
 					this->model = model;
 					this->steps = steps;
 
-					arithmetic::ComputeOptions<typename ModelType::RingType> options;
+					arithmetic::ComputeResources<typename ModelType::RingType> options;
 					this->options = options;
 
 					// Initialize parallel computing capability.
@@ -115,7 +115,7 @@ namespace ATEAMS {
 				};
 
 				/**
-				 * @brief Constructor; uses user-provided @ref ATEAMS::arithmetic::ComputeOptions.
+				 * @brief Constructor; uses user-provided @ref ATEAMS::arithmetic::ComputeResources.
 				 * 
 				 * @param model (Pointer to) a Model instance.
 				 * @param steps Number of iterations.
@@ -124,7 +124,7 @@ namespace ATEAMS {
 				Chain(
 					ModelType* model,
 					int steps,
-					arithmetic::ComputeOptions<typename ModelType::RingType> options
+					arithmetic::ComputeResources<typename ModelType::RingType> options
 				) {
 					this->model = model;
 					this->steps = steps;

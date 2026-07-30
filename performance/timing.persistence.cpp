@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
 	vector<vector<int>> filtrations = filtrationData(plex.size(), SCALE, DIMENSION, TRIALS);
 	
 	// Create compute options.
-	arithmetic::ComputeOptions<Zp> options;
+	arithmetic::ComputeResources<Zp> options;
 
 	thread listener = options.spinUp();
 	options.parallel->enabled = true;

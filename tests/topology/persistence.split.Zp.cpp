@@ -11,7 +11,7 @@ vector<int> restrictedWrapper(
 	std::vector<int>& filtration,
 	ATEAMS::Ring* R,
 	int dimension,
-	ATEAMS::arithmetic::ComputeOptions<RingLike>& options
+	ATEAMS::arithmetic::ComputeResources<RingLike>& options
 ) {
 	return topology::persistence::split<RingLike>(
 		complex,
@@ -27,7 +27,7 @@ vector<int> fullWrapper(
 	ATEAMS::complexes::Complex<RingLike>* complex,
 	std::vector<int>& filtration,
 	ATEAMS::Ring* R,
-	ATEAMS::arithmetic::ComputeOptions<RingLike>& options
+	ATEAMS::arithmetic::ComputeResources<RingLike>& options
 ) {
 	return topology::persistence::split<RingLike>(
 		complex,

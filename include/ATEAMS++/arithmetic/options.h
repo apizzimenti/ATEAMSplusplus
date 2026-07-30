@@ -105,40 +105,81 @@ namespace ATEAMS::arithmetic {
 			}
 	};
 
+	template <typename RingLike>
+	struct FiniteArithmetic {
+		std::vector<std::vector<typename RingLike::dtype>> add;
+		std::vector<std::vector<typename RingLike::dtype>> multiply;
+		std::vector<typename RingLike::dtype> negate;
+
+		FiniteArithmetic(Ring* R) {
+			// Create addition table.
+			int c = R->characteristic;
+			std::vector<std::vector<typename RingLike::dtype>> addition(c, std::vector<typename RingLike::dtype>(c, 0));
+
+			for (int a=0; a < c; a++) {
+				for (int b=0; b < c; b++) {
+					addition[a][b] = (typename RingLike::dtype)((a+b) % c);
+				}
+			}
+
+			// Create multiplication table.
+			std::vector<std::vector<typename RingLike::dtype>> multiplication(c, std::vector<typename RingLike::dtype>(c, 0));
+			for (int a=0; a < c; a++) {
+				for (int b=0; b < c; b++) {
+					multiplication[a][b] = (typename RingLike::dtype)((a*b) % c);
+				}
+			}
+
+			// Create negation table.
+			std::vector<typename RingLike::dtype> negation(c, 0);
+			for (int a=0; a < c; a++) {
+				negation[a] = (typename RingLike::dtype)(c-a);
+			}
+
+			this->add = addition;
+			this->multiply = multiplication;
+			this->negate = negation;
+		};
+	};
+
 	/**
-	 * @class ComputeOptions
+	 * @class ComputeResources
 	 * @brief Convenience class for managing Flint and multithreading. See
 	 * 	@ref ATEAMS::statistics::Chain; not something users should need.
 	 * 
-	 * @var ComputeOptions::opt
-	 * 	@brief Pointer to a @ref ATEAMS::arithmetic::ComputeOptions object
+	 * @var ComputeResources::opt
+	 * 	@brief Pointer to a @ref ATEAMS::arithmetic::ComputeResources object
 	 * 	used to keep track of the thread pool and process-killing keystrokes.
 	 * 
-	 * @var ComputeOptions::serial
+	 * @var ComputeResources::serial
 	 * 	@brief Pointer to a @ref ATEAMS::arithmetic::SerialContainers, reusable
 	 * 	containers for serial persistence computation.
 	 * 
-	 * @var ComputeOptions::parallel
+	 * @var ComputeResources::parallel
 	 * 	@brief Pointer to a @ref ATEAMS::arithmetic::ParallelContainers, reusable
 	 * 	containers for parallel persistence computation.
 	 */
 	template <typename RingLike>
-	class ComputeOptions {
+	class ComputeResources {
 		public:
 			RREFOptions* opt;
 			SerialContainers* serial;
 			ParallelContainers* parallel;
+			FiniteArithmetic<RingLike>* arithmetic;
+
 
 			/**
 			 * @brief Constructor.
 			 */
-			ComputeOptions() {
+			ComputeResources(Ring* R) {
 				this->opt = new RREFOptionType;
 
 				this->parallel = new ParallelContainers;
 				this->parallel->enabled = true;
 
 				this->serial = new SerialContainers;
+
+				this->arithmetic = new FiniteArithmetic<RingLike>(R);
 			};
 
 			/**

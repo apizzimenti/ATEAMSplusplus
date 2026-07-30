@@ -24,7 +24,7 @@ namespace ATEAMS::topology::persistence::policies::reindexing {
 	inline SparseMatrix<RingLike> single(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
-		arithmetic::ComputeOptions<RingLike>& options,
+		arithmetic::ComputeResources<RingLike>& options,
 		int dimension
 	) {
 		return helpers::reindexSparseBoundaryMatrix(complex, filtration, dimension, options);
@@ -47,7 +47,7 @@ namespace ATEAMS::topology::persistence::policies::reindexing {
 	inline SparseMatrix<RingLike> full(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
-		arithmetic::ComputeOptions<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& options
 	) {
 		return helpers::reindexSparseBoundaryMatrix(complex, filtration, options);
 	}
@@ -235,7 +235,7 @@ namespace ATEAMS::topology::persistence::policies::creation {
 	inline void parallel(
 		int markedIndex,
 		int dim,
-		arithmetic::ComputeOptions<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& options
 	) {
 		options.parallel->marked[dim].insert(markedIndex);
 	}

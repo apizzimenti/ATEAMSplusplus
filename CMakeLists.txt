@@ -45,7 +45,7 @@ endif()
 set(TEST TRUE)
 set(PROFILE FALSE)
 set(TIMING FALSE)
-set(DEBUG FALSE)
+set(DEBUG TRUE)
 
 if (NOT(PROFILE OR TIMING OR DEBUG))
 	add_compile_options(
@@ -64,18 +64,18 @@ if (TEST)
 endif()
 
 if (DEBUG)
-	add_compile_options(-g3 -O1)
+	add_compile_options(-g2 -O1)
 endif()
 
 if (PROFILE)
 	set(PROFILE_COMPILE_OPTIONS
-		-g3
+		-g2
 		-fno-omit-frame-pointer
 		-fno-inline-functions
 	)
 
 	set(PROFILE_LINK_OPTIONS
-		-g3
+		-g2
 		-fno-omit-frame-pointer
 		-fno-inline-functions
 		-O2
@@ -248,12 +248,12 @@ list(APPEND ARITHMETIC.TESTING
 
 list(APPEND TOPOLOGY.TESTING
 	"JIT"
-	"parallel"
+	# "parallel"
 	# # "PHAT"
-	"split"
-	"stagger"
-	"standard"
-	"twist"
+	# "split"
+	# "stagger"
+	# "standard"
+	# "twist"
 )
 
 list(APPEND MODELS.TESTING

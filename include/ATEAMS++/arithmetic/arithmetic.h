@@ -133,7 +133,7 @@ namespace ATEAMS {
 		inline SparsePivots SparseMatrixRREF(
 			SparseMatrix<RingLike>& A,
 			Ring* R,
-			ComputeOptions<RingLike>& options
+			ComputeResources<RingLike>& options
 		) {
 			return SparseRREF::sparse_mat_rref<typename RingLike::dtype,INDEX>(A, R->ring, options.opt);
 		};
@@ -155,7 +155,7 @@ namespace ATEAMS {
 			SparseMatrix<RingLike>& A,
 			Ring* R,
 			SparsePivots& pivots,
-			ComputeOptions<RingLike>& options
+			ComputeResources<RingLike>& options
 		) {
 			return SparseRREF::sparse_mat_rref_kernel<typename RingLike::dtype,INDEX>(A, pivots, R->ring, options.opt);
 		};
@@ -175,7 +175,7 @@ namespace ATEAMS {
 		inline SparseMatrix<RingLike> SparseMatrixKernel(
 			SparseMatrix<RingLike>& A,
 			Ring* R,
-			ComputeOptions<RingLike>& options
+			ComputeResources<RingLike>& options
 		) {
 			SparsePivots pivots = SparseMatrixRREF<RingLike>(A, R, options);
 			return SparseRREF::sparse_mat_rref_kernel<typename RingLike::dtype,INDEX>(A, pivots, R->ring, options.opt);

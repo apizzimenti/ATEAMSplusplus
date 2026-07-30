@@ -40,7 +40,7 @@ namespace ATEAMS::topology::persistence {
 		auto& reductionPolicy,
 		auto& creationPolicy,
 		auto& destructionPolicy,
-		arithmetic::ComputeOptions<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& options
 	) {
 		for (int j=endpoints[0]; j < endpoints[1]; j++) {
 			SparseVector<RingLike>& cell = Full.rows[j];

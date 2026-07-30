@@ -17,7 +17,7 @@ namespace ATEAMS::topology::persistence {
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		Ring* R,
-		arithmetic::ComputeOptions<RingLike>& options,
+		arithmetic::ComputeResources<RingLike>& options,
 		auto& reindexingPolicy,
 		auto& traversalPolicy,
 		auto& reportingPolicy
@@ -127,7 +127,7 @@ namespace ATEAMS::topology::persistence {
 		vector<int>& filtration,
 		Ring* R,
 		int dimension,
-		arithmetic::ComputeOptions<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& options
 	) {
 		return twist<RingLike>(
 			complex,
@@ -143,7 +143,7 @@ namespace ATEAMS::topology::persistence {
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		Ring* R,
-		arithmetic::ComputeOptions<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& options
 	) {
 		return stagger<RingLike>(
 			complex,

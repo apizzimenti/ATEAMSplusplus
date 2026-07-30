@@ -10,7 +10,7 @@ vector<int> homologySizes(
 	complexes::Complex<Zp>* COMPLEX,
 	Ring* QQ,
 	int dimension,
-	arithmetic::ComputeOptions<Zp>& options
+	arithmetic::ComputeResources<Zp>& options
 ) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
@@ -35,7 +35,7 @@ vector<int> homologySizes(
 
 int main() {
 	// Construct arithmetic options.
-	arithmetic::ComputeOptions<Zp> options;
+	arithmetic::ComputeResources<Zp> options;
 	std::thread listener = options.spinUp();
 
 	// Construct Cubical complexes of varying dimensions/boundary conditions,

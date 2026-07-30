@@ -38,7 +38,7 @@ namespace ATEAMS::arithmetic {
 		set<size_t> exclude,
 		std::uniform_int_distribution<int>& intuniform,
 		std::mt19937& RNG,
-		ComputeOptions<RingLike>& options,
+		ComputeResources<RingLike>& options,
 		bool DEBUG
 	) {
 		// Shrink the coboundary matrix to the appropriate size.

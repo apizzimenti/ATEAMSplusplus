@@ -63,7 +63,7 @@ int main(int argc, char* argv[]) {
 	uniform_int_distribution<int> uniformValues(1, R.characteristic-1);
 	uniform_int_distribution<int> uniformEntries(1, N);
 
-	arithmetic::ComputeOptions<Zp> options;
+	arithmetic::ComputeResources<Zp> options;
 	thread listener = options.spinUp();
 
 
