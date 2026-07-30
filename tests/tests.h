@@ -125,7 +125,7 @@ inline bool checkRestrictedPersistence(
 	int expectedrank,
 	ATEAMS::Ring* R,
 	ATEAMS::arithmetic::ComputeResources<RingLike>& options,
-	std::mt19937 RNG,
+	std::mt19937& RNG,
 	RestrictedPersistenceAlgorithm<RingLike> persistenceAlgorithm
 ) {
 	// Initialize a filtration.
@@ -146,7 +146,6 @@ inline bool checkRestrictedPersistence(
 
 	// Check whether the rank is correct.
 	std::vector<int> times = persistenceAlgorithm(complex, filtration, R, dimension, options);
-	printvector<int>(times);
 	return times.size() == expectedrank;
 }
 
@@ -158,7 +157,7 @@ inline bool checkFullPersistence(
 	int expectedTotalRank,
 	ATEAMS::Ring* R,
 	ATEAMS::arithmetic::ComputeResources<RingLike>& options,
-	std::mt19937 RNG,
+	std::mt19937& RNG,
 	FullPersistenceAlgorithm<RingLike> persistenceAlgorithm
 ) {
 	// Initialize a filtration.
@@ -179,7 +178,6 @@ inline bool checkFullPersistence(
 
 	// Check whether the rank is correct.
 	std::vector<int> times = persistenceAlgorithm(complex, filtration, R, options);
-	printvector<int>(times);
 	return times.size() == expectedTotalRank;
 }
 
@@ -309,7 +307,8 @@ inline int persistenceDispatcher(
 	RingLike R(FIELD);
 
 	// Construct arithmetic options.
-	ATEAMS::arithmetic::ComputeResources<RingLike> options(&R);
+	ATEAMS::arithmetic::ComputeResources<RingLike> options;
+	options.arithmetize(&R);
 	std::thread listener = options.spinUp();
 
 	// Create the RNG.

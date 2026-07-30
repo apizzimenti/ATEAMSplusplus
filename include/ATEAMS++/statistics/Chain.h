@@ -79,8 +79,10 @@ namespace ATEAMS {
 					this->model = model;
 					this->steps = steps;
 
-					arithmetic::ComputeResources<typename ModelType::RingType> options;
-					this->options = options;
+					// arithmetic::ComputeResources<typename ModelType::RingType> options(this->model->coefficients);
+					// this->options = options;
+
+					options.arithmetize(model->coefficients);
 
 					// Initialize parallel computing capability.
 					options.parallel->enabled = true;
@@ -102,13 +104,14 @@ namespace ATEAMS {
 					this->model = model;
 					this->steps = steps;
 
-					arithmetic::ComputeResources<typename ModelType::RingType> options;
-					this->options = options;
+					// arithmetic::ComputeResources<typename ModelType::RingType> options(this->model->coefficients);
+					// this->options = options;
 
 					// Initialize parallel computing capability.
 					options.parallel->enabled = false;
 					// options.parallel->build(model->complex.size(), model->complex.Cells.size());
 					options.serial->build(model->complex->size());
+					options.arithmetize(model->coefficients);
 
 					State state;
 					this->state = state;
@@ -129,6 +132,8 @@ namespace ATEAMS {
 					this->model = model;
 					this->steps = steps;
 					this->options = options;
+
+					options.arithmetize(model->coefficients);
 
 					State state;
 					this->state = state;

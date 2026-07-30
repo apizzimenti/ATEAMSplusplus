@@ -110,8 +110,9 @@ namespace ATEAMS::arithmetic {
 		std::vector<std::vector<typename RingLike::dtype>> add;
 		std::vector<std::vector<typename RingLike::dtype>> multiply;
 		std::vector<typename RingLike::dtype> negate;
+		std::vector<typename RingLike::dtype> invert;
 
-		FiniteArithmetic(Ring* R) {
+		void arithmetize(Ring* R) {
 			// Create addition table.
 			int c = R->characteristic;
 			std::vector<std::vector<typename RingLike::dtype>> addition(c, std::vector<typename RingLike::dtype>(c, 0));
@@ -133,12 +134,19 @@ namespace ATEAMS::arithmetic {
 			// Create negation table.
 			std::vector<typename RingLike::dtype> negation(c, 0);
 			for (int a=0; a < c; a++) {
-				negation[a] = (typename RingLike::dtype)(c-a);
+				negation[a] = (typename RingLike::dtype)((c-a)%c);
+			}
+
+			// Create inversion table.
+			std::vector<typename RingLike::dtype> inversion(c, 0);
+			for (int a=0; a < c; a++) {
+				inversion[a] = (typename RingLike::dtype)(((int)pow(a, c-2))%c);
 			}
 
 			this->add = addition;
 			this->multiply = multiplication;
 			this->negate = negation;
+			this->invert = inversion;
 		};
 	};
 
@@ -171,7 +179,7 @@ namespace ATEAMS::arithmetic {
 			/**
 			 * @brief Constructor.
 			 */
-			ComputeResources(Ring* R) {
+			ComputeResources() {
 				this->opt = new RREFOptionType;
 
 				this->parallel = new ParallelContainers;
@@ -179,8 +187,12 @@ namespace ATEAMS::arithmetic {
 
 				this->serial = new SerialContainers;
 
-				this->arithmetic = new FiniteArithmetic<RingLike>(R);
+				this->arithmetic = new FiniteArithmetic<RingLike>;
 			};
+
+			void arithmetize(Ring* R) {
+				this->arithmetic->arithmetize(R);
+			}
 
 			/**
 			 * @brief Initializes a multithreaded computing environment.

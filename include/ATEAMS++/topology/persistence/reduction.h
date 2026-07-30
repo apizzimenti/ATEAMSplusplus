@@ -16,17 +16,18 @@ namespace ATEAMS::topology::persistence {
 		SparseMatrix<RingLike>& Full,
 		std::vector<int>& lookup,
 		SparseVector<RingLike>& cell,
-		Ring* R
+		Ring* R,
+		arithmetic::ComputeResources<RingLike>& options
 	) {
 		// Get the youngest chain (column) sharing a face with `cell` and zero
 		// out the pivot row.
 		SparseVector<RingLike> youngest = Full.rows[lookup[helpers::youngestOf<RingLike>(cell)]];
 
 		typename RingLike::dtype q = *youngest.find(helpers::youngestOf<RingLike>(cell));
-		typename RingLike::dtype s = scalar_neg(scalar_inv(q, R->ring), R->ring);
+		typename RingLike::dtype s = options.arithmetic->negate[options.arithmetic->invert[q]];
 
-		arithmetic::SparseVectorRescaling<RingLike>(s, youngest, R);
-		arithmetic::SparseVectorAddition<RingLike>(cell, youngest, R);
+		arithmetic::SparseVectorRescaling<RingLike>(s, youngest, R, options);
+		arithmetic::SparseVectorAddition<RingLike>(cell, youngest, R, options);
 	}
 
 
@@ -45,7 +46,7 @@ namespace ATEAMS::topology::persistence {
 		for (int j=endpoints[0]; j < endpoints[1]; j++) {
 			SparseVector<RingLike>& cell = Full.rows[j];
 
-			while (reductionPolicy(cell, lookup, j, dim)) reduceChain<RingLike>(Full, lookup, cell, R);
+			while (reductionPolicy(cell, lookup, j, dim)) reduceChain<RingLike>(Full, lookup, cell, R, options);
 
 			if (cell.size() > 0) destructionPolicy(cell, j, dim);
 			else creationPolicy(j, dim);

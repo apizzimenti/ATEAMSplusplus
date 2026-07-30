@@ -45,7 +45,7 @@ endif()
 set(TEST TRUE)
 set(PROFILE FALSE)
 set(TIMING FALSE)
-set(DEBUG TRUE)
+set(DEBUG FALSE)
 
 if (NOT(PROFILE OR TIMING OR DEBUG))
 	add_compile_options(
@@ -248,20 +248,20 @@ list(APPEND ARITHMETIC.TESTING
 
 list(APPEND TOPOLOGY.TESTING
 	"JIT"
-	# "parallel"
+	"parallel"
 	# # "PHAT"
-	# "split"
-	# "stagger"
-	# "standard"
-	# "twist"
+	"split"
+	"stagger"
+	"standard"
+	"twist"
 )
 
 list(APPEND MODELS.TESTING
-	# "Bernoulli"
-	# "InvadedCluster"
-	# "Invasion"
-	# "SwendsenWang"
-	# "Glauber"
+	"Bernoulli"
+	"InvadedCluster"
+	"Invasion"
+	"SwendsenWang"
+	"Glauber"
 )
 
 list(APPEND TYPES
