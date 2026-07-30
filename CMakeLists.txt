@@ -13,7 +13,15 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_compile_options(-march=native -flto)
+add_compile_options(
+	-march=native
+	-flto
+	-funroll-loops
+	-fprefetch-loop-arrays
+	-fno-exceptions
+	-fomit-frame-pointer
+	-fno-rtti
+)
 
 
 ################################################################################
@@ -39,15 +47,16 @@ set(TEST TRUE)
 set(PROFILE FALSE)
 set(TIMING FALSE)
 set(DEBUG FALSE)
+set(MAXPERFORMANCE TRUE)
 
 set(PROFILE_COMPILE_OPTIONS
-	-g
+	-g3
 	-fno-omit-frame-pointer
 	-fno-inline-functions
 )
 
 set(PROFILE_LINK_OPTIONS
-	-g
+	-g3
 )
 
 if (TEST)
@@ -58,6 +67,10 @@ if (DEBUG)
 	add_compile_options(-g -O0)
 else()
 	add_compile_options(-Ofast)
+
+	# if (MAXPERFORMANCE)
+	# 	add_compile_options(-f)
+	# endif()
 endif()
 
 
@@ -86,6 +99,7 @@ list(APPEND SOURCE_HEADERS
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/topology.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/helpers.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/JIT.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/parallel.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/PHAT.h
@@ -93,7 +107,8 @@ list(APPEND SOURCE_HEADERS
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/stagger.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/standard.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/twist.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/helpers.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/reduction.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/policies.h
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/Complex.h
@@ -168,6 +183,7 @@ if(APPLE)
 endif()
 
 if(LINUX)
+	add_compile_options(-ipo)
 	find_package(TBB REQUIRED)
 	link_libraries(tbb)
 endif()

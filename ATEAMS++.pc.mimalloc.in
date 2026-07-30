@@ -9,4 +9,4 @@ Version: @PROJECT_VERSION@
 
 Requires:
 Libs: -L${libdir} -lflint -lmimalloc
-Cflags: -I${includedir} -std=c++23 -O3 -march=native -flto -fopenmp
+Cflags: -I${includedir} -fopenmp -Ofast -march=native -flto -funroll-loops -fprefetch-loop-arrays -fno-exceptions -fomit-frame-pointer -fno-rtti
