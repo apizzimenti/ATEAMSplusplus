@@ -220,21 +220,21 @@ list(APPEND ARITHMETIC.TESTING
 )
 
 list(APPEND TOPOLOGY.TESTING
-	# "split"
+	"JIT"
+	"parallel"
+	# # "PHAT"
+	"split"
 	"stagger"
-	# "JIT"
-	# "standard"
-	# "twist"
-	# "parallel"
-	# "persistence"
+	"standard"
+	"twist"
 )
 
 list(APPEND MODELS.TESTING
-	# "Bernoulli"
-	# "InvadedCluster"
-	# "Invasion"
-	# "SwendsenWang"
-	# "Glauber"
+	"Bernoulli"
+	"InvadedCluster"
+	"Invasion"
+	"SwendsenWang"
+	"Glauber"
 )
 
 list(APPEND TYPES

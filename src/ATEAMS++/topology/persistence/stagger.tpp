@@ -29,39 +29,24 @@ namespace ATEAMS::topology::persistence {
 		options.parallel->flush();
 
 		// Cycle creation policy.
-		// auto creationPolicy = std::bind(
-		// 	policies::parallelCreationPolicy<RingLike>,	// using the standard parallel creation policy
-		// 	placeholders::_1,						// placeholder for `markedIndex`
-		// 	placeholders::_2,						// placeholder for `dim`
-		// 	std::ref(options)						// a reference to `options`, for marking in parallel.
-		// );
-
-		auto creationPolicy = [&options](int markedIndex, int dim) {
-			policies::parallelCreationPolicy<RingLike>(markedIndex, dim, options);
+		auto creationPolicy = [&options](
+			int markedIndex,
+			int dim
+		) {
+			return policies::parallelCreationPolicy<RingLike>(
+				markedIndex,
+				dim,
+				options
+			);
 		};
 
-		// // Cycle destruction policy.
-		// auto destructionPolicy = std::bind(
-		// 	policies::twistDestructionPolicy<RingLike>,	// using the twist destruction policy
-		// 	placeholders::_1,					// placeholder for `cell`
-		// 	placeholders::_2,					// placeholer for `markedIndex`
-		// 	placeholders::_3,					// placeholder for `dim`
-		// 	std::ref(options.parallel->lookup),	// reference to `youngestChainLookup`
-		// 	std::ref(Full)						// reference to `Full`, for clearing
-		// );
-
 		// Cycle destruction policy.
-		// auto destructionPolicy = std::bind(
-		// 	policies::JITDestructionPolicy<RingLike>,		// using the JIT destruction policy
-		// 	placeholders::_1,					// placeholder for `cell`
-		// 	placeholders::_2,					// placeholder for `markedIndex`
-		// 	placeholders::_3,					// placeholder for `dim`,
-		// 	std::ref(options.parallel->lookup),	// reference to `youngestChainLookup`,
-		// 	std::ref(options.parallel->zeroed)	// reference to `zeroed`.
-		// );
-
-		auto destructionPolicy = [&options](SparseVector<RingLike>& chain, int markedIndex, int dim) {
-			policies::JITDestructionPolicy<RingLike>(
+		auto destructionPolicy = [&options](
+			SparseVector<RingLike>& chain,
+			int markedIndex,
+			int dim
+		) {
+			return policies::JITDestructionPolicy<RingLike>(
 				chain,
 				markedIndex,
 				dim,
@@ -71,20 +56,16 @@ namespace ATEAMS::topology::persistence {
 		};
 
 		// Reduction policy.
-		// auto reductionPolicy = std::bind(
-		// 	policies::JITReductionPolicy<RingLike>,		// using the JIT reduction policy
-		// 	placeholders::_1,					// placeholder for `cell`						
-		// 	placeholders::_2,					// placeholder for `lookup`
-		// 	placeholders::_3,					// placeholder for `cellIndex`
-		// 	placeholders::_4,					// placeholder for `dim`
-		// 	std::ref(options.parallel->zeroed)	// reference to `zeroed`.
-		// );
-
-		auto reductionPolicy = [&options](SparseVector<RingLike>& chain, vector<int>& lookup, int chainIndex, int dim) {
+		auto reductionPolicy = [&options](
+			SparseVector<RingLike>& chain,
+			vector<int>& lookup,
+			int index,
+			int dim
+		) {
 			return policies::JITReductionPolicy<RingLike>(
 				chain,
-				lookup,
-				chainIndex,
+				options.parallel->lookup,
+				index,
 				dim,
 				options.parallel->zeroed
 			);
@@ -124,38 +105,6 @@ namespace ATEAMS::topology::persistence {
 				);
 			}
 		}
-		
-		// #pragma omp parallel default(shared)
-		// {
-		// 	#pragma omp for nowait schedule(static,1)
-		// 	for (int d=endpoints[0]; d >= endpoints[1]; d -= 2) {
-		// 		reduceBlock<RingLike>(
-		// 			Full,
-		// 			complex->Breaks[d],
-		// 			options.parallel->lookup,
-		// 			d,
-		// 			R,
-		// 			reductionPolicy,
-		// 			creationPolicy,
-		// 			destructionPolicy,
-		// 			options
-		// 		);
-		// 	}
-			
-		// 	for (int d=endpoints[0]-1; d >= endpoints[1]; d -= 2) {
-		// 		reduceBlock<RingLike>(
-		// 			Full,
-		// 			complex->Breaks[d],
-		// 			options.parallel->lookup,
-		// 			d,
-		// 			R,
-		// 			reductionPolicy,
-		// 			creationPolicy,
-		// 			destructionPolicy,
-		// 			options
-		// 		);
-		// 	}
-		// }
 
 		// Re-constitute the marked columns.
 		set<int> marked;

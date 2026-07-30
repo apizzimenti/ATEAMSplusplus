@@ -16,8 +16,8 @@ for EXEC in "${EXECS[@]}"; do
 			for SCALE in "${SCALES[@]}"; do
 				for STRATEGY in "${STRATEGIES[@]}"; do
 					# Delete the file if it exists already.
-					CSV="./performance/timing/$HOST.persistence.$STRATEGY.$TRIALS.csv"
-					touch $CSV && rm $CSV
+					# CSV="./performance/timing/$HOST.persistence.$STRATEGY.$TRIALS.csv"
+					# touch $CSV && rm $CSV
 
 					# Run the script.
 					./build/timing.$EXEC $HOST $SCALE $DIMENSION $FIELD $TRIALS $STRATEGY

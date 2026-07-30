@@ -45,7 +45,7 @@ namespace ATEAMS::topology::persistence {
 
 		// this also takes an insane amount of time; no need to go all the way
 		// up.
-		for (int t=0; t < complex->Boundary.Flat.size(); t++) {
+		for (int t=0; t < filtration.size(); t++) {
 			ground = complex->Boundary.Flat[filtration[t]];
 
 			for (int j=0; j < ground.size(); j++) {

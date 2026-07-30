@@ -234,13 +234,13 @@ namespace ATEAMS::topology::persistence::policies {
 	inline bool JITReductionPolicy(
 		SparseVector<RingLike>& chain,
 		vector<int>& lookup,
-		int chainIndex,
+		int index,
 		int dim,
 		vector<bool>& zeroed
 	) {
 		return (
 			chain.size() > 0 &&
-			!zeroed[chainIndex] &&
+			!zeroed[index] &&
 			lookup[helpers::youngestOf<RingLike>(chain)] != 0
 		);
 	}

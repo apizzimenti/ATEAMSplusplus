@@ -17,9 +17,9 @@ namespace ATEAMS::topology::persistence {
 		vector<int>& filtration,
 		Ring* R,
 		arithmetic::ComputeOptions<RingLike>& options,
-		policies::ReindexingPolicy<RingLike> reindexingPolicy,
-		policies::TraversalPolicy<RingLike> traversalPolicy,
-		policies::ReportingPolicy<RingLike> reportingPolicy
+		auto& reindexingPolicy,
+		auto& traversalPolicy,
+		auto& reportingPolicy
 	) {
 		// Determine the endpoints and reindex the boundary matrix accordingly.
 		SparseMatrix<RingLike> Full = reindexingPolicy(complex, filtration, options);
@@ -28,21 +28,30 @@ namespace ATEAMS::topology::persistence {
 		options.parallel->flush();
 
 		// Cycle creation policy.
-		auto creationPolicy = std::bind(
-			policies::parallelCreationPolicy<RingLike>,	// using the standard parallel creation policy
-			placeholders::_1,							// placeholder for `markedIndex`
-			placeholders::_2,							// placeholder for `dim`
-			std::ref(options)							// a reference to `options`, for marking in parallel.
-		);
+		auto creationPolicy = [&options](
+			int markedIndex,
+			int dim
+		) {
+			return policies::parallelCreationPolicy<RingLike>(
+				markedIndex,
+				dim,
+				options
+			);
+		};
 
 		// Cycle destruction policy.
-		auto destructionPolicy = std::bind(
-			policies::standardDestructionPolicy<RingLike>,	// using the standard destruction policy
-			placeholders::_1,						// placeholder for `cell`
-			placeholders::_2,						// placeholder for `markedIndex`
-			placeholders::_3,						// placeholder for `dim`,
-			std::ref(options.parallel->lookup)		// reference to `youngestChainLookup`.
-		);
+		auto destructionPolicy = [&options](
+			SparseVector<RingLike>& chain,
+			int markedIndex,
+			int dim
+		) {
+			return policies::standardDestructionPolicy<RingLike>(
+				chain,
+				markedIndex,
+				dim,
+				options.parallel->lookup
+			);
+		};
 
 		// Reduce the blocks in parallel, since they are independent of one another.
 		vector<int> endpoints = traversalPolicy(complex);
@@ -85,27 +94,37 @@ namespace ATEAMS::topology::persistence {
 		int dimension,
 		arithmetic::ComputeOptions<RingLike>& options
 	) {
-		auto traversalPolicy = std::bind(
-			policies::standardRestrictedTraversalPolicy<RingLike>,		// standard restricted traversal policy, since we're in a specific range
-			placeholders::_1,								// placeholder for `complex`
-			dimension										// autofill the `dimension` parameter.
-		);
+		auto traversalPolicy = [&dimension](
+			complexes::Complex<RingLike>* complex
+		) {
+			return policies::standardRestrictedTraversalPolicy<RingLike>(
+				complex,
+				dimension
+			);
+		};
 
-		auto reportingPolicy = std::bind(
-			policies::standardRestrictedReportingPolicy<RingLike>,	// again restricted, since we're in a range
-			placeholders::_1,
-			placeholders::_2,
-			placeholders::_3,
-			dimension
-		);
+		// Essential cycle reporting policy.
+		auto reportingPolicy = [&dimension](	
+			complexes::Complex<RingLike>* complex,
+			vector<int>& lookup,
+			set<int>& marked
+		) {
+			return policies::standardRestrictedReportingPolicy<RingLike>(
+				complex,
+				lookup,
+				marked,
+				dimension
+			);
+		};
 
-		auto reindexingPolicy = std::bind(
-			policies::singleReindexingPolicy<RingLike>,
-			placeholders::_1,
-			placeholders::_2,
-			placeholders::_3,
-			dimension
-		);
+		// Matrix reindexing policy.
+		auto reindexingPolicy = [&dimension](
+			complexes::Complex<RingLike>* complex,
+			vector<int>& filtration,
+			arithmetic::ComputeOptions<RingLike>& options
+		) {
+			return policies::singleReindexingPolicy<RingLike>(complex, filtration, options, dimension);
+		};
 
 		return parallel<RingLike>(
 			complex,

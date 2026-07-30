@@ -23,7 +23,7 @@ reset: clean
 
 build:
 	cmake -B build
-	cmake --build build -v -- -j $(NPROCS)
+	cmake --build build -- -j $(NPROCS)
 install:
 	sudo cmake --install build -v
 

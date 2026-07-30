@@ -9,7 +9,7 @@
 namespace ATEAMS::topology::helpers {
 
 	template <typename RingLike>
-	inline INDEX youngestOf(SparseVector<RingLike> cell) {
+	inline INDEX youngestOf(SparseVector<RingLike>& cell) {
 		return cell(cell.size()-1);
 	}
 

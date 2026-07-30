@@ -37,9 +37,9 @@ namespace ATEAMS::topology::persistence {
 		std::vector<int>& lookup,
 		int dim,
 		Ring *R,
-		policies::ReductionPolicy<RingLike> reductionPolicy,
-		policies::CreationPolicy creationPolicy,
-		policies::DestructionPolicy<RingLike> destructionPolicy,
+		auto& reductionPolicy,
+		auto& creationPolicy,
+		auto& destructionPolicy,
 		arithmetic::ComputeOptions<RingLike>& options
 	) {
 		for (int j=endpoints[0]; j < endpoints[1]; j++) {

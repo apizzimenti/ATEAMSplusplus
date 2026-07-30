@@ -54,7 +54,6 @@ namespace ATEAMS::models {
 		// Now, determine at what time we hit the desired number of giant cycles
 		// and return the indices of the d-cells included at or before that time.
 		std::for_each(essential.begin(), essential.end(), [offset](int &k) { k -= offset; });
-		std::sort(essential.begin(), essential.end()); // might be superfluous
 		
 		int stopAtTime = essential[this->stoppingFunction(t)];
 		std::vector<int> included(this->indices.begin(), this->indices.begin()+stopAtTime);

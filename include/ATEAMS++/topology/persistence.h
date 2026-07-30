@@ -91,7 +91,9 @@ namespace ATEAMS::topology::persistence {
 			else essential = twist<RingLike>(complex, filtration, R, dimension, options);
 		}
 
+		std::cerr << "sorting..." << std::endl;
 		std::sort(essential.begin(), essential.end());
+		std::cerr << "sorted..." << std::endl;
 		return essential;
 	};
 }

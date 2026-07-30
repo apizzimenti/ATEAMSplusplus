@@ -27,29 +27,24 @@ namespace ATEAMS::topology::persistence {
 		// Flush data structures.
 		options.parallel->flush();
 
-		// // Cycle creation policy.
-		// auto creationPolicy = std::bind(
-		// 	policies::parallelCreationPolicy<RingLike>,	// using the standard parallel creation policy
-		// 	placeholders::_1,							// placeholder for `markedIndex`
-		// 	placeholders::_2,							// placeholder for `dim`
-		// 	std::ref(options)							// a reference to `options`, for marking in parallel.
-		// );
-
-		auto creationPolicy = [&options](int markedIndex, int dim) {
-			return policies::parallelCreationPolicy<RingLike>(markedIndex, dim, options);
+		// Cycle creation policy.
+		auto creationPolicy = [&options](
+			int markedIndex,
+			int dim
+		) {
+			return policies::parallelCreationPolicy<RingLike>(
+				markedIndex,
+				dim,
+				options
+			);
 		};
 
-		// // Cycle destruction policy.
-		// auto destructionPolicy = std::bind(
-		// 	policies::JITDestructionPolicy<RingLike>,		// using the JIT destruction policy
-		// 	placeholders::_1,					// placeholder for `cell`
-		// 	placeholders::_2,					// placeholder for `markedIndex`
-		// 	placeholders::_3,					// placeholder for `dim`,
-		// 	std::ref(options.parallel->lookup),	// reference to `youngestChainLookup`,
-		// 	std::ref(options.parallel->zeroed)	// reference to `zeroed`.
-		// );
-
-		auto destructionPolicy = [&options](SparseVector<RingLike>& chain, int markedIndex, int dim) {
+		// Cycle destruction policy.
+		auto destructionPolicy = [&options](
+			SparseVector<RingLike>& chain,
+			int markedIndex,
+			int dim
+		) {
 			return policies::JITDestructionPolicy<RingLike>(
 				chain,
 				markedIndex,
@@ -60,16 +55,12 @@ namespace ATEAMS::topology::persistence {
 		};
 
 		// Reduction policy.
-		// auto reductionPolicy = std::bind(
-		// 	policies::JITReductionPolicy<RingLike>,		// using the JIT reduction policy
-		// 	placeholders::_1,					// placeholder for `cell`						
-		// 	placeholders::_2,					// placeholder for `lookup`
-		// 	placeholders::_3,					// placeholder for `cellIndex`
-		// 	placeholders::_4,					// placeholder for `dim`
-		// 	std::ref(options.parallel->zeroed)	// reference to `zeroed`.
-		// );
-
-		auto reductionPolicy = [&options](SparseVector<RingLike>& chain, vector<int>& lookup, int index, int dim) {
+		auto reductionPolicy = [&options](
+			SparseVector<RingLike>& chain,
+			vector<int>& lookup,
+			int index,
+			int dim
+		) {
 			return policies::JITReductionPolicy<RingLike>(
 				chain,
 				options.parallel->lookup,
@@ -120,41 +111,32 @@ namespace ATEAMS::topology::persistence {
 		int dimension,
 		arithmetic::ComputeOptions<RingLike>& options
 	) {
-		// auto traversalPolicy = std::bind(
-		// 	policies::twistRestrictedTraversalPolicy<RingLike>,	// standard restricted traversal policy, since we're in a specific range
-		// 	placeholders::_1,								// placeholder for `complex`
-		// 	dimension										// autofill the `dimension` parameter.
-		// );
-
-		auto traversalPolicy = [dimension](complexes::Complex<RingLike>* complex) {
-			return policies::twistRestrictedTraversalPolicy<RingLike>(complex, dimension);
+		// Dimension traversal policy.
+		auto traversalPolicy = [&dimension](
+			complexes::Complex<RingLike>* complex
+		) {
+			return policies::twistRestrictedTraversalPolicy<RingLike>(
+				complex,
+				dimension
+			);
 		};
 
-		// auto reportingPolicy = std::bind(
-		// 	policies::standardRestrictedReportingPolicy<RingLike>,	// again restricted, since we're in a range
-		// 	placeholders::_1,
-		// 	placeholders::_2,
-		// 	placeholders::_3,
-		// 	dimension
-		// );
-
-		auto reportingPolicy = [dimension](	
+		// Essential cycle reporting policy.
+		auto reportingPolicy = [&dimension](	
 			complexes::Complex<RingLike>* complex,
 			vector<int>& lookup,
 			set<int>& marked
 		) {
-			return policies::standardRestrictedReportingPolicy<RingLike>(complex, lookup, marked, dimension);
+			return policies::standardRestrictedReportingPolicy<RingLike>(
+				complex,
+				lookup,
+				marked,
+				dimension
+			);
 		};
 
-		// auto reindexingPolicy = std::bind(
-		// 	policies::singleReindexingPolicy<RingLike>,
-		// 	placeholders::_1,
-		// 	placeholders::_2,
-		// 	placeholders::_3,
-		// 	dimension
-		// );
-
-		auto reindexingPolicy = [dimension](
+		// Matrix reindexing policy.
+		auto reindexingPolicy = [&dimension](
 			complexes::Complex<RingLike>* complex,
 			vector<int>& filtration,
 			arithmetic::ComputeOptions<RingLike>& options
@@ -180,14 +162,6 @@ namespace ATEAMS::topology::persistence {
 		Ring* R,
 		arithmetic::ComputeOptions<RingLike>& options
 	) {
-		// auto reindexingPolicy = [&](
-		// 	complexes::Complex<RingLike>* complex,
-		// 	vector<int>& filtration,
-		// 	arithmetic::ComputeOptions<RingLike>& options
-		// ) {
-		// 	return helpers::reindexSparseBoundaryMatrix(complex, filtration, options);
-		// };
-
 		return JIT<RingLike>(
 			complex,
 			filtration,

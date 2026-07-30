@@ -51,7 +51,7 @@ namespace ATEAMS::models {
 		// Fill in all the indices for cells of dimension not equal to d.
 		for (int j=0; j < stop; j++) this->filtration[j] = j;
 		for (int j=start; j < this->complex->Offsets[d+1]; j++) this->filtration[j] = j;
-
+		
 		// Shuffle the included indices.
 		std::shuffle(include.begin(), include.end(), this->RNG);
 		
@@ -61,7 +61,6 @@ namespace ATEAMS::models {
 		// Now, compute the persistence times, then filter over them to capture only
 		// the ones within the right window.
 		vector<int> essential = topology::persistence::persistence<RingType>(this->complex, this->filtration, this->coefficients, d, options);
-		std::erase_if(essential, [stop, included](int t) { return !((stop <= t) && (t < stop+included)); });
 
 		if (this->DEBUG) {
 			std::cerr << "outputting filtration to stdout..." << std::endl;

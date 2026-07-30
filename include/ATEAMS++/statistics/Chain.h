@@ -82,6 +82,34 @@ namespace ATEAMS {
 					arithmetic::ComputeOptions<typename ModelType::RingType> options;
 					this->options = options;
 
+					// Initialize parallel computing capability.
+					options.parallel->enabled = true;
+					options.parallel->build(model->complex->size(), model->complex->Cells.size());
+					options.serial->build(model->complex->size());
+
+					State state;
+					this->state = state;
+				};
+
+				/**
+				 * @brief Constructor; uses default @ref arithmetic::ComputeOptions.
+				 * 
+				 * @param model (Pointer to) a Model instance.
+				 * @param steps Number of iterations.
+				 * @param parallel Are parallel computing capabilities enabled?
+				 */
+				Chain(ModelType* model, int steps, bool parallel) {
+					this->model = model;
+					this->steps = steps;
+
+					arithmetic::ComputeOptions<typename ModelType::RingType> options;
+					this->options = options;
+
+					// Initialize parallel computing capability.
+					options.parallel->enabled = false;
+					// options.parallel->build(model->complex.size(), model->complex.Cells.size());
+					options.serial->build(model->complex->size());
+
 					State state;
 					this->state = state;
 				};

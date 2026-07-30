@@ -18,9 +18,9 @@ namespace ATEAMS::topology::persistence {
 		vector<int>& filtration,
 		Ring* R,
 		arithmetic::ComputeOptions<RingLike>& options,
-		policies::ReindexingPolicy<RingLike> reindexingPolicy,
-		policies::TraversalPolicy<RingLike> traversalPolicy,
-		policies::ReportingPolicy<RingLike> reportingPolicy
+		auto& reindexingPolicy,
+		auto& traversalPolicy,
+		auto& reportingPolicy
 	) {
 		// Determine the endpoints and reindex the boundary matrix accordingly.
 		SparseMatrix<RingLike> Full = reindexingPolicy(complex, filtration, options);
@@ -29,32 +29,47 @@ namespace ATEAMS::topology::persistence {
 		options.parallel->flush();
 
 		// Cycle creation policy.
-		auto creationPolicy = std::bind(
-			policies::parallelCreationPolicy<RingLike>,		// using the standard parallel creation policy
-			placeholders::_1,						// placeholder for `markedIndex`
-			placeholders::_2,						// placeholder for `dim`
-			std::ref(options)						// a reference to `options`, for marking in parallel.
-		);
+		auto creationPolicy = [&options](
+			int markedIndex,
+			int dim
+		) {
+			return policies::parallelCreationPolicy<RingLike>(
+				markedIndex,
+				dim,
+				options
+			);
+		};
 
 		// Cycle destruction policy.
-		auto destructionPolicy = std::bind(
-			policies::JITDestructionPolicy<RingLike>,		// using the JIT destruction policy
-			placeholders::_1,					// placeholder for `cell`
-			placeholders::_2,					// placeholder for `markedIndex`
-			placeholders::_3,					// placeholder for `dim`,
-			std::ref(options.parallel->lookup),	// reference to `youngestChainLookup`,
-			std::ref(options.parallel->zeroed)	// reference to `zeroed`.
-		);
+		auto destructionPolicy = [&options](
+			SparseVector<RingLike>& chain,
+			int markedIndex,
+			int dim
+		) {
+			return policies::JITDestructionPolicy<RingLike>(
+				chain,
+				markedIndex,
+				dim,
+				options.parallel->lookup,
+				options.parallel->zeroed
+			);
+		};
 
 		// Reduction policy.
-		auto reductionPolicy = std::bind(
-			policies::JITReductionPolicy<RingLike>,		// using the JIT reduction policy
-			placeholders::_1,					// placeholder for `cell`						
-			placeholders::_2,					// placeholder for `lookup`
-			placeholders::_3,					// placeholder for `cellIndex`
-			placeholders::_4,					// placeholder for `dim`
-			std::ref(options.parallel->zeroed)	// reference to `zeroed`.
-		);
+		auto reductionPolicy = [&options](
+			SparseVector<RingLike>& chain,
+			vector<int>& lookup,
+			int index,
+			int dim
+		) {
+			return policies::JITReductionPolicy<RingLike>(
+				chain,
+				options.parallel->lookup,
+				index,
+				dim,
+				options.parallel->zeroed
+			);
+		};
 
 		// Stagger the block reductions, so we can incorporate some of the
 		// clearing optimization benefits.
