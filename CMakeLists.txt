@@ -221,8 +221,8 @@ list(APPEND ARITHMETIC.TESTING
 
 list(APPEND TOPOLOGY.TESTING
 	# "split"
-	# "stagger"
-	"JIT"
+	"stagger"
+	# "JIT"
 	# "standard"
 	# "twist"
 	# "parallel"

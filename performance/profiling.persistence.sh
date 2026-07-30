@@ -31,8 +31,8 @@ for EXEC in "${EXECS[@]}"; do
 
 					# If the files exist already, delete them.
 
-					perf stat -o ./performance/profiling/$PREFIX.stat ./build/profiling.$EXEC $HOST $SCALE $DIMENSION $FIELD $TRIALS $STRATEGY > /dev/null
-					perf record --call-graph fp -o ./performance/profiling/$PREFIX.record ./build/profiling.$EXEC $HOST $SCALE $DIMENSION $FIELD $TRIALS $STRATEGY > /dev/null
+					perf stat -o ./performance/profiling/$PREFIX.stat ./build/profiling.$EXEC $HOST $SCALE $DIMENSION $FIELD $TRIALS $STRATEGY
+					perf record --call-graph fp -o ./performance/profiling/$PREFIX.record ./build/profiling.$EXEC $HOST $SCALE $DIMENSION $FIELD $TRIALS $STRATEGY
 
 					perf script --input=./performance/profiling/$PREFIX.record \
 						| c++filt \
