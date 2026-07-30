@@ -1,11 +1,12 @@
 #!/bin/zsh
 
 EXECS=("persistence")
-SCALES=(5 8 11 16)
+SCALES=(8 11 16)
 DIMENSIONS=(4 6)
 FIELDS=(2)
 TRIALS=${1:-10}
-STRATEGIES=("twist" "split" "stagger" "JIT" "parallel" "standard")
+# STRATEGIES=("twist" "JIT" "split" "stagger" "parallel" "standard")
+STRATEGIES=("JIT" "split")
 
 HOST=$(hostname -f)
 
@@ -17,7 +18,18 @@ for EXEC in "${EXECS[@]}"; do
 				for STRATEGY in "${STRATEGIES[@]}"; do
 
 					PADDEDSCALE=${(l(2)(0))SCALE}
-					PREFIX="$HOST.$EXEC.$STRATEGY.$PADDEDSCALE.$DIMENSION.$FIELD"
+					PREFIX="$HOST.$EXEC.$STRATEGY.$PADDEDSCALE.$DIMENSION.$FIELD.inlined"
+
+					STAT="./performance/profiling/$PREFIX.stat"
+					RECORD="./performance/profiling/$PREFIX.record"
+					IMG="./performance/profiling/$PREFIX.png"
+					FILES=($STAT $RECORD $IMG)
+
+					for FILE in "${FILES[@]}"; do
+						touch $FILE && rm $FILE
+					done
+
+					# If the files exist already, delete them.
 
 					perf stat -o ./performance/profiling/$PREFIX.stat ./build/profiling.$EXEC $HOST $SCALE $DIMENSION $FIELD $TRIALS $STRATEGY > /dev/null
 					perf record --call-graph fp -o ./performance/profiling/$PREFIX.record ./build/profiling.$EXEC $HOST $SCALE $DIMENSION $FIELD $TRIALS $STRATEGY > /dev/null

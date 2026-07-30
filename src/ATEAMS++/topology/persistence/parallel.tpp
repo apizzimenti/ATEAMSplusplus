@@ -47,7 +47,7 @@ namespace ATEAMS::topology::persistence {
 		// Reduce the blocks in parallel, since they are independent of one another.
 		vector<int> endpoints = traversalPolicy(complex);
 
-		#pragma omp parallel for firstprivate(Full) default(shared) schedule(static)
+		#pragma omp parallel for firstprivate(Full) default(shared) schedule(static,1)
 		for (int d=endpoints[0]; d <= endpoints[1]; d++) {
 			reduceBlock<RingLike>(
 				Full,

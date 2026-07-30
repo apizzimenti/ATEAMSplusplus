@@ -37,9 +37,9 @@ namespace ATEAMS::topology::persistence {
 		std::vector<int>& filtration,
 		Ring* R,
 		arithmetic::ComputeOptions<RingLike>& options,
-		policies::ReindexingPolicy<RingLike> reindexingPolicy,
-		policies::TraversalPolicy<RingLike> traversalPolicy,
-		policies::ReportingPolicy<RingLike> reportingPolicy
+		auto& reindexingPolicy,
+		auto& traversalPolicy,
+		auto& reportingPolicy
 	);
 
 	/**

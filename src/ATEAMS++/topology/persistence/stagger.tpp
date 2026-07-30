@@ -36,52 +36,102 @@ namespace ATEAMS::topology::persistence {
 			std::ref(options)						// a reference to `options`, for marking in parallel.
 		);
 
+		// // Cycle destruction policy.
+		// auto destructionPolicy = std::bind(
+		// 	policies::twistDestructionPolicy<RingLike>,	// using the twist destruction policy
+		// 	placeholders::_1,					// placeholder for `cell`
+		// 	placeholders::_2,					// placeholer for `markedIndex`
+		// 	placeholders::_3,					// placeholder for `dim`
+		// 	std::ref(options.parallel->lookup),	// reference to `youngestChainLookup`
+		// 	std::ref(Full)						// reference to `Full`, for clearing
+		// );
+
 		// Cycle destruction policy.
 		auto destructionPolicy = std::bind(
-			policies::twistDestructionPolicy<RingLike>,	// using the twist destruction policy
+			policies::JITDestructionPolicy<RingLike>,		// using the JIT destruction policy
 			placeholders::_1,					// placeholder for `cell`
-			placeholders::_2,					// placeholer for `markedIndex`
-			placeholders::_3,					// placeholder for `dim`
-			std::ref(options.parallel->lookup),	// reference to `youngestChainLookup`
-			std::ref(Full)						// reference to `Full`, for clearing
+			placeholders::_2,					// placeholder for `markedIndex`
+			placeholders::_3,					// placeholder for `dim`,
+			std::ref(options.parallel->lookup),	// reference to `youngestChainLookup`,
+			std::ref(options.parallel->zeroed)	// reference to `zeroed`.
+		);
+
+		// Reduction policy.
+		auto reductionPolicy = std::bind(
+			policies::JITReductionPolicy<RingLike>,		// using the JIT reduction policy
+			placeholders::_1,					// placeholder for `cell`						
+			placeholders::_2,					// placeholder for `lookup`
+			placeholders::_3,					// placeholder for `cellIndex`
+			placeholders::_4,					// placeholder for `dim`
+			std::ref(options.parallel->zeroed)	// reference to `zeroed`.
 		);
 
 		// Stagger the block reductions, so we can incorporate some of the
 		// clearing optimization benefits.
 		vector<int> endpoints = traversalPolicy(complex);
 
-		#pragma omp parallel default(shared)
-		{
-			#pragma omp for
-			for (int d=endpoints[0]; d >= endpoints[1]; d -= 2) {
-				reduceBlock<RingLike>(
-					Full,
-					complex->Breaks[d],
-					options.parallel->lookup,
-					d,
-					R,
-					policies::standardReductionPolicy<RingLike>,
-					creationPolicy,
-					destructionPolicy,
-					options
-				);
-			}
+		#pragma omp parallel for default(shared) schedule(static,1)
+		for (int d=endpoints[0]; d >= endpoints[1]; d -= 2) {
+			// Reduce the dth block,
+			reduceBlock<RingLike>(
+				Full,
+				complex->Breaks[d],
+				options.parallel->lookup,
+				d,
+				R,
+				reductionPolicy,
+				creationPolicy,
+				destructionPolicy,
+				options
+			);
 
-			#pragma omp for
-			for (int d=endpoints[0]-1; d >= endpoints[1]; d -= 2) {
+			// Then the d-1th block, if d-1 >= 0.
+			if (d-1 >= 0) {
 				reduceBlock<RingLike>(
 					Full,
-					complex->Breaks[d],
+					complex->Breaks[d-1],
 					options.parallel->lookup,
-					d,
+					d-1,
 					R,
-					policies::standardReductionPolicy<RingLike>,
+					reductionPolicy,
 					creationPolicy,
 					destructionPolicy,
 					options
 				);
 			}
 		}
+		
+		// #pragma omp parallel default(shared)
+		// {
+		// 	#pragma omp for nowait schedule(static,1)
+		// 	for (int d=endpoints[0]; d >= endpoints[1]; d -= 2) {
+		// 		reduceBlock<RingLike>(
+		// 			Full,
+		// 			complex->Breaks[d],
+		// 			options.parallel->lookup,
+		// 			d,
+		// 			R,
+		// 			reductionPolicy,
+		// 			creationPolicy,
+		// 			destructionPolicy,
+		// 			options
+		// 		);
+		// 	}
+			
+		// 	for (int d=endpoints[0]-1; d >= endpoints[1]; d -= 2) {
+		// 		reduceBlock<RingLike>(
+		// 			Full,
+		// 			complex->Breaks[d],
+		// 			options.parallel->lookup,
+		// 			d,
+		// 			R,
+		// 			reductionPolicy,
+		// 			creationPolicy,
+		// 			destructionPolicy,
+		// 			options
+		// 		);
+		// 	}
+		// }
 
 		// Re-constitute the marked columns.
 		set<int> marked;
@@ -106,37 +156,12 @@ namespace ATEAMS::topology::persistence {
 		int dimension,
 		arithmetic::ComputeOptions<RingLike>& options
 	) {
-		auto traversalPolicy = std::bind(
-			policies::twistRestrictedTraversalPolicy<RingLike>,	// standard restricted traversal policy, since we're in a specific range
-			placeholders::_1,								// placeholder for `complex`
-			dimension										// autofill the `dimension` parameter.
-		);
-
-		auto reportingPolicy = std::bind(
-			policies::standardRestrictedReportingPolicy<RingLike>,	// again restricted, since we're in a range
-			placeholders::_1,
-			placeholders::_2,
-			placeholders::_3,
-			dimension
-		);
-
-		auto reindexingPolicy = std::bind(
-			policies::singleReindexingPolicy<RingLike>,
-			placeholders::_1,
-			placeholders::_2,
-			placeholders::_3,
-			dimension
-		);
-
-		// Since we're only doing two dimensions, use `twist`.
 		return twist<RingLike>(
 			complex,
 			filtration,
 			R,
-			options,
-			reindexingPolicy,
-			traversalPolicy,
-			reportingPolicy
+			dimension,
+			options
 		);
 	}
 

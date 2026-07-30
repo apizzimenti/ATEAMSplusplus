@@ -355,7 +355,7 @@ CONFIG.topics.persistence = Bunch()
 
 CONFIG.topics.persistence.exec = "persistence"
 # CONFIG.topics.persistence.computing = ["twist", "split", "JIT", "stagger", "parallel", "standard"]
-CONFIG.topics.persistence.computing = ["twist", "JIT", "split", "stagger", "standard"]
+CONFIG.topics.persistence.computing = ["twist", "JIT", "split", "stagger"]
 CONFIG.topics.persistence.fields = [2, 3, 5]
 CONFIG.topics.persistence.dimensions = [2, 4, 6]
 CONFIG.topics.persistence.hosts = ["meglTower"]

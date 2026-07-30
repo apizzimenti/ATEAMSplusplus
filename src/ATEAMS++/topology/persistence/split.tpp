@@ -38,13 +38,12 @@ namespace ATEAMS::topology::persistence {
 
 		// Cycle destruction policy.
 		auto destructionPolicy = std::bind(
-			policies::splitDestructionPolicy<RingLike>,	// using the JIT destruction policy
+			policies::JITDestructionPolicy<RingLike>,		// using the JIT destruction policy
 			placeholders::_1,					// placeholder for `cell`
 			placeholders::_2,					// placeholder for `markedIndex`
 			placeholders::_3,					// placeholder for `dim`,
 			std::ref(options.parallel->lookup),	// reference to `youngestChainLookup`,
-			std::ref(options.parallel->zeroed),	// reference to `zeroed`,
-			std::ref(Full)						// reference to `Full`, which *should* be scoped to the thread.
+			std::ref(options.parallel->zeroed)	// reference to `zeroed`.
 		);
 
 		// Reduction policy.
@@ -62,7 +61,7 @@ namespace ATEAMS::topology::persistence {
 		vector<int> endpoints = traversalPolicy(complex);
 		int halfway = (endpoints[1]+endpoints[0])/2;
 
-		#pragma omp parallel sections default(shared) firstprivate(Full)
+		#pragma omp parallel sections default(shared)
 		{
 
 			// Do the second half

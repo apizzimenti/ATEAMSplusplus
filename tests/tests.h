@@ -337,7 +337,7 @@ inline int persistenceDispatcher(
 		}
 
 		// Check whether we're persisting properly.
-		for (int t=0; t < 256; t++) {
+		for (int t=0; t < 512; t++) {
 			if (!checkRestrictedPersistence<RingLike>(&complex, dimension/2, rank, &R, options, RNG, restrictedPersistenceAlgorithm)) {
 				RESULT = FAIL;
 				goto EXIT;

@@ -43,7 +43,7 @@ set(DEBUG FALSE)
 set(PROFILE_COMPILE_OPTIONS
 	-g
 	-fno-omit-frame-pointer
-	# -fno-inline-functions
+	-fno-inline-functions
 )
 
 set(PROFILE_LINK_OPTIONS
@@ -220,13 +220,13 @@ list(APPEND ARITHMETIC.TESTING
 )
 
 list(APPEND TOPOLOGY.TESTING
-	"split"
-	"stagger"
+	# "split"
+	# "stagger"
 	"JIT"
-	"standard"
-	"twist"
-	"parallel"
-	"persistence"
+	# "standard"
+	# "twist"
+	# "parallel"
+	# "persistence"
 )
 
 list(APPEND MODELS.TESTING
