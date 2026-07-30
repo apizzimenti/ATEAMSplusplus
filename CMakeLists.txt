@@ -18,7 +18,6 @@ add_compile_options(
 	-flto
 	-funroll-loops
 	-fprefetch-loop-arrays
-	-fno-exceptions
 	-fomit-frame-pointer
 	-fno-rtti
 )
@@ -47,30 +46,43 @@ set(TEST TRUE)
 set(PROFILE FALSE)
 set(TIMING FALSE)
 set(DEBUG FALSE)
-set(MAXPERFORMANCE TRUE)
 
-set(PROFILE_COMPILE_OPTIONS
-	-g3
-	-fno-omit-frame-pointer
-	-fno-inline-functions
-)
-
-set(PROFILE_LINK_OPTIONS
-	-g3
-)
+if (NOT(PROFILE OR TIMING OR DEBUG))
+	add_compile_options(
+		-Ofast
+		-march=native
+		-flto
+		-funroll-loops
+		-fprefetch-loop-arrays
+		-fomit-frame-pointer
+		-fno-rtti
+	)
+endif()
 
 if (TEST)
 	enable_testing()
 endif()
 
 if (DEBUG)
-	add_compile_options(-g -O0)
-else()
-	add_compile_options(-Ofast)
+	add_compile_options(-g3 -O1)
+endif()
 
-	# if (MAXPERFORMANCE)
-	# 	add_compile_options(-f)
-	# endif()
+if (PROFILE)
+	set(PROFILE_COMPILE_OPTIONS
+		-g3
+		-fno-omit-frame-pointer
+		-fno-inline-functions
+	)
+
+	set(PROFILE_LINK_OPTIONS
+		-g3
+		-fno-omit-frame-pointer
+		-fno-inline-functions
+		-O2
+	)
+else()
+	set(PROFILE_COMPILE_OPTIONS )
+	set(PROFILE_LINK_OPTIONS )
 endif()
 
 
@@ -183,7 +195,6 @@ if(APPLE)
 endif()
 
 if(LINUX)
-	add_compile_options(-ipo)
 	find_package(TBB REQUIRED)
 	link_libraries(tbb)
 endif()
@@ -246,11 +257,11 @@ list(APPEND TOPOLOGY.TESTING
 )
 
 list(APPEND MODELS.TESTING
-	"Bernoulli"
-	"InvadedCluster"
-	"Invasion"
-	"SwendsenWang"
-	"Glauber"
+	# "Bernoulli"
+	# "InvadedCluster"
+	# "Invasion"
+	# "SwendsenWang"
+	# "Glauber"
 )
 
 list(APPEND TYPES

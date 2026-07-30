@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: SerialContainers Struct Reference</title>
+<title>ATEAMS++: ATEAMS::topology::persistence::policies::creation Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers.html','','struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers-members'); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies_1_1creation.html','',''); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
@@ -144,46 +144,45 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">SerialContainers Struct Reference</div></div>
+  <div class="headertitle"><div class="title">ATEAMS::topology::persistence::policies::creation Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Reusable containers for serial persistence computation. See <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a2ab18fb343774c1366b225efb1d307e8" title="twist">twist</a>.  
- <a href="#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="options_8h_source.html">options.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a742ba502283725ced8418f52d6d54ce4" id="r_a742ba502283725ced8418f52d6d54ce4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a742ba502283725ced8418f52d6d54ce4">build</a> (int cells)</td></tr>
-<tr class="memdesc:a742ba502283725ced8418f52d6d54ce4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the lookup table.  <br /></td></tr>
-<tr class="memitem:adac116554b543b7c4228c018a85882f5" id="r_adac116554b543b7c4228c018a85882f5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adac116554b543b7c4228c018a85882f5">flush</a> ()</td></tr>
-<tr class="memdesc:adac116554b543b7c4228c018a85882f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flushes the containers for reuse.  <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a40a8e6f64b43921cef1246ae7cd6549a" id="r_a40a8e6f64b43921cef1246ae7cd6549a"><td class="memItemLeft">std::set&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a40a8e6f64b43921cef1246ae7cd6549a">marked</a></td></tr>
-<tr class="memitem:a578b2ed17d76088b3d9fd554114cf76f" id="r_a578b2ed17d76088b3d9fd554114cf76f"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a578b2ed17d76088b3d9fd554114cf76f">lookup</a></td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a0c576f444fd9755f6a18c5dd068bd698" id="r_a0c576f444fd9755f6a18c5dd068bd698"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a0c576f444fd9755f6a18c5dd068bd698 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0c576f444fd9755f6a18c5dd068bd698">standard</a> (int markedIndex, int dim, set&lt; int &gt; &amp;marked)</td></tr>
+<tr class="memdesc:a0c576f444fd9755f6a18c5dd068bd698"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard cycle-creation policy (marking).  <br /></td></tr>
+<tr class="memitem:a0bbb5651d883a055a7c60b8dfecb8d2d" id="r_a0bbb5651d883a055a7c60b8dfecb8d2d"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a0bbb5651d883a055a7c60b8dfecb8d2d template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0bbb5651d883a055a7c60b8dfecb8d2d">parallel</a> (int markedIndex, int dim, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
+<tr class="memdesc:a0bbb5651d883a055a7c60b8dfecb8d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard cycle-creation policy (marking).  <br /></td></tr>
 </table>
-<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Reusable containers for serial persistence computation. See <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a2ab18fb343774c1366b225efb1d307e8" title="twist">twist</a>. </p>
-
-<p class="definition">Definition at line <a class="el" href="options_8h_source.html#l00036">36</a> of file <a class="el" href="options_8h_source.html">options.h</a>.</p>
-</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a742ba502283725ced8418f52d6d54ce4" name="a742ba502283725ced8418f52d6d54ce4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a742ba502283725ced8418f52d6d54ce4">&#9670;&#160;</a></span>build()</h2>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a0bbb5651d883a055a7c60b8dfecb8d2d" name="a0bbb5651d883a055a7c60b8dfecb8d2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bbb5651d883a055a7c60b8dfecb8d2d">&#9670;&#160;</a></span>parallel()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void build </td>
+          <td class="memname">void parallel </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>cells</em></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>markedIndex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -193,32 +192,51 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructs the lookup table. </p>
+<p>Standard cycle-creation policy (marking). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cells</td><td>Number of cells in the complex. </td></tr>
+    <tr><td class="paramname">markedIndex</td><td>Column index of the chain inducing a cycle. </td></tr>
+    <tr><td class="paramname">dim</td><td>Dimension. </td></tr>
+    <tr><td class="paramname">options</td><td>Options for the multithreaded computing environment. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="options_8h_source.html#l00046">46</a> of file <a class="el" href="options_8h_source.html">options.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="policies_8h_source.html#l00235">235</a> of file <a class="el" href="policies_8h_source.html">policies.h</a>.</p>
 
 </div>
 </div>
-<a id="adac116554b543b7c4228c018a85882f5" name="adac116554b543b7c4228c018a85882f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adac116554b543b7c4228c018a85882f5">&#9670;&#160;</a></span>flush()</h2>
+<a id="a0c576f444fd9755f6a18c5dd068bd698" name="a0c576f444fd9755f6a18c5dd068bd698"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c576f444fd9755f6a18c5dd068bd698">&#9670;&#160;</a></span>standard()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void flush </td>
+          <td class="memname">void standard </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>markedIndex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>marked</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -228,50 +246,26 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Flushes the containers for reuse. </p>
+<p>Standard cycle-creation policy (marking). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">markedIndex</td><td>Column index of the chain inducing a cycle. </td></tr>
+    <tr><td class="paramname">dim</td><td>Dimension. </td></tr>
+    <tr><td class="paramname">marked</td><td>Set keeping track of marked chains. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="options_8h_source.html#l00053">53</a> of file <a class="el" href="options_8h_source.html">options.h</a>.</p>
-
-</div>
-</div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a578b2ed17d76088b3d9fd554114cf76f" name="a578b2ed17d76088b3d9fd554114cf76f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a578b2ed17d76088b3d9fd554114cf76f">&#9670;&#160;</a></span>lookup</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;int&gt; lookup</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Lookup table for youngest chains sharing a face. </p>
-
-<p class="definition">Definition at line <a class="el" href="options_8h_source.html#l00039">39</a> of file <a class="el" href="options_8h_source.html">options.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="policies_8h_source.html#l00218">218</a> of file <a class="el" href="policies_8h_source.html">policies.h</a>.</p>
 
 </div>
 </div>
-<a id="a40a8e6f64b43921cef1246ae7cd6549a" name="a40a8e6f64b43921cef1246ae7cd6549a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40a8e6f64b43921cef1246ae7cd6549a">&#9670;&#160;</a></span>marked</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::set&lt;int&gt; marked</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Set for marking cycle-inducing cells. </p>
-
-<p class="definition">Definition at line <a class="el" href="options_8h_source.html#l00038">38</a> of file <a class="el" href="options_8h_source.html">options.h</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/ATEAMS++/arithmetic/<a class="el" href="options_8h_source.html">options.h</a></li>
-</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
@@ -285,7 +279,7 @@ Public Attributes</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></li><li class="navelem"><a href="namespace_a_t_e_a_m_s_1_1arithmetic.html">arithmetic</a></li><li class="navelem"><a href="struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers.html">SerialContainers</a></li>
+    <li class="navelem"><a href="namespace_a_t_e_a_m_s.html">ATEAMS</a></li><li class="navelem"><a href="namespace_a_t_e_a_m_s_1_1topology.html">topology</a></li><li class="navelem"><a href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html">persistence</a></li><li class="navelem"><a href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html">policies</a></li><li class="navelem"><a href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies_1_1creation.html">creation</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
   </ul>
 </div>

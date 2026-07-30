@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['rational_0',['RATIONAL',['../namespace_a_t_e_a_m_s.html#ae4a41e6d053c886a61012e49503be8bf',1,'ATEAMS']]],
-  ['reductionpolicy_1',['ReductionPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a9ba1aa5f4642a54bd728c15133234939',1,'ATEAMS::topology::persistence::policies']]],
-  ['reindexingpolicy_2',['ReindexingPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae',1,'ATEAMS::topology::persistence::policies']]],
-  ['reportingpolicy_3',['ReportingPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d',1,'ATEAMS::topology::persistence::policies']]],
-  ['ringtype_4',['RingType',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a019cbd9f4f20c936dfb268d52b5d1e0a',1,'ATEAMS::complexes::Complex::RingType'],['../class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a0de824a793d86fd7437bcb1aef34d3dd',1,'ATEAMS::models::Bernoulli::RingType'],['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#a019cbd9f4f20c936dfb268d52b5d1e0a',1,'ATEAMS::models::Glauber::RingType'],['../class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a019cbd9f4f20c936dfb268d52b5d1e0a',1,'ATEAMS::models::InvadedCluster::RingType'],['../class_a_t_e_a_m_s_1_1models_1_1_invasion.html#a019cbd9f4f20c936dfb268d52b5d1e0a',1,'ATEAMS::models::Invasion::RingType'],['../class_a_t_e_a_m_s_1_1models_1_1_model.html#a019cbd9f4f20c936dfb268d52b5d1e0a',1,'ATEAMS::models::Model::RingType'],['../class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#a019cbd9f4f20c936dfb268d52b5d1e0a',1,'ATEAMS::models::SwendsenWang::RingType']]],
-  ['rrefoptions_5',['RREFOptions',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#ae370df06acaa97cb91ed16ac49666800',1,'ATEAMS::arithmetic']]],
-  ['rrefoptiontype_6',['RREFOptionType',['../namespace_a_t_e_a_m_s_1_1arithmetic.html#aa5a44f2e02e38845a5772a388a574ba0',1,'ATEAMS::arithmetic']]]
+  ['sparsebases_0',['SparseBases',['../namespace_a_t_e_a_m_s.html#a29b9327d3d72713cca4e2f68a4163435',1,'ATEAMS']]],
+  ['sparsebasis_1',['SparseBasis',['../namespace_a_t_e_a_m_s.html#a5286f8db898795313b42d17d4a1831ac',1,'ATEAMS']]],
+  ['sparsematrices_2',['SparseMatrices',['../namespace_a_t_e_a_m_s.html#a2089ed26968a5b6636ac5a4bc2eef214',1,'ATEAMS']]],
+  ['sparsematrix_3',['SparseMatrix',['../namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8',1,'ATEAMS']]],
+  ['sparsevector_4',['SparseVector',['../namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1',1,'ATEAMS']]],
+  ['sparsevectors_5',['SparseVectors',['../namespace_a_t_e_a_m_s.html#a7ef7ac8c9e8b5eb7dc057a51c07791a6',1,'ATEAMS']]],
+  ['state_6',['State',['../class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#ab667b40199ae176bcd63b0a1142c4e69',1,'ATEAMS::models::Bernoulli::State'],['../class_a_t_e_a_m_s_1_1models_1_1_glauber.html#ab667b40199ae176bcd63b0a1142c4e69',1,'ATEAMS::models::Glauber::State'],['../class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#ab667b40199ae176bcd63b0a1142c4e69',1,'ATEAMS::models::InvadedCluster::State'],['../class_a_t_e_a_m_s_1_1models_1_1_invasion.html#ab667b40199ae176bcd63b0a1142c4e69',1,'ATEAMS::models::Invasion::State'],['../class_a_t_e_a_m_s_1_1models_1_1_model.html#a4acb906988ee43ce29046d7e8d35d126',1,'ATEAMS::models::Model::State'],['../class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html#ab667b40199ae176bcd63b0a1142c4e69',1,'ATEAMS::models::SwendsenWang::State'],['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a8740963cfa2e5b218c4382c6eaa41af1',1,'ATEAMS::statistics::Chain::State']]]
 ];

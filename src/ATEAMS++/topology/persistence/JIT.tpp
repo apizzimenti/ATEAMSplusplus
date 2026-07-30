@@ -32,7 +32,7 @@ namespace ATEAMS::topology::persistence {
 			int markedIndex,
 			int dim
 		) {
-			return policies::parallelCreationPolicy<RingLike>(
+			return policies::creation::parallel<RingLike>(
 				markedIndex,
 				dim,
 				options
@@ -45,7 +45,7 @@ namespace ATEAMS::topology::persistence {
 			int markedIndex,
 			int dim
 		) {
-			return policies::JITDestructionPolicy<RingLike>(
+			return policies::destruction::JIT<RingLike>(
 				chain,
 				markedIndex,
 				dim,
@@ -61,7 +61,7 @@ namespace ATEAMS::topology::persistence {
 			int index,
 			int dim
 		) {
-			return policies::JITReductionPolicy<RingLike>(
+			return policies::reduction::JIT<RingLike>(
 				chain,
 				options.parallel->lookup,
 				index,
@@ -115,7 +115,7 @@ namespace ATEAMS::topology::persistence {
 		auto traversalPolicy = [&dimension](
 			complexes::Complex<RingLike>* complex
 		) {
-			return policies::twistRestrictedTraversalPolicy<RingLike>(
+			return policies::traversal::twistRestricted<RingLike>(
 				complex,
 				dimension
 			);
@@ -127,7 +127,7 @@ namespace ATEAMS::topology::persistence {
 			vector<int>& lookup,
 			set<int>& marked
 		) {
-			return policies::standardRestrictedReportingPolicy<RingLike>(
+			return policies::reporting::standardRestricted<RingLike>(
 				complex,
 				lookup,
 				marked,
@@ -141,7 +141,7 @@ namespace ATEAMS::topology::persistence {
 			vector<int>& filtration,
 			arithmetic::ComputeOptions<RingLike>& options
 		) {
-			return policies::singleReindexingPolicy<RingLike>(complex, filtration, options, dimension);
+			return policies::reindexing::single<RingLike>(complex, filtration, options, dimension);
 		};
 
 		return JIT<RingLike>(
@@ -167,9 +167,9 @@ namespace ATEAMS::topology::persistence {
 			filtration,
 			R,
 			options,
-			policies::fullReindexingPolicy<RingLike>,
-			policies::twistFullTraversalPolicy<RingLike>,
-			policies::standardFullReportingPolicy<RingLike>
+			policies::reindexing::full<RingLike>,
+			policies::traversal::twistFull<RingLike>,
+			policies::reporting::standardFull<RingLike>
 		);
 	}
 }

@@ -33,7 +33,7 @@ namespace ATEAMS::topology::persistence {
 			int markedIndex,
 			int dim
 		) {
-			policies::standardCreationPolicy<RingLike>(
+			policies::creation::standard<RingLike>(
 				markedIndex,
 				dim,
 				options.serial->marked
@@ -46,7 +46,7 @@ namespace ATEAMS::topology::persistence {
 			int markedIndex,
 			int dim
 		) {
-			policies::standardDestructionPolicy<RingLike>(
+			policies::destruction::standard<RingLike>(
 				chain,
 				markedIndex,
 				dim,
@@ -64,7 +64,7 @@ namespace ATEAMS::topology::persistence {
 				options.serial->lookup,
 				d,
 				R,
-				policies::standardReductionPolicy<RingLike>,
+				policies::reduction::standard<RingLike>,
 				creationPolicy,
 				destructionPolicy,
 				options
@@ -91,7 +91,7 @@ namespace ATEAMS::topology::persistence {
 		auto traversalPolicy = [&dimension](
 			complexes::Complex<RingLike>* complex
 		) {
-			return policies::standardRestrictedTraversalPolicy<RingLike>(
+			return policies::traversal::standardRestricted<RingLike>(
 				complex,
 				dimension
 			);
@@ -103,7 +103,7 @@ namespace ATEAMS::topology::persistence {
 			vector<int>& lookup,
 			set<int>& marked
 		) {
-			return policies::standardRestrictedReportingPolicy<RingLike>(
+			return policies::reporting::standardRestricted<RingLike>(
 				complex,
 				lookup,
 				marked,
@@ -117,7 +117,7 @@ namespace ATEAMS::topology::persistence {
 			vector<int>& filtration,
 			arithmetic::ComputeOptions<RingLike>& options
 		) {
-			return policies::singleReindexingPolicy<RingLike>(complex, filtration, options, dimension);
+			return policies::reindexing::single<RingLike>(complex, filtration, options, dimension);
 		};
 
 		return standard<RingLike>(
@@ -144,9 +144,9 @@ namespace ATEAMS::topology::persistence {
 			filtration,
 			R,
 			options,
-			policies::fullReindexingPolicy<RingLike>,
-			policies::standardFullTraversalPolicy<RingLike>,
-			policies::standardFullReportingPolicy<RingLike>
+			policies::reindexing::full<RingLike>,
+			policies::traversal::standardFull<RingLike>,
+			policies::reporting::standardFull<RingLike>
 		);
 	}
 }

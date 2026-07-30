@@ -33,7 +33,7 @@ namespace ATEAMS::topology::persistence {
 			int markedIndex,
 			int dim
 		) {
-			return policies::parallelCreationPolicy<RingLike>(
+			return policies::creation::parallel<RingLike>(
 				markedIndex,
 				dim,
 				options
@@ -46,7 +46,7 @@ namespace ATEAMS::topology::persistence {
 			int markedIndex,
 			int dim
 		) {
-			return policies::JITDestructionPolicy<RingLike>(
+			return policies::destruction::JIT<RingLike>(
 				chain,
 				markedIndex,
 				dim,
@@ -62,7 +62,7 @@ namespace ATEAMS::topology::persistence {
 			int index,
 			int dim
 		) {
-			return policies::JITReductionPolicy<RingLike>(
+			return policies::reduction::JIT<RingLike>(
 				chain,
 				options.parallel->lookup,
 				index,
@@ -150,9 +150,9 @@ namespace ATEAMS::topology::persistence {
 			filtration,
 			R,
 			options,
-			policies::fullReindexingPolicy<RingLike>,
-			policies::twistFullTraversalPolicy<RingLike>,
-			policies::standardFullReportingPolicy<RingLike>
+			policies::reindexing::full<RingLike>,
+			policies::traversal::twistFull<RingLike>,
+			policies::reporting::standardFull<RingLike>
 		);
 	}
 }

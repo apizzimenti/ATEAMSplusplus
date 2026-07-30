@@ -109,17 +109,14 @@ namespace ATEAMS {
 		 * @param a Scalar.
 		 * @param x Vector.
 		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
-		 * 
-		 * @returns \f$ a \vec x \f$.
 		 */
 		template <typename RingLike>
-		inline SparseVector<RingLike> SparseVectorRescaling(
+		inline void SparseVectorRescaling(
 			typename RingLike::dtype a,
 			SparseVector<RingLike>& x,
 			Ring* R
 		) {
 			sparse_vec_rescale<INDEX,typename RingLike::dtype>(x, a, R->ring);
-			return x;
 		};
 
 		/**

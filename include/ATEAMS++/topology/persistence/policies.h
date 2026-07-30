@@ -4,25 +4,7 @@
 
 #include "ATEAMS++/topology/helpers.h"
 
-namespace ATEAMS::topology::persistence::policies {
-
-	/**
-	 * @brief A policy that specifies matrix re-indexing behavior.
-	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
-	 * 
-	 * This policy is a function that takes three parameters: a @ref ATEAMS::complexes::Complex,
-	 * a filtration, and a @ref ATEAMS::arithmetic::ComputeOptions. All policies
-	 * implemented below are then forwarded to function of this type.
-	 */
-	template <typename RingLike>
-	using ReindexingPolicy = function<
-		SparseMatrix<RingLike>
-		(
-			complexes::Complex<RingLike>*,
-			vector<int>&,
-			arithmetic::ComputeOptions<RingLike>&
-		)
-	>;
+namespace ATEAMS::topology::persistence::policies::reindexing {
 
 	/**
 	 * @brief Reindexes only the columns corresponding to the in-focus dimension.
@@ -39,7 +21,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * @returns A reindexed sparse boundary matrix.
 	 */
 	template <typename RingLike>
-	inline SparseMatrix<RingLike> singleReindexingPolicy(
+	inline SparseMatrix<RingLike> single(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		arithmetic::ComputeOptions<RingLike>& options,
@@ -62,7 +44,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * @returns A reindexed sparse boundary matrix.
 	 */
 	template <typename RingLike>
-	inline SparseMatrix<RingLike> fullReindexingPolicy(
+	inline SparseMatrix<RingLike> full(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		arithmetic::ComputeOptions<RingLike>& options
@@ -73,19 +55,7 @@ namespace ATEAMS::topology::persistence::policies {
 
 
 
-namespace ATEAMS::topology::persistence::policies {
-	/**
-	 * @brief A policy that specifies how the matrix reduction traverses the
-	 * columns.
-	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
-	 * 
-	 * Policies of this kind take a single @ref ATEAMS::complexes::Complex argument
-	 * and return a `vector<int>`. It is up to the caller to decide what is
-	 * contained in the return.
-	 */
-	template <typename RingLike>
-	using TraversalPolicy = function<vector<int>(complexes::Complex<RingLike>*)>;
-
+namespace ATEAMS::topology::persistence::policies::traversal {
 	/**
 	 * @brief For a given dimension \f$d\f$, gives initial and terminal values
 	 * \f$[d, \min(d+1, \max(X)-1)]\f$, where \f$\max(X)\f$ is the maximal dimension
@@ -99,7 +69,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * where \f$\max(X)\f$ is the maximal dimension of the complex \f$X\f$.
 	 */
 	template <typename RingLike>
-	inline vector<int> standardRestrictedTraversalPolicy(
+	inline vector<int> standardRestricted(
 		complexes::Complex<RingLike>* complex,
 		int dimension
 	) {
@@ -121,7 +91,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * @returns Initial and terminal values \f$[0, \max(X)-1]\f$.
 	 */
 	template <typename RingLike>
-	inline vector<int> standardFullTraversalPolicy(
+	inline vector<int> standardFull(
 		complexes::Complex<RingLike>* complex
 	) {
 		return {
@@ -143,7 +113,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * where \f$\max(X)\f$ is the maximal dimension of the complex \f$X\f$.
 	 */
 	template <typename RingLike>
-	inline vector<int> twistRestrictedTraversalPolicy(
+	inline vector<int> twistRestricted(
 		complexes::Complex<RingLike>* complex,
 		int dimension
 	) {
@@ -165,7 +135,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * where \f$\max(X)\f$ is the maximal dimension of the complex \f$X\f$.
 	 */
 	template <typename RingLike>
-	inline vector<int> twistFullTraversalPolicy(
+	inline vector<int> twistFull(
 		complexes::Complex<RingLike>* complex
 	) {
 		return {
@@ -176,19 +146,7 @@ namespace ATEAMS::topology::persistence::policies {
 }
 
 
-namespace ATEAMS::topology::persistence::policies {
-	/**
-	 * @brief A policy that specifies when a column should be reduced.
-	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
-	 * 
-	 * Policies of this kind take four arguments: a chain, a lookup table,
-	 * an integer corresponding to the chain's column index, and an integer
-	 * corresponding to the dimension of the chain. All other reduction policies
-	 * forward to this one.
-	 */
-	template <typename RingLike>
-	using ReductionPolicy = function<bool(SparseVector<RingLike>&,vector<int>&,int,int)>;
-
+namespace ATEAMS::topology::persistence::policies::reduction {
 	/**
 	 * @brief Standard reduction policy: while @p chain has nonzero boundary
 	 * and shares its youngest face with another chain, this chain can still be
@@ -204,7 +162,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * @returns Whether the chain (column) can be reduced further.
 	 */
 	template <typename RingLike>
-	inline bool standardReductionPolicy(
+	inline bool standard(
 		SparseVector<RingLike>& chain,
 		vector<int>& lookup,
 		int chainIndex,
@@ -231,7 +189,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * @returns Whether the chain (column) can be reduced further.
 	 */
 	template <typename RingLike>
-	inline bool JITReductionPolicy(
+	inline bool JIT(
 		SparseVector<RingLike>& chain,
 		vector<int>& lookup,
 		int index,
@@ -247,16 +205,7 @@ namespace ATEAMS::topology::persistence::policies {
 }
 
 
-namespace ATEAMS::topology::persistence::policies {
-	/**
-	 * @brief A policy that specifies how data for marking cycles is disseminated.
-	 * 
-	 * Policies of this kind take two arguments: an integer corresponding to the
-	 * column index of the chain inducing a cycle, and the dimension of the chain
-	 * being marked. All other creation policies forward to this one.
-	 */
-	using CreationPolicy = function<void(int,int)>;
-
+namespace ATEAMS::topology::persistence::policies::creation {
 	/**
 	 * @brief Standard cycle-creation policy (marking).
 	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
@@ -266,7 +215,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * @param marked Set keeping track of marked chains.
 	 */
 	template <typename RingLike>
-	inline void standardCreationPolicy(
+	inline void standard(
 		int markedIndex,
 		int dim,
 		set<int>& marked
@@ -283,7 +232,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * @param options Options for the multithreaded computing environment.
 	 */
 	template <typename RingLike>
-	inline void parallelCreationPolicy(
+	inline void parallel(
 		int markedIndex,
 		int dim,
 		arithmetic::ComputeOptions<RingLike>& options
@@ -294,7 +243,7 @@ namespace ATEAMS::topology::persistence::policies {
 
 
 
-namespace ATEAMS::topology::persistence::policies {
+namespace ATEAMS::topology::persistence::policies::destruction {
 	/**
 	 * @brief A policy that specifies how data for marking boundaries (i.e. the
 	 * destruction of cycles) is disseminated.
@@ -319,7 +268,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * @param lookup Lookup table.
 	 */
 	template <typename RingLike>
-	inline void standardDestructionPolicy(
+	inline void standard(
 		SparseVector<RingLike>& chain,
 		int markedIndex,
 		int dim,
@@ -343,7 +292,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * @param Full Full (co)boundary matrix.
 	 */
 	template <typename RingLike>
-	inline void twistDestructionPolicy(
+	inline void twist(
 		SparseVector<RingLike>& chain,
 		int markedIndex,
 		int dim,
@@ -369,7 +318,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * @param zeroed Indicates which columns have been zeroed.
 	 */
 	template <typename RingLike>
-	inline void JITDestructionPolicy(
+	inline void JIT(
 		SparseVector<RingLike>& chain,
 		int markedIndex,
 		int dim,
@@ -397,7 +346,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * @param Full Full (co)boundary matrix.
 	 */
 	template <typename RingLike>
-	inline void splitDestructionPolicy(
+	inline void split(
 		SparseVector<RingLike>& chain,
 		int markedIndex,
 		int dim,
@@ -416,19 +365,7 @@ namespace ATEAMS::topology::persistence::policies {
 
 
 
-namespace ATEAMS::topology::persistence::policies {
-	/**
-	 * @brief A policy that specifies how essential cycle data is reported.
-	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
-	 * 
-	 * Decides what persistence data is reported. Takes three arguments: a
-	 * @ref ATEAMS::complexes::Complex, a vector corresponding to the lookup
-	 * table, and a set indicating which chains induce cycles. All other reporting
-	 * policies forward to this one.
-	 */
-	template <typename RingLike>
-	using ReportingPolicy = function<vector<int>(complexes::Complex<RingLike>*,vector<int>&,set<int>&)>;
-
+namespace ATEAMS::topology::persistence::policies::reporting {
 	/**
 	 * @brief Standard reporting policy, restricted to a range: essential(/giant)
 	 * cycles are cycles that are not destroyed (i.e. cycles that are not boundaries).
@@ -443,7 +380,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * were created.
 	 */
 	template <typename RingLike>
-	inline vector<int> standardRestrictedReportingPolicy(
+	inline vector<int> standardRestricted(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& lookup,
 		set<int>& marked,
@@ -473,7 +410,7 @@ namespace ATEAMS::topology::persistence::policies {
 	 * @returns Vector of times at which essential cycles were created.
 	 */
 	template <typename RingLike>
-	inline vector<int> standardFullReportingPolicy(
+	inline vector<int> standardFull(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& lookup,
 		set<int>& marked

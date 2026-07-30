@@ -159,22 +159,22 @@ Namespaces</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a9e6019160c47e80764976cd171c5fb14" id="r_a9e6019160c47e80764976cd171c5fb14"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a9e6019160c47e80764976cd171c5fb14 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9e6019160c47e80764976cd171c5fb14">persistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
-<tr class="memdesc:a9e6019160c47e80764976cd171c5fb14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatch method for computing persistence; dispatches to <a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f" title="PHAT">PHAT</a>, <a class="el" href="#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="twist">twist</a>, or <a class="el" href="#ab895042b0c23511fef68c5a383ede706" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization options.  <br /></td></tr>
+<tr class="memdesc:a9e6019160c47e80764976cd171c5fb14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatch method for computing persistence; dispatches to <a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f" title="PHAT">PHAT</a>, <a class="el" href="#a2ab18fb343774c1366b225efb1d307e8" title="twist">twist</a>, or <a class="el" href="#acb064e7a02c5027fda117bfb6c78accd" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization options.  <br /></td></tr>
 <tr class="memitem:a95b8f3e3c67102ac805e68289bf942e8" id="r_a95b8f3e3c67102ac805e68289bf942e8"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a95b8f3e3c67102ac805e68289bf942e8 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a95b8f3e3c67102ac805e68289bf942e8">persistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
-<tr class="memdesc:a95b8f3e3c67102ac805e68289bf942e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatch method for computing persistence; dispatches to <a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f" title="PHAT">PHAT</a>, <a class="el" href="#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="twist">twist</a>, or <a class="el" href="#ab895042b0c23511fef68c5a383ede706" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization options. Convenience overload for computing the persistence of a single dimension.  <br /></td></tr>
-<tr class="memitem:ab895042b0c23511fef68c5a383ede706" id="r_ab895042b0c23511fef68c5a383ede706"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:ab895042b0c23511fef68c5a383ede706 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab895042b0c23511fef68c5a383ede706">JIT</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae">policies::ReindexingPolicy</a>&lt; RingLike &gt; reindexingPolicy, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ac7e190f99a10a31192e311c55cefd13f">policies::TraversalPolicy</a>&lt; RingLike &gt; traversalPolicy, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d">policies::ReportingPolicy</a>&lt; RingLike &gt; reportingPolicy)</td></tr>
-<tr class="memdesc:ab895042b0c23511fef68c5a383ede706"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements a parallelized version of the standard persistence algorithm in line with that of Edelsbrunner and Harer, incorporating a just-in-time (JIT) version of the twist optimization. Base implementation to which all overloads forward.  <br /></td></tr>
+<tr class="memdesc:a95b8f3e3c67102ac805e68289bf942e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatch method for computing persistence; dispatches to <a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f" title="PHAT">PHAT</a>, <a class="el" href="#a2ab18fb343774c1366b225efb1d307e8" title="twist">twist</a>, or <a class="el" href="#acb064e7a02c5027fda117bfb6c78accd" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization options. Convenience overload for computing the persistence of a single dimension.  <br /></td></tr>
+<tr class="memitem:acb064e7a02c5027fda117bfb6c78accd" id="r_acb064e7a02c5027fda117bfb6c78accd"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:acb064e7a02c5027fda117bfb6c78accd template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#acb064e7a02c5027fda117bfb6c78accd">JIT</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options, auto &amp;reindexingPolicy, auto &amp;traversalPolicy, auto &amp;reportingPolicy)</td></tr>
+<tr class="memdesc:acb064e7a02c5027fda117bfb6c78accd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements a parallelized version of the standard persistence algorithm in line with that of Edelsbrunner and Harer, incorporating a just-in-time (JIT) version of the twist optimization. Base implementation to which all overloads forward.  <br /></td></tr>
 <tr class="memitem:a302f91064244f8be2cde174812295fe8" id="r_a302f91064244f8be2cde174812295fe8"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a302f91064244f8be2cde174812295fe8 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a302f91064244f8be2cde174812295fe8">JIT</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
 <tr class="memdesc:a302f91064244f8be2cde174812295fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements a parallelized version of the standard persistence algorithm in line with that of Edelsbrunner and Harer, incorporating a just-in-time (JIT) version of the twist optimization. Convenience overload for computing persistence of a single dimension.  <br /></td></tr>
 <tr class="memitem:a939a3c9d706439e740cafe7548e6f5d6" id="r_a939a3c9d706439e740cafe7548e6f5d6"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a939a3c9d706439e740cafe7548e6f5d6 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a939a3c9d706439e740cafe7548e6f5d6">JIT</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
 <tr class="memdesc:a939a3c9d706439e740cafe7548e6f5d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements a parallelized version of the standard persistence algorithm in line with that of Edelsbrunner and Harer, incorporating a just-in-time (JIT) version of the twist optimization. Convenience overload.  <br /></td></tr>
-<tr class="memitem:a2569edfaf09f400086ff97741e4086d8" id="r_a2569edfaf09f400086ff97741e4086d8"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:a2569edfaf09f400086ff97741e4086d8 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2569edfaf09f400086ff97741e4086d8">parallel</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae">policies::ReindexingPolicy</a>&lt; RingLike &gt; reindexingPolicy, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ac7e190f99a10a31192e311c55cefd13f">policies::TraversalPolicy</a>&lt; RingLike &gt; traversalPolicy, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d">policies::ReportingPolicy</a>&lt; RingLike &gt; reportingPolicy)</td></tr>
-<tr class="memdesc:a2569edfaf09f400086ff97741e4086d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements a parallelized version of the standard persistence algorithm in line with that of Edelsbrunner and Harer. Base implementation to which all overloads forward.  <br /></td></tr>
+<tr class="memitem:a658713aac96ea469ffe06aba4d8e0b6f" id="r_a658713aac96ea469ffe06aba4d8e0b6f"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a658713aac96ea469ffe06aba4d8e0b6f template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a658713aac96ea469ffe06aba4d8e0b6f">parallel</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options, auto &amp;reindexingPolicy, auto &amp;traversalPolicy, auto &amp;reportingPolicy)</td></tr>
+<tr class="memdesc:a658713aac96ea469ffe06aba4d8e0b6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements a parallelized version of the standard persistence algorithm in line with that of Edelsbrunner and Harer. Base implementation to which all overloads forward.  <br /></td></tr>
 <tr class="memitem:a0c78e04cf5b29864057d02d25faaca0b" id="r_a0c78e04cf5b29864057d02d25faaca0b"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a0c78e04cf5b29864057d02d25faaca0b template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0c78e04cf5b29864057d02d25faaca0b">parallel</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
 <tr class="memdesc:a0c78e04cf5b29864057d02d25faaca0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements a parallelized version of the standard persistence algorithm in line with that of Edelsbrunner and Harer. Overload for computing the persistent homology of a specific dimension.  <br /></td></tr>
@@ -187,36 +187,36 @@ Functions</h2></td></tr>
 <tr class="memitem:a00835b80bb5945f84ff4e3b3ca99e49c" id="r_a00835b80bb5945f84ff4e3b3ca99e49c"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a00835b80bb5945f84ff4e3b3ca99e49c template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a00835b80bb5945f84ff4e3b3ca99e49c">PHAT</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration)</td></tr>
 <tr class="memdesc:a00835b80bb5945f84ff4e3b3ca99e49c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex using \(\Z/2\Z\) coefficients using <a href="https://tinyurl.com/223wxnye">PHAT</a>. See the implementation of <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Bernoulli">Bernoulli</a>.  <br /></td></tr>
-<tr class="memitem:aa504d57ff497307a30f032fb1b756d2d" id="r_aa504d57ff497307a30f032fb1b756d2d"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:aa504d57ff497307a30f032fb1b756d2d template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa504d57ff497307a30f032fb1b756d2d">split</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae">policies::ReindexingPolicy</a>&lt; RingLike &gt; reindexingPolicy, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ac7e190f99a10a31192e311c55cefd13f">policies::TraversalPolicy</a>&lt; RingLike &gt; traversalPolicy, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d">policies::ReportingPolicy</a>&lt; RingLike &gt; reportingPolicy)</td></tr>
-<tr class="memdesc:aa504d57ff497307a30f032fb1b756d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="twist">twist</a> concurrently on the left and right halves of the matrix. Base implementation to which all overloads forward.  <br /></td></tr>
+<tr class="memitem:a6e0a9bb3c644d0f1cdcc70925682934f" id="r_a6e0a9bb3c644d0f1cdcc70925682934f"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a6e0a9bb3c644d0f1cdcc70925682934f template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6e0a9bb3c644d0f1cdcc70925682934f">split</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options, auto &amp;reindexingPolicy, auto &amp;traversalPolicy, auto &amp;reportingPolicy)</td></tr>
+<tr class="memdesc:a6e0a9bb3c644d0f1cdcc70925682934f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#a2ab18fb343774c1366b225efb1d307e8" title="twist">twist</a> concurrently on the left and right halves of the matrix. Base implementation to which all overloads forward.  <br /></td></tr>
 <tr class="memitem:a2e9946a41518abac3e312df42a16578f" id="r_a2e9946a41518abac3e312df42a16578f"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a2e9946a41518abac3e312df42a16578f template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2e9946a41518abac3e312df42a16578f">split</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
 <tr class="memdesc:a2e9946a41518abac3e312df42a16578f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Overload for computing the persistent homology of a specific dimension.  <br /></td></tr>
 <tr class="memitem:a63222d5c617fbe2fcdcc75f9d32f9dff" id="r_a63222d5c617fbe2fcdcc75f9d32f9dff"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a63222d5c617fbe2fcdcc75f9d32f9dff template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a63222d5c617fbe2fcdcc75f9d32f9dff">split</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
-<tr class="memdesc:a63222d5c617fbe2fcdcc75f9d32f9dff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="twist">twist</a> concurrently on the left and right halves of the matrix. Convenience overload.  <br /></td></tr>
-<tr class="memitem:a0485fdd3d842e8528bc67b8aead4b23f" id="r_a0485fdd3d842e8528bc67b8aead4b23f"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:a0485fdd3d842e8528bc67b8aead4b23f template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0485fdd3d842e8528bc67b8aead4b23f">stagger</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae">policies::ReindexingPolicy</a>&lt; RingLike &gt; reindexingPolicy, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ac7e190f99a10a31192e311c55cefd13f">policies::TraversalPolicy</a>&lt; RingLike &gt; traversalPolicy, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d">policies::ReportingPolicy</a>&lt; RingLike &gt; reportingPolicy)</td></tr>
-<tr class="memdesc:a0485fdd3d842e8528bc67b8aead4b23f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="twist">twist</a> on blocks of alternating dimension. Base implementation to which all overloads forward.  <br /></td></tr>
+<tr class="memdesc:a63222d5c617fbe2fcdcc75f9d32f9dff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#a2ab18fb343774c1366b225efb1d307e8" title="twist">twist</a> concurrently on the left and right halves of the matrix. Convenience overload.  <br /></td></tr>
+<tr class="memitem:a61c795cfc18fe73d82f3c3d6af070739" id="r_a61c795cfc18fe73d82f3c3d6af070739"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a61c795cfc18fe73d82f3c3d6af070739 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a61c795cfc18fe73d82f3c3d6af070739">stagger</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options, auto &amp;reindexingPolicy, auto &amp;traversalPolicy, auto &amp;reportingPolicy)</td></tr>
+<tr class="memdesc:a61c795cfc18fe73d82f3c3d6af070739"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#a2ab18fb343774c1366b225efb1d307e8" title="twist">twist</a> on blocks of alternating dimension. Base implementation to which all overloads forward.  <br /></td></tr>
 <tr class="memitem:af99d1cf52affaf7a159bde85032ca32d" id="r_af99d1cf52affaf7a159bde85032ca32d"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:af99d1cf52affaf7a159bde85032ca32d template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af99d1cf52affaf7a159bde85032ca32d">stagger</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
 <tr class="memdesc:af99d1cf52affaf7a159bde85032ca32d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Convenience overload for computing the persistence of a single dimension.  <br /></td></tr>
 <tr class="memitem:adbf388c77c7359fe048a246228136810" id="r_adbf388c77c7359fe048a246228136810"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:adbf388c77c7359fe048a246228136810 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#adbf388c77c7359fe048a246228136810">stagger</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
 <tr class="memdesc:adbf388c77c7359fe048a246228136810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Convenice overload.  <br /></td></tr>
-<tr class="memitem:ae90c5a1d4519111358671392a3ee15e3" id="r_ae90c5a1d4519111358671392a3ee15e3"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:ae90c5a1d4519111358671392a3ee15e3 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae90c5a1d4519111358671392a3ee15e3">standard</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae">policies::ReindexingPolicy</a>&lt; RingLike &gt; reindexingPolicy, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ac7e190f99a10a31192e311c55cefd13f">policies::TraversalPolicy</a>&lt; RingLike &gt; traversalPolicy, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d">policies::ReportingPolicy</a>&lt; RingLike &gt; reportingPolicy)</td></tr>
-<tr class="memdesc:ae90c5a1d4519111358671392a3ee15e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements the standard persistence algorithm of Edelsbrunner, Harer, and Zomorodian. Base implementation to which all overloads forward.  <br /></td></tr>
+<tr class="memitem:ac4f0482f040e59469f31241933f0049a" id="r_ac4f0482f040e59469f31241933f0049a"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:ac4f0482f040e59469f31241933f0049a template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac4f0482f040e59469f31241933f0049a">standard</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options, auto &amp;reindexingPolicy, auto &amp;traversalPolicy, auto &amp;reportingPolicy)</td></tr>
+<tr class="memdesc:ac4f0482f040e59469f31241933f0049a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements the standard persistence algorithm of Edelsbrunner, Harer, and Zomorodian. Base implementation to which all overloads forward.  <br /></td></tr>
 <tr class="memitem:a915b6d91a0ddbe2869cc685e85defc9c" id="r_a915b6d91a0ddbe2869cc685e85defc9c"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a915b6d91a0ddbe2869cc685e85defc9c template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a915b6d91a0ddbe2869cc685e85defc9c">standard</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
 <tr class="memdesc:a915b6d91a0ddbe2869cc685e85defc9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements the standard persistence algorithm of Edelsbrunner, Harer, and Zomorodian. Convenience overload.  <br /></td></tr>
 <tr class="memitem:a2ff1a2158eb28fd59194d6bcfc2ba062" id="r_a2ff1a2158eb28fd59194d6bcfc2ba062"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a2ff1a2158eb28fd59194d6bcfc2ba062 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2ff1a2158eb28fd59194d6bcfc2ba062">standard</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
 <tr class="memdesc:a2ff1a2158eb28fd59194d6bcfc2ba062"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements the standard persistence algorithm of Edelsbrunner, Harer, and Zomorodian. Convenience overload for persistence of a single dimension.  <br /></td></tr>
-<tr class="memitem:af2d7f20d30df6c0012c41cc1ebbbdeb3" id="r_af2d7f20d30df6c0012c41cc1ebbbdeb3"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:af2d7f20d30df6c0012c41cc1ebbbdeb3 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af2d7f20d30df6c0012c41cc1ebbbdeb3">twist</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae">policies::ReindexingPolicy</a>&lt; RingLike &gt; reindexingPolicy, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ac7e190f99a10a31192e311c55cefd13f">policies::TraversalPolicy</a>&lt; RingLike &gt; traversalPolicy, <a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d">policies::ReportingPolicy</a>&lt; RingLike &gt; reportingPolicy)</td></tr>
-<tr class="memdesc:af2d7f20d30df6c0012c41cc1ebbbdeb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements the "twist" algorithm from Chen and Kerber. See the implementation of <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html" title="InvadedCluster">InvadedCluster</a> or <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html" title="Invasion">Invasion</a>. Base implementation to which all overloads forward.  <br /></td></tr>
+<tr class="memitem:a2ab18fb343774c1366b225efb1d307e8" id="r_a2ab18fb343774c1366b225efb1d307e8"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a2ab18fb343774c1366b225efb1d307e8 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2ab18fb343774c1366b225efb1d307e8">twist</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options, auto &amp;reindexingPolicy, auto &amp;traversalPolicy, auto &amp;reportingPolicy)</td></tr>
+<tr class="memdesc:a2ab18fb343774c1366b225efb1d307e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements the "twist" algorithm from Chen and Kerber. See the implementation of <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html" title="InvadedCluster">InvadedCluster</a> or <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_invasion.html" title="Invasion">Invasion</a>. Base implementation to which all overloads forward.  <br /></td></tr>
 <tr class="memitem:a64287f03daad5493cd9e166ceb00e248" id="r_a64287f03daad5493cd9e166ceb00e248"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a64287f03daad5493cd9e166ceb00e248 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a64287f03daad5493cd9e166ceb00e248">twist</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)</td></tr>
 <tr class="memdesc:a64287f03daad5493cd9e166ceb00e248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements the "twist" algorithm from Chen and Kerber. Convenience overload.  <br /></td></tr>
@@ -278,8 +278,8 @@ template&lt;typename RingLike&gt; </div>
 
 </div>
 </div>
-<a id="ab895042b0c23511fef68c5a383ede706" name="ab895042b0c23511fef68c5a383ede706"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab895042b0c23511fef68c5a383ede706">&#9670;&#160;</a></span>JIT() <span class="overload">[2/3]</span></h2>
+<a id="acb064e7a02c5027fda117bfb6c78accd" name="acb064e7a02c5027fda117bfb6c78accd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb064e7a02c5027fda117bfb6c78accd">&#9670;&#160;</a></span>JIT() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -309,17 +309,17 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae">policies::ReindexingPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>reindexingPolicy</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>reindexingPolicy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ac7e190f99a10a31192e311c55cefd13f">policies::TraversalPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>traversalPolicy</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>traversalPolicy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d">policies::ReportingPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>reportingPolicy</em></span>&#160;)</td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>reportingPolicy</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -347,8 +347,8 @@ template&lt;typename RingLike&gt; </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_ab895042b0c23511fef68c5a383ede706_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ab895042b0c23511fef68c5a383ede706_icgraph" loading="lazy" alt=""/></div>
-<map name="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ab895042b0c23511fef68c5a383ede706_icgraph" id="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ab895042b0c23511fef68c5a383ede706_icgraph">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_acb064e7a02c5027fda117bfb6c78accd_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_acb064e7a02c5027fda117bfb6c78accd_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_acb064e7a02c5027fda117bfb6c78accd_icgraph" id="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_acb064e7a02c5027fda117bfb6c78accd_icgraph">
 <area shape="rect" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="278,55,318,80"/>
 <area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a9e6019160c47e80764976cd171c5fb14" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="142,29,230,55"/>
 <area shape="poly" title=" " alt="" coords="260,60,230,55,231,50,266,60"/>
@@ -469,8 +469,8 @@ template&lt;typename RingLike&gt; </div>
 
 </div>
 </div>
-<a id="a2569edfaf09f400086ff97741e4086d8" name="a2569edfaf09f400086ff97741e4086d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2569edfaf09f400086ff97741e4086d8">&#9670;&#160;</a></span>parallel() <span class="overload">[2/3]</span></h2>
+<a id="a658713aac96ea469ffe06aba4d8e0b6f" name="a658713aac96ea469ffe06aba4d8e0b6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a658713aac96ea469ffe06aba4d8e0b6f">&#9670;&#160;</a></span>parallel() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -500,17 +500,17 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae">policies::ReindexingPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>reindexingPolicy</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>reindexingPolicy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ac7e190f99a10a31192e311c55cefd13f">policies::TraversalPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>traversalPolicy</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>traversalPolicy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d">policies::ReportingPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>reportingPolicy</em></span>&#160;)</td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>reportingPolicy</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -634,7 +634,7 @@ template&lt;typename RingLike&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Dispatch method for computing persistence; dispatches to <a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f" title="PHAT">PHAT</a>, <a class="el" href="#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="twist">twist</a>, or <a class="el" href="#ab895042b0c23511fef68c5a383ede706" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization options. </p>
+<p>Dispatch method for computing persistence; dispatches to <a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f" title="PHAT">PHAT</a>, <a class="el" href="#a2ab18fb343774c1366b225efb1d307e8" title="twist">twist</a>, or <a class="el" href="#acb064e7a02c5027fda117bfb6c78accd" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization options. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
@@ -660,11 +660,11 @@ Here is the call graph for this function:</div>
 <map name="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_a9e6019160c47e80764976cd171c5fb14_cgraph" id="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_a9e6019160c47e80764976cd171c5fb14_cgraph">
 <area shape="rect" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="5,55,94,80"/>
 <area shape="poly" title=" " alt="" coords="28,55,24,46,27,37,35,30,50,28,65,31,73,39,68,40,62,36,49,33,37,35,31,40,30,46,33,54"/>
-<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ab895042b0c23511fef68c5a383ede706" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="150,5,190,31"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#acb064e7a02c5027fda117bfb6c78accd" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="150,5,190,31"/>
 <area shape="poly" title=" " alt="" coords="82,52,137,30,133,34,84,56"/>
 <area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="142,55,198,80"/>
 <area shape="poly" title=" " alt="" coords="94,65,129,66,124,69,95,70"/>
-<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="145,104,194,130"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a2ab18fb343774c1366b225efb1d307e8" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="145,104,194,130"/>
 <area shape="poly" title=" " alt="" coords="83,78,133,100,128,102,83,84"/>
 </map>
 </div>
@@ -726,7 +726,7 @@ template&lt;typename RingLike&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Dispatch method for computing persistence; dispatches to <a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f" title="PHAT">PHAT</a>, <a class="el" href="#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="twist">twist</a>, or <a class="el" href="#ab895042b0c23511fef68c5a383ede706" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization options. Convenience overload for computing the persistence of a single dimension. </p>
+<p>Dispatch method for computing persistence; dispatches to <a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f" title="PHAT">PHAT</a>, <a class="el" href="#a2ab18fb343774c1366b225efb1d307e8" title="twist">twist</a>, or <a class="el" href="#acb064e7a02c5027fda117bfb6c78accd" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization options. Convenience overload for computing the persistence of a single dimension. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
@@ -752,13 +752,13 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_a95b8f3e3c67102ac805e68289bf942e8_cgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_a95b8f3e3c67102ac805e68289bf942e8_cgraph" loading="lazy" alt=""/></div>
 <map name="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_a95b8f3e3c67102ac805e68289bf942e8_cgraph" id="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_a95b8f3e3c67102ac805e68289bf942e8_cgraph">
 <area shape="rect" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="5,76,94,102"/>
-<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ab895042b0c23511fef68c5a383ede706" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="286,13,326,39"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#acb064e7a02c5027fda117bfb6c78accd" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="286,13,326,39"/>
 <area shape="poly" title=" " alt="" coords="59,74,93,41,115,24,141,12,175,4,210,3,274,15,269,17,210,9,175,9,143,17,118,29,96,45,63,77"/>
 <area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a9e6019160c47e80764976cd171c5fb14" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="142,51,230,76"/>
 <area shape="poly" title=" " alt="" coords="93,78,129,73,124,76,95,83"/>
 <area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="278,101,334,127"/>
 <area shape="poly" title=" " alt="" coords="94,90,264,108,262,112,94,96"/>
-<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="282,151,331,176"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a2ab18fb343774c1366b225efb1d307e8" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="282,151,331,176"/>
 <area shape="poly" title=" " alt="" coords="94,99,268,150,265,154,93,104"/>
 <area shape="poly" title=" " alt="" coords="229,47,274,36,269,38,231,52"/>
 <area shape="poly" title=" " alt="" coords="164,50,161,42,163,33,172,26,186,24,201,27,210,35,205,35,199,31,186,29,174,31,167,36,166,41,170,51"/>
@@ -898,7 +898,7 @@ template&lt;typename RingLike&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="twist">twist</a> concurrently on the left and right halves of the matrix. Convenience overload. </p>
+<p>Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#a2ab18fb343774c1366b225efb1d307e8" title="twist">twist</a> concurrently on the left and right halves of the matrix. Convenience overload. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
@@ -918,8 +918,8 @@ template&lt;typename RingLike&gt; </div>
 
 </div>
 </div>
-<a id="aa504d57ff497307a30f032fb1b756d2d" name="aa504d57ff497307a30f032fb1b756d2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa504d57ff497307a30f032fb1b756d2d">&#9670;&#160;</a></span>split() <span class="overload">[2/3]</span></h2>
+<a id="a6e0a9bb3c644d0f1cdcc70925682934f" name="a6e0a9bb3c644d0f1cdcc70925682934f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e0a9bb3c644d0f1cdcc70925682934f">&#9670;&#160;</a></span>split() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -949,22 +949,22 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae">policies::ReindexingPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>reindexingPolicy</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>reindexingPolicy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ac7e190f99a10a31192e311c55cefd13f">policies::TraversalPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>traversalPolicy</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>traversalPolicy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d">policies::ReportingPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>reportingPolicy</em></span>&#160;)</td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>reportingPolicy</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="twist">twist</a> concurrently on the left and right halves of the matrix. Base implementation to which all overloads forward. </p>
+<p>Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#a2ab18fb343774c1366b225efb1d307e8" title="twist">twist</a> concurrently on the left and right halves of the matrix. Base implementation to which all overloads forward. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
@@ -1095,8 +1095,8 @@ template&lt;typename RingLike&gt; </div>
 
 </div>
 </div>
-<a id="a0485fdd3d842e8528bc67b8aead4b23f" name="a0485fdd3d842e8528bc67b8aead4b23f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0485fdd3d842e8528bc67b8aead4b23f">&#9670;&#160;</a></span>stagger() <span class="overload">[2/3]</span></h2>
+<a id="a61c795cfc18fe73d82f3c3d6af070739" name="a61c795cfc18fe73d82f3c3d6af070739"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61c795cfc18fe73d82f3c3d6af070739">&#9670;&#160;</a></span>stagger() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1126,22 +1126,22 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae">policies::ReindexingPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>reindexingPolicy</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>reindexingPolicy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ac7e190f99a10a31192e311c55cefd13f">policies::TraversalPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>traversalPolicy</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>traversalPolicy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d">policies::ReportingPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>reportingPolicy</em></span>&#160;)</td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>reportingPolicy</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="twist">twist</a> on blocks of alternating dimension. Base implementation to which all overloads forward. </p>
+<p>Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#a2ab18fb343774c1366b225efb1d307e8" title="twist">twist</a> on blocks of alternating dimension. Base implementation to which all overloads forward. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
@@ -1272,8 +1272,8 @@ template&lt;typename RingLike&gt; </div>
 
 </div>
 </div>
-<a id="ae90c5a1d4519111358671392a3ee15e3" name="ae90c5a1d4519111358671392a3ee15e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae90c5a1d4519111358671392a3ee15e3">&#9670;&#160;</a></span>standard() <span class="overload">[2/3]</span></h2>
+<a id="ac4f0482f040e59469f31241933f0049a" name="ac4f0482f040e59469f31241933f0049a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4f0482f040e59469f31241933f0049a">&#9670;&#160;</a></span>standard() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1303,17 +1303,17 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae">policies::ReindexingPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>reindexingPolicy</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>reindexingPolicy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ac7e190f99a10a31192e311c55cefd13f">policies::TraversalPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>traversalPolicy</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>traversalPolicy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d">policies::ReportingPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>reportingPolicy</em></span>&#160;)</td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>reportingPolicy</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1449,8 +1449,8 @@ template&lt;typename RingLike&gt; </div>
 
 </div>
 </div>
-<a id="af2d7f20d30df6c0012c41cc1ebbbdeb3" name="af2d7f20d30df6c0012c41cc1ebbbdeb3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2d7f20d30df6c0012c41cc1ebbbdeb3">&#9670;&#160;</a></span>twist() <span class="overload">[2/3]</span></h2>
+<a id="a2ab18fb343774c1366b225efb1d307e8" name="a2ab18fb343774c1366b225efb1d307e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ab18fb343774c1366b225efb1d307e8">&#9670;&#160;</a></span>twist() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1480,17 +1480,17 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ae5999133d7ff6fc8daaefbf253bd26ae">policies::ReindexingPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>reindexingPolicy</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>reindexingPolicy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#ac7e190f99a10a31192e311c55cefd13f">policies::TraversalPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>traversalPolicy</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>traversalPolicy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a5c098c4939a87da615c9bcbacc963e4d">policies::ReportingPolicy</a>&lt; RingLike &gt;</td>          <td class="paramname"><span class="paramname"><em>reportingPolicy</em></span>&#160;)</td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>reportingPolicy</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1518,8 +1518,8 @@ template&lt;typename RingLike&gt; </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_af2d7f20d30df6c0012c41cc1ebbbdeb3_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_af2d7f20d30df6c0012c41cc1ebbbdeb3_icgraph" loading="lazy" alt=""/></div>
-<map name="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_af2d7f20d30df6c0012c41cc1ebbbdeb3_icgraph" id="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_af2d7f20d30df6c0012c41cc1ebbbdeb3_icgraph">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_a2ab18fb343774c1366b225efb1d307e8_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_a2ab18fb343774c1366b225efb1d307e8_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_a2ab18fb343774c1366b225efb1d307e8_icgraph" id="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_a2ab18fb343774c1366b225efb1d307e8_icgraph">
 <area shape="rect" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="278,55,327,80"/>
 <area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a9e6019160c47e80764976cd171c5fb14" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="142,29,230,55"/>
 <area shape="poly" title=" " alt="" coords="260,59,230,54,231,49,266,59"/>

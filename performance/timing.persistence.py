@@ -12,7 +12,7 @@ persistence = CONFIG.topics.persistence
 colors = CONFIG.colors
 
 # Specify available data.
-persistence.trials = 100
+persistence.trials = 64
 
 defaults = persistence.plots.defaults
 
@@ -24,10 +24,12 @@ for host in persistence.hosts:
 		for dimension in persistence.dimensions:
 
 			fig, ax = plt.subplots(**persistence.plots.defaults.subplots)
-			positions = [-0.3, -0.15, 0, 0.15, 0.3]
+			# positions = [-0.3, -0.15, 0, 0.15, 0.3]
+			positions = [-0.3, -0.1, 0.1, 0.3]
 
 			xticks = np.array([])
-			labeled = [False, False, False, False, False]
+			# labeled = [False, False, False, False, False]
+			labeled = [False]*len(positions)
 
 			for i, (color, pos, name) in enumerate(zip(persistence.colors, positions, persistence.computing)):
 				try: data = persistence.data(host, name)
@@ -48,9 +50,9 @@ for host in persistence.hosts:
 
 				if not all(labeled):
 					ax.text(
-						posns[0], np.percentile(boxes[0], 99, axis=None),
+						posns[0], np.percentile(boxes[0], 98, axis=None),
 						rf".~~{name}",
-						fontsize=5,
+						fontsize=7,
 						rotation=90,
 						ha="center",
 						va="bottom"
@@ -66,7 +68,7 @@ for host in persistence.hosts:
 
 			ticks = range(1,len(xticks)+1)
 			ax.set_xticks(ticks)
-			ax.set_xticklabels([f"{t}\n({metadata.cells[dimension][t]:,})" for t in xticks], fontsize=6)
+			ax.set_xticklabels([f"{t}\n({metadata.cells[dimension][t]:,})" for t in xticks], fontsize=7)
 			ax.set_xlim(1/2, len(xticks)+1/2)
 
 			ax.set_title(rf"$\mathbb T^{{{dimension}}}_k$, $\mathbb Z/{{{field}}}\mathbb Z$", fontsize=8)

@@ -6,5 +6,5 @@ var searchData=
   ['for_20spin_20systems_20in_20c_3',['Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++',['../index.html#autotoc_md0',1,'']]],
   ['fromfile_4',['fromFile',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#ae5ea133105a93c4f8edf3e696f0dc085',1,'ATEAMS::complexes::Complex']]],
   ['full_5',['Full',['../struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html#a9a705a63c963fe0ae9d0796af32acc3a',1,'ATEAMS::complexes::BoundaryData']]],
-  ['fullreindexingpolicy_6',['fullReindexingPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a1bad25cb6980768aa0080453ffb26810',1,'ATEAMS::topology::persistence::policies']]]
+  ['full_6',['full',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies_1_1reindexing.html#a61cae9d4f31c58ab8f37a2c1c527e4f5',1,'ATEAMS::topology::persistence::policies::reindexing']]]
 ];

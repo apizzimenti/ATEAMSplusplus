@@ -14,6 +14,6 @@ var namespace_a_t_e_a_m_s_1_1arithmetic =
     [ "SparseVectorAddition< Q >", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a0ec3e827c63007ad889d7a0b49941292", null ],
     [ "SparseVectorAddition< Z2 >", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a7ffaec07c0c34d8bb15c57aed76bf6c2", null ],
     [ "SparseVectorAddition< Zp >", "namespace_a_t_e_a_m_s_1_1arithmetic.html#aa42886f97ee03c1477580a0acfcb2558", null ],
-    [ "SparseVectorRescaling", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a6c86f14ac15de1dad41bc81d40b39449", null ],
+    [ "SparseVectorRescaling", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a5bf9747f40d8f9933450dd03e62cd752", null ],
     [ "submatrixKernelSample", "namespace_a_t_e_a_m_s_1_1arithmetic.html#ad8cbc5b9193eefdee6988cdb6dbf0051", null ]
 ];

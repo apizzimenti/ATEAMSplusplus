@@ -90,10 +90,8 @@ namespace ATEAMS::topology::persistence {
 			if (options.parallel->enabled) essential = JIT<RingLike>(complex, filtration, R, dimension, options);
 			else essential = twist<RingLike>(complex, filtration, R, dimension, options);
 		}
-
-		std::cerr << "sorting..." << std::endl;
+		
 		std::sort(essential.begin(), essential.end());
-		std::cerr << "sorted..." << std::endl;
 		return essential;
 	};
 }

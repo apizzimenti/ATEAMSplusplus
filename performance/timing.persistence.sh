@@ -2,9 +2,9 @@
 
 EXECS=("persistence")
 SCALES=(2 4 5 8 11 16 23 32)
-DIMENSIONS=(4 6)
+DIMENSIONS=(4)
 FIELDS=(2 3)
-TRIALS=${1:-100}
+TRIALS=${1:-64}
 STRATEGIES=("twist" "JIT" "split" "stagger")
 
 HOST=$(hostname -f)
@@ -12,8 +12,8 @@ HOST=$(hostname -f)
 # Test persistence.
 for EXEC in "${EXECS[@]}"; do
 	for DIMENSION in "${DIMENSIONS[@]}"; do
-		for FIELD in "${FIELDS[@]}"; do
-			for SCALE in "${SCALES[@]}"; do
+		for SCALE in "${SCALES[@]}"; do
+			for FIELD in "${FIELDS[@]}"; do
 				for STRATEGY in "${STRATEGIES[@]}"; do
 					# Delete the file if it exists already.
 					# CSV="./performance/timing/$HOST.persistence.$STRATEGY.$TRIALS.csv"
