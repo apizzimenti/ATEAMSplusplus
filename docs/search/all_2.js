@@ -6,5 +6,5 @@ var searchData=
   ['boundarydata_3',['BoundaryData',['../struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html',1,'ATEAMS::complexes']]],
   ['boundarydata_3c_20z2_20_3e_4',['BoundaryData&lt; Z2 &gt;',['../struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html',1,'ATEAMS::complexes']]],
   ['breaks_5',['Breaks',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a3c4e3cc58db2dc2785768a4549d2d6e0',1,'ATEAMS::complexes::Complex']]],
-  ['build_6',['build',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_options.html#a3293d1428492422d8aa968dac875c49a',1,'ATEAMS::arithmetic::ParallelOptions']]]
+  ['build_6',['build',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers.html#a742ba502283725ced8418f52d6d54ce4',1,'ATEAMS::arithmetic::SerialContainers::build()'],['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html#af95f295aed8565f91b9be788dae30d79',1,'ATEAMS::arithmetic::ParallelContainers::build()']]]
 ];

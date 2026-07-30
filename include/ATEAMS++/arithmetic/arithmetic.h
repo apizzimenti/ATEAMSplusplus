@@ -14,6 +14,15 @@ namespace ATEAMS {
 	 */
 	namespace arithmetic {
 
+		/**
+		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over a
+		 * @ref ATEAMS::Ring
+	 	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
+		 * 
+		 * @param u Vector.
+		 * @param v Vector.
+		 * @param R (Pointer to) the coefficient ring @ref Q.
+		 */
 		template <typename RingLike>
 		inline void SparseVectorAddition(
 			SparseVector<RingLike>& u,
@@ -21,6 +30,13 @@ namespace ATEAMS {
 			Ring* R
 		);
 
+		/**
+		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Z2.
+		 * 
+		 * @param u Vector.
+		 * @param v Vector.
+		 * @param R (Pointer to) the coefficient ring @ref Q.
+		 */
 		template <>
 		inline void SparseVectorAddition<Z2>(
 			SparseVector<Z2>& u,
@@ -30,6 +46,13 @@ namespace ATEAMS {
 			sparse_vec_add<INDEX>(u, v, R->ring);
 		};
 
+		/**
+		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over @ref Zp.
+		 * 
+		 * @param u Vector.
+		 * @param v Vector.
+		 * @param R (Pointer to) the coefficient ring @ref Q.
+		 */
 		template <>
 		inline void SparseVectorAddition<Zp>(
 			SparseVector<Zp>& u,
@@ -45,8 +68,6 @@ namespace ATEAMS {
 		 * @param u Vector.
 		 * @param v Vector.
 		 * @param R (Pointer to) the coefficient ring @ref Q.
-		 * 
-		 * @returns \f$ \vec w = \vec u + \vec v \f$.
 		 */
 		template <>
 		inline void SparseVectorAddition<Q>(

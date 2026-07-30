@@ -1,42 +1,4 @@
 var namespace_a_t_e_a_m_s_1_1topology =
 [
-    [ "persistence", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html", [
-      [ "CreationPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a393014b92d4cf92096c0563943c35166", null ],
-      [ "DestructionPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a1b991f2fced881490cfe05a9e4e5d6b7", null ],
-      [ "ReductionPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a9ba1aa5f4642a54bd728c15133234939", null ],
-      [ "ReindexingPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ae5999133d7ff6fc8daaefbf253bd26ae", null ],
-      [ "ReportingPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a5c098c4939a87da615c9bcbacc963e4d", null ],
-      [ "TraversalPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ac7e190f99a10a31192e311c55cefd13f", null ],
-      [ "JIT", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a939a3c9d706439e740cafe7548e6f5d6", null ],
-      [ "JIT", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a908e15fcb03d13d6e9dce4b1cd5155d7", null ],
-      [ "JIT", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a302f91064244f8be2cde174812295fe8", null ],
-      [ "JITDestructionPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a5effcd335c1740cd021a01724eb7694c", null ],
-      [ "JITReductionPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a3b116b881d2b98abe2607dbde3b945d5", null ],
-      [ "persistence", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a9e6019160c47e80764976cd171c5fb14", null ],
-      [ "persistence", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a95b8f3e3c67102ac805e68289bf942e8", null ],
-      [ "PHAT", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a00835b80bb5945f84ff4e3b3ca99e49c", null ],
-      [ "PHAT", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f", null ],
-      [ "reindexFull", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a4433efb10c26d41f817b0b3dbb9936c6", null ],
-      [ "reindexSingle", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#acaeea734a79d0c5ac86a0249c2a36697", null ],
-      [ "standard", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a915b6d91a0ddbe2869cc685e85defc9c", null ],
-      [ "standard", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a45a5ddf822dabec068c2d353bd3355af", null ],
-      [ "standard", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a2ff1a2158eb28fd59194d6bcfc2ba062", null ],
-      [ "standardCreationPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a11389fa568669d0cb7373f6293421005", null ],
-      [ "standardDestructionPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#aef1f8d71842d8b06bfcd3ea10b5460c5", null ],
-      [ "standardFullReportingPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a93fc2d02b7022a292de383a3e4fcea42", null ],
-      [ "standardFullTraversalPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#adf6e41cef8376c8595de6848b3984119", null ],
-      [ "standardParallel", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a3aa7749f4fa4877e0324b1da9e477030", null ],
-      [ "standardParallel", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ae84b7a5b691203e0598997d74baeae03", null ],
-      [ "standardParallel", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a2feb5e52328e45bf9579b56fbde9fa76", null ],
-      [ "standardParallelCreationPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a98975b39431941103b998ac17f0bba6f", null ],
-      [ "standardReductionPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ae38dc36ad31a37f5eb50346daf01de04", null ],
-      [ "standardRestrictedReportingPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a619e1ef3fa6055c7b5a74922b609e73e", null ],
-      [ "standardRestrictedTraversalPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a6d651d25c5f5df6499d64f978ea698b1", null ],
-      [ "twist", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a64287f03daad5493cd9e166ceb00e248", null ],
-      [ "twist", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a8ea34af1cdce8f873c1451b14bb674dc", null ],
-      [ "twist", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ada13964f51e14a0a6d1518b288cbe992", null ],
-      [ "twistDestructionPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a969dfc53408fc94c3dc65d1d7365e810", null ],
-      [ "twistFullTraversalPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ab8a3bba079032c0fc3a3b49cfc424b09", null ],
-      [ "twistRestrictedTraversalPolicy", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a55de4b78fb2d9e4cc91b69f4c31b76ed", null ]
-    ] ]
+    [ "persistence", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html", "namespace_a_t_e_a_m_s_1_1topology_1_1persistence" ]
 ];

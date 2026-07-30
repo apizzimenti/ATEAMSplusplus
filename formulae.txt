@@ -13,3 +13,6 @@
 \newcommand{\GF}{\mathrm{GF}}
 
 \newcommand{\RREF}{\mathrm{RREF}}
+
+\newcommand{\min}{\mathrm{min}}
+\newcommand{\max}{\mathrm{max}}

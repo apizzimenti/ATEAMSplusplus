@@ -22,38 +22,34 @@ namespace ATEAMS::arithmetic {
 	 */
 	typedef SparseRREF::rref_option_t RREFOptionType;
 
-	// enum class Strategy { MIXED, PARALLEL, SERIAL };
-
-	// /**
-	//  * @class ParallelOptions
-	//  * @brief Facilities for more efficient parallel computing.
-	//  */
-	// template <typename RingLike>
-	// struct ParallelOptions {
-	// 	public:
-	// 		int threads;
-	// 		bool enabled = false;
-
-	// 		std::vector<std::set<int>> marked;
-
-	// 		void build(int blocks, int length) {
-	// 			this->marked = std::vector<std::set<int>>(blocks, std::set<int>());
-	// 		}
-
-	// 		void flush() {
-	// 			for (int b=0; b < this->marked.size(); b++) this->marked[b].clear();
-	// 		};
-	// };
-
+	/**
+	 * @struct SerialContainers
+	 * @brief Reusable containers for serial persistence computation. See
+	 * @ref ATEAMS::topology::persistence::twist.
+	 * 
+	 * @var SerialContainers::marked
+	 * 	Set for marking cycle-inducing cells.
+	 * 
+	 * @var SerialContainers::lookup
+	 * 	Lookup table for youngest chains sharing a face.
+	 */
 	struct SerialContainers {
 		public:
 			std::set<int> marked;
 			std::vector<int> lookup;
 
+		/**
+		 * @brief Constructs the lookup table.
+		 * 
+		 * @param cells Number of cells in the complex.
+		 */
 		void build(int cells) {
 			this->lookup = std::vector<int>(cells, 0);
 		}
 
+		/**
+		 * @brief Flushes the containers for reuse.
+		 */
 		void flush() {
 			this->marked.clear();
 			std::fill(this->lookup.begin(), this->lookup.end(), 0);
@@ -61,6 +57,25 @@ namespace ATEAMS::arithmetic {
 		}
 	};
 
+	/**
+	 * @struct ParallelContainers
+	 * @brief Reusable containers for parallel persistence computation. See
+	 * @ref ATEAMS::topology::persistence::JIT.
+	 * 
+	 * @var ParallelContainers::marked
+	 * 	Vector of sets for marking cycle-inducing cells. Created as a vector to
+	 * 	ensure all threads write to different locations.
+	 * 
+	 * @var ParallelContainers::zeroed
+	 * 	Allows (e.g.) @ref ATEAMS::topology::persistence::JIT to simulate the
+	 * 	clearing optimization of the twist algorithm.
+	 * 
+	 * @var ParallelContainers::lookup
+	 * 	Lookup table for youngest chains sharing a face.
+	 * 
+	 * @var ParallelContainers::enabled
+	 * 	Is parallel computing enabled? Defaults to `true`.
+	 */
 	struct ParallelContainers {
 		public:
 			std::vector<std::set<int>> marked;
@@ -68,12 +83,21 @@ namespace ATEAMS::arithmetic {
 			std::vector<bool> zeroed;
 			bool enabled = true;
 
+			/**
+			 * @brief Constructs data structures.
+			 * 
+			 * @param cells Number of cells in the complex.
+			 * @param blocks Number of matrix blocks (dimensions) in the complex.
+			 */
 			void build(int cells, int blocks) {
 				this->zeroed = std::vector<bool>(cells, false);
 				this->lookup = std::vector<int>(cells, 0);
 				this->marked = std::vector<std::set<int>>(blocks, std::set<int>());
 			}
 
+			/**
+			 * @brief Flushes data structures for reuse.
+			 */
 			void flush() {
 				for (int t=0; t < this->marked.size(); t++) this->marked[t].clear();
 				std::fill(this->lookup.begin(), this->lookup.end(), 0);
@@ -90,13 +114,13 @@ namespace ATEAMS::arithmetic {
 	 * 	@brief Pointer to a @ref ATEAMS::arithmetic::ComputeOptions object
 	 * 	used to keep track of the thread pool and process-killing keystrokes.
 	 * 
-	 * @var ComputeOptions::parallelSparseAddition
-	 * 	@brief Enables parallelization for @ref ATEAMS::arithmetic::SparseVectorAddition.
-	 * 	Default `true`.
+	 * @var ComputeOptions::serial
+	 * 	@brief Pointer to a @ref ATEAMS::arithmetic::SerialContainers, reusable
+	 * 	containers for serial persistence computation.
 	 * 
-	 * @var ComputeOptions::parallelSparseAdditionChunkWidth
-	 * 	@brief The width a chunk needs to be before using multiple threads. Default
-	 * 	`512`.
+	 * @var ComputeOptions::parallel
+	 * 	@brief Pointer to a @ref ATEAMS::arithmetic::ParallelContainers, reusable
+	 * 	containers for parallel persistence computation.
 	 */
 	template <typename RingLike>
 	class ComputeOptions {
@@ -131,6 +155,8 @@ namespace ATEAMS::arithmetic {
 
 			/**
 			 * @brief "Spins down" the multithreaded computing environment.
+			 * 
+			 * @param listener Pointer to a `std::thread`.
 			 */
 			void spinDown(std::thread* listener) {
 				this->opt->abort = true;

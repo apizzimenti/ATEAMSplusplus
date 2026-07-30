@@ -1,0 +1,9 @@
+<map id="JIT" name="JIT">
+<area shape="rect" id="Node000001" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="278,7,318,33"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a9e6019160c47e80764976cd171c5fb14" title="Dispatch method for computing persistence; dispatches to ATEAMS::topology::PHATPersistence,..." alt="" coords="5,7,94,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,13,230,10,186,8,142,10,95,15,94,10,141,5,186,3,230,5,266,12"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a95b8f3e3c67102ac805e68289bf942e8" title="Dispatch method for computing persistence; dispatches to ATEAMS::topology::PHATPersistence,..." alt="" coords="142,44,230,70"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="266,31,227,46,226,41,261,32"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="124,41,94,34,94,29,129,40"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="203,28,198,25,186,23,175,25,169,29,167,35,171,45,166,43,162,36,164,26,173,20,186,18,200,20,208,30"/>
+</map>

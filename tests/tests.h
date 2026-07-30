@@ -225,7 +225,7 @@ inline bool checkSingleReindexing(
 	// Swap, then reindex.
 	filtration[firstIndex] = secondIndex;
 	filtration[secondIndex] = firstIndex;
-	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::persistence::reindexSingle<RingLike>(complex, filtration, options, dimension);
+	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::persistence::policies::singleReindexingPolicy<RingLike>(complex, filtration, options, dimension);
 
 	bool firstReindexed = false, secondReindexed = false;
 
@@ -282,7 +282,7 @@ inline bool checkFullReindexing(
 	// Swap, then reindex.
 	filtration[firstIndex] = secondIndex;
 	filtration[secondIndex] = firstIndex;
-	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::persistence::reindexSingle<RingLike>(complex, filtration, options, dimension);
+	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::persistence::policies::singleReindexingPolicy<RingLike>(complex, filtration, options, dimension);
 
 	bool firstReindexed = false, secondReindexed = false;
 

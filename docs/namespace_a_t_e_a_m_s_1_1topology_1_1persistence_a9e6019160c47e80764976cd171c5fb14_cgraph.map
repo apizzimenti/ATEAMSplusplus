@@ -1,6 +1,10 @@
 <map id="persistence" name="persistence">
-<area shape="rect" id="Node000001" title="Dispatch method for computing persistence; dispatches to ATEAMS::topology::PHATPersistence,..." alt="" coords="5,29,94,55"/>
-<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a95b8f3e3c67102ac805e68289bf942e8" title="Dispatch method for computing persistence; dispatches to ATEAMS::topology::PHATPersistence,..." alt="" coords="142,29,230,55"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,40,129,42,123,42,94,45"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="162,28,158,21,160,11,170,5,186,3,203,5,213,15,207,14,201,10,186,8,172,10,165,14,163,20,167,30"/>
+<area shape="rect" id="Node000001" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="5,55,94,80"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="28,55,24,46,27,37,35,30,50,28,65,31,73,39,68,40,62,36,49,33,37,35,31,40,30,46,33,54"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ab895042b0c23511fef68c5a383ede706" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="150,5,190,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,52,137,30,133,34,84,56"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="142,55,198,80"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="94,65,129,66,124,69,95,70"/>
+<area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#af2d7f20d30df6c0012c41cc1ebbbdeb3" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="145,104,194,130"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="83,78,133,100,128,102,83,84"/>
 </map>

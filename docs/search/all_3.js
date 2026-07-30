@@ -19,6 +19,6 @@ var searchData=
   ['constructfullboundarymatrix_16',['constructFullBoundaryMatrix',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a01aa572c027c6e8c3c88b3cc903b2542',1,'ATEAMS::complexes::Complex::constructFullBoundaryMatrix()'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a7dccc3b83aec5b2425d3f93cc5cbcf4f',1,'ATEAMS::complexes::Cubical::constructFullBoundaryMatrix()']]],
   ['contributing_17',['Contributing',['../index.html#autotoc_md4',1,'']]],
   ['corners_18',['corners',['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#acd2e31b75850ec31ea70d4ecf18330b1',1,'ATEAMS::complexes::Cubical']]],
-  ['creationpolicy_19',['CreationPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a393014b92d4cf92096c0563943c35166',1,'ATEAMS::topology::persistence']]],
+  ['creationpolicy_19',['CreationPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html#a393014b92d4cf92096c0563943c35166',1,'ATEAMS::topology::persistence::policies']]],
   ['cubical_20',['Cubical',['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html',1,'Cubical&lt; RingLike &gt;'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a735e59180e360c2c6c94c896ba3fd261',1,'ATEAMS::complexes::Cubical::Cubical(std::vector&lt; int &gt; corners, bool periodic)'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a0e7fdf956568384a948f7ba42a50e6e1',1,'ATEAMS::complexes::Cubical::Cubical(std::vector&lt; int &gt; corners)']]]
 ];

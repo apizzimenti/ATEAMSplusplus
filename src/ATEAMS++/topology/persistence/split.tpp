@@ -1,0 +1,156 @@
+
+#ifndef ATEAMS_TOPOLOGY_PERSISTENCE_SPLIT_T
+#define ATEAMS_TOPOLOGY_PERSISTENCE_SPLIT_T
+
+#ifndef ATEAMS_TOPOLOGY_PERSISTENCE_SPLIT_H
+#error __FILE__ should only be included from topology/persistence/split.h.
+#endif
+
+#include "ATEAMS++/topology/persistence/split.h"
+#include "ATEAMS++/topology/persistence/twist.h"
+
+using namespace std;
+
+namespace ATEAMS::topology::persistence {
+	template <typename RingLike>
+	inline vector<int> split(
+		complexes::Complex<RingLike>* complex,
+		vector<int>& filtration,
+		Ring* R,
+		arithmetic::ComputeOptions<RingLike>& options,
+		policies::ReindexingPolicy<RingLike> reindexingPolicy,
+		policies::TraversalPolicy<RingLike> traversalPolicy,
+		policies::ReportingPolicy<RingLike> reportingPolicy
+	) {
+		// Determine the endpoints and reindex the boundary matrix accordingly.
+		SparseMatrix<RingLike> Full = reindexingPolicy(complex, filtration, options);
+
+		// Flush data structures.
+		options.parallel->flush();
+
+		// Cycle creation policy.
+		auto creationPolicy = std::bind(
+			policies::parallelCreationPolicy<RingLike>,		// using the standard parallel creation policy
+			placeholders::_1,						// placeholder for `markedIndex`
+			placeholders::_2,						// placeholder for `dim`
+			std::ref(options)						// a reference to `options`, for marking in parallel.
+		);
+
+		// Cycle destruction policy.
+		auto destructionPolicy = std::bind(
+			policies::splitDestructionPolicy<RingLike>,	// using the JIT destruction policy
+			placeholders::_1,					// placeholder for `cell`
+			placeholders::_2,					// placeholder for `markedIndex`
+			placeholders::_3,					// placeholder for `dim`,
+			std::ref(options.parallel->lookup),	// reference to `youngestChainLookup`,
+			std::ref(options.parallel->zeroed),	// reference to `zeroed`,
+			std::ref(Full)						// reference to `Full`, which *should* be scoped to the thread.
+		);
+
+		// Reduction policy.
+		auto reductionPolicy = std::bind(
+			policies::JITReductionPolicy<RingLike>,		// using the JIT reduction policy
+			placeholders::_1,					// placeholder for `cell`						
+			placeholders::_2,					// placeholder for `lookup`
+			placeholders::_3,					// placeholder for `cellIndex`
+			placeholders::_4,					// placeholder for `dim`
+			std::ref(options.parallel->zeroed)	// reference to `zeroed`.
+		);
+
+		// Stagger the block reductions, so we can incorporate some of the
+		// clearing optimization benefits.
+		vector<int> endpoints = traversalPolicy(complex);
+		int halfway = (endpoints[1]+endpoints[0])/2;
+
+		#pragma omp parallel sections default(shared) firstprivate(Full)
+		{
+
+			// Do the second half
+			#pragma omp section
+			{
+				for (int d=endpoints[0]; d >= halfway; d--) {
+					reduceBlock<RingLike>(
+						Full,
+						complex->Breaks[d],
+						options.parallel->lookup,
+						d,
+						R,
+						reductionPolicy,
+						creationPolicy,
+						destructionPolicy,
+						options
+					);
+				}
+			}
+
+			// Do the first half
+			#pragma omp section
+			{
+				for (int d=halfway-1; d >= endpoints[1]; d--) {
+					reduceBlock<RingLike>(
+						Full,
+						complex->Breaks[d],
+						options.parallel->lookup,
+						d,
+						R,
+						reductionPolicy,
+						creationPolicy,
+						destructionPolicy,
+						options
+					);
+				}
+			}
+		}
+
+		// Re-constitute the marked columns.
+		set<int> marked;
+		for (int d=endpoints[0]; d >= endpoints[1]; d--) {
+			for (auto& k : options.parallel->marked[d]) marked.insert(k);
+		}
+
+		// Find essential cycles.
+		return reportingPolicy(
+			complex,
+			options.parallel->lookup,
+			marked
+		);
+	}
+
+
+	template <typename RingLike>
+	inline vector<int> split(
+		complexes::Complex<RingLike>* complex,
+		vector<int>& filtration,
+		Ring* R,
+		int dimension,
+		arithmetic::ComputeOptions<RingLike>& options
+	) {
+		return twist<RingLike>(
+			complex,
+			filtration,
+			R,
+			dimension,
+			options
+		);
+	}
+
+	template <typename RingLike>
+	inline vector<int> split(
+		complexes::Complex<RingLike>* complex,
+		vector<int>& filtration,
+		Ring* R,
+		arithmetic::ComputeOptions<RingLike>& options
+	) {
+		return split<RingLike>(
+			complex,
+			filtration,
+			R,
+			options,
+			policies::fullReindexingPolicy<RingLike>,
+			policies::twistFullTraversalPolicy<RingLike>,
+			policies::standardFullReportingPolicy<RingLike>
+		);
+	}
+}
+
+#endif

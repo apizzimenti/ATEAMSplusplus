@@ -85,7 +85,14 @@ list(APPEND SOURCE_HEADERS
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/options.h
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/topology.h
-	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/JIT.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/parallel.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/PHAT.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/split.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/stagger.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/standard.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/twist.h
 	# ${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/helpers.h
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/complexes/complexes.h
@@ -112,8 +119,14 @@ list(APPEND SOURCE_HEADERS
 list(APPEND SOURCE_IMPLEMENTATIONS
 	# Templated implementations
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/arithmetic/kernel.tpp
-
-	${PROJECT_SOURCE_DIR}/src/ATEAMS++/topology/persistence.tpp
+	
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/topology/persistence/JIT.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/topology/persistence/parallel.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/topology/persistence/PHAT.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/topology/persistence/split.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/topology/persistence/stagger.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/topology/persistence/standard.tpp
+	${PROJECT_SOURCE_DIR}/src/ATEAMS++/topology/persistence/twist.tpp
 
 	${PROJECT_SOURCE_DIR}/src/ATEAMS++/complexes/Cubical.tpp
 
@@ -208,12 +221,12 @@ list(APPEND ARITHMETIC.TESTING
 
 list(APPEND TOPOLOGY.TESTING
 	"split"
-	# "stagger"
+	"stagger"
 	"JIT"
-	# "standard"
+	"standard"
 	"twist"
-	# "parallel"
-	# "persistence"
+	"parallel"
+	"persistence"
 )
 
 list(APPEND MODELS.TESTING

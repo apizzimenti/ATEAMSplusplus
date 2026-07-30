@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['p_0',['p',['../class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#aace2d484b0e3651abd108f04803d316c',1,'ATEAMS::models::Bernoulli::p'],['../struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#aace2d484b0e3651abd108f04803d316c',1,'ATEAMS::models::ModelParameters::p']]],
-  ['parallel_1',['parallel',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html#a99d336c86b1fb59b0d2e6d28bb5c3d7b',1,'ATEAMS::arithmetic::ComputeOptions']]],
-  ['paralleloptions_2',['ParallelOptions',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_options.html',1,'ATEAMS::arithmetic']]],
-  ['paralleloptions_3c_20typename_20modeltype_3a_3aringtype_20_3e_3',['ParallelOptions&lt; typename ModelType::RingType &gt;',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_options.html',1,'ATEAMS::arithmetic']]],
-  ['periodic_4',['periodic',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a09271c5dbbb7bb9b0e0487bbc48373aa',1,'ATEAMS::complexes::Complex']]],
-  ['persistence_5',['persistence',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a95b8f3e3c67102ac805e68289bf942e8',1,'ATEAMS::topology::persistence::persistence(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, Ring *R, int dimension, arithmetic::ComputeOptions&lt; RingLike &gt; &amp;options)'],['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a9e6019160c47e80764976cd171c5fb14',1,'ATEAMS::topology::persistence::persistence(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, Ring *R, arithmetic::ComputeOptions&lt; RingLike &gt; &amp;options)']]],
-  ['phat_6',['PHAT',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f',1,'ATEAMS::topology::persistence::PHAT(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, int dimension)'],['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a00835b80bb5945f84ff4e3b3ca99e49c',1,'ATEAMS::topology::persistence::PHAT(complexes::Complex&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration)']]]
+  ['occupation_0',['occupation',['../namespace_a_t_e_a_m_s_1_1statistics.html#abb392f63461f412585f1864b963ac02a',1,'ATEAMS::statistics']]],
+  ['offsets_1',['Offsets',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#af4dbfcfd4ffe8e565bfc5df5089ec9ce',1,'ATEAMS::complexes::Complex']]],
+  ['opt_2',['opt',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html#a2a79b72562a20b841a05586ebdc61bd6',1,'ATEAMS::arithmetic::ComputeOptions']]],
+  ['options_3',['options',['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#aa8de49641cd7dbfece4c0b4b669509a3',1,'ATEAMS::statistics::Chain']]]
 ];

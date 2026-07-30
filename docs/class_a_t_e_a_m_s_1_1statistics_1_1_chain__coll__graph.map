@@ -1,7 +1,9 @@
 <map id="Chain&lt; ModelType &gt;" name="Chain&lt; ModelType &gt;">
-<area shape="rect" id="Node000001" title="Simulates the Markov chains specified by each Model." alt="" coords="28,229,171,254"/>
-<area shape="rect" id="Node000002" href="$class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html" title=" " alt="" coords="5,117,194,158"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,172,102,229,97,227,97,175"/>
-<area shape="rect" id="Node000003" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_options.html" title=" " alt="" coords="10,5,189,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="101,59,102,117,97,116,98,64"/>
+<area shape="rect" id="Node000001" title="Simulates the Markov chains specified by each Model." alt="" coords="66,214,208,239"/>
+<area shape="rect" id="Node000002" href="$class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html" title=" " alt="" coords="43,102,232,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,157,140,214,135,212,135,160"/>
+<area shape="rect" id="Node000003" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers.html" title="Reusable containers for serial persistence computation. See twist." alt="" coords="5,5,123,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,41,126,101,121,102,81,46"/>
+<area shape="rect" id="Node000004" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html" title="Reusable containers for parallel persistence computation. See JIT." alt="" coords="147,5,274,31"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="195,42,153,103,149,100,191,46"/>
 </map>

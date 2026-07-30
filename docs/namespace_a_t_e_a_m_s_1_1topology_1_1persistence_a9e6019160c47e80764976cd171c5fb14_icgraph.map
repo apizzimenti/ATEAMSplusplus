@@ -1,0 +1,6 @@
+<map id="persistence" name="persistence">
+<area shape="rect" id="Node000001" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="142,29,230,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="207,14,201,10,186,8,172,10,165,14,163,20,167,30,162,28,158,21,160,11,170,5,186,3,203,5,213,15"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a95b8f3e3c67102ac805e68289bf942e8" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="5,29,94,55"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="123,42,94,45,94,40,128,42"/>
+</map>

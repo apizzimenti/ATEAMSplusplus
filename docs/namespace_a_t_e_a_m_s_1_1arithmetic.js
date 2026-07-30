@@ -1,6 +1,7 @@
 var namespace_a_t_e_a_m_s_1_1arithmetic =
 [
-    [ "ParallelOptions", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_options.html", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_options" ],
+    [ "SerialContainers", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers.html", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers" ],
+    [ "ParallelContainers", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers" ],
     [ "ComputeOptions", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options" ],
     [ "RREFOptions", "namespace_a_t_e_a_m_s_1_1arithmetic.html#ae370df06acaa97cb91ed16ac49666800", null ],
     [ "RREFOptionType", "namespace_a_t_e_a_m_s_1_1arithmetic.html#aa5a44f2e02e38845a5772a388a574ba0", null ],
