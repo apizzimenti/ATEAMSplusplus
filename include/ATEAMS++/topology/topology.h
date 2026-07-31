@@ -7,7 +7,9 @@ namespace ATEAMS {
 	namespace topology { };
 }
 
+#include "ATEAMS++/topology/persistence/policies.h"
 #include "ATEAMS++/topology/persistence.h"
+#include "ATEAMS++/topology/basis.h"
 
 #endif
 

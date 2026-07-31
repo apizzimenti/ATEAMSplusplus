@@ -60,6 +60,11 @@ namespace ATEAMS {
 				void constructBoundaryMatrices(Ring* R) override;
 				void constructFlatBoundaryMatrix() override;
 				void constructFullBoundaryMatrix(Ring* R) override;
+
+				void constructSparseBases(
+					Ring* R,
+					arithmetic::ComputeResources<RingLike>& resources
+				);
 				
 				int size() override;
 		};

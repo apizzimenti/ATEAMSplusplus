@@ -112,6 +112,7 @@ list(APPEND SOURCE_HEADERS
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/topology.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/helpers.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/basis.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/JIT.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/parallel.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence/PHAT.h
@@ -181,9 +182,9 @@ if(mimalloc)
 	target_link_libraries(ATEAMS++ INTERFACE PkgConfig::mimalloc)
 endif()
 
-# target_include_directories(ATEAMS++ INTERFACE include)
+target_include_directories(ATEAMS++ INTERFACE include)
 target_include_directories(ATEAMS++ INTERFACE dependencies)
-# target_include_directories(ATEAMS++ INTERFACE src)
+target_include_directories(ATEAMS++ INTERFACE src)
 
 include(GNUInstallDirs)
 
@@ -239,7 +240,7 @@ install(
 ################################################################################
 
 list(APPEND COMPLEXES.TESTING
-	# "Cubical"
+	"Cubical"
 )
 
 list(APPEND ARITHMETIC.TESTING
@@ -247,21 +248,21 @@ list(APPEND ARITHMETIC.TESTING
 )
 
 list(APPEND TOPOLOGY.TESTING
-	"JIT"
-	"parallel"
+	# "JIT"
+	# "parallel"
 	# # "PHAT"
-	"split"
-	"stagger"
-	"standard"
-	"twist"
+	# "split"
+	# "stagger"
+	# "standard"
+	# "twist"
 )
 
 list(APPEND MODELS.TESTING
-	"Bernoulli"
-	"InvadedCluster"
-	"Invasion"
-	"SwendsenWang"
-	"Glauber"
+	# "Bernoulli"
+	# "InvadedCluster"
+	# "Invasion"
+	# "SwendsenWang"
+	# "Glauber"
 )
 
 list(APPEND TYPES

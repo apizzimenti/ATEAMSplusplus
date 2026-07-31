@@ -7,6 +7,7 @@
 #endif
 
 #include "ATEAMS++/complexes/Cubical.h"
+#include "ATEAMS++/topology/basis.h"
 #include "ATEAMS++/util.h"
 
 #include <cmath>
@@ -502,6 +503,20 @@ namespace ATEAMS {
 			FlatBoundaryMatrix flat = flatBoundaryMatrix(L, this->Offsets);
 			this->Boundary.Full = sparseFullBoundaryMatrix<RingLike>(flat, R);
 			this->Coboundary.Full = this->Boundary.Full.transpose();
+		}
+
+
+		template <typename RingLike>
+		void Cubical<RingLike>::constructSparseBases(
+			Ring* R,
+			arithmetic::ComputeResources<RingLike>& resources
+		) {
+			// Ensure sparse boundary matrices are built.
+			this->constructFullBoundaryMatrix(R);
+
+			// Run the persistence algorithm to compute a basis for the cycles.
+			this->Boundary.Bases = topology::basis<RingLike>(this, R, resources);
+			cout << this->Boundary.Bases[0].size() << endl;
 		}
 
 

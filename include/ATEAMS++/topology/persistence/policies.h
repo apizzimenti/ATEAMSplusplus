@@ -1,6 +1,6 @@
 
 #ifndef ATEAMS_TOPOLOGY_PERSISTENCE_POLICIES_H
-#define AETAMS_TOPOLOGY_PERSISTENCE_POLICIES_H
+#define ATEAMS_TOPOLOGY_PERSISTENCE_POLICIES_H
 
 #include "ATEAMS++/topology/helpers.h"
 
@@ -423,6 +423,36 @@ namespace ATEAMS::topology::persistence::policies::reporting {
 
 		return essential;
 	}
+
+
+	// template <typename RingLike>
+	// inline void basis(
+	// 	complexes::Complex<RingLike>* complex,
+	// 	vector<int>& lookup,
+	// 	set<int>& marked,
+	// 	SparseMatrix<RingLike>& Full,
+	// 	SparseBases<RingLike>& bases
+	// ) {
+	// 	for (int k : marked) {
+	// 		if (lookup[k] == 0) {
+	// 			int dim;
+
+	// 			// Determine the dimension of the cell.
+	// 			for (int d=0; d < complex->Breaks.size(); d++) {
+	// 				int lo = complex->Breaks[d][0];
+	// 				int hi = complex->Breaks[d][1];
+
+	// 				if (lo <= k && k < hi) {
+	// 					dim = d;
+	// 					goto EXIT;
+	// 				}
+	// 			}
+
+	// 			EXIT:
+	// 				bases[dim].push_back(Full[k]);
+	// 		}
+	// 	}
+	// }
 }
 
 #endif
