@@ -16,31 +16,31 @@ namespace ATEAMS::topology::persistence {
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
-		arithmetic::ComputeResources<RingLike>& options,
+		arithmetic::ComputeResources<RingLike>& resources,
 		auto& reindexingPolicy,
 		auto& traversalPolicy,
 		auto& reportingPolicy
 	) {
 		// Determine the endpoints and reindex the boundary matrix accordingly.
-		SparseMatrix<RingLike> Full = reindexingPolicy(complex, filtration, options);
+		SparseMatrix<RingLike> Full = reindexingPolicy(complex, filtration, resources);
 
 		// Flush data structures.
-		options.parallel->flush();
+		resources.parallel->flush();
 
 		// Cycle creation policy.
-		auto creationPolicy = [&options](
+		auto creationPolicy = [&resources](
 			int markedIndex,
 			int dim
 		) {
 			return policies::creation::parallel<RingLike>(
 				markedIndex,
 				dim,
-				options
+				resources
 			);
 		};
 
 		// Cycle destruction policy.
-		auto destructionPolicy = [&options](
+		auto destructionPolicy = [&resources](
 			SparseVector<RingLike>& chain,
 			int markedIndex,
 			int dim
@@ -49,13 +49,13 @@ namespace ATEAMS::topology::persistence {
 				chain,
 				markedIndex,
 				dim,
-				options.parallel->lookup,
-				options.parallel->zeroed
+				resources.parallel->lookup,
+				resources.parallel->zeroed
 			);
 		};
 
 		// Reduction policy.
-		auto reductionPolicy = [&options](
+		auto reductionPolicy = [&resources](
 			SparseVector<RingLike>& chain,
 			vector<int>& lookup,
 			int index,
@@ -63,10 +63,10 @@ namespace ATEAMS::topology::persistence {
 		) {
 			return policies::reduction::JIT<RingLike>(
 				chain,
-				options.parallel->lookup,
+				resources.parallel->lookup,
 				index,
 				dim,
-				options.parallel->zeroed
+				resources.parallel->zeroed
 			);
 		};
 
@@ -78,26 +78,26 @@ namespace ATEAMS::topology::persistence {
 			reduceBlock<RingLike>(
 				Full,
 				complex->Breaks[d],
-				options.parallel->lookup,
+				resources.parallel->lookup,
 				d,
 				R,
 				reductionPolicy,
 				creationPolicy,
 				destructionPolicy,
-				options
+				resources
 			);
 		}
 
 		// Re-constitute the marked columns.
 		set<int> marked;
 		for (int d=endpoints[0]; d >= endpoints[1]; d--) {
-			for (auto& k : options.parallel->marked[d]) marked.insert(k);
+			for (auto& k : resources.parallel->marked[d]) marked.insert(k);
 		}
 
 		// Find essential cycles.
 		return reportingPolicy(
 			complex,
-			options.parallel->lookup,
+			resources.parallel->lookup,
 			marked
 		);
 	}
@@ -109,7 +109,7 @@ namespace ATEAMS::topology::persistence {
 		vector<int>& filtration,
 		Ring* R,
 		int dimension,
-		arithmetic::ComputeResources<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& resources
 	) {
 		// Dimension traversal policy.
 		auto traversalPolicy = [&dimension](
@@ -139,16 +139,16 @@ namespace ATEAMS::topology::persistence {
 		auto reindexingPolicy = [&dimension](
 			complexes::Complex<RingLike>* complex,
 			vector<int>& filtration,
-			arithmetic::ComputeResources<RingLike>& options
+			arithmetic::ComputeResources<RingLike>& resources
 		) {
-			return policies::reindexing::single<RingLike>(complex, filtration, options, dimension);
+			return policies::reindexing::single<RingLike>(complex, filtration, resources, dimension);
 		};
 
 		return JIT<RingLike>(
 			complex,
 			filtration,
 			R,
-			options,
+			resources,
 			reindexingPolicy,
 			traversalPolicy,
 			reportingPolicy
@@ -160,13 +160,13 @@ namespace ATEAMS::topology::persistence {
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		Ring* R,
-		arithmetic::ComputeResources<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& resources
 	) {
 		return JIT<RingLike>(
 			complex,
 			filtration,
 			R,
-			options,
+			resources,
 			policies::reindexing::full<RingLike>,
 			policies::traversal::twistFull<RingLike>,
 			policies::reporting::standardFull<RingLike>

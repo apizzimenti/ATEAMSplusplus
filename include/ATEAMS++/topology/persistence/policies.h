@@ -15,7 +15,7 @@ namespace ATEAMS::topology::persistence::policies::reindexing {
 	 * 	the cells in the flat boundary matrix. For example, if we are doing
 	 * 	1-dimensional percolation in 2-d, then we switch up the ordering of
 	 * 	the 1-d cells in the flat boundary matrix, but leave everything else.
-	 * @param options Options for the multithreaded computing environment.
+	 * @param resources Computing resources.
 	 * @param dimension The percolation dimension.
 	 * 
 	 * @returns A reindexed sparse boundary matrix.
@@ -24,10 +24,10 @@ namespace ATEAMS::topology::persistence::policies::reindexing {
 	inline SparseMatrix<RingLike> single(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
-		arithmetic::ComputeResources<RingLike>& options,
+		arithmetic::ComputeResources<RingLike>& resources,
 		int dimension
 	) {
-		return helpers::reindexSparseBoundaryMatrix(complex, filtration, dimension, options);
+		return helpers::reindexSparseBoundaryMatrix(complex, filtration, dimension, resources);
 	}
 
 	/**
@@ -39,7 +39,7 @@ namespace ATEAMS::topology::persistence::policies::reindexing {
 	 * 	the cells in the flat boundary matrix. For example, if we are doing
 	 * 	1-dimensional percolation in 2-d, then we switch up the ordering of
 	 * 	the 1-d cells in the flat boundary matrix, but leave everything else.
-	 * @param options Options for the multithreaded computing environment.
+	 * @param resources Computing resources.
 	 * 
 	 * @returns A reindexed sparse boundary matrix.
 	 */
@@ -47,9 +47,9 @@ namespace ATEAMS::topology::persistence::policies::reindexing {
 	inline SparseMatrix<RingLike> full(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
-		arithmetic::ComputeResources<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& resources
 	) {
-		return helpers::reindexSparseBoundaryMatrix(complex, filtration, options);
+		return helpers::reindexSparseBoundaryMatrix(complex, filtration, resources);
 	}
 }
 
@@ -156,7 +156,7 @@ namespace ATEAMS::topology::persistence::policies::reduction {
 	 * @param chain Chain to be checked.
 	 * @param lookup Lookup table to find the column corresponding to @p chain's
 	 * youngest face.
-	 * @param chainIndex Column index of the chain.
+	 * @param index Column index of the chain.
 	 * @param dim Dimension.
 	 * 
 	 * @returns Whether the chain (column) can be reduced further.
@@ -165,7 +165,7 @@ namespace ATEAMS::topology::persistence::policies::reduction {
 	inline bool standard(
 		SparseVector<RingLike>& chain,
 		vector<int>& lookup,
-		int chainIndex,
+		int index,
 		int dim
 	) {
 		return (chain.size() > 0) && (lookup[helpers::youngestOf<RingLike>(chain)] != 0);
@@ -181,7 +181,7 @@ namespace ATEAMS::topology::persistence::policies::reduction {
 	 * @param chain Chain to be checked.
 	 * @param lookup Lookup table to find the column corresponding to @p chain's
 	 * youngest face.
-	 * @param chainIndex Column index of the chain.
+	 * @param index Column index of the chain.
 	 * @param dim Dimension.
 	 * @param zeroed Boolean vector storing whether a different concurrent
 	 * process has cleared this chain.
@@ -210,34 +210,34 @@ namespace ATEAMS::topology::persistence::policies::creation {
 	 * @brief Standard cycle-creation policy (marking).
 	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * 
-	 * @param markedIndex Column index of the chain inducing a cycle.
+	 * @param index Column index of the chain inducing a cycle.
 	 * @param dim Dimension.
 	 * @param marked Set keeping track of marked chains.
 	 */
 	template <typename RingLike>
 	inline void standard(
-		int markedIndex,
+		int index,
 		int dim,
 		set<int>& marked
 	) {
-		marked.insert(markedIndex);
+		marked.insert(index);
 	}
 
 	/**
 	 * @brief Standard cycle-creation policy (marking).
 	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * 
-	 * @param markedIndex Column index of the chain inducing a cycle.
+	 * @param index Column index of the chain inducing a cycle.
 	 * @param dim Dimension.
-	 * @param options Options for the multithreaded computing environment.
+	 * @param resources Computing resources.
 	 */
 	template <typename RingLike>
 	inline void parallel(
-		int markedIndex,
+		int index,
 		int dim,
-		arithmetic::ComputeResources<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& resources
 	) {
-		options.parallel->marked[dim].insert(markedIndex);
+		resources.parallel->marked[dim].insert(index);
 	}
 }
 
@@ -263,18 +263,18 @@ namespace ATEAMS::topology::persistence::policies::destruction {
 	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * 
 	 * @param chain Chain with boundary.
-	 * @param markedIndex Column index of the chain.
+	 * @param index Column index of the chain.
 	 * @param dim Dimension of the chain.
 	 * @param lookup Lookup table.
 	 */
 	template <typename RingLike>
 	inline void standard(
 		SparseVector<RingLike>& chain,
-		int markedIndex,
+		int index,
 		int dim,
 		vector<int>& lookup
 	) {
-		lookup[helpers::youngestOf<RingLike>(chain)] = markedIndex;
+		lookup[helpers::youngestOf<RingLike>(chain)] = index;
 	}
 
 	/**
@@ -286,7 +286,7 @@ namespace ATEAMS::topology::persistence::policies::destruction {
 	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * 
 	 * @param chain Chain with boundary.
-	 * @param markedIndex Column index of the chain.
+	 * @param index Column index of the chain.
 	 * @param dim Dimension of the chain.
 	 * @param lookup Lookup table.
 	 * @param Full Full (co)boundary matrix.
@@ -294,12 +294,12 @@ namespace ATEAMS::topology::persistence::policies::destruction {
 	template <typename RingLike>
 	inline void twist(
 		SparseVector<RingLike>& chain,
-		int markedIndex,
+		int index,
 		int dim,
 		vector<int>& lookup,
 		SparseMatrix<RingLike>& Full
 	) {
-		lookup[helpers::youngestOf<RingLike>(chain)] = markedIndex;
+		lookup[helpers::youngestOf<RingLike>(chain)] = index;
 		Full.rows[helpers::youngestOf<RingLike>(chain)].zero();
 	};
 
@@ -312,7 +312,7 @@ namespace ATEAMS::topology::persistence::policies::destruction {
 	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * 
 	 * @param chain Chain with boundary.
-	 * @param markedIndex Column index of the chain.
+	 * @param index Column index of the chain.
 	 * @param dim Dimension of the chain.
 	 * @param lookup Lookup table.
 	 * @param zeroed Indicates which columns have been zeroed.
@@ -320,12 +320,12 @@ namespace ATEAMS::topology::persistence::policies::destruction {
 	template <typename RingLike>
 	inline void JIT(
 		SparseVector<RingLike>& chain,
-		int markedIndex,
+		int index,
 		int dim,
 		vector<int>& lookup,
 		vector<bool>& zeroed
 	) {
-		lookup[helpers::youngestOf<RingLike>(chain)] = markedIndex;
+		lookup[helpers::youngestOf<RingLike>(chain)] = index;
 		zeroed[helpers::youngestOf<RingLike>(chain)] = true;
 	}
 
@@ -339,7 +339,7 @@ namespace ATEAMS::topology::persistence::policies::destruction {
 	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * 
 	 * @param chain Chain with boundary.
-	 * @param markedIndex Column index of the chain.
+	 * @param index Column index of the chain.
 	 * @param dim Dimension of the chain.
 	 * @param lookup Lookup table.
 	 * @param zeroed Indicates which columns have been zeroed.
@@ -348,13 +348,13 @@ namespace ATEAMS::topology::persistence::policies::destruction {
 	template <typename RingLike>
 	inline void split(
 		SparseVector<RingLike>& chain,
-		int markedIndex,
+		int index,
 		int dim,
 		vector<int>& lookup,
 		vector<bool>& zeroed,
 		SparseMatrix<RingLike>& Full
 	) {
-		lookup[helpers::youngestOf<RingLike>(chain)] = markedIndex;
+		lookup[helpers::youngestOf<RingLike>(chain)] = index;
 		zeroed[helpers::youngestOf<RingLike>(chain)] = true;
 		Full.rows[helpers::youngestOf<RingLike>(chain)].zero();
 	}

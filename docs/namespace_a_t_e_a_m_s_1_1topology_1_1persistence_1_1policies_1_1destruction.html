@@ -156,18 +156,18 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7cf30c9ad27ecc6f3ddfa5983a8f2d0b" id="r_a7cf30c9ad27ecc6f3ddfa5983a8f2d0b"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:a7cf30c9ad27ecc6f3ddfa5983a8f2d0b template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7cf30c9ad27ecc6f3ddfa5983a8f2d0b">standard</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;chain, int markedIndex, int dim, vector&lt; int &gt; &amp;lookup)</td></tr>
-<tr class="memdesc:a7cf30c9ad27ecc6f3ddfa5983a8f2d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard destruction policy: indicates that this chain destroys the cycle created by its youngest face.  <br /></td></tr>
-<tr class="memitem:a4829211674db9db6dbe1c786a30c8dc0" id="r_a4829211674db9db6dbe1c786a30c8dc0"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:a4829211674db9db6dbe1c786a30c8dc0 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4829211674db9db6dbe1c786a30c8dc0">twist</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;chain, int markedIndex, int dim, vector&lt; int &gt; &amp;lookup, <a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; &amp;Full)</td></tr>
-<tr class="memdesc:a4829211674db9db6dbe1c786a30c8dc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clearing destruction policy: since the youngest face of this chain induces a cycle (i.e. the boundary of this chain), we can pre-emptively clear the column corresponding to the youngest face. This prevents the boundary column from being processed and immediately marks it as a persistence pair.  <br /></td></tr>
-<tr class="memitem:a7238e6a22007785f3119a5587c0cd0f6" id="r_a7238e6a22007785f3119a5587c0cd0f6"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:a7238e6a22007785f3119a5587c0cd0f6 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7238e6a22007785f3119a5587c0cd0f6">JIT</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;chain, int markedIndex, int dim, vector&lt; int &gt; &amp;lookup, vector&lt; bool &gt; &amp;zeroed)</td></tr>
-<tr class="memdesc:a7238e6a22007785f3119a5587c0cd0f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A parallel-friendly clearing destruction policy: since the youngest face of this chain induces a cycle (i.e. the boundary of this chain), we can pre-emptively mark the column corresponding to its youngest face as cleared. This prevents the column from being unnecessarily processed.  <br /></td></tr>
-<tr class="memitem:a2d02daa01e532ee65f476c8f9566b4c0" id="r_a2d02daa01e532ee65f476c8f9566b4c0"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:a2d02daa01e532ee65f476c8f9566b4c0 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2d02daa01e532ee65f476c8f9566b4c0">split</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;chain, int markedIndex, int dim, vector&lt; int &gt; &amp;lookup, vector&lt; bool &gt; &amp;zeroed, <a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; &amp;Full)</td></tr>
-<tr class="memdesc:a2d02daa01e532ee65f476c8f9566b4c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A parallel-friendly clearing destruction policy: since the youngest face of this chain induces a cycle (i.e. the boundary of this chain), we can pre-emptively mark the column corresponding to its youngest face as cleared and, since the concurrent threads' memory locations do not overlap, actually zero the column. This prevents the column from being unnecessarily processed.  <br /></td></tr>
+<tr class="memitem:a0b5c909096e68f29b10481d9e07f14c8" id="r_a0b5c909096e68f29b10481d9e07f14c8"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a0b5c909096e68f29b10481d9e07f14c8 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0b5c909096e68f29b10481d9e07f14c8">standard</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;chain, int index, int dim, vector&lt; int &gt; &amp;lookup)</td></tr>
+<tr class="memdesc:a0b5c909096e68f29b10481d9e07f14c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard destruction policy: indicates that this chain destroys the cycle created by its youngest face.  <br /></td></tr>
+<tr class="memitem:acdb0e94af6673710c0c7b2db114c3c4a" id="r_acdb0e94af6673710c0c7b2db114c3c4a"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:acdb0e94af6673710c0c7b2db114c3c4a template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#acdb0e94af6673710c0c7b2db114c3c4a">twist</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;chain, int index, int dim, vector&lt; int &gt; &amp;lookup, <a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; &amp;Full)</td></tr>
+<tr class="memdesc:acdb0e94af6673710c0c7b2db114c3c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clearing destruction policy: since the youngest face of this chain induces a cycle (i.e. the boundary of this chain), we can pre-emptively clear the column corresponding to the youngest face. This prevents the boundary column from being processed and immediately marks it as a persistence pair.  <br /></td></tr>
+<tr class="memitem:a9a9ada9514b210ffe15886ca1d2bf6d8" id="r_a9a9ada9514b210ffe15886ca1d2bf6d8"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a9a9ada9514b210ffe15886ca1d2bf6d8 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9a9ada9514b210ffe15886ca1d2bf6d8">JIT</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;chain, int index, int dim, vector&lt; int &gt; &amp;lookup, vector&lt; bool &gt; &amp;zeroed)</td></tr>
+<tr class="memdesc:a9a9ada9514b210ffe15886ca1d2bf6d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">A parallel-friendly clearing destruction policy: since the youngest face of this chain induces a cycle (i.e. the boundary of this chain), we can pre-emptively mark the column corresponding to its youngest face as cleared. This prevents the column from being unnecessarily processed.  <br /></td></tr>
+<tr class="memitem:ab54189c03a724c5ca9dce2afd7edff0c" id="r_ab54189c03a724c5ca9dce2afd7edff0c"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:ab54189c03a724c5ca9dce2afd7edff0c template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab54189c03a724c5ca9dce2afd7edff0c">split</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;chain, int index, int dim, vector&lt; int &gt; &amp;lookup, vector&lt; bool &gt; &amp;zeroed, <a class="el" href="namespace_a_t_e_a_m_s.html#a300100047e4923c006886da5e51435c8">SparseMatrix</a>&lt; RingLike &gt; &amp;Full)</td></tr>
+<tr class="memdesc:ab54189c03a724c5ca9dce2afd7edff0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A parallel-friendly clearing destruction policy: since the youngest face of this chain induces a cycle (i.e. the boundary of this chain), we can pre-emptively mark the column corresponding to its youngest face as cleared and, since the concurrent threads' memory locations do not overlap, actually zero the column. This prevents the column from being unnecessarily processed.  <br /></td></tr>
 </table>
 <a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
 <a id="a1b991f2fced881490cfe05a9e4e5d6b7" name="a1b991f2fced881490cfe05a9e4e5d6b7"></a>
@@ -198,8 +198,8 @@ template&lt;typename RingLike&gt; </div>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a7238e6a22007785f3119a5587c0cd0f6" name="a7238e6a22007785f3119a5587c0cd0f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7238e6a22007785f3119a5587c0cd0f6">&#9670;&#160;</a></span>JIT()</h2>
+<a id="a9a9ada9514b210ffe15886ca1d2bf6d8" name="a9a9ada9514b210ffe15886ca1d2bf6d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a9ada9514b210ffe15886ca1d2bf6d8">&#9670;&#160;</a></span>JIT()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -217,7 +217,7 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>markedIndex</em></span>, </td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -252,7 +252,7 @@ template&lt;typename RingLike&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">chain</td><td>Chain with boundary. </td></tr>
-    <tr><td class="paramname">markedIndex</td><td>Column index of the chain. </td></tr>
+    <tr><td class="paramname">index</td><td>Column index of the chain. </td></tr>
     <tr><td class="paramname">dim</td><td>Dimension of the chain. </td></tr>
     <tr><td class="paramname">lookup</td><td>Lookup table. </td></tr>
     <tr><td class="paramname">zeroed</td><td>Indicates which columns have been zeroed. </td></tr>
@@ -264,8 +264,8 @@ template&lt;typename RingLike&gt; </div>
 
 </div>
 </div>
-<a id="a2d02daa01e532ee65f476c8f9566b4c0" name="a2d02daa01e532ee65f476c8f9566b4c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d02daa01e532ee65f476c8f9566b4c0">&#9670;&#160;</a></span>split()</h2>
+<a id="ab54189c03a724c5ca9dce2afd7edff0c" name="ab54189c03a724c5ca9dce2afd7edff0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab54189c03a724c5ca9dce2afd7edff0c">&#9670;&#160;</a></span>split()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -283,7 +283,7 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>markedIndex</em></span>, </td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -323,7 +323,7 @@ template&lt;typename RingLike&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">chain</td><td>Chain with boundary. </td></tr>
-    <tr><td class="paramname">markedIndex</td><td>Column index of the chain. </td></tr>
+    <tr><td class="paramname">index</td><td>Column index of the chain. </td></tr>
     <tr><td class="paramname">dim</td><td>Dimension of the chain. </td></tr>
     <tr><td class="paramname">lookup</td><td>Lookup table. </td></tr>
     <tr><td class="paramname">zeroed</td><td>Indicates which columns have been zeroed. </td></tr>
@@ -336,8 +336,8 @@ template&lt;typename RingLike&gt; </div>
 
 </div>
 </div>
-<a id="a7cf30c9ad27ecc6f3ddfa5983a8f2d0b" name="a7cf30c9ad27ecc6f3ddfa5983a8f2d0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7cf30c9ad27ecc6f3ddfa5983a8f2d0b">&#9670;&#160;</a></span>standard()</h2>
+<a id="a0b5c909096e68f29b10481d9e07f14c8" name="a0b5c909096e68f29b10481d9e07f14c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b5c909096e68f29b10481d9e07f14c8">&#9670;&#160;</a></span>standard()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -355,7 +355,7 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>markedIndex</em></span>, </td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -385,7 +385,7 @@ template&lt;typename RingLike&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">chain</td><td>Chain with boundary. </td></tr>
-    <tr><td class="paramname">markedIndex</td><td>Column index of the chain. </td></tr>
+    <tr><td class="paramname">index</td><td>Column index of the chain. </td></tr>
     <tr><td class="paramname">dim</td><td>Dimension of the chain. </td></tr>
     <tr><td class="paramname">lookup</td><td>Lookup table. </td></tr>
   </table>
@@ -396,8 +396,8 @@ template&lt;typename RingLike&gt; </div>
 
 </div>
 </div>
-<a id="a4829211674db9db6dbe1c786a30c8dc0" name="a4829211674db9db6dbe1c786a30c8dc0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4829211674db9db6dbe1c786a30c8dc0">&#9670;&#160;</a></span>twist()</h2>
+<a id="acdb0e94af6673710c0c7b2db114c3c4a" name="acdb0e94af6673710c0c7b2db114c3c4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdb0e94af6673710c0c7b2db114c3c4a">&#9670;&#160;</a></span>twist()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -415,7 +415,7 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>markedIndex</em></span>, </td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -450,7 +450,7 @@ template&lt;typename RingLike&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">chain</td><td>Chain with boundary. </td></tr>
-    <tr><td class="paramname">markedIndex</td><td>Column index of the chain. </td></tr>
+    <tr><td class="paramname">index</td><td>Column index of the chain. </td></tr>
     <tr><td class="paramname">dim</td><td>Dimension of the chain. </td></tr>
     <tr><td class="paramname">lookup</td><td>Lookup table. </td></tr>
     <tr><td class="paramname">Full</td><td>Full (co)boundary matrix. </td></tr>

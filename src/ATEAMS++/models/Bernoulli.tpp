@@ -16,7 +16,7 @@ namespace ATEAMS::models {
 	Bernoulli::State Bernoulli::sample(
 		int t,
 		Bernoulli::State& state,
-		arithmetic::ComputeResources<RingType>& options
+		arithmetic::ComputeResources<RingType>& resources
 	) {
 		// If we're debugging, check that the inclusion probability is a probability
 		// to begin with.
@@ -60,7 +60,7 @@ namespace ATEAMS::models {
 
 		// Now, compute the persistence times, then filter over them to capture only
 		// the ones within the right window.
-		vector<int> essential = topology::persistence::persistence<RingType>(this->complex, this->filtration, this->coefficients, d, options);
+		vector<int> essential = topology::persistence::persistence<RingType>(this->complex, this->filtration, this->coefficients, d, resources);
 
 		if (this->DEBUG) {
 			std::cerr << "outputting filtration to stdout..." << std::endl;

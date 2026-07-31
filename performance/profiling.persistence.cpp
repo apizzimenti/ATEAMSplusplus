@@ -26,13 +26,14 @@ int main(int argc, char* argv[]) {
 	// Read in the sample filtrations.
 	vector<vector<int>> filtrations = filtrationData(plex.size(), SCALE, DIMENSION, TRIALS);
 
-	// Create compute options.
-	arithmetic::ComputeResources<Zp> options;
+	// Create compute resources.
+	arithmetic::ComputeResources<Zp> resources;
+	resources.arithmetize(&R);
 
-	thread listener = options.spinUp();
-	options.parallel->enabled = true;
-	options.parallel->build(plex.size(), plex.Cells.size());
-	options.serial->build(plex.size());
+	thread listener = resources.spinUp();
+	resources.parallel->enabled = true;
+	resources.parallel->build(plex.size(), plex.Cells.size());
+	resources.serial->build(plex.size());
 
 	// Create a bucket for storing times to completion.
 	vector<int> TTC(TRIALS);
@@ -42,17 +43,17 @@ int main(int argc, char* argv[]) {
 		K = filtrations[t];
 
 		// ik it's lazy but whatever
-		if (STRATEGY == "JIT") persistence::JIT<Zp>(&plex, K, &R, options);
-		else if (STRATEGY == "twist") persistence::twist<Zp>(&plex, K, &R, options);
-		else if (STRATEGY == "standard") persistence::standard<Zp>(&plex, K, &R, options);
-		else if (STRATEGY == "stagger") persistence::stagger<Zp>(&plex, K, &R, options);
-		else if (STRATEGY == "split") persistence::split<Zp>(&plex, K, &R, options);
-		else persistence::parallel<Zp>(&plex, K, &R, options);
+		if (STRATEGY == "JIT") persistence::JIT<Zp>(&plex, K, &R, resources);
+		else if (STRATEGY == "twist") persistence::twist<Zp>(&plex, K, &R, resources);
+		else if (STRATEGY == "standard") persistence::standard<Zp>(&plex, K, &R, resources);
+		else if (STRATEGY == "stagger") persistence::stagger<Zp>(&plex, K, &R, resources);
+		else if (STRATEGY == "split") persistence::split<Zp>(&plex, K, &R, resources);
+		else persistence::parallel<Zp>(&plex, K, &R, resources);
 
 	}
 
 	// Spin down the listener.
-	options.spinDown(&listener);
+	resources.spinDown(&listener);
 
 	return 0;
 }

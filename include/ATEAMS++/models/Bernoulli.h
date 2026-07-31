@@ -97,7 +97,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @param t Time step.
 			 * @param state Tracks the state of the model. See @ref ATEAMS::statistics::Chain.
-			 * @param options Multithreaded computing environment options.
+			 * @param resources Multithreaded computing environment resources.
 			 * 
 			 * @returns @ref ModelState with @ref ModelState::essential,
 			 * @ref ModelState::includes, and @ref ModelState::t modified.
@@ -105,7 +105,7 @@ namespace ATEAMS::models {
 			State sample(
 				int t, 
 				State& state,
-				arithmetic::ComputeResources<RingType>& options
+				arithmetic::ComputeResources<RingType>& resources
 			) override;
 
 			/** @brief Initialization; superfluous. */

@@ -6,7 +6,7 @@
 #include "ATEAMS++/models/ModelState.h"
 #include "ATEAMS++/models/ModelParameters.h"
 #include "ATEAMS++/complexes/Complex.h"
-#include "ATEAMS++/arithmetic/options.h"
+#include "ATEAMS++/arithmetic/resources.h"
 
 #include <string>
 
@@ -59,11 +59,11 @@ namespace ATEAMS::models {
 			 * @param t When simulated by a Markov chain, \f$t\f$ is the current
 			 * 	time-step.
 			 * @param state Keeps track of state.
-			 * @param options Options for the multithreaded computing environment.
+			 * @param resources Computing resources.
 			 * 
 			 * @returns Modified state.
 			 */
-			virtual State sample(int t, State& state, ATEAMS::arithmetic::ComputeResources<RingLike>& options) = 0;
+			virtual State sample(int t, State& state, ATEAMS::arithmetic::ComputeResources<RingLike>& resources) = 0;
 
 			/**
 			 * @brief Initializes the state as determined by the model.

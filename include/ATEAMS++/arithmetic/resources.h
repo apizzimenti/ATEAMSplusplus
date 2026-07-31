@@ -13,12 +13,12 @@
 
 namespace ATEAMS::arithmetic {
 	/**
-	 * @brief Alias of `SparseRREF::rref_options`.
+	 * @brief Alias of `SparseRREF::rref_resources`.
 	 */
 	typedef SparseRREF::rref_option RREFOptions;
 
 	/**
-	 * @brief Alias of `SparseRREF::rref_options`.
+	 * @brief Alias of `SparseRREF::rref_resources`.
 	 */
 	typedef SparseRREF::rref_option_t RREFOptionType;
 

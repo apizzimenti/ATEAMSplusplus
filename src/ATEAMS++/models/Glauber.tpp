@@ -24,7 +24,7 @@ namespace ATEAMS::models {
 	Glauber<RingLike>::State Glauber<RingLike>::sample(
 		int t,
 		Glauber<RingLike>::State& state,
-		arithmetic::ComputeResources<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& resources
 	) {
 		// Compute the temperature and probability of including particular (d-1)-cells.
 		double temp = this->temperatureFunction(t);

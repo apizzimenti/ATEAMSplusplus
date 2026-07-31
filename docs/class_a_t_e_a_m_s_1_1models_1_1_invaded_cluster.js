@@ -7,7 +7,7 @@ var class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster =
     [ "InvadedCluster", "class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#afafbbd71d932120047091ab7281c867f", null ],
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a7b030c9a0aa70a4e8981234022509394", null ],
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#ada0b8474c0031645d1c9fbf4ba7fe4b3", null ],
-    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a7a4c3f4a33cee0a361fb730aec16b1a8", null ],
+    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#af5a5d07ab7260b2c9e74fc42da868bfb", null ],
     [ "name", "class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#a9b45b3e13bd9167aab02e17e08916231", null ],
     [ "stoppingFunction", "class_a_t_e_a_m_s_1_1models_1_1_invaded_cluster.html#aebdbd879c076f085f1f2efc8f4e93f7a", null ]
 ];

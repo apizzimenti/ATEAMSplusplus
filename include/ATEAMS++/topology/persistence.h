@@ -22,7 +22,7 @@ namespace ATEAMS::topology::persistence {
 	 * @brief Dispatch method for computing persistence; dispatches to 
 	 * @ref ATEAMS::topology::persistence::PHAT, @ref ATEAMS::topology::persistence::twist,
 	 * or @ref ATEAMS::topology::persistence::JIT depending on the characteristic
-	 * of @p R and parallelization options.
+	 * of @p R and parallelization resources.
 	 * 
 	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * 
@@ -32,7 +32,7 @@ namespace ATEAMS::topology::persistence {
 	 * 	1-dimensional percolation in 2-d, then we switch up the ordering of
 	 * 	the 1-d cells in the flat boundary matrix, but leave everything else.
 	 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
-	 * @param options Parallel computing environment options.
+	 * @param resources Parallel computing environment resources.
 	 * 
 	 * @returns A vector of percolation times.
 	 */
@@ -41,14 +41,14 @@ namespace ATEAMS::topology::persistence {
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
-		arithmetic::ComputeResources<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& resources
 	) {
 		std::vector<int> essential;
 
 		if (R->characteristic == 2) essential = PHAT<RingLike>(complex, filtration);
 		else {
-			if (options.parallel->enabled) essential = JIT<RingLike>(complex, filtration, R, options);
-			else essential = twist<RingLike>(complex, filtration, R, options);
+			if (resources.parallel->enabled) essential = JIT<RingLike>(complex, filtration, R, resources);
+			else essential = twist<RingLike>(complex, filtration, R, resources);
 		}
 
 		std::sort(essential.begin(), essential.end());
@@ -59,7 +59,7 @@ namespace ATEAMS::topology::persistence {
 	 * @brief Dispatch method for computing persistence; dispatches to 
 	 * @ref ATEAMS::topology::persistence::PHAT, @ref ATEAMS::topology::persistence::twist,
 	 * or @ref ATEAMS::topology::persistence::JIT depending on the characteristic
-	 * of @p R and parallelization options. Convenience overload for computing
+	 * of @p R and parallelization resources. Convenience overload for computing
 	 * the persistence of a single dimension.
 	 * 
 	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
@@ -71,7 +71,7 @@ namespace ATEAMS::topology::persistence {
 	 * 	the 1-d cells in the flat boundary matrix, but leave everything else.
 	 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * @param dimension The percolation dimension.
-	 * @param options Options for the multithreaded computing environment.
+	 * @param resources Computing resources.
 	 * 
 	 * @returns A vector of percolation times.
 	 */
@@ -81,14 +81,14 @@ namespace ATEAMS::topology::persistence {
 		std::vector<int>& filtration,
 		Ring* R,
 		int dimension,
-		arithmetic::ComputeResources<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& resources
 	) {
 		std::vector<int> essential;
 
 		if (R->characteristic == 2) essential = PHAT<RingLike>(complex, filtration, dimension);
 		else {
-			if (options.parallel->enabled) essential = JIT<RingLike>(complex, filtration, R, dimension, options);
-			else essential = twist<RingLike>(complex, filtration, R, dimension, options);
+			if (resources.parallel->enabled) essential = JIT<RingLike>(complex, filtration, R, dimension, resources);
+			else essential = twist<RingLike>(complex, filtration, R, dimension, resources);
 		}
 		
 		std::sort(essential.begin(), essential.end());

@@ -25,7 +25,7 @@ namespace ATEAMS::models {
 	Invasion<RingLike>::State Invasion<RingLike>::sample(
 		int t,
 		Invasion<RingLike>::State& state,
-		arithmetic::ComputeResources<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& resources
 	) {
 		int d = this->dimension;
 
@@ -48,7 +48,7 @@ namespace ATEAMS::models {
 			this->filtration,
 			this->coefficients,
 			this->dimension,
-			options
+			resources
 		);
 
 		// Now, determine at what time we hit the desired number of giant cycles

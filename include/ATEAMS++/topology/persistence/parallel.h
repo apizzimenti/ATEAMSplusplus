@@ -23,7 +23,7 @@ namespace ATEAMS::topology::persistence {
 	 * 	1-dimensional percolation in 2-d, then we switch up the ordering of
 	 * 	the 1-d cells in the flat boundary matrix, but leave everything else.
 	 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
-	 * @param options Parallel computing environment options.
+	 * @param resources Parallel computing environment resources.
 	 * @param reindexingPolicy How to reindex the full boundary matrix.
 	 * @param traversalPolicy How to traverse matrix blocks.
 	 * @param reportingPolicy How to report essential cycles.
@@ -35,7 +35,7 @@ namespace ATEAMS::topology::persistence {
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
-		arithmetic::ComputeResources<RingLike>& options,
+		arithmetic::ComputeResources<RingLike>& resources,
 		auto& reindexingPolicy,
 		auto& traversalPolicy,
 		auto& reportingPolicy
@@ -58,7 +58,7 @@ namespace ATEAMS::topology::persistence {
 	 * 	the 1-d cells in the flat boundary matrix, but leave everything else.
 	 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
 	 * @param dimension The percolation dimension.
-	 * @param options Parallel computing environment options.
+	 * @param resources Parallel computing environment resources.
 	 * 
 	 * @returns A vector of percolation times.
 	 */
@@ -68,7 +68,7 @@ namespace ATEAMS::topology::persistence {
 		std::vector<int>& filtration,
 		Ring* R,
 		int dimension,
-		arithmetic::ComputeResources<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& resources
 	);
 
 	/**
@@ -85,7 +85,7 @@ namespace ATEAMS::topology::persistence {
 	 * 	1-dimensional percolation in 2-d, then we switch up the ordering of
 	 * 	the 1-d cells in the flat boundary matrix, but leave everything else.
 	 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
-	 * @param options Parallel computing environment options.
+	 * @param resources Parallel computing environment resources.
 	 * 
 	 * @returns A vector of percolation times.
 	 */
@@ -94,7 +94,7 @@ namespace ATEAMS::topology::persistence {
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
-		arithmetic::ComputeResources<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& resources
 	);
 }
 

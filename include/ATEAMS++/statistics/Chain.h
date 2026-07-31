@@ -49,8 +49,8 @@ namespace ATEAMS {
 		 * @var Chain::state
 		 * 	@brief A @ref models::ModelState.
 		 * 
-		 * @var Chain::options
-		 * 	@brief Multithreaded computing options @ref arithmetic::ComputeResources.
+		 * @var Chain::resources
+		 * 	@brief Multithreaded computing resources @ref arithmetic::ComputeResources.
 		 * 
 		 * @var Chain::steps
 		 * 	@brief Number of iterations.
@@ -59,7 +59,7 @@ namespace ATEAMS {
 		class Chain {
 			public:
 				ModelType* model;
-				arithmetic::ComputeResources<typename ModelType::RingType> options;
+				arithmetic::ComputeResources<typename ModelType::RingType> resources;
 
 				int steps;
 
@@ -79,15 +79,15 @@ namespace ATEAMS {
 					this->model = model;
 					this->steps = steps;
 
-					// arithmetic::ComputeResources<typename ModelType::RingType> options(this->model->coefficients);
-					// this->options = options;
+					// arithmetic::ComputeResources<typename ModelType::RingType> resources(this->model->coefficients);
+					// this->resources = resources;
 
-					options.arithmetize(model->coefficients);
+					resources.arithmetize(model->coefficients);
 
 					// Initialize parallel computing capability.
-					options.parallel->enabled = true;
-					options.parallel->build(model->complex->size(), model->complex->Cells.size());
-					options.serial->build(model->complex->size());
+					resources.parallel->enabled = true;
+					resources.parallel->build(model->complex->size(), model->complex->Cells.size());
+					resources.serial->build(model->complex->size());
 
 					State state;
 					this->state = state;
@@ -104,14 +104,14 @@ namespace ATEAMS {
 					this->model = model;
 					this->steps = steps;
 
-					// arithmetic::ComputeResources<typename ModelType::RingType> options(this->model->coefficients);
-					// this->options = options;
+					// arithmetic::ComputeResources<typename ModelType::RingType> resources(this->model->coefficients);
+					// this->resources = resources;
 
 					// Initialize parallel computing capability.
-					options.parallel->enabled = false;
-					// options.parallel->build(model->complex.size(), model->complex.Cells.size());
-					options.serial->build(model->complex->size());
-					options.arithmetize(model->coefficients);
+					resources.parallel->enabled = false;
+					// resources.parallel->build(model->complex.size(), model->complex.Cells.size());
+					resources.serial->build(model->complex->size());
+					resources.arithmetize(model->coefficients);
 
 					State state;
 					this->state = state;
@@ -122,18 +122,18 @@ namespace ATEAMS {
 				 * 
 				 * @param model (Pointer to) a Model instance.
 				 * @param steps Number of iterations.
-				 * @param options User-provided compute options.
+				 * @param resources User-provided compute resources.
 				 */
 				Chain(
 					ModelType* model,
 					int steps,
-					arithmetic::ComputeResources<typename ModelType::RingType> options
+					arithmetic::ComputeResources<typename ModelType::RingType> resources
 				) {
 					this->model = model;
 					this->steps = steps;
-					this->options = options;
+					this->resources = resources;
 
-					options.arithmetize(model->coefficients);
+					resources.arithmetize(model->coefficients);
 
 					State state;
 					this->state = state;
@@ -154,16 +154,16 @@ namespace ATEAMS {
 				 * @returns A `std::generator`.
 				 */
 				std::generator<State> simulate() {
-					std::thread listener = options.spinUp();
+					std::thread listener = resources.spinUp();
 					this->model->initialize(this->state);
 
 					for (int t=0; t < this->steps; t++) {
-						this->model->sample(t, this->state, this->options);
+						this->model->sample(t, this->state, this->resources);
 						co_yield this->state;
 					}
 
 					// Spin down multithreading environment.
-					options.spinDown(&listener);
+					resources.spinDown(&listener);
 				}
 		};
 	}

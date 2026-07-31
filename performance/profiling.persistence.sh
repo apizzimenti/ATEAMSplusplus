@@ -18,7 +18,7 @@ for EXEC in "${EXECS[@]}"; do
 				for STRATEGY in "${STRATEGIES[@]}"; do
 
 					PADDEDSCALE=${(l(2)(0))SCALE}
-					PREFIX="$HOST.$EXEC.$STRATEGY.$PADDEDSCALE.$DIMENSION.$FIELD"
+					PREFIX="$HOST.$EXEC.$STRATEGY.$PADDEDSCALE.$DIMENSION.$FIELD.cached"
 
 					STAT="./performance/profiling/$PREFIX.stat"
 					RECORD="./performance/profiling/$PREFIX.record"

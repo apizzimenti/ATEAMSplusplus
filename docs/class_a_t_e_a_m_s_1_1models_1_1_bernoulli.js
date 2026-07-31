@@ -7,7 +7,7 @@ var class_a_t_e_a_m_s_1_1models_1_1_bernoulli =
     [ "Bernoulli", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#aa2918da9c0b0f63cc4eede3dcf8ca8b8", null ],
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#ada0b8474c0031645d1c9fbf4ba7fe4b3", null ],
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a6ee6cbd44e092a808b95a01fa04472ad", null ],
-    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#afb0ab4250d83f2d65dc2657aa9a9a99f", null ],
+    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#ae78f2676c3aeb624ace1f107387b074c", null ],
     [ "name", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a9b45b3e13bd9167aab02e17e08916231", null ],
     [ "p", "class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#aace2d484b0e3651abd108f04803d316c", null ]
 ];

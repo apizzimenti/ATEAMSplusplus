@@ -50,7 +50,7 @@ SparseVector<Zp> randomizedVector(
 
 
 int main(int argc, char* argv[]) {
-	// Field; thread options.
+	// Field; thread resources.
 	Zp R(stoi(argv[1]));
 	int N = stoi(argv[2]);
 	int TRIALS = stoi(argv[3]);
@@ -63,8 +63,8 @@ int main(int argc, char* argv[]) {
 	uniform_int_distribution<int> uniformValues(1, R.characteristic-1);
 	uniform_int_distribution<int> uniformEntries(1, N);
 
-	arithmetic::ComputeResources<Zp> options;
-	thread listener = options.spinUp();
+	arithmetic::ComputeResources<Zp> resources;
+	thread listener = resources.spinUp();
 
 
 	for (int t=0; t < TRIALS; t++) {
@@ -84,7 +84,7 @@ int main(int argc, char* argv[]) {
 		for (int i=0; i < lv.size(); i++) rv.push_back(lv(i), lv[i]);
 
 		SparseVector<Zp> lr = arithmetic::serialSparseVectorAddition<Zp>(lu, lv, &R);
-		SparseVector<Zp> rr = arithmetic::parallelSparseVectorAddition<Zp>(ru, rv, &R, options);
+		SparseVector<Zp> rr = arithmetic::parallelSparseVectorAddition<Zp>(ru, rv, &R, resources);
 
 		if (lr != rr) {
 			RESULT = FAIL;
@@ -103,7 +103,7 @@ int main(int argc, char* argv[]) {
 		}
 	}
 
-	options.spinDown(&listener);
+	resources.spinDown(&listener);
 
 	return RESULT;
 }

@@ -38,7 +38,7 @@ namespace ATEAMS::arithmetic {
 		set<size_t> exclude,
 		std::uniform_int_distribution<int>& intuniform,
 		std::mt19937& RNG,
-		ComputeResources<RingLike>& options,
+		ComputeResources<RingLike>& resources,
 		bool DEBUG
 	) {
 		// Shrink the coboundary matrix to the appropriate size.
@@ -51,13 +51,13 @@ namespace ATEAMS::arithmetic {
 		if (DEBUG) {
 			// RREF (i.e. find the pivots for) the subcoboundary matrix.
 			cerr << std::format("RREFing {}x{} coboundary matrix", coboundary.nrow, coboundary.ncol) << endl;
-			SparsePivots pivots = SparseMatrixRREF<RingLike>(coboundary, R, options);
+			SparsePivots pivots = SparseMatrixRREF<RingLike>(coboundary, R, resources);
 
 			// Find a kernel for the subcoboundary matrix.
 			cerr << std::format("computing kernel of {}x{} coboundary matrix", coboundary.nrow, coboundary.ncol) << endl;
-			kernel = SparseMatrixRREFKernel<RingLike>(coboundary, R, pivots, options);
+			kernel = SparseMatrixRREFKernel<RingLike>(coboundary, R, pivots, resources);
 		} else {
-			kernel = SparseMatrixKernel<RingLike>(coboundary, R, options);
+			kernel = SparseMatrixKernel<RingLike>(coboundary, R, resources);
 		}
 
 		// Return a random linear combination of the columns.

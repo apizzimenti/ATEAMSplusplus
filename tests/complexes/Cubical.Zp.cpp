@@ -10,7 +10,7 @@ vector<int> homologySizes(
 	complexes::Complex<Zp>* COMPLEX,
 	Ring* QQ,
 	int dimension,
-	arithmetic::ComputeResources<Zp>& options
+	arithmetic::ComputeResources<Zp>& resources
 ) {
 	// Swap two elements and verify they are reindexed correctly.
 	vector<int> FILTRATION(COMPLEX->size(), 0);
@@ -19,7 +19,7 @@ vector<int> homologySizes(
 	vector<int> sizes;
 
 	for (int d=0; d < COMPLEX->Breaks.size(); d++) {
-		vector<int> times = topology::persistence<Zp>(COMPLEX, FILTRATION, QQ, d, options);
+		vector<int> times = topology::persistence<Zp>(COMPLEX, FILTRATION, QQ, d, resources);
 		printvector<int>(times);
 
 		sizes.push_back(
@@ -34,9 +34,9 @@ vector<int> homologySizes(
 
 
 int main() {
-	// Construct arithmetic options.
-	arithmetic::ComputeResources<Zp> options;
-	std::thread listener = options.spinUp();
+	// Construct arithmetic resources.
+	arithmetic::ComputeResources<Zp> resources;
+	std::thread listener = resources.spinUp();
 
 	// Construct Cubical complexes of varying dimensions/boundary conditions,
 	// verifying whether they're constructed correctly. We perform two checks:
@@ -64,15 +64,15 @@ int main() {
 		CUBICAL.constructFlatBoundaryMatrix();
 		CUBICAL.constructFullBoundaryMatrix(&QQ);
 
-		vector<int> sizes = homologySizes(&CUBICAL, &QQ, dimension, options);
+		vector<int> sizes = homologySizes(&CUBICAL, &QQ, dimension, resources);
 
 		if (sizes != homologies[dimension]) {
-			options.spinDown(&listener);
+			resources.spinDown(&listener);
 			return FAIL;
 		}
 	}
 
 	// Now, check that we're getting the persistence correct.
-	options.spinDown(&listener);
+	resources.spinDown(&listener);
 	return PASS;
 }

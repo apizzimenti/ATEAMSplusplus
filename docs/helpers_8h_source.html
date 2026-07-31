@@ -134,12 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">inline</span> SparseMatrix&lt;RingLike&gt; reindexSparseBoundaryMatrix(</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        complexes::Complex&lt;RingLike&gt;* complex,</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        vector&lt;int&gt;&amp; filtration,</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        arithmetic::ComputeOptions&lt;RingLike&gt;&amp; options</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        arithmetic::ComputeResources&lt;RingLike&gt;&amp; resources</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    ) {</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="comment">// Construct an index mapping.</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        vector&lt;int&gt; remapping(filtration.size());</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">        #pragma omp parallel for shared(filtration, remapping) if(options.parallel-&gt;enabled)</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">        #pragma omp parallel for shared(filtration, remapping) if(resources.parallel-&gt;enabled)</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t=0; t &lt; filtration.size(); t++) remapping[filtration[t]] = t;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="comment">// Duplicate the matrix.</span></div>
@@ -169,12 +169,12 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        complexes::Complex&lt;RingLike&gt;* complex,</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        vector&lt;int&gt;&amp; filtration,</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordtype">int</span> dimension,</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        arithmetic::ComputeOptions&lt;RingLike&gt;&amp; options</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        arithmetic::ComputeResources&lt;RingLike&gt;&amp; resources</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    ) {</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="comment">// Construct an index mapping.</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        vector&lt;int&gt; remapping(filtration.size());</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">        #pragma omp parallel for shared(filtration, remapping) if(options.parallel-&gt;enabled)</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">        #pragma omp parallel for shared(filtration, remapping) if(resources.parallel-&gt;enabled)</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t=0; t &lt; filtration.size(); t++) remapping[filtration[t]] = t;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        SparseMatrix&lt;RingLike&gt; Full = complex-&gt;Coboundary.Full;</div>
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordtype">int</span> startDimension = complex-&gt;Breaks[dimension][0];</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordtype">int</span> stopDimension = complex-&gt;Breaks[dimension][1];</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">        #pragma omp parallel for shared(Full, Reindexed) if (options.parallel-&gt;enabled)</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">        #pragma omp parallel for shared(Full, Reindexed) if (resources.parallel-&gt;enabled)</span></div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t=0; t &lt; Full.nrow; t++) {</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            <span class="keywordflow">if</span> ((startDimension &lt;= t) &amp;&amp; (t &lt; stopDimension)) {</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                Reindexed.rows[t] = Full.rows[filtration[t]];</div>

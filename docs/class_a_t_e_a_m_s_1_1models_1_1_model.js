@@ -6,7 +6,7 @@ var class_a_t_e_a_m_s_1_1models_1_1_model =
     [ "Model", "class_a_t_e_a_m_s_1_1models_1_1_model.html#af4902cce023a35cb4c3201a4600e140b", null ],
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_model.html#a8461a036202b67cd329481cd12d44338", null ],
     [ "initialize", "class_a_t_e_a_m_s_1_1models_1_1_model.html#aad3020f7fa4df3aaddda33d8114986f5", null ],
-    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_model.html#a0049ae5e614585d9abdc8ec577be932c", null ],
+    [ "sample", "class_a_t_e_a_m_s_1_1models_1_1_model.html#ab8b92f0814b9856ab707595f0cb2016d", null ],
     [ "coefficients", "class_a_t_e_a_m_s_1_1models_1_1_model.html#a67c367e941d9cfa52dc173c8a0dc20f5", null ],
     [ "complex", "class_a_t_e_a_m_s_1_1models_1_1_model.html#aa9fb7501f4721a129cf3d6f6f0160d84", null ],
     [ "DEBUG", "class_a_t_e_a_m_s_1_1models_1_1_model.html#a117352cc494cc62c6b2f1882786a332c", null ],

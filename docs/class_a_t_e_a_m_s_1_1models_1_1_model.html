@@ -173,8 +173,8 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af4902cce023a35cb4c3201a4600e140b" id="r_af4902cce023a35cb4c3201a4600e140b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af4902cce023a35cb4c3201a4600e140b">Model</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, bool DEBUG=false)</td></tr>
-<tr class="memitem:a0049ae5e614585d9abdc8ec577be932c" id="r_a0049ae5e614585d9abdc8ec577be932c"><td class="memItemLeft">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#a0049ae5e614585d9abdc8ec577be932c">sample</a> (int t, <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">ATEAMS::arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;options)=0</td></tr>
-<tr class="memdesc:a0049ae5e614585d9abdc8ec577be932c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sample from the model.  <br /></td></tr>
+<tr class="memitem:ab8b92f0814b9856ab707595f0cb2016d" id="r_ab8b92f0814b9856ab707595f0cb2016d"><td class="memItemLeft">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab8b92f0814b9856ab707595f0cb2016d">sample</a> (int t, <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;state, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">ATEAMS::arithmetic::ComputeResources</a>&lt; RingLike &gt; &amp;resources)=0</td></tr>
+<tr class="memdesc:ab8b92f0814b9856ab707595f0cb2016d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sample from the model.  <br /></td></tr>
 <tr class="memitem:a8461a036202b67cd329481cd12d44338" id="r_a8461a036202b67cd329481cd12d44338"><td class="memItemLeft">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8461a036202b67cd329481cd12d44338">initialize</a> (<a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;state)=0</td></tr>
 <tr class="memdesc:a8461a036202b67cd329481cd12d44338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the state as determined by the model.  <br /></td></tr>
 <tr class="memitem:aad3020f7fa4df3aaddda33d8114986f5" id="r_aad3020f7fa4df3aaddda33d8114986f5"><td class="memItemLeft">virtual <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#aad3020f7fa4df3aaddda33d8114986f5">initialize</a> (VectorLike&lt; RingLike &gt; c, <a class="el" href="#a4acb906988ee43ce29046d7e8d35d126">State</a> &amp;state)=0</td></tr>
@@ -378,8 +378,8 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
 
 </div>
 </div>
-<a id="a0049ae5e614585d9abdc8ec577be932c" name="a0049ae5e614585d9abdc8ec577be932c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0049ae5e614585d9abdc8ec577be932c">&#9670;&#160;</a></span>sample()</h2>
+<a id="ab8b92f0814b9856ab707595f0cb2016d" name="ab8b92f0814b9856ab707595f0cb2016d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8b92f0814b9856ab707595f0cb2016d">&#9670;&#160;</a></span>sample()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -402,7 +402,7 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html">ATEAMS::arithmetic::ComputeOptions</a>&lt; RingLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">ATEAMS::arithmetic::ComputeResources</a>&lt; RingLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>resources</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -417,7 +417,7 @@ template&lt;typename RingLike, template&lt; typename &gt; typename VectorLike&gt
   <table class="params">
     <tr><td class="paramname">t</td><td>When simulated by a Markov chain, \(t\) is the current time-step. </td></tr>
     <tr><td class="paramname">state</td><td>Keeps track of state. </td></tr>
-    <tr><td class="paramname">options</td><td>Options for the multithreaded computing environment.</td></tr>
+    <tr><td class="paramname">resources</td><td>Computing resources.</td></tr>
   </table>
   </dd>
 </dl>

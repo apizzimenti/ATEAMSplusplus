@@ -4,7 +4,7 @@
 
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/models/Model.h"
-#include "ATEAMS++/arithmetic/options.h"
+#include "ATEAMS++/arithmetic/resources.h"
 
 #include <random>
 #include <string>
@@ -102,7 +102,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @param t Time step.
 			 * @param state Model state.
-			 * @param options Multithreaded computing environment options.
+			 * @param resources Multithreaded computing environment resources.
 			 * 
 			 * @return Model state with @ref ModelState::includes, @ref ModelState::essential,
 			 * and @ref ModelState::t updated.
@@ -110,7 +110,7 @@ namespace ATEAMS::models {
 			State sample(
 				int t,
 				State& state,
-				ATEAMS::arithmetic::ComputeResources<RingLike>& options
+				ATEAMS::arithmetic::ComputeResources<RingLike>& resources
 			) override;
 
 			/** @brief Initialization; superfluous. */

@@ -4,7 +4,7 @@
 
 #include "ATEAMS++/common.h"
 #include "ATEAMS++/models/Model.h"
-#include "ATEAMS++/arithmetic/options.h"
+#include "ATEAMS++/arithmetic/resources.h"
 
 #include <random>
 #include <string>
@@ -119,7 +119,7 @@ namespace ATEAMS::models {
 			 * 
 			 * @param t Time step.
 			 * @param state Tracks state; see @ref ATEAMS::statistics::Chain.
-			 * @param options Multithreaded computing environment options.
+			 * @param resources Multithreaded computing environment resources.
 			 * 
 			 * @return State with modified @ref ModelState::cochain,
 			 * @ref ModelState::energy, and @ref ModelState::t.
@@ -127,7 +127,7 @@ namespace ATEAMS::models {
 			State sample(
 				int t,
 				State& state,
-				arithmetic::ComputeResources<RingLike>& options
+				arithmetic::ComputeResources<RingLike>& resources
 			) override;
 
 			/**

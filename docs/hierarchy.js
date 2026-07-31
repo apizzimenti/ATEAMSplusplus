@@ -5,8 +5,9 @@ var hierarchy =
     [ "Complex&lt; RingLike &gt;", "class_a_t_e_a_m_s_1_1complexes_1_1_complex.html", [
       [ "Cubical< RingLike >", "class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html", null ]
     ] ],
-    [ "ComputeOptions&lt; RingLike &gt;", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_options.html", null ],
+    [ "ComputeResources&lt; RingLike &gt;", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html", null ],
     [ "DataWriter", "class_a_t_e_a_m_s_1_1_data_writer.html", null ],
+    [ "FiniteArithmetic&lt; RingLike &gt;", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_finite_arithmetic.html", null ],
     [ "Model&lt; RingLike, VectorLike &gt;", "class_a_t_e_a_m_s_1_1models_1_1_model.html", null ],
     [ "Model&lt; RingLike, DenseVector &gt;", "class_a_t_e_a_m_s_1_1models_1_1_model.html", [
       [ "Invasion< RingLike >", "class_a_t_e_a_m_s_1_1models_1_1_invasion.html", null ]

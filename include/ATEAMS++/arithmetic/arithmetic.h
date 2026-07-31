@@ -6,7 +6,7 @@
 #include <SparseRREF/sparse_vec.h>
 #include <SparseRREF/scalar.h>
 
-#include "ATEAMS++/arithmetic/options.h"
+#include "ATEAMS++/arithmetic/resources.h"
 
 namespace ATEAMS {
 	/**
@@ -22,13 +22,14 @@ namespace ATEAMS {
 		 * @param u Vector.
 		 * @param v Vector.
 		 * @param R (Pointer to) the coefficient ring @ref Q.
+		 * @param resources Computing resources with cached arithmetic tables.
 		 */
 		template <typename RingLike>
 		inline void SparseVectorAddition(
 			SparseVector<RingLike>& u,
 			const SparseVector<RingLike>& v,
 			Ring* R,
-			ComputeResources<RingLike>& options
+			ComputeResources<RingLike>& resources
 		) {
 			// If one of the vectors is zero, just return.
 			if (v.nnz() == 0) return;
@@ -46,7 +47,7 @@ namespace ATEAMS {
 			while (left > 0 && right > 0) {
 				// If we're pointing to the same index...
 				if (u(left-1) == v(right-1)) {
-					auto entry = options.arithmetic->add[(int)u[left-1]][(int)v[right-1]];
+					auto entry = resources.arithmetic->add[(int)u[left-1]][(int)v[right-1]];
 
 					// ... and we get a nonzero entry, then the index of this entry
 					// is the same as in the original vector, and the entry is the
@@ -70,7 +71,7 @@ namespace ATEAMS {
 					// to the index of the one on the right (since this preserves
 					// the order), then set the entry...
 					u(out-1) = v(right-1);
-					u[out-1] = (typename RingLike::dtype)v[right-1];
+					u[out-1] = v[right-1];
 
 					// ... then decrement the right pointer and the out pointer,
 					// since they track together in this case.
@@ -83,7 +84,7 @@ namespace ATEAMS {
 				// but with the roles reversed.
 				else {
 					u(out-1) = u(left-1);
-					u[out-1] = (typename RingLike::dtype)u[left-1];
+					u[out-1] = u[left-1];
 					left--;
 					out--;
 				}
@@ -99,6 +100,7 @@ namespace ATEAMS {
 			}
 
 			// Zero out the remaining entries, if there are any.
+			// #pragma omp parallel for default(shared) schedule(guided)
 			for (size_t i=left; i < out; i++) u[i] = 0;
 
 			// Canonicalize.
@@ -117,9 +119,9 @@ namespace ATEAMS {
 		// 	SparseVector<Z2>& u,
 		// 	SparseVector<Z2>& v,
 		// 	Ring* R,
-		// 	ComputeResources<Z2>& options
+		// 	ComputeResources<Z2>& resources
 		// ) {
-		// 	SparseVectorAddition<Zp>(u, v, R, options);
+		// 	SparseVectorAddition<Zp>(u, v, R, resources);
 		// };
 
 		// /**
@@ -134,7 +136,7 @@ namespace ATEAMS {
 		// 	SparseVector<Zp>& u,
 		// 	SparseVector<Zp>& v,
 		// 	Ring* R,
-		// 	ComputeResources<Zp>& options
+		// 	ComputeResources<Zp>& resources
 		// ) {
 			// sparse_vec_add<INDEX>(u, v, R->ring);
 		// };
@@ -151,7 +153,7 @@ namespace ATEAMS {
 		// 	SparseVector<Q>& u,
 		// 	SparseVector<Q>& v,
 		// 	Ring* R,
-		// 	ComputeResources<Q>& options
+		// 	ComputeResources<Q>& resources
 		// ) {
 		// 	sfmpq_vec_addsub_mul<INDEX,false>(u, v, (Q::dtype)1);
 		// }
@@ -204,6 +206,7 @@ namespace ATEAMS {
 			Ring* R,
 			ComputeResources<RingLike>& resources
 		) {
+			// #pragma omp parallel for default(shared) schedule(guided)
 			for (int t=0; t < x.size(); t++) {
 				x[t] = resources.arithmetic->multiply[x[t]][a];
 			}
@@ -215,7 +218,7 @@ namespace ATEAMS {
 		 * 
 		 * @param A Matrix.
 		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
-		 * @param options Multithreaded computing options.
+		 * @param resources Multithreaded computing resources.
 		 * 
 		 * @returns \f$ \RREF(A) \f$.
 		 */
@@ -223,9 +226,9 @@ namespace ATEAMS {
 		inline SparsePivots SparseMatrixRREF(
 			SparseMatrix<RingLike>& A,
 			Ring* R,
-			ComputeResources<RingLike>& options
+			ComputeResources<RingLike>& resources
 		) {
-			return SparseRREF::sparse_mat_rref<typename RingLike::dtype,INDEX>(A, R->ring, options.opt);
+			return SparseRREF::sparse_mat_rref<typename RingLike::dtype,INDEX>(A, R->ring, resources.opt);
 		};
 
 		/**
@@ -236,7 +239,7 @@ namespace ATEAMS {
 		 * @param A Matrix.
 		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
 		 * @param pivots Pivot indices of \f$ A \f$.
-		 * @param options Multithreaded computing options.
+		 * @param resources Multithreaded computing resources.
 		 * 
 		 * @returns \f$ \ker(A) \f$.
 		 */
@@ -245,9 +248,9 @@ namespace ATEAMS {
 			SparseMatrix<RingLike>& A,
 			Ring* R,
 			SparsePivots& pivots,
-			ComputeResources<RingLike>& options
+			ComputeResources<RingLike>& resources
 		) {
-			return SparseRREF::sparse_mat_rref_kernel<typename RingLike::dtype,INDEX>(A, pivots, R->ring, options.opt);
+			return SparseRREF::sparse_mat_rref_kernel<typename RingLike::dtype,INDEX>(A, pivots, R->ring, resources.opt);
 		};
 
 
@@ -257,7 +260,7 @@ namespace ATEAMS {
 		 * 
 		 * @param A Matrix.
 		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
-		 * @param options Multithreaded computing options.
+		 * @param resources Multithreaded computing resources.
 		 * 
 		 * @returns \f$ \ker(\RREF(A)) \f$.
 		 */
@@ -265,10 +268,10 @@ namespace ATEAMS {
 		inline SparseMatrix<RingLike> SparseMatrixKernel(
 			SparseMatrix<RingLike>& A,
 			Ring* R,
-			ComputeResources<RingLike>& options
+			ComputeResources<RingLike>& resources
 		) {
-			SparsePivots pivots = SparseMatrixRREF<RingLike>(A, R, options);
-			return SparseRREF::sparse_mat_rref_kernel<typename RingLike::dtype,INDEX>(A, pivots, R->ring, options.opt);
+			SparsePivots pivots = SparseMatrixRREF<RingLike>(A, R, resources);
+			return SparseRREF::sparse_mat_rref_kernel<typename RingLike::dtype,INDEX>(A, pivots, R->ring, resources.opt);
 		};
 	};
 }

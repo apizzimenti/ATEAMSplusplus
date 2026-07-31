@@ -1,8 +1,8 @@
 <map id="PHAT" name="PHAT">
 <area shape="rect" id="Node000001" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="278,55,334,80"/>
-<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a9e6019160c47e80764976cd171c5fb14" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="142,29,230,55"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a7b5ced144210da603ab0e550dcd0eef7" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="142,29,230,55"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,58,230,54,231,49,266,59"/>
-<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a95b8f3e3c67102ac805e68289bf942e8" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="5,55,94,80"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a330143c3155d35f10d92778001195c73" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="5,55,94,80"/>
 <area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="262,70,94,70,94,65,263,65"/>
 <area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="205,14,199,10,186,8,174,10,167,14,166,20,169,30,165,28,161,21,163,11,172,5,186,3,201,5,210,15"/>
 <area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="124,54,95,62,93,57,129,53"/>

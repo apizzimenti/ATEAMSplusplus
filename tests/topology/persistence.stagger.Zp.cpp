@@ -11,14 +11,14 @@ vector<int> restrictedWrapper(
 	std::vector<int>& filtration,
 	ATEAMS::Ring* R,
 	int dimension,
-	ATEAMS::arithmetic::ComputeResources<RingLike>& options
+	ATEAMS::arithmetic::ComputeResources<RingLike>& resources
 ) {
 	return topology::persistence::stagger<RingLike>(
 		complex,
 		filtration,
 		R,
 		dimension,
-		options
+		resources
 	);
 }
 
@@ -27,13 +27,13 @@ vector<int> fullWrapper(
 	ATEAMS::complexes::Complex<RingLike>* complex,
 	std::vector<int>& filtration,
 	ATEAMS::Ring* R,
-	ATEAMS::arithmetic::ComputeResources<RingLike>& options
+	ATEAMS::arithmetic::ComputeResources<RingLike>& resources
 ) {
 	return topology::persistence::stagger<RingLike>(
 		complex,
 		filtration,
 		R,
-		options
+		resources
 	);
 }
 

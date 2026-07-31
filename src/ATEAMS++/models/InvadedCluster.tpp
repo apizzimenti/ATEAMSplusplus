@@ -26,7 +26,7 @@ namespace ATEAMS {
 		InvadedCluster<RingLike>::State InvadedCluster<RingLike>::sample(
 			int t,
 			InvadedCluster<RingLike>::State& state,
-			arithmetic::ComputeResources<RingLike>& options
+			arithmetic::ComputeResources<RingLike>& resources
 		) {
 			int d = this->dimension;
 
@@ -73,7 +73,7 @@ namespace ATEAMS {
 				this->filtration,
 				this->coefficients,
 				this->dimension,
-				options
+				resources
 			);
 
 			if (this->DEBUG) {
@@ -102,7 +102,7 @@ namespace ATEAMS {
 				leaveout,								// rows to exclude
 				this->intuniform,						// uniform random over field
 				this->RNG,								// RNG
-				options,								// compute options
+				resources,								// compute resources
 				this->DEBUG					// debugging
 			);
 

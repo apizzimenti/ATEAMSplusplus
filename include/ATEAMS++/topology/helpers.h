@@ -17,12 +17,12 @@ namespace ATEAMS::topology::helpers {
 	inline SparseMatrix<RingLike> reindexSparseBoundaryMatrix(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
-		arithmetic::ComputeResources<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& resources
 	) {
 		// Construct an index mapping.
 		vector<int> remapping(filtration.size());
 		
-		#pragma omp parallel for shared(filtration, remapping) if(options.parallel->enabled)
+		#pragma omp parallel for shared(filtration, remapping) if(resources.parallel->enabled)
 		for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
 
 		// Duplicate the matrix.
@@ -52,12 +52,12 @@ namespace ATEAMS::topology::helpers {
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
 		int dimension,
-		arithmetic::ComputeResources<RingLike>& options
+		arithmetic::ComputeResources<RingLike>& resources
 	) {
 		// Construct an index mapping.
 		vector<int> remapping(filtration.size());
 		
-		#pragma omp parallel for shared(filtration, remapping) if(options.parallel->enabled)
+		#pragma omp parallel for shared(filtration, remapping) if(resources.parallel->enabled)
 		for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
 
 		SparseMatrix<RingLike> Full = complex->Coboundary.Full;
@@ -66,7 +66,7 @@ namespace ATEAMS::topology::helpers {
 		int startDimension = complex->Breaks[dimension][0];
 		int stopDimension = complex->Breaks[dimension][1];
 
-		#pragma omp parallel for shared(Full, Reindexed) if (options.parallel->enabled)
+		#pragma omp parallel for shared(Full, Reindexed) if (resources.parallel->enabled)
 		for (int t=0; t < Full.nrow; t++) {
 			if ((startDimension <= t) && (t < stopDimension)) {
 				Reindexed.rows[t] = Full.rows[filtration[t]];

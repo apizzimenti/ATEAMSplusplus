@@ -30,6 +30,7 @@ for host in persistence.hosts:
 			xticks = np.array([])
 			# labeled = [False, False, False, False, False]
 			labeled = [False]*len(positions)
+			Boxes = []
 
 			for i, (color, pos, name) in enumerate(zip(persistence.colors, positions, persistence.computing)):
 				try: data = persistence.data(host, name)
@@ -41,6 +42,8 @@ for host in persistence.hosts:
 					subset[subset.SCALE == scale].TTC for scale in subset.SCALE.unique()
 				]
 
+				Boxes.append(boxes)
+
 				# Plot boxes.
 				if not len(boxes): continue
 				if len(boxes) >= len(xticks): xticks = subset.SCALE.unique()
@@ -48,23 +51,25 @@ for host in persistence.hosts:
 				posns = np.arange(1, len(boxes)+1) + pos
 				ax.boxplot(boxes, positions=posns, **persistence.plots.defaults.boxplot.props(color))
 
-				if not all(labeled):
-					ax.text(
-						posns[0], np.percentile(boxes[0], 98, axis=None),
-						rf".~~{name}",
-						fontsize=7,
-						rotation=90,
-						ha="center",
-						va="bottom"
-					)
-					labeled[i] = True
-
 				# Plot medians.
 				medians = np.array([
 					np.median(box) for box in boxes
 				])
 
 				ax.scatter(posns, medians, **persistence.plots.defaults.boxplot.medians(color))
+
+			# Get the 100th percentile over all boxes, then label at that point.
+			pt = max([np.percentile(Boxes[k][0], 99, axis=None) for k in range(len(Boxes))])
+
+			for posn, name in zip(positions, persistence.computing):
+				ax.text(
+					1+posn, pt,
+					name,
+					fontsize=7,
+					rotation=90,
+					ha="center",
+					va="bottom"
+				)
 
 			ticks = range(1,len(xticks)+1)
 			ax.set_xticks(ticks)
@@ -76,7 +81,7 @@ for host in persistence.hosts:
 
 			CONFIG._defaults.yaxis.logTime(ax)
 
-			plt.savefig(f"./timing/{host}.{dimension}.{field}.jpeg", **CONFIG._defaults.savefig)
+			plt.savefig(f"./timing/{host}.{dimension}.{field}.cached.jpeg", **CONFIG._defaults.savefig)
 			plt.close()
 			plt.clf()
 

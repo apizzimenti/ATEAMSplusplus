@@ -23,9 +23,9 @@ int main(int argc, char *argv[]) {
 	Zp ZZ(FIELD);
 	C.constructBoundaryMatrices(&ZZ);
 
-	// Construct arithmetic options.
-	arithmetic::ComputeResources options;
-	std::thread listener = options.spinUp();
+	// Construct arithmetic resources.
+	arithmetic::ComputeResources resources;
+	std::thread listener = resources.spinUp();
 
 	// Include all the rows and perform the computation.
 	set<size_t> exclude;
@@ -36,14 +36,14 @@ int main(int argc, char *argv[]) {
 		exclude,
 		intuniform,
 		RNG,
-		options,
+		resources,
 		false
 	);
 
 	// Now, check whether we actually got something in the kernel.
 	if (!inKernel<Zp>(C.Coboundary.Matrices[2], sample, &ZZ)) RESULT = FAIL;
 
-	options.spinDown(&listener);
+	resources.spinDown(&listener);
 	
 	return RESULT;
 }

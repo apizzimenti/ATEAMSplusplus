@@ -150,9 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6e21c4188063979cbcfcd44eea49368c" id="r_a6e21c4188063979cbcfcd44eea49368c"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:a6e21c4188063979cbcfcd44eea49368c template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6e21c4188063979cbcfcd44eea49368c">standard</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;chain, vector&lt; int &gt; &amp;lookup, int chainIndex, int dim)</td></tr>
-<tr class="memdesc:a6e21c4188063979cbcfcd44eea49368c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard reduction policy: while <code class="param">chain</code> has nonzero boundary and shares its youngest face with another chain, this chain can still be reduced.  <br /></td></tr>
+<tr class="memitem:a6ffa600a70548dc03b28020178b9f6cc" id="r_a6ffa600a70548dc03b28020178b9f6cc"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:a6ffa600a70548dc03b28020178b9f6cc template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6ffa600a70548dc03b28020178b9f6cc">standard</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;chain, vector&lt; int &gt; &amp;lookup, int index, int dim)</td></tr>
+<tr class="memdesc:a6ffa600a70548dc03b28020178b9f6cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard reduction policy: while <code class="param">chain</code> has nonzero boundary and shares its youngest face with another chain, this chain can still be reduced.  <br /></td></tr>
 <tr class="memitem:a70c70d512866f9143d4f848baa809701" id="r_a70c70d512866f9143d4f848baa809701"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a70c70d512866f9143d4f848baa809701 template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a70c70d512866f9143d4f848baa809701">JIT</a> (<a class="el" href="namespace_a_t_e_a_m_s.html#ad9d3764e00f70957b63a1223ed0ff5e1">SparseVector</a>&lt; RingLike &gt; &amp;chain, vector&lt; int &gt; &amp;lookup, int index, int dim, vector&lt; bool &gt; &amp;zeroed)</td></tr>
 <tr class="memdesc:a70c70d512866f9143d4f848baa809701"><td class="mdescLeft">&#160;</td><td class="mdescRight">A parallel-friendly implementation of the clearing optimization: while <code class="param">chain</code> has nonzero boundary and shares its youngest face with another chain, this chain can still be reduced. <code class="param">zeroed</code> tracks which chains have been zeroed by other processes.  <br /></td></tr>
@@ -213,7 +213,7 @@ template&lt;typename RingLike&gt; </div>
   <table class="params">
     <tr><td class="paramname">chain</td><td>Chain to be checked. </td></tr>
     <tr><td class="paramname">lookup</td><td>Lookup table to find the column corresponding to <code class="param">chain's</code> youngest face. </td></tr>
-    <tr><td class="paramname">chainIndex</td><td>Column index of the chain. </td></tr>
+    <tr><td class="paramname">index</td><td>Column index of the chain. </td></tr>
     <tr><td class="paramname">dim</td><td>Dimension. </td></tr>
     <tr><td class="paramname">zeroed</td><td>Boolean vector storing whether a different concurrent process has cleared this chain.</td></tr>
   </table>
@@ -225,8 +225,8 @@ template&lt;typename RingLike&gt; </div>
 
 </div>
 </div>
-<a id="a6e21c4188063979cbcfcd44eea49368c" name="a6e21c4188063979cbcfcd44eea49368c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e21c4188063979cbcfcd44eea49368c">&#9670;&#160;</a></span>standard()</h2>
+<a id="a6ffa600a70548dc03b28020178b9f6cc" name="a6ffa600a70548dc03b28020178b9f6cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ffa600a70548dc03b28020178b9f6cc">&#9670;&#160;</a></span>standard()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -249,7 +249,7 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>chainIndex</em></span>, </td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -275,7 +275,7 @@ template&lt;typename RingLike&gt; </div>
   <table class="params">
     <tr><td class="paramname">chain</td><td>Chain to be checked. </td></tr>
     <tr><td class="paramname">lookup</td><td>Lookup table to find the column corresponding to <code class="param">chain's</code> youngest face. </td></tr>
-    <tr><td class="paramname">chainIndex</td><td>Column index of the chain. </td></tr>
+    <tr><td class="paramname">index</td><td>Column index of the chain. </td></tr>
     <tr><td class="paramname">dim</td><td>Dimension.</td></tr>
   </table>
   </dd>

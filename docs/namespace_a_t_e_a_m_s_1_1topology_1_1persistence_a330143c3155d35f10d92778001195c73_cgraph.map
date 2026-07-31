@@ -1,0 +1,15 @@
+<map id="persistence" name="persistence">
+<area shape="rect" id="Node000001" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="5,76,94,102"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#accb8e8b1aed2ca025c410fea20b8552c" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="286,13,326,39"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,74,93,41,115,24,141,12,175,4,210,3,274,15,269,17,210,9,175,9,143,17,118,29,96,45,63,77"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a7b5ced144210da603ab0e550dcd0eef7" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="142,51,230,76"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="93,78,129,73,124,76,95,83"/>
+<area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="278,101,334,127"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="94,90,264,108,262,112,94,96"/>
+<area shape="rect" id="Node000005" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ac6958f059e588d0033ea5bb07b6d5395" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="282,151,331,176"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="94,99,268,150,265,154,93,104"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="229,47,274,36,269,38,231,52"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="164,50,161,42,163,33,172,26,186,24,201,27,210,35,205,35,199,31,186,29,174,31,167,36,166,41,170,51"/>
+<area shape="poly" id="edge5_Node000003_Node000004" title=" " alt="" coords="218,74,266,96,261,97,218,79"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="204,74,281,140,275,141,202,79"/>
+</map>

@@ -23,7 +23,7 @@ namespace ATEAMS {
 		SwendsenWang<RingLike>::State SwendsenWang<RingLike>::sample(
 			int t,
 			SwendsenWang<RingLike>::State& state,
-			arithmetic::ComputeResources<RingLike>& options
+			arithmetic::ComputeResources<RingLike>& resources
 		) {
 			// Compute the temperature and probability of including particular (d-1)-cells.
 			double temp = this->temperatureFunction(t);
@@ -79,7 +79,7 @@ namespace ATEAMS {
 				exclude,								// rows to exclude
 				this->intuniform,						// uniform random over field
 				this->RNG,								// RNG
-				options,								// compute options
+				resources,								// compute resources
 				this->DEBUG								// debugging
 			);
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['occupation_0',['occupation',['../namespace_a_t_e_a_m_s_1_1statistics.html#abb392f63461f412585f1864b963ac02a',1,'ATEAMS::statistics']]]
+  ['model_0',['Model',['../class_a_t_e_a_m_s_1_1models_1_1_model.html#af4902cce023a35cb4c3201a4600e140b',1,'ATEAMS::models::Model']]]
 ];

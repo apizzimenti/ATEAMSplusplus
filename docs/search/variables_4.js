@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['enabled_0',['enabled',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html#a8740ba80e30dd75e71d09fa1dcf04f3d',1,'ATEAMS::arithmetic::ParallelContainers']]],
-  ['energy_1',['energy',['../struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a4ec8c7cb48771b844a6d50e2150e3f63',1,'ATEAMS::models::ModelState']]],
-  ['essential_2',['essential',['../struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#affb9db935dc3e09600f19267b9593b9d',1,'ATEAMS::models::ModelState']]]
+  ['debug_0',['DEBUG',['../class_a_t_e_a_m_s_1_1models_1_1_model.html#a117352cc494cc62c6b2f1882786a332c',1,'ATEAMS::models::Model::DEBUG'],['../struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a117352cc494cc62c6b2f1882786a332c',1,'ATEAMS::models::ModelParameters::DEBUG']]],
+  ['dimension_1',['dimension',['../class_a_t_e_a_m_s_1_1models_1_1_model.html#a1a8a8235879363159315091a1daed72f',1,'ATEAMS::models::Model::dimension'],['../struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f',1,'ATEAMS::models::ModelParameters::dimension']]]
 ];

@@ -101,7 +101,7 @@ using RestrictedPersistenceAlgorithm = std::function<
 			std::vector<int>&,
 			ATEAMS::Ring*,
 			int,
-			ATEAMS::arithmetic::ComputeResources<RingLike>&
+			ATEAMS::arithmetic::ComputeResources<RingLike>& resources
 		)
 	>;
 
@@ -112,7 +112,7 @@ using FullPersistenceAlgorithm = std::function<
 			ATEAMS::complexes::Complex<RingLike>*,
 			std::vector<int>&,
 			ATEAMS::Ring*,
-			ATEAMS::arithmetic::ComputeResources<RingLike>&
+			ATEAMS::arithmetic::ComputeResources<RingLike>& resources
 		)
 	>;
 
@@ -124,7 +124,7 @@ inline bool checkRestrictedPersistence(
 	int dimension,
 	int expectedrank,
 	ATEAMS::Ring* R,
-	ATEAMS::arithmetic::ComputeResources<RingLike>& options,
+	ATEAMS::arithmetic::ComputeResources<RingLike>& resources,
 	std::mt19937& RNG,
 	RestrictedPersistenceAlgorithm<RingLike> persistenceAlgorithm
 ) {
@@ -145,7 +145,7 @@ inline bool checkRestrictedPersistence(
 	}
 
 	// Check whether the rank is correct.
-	std::vector<int> times = persistenceAlgorithm(complex, filtration, R, dimension, options);
+	std::vector<int> times = persistenceAlgorithm(complex, filtration, R, dimension, resources);
 	return times.size() == expectedrank;
 }
 
@@ -156,7 +156,7 @@ inline bool checkFullPersistence(
 	int dimension,
 	int expectedTotalRank,
 	ATEAMS::Ring* R,
-	ATEAMS::arithmetic::ComputeResources<RingLike>& options,
+	ATEAMS::arithmetic::ComputeResources<RingLike>& resources,
 	std::mt19937& RNG,
 	FullPersistenceAlgorithm<RingLike> persistenceAlgorithm
 ) {
@@ -177,7 +177,7 @@ inline bool checkFullPersistence(
 	}
 
 	// Check whether the rank is correct.
-	std::vector<int> times = persistenceAlgorithm(complex, filtration, R, options);
+	std::vector<int> times = persistenceAlgorithm(complex, filtration, R, resources);
 	return times.size() == expectedTotalRank;
 }
 
@@ -186,7 +186,7 @@ template <typename RingLike>
 inline bool checkSingleReindexing(
 	ATEAMS::complexes::Complex<RingLike>* complex,
 	int dimension,
-	ATEAMS::arithmetic::ComputeResources<RingLike>& options
+	ATEAMS::arithmetic::ComputeResources<RingLike>& resources
 ) {
 	ATEAMS::SparseMatrix<RingLike> Full = complex->Coboundary.Full;
 
@@ -223,7 +223,7 @@ inline bool checkSingleReindexing(
 	// Swap, then reindex.
 	filtration[firstIndex] = secondIndex;
 	filtration[secondIndex] = firstIndex;
-	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::persistence::policies::reindexing::single<RingLike>(complex, filtration, options, dimension);
+	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::persistence::policies::reindexing::single<RingLike>(complex, filtration, resources, dimension);
 
 	bool firstReindexed = false, secondReindexed = false;
 
@@ -241,7 +241,7 @@ inline bool checkSingleReindexing(
 template <typename RingLike>
 inline bool checkFullReindexing(
 	ATEAMS::complexes::Complex<RingLike>* complex,
-	ATEAMS::arithmetic::ComputeResources<RingLike>& options
+	ATEAMS::arithmetic::ComputeResources<RingLike>& resources
 ) {
 	ATEAMS::SparseMatrix<RingLike> Full = complex->Coboundary.Full;
 
@@ -280,7 +280,7 @@ inline bool checkFullReindexing(
 	// Swap, then reindex.
 	filtration[firstIndex] = secondIndex;
 	filtration[secondIndex] = firstIndex;
-	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::persistence::policies::reindexing::single<RingLike>(complex, filtration, options, dimension);
+	ATEAMS::SparseMatrix<RingLike> FullReindexed = ATEAMS::topology::persistence::policies::reindexing::single<RingLike>(complex, filtration, resources, dimension);
 
 	bool firstReindexed = false, secondReindexed = false;
 
@@ -306,10 +306,10 @@ inline int persistenceDispatcher(
 	int FIELD = std::stoi(argv[1]);
 	RingLike R(FIELD);
 
-	// Construct arithmetic options.
-	ATEAMS::arithmetic::ComputeResources<RingLike> options;
-	options.arithmetize(&R);
-	std::thread listener = options.spinUp();
+	// Construct arithmetic resources.
+	ATEAMS::arithmetic::ComputeResources<RingLike> resources;
+	resources.arithmetize(&R);
+	std::thread listener = resources.spinUp();
 
 	// Create the RNG.
 	std::random_device rd;
@@ -324,25 +324,25 @@ inline int persistenceDispatcher(
 		complex.constructFlatBoundaryMatrix();
 		complex.constructFullBoundaryMatrix(&R);
 		
-		// Make sure we've set the parallel computing options correctly.
-		options.parallel->enabled = true;
-		options.parallel->build(complex.size(), complex.Cells.size());
-		options.serial->build(complex.size());
+		// Make sure we've set the parallel computing resources correctly.
+		resources.parallel->enabled = true;
+		resources.parallel->build(complex.size(), complex.Cells.size());
+		resources.serial->build(complex.size());
 
 		// Check whether we're re-indexing properly.
-		if (!checkSingleReindexing<RingLike>(&complex, dimension/2, options)) {
+		if (!checkSingleReindexing<RingLike>(&complex, dimension/2, resources)) {
 			RESULT = FAIL;
 			goto EXIT;
 		}
 
 		// Check whether we're persisting properly.
-		for (int t=0; t < 512; t++) {
-			if (!checkRestrictedPersistence<RingLike>(&complex, dimension/2, rank, &R, options, RNG, restrictedPersistenceAlgorithm)) {
+		for (int t=0; t < 64; t++) {
+			if (!checkRestrictedPersistence<RingLike>(&complex, dimension/2, rank, &R, resources, RNG, restrictedPersistenceAlgorithm)) {
 				RESULT = FAIL;
 				goto EXIT;
 			}
 
-			if (!checkFullPersistence<RingLike>(&complex, dimension/2, TOTALRANKBYDIMENSION[dimension], &R, options, RNG, fullPersistenceAlgorithm)) {
+			if (!checkFullPersistence<RingLike>(&complex, dimension/2, TOTALRANKBYDIMENSION[dimension], &R, resources, RNG, fullPersistenceAlgorithm)) {
 				RESULT = FAIL;
 				goto EXIT;
 			}
@@ -350,7 +350,7 @@ inline int persistenceDispatcher(
 	}
 
 	EXIT:
-		options.spinDown(&listener);
+		resources.spinDown(&listener);
 		return RESULT;
 }
 

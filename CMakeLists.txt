@@ -107,7 +107,7 @@ list(APPEND SOURCE_HEADERS
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/arithmetic.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/kernel.h
-	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/options.h
+	${PROJECT_SOURCE_DIR}/include/ATEAMS++/arithmetic/resources.h
 
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/topology.h
 	${PROJECT_SOURCE_DIR}/include/ATEAMS++/topology/persistence.h
