@@ -14,6 +14,36 @@ namespace ATEAMS {
 	 */
 	namespace arithmetic {
 
+		template <typename RingLike>
+		inline void SparseMatrixReduce(
+			SparseMatrix<RingLike>& A,
+			SparsePivots& _pivots
+		) {
+			// Put all pivots in a single spot, then sort them.
+			std::vector<SparsePivot> pivots;
+			for (int i=0; i < _pivots.size(); i++) pivots.insert(pivots.end(), _pivots[i].begin(), _pivots[i].end());
+
+			std::sort(
+				pivots.begin(),
+				pivots.end(),
+				[](SparsePivot l, SparsePivot r) { return l.c <= r.c; }
+			);
+
+			for (int i=0; i < pivots.size(); i++) {
+				std::cout << std::format("{},{} ", pivots[i].r, pivots[i].c);
+			}
+			std::cout << std::endl;
+
+			// Copy the pivot rows into the appropriate spots and zero out the rest.
+			for (int i=0; i < pivots.size(); i++) {
+				SparseVector<RingLike> tmp = A.rows[i];
+				A.rows[i] = A.rows[pivots[i].r];
+				A.rows[pivots[i].r] = tmp;
+			}
+
+			for (int i=pivots.size(); i < A.nrow; i++) A.rows[i].clear();
+		}
+
 		/**
 		 * @brief Sparse vector addition \f$ \vec u + \vec v \f$ for vectors over a
 		 * @ref ATEAMS::Ring

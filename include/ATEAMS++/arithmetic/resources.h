@@ -202,6 +202,7 @@ namespace ATEAMS::arithmetic {
 				Flint::set_memory_functions();
 				this->opt->pool.reset();
 				this->opt->method = 0;
+				this->opt->verbose = true;
 
 				return std::thread(key_listener, std::ref(this->opt->abort));
 			};

@@ -8,7 +8,7 @@ using namespace std;
 
 vector<int> homologySizes(
 	complexes::Complex<Zp>* COMPLEX,
-	Ring* QQ,
+	Ring* R,
 	int dimension,
 	arithmetic::ComputeResources<Zp>& resources
 ) {
@@ -19,7 +19,7 @@ vector<int> homologySizes(
 	vector<int> sizes;
 
 	for (int d=0; d < COMPLEX->Breaks.size(); d++) {
-		vector<int> times = topology::persistence::persistence<Zp>(COMPLEX, FILTRATION, QQ, d, resources);
+		vector<int> times = topology::persistence::persistence<Zp>(COMPLEX, FILTRATION, R, d, resources);
 		printvector<int>(times);
 
 		sizes.push_back(
@@ -33,7 +33,10 @@ vector<int> homologySizes(
 }
 
 
-int main() {
+int main(int argc, char *argv[]) {
+	int FIELD = stoi(argv[1]);
+	int RESULT = PASS;
+
 	// Construct arithmetic resources.
 	arithmetic::ComputeResources<Zp> resources;
 	std::thread listener = resources.spinUp();
@@ -57,21 +60,22 @@ int main() {
 
 	for (int dimension : dimensions) {
 		vector<int> corners(dimension, 3);
-		Zp QQ(3);
+		Zp R(FIELD);
 
 		complexes::Cubical<Zp> CUBICAL(corners);
-		CUBICAL.constructBoundaryMatrices(&QQ);
+		CUBICAL.constructBoundaryMatrices(&R);
 		CUBICAL.constructFlatBoundaryMatrix();
-		CUBICAL.constructFullBoundaryMatrix(&QQ);
+		CUBICAL.constructFullBoundaryMatrix(&R);
 
-		resources.arithmetize(&QQ);
+		resources.arithmetize(&R);
 		resources.parallel->enabled = true;
 		resources.serial->build(CUBICAL.size());
-		CUBICAL.constructSparseBases(&QQ, resources);
+		CUBICAL.constructSparseBases(&R, resources);
 
 		for (int d=0; d < CUBICAL.Cells.size(); d++) {
 			cout << format("{}: {}",d,CUBICAL.Boundary.Bases[d].size()) << endl;
 		}
+		break;
 	}
 
 	// Now, check that we're getting the persistence correct.

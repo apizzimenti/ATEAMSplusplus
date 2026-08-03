@@ -514,9 +514,10 @@ namespace ATEAMS {
 			// Ensure sparse boundary matrices are built.
 			this->constructFullBoundaryMatrix(R);
 
-			// Run the persistence algorithm to compute a basis for the cycles.
+			// Run the persistence algorithm to compute a basis for the cycles,
+			// then solve for a cobasis.
 			this->Boundary.Bases = topology::basis<RingLike>(this, R, resources);
-			cout << this->Boundary.Bases[0].size() << endl;
+			this->Coboundary.Bases = topology::cobasis<RingLike>(this, this->Boundary.Bases, R, resources);
 		}
 
 

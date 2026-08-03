@@ -45,7 +45,7 @@ endif()
 set(TEST TRUE)
 set(PROFILE FALSE)
 set(TIMING FALSE)
-set(DEBUG FALSE)
+set(DEBUG TRUE)
 
 if (NOT(PROFILE OR TIMING OR DEBUG))
 	add_compile_options(
@@ -292,7 +292,8 @@ if (TEST)
 			target_include_directories(tests.${COMPLEX}.${TYPE} PUBLIC tests)
 			target_link_libraries(tests.${COMPLEX}.${TYPE} PUBLIC ATEAMS++)
 
-			add_test(NAME ${COMPLEX}.${TYPE} COMMAND tests.${COMPLEX}.${TYPE})
+			add_test(NAME ${COMPLEX}.${TYPE}.2 COMMAND tests.${COMPLEX}.${TYPE} 2)
+			add_test(NAME ${COMPLEX}.${TYPE}.3 COMMAND tests.${COMPLEX}.${TYPE} 3)
 		endforeach()
 
 		# Arithmetic subroutines

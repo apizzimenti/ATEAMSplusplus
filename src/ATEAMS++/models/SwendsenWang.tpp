@@ -75,7 +75,7 @@ namespace ATEAMS {
 			// Now, sample from the kernel.
 			SparseVector<RingLike> sample = arithmetic::submatrixKernelSample<RingLike>(
 				this->complex->Coboundary.Matrices[d],	// complete dth coboundary matrix
-				this->coefficients,								// ring
+				this->coefficients,						// ring
 				exclude,								// rows to exclude
 				this->intuniform,						// uniform random over field
 				this->RNG,								// RNG
