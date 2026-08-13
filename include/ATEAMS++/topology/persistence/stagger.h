@@ -31,7 +31,7 @@ namespace ATEAMS::topology::persistence {
 	 * @returns A vector of percolation times.
 	 */
 	template <typename RingLike>
-	std::vector<int> stagger(
+	inline std::vector<int> stagger(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
@@ -60,7 +60,7 @@ namespace ATEAMS::topology::persistence {
 	 * @returns A vector of percolation times.
 	 */
 	template <typename RingLike>
-	std::vector<int> stagger(
+	inline std::vector<int> stagger(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
@@ -86,7 +86,7 @@ namespace ATEAMS::topology::persistence {
 	 * @returns A vector of percolation times.
 	 */
 	template <typename RingLike>
-	std::vector<int> stagger(
+	inline std::vector<int> stagger(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,

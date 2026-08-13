@@ -24,12 +24,9 @@ for host in persistence.hosts:
 		for dimension in persistence.dimensions:
 
 			fig, ax = plt.subplots(**persistence.plots.defaults.subplots)
-			# positions = [-0.3, -0.15, 0, 0.15, 0.3]
-			positions = [-0.3, -0.1, 0.1, 0.3]
+			positions = persistence.plots.defaults.boxplot.positions(len(persistence.computing))
 
 			xticks = np.array([])
-			# labeled = [False, False, False, False, False]
-			labeled = [False]*len(positions)
 			Boxes = []
 
 			for i, (color, pos, name) in enumerate(zip(persistence.colors, positions, persistence.computing)):
@@ -80,7 +77,7 @@ for host in persistence.hosts:
 			# ax.set_title(rf"{host}, $\mathbb T^{{{dimension}}}_k$, $\mathbb Z/{{{field}}}\mathbb Z$", fontsize=8)
 
 			CONFIG._defaults.yaxis.logTime(ax)
-
+			
 			plt.savefig(f"./timing/{host}.{dimension}.{field}.cached.jpeg", **CONFIG._defaults.savefig)
 			plt.close()
 			plt.clf()

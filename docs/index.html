@@ -170,7 +170,7 @@ Installation</h2>
 </div><!-- fragment --> will build ATEAMS++ to the <span class="tt">build</span> directory, then install its headers and bundled dependencies (SparseRREF, PHAT) to your system's default install location. If you want to install it somewhere else, <div class="fragment"><div class="line">$ sudo cmake --install build --prefix &quot;somewhere/else&quot;</div>
 </div><!-- fragment --> will do the trick.</li>
 <li><b>Double-check.</b> To verify that the library is installed correctly, running <div class="fragment"><div class="line">$ pkg-config --cflags --libs ATEAMS++</div>
-</div><!-- fragment --> should give something like <div class="fragment"><div class="line">-I/usr/local/include -std=c++23 -O3 -L/usr/local/lib -lflint</div>
+</div><!-- fragment --> should give something like <div class="fragment"><div class="line">-I/usr/local/include -std=c++23 -fopenmp -Ofast -march=native -flto -funroll-loops -fprefetch-loop-arrays -fomit-frame-pointer -fno-rtti -L/usr/local/lib -lflint</div>
 </div><!-- fragment --></li>
 <li><b>Triple-check.</b> If you want to run pre-built tests, set the <span class="tt">TEST</span> variable in <span class="tt">CMakeLists.txt</span> to <span class="tt">TRUE</span>, á la <div class="fragment"><div class="line">set(TEST TRUE)</div>
 </div><!-- fragment --> then run <span class="tt">make test</span>.</li>

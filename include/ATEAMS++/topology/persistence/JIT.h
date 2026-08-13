@@ -32,7 +32,7 @@ namespace ATEAMS::topology::persistence {
 	 * @returns A vector of percolation times, according to @p reportingPolicy.
 	 */
 	template <typename RingLike>
-	std::vector<int> JIT(
+	inline std::vector<int> JIT(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
@@ -64,7 +64,7 @@ namespace ATEAMS::topology::persistence {
 	 * @returns A vector of percolation times.
 	 */
 	template <typename RingLike>
-	std::vector<int> JIT(
+	inline std::vector<int> JIT(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,
@@ -93,7 +93,7 @@ namespace ATEAMS::topology::persistence {
 	 * @returns A vector of percolation times.
 	 */
 	template <typename RingLike>
-	std::vector<int> JIT(
+	inline std::vector<int> JIT(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,

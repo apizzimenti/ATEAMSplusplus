@@ -12,7 +12,7 @@ using namespace std;
 
 namespace ATEAMS::topology::persistence {
 	template <typename RingLike>
-	std::vector<int> JIT(
+	inline std::vector<int> JIT(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
 		Ring* R,

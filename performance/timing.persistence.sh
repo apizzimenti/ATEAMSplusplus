@@ -5,7 +5,7 @@ SCALES=(2 4 5 8 11 16 23 32)
 DIMENSIONS=(4 6)
 FIELDS=(2 3)
 TRIALS=${1:-64}
-STRATEGIES=("twist" "JIT" "split" "stagger")
+STRATEGIES=("twist" "JIT" "split" "stagger" "standard")
 
 HOST=$(hostname -f)
 

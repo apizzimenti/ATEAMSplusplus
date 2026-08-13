@@ -44,7 +44,7 @@ ATEAMS++ is a high-performance C++ library for simulating
 	```
 	should give something like
 	```bash
-	-I/usr/local/include -std=c++23 -O3 -L/usr/local/lib -lflint
+	-I/usr/local/include -std=c++23 -fopenmp -Ofast -march=native -flto -funroll-loops -fprefetch-loop-arrays -fomit-frame-pointer -fno-rtti -L/usr/local/lib -lflint
 	```
 
 5. **Triple-check.** If you want to run pre-built tests, set the `TEST` variable in `CMakeLists.txt` to `TRUE`, á la

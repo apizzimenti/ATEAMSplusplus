@@ -278,10 +278,10 @@ if (TEST)
 			target_link_libraries(tests.${MODEL}.${TYPE} PUBLIC ATEAMS++)
 
 			if("${TYPE}" STREQUAL "Q")
-				add_test(NAME ${MODEL}.${TYPE} COMMAND tests.${MODEL}.${TYPE} 0)
+				add_test(NAME models::${MODEL}.${TYPE} COMMAND tests.${MODEL}.${TYPE} 0)
 			else()
-				add_test(NAME ${MODEL}.${TYPE}.2 COMMAND tests.${MODEL}.${TYPE} 2)
-				add_test(NAME ${MODEL}.${TYPE}.3 COMMAND tests.${MODEL}.${TYPE} 3)
+				add_test(NAME models::${MODEL}.${TYPE}.2 COMMAND tests.${MODEL}.${TYPE} 2)
+				add_test(NAME models::${MODEL}.${TYPE}.3 COMMAND tests.${MODEL}.${TYPE} 3)
 			endif()
 		endforeach()
 

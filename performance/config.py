@@ -408,6 +408,8 @@ CONFIG.topics.persistence.plots.defaults.boxplot = Bunch()
 CONFIG.topics.persistence.plots.defaults.boxplot.lw = 1/2
 CONFIG.topics.persistence.plots.defaults.boxplot.boxwidths = 0.1
 
+CONFIG.topics.persistence.plots.defaults.boxplot.positions = lambda k, width=CONFIG.topics.persistence.plots.defaults.boxplot.boxwidths: _boxplotSpacing(k, width)
+
 CONFIG.topics.persistence.plots.defaults.boxplot.medianprops = dict(
 	lw=0,
 	color="k"
@@ -511,3 +513,21 @@ def _timeByOverlapHaxis(ax, lo, hi):
 	ax.set_xticklabels([
 		f"${t}$" for t in [r"0", r"\nicefrac 14", r"\nicefrac 12", r"\nicefrac 34", r"1"]
 	])
+
+
+def _boxplotSpacing(k, width=0.1):
+	# If there are an odd number of boxes, center at 0 and add 1.25x the width
+	# for (k-1)/2 repetitions on each side.
+	unit = 1.25*width
+
+	if k % 2:
+		lrcount = int((k-1)/2)
+		right = [unit*r for r in range(1, lrcount+1)]
+		left = [-unit*l for l in range(1, lrcount+1)]
+		return left + [0] + right
+	else:
+		lrcount = int(k/2)
+		right = [unit*r-unit/2 for r in range(1, lrcount+1)]
+		left = [-r for r in right]
+		return left + right
+
