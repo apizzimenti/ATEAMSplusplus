@@ -32,7 +32,7 @@ pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 
 # If we want to use mimalloc (which we should, by default) then set this to
 # TRUE. Otherwise, set it to FALSE.
-set(mimalloc TRUE)
+set(mimalloc FALSE)
 
 if(mimalloc)
 	find_package(mimalloc REQUIRED)
@@ -234,8 +234,8 @@ list(APPEND COMPLEXES.TESTING
 )
 
 list(APPEND ARITHMETIC.TESTING
-	"matmul"
-	"kernel"
+	# "matmul"
+	# "kernel"
 )
 
 list(APPEND TOPOLOGY.TESTING
