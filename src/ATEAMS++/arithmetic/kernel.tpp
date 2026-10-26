@@ -94,8 +94,12 @@ namespace ATEAMS::arithmetic {
 	) {
 		std::vector<int> exclude;
 
-		SparseVector<RingLike> coefficients = arithmetic::SparseRightMultiplication<RingLike>(
-			A, x, R, resources
+		// SparseVector<RingLike> coefficients = arithmetic::SparseRightMultiplication<RingLike>(
+		// 	A, x, R, resources
+		// );
+
+		SparseVector<RingLike> coefficients = arithmetic::OpenMPSparseRightMultiplication<RingLike>(
+			A, x, R
 		);
 
 		// The cells we *ex*clude are the ones with (nonzero!) entries in
