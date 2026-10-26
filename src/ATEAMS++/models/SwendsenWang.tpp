@@ -61,7 +61,8 @@ namespace ATEAMS {
 			vector<int> exclude = arithmetic::nonzeroIndices<RingLike>(
 				this->complex->Coboundary.Matrices[d],
 				state.cochain,
-				this->coefficients
+				this->coefficients,
+				resources
 			);
 
 			satisfied = N-exclude.size();
@@ -117,7 +118,8 @@ namespace ATEAMS {
 				SparseVector<RingLike> outcome = arithmetic::SparseRightMultiplication<RingLike>(
 					cbd,
 					sample,
-					this->coefficients
+					this->coefficients,
+					resources
 				);
 
 				assert(outcome.size() < 1);
