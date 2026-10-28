@@ -31,7 +31,8 @@ namespace ATEAMS::topology::persistence {
 	inline std::vector<int> PHAT(
 		complexes::Complex<RingLike>* complex,
 		std::vector<int>& filtration,
-		int dimension
+		int dimension,
+		arithmetic::ComputeResources<RingLike>& resources
 	);
 
 	/**
@@ -50,7 +51,8 @@ namespace ATEAMS::topology::persistence {
 	template <typename RingLike>
 	inline std::vector<int> PHAT(
 		complexes::Complex<RingLike>* complex,
-		std::vector<int>& filtration
+		std::vector<int>& filtration,
+		arithmetic::ComputeResources<RingLike>& resources
 	);
 }
 

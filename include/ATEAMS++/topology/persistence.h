@@ -45,12 +45,12 @@ namespace ATEAMS::topology::persistence {
 	) {
 		std::vector<int> essential;
 
-		if (R->characteristic == 2) essential = PHAT<RingLike>(complex, filtration);
+		if (R->characteristic == 2) essential = PHAT<RingLike>(complex, filtration, resources);
 		else {
 			if (resources.parallel->enabled) essential = JIT<RingLike>(complex, filtration, R, resources);
 			else essential = twist<RingLike>(complex, filtration, R, resources);
 		}
-
+		
 		std::sort(essential.begin(), essential.end());
 		return essential;
 	};
@@ -85,7 +85,7 @@ namespace ATEAMS::topology::persistence {
 	) {
 		std::vector<int> essential;
 
-		if (R->characteristic == 2) essential = PHAT<RingLike>(complex, filtration, dimension);
+		if (R->characteristic == 2) essential = PHAT<RingLike>(complex, filtration, dimension, resources);
 		else {
 			if (resources.parallel->enabled) essential = JIT<RingLike>(complex, filtration, R, dimension, resources);
 			else essential = twist<RingLike>(complex, filtration, R, dimension, resources);

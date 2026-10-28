@@ -113,6 +113,7 @@ namespace ATEAMS::arithmetic {
 			std::vector<std::set<int>> marked;
 			std::vector<int> lookup;
 			std::vector<bool> zeroed;
+			std::vector<int> remapping;
 			int blocks;
 			bool enabled = true;
 

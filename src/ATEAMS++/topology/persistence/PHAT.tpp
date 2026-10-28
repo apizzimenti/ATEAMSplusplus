@@ -16,7 +16,8 @@ namespace ATEAMS::topology::persistence {
 	template <typename RingLike>
 	inline vector<int> PHAT(
 		complexes::Complex<RingLike>* complex,
-		vector<int>& filtration
+		vector<int>& filtration,
+		arithmetic::ComputeResources<RingLike>& resources
 	) {
 		// The filtration specifies the order in which we add the cells of all
 		// dimensions. Create a map that specifies to which position each cell was
@@ -32,8 +33,11 @@ namespace ATEAMS::topology::persistence {
 		//				{... 12: 9, 9: 10, 10: 11, 19: 12, ...}
 
 		// TODO optimize, this takes way too long
-		vector<int> remapping(filtration.size(), 0);
-		for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
+
+		if (resources.parallel->remapping.size() != filtration.size()) {
+			resources.parallel->remapping = vector<int>(filtration.size(), 0);
+		}
+		for (int t=0; t < filtration.size(); t++) resources.parallel->remapping[filtration[t]] = t;
 
 		PHATBoundaryMatrix boundary;
 		PHATColumn column;
@@ -49,9 +53,11 @@ namespace ATEAMS::topology::persistence {
 			ground = complex->Boundary.Flat[filtration[t]];
 
 			for (int j=0; j < ground.size(); j++) {
-				column.push_back(remapping[ground[j]]);
+				column.push_back(resources.parallel->remapping[ground[j]]);
 			}
 
+			// if (column.size() > 1e6) std::sort(std::execution::par, column.begin(), column.end());
+			// else std::sort(column.begin(), column.end());
 			std::sort(column.begin(), column.end());
 		
 			// Determine the dimension of the cell.
@@ -98,10 +104,11 @@ namespace ATEAMS::topology::persistence {
 	inline vector<int> PHAT(
 		complexes::Complex<RingLike>* complex,
 		vector<int>& filtration,
-		int dimension
+		int dimension,
+		arithmetic::ComputeResources<RingLike>& resources
 	) {
 		// No sense in doing a ton of policy work for this one.
-		vector<int> essential = PHAT<RingLike>(complex, filtration);
+		vector<int> essential = PHAT<RingLike>(complex, filtration, resources);
 		int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
 		std::erase_if(essential, [filtration,low,high](int t) { return !(low <= filtration[t] && filtration[t] < high); });
 

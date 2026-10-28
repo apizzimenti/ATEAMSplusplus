@@ -29,7 +29,7 @@ if(mimalloc)
 	)
 
 	# Set the memory allocator variable.
-	get_filename_component(MEMALLOC_LIB_DIR "${MIMALLOC}" DIRECTORY)
+	get_filename_component(MEMALLOC_LIB_DIR "-L${MIMALLOC}" DIRECTORY)
 	set(MEMALLOC_LIB "-lmimalloc")
 
 elseif(tcmalloc AND NOT APPLE)
@@ -37,7 +37,7 @@ elseif(tcmalloc AND NOT APPLE)
 	find_library(TCMALLOC NAMES tcmalloc_minimal tcmalloc REQUIRED)
 	target_link_libraries(ATEAMS++ INTERFACE ${TCMALLOC})
 
-	get_filename_component(MEMALLOC_LIB_DIR "${TCMALLOC}" DIRECTORY)
+	get_filename_component(MEMALLOC_LIB_DIR "-L${TCMALLOC}" DIRECTORY)
 	set(MEMALLOC_LIB "-ltcmalloc")
 
 elseif(jemalloc)
@@ -45,8 +45,8 @@ elseif(jemalloc)
 	find_library(JEMALLOC NAMES jemalloc jemalloc_minimal REQUIRED)
 	target_link_libraries(ATEAMS++ INTERFACE ${JEMALLOC})
 
-	get_filename_component(MEMALLOC_LIB_DIR "${JEMALLOC}" DIRECTORY)
+	get_filename_component(MEMALLOC_LIB_DIR "-L${JEMALLOC}" DIRECTORY)
 	set(MEMALLOC_LIB "-ljemalloc")
 endif()
 
-set(PKG_CONFIG_MEMALLOC "-L${MEMALLOC_LIB_DIR} ${MEMALLOC_LIB}")
+set(PKG_CONFIG_MEMALLOC "${MEMALLOC_LIB_DIR} ${MEMALLOC_LIB}")

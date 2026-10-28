@@ -30,6 +30,10 @@ namespace ATEAMS::topology::persistence {
 		arithmetic::SparseVectorAddition<RingLike>(cell, youngest, R, resources);
 	}
 
+	/**
+	 * @brief Template specialization for reducing Z/2Z rows. This won't get used,
+	 * 	but we have to have it here for everything to build properly.
+	 */
 	template <>
 	inline void reduceChain<Z2>(
 		SparseMatrix<Z2>& Full,
@@ -41,11 +45,6 @@ namespace ATEAMS::topology::persistence {
 		// Get the youngest chain (column) sharing a face with `cell` and zero
 		// out the pivot row.
 		SparseVector<Z2> youngest = Full.rows[lookup[helpers::youngestOf<Z2>(cell)]];
-
-		// typename RingLike::dtype q = *youngest.find(helpers::youngestOf<RingLike>(cell));
-		// typename RingLike::dtype s = resources.arithmetic->negate[resources.arithmetic->invert[q]];
-
-		// arithmetic::SparseVectorRescaling<RingLike>(s, youngest, R, resources);
 		arithmetic::SparseVectorAddition<Z2>(cell, youngest, R, resources);
 	}
 

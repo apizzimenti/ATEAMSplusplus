@@ -90,7 +90,7 @@ namespace ATEAMS {
 			}
 
 			// Delete duplicates.
-			if (exclude.size() > 1e6) std::sort(std::execution::par, exclude.begin(), exclude.end());
+			if (N > 1e6) std::sort(std::execution::par, exclude.begin(), exclude.end());
 			else std::sort(exclude.begin(), exclude.end());
 			
 			exclude.erase(std::unique(exclude.begin(), exclude.end()), exclude.end());

@@ -127,7 +127,16 @@ namespace ATEAMS {
 			u.canonicalize();
 		}
 
-
+		/**
+		 * @brief Template specialization; sparse vector addition \f$ \vec u + \vec v \f$
+		 * for vectors over @ref ATEAMS::Z2.
+	 	 * @tparam None.
+		 * 
+		 * @param u Vector.
+		 * @param v Vector.
+		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
+		 * @param resources Computing resources with cached arithmetic tables.
+		 */
 		template <>
 		inline void SparseVectorAddition<Z2>(
 			SparseVector<Z2>& u,
@@ -273,7 +282,18 @@ namespace ATEAMS {
 			return r;
 		}
 
-
+		/**
+		 * @brief Given a (sparse) vector \f$\vec x\f$ and scalar \f$a\f$, computes
+		 * 	\f$a \vec x\f$.
+		 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
+		 * 
+		 * @param a Scalar..
+		 * @param x Vector.
+		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
+		 * @param resources Compute resources.
+		 * 
+		 * @returns \f$a \vec x\f$.
+		 */
 		template <typename RingLike>
 		inline void SparseVectorRescaling(
 			typename RingLike::dtype a,
@@ -281,7 +301,6 @@ namespace ATEAMS {
 			Ring* R,
 			ComputeResources<RingLike>& resources
 		) {
-			// #pragma omp parallel for default(shared) schedule(guided)
 			for (int t=0; t < x.size(); t++) {
 				x[t] = resources.arithmetic->multiply[x[t]][a];
 			}

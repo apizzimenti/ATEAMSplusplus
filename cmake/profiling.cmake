@@ -8,10 +8,10 @@ list(APPEND ARITHMETIC.PROFILING
 )
 
 list(APPEND MODELS.PROFILING
-	# "Bernoulli"
+	"Bernoulli"
 	# "InvadedCluster"
 	# "Invasion"
-	"SwendsenWang"
+	# "SwendsenWang"
 	# "Glauber"
 )
 

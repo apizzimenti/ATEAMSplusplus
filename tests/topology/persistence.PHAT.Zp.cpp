@@ -16,7 +16,8 @@ vector<int> restrictedWrapper(
 	return topology::persistence::PHAT<RingLike>(
 		complex,
 		filtration,
-		dimension
+		dimension,
+		resources
 	);
 }
 
@@ -29,7 +30,8 @@ vector<int> fullWrapper(
 ) {
 	return topology::persistence::PHAT<RingLike>(
 		complex,
-		filtration
+		filtration,
+		resources
 	);
 }
 

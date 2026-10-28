@@ -56,7 +56,7 @@ namespace ATEAMS::models {
 		
 		for (int j=0; j < include.size(); j++) this->filtration[j+offset] = include[j]+offset;
 		for (int j=0; j < exclude.size(); j++) this->filtration[j+offset+include.size()] = exclude[j]+offset;
-
+		
 		// Now, compute the persistence times, then filter over them to capture only
 		// the ones within the right window.
 		vector<int> essential = topology::persistence::persistence<RingType>(this->complex, this->filtration, this->coefficients, d, resources);
