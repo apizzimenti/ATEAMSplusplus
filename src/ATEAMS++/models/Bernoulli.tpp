@@ -31,7 +31,8 @@ namespace ATEAMS::models {
 		// Then decide which cells we're including/excluding.
 		vector<int> include;
 		vector<int> exclude;
-
+		
+		// Can we do this faster?
 		for (int i=0; i < this->complex->Cells[d]; i++) {
 			if (this->unituniform(this->RNG) < p) {
 				include.push_back(i);
@@ -76,7 +77,7 @@ namespace ATEAMS::models {
 		std::for_each(essential.begin(), essential.end(), [offset](int &k) { k -= offset; });
 		std::erase_if(essential, [included](int &t) { return t > included; });
 
-		state.includes = include;
+		state.includes = include; 
 		state.essential = essential;
 		state.rank = essential.size();
 		state.t = t;

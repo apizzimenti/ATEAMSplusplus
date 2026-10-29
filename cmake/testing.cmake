@@ -17,13 +17,13 @@ list(APPEND ARITHMETIC.TESTING
 )
 
 list(APPEND TOPOLOGY.TESTING
-	# "JIT"
-	# "parallel"
+	"JIT"
+	"parallel"
 	"PHAT"
-	# "split"
-	# "stagger"
-	# "standard"
-	# "twist"
+	"split"
+	"stagger"
+	"standard"
+	"twist"
 )
 
 list(APPEND MODELS.TESTING

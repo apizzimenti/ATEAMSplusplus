@@ -37,6 +37,7 @@ namespace ATEAMS::topology::persistence {
 		if (resources.parallel->remapping.size() != filtration.size()) {
 			resources.parallel->remapping = vector<int>(filtration.size(), 0);
 		}
+
 		for (int t=0; t < filtration.size(); t++) resources.parallel->remapping[filtration[t]] = t;
 
 		PHATBoundaryMatrix boundary;

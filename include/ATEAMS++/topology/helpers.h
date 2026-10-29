@@ -20,45 +20,25 @@ namespace ATEAMS::topology::helpers {
 		arithmetic::ComputeResources<RingLike>& resources
 	) {
 		// Construct an index mapping.
-		vector<int> remapping(filtration.size());
+		if (resources.parallel->remapping.size() != filtration.size()) {
+			resources.parallel->remapping = vector<int>(filtration.size(), 0);
+		}
 
-		// resources.opt->pool.detach_loop(
-		// 	0, filtration.size(),
-		// 	[&](const size_t t) { remapping[filtration[t]] = t; }
-		// );
-		// resources.opt->pool.wait();
-
-		// #pragma omp parallel for shared(filtration, remapping) if(resources.parallel->enabled)
-		for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
+		#pragma omp parallel for default(shared) if(resources.parallel->enabled && filtration.size() > 1e5)
+		for (int t=0; t < filtration.size(); t++) resources.parallel->remapping[filtration[t]] = t;
 
 		// Duplicate the matrix.
 		SparseMatrix<RingLike> Full = complex->Coboundary.Full;
 		SparseMatrix<RingLike> Reindexed(Full.nrow, Full.ncol);
 
-		// resources.opt->pool.detach_loop(
-		// 	0, Full.nrow,
-		// 	[&](const size_t t) {
-		// 		SparseVector<RingLike>& row = Reindexed.rows[t];
-		// 		SparseVector<RingLike> orow = Full.rows[filtration[t]];
-
-		// 		for (int i=0; i < orow.size(); i++) {
-		// 			row.push_back(
-		// 				(INDEX)remapping[orow(i)],
-		// 				(typename RingLike::dtype)orow[i]
-		// 			);
-		// 		}
-		// 	}
-		// );
-		// resources.opt->pool.wait();
-
-		// #pragma omp parallel for shared(filtration, remapping)
+		#pragma omp parallel for default(shared) if(resources.parallel->enabled && filtration.size() > 1e5)
 		for (int t=0; t < Full.nrow; t++) {
 			SparseVector<RingLike>& row = Reindexed.rows[t];
 			SparseVector<RingLike> orow = Full.rows[filtration[t]];
 
 			for (int i=0; i < orow.size(); i++) {
 				row.push_back(
-					(INDEX)remapping[orow(i)],
+					(INDEX)resources.parallel->remapping[orow(i)],
 					(typename RingLike::dtype)orow[i]
 				);
 			}
@@ -77,16 +57,12 @@ namespace ATEAMS::topology::helpers {
 		arithmetic::ComputeResources<RingLike>& resources
 	) {
 		// Construct an index mapping.
-		vector<int> remapping(filtration.size());
+		if (resources.parallel->remapping.size() != filtration.size()) {
+			resources.parallel->remapping = vector<int>(filtration.size(), 0);
+		}
 		
-		// #pragma omp parallel for shared(filtration, remapping) if(resources.parallel->enabled)
-		for (int t=0; t < filtration.size(); t++) remapping[filtration[t]] = t;
-
-		// resources.opt->pool.detach_loop(
-		// 	0, filtration.size(),
-		// 	[&](const size_t t) { remapping[filtration[t]] = t; }
-		// );
-		// resources.opt->pool.wait();
+		#pragma omp parallel for default(shared) if(resources.parallel->enabled && filtration.size() > 1e5)
+		for (int t=0; t < filtration.size(); t++) resources.parallel->remapping[filtration[t]] = t;
 
 		SparseMatrix<RingLike> Full = complex->Coboundary.Full;
 		SparseMatrix<RingLike> Reindexed(Full.nrow, Full.ncol);
@@ -94,7 +70,7 @@ namespace ATEAMS::topology::helpers {
 		int startDimension = complex->Breaks[dimension][0];
 		int stopDimension = complex->Breaks[dimension][1];
 
-		// #pragma omp parallel for shared(Full, Reindexed) if (resources.parallel->enabled)
+		#pragma omp parallel for default(shared) if (resources.parallel->enabled && filtration.size() > 1e5)
 		for (int t=0; t < Full.nrow; t++) {
 			if ((startDimension <= t) && (t < stopDimension)) {
 				Reindexed.rows[t] = Full.rows[filtration[t]];
@@ -104,32 +80,12 @@ namespace ATEAMS::topology::helpers {
 
 				for (int i=0; i < orow.size(); i++) {
 					row.push_back(
-						(INDEX)remapping[orow(i)],
+						(INDEX)resources.parallel->remapping[orow(i)],
 						(typename RingLike::dtype)orow[i]
 					);
 				}
 			}
 		}
-
-		// resources.opt->pool.detach_loop(
-		// 	0, Full.nrow,
-		// 	[&](const size_t t) {
-		// 		if ((startDimension <= t) && (t < stopDimension)) {
-		// 			Reindexed.rows[t] = Full.rows[filtration[t]];
-		// 		} else {
-		// 			SparseVector<RingLike>& row = Reindexed.rows[t];
-		// 			SparseVector<RingLike> orow = Full.rows[t];
-
-		// 			for (int i=0; i < orow.size(); i++) {
-		// 				row.push_back(
-		// 					(INDEX)remapping[orow(i)],
-		// 					(typename RingLike::dtype)orow[i]
-		// 				);
-		// 			}
-		// 		}
-		// 	}
-		// );
-		// resources.opt->pool.wait();
 
 		Reindexed.compress();
 		return Reindexed;
