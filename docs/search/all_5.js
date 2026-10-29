@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['enabled_0',['enabled',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html#a8740ba80e30dd75e71d09fa1dcf04f3d',1,'ATEAMS::arithmetic::ParallelContainers']]],
-  ['enabled_20algorithms_20for_20spin_20systems_20in_20c_1',['Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++',['../index.html#autotoc_md0',1,'']]],
-  ['energy_2',['energy',['../struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a4ec8c7cb48771b844a6d50e2150e3f63',1,'ATEAMS::models::ModelState::energy'],['../namespace_a_t_e_a_m_s_1_1statistics.html#a84057b52565f61ccb4a02ec1dd01796e',1,'ATEAMS::statistics::energy()']]],
-  ['essential_3',['essential',['../struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#affb9db935dc3e09600f19267b9593b9d',1,'ATEAMS::models::ModelState']]]
+  ['datawriter_0',['DataWriter',['../class_a_t_e_a_m_s_1_1_data_writer.html',1,'ATEAMS']]],
+  ['debug_1',['DEBUG',['../class_a_t_e_a_m_s_1_1models_1_1_model.html#a117352cc494cc62c6b2f1882786a332c',1,'ATEAMS::models::Model::DEBUG'],['../struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a117352cc494cc62c6b2f1882786a332c',1,'ATEAMS::models::ModelParameters::DEBUG']]],
+  ['defaultpreferredblocks_2',['defaultPreferredBlocks',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_typed_parallel_containers.html#a39467ffd944b1b83e1526c316e65dfa6',1,'ATEAMS::arithmetic::TypedParallelContainers']]],
+  ['densevector_3',['DenseVector',['../namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617',1,'ATEAMS']]],
+  ['destructionpolicy_4',['DestructionPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies_1_1destruction.html#a1b991f2fced881490cfe05a9e4e5d6b7',1,'ATEAMS::topology::persistence::policies::destruction']]],
+  ['dimension_5',['dimension',['../class_a_t_e_a_m_s_1_1models_1_1_model.html#a1a8a8235879363159315091a1daed72f',1,'ATEAMS::models::Model::dimension'],['../struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f',1,'ATEAMS::models::ModelParameters::dimension']]],
+  ['dtype_6',['dtype',['../struct_a_t_e_a_m_s_1_1_q.html#a5a2362d1e1c9cfcef4953442c7f624ea',1,'ATEAMS::Q::dtype'],['../struct_a_t_e_a_m_s_1_1_zp.html#a7e4f3bd21a26074f79d2c5f6a39eb708',1,'ATEAMS::Zp::dtype'],['../struct_a_t_e_a_m_s_1_1_z2.html#a12a9db31d816ef3fffd4315bc3d68135',1,'ATEAMS::Z2::dtype']]]
 ];

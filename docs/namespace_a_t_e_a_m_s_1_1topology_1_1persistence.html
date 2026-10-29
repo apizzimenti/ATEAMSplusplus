@@ -151,10 +151,10 @@ Namespaces</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a7b5ced144210da603ab0e550dcd0eef7" id="r_a7b5ced144210da603ab0e550dcd0eef7"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a7b5ced144210da603ab0e550dcd0eef7 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7b5ced144210da603ab0e550dcd0eef7">persistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">arithmetic::ComputeResources</a>&lt; RingLike &gt; &amp;resources)</td></tr>
-<tr class="memdesc:a7b5ced144210da603ab0e550dcd0eef7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatch method for computing persistence; dispatches to <a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f" title="PHAT">PHAT</a>, <a class="el" href="#ac6958f059e588d0033ea5bb07b6d5395" title="twist">twist</a>, or <a class="el" href="#accb8e8b1aed2ca025c410fea20b8552c" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization resources.  <br /></td></tr>
+<tr class="memdesc:a7b5ced144210da603ab0e550dcd0eef7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatch method for computing persistence; dispatches to <a class="el" href="#ae1bf577b9c10212f4a19f4819f3adcb8" title="PHAT">PHAT</a>, <a class="el" href="#ac6958f059e588d0033ea5bb07b6d5395" title="twist">twist</a>, or <a class="el" href="#accb8e8b1aed2ca025c410fea20b8552c" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization resources.  <br /></td></tr>
 <tr class="memitem:a330143c3155d35f10d92778001195c73" id="r_a330143c3155d35f10d92778001195c73"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a330143c3155d35f10d92778001195c73 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a330143c3155d35f10d92778001195c73">persistence</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, int dimension, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">arithmetic::ComputeResources</a>&lt; RingLike &gt; &amp;resources)</td></tr>
-<tr class="memdesc:a330143c3155d35f10d92778001195c73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatch method for computing persistence; dispatches to <a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f" title="PHAT">PHAT</a>, <a class="el" href="#ac6958f059e588d0033ea5bb07b6d5395" title="twist">twist</a>, or <a class="el" href="#accb8e8b1aed2ca025c410fea20b8552c" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization resources. Convenience overload for computing the persistence of a single dimension.  <br /></td></tr>
+<tr class="memdesc:a330143c3155d35f10d92778001195c73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatch method for computing persistence; dispatches to <a class="el" href="#ae1bf577b9c10212f4a19f4819f3adcb8" title="PHAT">PHAT</a>, <a class="el" href="#ac6958f059e588d0033ea5bb07b6d5395" title="twist">twist</a>, or <a class="el" href="#accb8e8b1aed2ca025c410fea20b8552c" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization resources. Convenience overload for computing the persistence of a single dimension.  <br /></td></tr>
 <tr class="memitem:accb8e8b1aed2ca025c410fea20b8552c" id="r_accb8e8b1aed2ca025c410fea20b8552c"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:accb8e8b1aed2ca025c410fea20b8552c template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#accb8e8b1aed2ca025c410fea20b8552c">JIT</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">arithmetic::ComputeResources</a>&lt; RingLike &gt; &amp;resources, auto &amp;reindexingPolicy, auto &amp;traversalPolicy, auto &amp;reportingPolicy)</td></tr>
 <tr class="memdesc:accb8e8b1aed2ca025c410fea20b8552c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements a parallelized version of the standard persistence algorithm in line with that of Edelsbrunner and Harer, incorporating a just-in-time (JIT) version of the twist optimization. Base implementation to which all overloads forward.  <br /></td></tr>
@@ -173,12 +173,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a837e752c544907283ae6a911063dc1b1" id="r_a837e752c544907283ae6a911063dc1b1"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a837e752c544907283ae6a911063dc1b1 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a837e752c544907283ae6a911063dc1b1">parallel</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">arithmetic::ComputeResources</a>&lt; RingLike &gt; &amp;resources)</td></tr>
 <tr class="memdesc:a837e752c544907283ae6a911063dc1b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Implements a parallelized version of the standard persistence algorithm in line with that of Edelsbrunner and Harer. Convenience overload.  <br /></td></tr>
-<tr class="memitem:ad59faf8685a18bb04fb8ceaabff6065f" id="r_ad59faf8685a18bb04fb8ceaabff6065f"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:ad59faf8685a18bb04fb8ceaabff6065f template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f">PHAT</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, int dimension)</td></tr>
-<tr class="memdesc:ad59faf8685a18bb04fb8ceaabff6065f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of the <code class="param">dimension-skeleton</code> of <code class="param">complex</code> with \(\Z/2\Z\) coefficients using <a href="https://tinyurl.com/223wxnye">PHAT</a>.  <br /></td></tr>
-<tr class="memitem:a00835b80bb5945f84ff4e3b3ca99e49c" id="r_a00835b80bb5945f84ff4e3b3ca99e49c"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
-<tr class="memitem:a00835b80bb5945f84ff4e3b3ca99e49c template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a00835b80bb5945f84ff4e3b3ca99e49c">PHAT</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration)</td></tr>
-<tr class="memdesc:a00835b80bb5945f84ff4e3b3ca99e49c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex using \(\Z/2\Z\) coefficients using <a href="https://tinyurl.com/223wxnye">PHAT</a>. See the implementation of <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Bernoulli">Bernoulli</a>.  <br /></td></tr>
+<tr class="memitem:ae1bf577b9c10212f4a19f4819f3adcb8" id="r_ae1bf577b9c10212f4a19f4819f3adcb8"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:ae1bf577b9c10212f4a19f4819f3adcb8 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae1bf577b9c10212f4a19f4819f3adcb8">PHAT</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, int dimension, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">arithmetic::ComputeResources</a>&lt; RingLike &gt; &amp;resources)</td></tr>
+<tr class="memdesc:ae1bf577b9c10212f4a19f4819f3adcb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of the <code class="param">dimension-skeleton</code> of <code class="param">complex</code> with \(\Z/2\Z\) coefficients using <a href="https://tinyurl.com/223wxnye">PHAT</a>.  <br /></td></tr>
+<tr class="memitem:aa08f09ea35184816d9540fc2fe00c539" id="r_aa08f09ea35184816d9540fc2fe00c539"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
+<tr class="memitem:aa08f09ea35184816d9540fc2fe00c539 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa08f09ea35184816d9540fc2fe00c539">PHAT</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">arithmetic::ComputeResources</a>&lt; RingLike &gt; &amp;resources)</td></tr>
+<tr class="memdesc:aa08f09ea35184816d9540fc2fe00c539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex using \(\Z/2\Z\) coefficients using <a href="https://tinyurl.com/223wxnye">PHAT</a>. See the implementation of <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Bernoulli">Bernoulli</a>.  <br /></td></tr>
 <tr class="memitem:a985c1894296edcce14df7354d7e9966f" id="r_a985c1894296edcce14df7354d7e9966f"><td class="memTemplParams" colspan="2">template&lt;typename RingLike&gt; </td></tr>
 <tr class="memitem:a985c1894296edcce14df7354d7e9966f template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a985c1894296edcce14df7354d7e9966f">split</a> (<a class="el" href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">complexes::Complex</a>&lt; RingLike &gt; *complex, std::vector&lt; int &gt; &amp;filtration, <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R, <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">arithmetic::ComputeResources</a>&lt; RingLike &gt; &amp;resources, auto &amp;reindexingPolicy, auto &amp;traversalPolicy, auto &amp;reportingPolicy)</td></tr>
 <tr class="memdesc:a985c1894296edcce14df7354d7e9966f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the persistent homology of a complex over \(\Z/p\Z\) coefficients, where \(p\) is prime. Computes persistence by performing <a class="el" href="#ac6958f059e588d0033ea5bb07b6d5395" title="twist">twist</a> concurrently on the left and right halves of the matrix. Base implementation to which all overloads forward.  <br /></td></tr>
@@ -752,7 +752,7 @@ template&lt;typename RingLike&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Dispatch method for computing persistence; dispatches to <a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f" title="PHAT">PHAT</a>, <a class="el" href="#ac6958f059e588d0033ea5bb07b6d5395" title="twist">twist</a>, or <a class="el" href="#accb8e8b1aed2ca025c410fea20b8552c" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization resources. </p>
+<p>Dispatch method for computing persistence; dispatches to <a class="el" href="#ae1bf577b9c10212f4a19f4819f3adcb8" title="PHAT">PHAT</a>, <a class="el" href="#ac6958f059e588d0033ea5bb07b6d5395" title="twist">twist</a>, or <a class="el" href="#accb8e8b1aed2ca025c410fea20b8552c" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization resources. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
@@ -779,7 +779,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="5,103,94,128"/>
 <area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#accb8e8b1aed2ca025c410fea20b8552c" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="150,29,190,55"/>
 <area shape="poly" title=" " alt="" coords="71,100,138,60,135,64,74,104"/>
-<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="142,103,198,128"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ae1bf577b9c10212f4a19f4819f3adcb8" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="142,103,198,128"/>
 <area shape="poly" title=" " alt="" coords="94,113,129,114,124,117,95,118"/>
 <area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ac6958f059e588d0033ea5bb07b6d5395" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="145,176,194,202"/>
 <area shape="poly" title=" " alt="" coords="73,126,136,166,132,169,72,132"/>
@@ -835,7 +835,7 @@ template&lt;typename RingLike&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Dispatch method for computing persistence; dispatches to <a class="el" href="#ad59faf8685a18bb04fb8ceaabff6065f" title="PHAT">PHAT</a>, <a class="el" href="#ac6958f059e588d0033ea5bb07b6d5395" title="twist">twist</a>, or <a class="el" href="#accb8e8b1aed2ca025c410fea20b8552c" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization resources. Convenience overload for computing the persistence of a single dimension. </p>
+<p>Dispatch method for computing persistence; dispatches to <a class="el" href="#ae1bf577b9c10212f4a19f4819f3adcb8" title="PHAT">PHAT</a>, <a class="el" href="#ac6958f059e588d0033ea5bb07b6d5395" title="twist">twist</a>, or <a class="el" href="#accb8e8b1aed2ca025c410fea20b8552c" title="JIT">JIT</a> depending on the characteristic of <code class="param">R</code> and parallelization resources. Convenience overload for computing the persistence of a single dimension. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
@@ -863,7 +863,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="5,103,94,128"/>
 <area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#accb8e8b1aed2ca025c410fea20b8552c" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="150,29,190,55"/>
 <area shape="poly" title=" " alt="" coords="71,100,138,60,135,64,74,104"/>
-<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="142,103,198,128"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ae1bf577b9c10212f4a19f4819f3adcb8" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="142,103,198,128"/>
 <area shape="poly" title=" " alt="" coords="94,113,129,114,124,117,95,118"/>
 <area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ac6958f059e588d0033ea5bb07b6d5395" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="145,176,194,202"/>
 <area shape="poly" title=" " alt="" coords="73,126,136,166,132,169,72,132"/>
@@ -875,8 +875,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a00835b80bb5945f84ff4e3b3ca99e49c" name="a00835b80bb5945f84ff4e3b3ca99e49c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00835b80bb5945f84ff4e3b3ca99e49c">&#9670;&#160;</a></span>PHAT() <span class="overload">[1/2]</span></h2>
+<a id="aa08f09ea35184816d9540fc2fe00c539" name="aa08f09ea35184816d9540fc2fe00c539"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa08f09ea35184816d9540fc2fe00c539">&#9670;&#160;</a></span>PHAT() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -894,7 +894,12 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>filtration</em></span>&#160;)</td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>filtration</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">arithmetic::ComputeResources</a>&lt; RingLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>resources</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -922,10 +927,10 @@ template&lt;typename RingLike&gt; </div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_a00835b80bb5945f84ff4e3b3ca99e49c_cgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_a00835b80bb5945f84ff4e3b3ca99e49c_cgraph" loading="lazy" alt=""/></div>
-<map name="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_a00835b80bb5945f84ff4e3b3ca99e49c_cgraph" id="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_a00835b80bb5945f84ff4e3b3ca99e49c_cgraph">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_aa08f09ea35184816d9540fc2fe00c539_cgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_aa08f09ea35184816d9540fc2fe00c539_cgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_aa08f09ea35184816d9540fc2fe00c539_cgraph" id="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_aa08f09ea35184816d9540fc2fe00c539_cgraph">
 <area shape="rect" title="Computes the persistent homology of a complex using &#160;coefficients using PHAT. See the implementation ..." alt="" coords="5,29,62,55"/>
-<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="110,29,166,55"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ae1bf577b9c10212f4a19f4819f3adcb8" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="110,29,166,55"/>
 <area shape="poly" title=" " alt="" coords="62,40,97,42,91,43,62,45"/>
 <area shape="poly" title=" " alt="" coords="119,28,116,21,118,11,125,5,138,3,151,5,159,15,154,14,149,10,138,8,128,10,122,14,121,20,124,30"/>
 </map>
@@ -933,8 +938,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ad59faf8685a18bb04fb8ceaabff6065f" name="ad59faf8685a18bb04fb8ceaabff6065f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad59faf8685a18bb04fb8ceaabff6065f">&#9670;&#160;</a></span>PHAT() <span class="overload">[2/2]</span></h2>
+<a id="ae1bf577b9c10212f4a19f4819f3adcb8" name="ae1bf577b9c10212f4a19f4819f3adcb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1bf577b9c10212f4a19f4819f3adcb8">&#9670;&#160;</a></span>PHAT() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -957,7 +962,12 @@ template&lt;typename RingLike&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dimension</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dimension</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">arithmetic::ComputeResources</a>&lt; RingLike &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>resources</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -986,8 +996,8 @@ template&lt;typename RingLike&gt; </div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_ad59faf8685a18bb04fb8ceaabff6065f_cgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ad59faf8685a18bb04fb8ceaabff6065f_cgraph" loading="lazy" alt=""/></div>
-<map name="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ad59faf8685a18bb04fb8ceaabff6065f_cgraph" id="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ad59faf8685a18bb04fb8ceaabff6065f_cgraph">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_ae1bf577b9c10212f4a19f4819f3adcb8_cgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ae1bf577b9c10212f4a19f4819f3adcb8_cgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ae1bf577b9c10212f4a19f4819f3adcb8_cgraph" id="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ae1bf577b9c10212f4a19f4819f3adcb8_cgraph">
 <area shape="rect" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="5,29,62,55"/>
 <area shape="poly" title=" " alt="" coords="22,29,21,12,26,5,34,3,42,6,46,14,41,14,38,10,33,8,29,10,26,14,27,29"/>
 </map>
@@ -995,15 +1005,15 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_ad59faf8685a18bb04fb8ceaabff6065f_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ad59faf8685a18bb04fb8ceaabff6065f_icgraph" loading="lazy" alt=""/></div>
-<map name="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ad59faf8685a18bb04fb8ceaabff6065f_icgraph" id="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ad59faf8685a18bb04fb8ceaabff6065f_icgraph">
+<div class="center"><img src="namespace_a_t_e_a_m_s_1_1topology_1_1persistence_ae1bf577b9c10212f4a19f4819f3adcb8_icgraph.png" border="0" usemap="#anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ae1bf577b9c10212f4a19f4819f3adcb8_icgraph" loading="lazy" alt=""/></div>
+<map name="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ae1bf577b9c10212f4a19f4819f3adcb8_icgraph" id="anamespace_a_t_e_a_m_s_1_1topology_1_1persistence_ae1bf577b9c10212f4a19f4819f3adcb8_icgraph">
 <area shape="rect" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="142,55,198,80"/>
 <area shape="poly" title=" " alt="" coords="189,39,183,36,170,33,158,35,151,40,150,46,154,55,148,54,145,46,147,37,156,30,170,28,185,31,194,40"/>
 <area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a7b5ced144210da603ab0e550dcd0eef7" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="5,5,94,31"/>
 <area shape="poly" title=" " alt="" coords="125,51,83,34,83,29,130,49"/>
 <area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a330143c3155d35f10d92778001195c73" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="5,55,94,80"/>
 <area shape="poly" title=" " alt="" coords="124,69,95,70,94,65,129,66"/>
-<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#a00835b80bb5945f84ff4e3b3ca99e49c" title="Computes the persistent homology of a complex using &#160;coefficients using PHAT. See the implementation ..." alt="" coords="21,104,78,130"/>
+<area shape="rect" href="namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#aa08f09ea35184816d9540fc2fe00c539" title="Computes the persistent homology of a complex using &#160;coefficients using PHAT. See the implementation ..." alt="" coords="21,104,78,130"/>
 <area shape="poly" title=" " alt="" coords="130,84,79,108,77,103,125,85"/>
 </map>
 </div>

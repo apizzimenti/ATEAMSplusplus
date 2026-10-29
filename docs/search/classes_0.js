@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['bernoulli_0',['Bernoulli',['../class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html',1,'ATEAMS::models']]],
-  ['boundarydata_1',['BoundaryData',['../struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html',1,'ATEAMS::complexes']]],
-  ['boundarydata_3c_20z2_20_3e_2',['BoundaryData&lt; Z2 &gt;',['../struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html',1,'ATEAMS::complexes']]]
+  ['_5bstruct_5d_2ephat_0',['[struct].phat',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers_1_1_0fstruct_0e_8phat.html',1,'ATEAMS::arithmetic::ParallelContainers']]]
 ];

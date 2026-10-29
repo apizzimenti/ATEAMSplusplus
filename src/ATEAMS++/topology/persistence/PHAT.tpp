@@ -80,20 +80,21 @@ namespace ATEAMS::topology::persistence {
 		// Compute the persistence pairs and populate a Vector to return to the
 		// user. We know when the giant(/essential) cycles are born because they
 		// do not appear in the list of births or deaths.
-		PHATPairs pairs;
-		set<int> all;
-		phat::compute_persistence_pairs<PHATTwist>(pairs, boundary);
-		pairs.sort();
+		// PHATPairs& pairs = resources.parallel->phat.pairs;
+		// set<int>& all = resources.parallel->phat.all;
 
-		for (phat::index i=0; i < pairs.get_num_pairs(); i++) {
-			all.insert(pairs.get_pair(i).first);
-			all.insert(pairs.get_pair(i).second);
+		resources.parallel->phat.all.clear();
+		phat::compute_persistence_pairs<PHATTwist>(resources.parallel->phat.pairs, boundary);
+
+		for (phat::index i=0; i < resources.parallel->phat.pairs.get_num_pairs(); i++) {
+			resources.parallel->phat.all.insert(resources.parallel->phat.pairs.get_pair(i).first);
+			resources.parallel->phat.all.insert(resources.parallel->phat.pairs.get_pair(i).second);
 		}
 
 		vector<int> essential;
 
 		for (int t=0; t < filtration.size(); t++) {
-			if (!all.contains(filtration[t])) essential.push_back(filtration[t]);
+			if (!resources.parallel->phat.all.contains(filtration[t])) essential.push_back(filtration[t]);
 		}
 
 		return essential;
@@ -111,7 +112,7 @@ namespace ATEAMS::topology::persistence {
 		// No sense in doing a ton of policy work for this one.
 		vector<int> essential = PHAT<RingLike>(complex, filtration, resources);
 		int low = complex->Breaks[dimension][0], high = complex->Breaks[dimension][1];
-		std::erase_if(essential, [filtration,low,high](int t) { return !(low <= filtration[t] && filtration[t] < high); });
+		std::erase_if(essential, [&](int t) { return !(low <= filtration[t] && filtration[t] < high); });
 
 		return essential;
 	}

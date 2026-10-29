@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['typedparallelcontainers_0',['TypedParallelContainers',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_typed_parallel_containers.html',1,'ATEAMS::arithmetic']]],
-  ['typedparallelcontainers_3c_20typename_20modeltype_3a_3aringtype_20_3e_1',['TypedParallelContainers&lt; typename ModelType::RingType &gt;',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_typed_parallel_containers.html',1,'ATEAMS::arithmetic']]]
+  ['serialcontainers_0',['SerialContainers',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers.html',1,'ATEAMS::arithmetic']]],
+  ['swendsenwang_1',['SwendsenWang',['../class_a_t_e_a_m_s_1_1models_1_1_swendsen_wang.html',1,'ATEAMS::models']]]
 ];

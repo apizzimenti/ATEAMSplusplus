@@ -147,20 +147,48 @@ The below example samples $`2`$-dimensional plaquette Bernoulli percolation 1,00
 using namespace ATEAMS;
 using namespace std;
 
+// Function for timing the loop; returns fractional seconds.
+double timer(auto loop) {
+	auto start = chrono::steady_clock::now();
+	loop();
+	auto end = chrono::steady_clock::now();
+
+	auto delta = chrono::duration_cast<chrono::milliseconds>(end-start);
+	return delta.count()/1000.0;
+}
+
 int main() {
 	int iterations = 1000;
 	int dimension = 2;
 
+	// Construct a 6x6x6x6 cubical 4-torus, initialize a 2-dimensional Bernoulli
+	// percolation model on the torus, and initialize a Markov chain to simulate
+	// the percolation model.
 	complexes::Cubical<Z2> plex({6,6,6,6});
 	models::Bernoulli percolation(&plex, dimension);
 	statistics::Chain<models::Bernoulli> M(&percolation, iterations);
 
+	// Create a vector to store the ranks of the (dimension)th homology groups
+	// of each subcomplex sampled by the model.
 	vector<int> ranks(M.steps, 0);
 
-	for (models::Bernoulli::State state : M.simulate()) { ranks[state.t] = state.rank; }
+	// Time the loop.
+	double elapsed = timer([&]{
+		for (models::Bernoulli::State state : M.simulate()) {
+			ranks[state.t] = state.rank;
+		}
+	});
 
-	double e = (double)accumulate(ranks.begin(), ranks.end(), 0)/(double)M.steps;
-	cout << "expected rank is " << format("{:.2f}", e) << endl;
+	// Compute the expected rank.
+	double e = accumulate(ranks.begin(), ranks.end(), 0)/(double)M.steps;
+
+	// Pretty-print.
+	cout << std::format(
+		"expected rank is {:.3f} :: took {:.3f} seconds :: ATEAMS++ v{}",
+		e,
+		elapsed,
+		ATEAMS_VERSION
+	) << endl;
 
 	return 0;
 }
@@ -174,7 +202,7 @@ $ ./main
 expected rank is 3.09
 ```
 
-This takes ~8 seconds on a 2022 MacBook Air with an Apple M2 processor.
+This takes ~8 seconds on my 2022 MacBook Air with an Apple M2 processor.
 
 > [!TIP]
 > If you plan to run large-scale simulations on an external machine, the [`magnetizationplusplus` workflow](https://github.com/apizzimenti/magnetizationplusplus) may be of use to you.

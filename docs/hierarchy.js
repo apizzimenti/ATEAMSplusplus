@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "ATEAMS::arithmetic::ParallelContainers::[struct].phat", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers_1_1_0fstruct_0e_8phat.html", null ],
     [ "BoundaryData&lt; RingLike &gt;", "struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html", null ],
     [ "Chain&lt; ModelType &gt;", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html", null ],
     [ "Complex&lt; RingLike &gt;", "class_a_t_e_a_m_s_1_1complexes_1_1_complex.html", [

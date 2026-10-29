@@ -1,11 +1,24 @@
 var searchData=
 [
-  ['bases_0',['Bases',['../struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html#af4eb7ba24da64b3a2c079e1b21bcf8d7',1,'ATEAMS::complexes::BoundaryData']]],
-  ['bernoulli_1',['Bernoulli',['../class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html',1,'Bernoulli'],['../class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#ae743b170094d3ffcb1301924943c5031',1,'ATEAMS::models::Bernoulli::Bernoulli(complexes::Complex&lt; RingType &gt; *complex, ModelParameters parameters)'],['../class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#aa2918da9c0b0f63cc4eede3dcf8ca8b8',1,'ATEAMS::models::Bernoulli::Bernoulli(complexes::Complex&lt; RingType &gt; *complex, int dimension, double p=0.5, bool DEBUG=false)']]],
-  ['blocks_2',['blocks',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_typed_parallel_containers.html#ac5ebc9432ec58d54aff086e0b5137b2f',1,'ATEAMS::arithmetic::TypedParallelContainers::blocks'],['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html#ac5ebc9432ec58d54aff086e0b5137b2f',1,'ATEAMS::arithmetic::ParallelContainers::blocks']]],
-  ['boundary_3',['Boundary',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#aa89e1ec672a7e657b16d6ef2b78a0441',1,'ATEAMS::complexes::Complex']]],
-  ['boundarydata_4',['BoundaryData',['../struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html',1,'ATEAMS::complexes']]],
-  ['boundarydata_3c_20z2_20_3e_5',['BoundaryData&lt; Z2 &gt;',['../struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html',1,'ATEAMS::complexes']]],
-  ['breaks_6',['Breaks',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a3c4e3cc58db2dc2785768a4549d2d6e0',1,'ATEAMS::complexes::Complex']]],
-  ['build_7',['build',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers.html#a742ba502283725ced8418f52d6d54ce4',1,'ATEAMS::arithmetic::SerialContainers::build()'],['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_typed_parallel_containers.html#a7740c7ab195c03ac140f1f75f633470f',1,'ATEAMS::arithmetic::TypedParallelContainers::build()'],['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html#af95f295aed8565f91b9be788dae30d79',1,'ATEAMS::arithmetic::ParallelContainers::build()']]]
+  ['abstractring_0',['AbstractRing',['../namespace_a_t_e_a_m_s.html#a4cbb94314c6faf40168354c29480ac07',1,'ATEAMS']]],
+  ['add_1',['add',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_finite_arithmetic.html#a5991c60408295e0b4dae87a0331fc6d3',1,'ATEAMS::arithmetic::FiniteArithmetic']]],
+  ['algebraic_20topology_20enabled_20algorithms_20for_20spin_20systems_20in_20c_2',['Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++',['../index.html#autotoc_md0',1,'']]],
+  ['algorithms_20for_20spin_20systems_20in_20c_3',['Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++',['../index.html#autotoc_md0',1,'']]],
+  ['all_4',['all',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers_1_1_0fstruct_0e_8phat.html#af3bc46ba5b239d89e3dd294fe40ea7bd',1,'ATEAMS::arithmetic::ParallelContainers::[struct].phat']]],
+  ['arithmetic_5',['arithmetic',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html#af7d148cdfebde667992d270df5d738b4',1,'ATEAMS::arithmetic::ComputeResources']]],
+  ['arithmetize_6',['arithmetize',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_finite_arithmetic.html#a89bd5f694c0a611e54da41e2a6b78064',1,'ATEAMS::arithmetic::FiniteArithmetic::arithmetize()'],['../class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html#a89bd5f694c0a611e54da41e2a6b78064',1,'ATEAMS::arithmetic::ComputeResources::arithmetize()']]],
+  ['ateams_7',['ATEAMS',['../namespace_a_t_e_a_m_s.html',1,'ATEAMS'],['../index.html',1,'ATEAMS++']]],
+  ['ateams_3a_3aarithmetic_8',['arithmetic',['../namespace_a_t_e_a_m_s_1_1arithmetic.html',1,'ATEAMS']]],
+  ['ateams_3a_3acomplexes_9',['complexes',['../namespace_a_t_e_a_m_s_1_1complexes.html',1,'ATEAMS']]],
+  ['ateams_3a_3amodels_10',['models',['../namespace_a_t_e_a_m_s_1_1models.html',1,'ATEAMS']]],
+  ['ateams_3a_3astatistics_11',['statistics',['../namespace_a_t_e_a_m_s_1_1statistics.html',1,'ATEAMS']]],
+  ['ateams_3a_3atopology_12',['topology',['../namespace_a_t_e_a_m_s_1_1topology.html',1,'ATEAMS']]],
+  ['ateams_3a_3atopology_3a_3apersistence_13',['persistence',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html',1,'ATEAMS::topology']]],
+  ['ateams_3a_3atopology_3a_3apersistence_3a_3apolicies_14',['policies',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies.html',1,'ATEAMS::topology::persistence']]],
+  ['ateams_3a_3atopology_3a_3apersistence_3a_3apolicies_3a_3acreation_15',['creation',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies_1_1creation.html',1,'ATEAMS::topology::persistence::policies']]],
+  ['ateams_3a_3atopology_3a_3apersistence_3a_3apolicies_3a_3adestruction_16',['destruction',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies_1_1destruction.html',1,'ATEAMS::topology::persistence::policies']]],
+  ['ateams_3a_3atopology_3a_3apersistence_3a_3apolicies_3a_3areduction_17',['reduction',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies_1_1reduction.html',1,'ATEAMS::topology::persistence::policies']]],
+  ['ateams_3a_3atopology_3a_3apersistence_3a_3apolicies_3a_3areindexing_18',['reindexing',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies_1_1reindexing.html',1,'ATEAMS::topology::persistence::policies']]],
+  ['ateams_3a_3atopology_3a_3apersistence_3a_3apolicies_3a_3areporting_19',['reporting',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies_1_1reporting.html',1,'ATEAMS::topology::persistence::policies']]],
+  ['ateams_3a_3atopology_3a_3apersistence_3a_3apolicies_3a_3atraversal_20',['traversal',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies_1_1traversal.html',1,'ATEAMS::topology::persistence::policies']]]
 ];

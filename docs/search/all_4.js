@@ -1,10 +1,24 @@
 var searchData=
 [
-  ['datawriter_0',['DataWriter',['../class_a_t_e_a_m_s_1_1_data_writer.html',1,'ATEAMS']]],
-  ['debug_1',['DEBUG',['../class_a_t_e_a_m_s_1_1models_1_1_model.html#a117352cc494cc62c6b2f1882786a332c',1,'ATEAMS::models::Model::DEBUG'],['../struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a117352cc494cc62c6b2f1882786a332c',1,'ATEAMS::models::ModelParameters::DEBUG']]],
-  ['defaultpreferredblocks_2',['defaultPreferredBlocks',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_typed_parallel_containers.html#a39467ffd944b1b83e1526c316e65dfa6',1,'ATEAMS::arithmetic::TypedParallelContainers']]],
-  ['densevector_3',['DenseVector',['../namespace_a_t_e_a_m_s.html#aa42815d4701eab5afbd59eb779921617',1,'ATEAMS']]],
-  ['destructionpolicy_4',['DestructionPolicy',['../namespace_a_t_e_a_m_s_1_1topology_1_1persistence_1_1policies_1_1destruction.html#a1b991f2fced881490cfe05a9e4e5d6b7',1,'ATEAMS::topology::persistence::policies::destruction']]],
-  ['dimension_5',['dimension',['../class_a_t_e_a_m_s_1_1models_1_1_model.html#a1a8a8235879363159315091a1daed72f',1,'ATEAMS::models::Model::dimension'],['../struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a1a8a8235879363159315091a1daed72f',1,'ATEAMS::models::ModelParameters::dimension']]],
-  ['dtype_6',['dtype',['../struct_a_t_e_a_m_s_1_1_q.html#a5a2362d1e1c9cfcef4953442c7f624ea',1,'ATEAMS::Q::dtype'],['../struct_a_t_e_a_m_s_1_1_zp.html#a7e4f3bd21a26074f79d2c5f6a39eb708',1,'ATEAMS::Zp::dtype'],['../struct_a_t_e_a_m_s_1_1_z2.html#a12a9db31d816ef3fffd4315bc3d68135',1,'ATEAMS::Z2::dtype']]]
+  ['c_0',['Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++',['../index.html#autotoc_md0',1,'']]],
+  ['cells_1',['Cells',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#aebe12edf5366ea3267642d96be4a2324',1,'ATEAMS::complexes::Complex']]],
+  ['chain_2',['Chain',['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html',1,'Chain&lt; ModelType &gt;'],['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a3dda99d3acfd636f587263a24b3d8f5d',1,'ATEAMS::statistics::Chain::Chain(ModelType *model, int steps)'],['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#afdd85c5890e0b92ccc5d7fb2da7a6646',1,'ATEAMS::statistics::Chain::Chain(ModelType *model, int steps, bool parallel)'],['../class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a59a3a689e79bba002ca1f4f0f4d336f3',1,'ATEAMS::statistics::Chain::Chain(ModelType *model, int steps, arithmetic::ComputeResources&lt; typename ModelType::RingType &gt; resources)']]],
+  ['characteristic_3',['characteristic',['../struct_a_t_e_a_m_s_1_1_ring.html#a937d0808cd7064cb8b2b1a15dc9048b9',1,'ATEAMS::Ring']]],
+  ['citing_4',['Citing',['../index.html#autotoc_md6',1,'']]],
+  ['coboundary_5',['Coboundary',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a81f99c9d5bbed1222b707b1a639899d9',1,'ATEAMS::complexes::Complex']]],
+  ['cochain_6',['cochain',['../struct_a_t_e_a_m_s_1_1models_1_1_model_state.html#a334b77423f585fe61bcb7e640b56f6b5',1,'ATEAMS::models::ModelState']]],
+  ['coefficients_7',['coefficients',['../class_a_t_e_a_m_s_1_1models_1_1_model.html#a67c367e941d9cfa52dc173c8a0dc20f5',1,'ATEAMS::models::Model::coefficients'],['../struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html#a67c367e941d9cfa52dc173c8a0dc20f5',1,'ATEAMS::models::ModelParameters::coefficients']]],
+  ['column_8',['column',['../struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers_1_1_0fstruct_0e_8phat.html#a3a559facdfa1fe9ccec733c38bb2ea29',1,'ATEAMS::arithmetic::ParallelContainers::[struct].phat']]],
+  ['complex_9',['Complex',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html',1,'ATEAMS::complexes']]],
+  ['complex_10',['complex',['../class_a_t_e_a_m_s_1_1models_1_1_model.html#aa9fb7501f4721a129cf3d6f6f0160d84',1,'ATEAMS::models::Model']]],
+  ['complex_3c_20z2_20_3e_11',['Complex&lt; Z2 &gt;',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html',1,'ATEAMS::complexes']]],
+  ['computeresources_12',['ComputeResources',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html',1,'ComputeResources&lt; RingLike &gt;'],['../class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html#a26d80c766f55efc4dcb51e7b8e5d711e',1,'ATEAMS::arithmetic::ComputeResources::ComputeResources()']]],
+  ['computeresources_3c_20typename_20modeltype_3a_3aringtype_20_3e_13',['ComputeResources&lt; typename ModelType::RingType &gt;',['../class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html',1,'ATEAMS::arithmetic']]],
+  ['constant_14',['constant',['../namespace_a_t_e_a_m_s_1_1statistics.html#a93b8c881b04c26a185ef87bc25e8372e',1,'ATEAMS::statistics']]],
+  ['constructboundarymatrices_15',['constructBoundaryMatrices',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#aaef3b89d7151e0b6ac7e96e8b2c8bce7',1,'ATEAMS::complexes::Complex::constructBoundaryMatrices()'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a098d75363939c94927404ee7a5982623',1,'ATEAMS::complexes::Cubical::constructBoundaryMatrices()']]],
+  ['constructflatboundarymatrix_16',['constructFlatBoundaryMatrix',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a271a21d67a50656bbe743686c2ea9556',1,'ATEAMS::complexes::Complex::constructFlatBoundaryMatrix()'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a97e1c46c8078a155cd40bdb8cb8fa9d4',1,'ATEAMS::complexes::Cubical::constructFlatBoundaryMatrix()']]],
+  ['constructfullboundarymatrix_17',['constructFullBoundaryMatrix',['../class_a_t_e_a_m_s_1_1complexes_1_1_complex.html#a01aa572c027c6e8c3c88b3cc903b2542',1,'ATEAMS::complexes::Complex::constructFullBoundaryMatrix()'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a7dccc3b83aec5b2425d3f93cc5cbcf4f',1,'ATEAMS::complexes::Cubical::constructFullBoundaryMatrix()']]],
+  ['contributing_18',['Contributing',['../index.html#autotoc_md5',1,'']]],
+  ['corners_19',['corners',['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#acd2e31b75850ec31ea70d4ecf18330b1',1,'ATEAMS::complexes::Cubical']]],
+  ['cubical_20',['Cubical',['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html',1,'Cubical&lt; RingLike &gt;'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a735e59180e360c2c6c94c896ba3fd261',1,'ATEAMS::complexes::Cubical::Cubical(std::vector&lt; int &gt; corners, bool periodic)'],['../class_a_t_e_a_m_s_1_1complexes_1_1_cubical.html#a0e7fdf956568384a948f7ba42a50e6e1',1,'ATEAMS::complexes::Cubical::Cubical(std::vector&lt; int &gt; corners)']]]
 ];

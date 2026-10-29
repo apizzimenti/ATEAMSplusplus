@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Dispatch method for computing persistence; dispatches to PHAT, twist, or JIT depending on the charact..." alt="" coords="5,103,94,128"/>
 <area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#accb8e8b1aed2ca025c410fea20b8552c" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="150,29,190,55"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,100,138,60,135,64,74,104"/>
-<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ad59faf8685a18bb04fb8ceaabff6065f" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="142,103,198,128"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ae1bf577b9c10212f4a19f4819f3adcb8" title="Computes the persistent homology of the dimension&#45;skeleton of complex with &#160;coefficients using PHAT." alt="" coords="142,103,198,128"/>
 <area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="94,113,129,114,124,117,95,118"/>
 <area shape="rect" id="Node000004" href="$namespace_a_t_e_a_m_s_1_1topology_1_1persistence.html#ac6958f059e588d0033ea5bb07b6d5395" title="Computes the persistent homology of a complex over &#160;coefficients, where &#160;is prime...." alt="" coords="145,176,194,202"/>
 <area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="73,126,136,166,132,169,72,132"/>

@@ -88,7 +88,6 @@ namespace ATEAMS::arithmetic {
 
 	};
 
-
 	/**
 	 * @struct ParallelContainers
 	 * @brief Reusable containers for parallel persistence computation. See
@@ -114,6 +113,15 @@ namespace ATEAMS::arithmetic {
 			std::vector<int> lookup;
 			std::vector<bool> zeroed;
 			std::vector<int> remapping;
+
+			struct {
+				PHATBoundaryMatrix boundary;
+				PHATColumn column;
+				PHATPairs pairs;
+				std::vector<int> ground;
+				std::set<int> all;
+			} phat;
+
 			int blocks;
 			bool enabled = true;
 
