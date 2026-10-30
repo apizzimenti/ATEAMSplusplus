@@ -24,6 +24,7 @@ namespace ATEAMS::topology::persistence {
 	 * 	1-dimensional percolation in 2-d, then we switch up the ordering of
 	 * 	the 1-d cells in the flat boundary matrix, but leave everything else.
 	 * @param dimension The percolation dimension.
+	 * @param resources Parallel computing environment resources.
 	 * 
 	 * @returns A vector of percolation times.
 	 */
@@ -45,7 +46,7 @@ namespace ATEAMS::topology::persistence {
 	 * @param complex (Pointer to) a @ref ATEAMS::complexes::Complex with a flat boundary matrix.
 	 * @param filtration A vector that specifies the order in which to add
 	 * 	the cells in the flat boundary matrix.
-	 * 
+	 * @param resources Parallel computing environment resources.
 	 * @returns A vector of percolation times.
 	 */
 	template <typename RingLike>

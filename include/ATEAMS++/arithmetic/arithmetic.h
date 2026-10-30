@@ -291,8 +291,6 @@ namespace ATEAMS {
 		 * @param x Vector.
 		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
 		 * @param resources Compute resources.
-		 * 
-		 * @returns \f$a \vec x\f$.
 		 */
 		template <typename RingLike>
 		inline void SparseVectorRescaling(
