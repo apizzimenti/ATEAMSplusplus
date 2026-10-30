@@ -27,14 +27,6 @@ namespace ATEAMS::topology::helpers {
 		#pragma omp parallel for default(shared) if(resources.parallel->enabled && filtration.size() > 1e5)
 		for (int t=0; t < filtration.size(); t++) resources.parallel->remapping[filtration[t]] = t;
 
-		// resources.opt->pool.detach_loop(
-		// 	0, filtration.size(),
-		// 	[&](const size_t t) {
-		// 		resources.parallel->remapping[filtration[t]] = t;
-		// 	}
-		// );
-		// resources.opt->pool.wait();
-
 		// Duplicate the matrix.
 		SparseMatrix<RingLike> Full = complex->Coboundary.Full;
 		SparseMatrix<RingLike> Reindexed(Full.nrow, Full.ncol);
@@ -51,32 +43,6 @@ namespace ATEAMS::topology::helpers {
 				);
 			}
 		}
-
-		// If we haven't yet decided on a preferred number of blocks, let's
-		// compute that now.
-		// if (resources.typed->blocks < 0) {
-		// 	resources.typed->defaultPreferredBlocks(Full.nrow);
-		// 	resources.typed->build();
-		// }
-
-		// resources.opt->pool.detach_blocks(
-		// 	0, Full.nrow,
-		// 	[&](const size_t start, const size_t end) {
-		// 		for (int t=start; t < end; t++) {
-		// 			SparseVector<RingLike>& row = Reindexed.rows[t];
-		// 			SparseVector<RingLike> orow = Full.rows[filtration[t]];
-
-		// 			for (int i=0; i < orow.size(); i++) {
-		// 				row.push_back(
-		// 					(INDEX)resources.parallel->remapping[orow(i)],
-		// 					(typename RingLike::dtype)orow[i]
-		// 				);
-		// 			}
-		// 		}
-		// 	},
-		// 	resources.typed->blocks
-		// );
-		// resources.opt->pool.wait();
 
 		Reindexed.compress();
 		return Reindexed;
@@ -97,14 +63,6 @@ namespace ATEAMS::topology::helpers {
 		
 		#pragma omp parallel for default(shared) if(resources.parallel->enabled && filtration.size() > 1e5)
 		for (int t=0; t < filtration.size(); t++) resources.parallel->remapping[filtration[t]] = t;
-
-		// resources.opt->pool.detach_loop(
-		// 	0, filtration.size(),
-		// 	[&](const size_t t) {
-		// 		resources.parallel->remapping[filtration[t]] = t;
-		// 	}
-		// );
-		// resources.opt->pool.wait();
 
 		SparseMatrix<RingLike> Full = complex->Coboundary.Full;
 		SparseMatrix<RingLike> Reindexed(Full.nrow, Full.ncol);
@@ -128,34 +86,6 @@ namespace ATEAMS::topology::helpers {
 				}
 			}
 		}
-
-		// If we haven't yet decided on a preferred number of blocks, let's
-		// compute that now.
-		// if (resources.typed->blocks < 0) {
-		// 	resources.typed->defaultPreferredBlocks(Full.nrow);
-		// 	resources.typed->build();
-		// }
-
-		// resources.opt->pool.detach_blocks(
-		// 	0, Full.nrow,
-		// 	[&](const size_t start, const size_t end) {
-		// 		if ((startDimension <= t) && (t < stopDimension)) {
-		// 			Reindexed.rows[t] = Full.rows[filtration[t]];
-		// 		} else {
-		// 			SparseVector<RingLike>& row = Reindexed.rows[t];
-		// 			SparseVector<RingLike> orow = Full.rows[t];
-
-		// 			for (int i=0; i < orow.size(); i++) {
-		// 				row.push_back(
-		// 					(INDEX)resources.parallel->remapping[orow(i)],
-		// 					(typename RingLike::dtype)orow[i]
-		// 				);
-		// 			}
-		// 		}
-		// 	},
-		// 	resources.typed->blocks
-		// );
-		// resources.opt->pool.wait();
 
 		Reindexed.compress();
 		return Reindexed;

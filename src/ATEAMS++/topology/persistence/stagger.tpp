@@ -75,71 +75,71 @@ namespace ATEAMS::topology::persistence {
 		// clearing optimization benefits.
 		vector<int> endpoints = traversalPolicy(complex);
 
-		for (int d=endpoints[0]; d >= endpoints[1]; d -= 2) {
-			resources.opt->pool.detach_task(
-				[&, d] {
-					reduceBlock<RingLike>(
-						Full,
-						complex->Breaks[d],
-						resources.parallel->lookup,
-						d,
-						R,
-						reductionPolicy,
-						creationPolicy,
-						destructionPolicy,
-						resources
-					);
-
-					// Then the d-1th block, if d-1 >= 0.
-					if (d-1 >= 0) {
-						reduceBlock<RingLike>(
-							Full,
-							complex->Breaks[d-1],
-							resources.parallel->lookup,
-							d-1,
-							R,
-							reductionPolicy,
-							creationPolicy,
-							destructionPolicy,
-							resources
-						);
-					}
-				}
-			);
-		}
-
-		resources.opt->pool.wait();
-
-		// #pragma omp parallel for default(shared) schedule(static,1)
 		// for (int d=endpoints[0]; d >= endpoints[1]; d -= 2) {
-		// 	// Reduce the dth block,
-		// 	reduceBlock<RingLike>(
-		// 		Full,
-		// 		complex->Breaks[d],
-		// 		resources.parallel->lookup,
-		// 		d,
-		// 		R,
-		// 		reductionPolicy,
-		// 		creationPolicy,
-		// 		destructionPolicy,
-		// 		resources
-		// 	);
+		// 	resources.opt->pool.detach_task(
+		// 		[&, d] {
+		// 			reduceBlock<RingLike>(
+		// 				Full,
+		// 				complex->Breaks[d],
+		// 				resources.parallel->lookup,
+		// 				d,
+		// 				R,
+		// 				reductionPolicy,
+		// 				creationPolicy,
+		// 				destructionPolicy,
+		// 				resources
+		// 			);
 
-		// 	// Then the d-1th block, if d-1 >= 0.
-		// 	if (d-1 >= 0) {
-		// 		reduceBlock<RingLike>(
-		// 			Full,
-		// 			complex->Breaks[d-1],
-		// 			resources.parallel->lookup,
-		// 			d-1,
-		// 			R,
-		// 			reductionPolicy,
-		// 			creationPolicy,
-		// 			destructionPolicy,
-		// 			resources
-		// 		);
-		// 	}
+		// 			// Then the d-1th block, if d-1 >= 0.
+		// 			if (d-1 >= 0) {
+		// 				reduceBlock<RingLike>(
+		// 					Full,
+		// 					complex->Breaks[d-1],
+		// 					resources.parallel->lookup,
+		// 					d-1,
+		// 					R,
+		// 					reductionPolicy,
+		// 					creationPolicy,
+		// 					destructionPolicy,
+		// 					resources
+		// 				);
+		// 			}
+		// 		}
+		// 	);
 		// }
+
+		// resources.opt->pool.wait();
+
+		#pragma omp parallel for default(shared) schedule(static,1)
+		for (int d=endpoints[0]; d >= endpoints[1]; d -= 2) {
+			// Reduce the dth block,
+			reduceBlock<RingLike>(
+				Full,
+				complex->Breaks[d],
+				resources.parallel->lookup,
+				d,
+				R,
+				reductionPolicy,
+				creationPolicy,
+				destructionPolicy,
+				resources
+			);
+
+			// Then the d-1th block, if d-1 >= 0.
+			if (d-1 >= 0) {
+				reduceBlock<RingLike>(
+					Full,
+					complex->Breaks[d-1],
+					resources.parallel->lookup,
+					d-1,
+					R,
+					reductionPolicy,
+					creationPolicy,
+					destructionPolicy,
+					resources
+				);
+			}
+		}
 
 		// Re-constitute the marked columns.
 		set<int> marked;
