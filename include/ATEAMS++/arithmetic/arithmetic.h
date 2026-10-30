@@ -189,7 +189,7 @@ namespace ATEAMS {
 			std::vector<SparseVector<RingLike>> chunks(omp_get_max_threads(), SparseVector<RingLike>());
 
 			// Compute the dot products in parallel.
-			#pragma omp parallel for default(shared) schedule(guided)
+			#pragma omp parallel for default(shared) schedule(static)
 			for (int i=0; i < A.rows.size(); i++) {
 				int tid = omp_get_thread_num();
 				typename RingLike::dtype r = arithmetic::SparseVectorDot<RingLike>(A.rows[i], x, R);
@@ -243,7 +243,6 @@ namespace ATEAMS {
 				resources.typed->defaultPreferredBlocks(A.rows.size());
 				resources.typed->build();
 			}
-
 
 			// Compute the dot products in parallel.
 			resources.opt->pool.detach_blocks(

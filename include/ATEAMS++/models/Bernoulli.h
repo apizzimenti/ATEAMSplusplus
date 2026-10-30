@@ -120,6 +120,7 @@ namespace ATEAMS::models {
 			std::vector<int> filtration;
 			std::vector<int> include;
 			std::vector<int> exclude;
+			std::vector<double> probabilities;
 	};
 }
 

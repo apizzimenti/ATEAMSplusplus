@@ -3,6 +3,19 @@
 ## Linking/including dependencies for local build.                            ##
 ################################################################################
 
+# List core external dependencies.
+list(APPEND COREDEPENDENCIES
+	"PkgConfig::FLINT"
+	"${TBB}"
+)
+
+if(OpenMP)
+	list(APPEND COREDEPENDENCIES
+		"OpenMP::OpenMP_CXX"
+	)
+else()
+endif()
+
 # Link external dependencies.
 foreach(DEP IN LISTS COREDEPENDENCIES)
 	target_link_libraries(ATEAMS++ INTERFACE ${DEP})

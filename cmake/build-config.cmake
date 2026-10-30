@@ -18,6 +18,12 @@ if(NOT DEBUG)
 
 		set(TIMING_LINK_OPTIONS
 			-Ofast
+			-march=native
+			-flto
+			-funroll-loops
+			-fprefetch-loop-arrays
+			-fno-rtti
+			-fomit-frame-pointer
 		)
 	endif()
 
@@ -36,7 +42,7 @@ if(NOT DEBUG)
 
 	if(PROFILE)
 		set(PROFILE_COMPILE_OPTIONS
-			-g
+			-ggdb3
 			-Ofast
 			-march=native
 			-flto
@@ -47,7 +53,14 @@ if(NOT DEBUG)
 		)
 
 		set(PROFILE_LINK_OPTIONS
-			-g
+			-ggdb3
+			-Ofast
+			-march=native
+			-flto
+			-funroll-loops
+			-fprefetch-loop-arrays
+			-fno-rtti
+			-fno-omit-frame-pointer
 		)
 	endif()
 endif()

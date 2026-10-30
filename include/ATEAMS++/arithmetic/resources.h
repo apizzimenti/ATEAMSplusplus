@@ -7,7 +7,7 @@
 #include <SparseRREF/sparse_mat.h>
 #include <SparseRREF/sparse_rref.h>
 
-#include <omp.h>
+// #include <omp.h>
 #include <thread>
 
 
@@ -86,6 +86,19 @@ namespace ATEAMS::arithmetic {
 				}
 			};
 
+	};
+
+	/**
+	 * @struct 
+	 */
+	struct Randomness {
+		public:
+			template <typename E, typename D>
+			void fill(E& engine, D& distribution, std::vector<double>& probabilities) {
+				std::generate(probabilities.begin(), probabilities.end(), [&]() {
+					return distribution(engine);
+				});
+			}
 	};
 
 	/**
@@ -217,6 +230,7 @@ namespace ATEAMS::arithmetic {
 			ParallelContainers* parallel;
 			TypedParallelContainers<RingLike>* typed;
 			FiniteArithmetic<RingLike>* arithmetic;
+			Randomness* random;
 
 
 			/**

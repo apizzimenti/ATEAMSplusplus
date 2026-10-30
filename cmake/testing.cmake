@@ -17,7 +17,7 @@ list(APPEND ARITHMETIC.TESTING
 )
 
 list(APPEND TOPOLOGY.TESTING
-	# "JIT"
+	"JIT"
 	# "parallel"
 	"PHAT"
 	# "split"
