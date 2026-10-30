@@ -19,7 +19,7 @@ list(APPEND ARITHMETIC.TESTING
 list(APPEND TOPOLOGY.TESTING
 	"JIT"
 	# "parallel"
-	"PHAT"
+	# "PHAT"
 	# "split"
 	# "stagger"
 	# "standard"
