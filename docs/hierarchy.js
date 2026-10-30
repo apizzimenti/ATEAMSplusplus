@@ -24,6 +24,7 @@ var hierarchy =
     [ "ModelParameters", "struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html", null ],
     [ "ModelState&lt; RingLike, VectorLike &gt;", "struct_a_t_e_a_m_s_1_1models_1_1_model_state.html", null ],
     [ "ParallelContainers", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html", null ],
+    [ "Randomness", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_randomness.html", null ],
     [ "Ring", "struct_a_t_e_a_m_s_1_1_ring.html", [
       [ "Q", "struct_a_t_e_a_m_s_1_1_q.html", null ],
       [ "Z2", "struct_a_t_e_a_m_s_1_1_z2.html", null ],

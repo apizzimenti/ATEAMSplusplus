@@ -168,56 +168,55 @@ namespace ATEAMS {
 			);
 		};
 
-		// /**
-		//  * @brief Sparse (right) matrix multiplication \f$ A \vec x \f$, performed
-		//  * 	by computing dot products \f$A_i \cdot \vec x\f$ in parallel. Uses
-		//  *  OpenMP.
-		//  * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
-		//  * 
-		//  * @param A Matrix.
-		//  * @param x Vector.
-		//  * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
-		//  * @param resources Compute resources.
-		//  * 
-		//  * @returns \f$ \vec y = A \vec x \f$.
-		//  */
-		// template <typename RingLike>
-		// inline SparseVector<RingLike> SparseRightMultiplication(
-		// 	SparseMatrix<RingLike>& A,
-		// 	SparseVector<RingLike>& x,
-		// 	Ring* R,
-		// 	ComputeResources<RingLike>& resources
-		// ) {
-		// 	// If parallelism isn't enabled, kick to the other version.
-		// 	if (!resources.parallel->enabled) return SparseRightMultiplication<RingLike>(A, x, R);
+		/**
+		 * @brief Sparse (right) matrix multiplication \f$ A \vec x \f$, performed
+		 * 	by computing dot products \f$A_i \cdot \vec x\f$ in parallel. Uses
+		 *  OpenMP.
+		 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
+		 * 
+		 * @param A Matrix.
+		 * @param x Vector.
+		 * @param R (Pointer to) a coefficient @ref Ring, like @ref Zp or @ref Q.
+		 * @param resources Compute resources.
+		 * 
+		 * @returns \f$ \vec y = A \vec x \f$.
+		 */
+		template <typename RingLike>
+		inline SparseVector<RingLike> OpenMPSparseRightMultiplication(
+			SparseMatrix<RingLike>& A,
+			SparseVector<RingLike>& x,
+			Ring* R,
+			ComputeResources<RingLike>& resources
+		) {
+			// If parallelism isn't enabled, kick to the other version.
+			if (!resources.parallel->enabled) return SparseRightMultiplication<RingLike>(A, x, R);
 
-		// 	std::vector<SparseVector<RingLike>> chunks(omp_get_max_threads(), SparseVector<RingLike>());
+			std::vector<SparseVector<RingLike>> chunks(omp_get_max_threads(), SparseVector<RingLike>());
 
-		// 	// Compute the dot products in parallel.
-		// 	#pragma omp parallel for default(shared) schedule(static) if (A.rows.size() > 1e5)
-		// 	for (int i=0; i < A.rows.size(); i++) {
-		// 		int tid = omp_get_thread_num();
-		// 		typename RingLike::dtype r = arithmetic::SparseVectorDot<RingLike>(A.rows[i], x, R);
+			// Compute the dot products in parallel.
+			#pragma omp parallel for default(shared) schedule(static) if (A.rows.size() > 1e5)
+			for (int i=0; i < A.rows.size(); i++) {
+				int tid = omp_get_thread_num();
+				typename RingLike::dtype r = arithmetic::SparseVectorDot<RingLike>(A.rows[i], x, R);
 
-		// 		if (r > 0) resources.typed->parts[tid].push_back((INDEX)i, r);
-		// 	}
+				if (r > 0) chunks[tid].push_back((INDEX)i, r);
+			}
 
-		// 	// Reconstitute the vector.
-		// 	SparseVector<RingLike> r;
+			// Reconstitute the vector.
+			SparseVector<RingLike> r;
 
-		// 	for (int j=0; j < resources.typed->parts.size(); j++) {
-		// 		// Skip this row if there's nothing in it.
-		// 		if (resources.typed->parts[j].size() < 1) continue;
+			for (int j=0; j < chunks.size(); j++) {
+				// Skip this row if there's nothing in it.
+				if (chunks[j].size() < 1) continue;
 
-		// 		for (int k=0; k < resources.typed->parts[j].size(); k++) {
-		// 			r.push_back(resources.typed->parts[j](k), resources.typed->parts[j][k]);
-		// 		}
-		// 	}
-		// 	r.sort_indices();
-		// 	resources.typed->flush();
+				for (int k=0; k < chunks[j].size(); k++) {
+					r.push_back(chunks[j](k), chunks[j][k]);
+				}
+			}
+			r.sort_indices();
 
-		// 	return r;
-		// }
+			return r;
+		}
 
 
 		/**

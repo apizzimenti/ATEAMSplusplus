@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 		SparseMatrix<Zp> A = randomizedMatrix(M, N, uniformValues, RNG);
 
 		SparseVector<Zp> sy = arithmetic::SparseRightMultiplication<Zp>(A, x, &R);
-		SparseVector<Zp> py = arithmetic::OpenMPSparseRightMultiplication<Zp>(A, x, &R);
+		SparseVector<Zp> py = arithmetic::OpenMPSparseRightMultiplication<Zp>(A, x, &R, resources);
 		SparseVector<Zp> by = arithmetic::SparseRightMultiplication<Zp>(A, x, &R, resources);
 
 		if (sy != py || sy != by) {

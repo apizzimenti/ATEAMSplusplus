@@ -1,0 +1,10 @@
+<map id="OpenMPSparseRightMultiplication" name="OpenMPSparseRightMultiplication">
+<area shape="rect" id="Node000001" title="Sparse (right) matrix multiplication , performed by computing dot products &#160;in parallel...." alt="" coords="5,67,226,92"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="75,66,67,58,72,48,89,42,116,40,146,43,162,52,157,53,144,48,115,45,90,47,76,52,73,57,80,66"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1arithmetic.html#a0030f1b3f6243a3f8094596eef404c5f" title="Sparse (right) matrix multiplication ." alt="" coords="274,29,443,55"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="203,63,261,57,256,58,204,69"/>
+<area shape="rect" id="Node000003" href="$namespace_a_t_e_a_m_s_1_1arithmetic.html#acaca566eef40bba411fc8f778016fa7c" title="Sparse vector dot product &#160;for vectors over a Ring." alt="" coords="298,103,419,128"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="207,90,285,104,280,105,206,96"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="318,28,310,21,315,11,331,5,358,3,389,5,405,15,400,15,387,11,358,8,333,10,319,15,316,20,323,30"/>
+<area shape="poly" id="edge5_Node000003_Node000003" title=" " alt="" coords="318,101,310,94,315,84,331,78,358,76,389,79,405,89,400,88,387,84,358,81,333,83,319,88,316,93,323,103"/>
+</map>

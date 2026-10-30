@@ -2,6 +2,7 @@ var namespace_a_t_e_a_m_s_1_1arithmetic =
 [
     [ "SerialContainers", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers.html", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers" ],
     [ "TypedParallelContainers", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_typed_parallel_containers.html", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_typed_parallel_containers" ],
+    [ "Randomness", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_randomness.html", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_randomness" ],
     [ "ParallelContainers", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers" ],
     [ "FiniteArithmetic", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_finite_arithmetic.html", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_finite_arithmetic" ],
     [ "ComputeResources", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources" ],
@@ -9,7 +10,7 @@ var namespace_a_t_e_a_m_s_1_1arithmetic =
     [ "RREFOptionType", "namespace_a_t_e_a_m_s_1_1arithmetic.html#aa5a44f2e02e38845a5772a388a574ba0", null ],
     [ "nonzeroIndices", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a3dc7e5d9b7d685c4616567deb54d473c", null ],
     [ "nonzeroIndices", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a93a7fe8b85fb1fac613d07a625128338", null ],
-    [ "OpenMPSparseRightMultiplication", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a1a8ebada97ebaf454b30b68b8c2680d2", null ],
+    [ "OpenMPSparseRightMultiplication", "namespace_a_t_e_a_m_s_1_1arithmetic.html#ad2f91bf9d3b83ea2e329f784dfbbbe82", null ],
     [ "randomLinearCombination", "namespace_a_t_e_a_m_s_1_1arithmetic.html#abffbe7b96444e63af12b3814385506f6", null ],
     [ "SparseMatrixKernel", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a07fc26c96eb141fb48f44b0cb5ee5389", null ],
     [ "SparseMatrixRREF", "namespace_a_t_e_a_m_s_1_1arithmetic.html#a41c0fe25f857de33869baf10247269fc", null ],

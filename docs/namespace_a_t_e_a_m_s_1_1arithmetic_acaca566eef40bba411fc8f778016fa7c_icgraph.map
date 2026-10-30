@@ -1,7 +1,7 @@
 <map id="SparseVectorDot" name="SparseVectorDot">
 <area shape="rect" id="Node000001" title="Sparse vector dot product &#160;for vectors over a Ring." alt="" coords="274,29,395,55"/>
 <area shape="poly" id="edge3_Node000001_Node000001" title=" " alt="" coords="371,14,360,10,334,8,311,10,299,15,296,20,303,30,298,28,291,21,295,11,310,5,334,3,361,5,376,15"/>
-<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1arithmetic.html#a1a8ebada97ebaf454b30b68b8c2680d2" title="Sparse (right) matrix multiplication , performed by computing dot products &#160;in parallel...." alt="" coords="5,29,226,55"/>
+<area shape="rect" id="Node000002" href="$namespace_a_t_e_a_m_s_1_1arithmetic.html#ad2f91bf9d3b83ea2e329f784dfbbbe82" title="Sparse (right) matrix multiplication , performed by computing dot products &#160;in parallel...." alt="" coords="5,29,226,55"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,42,226,45,226,40,261,42"/>
 <area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="152,15,141,10,115,8,92,10,80,15,77,20,84,29,79,29,72,21,76,11,91,5,116,3,142,5,157,15"/>
 </map>

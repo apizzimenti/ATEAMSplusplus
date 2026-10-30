@@ -161,15 +161,18 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_bernoulli_8h_
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            std::mt19937 RNG;</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            std::uniform_real_distribution&lt;double&gt; unituniform;</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            std::vector&lt;int&gt; filtration;</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    };</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            std::vector&lt;int&gt; include;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            std::vector&lt;int&gt; exclude;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            std::vector&lt;double&gt; probabilities;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    };</div>
 </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>}</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>}</div>
 </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">#include &quot;ATEAMS++/models/Bernoulli.tpp&quot;</span></div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclass_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">ATEAMS::arithmetic::ComputeResources</a></div><div class="ttdoc">Convenience class for managing Flint and multithreading. See Chain; not something users should need.</div><div class="ttdef"><b>Definition</b> <a href="resources_8h_source.html#l00213">resources.h:213</a></div></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#include &quot;ATEAMS++/models/Bernoulli.tpp&quot;</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclass_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html">ATEAMS::arithmetic::ComputeResources</a></div><div class="ttdoc">Convenience class for managing Flint and multithreading. See Chain; not something users should need.</div><div class="ttdef"><b>Definition</b> <a href="resources_8h_source.html#l00226">resources.h:226</a></div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1complexes_1_1_complex_html"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1complexes_1_1_complex.html">ATEAMS::complexes::Complex</a></div><div class="ttdoc">Template class for various complexes.</div><div class="ttdef"><b>Definition</b> <a href="_complex_8h_source.html#l00075">Complex.h:75</a></div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html_a0de824a793d86fd7437bcb1aef34d3dd"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a0de824a793d86fd7437bcb1aef34d3dd">ATEAMS::models::Bernoulli::RingType</a></div><div class="ttdeci">Z2 RingType</div><div class="ttdoc">Exposed coefficient ring type. See Z2.</div><div class="ttdef"><b>Definition</b> <a href="#l00050">Bernoulli.h:50</a></div></div>
 <div class="ttc" id="aclass_a_t_e_a_m_s_1_1models_1_1_bernoulli_html_a6ee6cbd44e092a808b95a01fa04472ad"><div class="ttname"><a href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html#a6ee6cbd44e092a808b95a01fa04472ad">ATEAMS::models::Bernoulli::initialize</a></div><div class="ttdeci">State initialize(std::vector&lt; RingType &gt; c, State &amp;state) override</div><div class="ttdoc">Initialization; superfluous.</div><div class="ttdef"><b>Definition</b> <a href="#l00115">Bernoulli.h:115</a></div></div>

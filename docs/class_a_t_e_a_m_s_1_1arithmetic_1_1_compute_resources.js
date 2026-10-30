@@ -7,6 +7,7 @@ var class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources =
     [ "arithmetic", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html#af7d148cdfebde667992d270df5d738b4", null ],
     [ "opt", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html#a2a79b72562a20b841a05586ebdc61bd6", null ],
     [ "parallel", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html#a7794293cc5965705cfecb0d392f81ce3", null ],
+    [ "random", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html#a644297c0103e17e646dda42c5e85ebd4", null ],
     [ "serial", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html#a62135b324b64bef0f449b31c6644a170", null ],
     [ "typed", "class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html#a48c8fc8c54f07b69d0dfc8791f0732bc", null ]
 ];

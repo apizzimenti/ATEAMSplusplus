@@ -149,11 +149,13 @@ Collaboration diagram for ComputeResources&lt; RingLike &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources__coll__graph.png" border="0" usemap="#a_compute_resources_3_01_ring_like_01_4_coll__map" loading="lazy" alt="Collaboration graph"/></div>
 <map name="a_compute_resources_3_01_ring_like_01_4_coll__map" id="a_compute_resources_3_01_ring_like_01_4_coll__map">
-<area shape="rect" title="Convenience class for managing Flint and multithreading. See Chain; not something users should need." alt="" coords="31,102,244,128"/>
+<area shape="rect" title="Convenience class for managing Flint and multithreading. See Chain; not something users should need." alt="" coords="104,102,317,128"/>
 <area shape="rect" href="struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers.html" title="Reusable containers for serial persistence computation. See twist." alt="" coords="5,5,123,31"/>
-<area shape="poly" title=" " alt="" coords="84,41,130,101,125,102,81,45"/>
+<area shape="poly" title=" " alt="" coords="96,37,194,100,189,103,94,42"/>
 <area shape="rect" href="struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html" title="Reusable containers for parallel persistence computation. See JIT." alt="" coords="147,5,274,31"/>
-<area shape="poly" title=" " alt="" coords="195,42,149,103,145,99,190,44"/>
+<area shape="poly" title=" " alt="" coords="213,45,213,103,208,100,209,48"/>
+<area shape="rect" href="struct_a_t_e_a_m_s_1_1arithmetic_1_1_randomness.html" title=" " alt="" coords="299,5,397,31"/>
+<area shape="poly" title=" " alt="" coords="322,39,267,80,231,104,228,99,264,76,317,41"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -177,12 +179,13 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a7794293cc5965705cfecb0d392f81ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a <a class="el" href="struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html" title="ParallelContainers">ParallelContainers</a>, reusable containers for parallel persistence computation.  <br /></td></tr>
 <tr class="memitem:a48c8fc8c54f07b69d0dfc8791f0732bc" id="r_a48c8fc8c54f07b69d0dfc8791f0732bc"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1arithmetic_1_1_typed_parallel_containers.html">TypedParallelContainers</a>&lt; RingLike &gt; *&#160;</td><td class="memItemRight"><a class="el" href="#a48c8fc8c54f07b69d0dfc8791f0732bc">typed</a></td></tr>
 <tr class="memitem:af7d148cdfebde667992d270df5d738b4" id="r_af7d148cdfebde667992d270df5d738b4"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1arithmetic_1_1_finite_arithmetic.html">FiniteArithmetic</a>&lt; RingLike &gt; *&#160;</td><td class="memItemRight"><a class="el" href="#af7d148cdfebde667992d270df5d738b4">arithmetic</a></td></tr>
+<tr class="memitem:a644297c0103e17e646dda42c5e85ebd4" id="r_a644297c0103e17e646dda42c5e85ebd4"><td class="memItemLeft"><a class="el" href="struct_a_t_e_a_m_s_1_1arithmetic_1_1_randomness.html">Randomness</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a644297c0103e17e646dda42c5e85ebd4">random</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename RingLike&gt;<br />
 class ATEAMS::arithmetic::ComputeResources&lt; RingLike &gt;</div><p>Convenience class for managing Flint and multithreading. See <a class="el" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html" title="Chain">Chain</a>; not something users should need. </p>
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00213">213</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00226">226</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a26d80c766f55efc4dcb51e7b8e5d711e" name="a26d80c766f55efc4dcb51e7b8e5d711e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a26d80c766f55efc4dcb51e7b8e5d711e">&#9670;&#160;</a></span>ComputeResources()</h2>
@@ -211,7 +214,7 @@ template&lt;typename RingLike&gt; </div>
 
 <p>Constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00225">225</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00239">239</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 
 </div>
 </div>
@@ -241,7 +244,7 @@ template&lt;typename RingLike&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00238">238</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00252">252</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -302,7 +305,7 @@ template&lt;typename RingLike&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00261">261</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00275">275</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -344,7 +347,7 @@ template&lt;typename RingLike&gt; </div>
 <p>Initializes a multithreaded computing environment. </p>
 <dl class="section return"><dt>Returns</dt><dd>An execution thread. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00246">246</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00260">260</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -383,7 +386,7 @@ template&lt;typename RingLike&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00219">219</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00232">232</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 
 </div>
 </div>
@@ -403,7 +406,7 @@ template&lt;typename RingLike&gt; </div>
 
 <p>Pointer to a <a class="el" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html" title="ComputeResources">ComputeResources</a> object used to keep track of the thread pool and process-killing keystrokes. </p>
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00215">215</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00228">228</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 
 </div>
 </div>
@@ -423,7 +426,25 @@ template&lt;typename RingLike&gt; </div>
 
 <p>Pointer to a <a class="el" href="struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html" title="ParallelContainers">ParallelContainers</a>, reusable containers for parallel persistence computation. </p>
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00217">217</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00230">230</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+
+</div>
+</div>
+<a id="a644297c0103e17e646dda42c5e85ebd4" name="a644297c0103e17e646dda42c5e85ebd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a644297c0103e17e646dda42c5e85ebd4">&#9670;&#160;</a></span>random</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RingLike&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_a_t_e_a_m_s_1_1arithmetic_1_1_randomness.html">Randomness</a>* random</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00233">233</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 
 </div>
 </div>
@@ -443,7 +464,7 @@ template&lt;typename RingLike&gt; </div>
 
 <p>Pointer to a <a class="el" href="struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers.html" title="SerialContainers">SerialContainers</a>, reusable containers for serial persistence computation. </p>
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00216">216</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00229">229</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 
 </div>
 </div>
@@ -461,7 +482,7 @@ template&lt;typename RingLike&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00218">218</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00231">231</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 
 </div>
 </div>
