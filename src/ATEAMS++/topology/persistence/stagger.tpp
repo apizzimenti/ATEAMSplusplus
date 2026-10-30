@@ -110,7 +110,7 @@ namespace ATEAMS::topology::persistence {
 
 		// resources.opt->pool.wait();
 
-		#pragma omp parallel for default(shared) schedule(static,1)
+		#pragma omp parallel for default(shared) schedule(guided)
 		for (int d=endpoints[0]; d >= endpoints[1]; d -= 2) {
 			// Reduce the dth block,
 			reduceBlock<RingLike>(
