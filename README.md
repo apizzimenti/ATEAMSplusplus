@@ -209,7 +209,7 @@ This takes ~8 seconds on my 2022 MacBook Air with an Apple M2 processor.
 
 
 ## Known issues
-* `InvadedCluster` and `Invasion` perform $`\mathbb Z/2\mathbb Z`$ persistence when using rational coefficients.
+* `InvadedCluster` and `Invasion` perform $`\mathbb Z/3\mathbb Z`$ persistence when using rational coefficients.
 * Some models don't have complete debugging information.
 
 
