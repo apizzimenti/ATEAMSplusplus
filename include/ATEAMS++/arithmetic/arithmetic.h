@@ -120,7 +120,7 @@ namespace ATEAMS {
 			}
 
 			// Zero out the remaining entries, if there are any.
-			#pragma omp parallel for default(shared) schedule(static)
+			// #pragma omp parallel for default(shared) schedule(static)
 			for (size_t i=left; i < out; i++) u[i] = 0;
 
 			// Canonicalize.
