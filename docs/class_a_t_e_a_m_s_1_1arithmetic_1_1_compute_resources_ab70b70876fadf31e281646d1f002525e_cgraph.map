@@ -1,5 +1,5 @@
 <map id="spinUp" name="spinUp">
 <area shape="rect" id="Node000001" title="Initializes a multithreaded computing environment." alt="" coords="5,20,68,46"/>
-<area shape="rect" id="Node000002" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_typed_parallel_containers.html#a39287b9b62874f284a0ad3e5783b53d1" title=" " alt="" coords="116,5,286,61"/>
+<area shape="rect" id="Node000002" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_typed_parallel_containers.html#a39287b9b62874f284a0ad3e5783b53d1" title="Setter for threads and squaredThreads." alt="" coords="116,5,286,61"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,31,103,32,98,34,69,36"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="threading" name="threading">
-<area shape="rect" id="Node000001" title=" " alt="" coords="391,20,465,46"/>
+<area shape="rect" id="Node000001" title="Setter for threads and squaredThreads." alt="" coords="391,20,465,46"/>
 <area shape="rect" id="Node000002" href="$class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html#ab70b70876fadf31e281646d1f002525e" title="Initializes a multithreaded computing environment." alt="" coords="190,5,343,61"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="373,33,343,36,343,31,378,33"/>
 <area shape="rect" id="Node000003" href="$class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a8a3f02d7974740554249fa6a095b753a" title="Model&#45;generic iterator." alt="" coords="5,13,142,54"/>

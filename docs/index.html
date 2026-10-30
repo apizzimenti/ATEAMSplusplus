@@ -203,7 +203,7 @@ Installation</h2>
 <div class="line">$ sudo apt install libgoogle-perftools-dev libmimalloc-dev</div>
 </div><!-- fragment --></li>
 <li><b>on Windows</b> (using <a href="https://vcpkg.io/en/">vcpkg</a>), <div class="fragment"><div class="line">$ vcpkg install gperftools mimalloc</div>
-</div><!-- fragment --> You can set any of the <span class="tt">jemalloc</span>, <span class="tt">tcmalloc</span>, or <span class="tt">mimalloc</span> tools to <span class="tt">TRUE</span> in the CMake config file (<span class="tt">CMakeLists.txt</span>), but the build will fail if more than one of the variables is set to <span class="tt">TRUE</span>.</li>
+</div><!-- fragment --> You can set any of the <span class="tt">jemalloc</span>, <span class="tt">tcmalloc</span>, or <span class="tt">mimalloc</span> tools to <span class="tt">TRUE</span> in the CMake config file (<span class="tt">CMakeLists.txt</span>), but the build will fail if you try to use more than one.</li>
 </ul>
 </dd></dl>
 <ol type="1">
@@ -282,7 +282,7 @@ Usage</h2>
 </div><!-- fragment --><p>If the above snippet is in a file called <span class="tt">main.cpp</span>, then compiling the program and running the executable should give something like</p>
 <div class="fragment"><div class="line">$ $CXX main.cpp `pkg-config --libs --cflags ATEAMS++` -o main</div>
 <div class="line">$ ./main</div>
-<div class="line">expected rank is 3.09</div>
+<div class="line">expected rank is 2.988 :: took 8.842 seconds :: ATEAMS++ v1.0.0</div>
 </div><!-- fragment --><p>This takes ~8 seconds on my 2022 MacBook Air with an Apple M2 processor.</p>
 <dl class="section remark"><dt>Remarks</dt><dd>If you plan to run large-scale simulations on an external machine, the <a href="https://github.com/apizzimenti/magnetizationplusplus"><span class="tt">magnetizationplusplus</span> workflow</a> may be of use to you.</dd></dl>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
@@ -304,7 +304,7 @@ Citing</h2>
 <div class="line">    title={{ATEAMS++: Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++}},</div>
 <div class="line">    author={Pizzimenti, Anthony E. and Eldridge, Summer and Schweinhart, Ben and Duncan, Paul},</div>
 <div class="line">    url={github.com/apizzimenti/ATEAMSplusplus},</div>
-<div class="line">    version={1.0.0},</div>
+<div class="line">    version={1.0.1},</div>
 <div class="line">    doi={10.5281/zenodo.20817889}</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div></div><!-- PageDoc -->

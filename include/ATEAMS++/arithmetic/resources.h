@@ -7,7 +7,10 @@
 #include <SparseRREF/sparse_mat.h>
 #include <SparseRREF/sparse_rref.h>
 
-// #include <omp.h>
+#if defined(_OPENMP)
+	#include <omp.h>
+#endif
+
 #include <thread>
 
 
@@ -57,6 +60,25 @@ namespace ATEAMS::arithmetic {
 		}
 	};
 
+	/**
+	 * @brief (Non-standard) typed parallel containers.
+	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
+	 * 
+	 * @var TypedParallelContainers::parts
+	 * 	@brief STL vector of @ref ATEAMS::SparseVector.
+	 * 
+	 * @var TypedParallelContainers::blocks
+	 * 	@brief Number of blocks into which loops will be split; initialized to -1.
+	 * 
+	 * @var TypedParallelContainers::threads
+	 * 	@brief Number of available system threads.
+	 * 
+	 * @var TypedParallelContainers::squaredThreads
+	 * 	@brief Number of threads squared.
+	 * 
+	 * @var TypedParallelContainers::scaleFactor
+	 * 	@brief Smallest possible block size.
+	 */
 	template <typename RingLike>
 	struct TypedParallelContainers {
 		public:
@@ -66,20 +88,37 @@ namespace ATEAMS::arithmetic {
 			int squaredThreads;
 			int scaleFactor = 64;
 
+			/**
+			 * @brief Setter for `threads` and `squaredThreads`.
+			 * 
+			 * @param threads Number of threads.
+			 */
 			void threading(int threads) {
 				this->threads = threads;
 				this->squaredThreads = threads*threads;
 			}
 
+			/**
+			 * @brief Setter for `blocks`.
+			 * 
+			 * @param N Number of iterations in the loop (usually the number of
+			 * 	rows in a matrix).
+			 */
 			void defaultPreferredBlocks(int N) {
 				if (N < this->threads*this->scaleFactor) this->blocks = this->threads;
 				else this->blocks = std::max(this->squaredThreads/2, N/(this->scaleFactor/2));
 			}
 
+			/**
+			 * @brief Initializes `parts`.
+			 */
 			void build() {
 				this->parts = std::vector<SparseVector<RingLike>>(this->blocks, SparseVector<RingLike>());
 			};
 
+			/**
+			 * @brief Clears vectors in `parts`.
+			 */
 			inline void flush() {
 				for (int t=0; t<this->parts.size(); t++) {
 					if (this->parts[t].size() > 0) this->parts[t].zero();
@@ -89,13 +128,24 @@ namespace ATEAMS::arithmetic {
 	};
 
 	/**
-	 * @struct 
+	 * @struct Randomness
+	 * @brief For quickly sampling lots of floats. See @ref ATEAMS::models::Bernoulli.
 	 */
 	struct Randomness {
 		public:
+			/**
+			 * @brief Quickly fills the given vector with samples from the provided
+			 * 	distribution.
+			 * @tparam E Seeded random number generator, e.g. `std::mt19937`.
+			 * @tparam D Distribution (e.g. `std::uniform_real_distribution`).
+			 * 
+			 * @param engine (Reference to) an RNG.
+			 * @param distribution (Reference to) a distribution.
+			 * @param samples (Reference to) preallocated vector of samples.
+			 */
 			template <typename E, typename D>
-			void fill(E& engine, D& distribution, std::vector<double>& probabilities) {
-				std::generate(probabilities.begin(), probabilities.end(), [&]() {
+			inline void fill(E& engine, D& distribution, std::vector<double>& samples) {
+				std::generate(samples.begin(), samples.end(), [&]() {
 					return distribution(engine);
 				});
 			}
@@ -160,6 +210,22 @@ namespace ATEAMS::arithmetic {
 			}
 	};
 
+	/**
+	 * @brief Caches finite-field arithmetic to avoid calls to FLINT.
+	 * @tparam RingLike A coefficient @ref Ring, like @ref Zp or @ref Q.
+	 * 
+	 * @var FiniteArithmetic::add
+	 * 	@brief Addition table.
+	 * 
+	 * @var FiniteArithmetic::multiply
+	 * 	@brief Multiplication table.
+	 * 
+	 * @var FiniteArithmetic::negate
+	 * 	@brief Negation table.
+	 * 
+	 * @var FiniteArithmetic::invert
+	 * 	@brief Inversion table.
+	 */
 	template <typename RingLike>
 	struct FiniteArithmetic {
 		std::vector<std::vector<typename RingLike::dtype>> add;
@@ -167,6 +233,11 @@ namespace ATEAMS::arithmetic {
 		std::vector<typename RingLike::dtype> negate;
 		std::vector<typename RingLike::dtype> invert;
 
+		/**
+		 * @brief Constructs tables.
+		 * 
+		 * @param R (Pointer to) a coefficient ring.
+		 */
 		void arithmetize(Ring* R) {
 			// Create addition table.
 			int c = R->characteristic;

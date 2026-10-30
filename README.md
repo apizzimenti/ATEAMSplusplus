@@ -107,7 +107,7 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 > 	```bash
 > 	$ vcpkg install gperftools mimalloc
 >	```
-> You can set any of the `jemalloc`, `tcmalloc`, or `mimalloc` tools to `TRUE` in the CMake config file (`CMakeLists.txt`), but the build will fail if more than one of the variables is set to `TRUE`.
+> You can set any of the `jemalloc`, `tcmalloc`, or `mimalloc` tools to `TRUE` in the CMake config file (`CMakeLists.txt`), but the build will fail if you try to use more than one.
 
 </br>
 
@@ -199,7 +199,7 @@ If the above snippet is in a file called `main.cpp`, then compiling the program 
 ```bash
 $ $CXX main.cpp `pkg-config --libs --cflags ATEAMS++` -o main
 $ ./main
-expected rank is 3.09
+expected rank is 2.988 :: took 8.842 seconds :: ATEAMS++ v1.0.0
 ```
 
 This takes ~8 seconds on my 2022 MacBook Air with an Apple M2 processor.
@@ -226,7 +226,7 @@ We welcome contributions. A few housekeeping rules:
 	title={{ATEAMS++: Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++}},
 	author={Pizzimenti, Anthony E. and Eldridge, Summer and Schweinhart, Ben and Duncan, Paul},
 	url={github.com/apizzimenti/ATEAMSplusplus},
-	version={1.0.0},
+	version={1.0.1},
 	doi={10.5281/zenodo.20817889}
 }
 ```

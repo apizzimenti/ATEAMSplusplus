@@ -145,18 +145,23 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_a_t_e_a
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a89bd5f694c0a611e54da41e2a6b78064" id="r_a89bd5f694c0a611e54da41e2a6b78064"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a89bd5f694c0a611e54da41e2a6b78064">arithmetize</a> (<a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html">Ring</a> *R)</td></tr>
+<tr class="memdesc:a89bd5f694c0a611e54da41e2a6b78064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs tables.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a5991c60408295e0b4dae87a0331fc6d3" id="r_a5991c60408295e0b4dae87a0331fc6d3"><td class="memItemLeft">std::vector&lt; std::vector&lt; typename RingLike::dtype &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5991c60408295e0b4dae87a0331fc6d3">add</a></td></tr>
+<tr class="memdesc:a5991c60408295e0b4dae87a0331fc6d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Caches finite-field arithmetic to avoid calls to FLINT.  <br /></td></tr>
 <tr class="memitem:af4130bbb1df0515ebdd8e92a8f9c519d" id="r_af4130bbb1df0515ebdd8e92a8f9c519d"><td class="memItemLeft">std::vector&lt; std::vector&lt; typename RingLike::dtype &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af4130bbb1df0515ebdd8e92a8f9c519d">multiply</a></td></tr>
+<tr class="memdesc:af4130bbb1df0515ebdd8e92a8f9c519d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplication table.  <br /></td></tr>
 <tr class="memitem:af5f8aac39f1e0afe872942995a1a2901" id="r_af5f8aac39f1e0afe872942995a1a2901"><td class="memItemLeft">std::vector&lt; typename RingLike::dtype &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af5f8aac39f1e0afe872942995a1a2901">negate</a></td></tr>
+<tr class="memdesc:af5f8aac39f1e0afe872942995a1a2901"><td class="mdescLeft">&#160;</td><td class="mdescRight">Negation table.  <br /></td></tr>
 <tr class="memitem:a54c82e0aed7d76b5e2f33da4f3e83c46" id="r_a54c82e0aed7d76b5e2f33da4f3e83c46"><td class="memItemLeft">std::vector&lt; typename RingLike::dtype &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a54c82e0aed7d76b5e2f33da4f3e83c46">invert</a></td></tr>
+<tr class="memdesc:a54c82e0aed7d76b5e2f33da4f3e83c46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inversion table.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename RingLike&gt;<br />
 struct ATEAMS::arithmetic::FiniteArithmetic&lt; RingLike &gt;</div>
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00164">164</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00230">230</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a89bd5f694c0a611e54da41e2a6b78064" name="a89bd5f694c0a611e54da41e2a6b78064"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a89bd5f694c0a611e54da41e2a6b78064">&#9670;&#160;</a></span>arithmetize()</h2>
@@ -183,13 +188,21 @@ template&lt;typename RingLike&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00170">170</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p>Constructs tables. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">R</td><td>(Pointer to) a coefficient ring. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00241">241</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="struct_a_t_e_a_m_s_1_1arithmetic_1_1_finite_arithmetic_a89bd5f694c0a611e54da41e2a6b78064_icgraph.png" border="0" usemap="#astruct_a_t_e_a_m_s_1_1arithmetic_1_1_finite_arithmetic_a89bd5f694c0a611e54da41e2a6b78064_icgraph" loading="lazy" alt=""/></div>
 <map name="astruct_a_t_e_a_m_s_1_1arithmetic_1_1_finite_arithmetic_a89bd5f694c0a611e54da41e2a6b78064_icgraph" id="astruct_a_t_e_a_m_s_1_1arithmetic_1_1_finite_arithmetic_a89bd5f694c0a611e54da41e2a6b78064_icgraph">
-<area shape="rect" title=" " alt="" coords="391,78,476,104"/>
+<area shape="rect" title="Constructs tables." alt="" coords="391,78,476,104"/>
 <area shape="rect" href="class_a_t_e_a_m_s_1_1arithmetic_1_1_compute_resources.html#a89bd5f694c0a611e54da41e2a6b78064" title=" " alt="" coords="190,63,343,119"/>
 <area shape="poly" title=" " alt="" coords="373,91,344,94,343,88,378,91"/>
 <area shape="rect" href="class_a_t_e_a_m_s_1_1statistics_1_1_chain.html#a3dda99d3acfd636f587263a24b3d8f5d" title="Constructor; uses default ComputeResources." alt="" coords="5,5,142,46"/>
@@ -218,7 +231,16 @@ template&lt;typename RingLike&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00165">165</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p>Caches finite-field arithmetic to avoid calls to FLINT. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">RingLike</td><td>A coefficient <a class="el" href="struct_a_t_e_a_m_s_1_1_ring.html" title="Ring">Ring</a>, like <a class="el" href="struct_a_t_e_a_m_s_1_1_zp.html" title="Zp">Zp</a> or <a class="el" href="struct_a_t_e_a_m_s_1_1_q.html" title="Q">Q</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Addition table. </p>
+
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00231">231</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 
 </div>
 </div>
@@ -236,7 +258,9 @@ template&lt;typename RingLike&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00168">168</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p>Inversion table. </p>
+
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00234">234</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 
 </div>
 </div>
@@ -254,7 +278,9 @@ template&lt;typename RingLike&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00166">166</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p>Multiplication table. </p>
+
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00232">232</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 
 </div>
 </div>
@@ -272,7 +298,9 @@ template&lt;typename RingLike&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00167">167</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p>Negation table. </p>
+
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00233">233</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 
 </div>
 </div>

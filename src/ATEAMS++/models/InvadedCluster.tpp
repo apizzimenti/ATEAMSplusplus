@@ -187,40 +187,13 @@ namespace ATEAMS {
 		InvadedCluster<RingLike>::InvadedCluster(
 			complexes::Complex<RingLike>* complex,
 			ModelParameters parameters
-		) : Model<RingLike,SparseVector>(
+		) : InvadedCluster<RingLike> (
+			complex,
 			parameters.coefficients,
 			parameters.dimension,
+			parameters.stoppingFunction,
 			parameters.DEBUG
-		) {
-			this->complex = complex;
-
-			// Determine the field and build the boundary matrices for the Complex.
-			this->complex->constructBoundaryMatrices(this->coefficients);
-			this->stoppingFunction = parameters.stoppingFunction;
-
-			// Set up the arithmetic depending on the coefficient field. Currently,
-			// we use Z/2Z arithmetic when computing over the rationals.
-			if (this->coefficients->characteristic > 2) {
-				this->intuniform = std::uniform_int_distribution<int>(0, this->coefficients->characteristic-1);
-				this->complex->constructFullBoundaryMatrix(this->coefficients);
-			} else {
-				this->intuniform = std::uniform_int_distribution<int>(0, 1);
-				this->complex->constructFlatBoundaryMatrix();
-			}
-
-			std::vector<int> filtration(this->complex->size());
-			std::iota(filtration.begin(), filtration.end(), 0);
-			this->filtration = filtration;
-
-			// Default set of indices to compare against.
-			std::vector<int> include(this->complex->Cells[this->dimension]);
-			std::iota(include.begin(), include.end(), 0);
-			this->include = include;
-
-			// Initialize a random number generator.
-			std::random_device rd;
-			this->RNG = std::mt19937(rd());
-		};
+		) { };
 
 		template <typename RingLike>
 		InvadedCluster<RingLike>::InvadedCluster(
@@ -236,8 +209,15 @@ namespace ATEAMS {
 			// Determine the field and build the boundary matrices for the Complex.
 			this->complex->constructBoundaryMatrices(this->coefficients);
 
-			// Set up the arithmetic depending on the coefficient field. Currently,
-			// we use Z/2Z arithmetic when computing over the rationals.
+			// If the characteristic of the field is 0 (i.e. we're over the
+			// rationals), then compute persistence over Z/3Z.
+			if (this->coefficients->characteristic == 0) {
+				Zp RR(3);
+				this->coefficients = &RR;
+			}
+
+			// If the characteristic of the field is greater than 2 (i.e. we're
+			// spoofing the rationals or are not in Z/2Z)...
 			if (this->coefficients->characteristic > 2) {
 				this->intuniform = std::uniform_int_distribution<int>(0, this->coefficients->characteristic-1);
 				this->complex->constructFullBoundaryMatrix(this->coefficients);
@@ -245,7 +225,7 @@ namespace ATEAMS {
 				this->intuniform = std::uniform_int_distribution<int>(0, 1);
 				this->complex->constructFlatBoundaryMatrix();
 			}
-
+			
 			std::vector<int> filtration(this->complex->size());
 			std::iota(filtration.begin(), filtration.end(), 0);
 			this->filtration = filtration;

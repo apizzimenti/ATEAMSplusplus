@@ -181,29 +181,28 @@ namespace ATEAMS {
 			Ring* R,
 			int dimension,
 			bool DEBUG
-		) : Model<RingLike,SparseVector>(R, dimension, DEBUG) {
-			this->complex = complex;
-			this->temperatureFunction = statistics::selfdual(this->coefficients);
+		) : SwendsenWang<RingLike>(
+			complex,
+			R,
+			dimension,
+			statistics::selfdual,
+			DEBUG
+		) { };
 
-			// Determine the field and build the boundary matrices for the Complex.
-			this->complex->constructBoundaryMatrices(this->coefficients);
 
-			// Default set of indices to compare against.
-			std::vector<int> include(this->complex->Cells[this->dimension]);
-			std::iota(include.begin(), include.end(), 0);
-			this->include = include;
+		template <typename RingLike>
+		SwendsenWang<RingLike>::SwendsenWang(
+			complexes::Complex<RingLike>* complex,
+			ModelParameters parameters
+		) : SwendsenWang<RingLike>(
+			complex,
+			parameters.coefficients,
+			parameters.dimension,
+			parameters.temperatureFunction,
+			parameters.DEBUG
+		) { };
 
-			// Initialize a random number generator.
-			std::random_device rd;
-			this->RNG = std::mt19937(rd());
-			this->unituniform = std::uniform_real_distribution<double>(0,1);
-
-			this->intuniform = std::uniform_int_distribution<int>(
-				0,
-				this->coefficients->characteristic > 0 ? this->coefficients->characteristic-1 : 1
-			);
-		};
-
+		
 		template <typename RingLike>
 		SwendsenWang<RingLike>::SwendsenWang(
 			complexes::Complex<RingLike>* complex,
@@ -233,37 +232,6 @@ namespace ATEAMS {
 				this->coefficients->characteristic > 0 ? this->coefficients->characteristic-1 : 1
 			);
 		};
-
-		template <typename RingLike>
-		SwendsenWang<RingLike>::SwendsenWang(
-			complexes::Complex<RingLike>* complex,
-			ModelParameters parameters
-		) : Model<RingLike,SparseVector>(
-			parameters.coefficients,
-			parameters.dimension,
-			parameters.DEBUG
-		) {
-			this->complex = complex;
-			this->temperatureFunction = parameters.temperatureFunction;
-
-			// Determine the field and build the boundary matrices for the Complex.
-			this->complex->constructBoundaryMatrices(this->coefficients);
-
-			// Default set of indices to compare against.
-			std::vector<int> include(this->complex->Cells[this->dimension]);
-			std::iota(include.begin(), include.end(), 0);
-			this->include = include;
-
-			// Initialize a random number generator.
-			std::random_device rd;
-			this->RNG = std::mt19937(rd());
-			this->unituniform = std::uniform_real_distribution<double>(0,1);
-
-			this->intuniform = std::uniform_int_distribution<int>(
-				0,
-				this->coefficients->characteristic > 0 ? this->coefficients->characteristic-1 : 1
-			);
-		}
 	}
 }
 

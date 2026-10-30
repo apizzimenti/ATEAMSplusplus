@@ -10,6 +10,6 @@
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="194,132,302,133,297,135,195,137"/>
 <area shape="rect" id="Node000006" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_finite_arithmetic.html" title=" " alt="" coords="5,186,187,226"/>
 <area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="200,179,315,154,311,156,201,184"/>
-<area shape="rect" id="Node000007" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_randomness.html" title=" " alt="" coords="47,251,145,276"/>
+<area shape="rect" id="Node000007" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_randomness.html" title="For quickly sampling lots of floats. See Bernoulli." alt="" coords="47,251,145,276"/>
 <area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="160,244,186,236,231,222,275,204,367,156,372,154,277,209,233,227,187,241,161,249"/>
 </map>

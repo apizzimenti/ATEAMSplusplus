@@ -158,52 +158,26 @@ namespace ATEAMS::models {
 		Ring* R,
 		int dimension,
 		bool DEBUG
-	) : Model<RingLike,SparseVector>(R, dimension, DEBUG) {
-		this->temperatureFunction = statistics::selfdual(this->coefficients);
-		this->complex = complex;
-
-		// Determine the field and build the boundary matrices for the Complex.
-		this->complex->constructBoundaryMatrices(this->coefficients);
-
-		// Initialize a random number generator.
-		std::random_device rd;
-		this->RNG = std::mt19937(rd());
-		this->unituniform = std::uniform_real_distribution<double>(0,1);
-		this->indexuniform = std::uniform_int_distribution<int>(0, this->complex->Cells[this->dimension-1]-1);
-
-		this->intuniform = std::uniform_int_distribution<int>(
-			0,
-			this->coefficients->characteristic > 0 ? this->coefficients->characteristic-1 : 1
-		);
-	};
+	) : Glauber<RingLike>(
+		complex,
+		R,
+		dimension,
+		statistics::selfdual,
+		DEBUG
+	) { };
 
 
 	template <typename RingLike>
 	Glauber<RingLike>::Glauber(
 		complexes::Complex<RingLike>* complex,
 		ModelParameters parameters
-	) : Model<RingLike,SparseVector>(
+	) : Glauber<RingLike>(
+		complex,
 		parameters.coefficients,
 		parameters.dimension,
+		parameters.temperatureFunction,
 		parameters.DEBUG
-	) {
-		this->complex = complex;
-		this->temperatureFunction = parameters.temperatureFunction;
-
-		// Determine the field and build the boundary matrices for the Complex.
-		this->complex->constructBoundaryMatrices(this->coefficients);
-
-		// Initialize a random number generator.
-		std::random_device rd;
-		this->RNG = std::mt19937(rd());
-		this->unituniform = std::uniform_real_distribution<double>(0,1);
-		this->indexuniform = std::uniform_int_distribution<int>(0, this->complex->Cells[this->dimension-1]-1);
-
-		this->intuniform = std::uniform_int_distribution<int>(
-			0,
-			this->coefficients->characteristic > 0 ? this->coefficients->characteristic-1 : 1
-		);
-	};
+	) { };
 }
 
 #endif

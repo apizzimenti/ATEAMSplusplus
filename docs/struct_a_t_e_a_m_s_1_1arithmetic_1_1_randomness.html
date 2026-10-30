@@ -140,19 +140,24 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_a_t_e_a
 </div><!--header-->
 <div class="contents">
 
+<p>For quickly sampling lots of floats. See <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Bernoulli">Bernoulli</a>.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="resources_8h_source.html">resources.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0dfdba64a510226d671b48c3245287be" id="r_a0dfdba64a510226d671b48c3245287be"><td class="memTemplParams" colspan="2">template&lt;typename E, typename D&gt; </td></tr>
-<tr class="memitem:a0dfdba64a510226d671b48c3245287be template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0dfdba64a510226d671b48c3245287be">fill</a> (E &amp;engine, D &amp;distribution, std::vector&lt; double &gt; &amp;probabilities)</td></tr>
+<tr class="memitem:a953dc0af9306558ef43a0c2ee9be9014" id="r_a953dc0af9306558ef43a0c2ee9be9014"><td class="memTemplParams" colspan="2">template&lt;typename E, typename D&gt; </td></tr>
+<tr class="memitem:a953dc0af9306558ef43a0c2ee9be9014 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a953dc0af9306558ef43a0c2ee9be9014">fill</a> (E &amp;engine, D &amp;distribution, std::vector&lt; double &gt; &amp;samples)</td></tr>
+<tr class="memdesc:a953dc0af9306558ef43a0c2ee9be9014"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quickly fills the given vector with samples from the provided distribution.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00094">94</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<div class="textblock"><p>For quickly sampling lots of floats. See <a class="el" href="class_a_t_e_a_m_s_1_1models_1_1_bernoulli.html" title="Bernoulli">Bernoulli</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00134">134</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a0dfdba64a510226d671b48c3245287be" name="a0dfdba64a510226d671b48c3245287be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0dfdba64a510226d671b48c3245287be">&#9670;&#160;</a></span>fill()</h2>
+<a id="a953dc0af9306558ef43a0c2ee9be9014" name="a953dc0af9306558ef43a0c2ee9be9014"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a953dc0af9306558ef43a0c2ee9be9014">&#9670;&#160;</a></span>fill()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -175,7 +180,7 @@ template&lt;typename E, typename D&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>probabilities</em></span>&#160;)</td>
+          <td class="paramtype">std::vector&lt; double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>samples</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -185,7 +190,24 @@ template&lt;typename E, typename D&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00097">97</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
+<p>Quickly fills the given vector with samples from the provided distribution. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">E</td><td>Seeded random number generator, e.g. <span class="tt">std::mt19937</span>. </td></tr>
+    <tr><td class="paramname">D</td><td>Distribution (e.g. <span class="tt">std::uniform_real_distribution</span>).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">engine</td><td>(Reference to) an RNG. </td></tr>
+    <tr><td class="paramname">distribution</td><td>(Reference to) a distribution. </td></tr>
+    <tr><td class="paramname">samples</td><td>(Reference to) preallocated vector of samples. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="resources_8h_source.html#l00147">147</a> of file <a class="el" href="resources_8h_source.html">resources.h</a>.</p>
 
 </div>
 </div>
