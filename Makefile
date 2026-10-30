@@ -48,8 +48,8 @@ samples: FORCE
 
 
 profiling: FORCE
-# 	screen -L -Logfile performance/profiling.persistence.log -dmS profiling.persistence ./performance/profiling.persistence.sh
-	screen -L -Logfile performance/profiling.models.log -dmS profiling.models.default ./performance/profiling.models.sh
+	screen -L -Logfile performance/profiling.persistence.log -dmS profiling.persistence.BS.OpenMP ./performance/profiling.persistence.sh
+# 	screen -L -Logfile performance/profiling.models.log -dmS profiling.models.default ./performance/profiling.models.sh
 
 
 timing: FORCE
