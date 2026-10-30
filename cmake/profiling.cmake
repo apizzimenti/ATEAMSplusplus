@@ -16,7 +16,7 @@ list(APPEND MODELS.PROFILING
 )
 
 list(APPEND TOPOLOGY.PROFILING
-	# "persistence"
+	"persistence"
 )
 
 if (PROFILE)

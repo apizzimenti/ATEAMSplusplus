@@ -46,7 +46,7 @@ set(mimalloc FALSE)
 set(tcmalloc FALSE)
 
 # Turn OpenMP on/off.
-set(OpenMP FALSE)
+set(OpenMP TRUE)
 
 
 ################################################################################
