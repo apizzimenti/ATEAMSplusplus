@@ -28,14 +28,15 @@ set(DEBUG FALSE)
 
 include(cmake/build-config.cmake)
 
-
 ################################################################################
 ## GLOBAL DEPENDENCIES #########################################################
 ################################################################################
 
+# Threading building blocks (tbb) is required to use standard library parallelism
+# (and parallelism more generally on linux systems on intel hardware).
 find_package(PkgConfig REQUIRED)
 find_package(OpenMP REQUIRED)
-
+find_library(TBB NAMES tbb lbb REQUIRED)
 pkg_check_modules(FLINT REQUIRED IMPORTED_TARGET flint)
 
 # Set the choice of memory allocator. In testing on meglTower, jemalloc does
@@ -44,16 +45,8 @@ set(jemalloc TRUE)
 set(mimalloc FALSE)
 set(tcmalloc FALSE)
 
-# threading building blocks (tbb) is required to use standard library parallelism
-# (and parallelism more generally on linux systems on intel hardware).
-find_library(TBB NAMES tbb lbb REQUIRED)
-
-# List core external dependencies.
-list(APPEND COREDEPENDENCIES
-	"PkgConfig::FLINT"
-	"OpenMP::OpenMP_CXX"
-	"${TBB}"
-)
+# Turn OpenMP on/off.
+set(OpenMP FALSE)
 
 
 ################################################################################

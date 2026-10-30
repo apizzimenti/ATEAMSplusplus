@@ -245,7 +245,7 @@ void printset(std::set<t> A) {
 template <typename t>
 inline void printvector(std::vector<t> v) {
 	std::cout << "[ ";
-	for (auto &k : v) {
+	for (t k : v) {
 		std::cout << k << " ";
 	}
 	std::cout << "]" << std::endl;

@@ -28,35 +28,46 @@ namespace ATEAMS::models {
 			assert((0 <= p) && (p <= 1));
 		}
 
-		// Then decide which cells we're including/excluding.
-		vector<int> include;
-		vector<int> exclude;
-		
-		// Can we do this faster?
-		for (int i=0; i < this->complex->Cells[d]; i++) {
-			if (this->unituniform(this->RNG) < p) {
-				include.push_back(i);
+		// Flip a density-p coin for each cell.
+		vector<double>& probabilities = this->probabilities;
+
+		resources.random->fill<std::mt19937,std::uniform_real_distribution<double>>(
+			this->RNG, this->unituniform, probabilities
+		);
+
+		// Check whether the coinflips are less than p, organizing in/excluded
+		// indices. Requires one pass over all cells.
+		int included = 0,
+			excluded = 0;
+
+		vector<int>& include = this->include;
+		vector<int>& exclude = this->exclude;
+
+		for (size_t t=0; t < this->complex->Cells[d]; t++) {
+			if (probabilities[t] < p) {
+				include[included] = t;
+				included++;
 			} else {
-				exclude.push_back(i);
+				exclude[excluded] = t;
+				excluded++;
 			}
 		}
 
-		int included = include.size();
-
 		// Construct the filtration.
-		int stop = this->complex->Breaks[d][0];
-		int start = this->complex->Breaks[d][1];
-		int offset = (d > 0) ? this->complex->Offsets[d-1] : 0;
+		int stop = this->complex->Breaks[d][0],
+			start = this->complex->Breaks[d][1],
+			offset = (d > 0) ? this->complex->Offsets[d-1] : 0;
 		
 		// Fill in all the indices for cells of dimension not equal to d.
 		for (int j=0; j < stop; j++) this->filtration[j] = j;
 		for (int j=start; j < this->complex->Offsets[d+1]; j++) this->filtration[j] = j;
 		
 		// Shuffle the included indices.
-		std::shuffle(include.begin(), include.end(), this->RNG);
-		
-		for (int j=0; j < include.size(); j++) this->filtration[j+offset] = include[j]+offset;
-		for (int j=0; j < exclude.size(); j++) this->filtration[j+offset+include.size()] = exclude[j]+offset;
+		std::shuffle(include.begin(), include.begin()+included, this->RNG);
+
+		// Build out the middle part of the filtration.
+		for (int j=0; j < included; j++) this->filtration[j+offset] = include[j]+offset;
+		for (int j=0; j < excluded; j++) this->filtration[j+offset+included] = exclude[j]+offset;
 		
 		// Now, compute the persistence times, then filter over them to capture only
 		// the ones within the right window.
@@ -88,28 +99,12 @@ namespace ATEAMS::models {
 	Bernoulli::Bernoulli(
 		complexes::Complex<RingType>* complex,
 		ModelParameters parameters
-	) : Model<RingType,DenseVector>(
-		new RingType,
+	) : Bernoulli(
+		complex,
 		parameters.dimension,
+		parameters.p,
 		parameters.DEBUG
-	) {
-		this->complex = complex;
-		this->p = parameters.p;
-
-		// From those boundary matrices, construct the "full" (i.e. up to dimension d+1)
-		// PHAT boundary matrix.
-		this->complex->constructFlatBoundaryMatrix();
-		// this->complex->constructFullBoundaryMatrix(this->coefficients);
-
-		// Default filtration.
-		vector<int> filtration(this->complex->Offsets[this->dimension+1], 0);
-		this->filtration = filtration;
-
-		// Initialize a random number generator.
-		std::random_device rd;
-		this->RNG = std::mt19937(rd());
-		this->unituniform = std::uniform_real_distribution<double>(0,1);
-	};
+	) { };
 
 	Bernoulli::Bernoulli(
 		complexes::Complex<RingType>* complex,
@@ -124,9 +119,11 @@ namespace ATEAMS::models {
 		// PHAT boundary matrix.
 		this->complex->constructFlatBoundaryMatrix();
 
-		// Default filtration.
-		vector<int> filtration(this->complex->Offsets[this->dimension+1], 0);
-		this->filtration = filtration;
+		// Resuable containers for filtrations, probabilities, included/excluded vectors.
+		this->filtration = vector<int>(this->complex->Offsets[this->dimension+1]);
+		this->probabilities = vector<double>(this->complex->Cells[dimension]);
+		this->include = vector<int>(this->complex->Cells[dimension]);
+		this->exclude = vector<int>(this->complex->Cells[dimension]);
 
 		// Initialize a random number generator.
 		std::random_device rd;
