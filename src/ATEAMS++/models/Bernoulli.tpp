@@ -29,8 +29,11 @@ namespace ATEAMS::models {
 		}
 
 		// Then decide which cells we're including/excluding.
-		vector<int> include;
-		vector<int> exclude;
+		vector<int>& include = this->include;
+		vector<int>& exclude = this->exclude;
+
+		include.clear();
+		exclude.clear();
 		
 		// Can we do this faster?
 		for (int i=0; i < this->complex->Cells[d]; i++) {
@@ -44,9 +47,9 @@ namespace ATEAMS::models {
 		int included = include.size();
 
 		// Construct the filtration.
-		int stop = this->complex->Breaks[d][0];
-		int start = this->complex->Breaks[d][1];
-		int offset = (d > 0) ? this->complex->Offsets[d-1] : 0;
+		int stop = this->complex->Breaks[d][0],
+			start = this->complex->Breaks[d][1],
+			offset = (d > 0) ? this->complex->Offsets[d-1] : 0;
 		
 		// Fill in all the indices for cells of dimension not equal to d.
 		for (int j=0; j < stop; j++) this->filtration[j] = j;

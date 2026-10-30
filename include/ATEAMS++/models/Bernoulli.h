@@ -118,6 +118,8 @@ namespace ATEAMS::models {
 			std::mt19937 RNG;
 			std::uniform_real_distribution<double> unituniform;
 			std::vector<int> filtration;
+			std::vector<int> include;
+			std::vector<int> exclude;
 	};
 }
 
