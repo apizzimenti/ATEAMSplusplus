@@ -11,9 +11,8 @@ ATEAMS++ is a high-performance C++ library for simulating
 
 [Prerequisites](#Prerequisites) $`\longrightarrow`$ [Installation](#Installation) $`\longrightarrow`$ [Demo](#Usage) $`\longrightarrow`$ [Contributing](#Contributing)
 
-
-## Prerequisites
 <a id="Prerequisites"></a>
+## Prerequisites
 
 > [!TIP]
 > The [Homebrew](https://brew.sh/) package manager is strongly recommended for users running macOS, any flavor of Linux, or Windows Subsystem for Linux (WSL).
@@ -60,6 +59,7 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 		
 
 
+<a id="Installation"></a>
 ## Installation
 
 1. **Clone the repository.** In your favorite shell, navigate to a sensible directory and run
@@ -134,6 +134,7 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 	-I/usr/local/include -std=c++23 -fopenmp -Ofast -march=native -flto -funroll-loops -fprefetch-loop-arrays -fomit-frame-pointer -fno-rtti -L/usr/local/lib -lflint -L/opt/homebrew/lib -ltbb -ljemalloc
 	```
 
+<a id="Usage"></a>
 ## Usage
 
 Most experiments follow a straightforward template:
@@ -215,7 +216,7 @@ This takes ~8 seconds on my 2022 MacBook Air with an Apple M2 processor.
 * `InvadedCluster` and `Invasion` perform $`\mathbb Z/3\mathbb Z`$ persistence when using rational coefficients.
 * Some models don't have complete debugging information.
 
-
+<a id="Contributing"></a>
 ## Contributing
 We welcome contributions. A few housekeeping rules:
 

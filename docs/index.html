@@ -144,6 +144,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <h1 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
 Algebraic Topology-Enabled AlgorithMs for Spin systems</h1>
 <p>ATEAMS++ is a high-performance C++ library for simulating <a href="https://arxiv.org/abs/2507.13503">generalized Potts, random-cluster, and percolation models</a> at scale. It depends directly on <a href="https://github.com/munuxi/SparseRREF">SparseRREF</a> and PHAT [<a href="https://www.sciencedirect.com/science/article/pii/S0747717116300098">1</a>,<a href="https://bitbucket.org/phat-code/phat/src/master/">2</a>] for fast linear algebra over finite fields and both <a href="https://github.com/bshoshany/thread-pool"><span class="tt">BS::thread_pool</span></a> and OpenMP for massive parallelism.</p>
+<p><a class="el" href="#Prerequisites" title="Prerequisites">Prerequisites</a> \(\longrightarrow\) <a class="el" href="#Installation" title="Installation">Installation</a> \(\longrightarrow\) <a class="el" href="#Usage" title="Usage">Demo</a> \(\longrightarrow\) <a class="el" href="#Contributing" title="Contributing">Contributing</a></p>
+<p><a class="anchor" id="Prerequisites"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 Prerequisites</h2>
 <dl class="section remark"><dt>Remarks</dt><dd>The <a href="https://brew.sh/">Homebrew</a> package manager is strongly recommended for users running macOS, any flavor of Linux, or Windows Subsystem for Linux (WSL).</dd></dl>
@@ -170,6 +172,7 @@ Prerequisites</h2>
 <li><b>on Linux</b> (Ubuntu 22.04/24.04), use the same installation steps as on macOS (adjusting your shell if you're using bash), or by following <a href="https://askubuntu.com/a/1518433">these instructions</a> (adjusting the version from 14 to 15).</li>
 <li><b>on Windows</b>, <a href="https://www.mingw-w64.org/getting-started/msys2/">Try MinGW</a>; it should come with a recent version of GCC.</li>
 </ul>
+<p><a class="anchor" id="Installation"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
 Installation</h2>
 <ol type="1">
@@ -215,6 +218,7 @@ Installation</h2>
 </div><!-- fragment --> should give something like <div class="fragment"><div class="line">-I/usr/local/include -std=c++23 -fopenmp -Ofast -march=native -flto -funroll-loops -fprefetch-loop-arrays -fomit-frame-pointer -fno-rtti -L/usr/local/lib -lflint -L/opt/homebrew/lib -ltbb -ljemalloc</div>
 </div><!-- fragment --></li>
 </ol>
+<p><a class="anchor" id="Usage"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Usage</h2>
 <p>Most experiments follow a straightforward template:</p>
@@ -291,6 +295,7 @@ Known issues</h2>
 <li><span class="tt">InvadedCluster</span> and <span class="tt">Invasion</span> perform \(\mathbb Z/3\mathbb Z\) persistence when using rational coefficients.</li>
 <li>Some models don't have complete debugging information.</li>
 </ul>
+<p><a class="anchor" id="Contributing"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 Contributing</h2>
 <p>We welcome contributions. A few housekeeping rules:</p>
