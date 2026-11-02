@@ -22,9 +22,6 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 
 <details>
 
-> [!TIP]
-> The [Homebrew](https://brew.sh/) package manager is strongly recommended for users running macOS, any flavor of Linux, or Windows Subsystem for Linux (WSL).
-
 * **on macOS**,
 	Install [GCC 15](https://formulae.brew.sh/formula/gcc@15) [(or 16)](https://formulae.brew.sh/formula/gcc) through Homebrew. After installation, test that you have the correct version by running
 	```bash
