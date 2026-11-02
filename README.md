@@ -83,6 +83,7 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 	which are all available through most package managers. [Make sure your compiler complies with the C++23 standard](https://en.cppreference.com/cpp/compiler_support/23); GCC ≥ 15 is a good bet.
 
 	<details>
+
 	To install the dependencies...
 	* **on macOS**,
 		```bash
@@ -116,6 +117,7 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 	> 	$ vcpkg install gperftools mimalloc
 	>	```
 	> You can set any of the `jemalloc`, `tcmalloc`, or `mimalloc` tools to `TRUE` in the CMake config file (`CMakeLists.txt`), but the build will fail if you try to use more than one.
+	
 	</details>
 
 </br>
