@@ -217,21 +217,15 @@ Details</summary>
 </div><!-- fragment --> should give something like <div class="fragment"><div class="line">-I/usr/local/include -std=c++23 -fopenmp -Ofast -march=native -flto -funroll-loops -fprefetch-loop-arrays -fomit-frame-pointer -fno-rtti -L/usr/local/lib -lflint -L/opt/homebrew/lib -ltbb -ljemalloc</div>
 </div><!-- fragment --></li>
 </ol>
-<dl class="section note"><dt>Note</dt><dd><b>jemalloc is <em>not</em> required to use this software, but it is recommended:</b> after extensive testing on machines with 4 (macOS M2), 36 (Intel Xeon W-2295), and 192 (AMD Ryzen Threadripper PRO 7995WX) logical cores, <b>jemalloc provides the best multi-threaded performance</b> when compared to no alternate memory allocator, mimalloc, and tcmalloc. If you don't want to use it, set the <span class="tt">jemalloc</span> variable in the CMake config file (<span class="tt">CMakeLists.txt</span>) to <span class="tt">FALSE</span> and it will be excluded. If you want to use another memory allocator like <a href="https://github.com/microsoft/mimalloc">mimalloc</a> or <a href="https://github.com/google/tcmalloc">tcmalloc</a>... <details >
-<summary >
-Details</summary>
-<p>install it in the same way as jemalloc:</p><ul>
+<dl class="section note"><dt>Note</dt><dd><b>jemalloc is <em>not</em> required to use this software, but it is recommended:</b> after extensive testing on machines with 4 (macOS M2), 36 (Intel Xeon W-2295), and 192 (AMD Ryzen Threadripper PRO 7995WX) logical cores, <b>jemalloc provides the best multi-threaded performance</b> when compared to no alternate memory allocator, mimalloc, and tcmalloc. If you don't want to use it, set the <span class="tt">jemalloc</span> variable in the CMake config file (<span class="tt">CMakeLists.txt</span>) to <span class="tt">FALSE</span> and it will be excluded. If you want to use another memory allocator like <a href="https://github.com/microsoft/mimalloc">mimalloc</a> or <a href="https://github.com/google/tcmalloc">tcmalloc</a>, install it in the same way as jemalloc:<ul>
 <li><b>on macOS</b>, <div class="fragment"><div class="line">$ brew install gperftools mimalloc</div>
 </div><!-- fragment --></li>
 <li><b>on Linux (Ubuntu)</b>, <div class="fragment"><div class="line">$ sudo apt update</div>
 <div class="line">$ sudo apt install libgoogle-perftools-dev libmimalloc-dev</div>
 </div><!-- fragment --></li>
 <li><b>on Windows</b> (using <a href="https://vcpkg.io/en/">vcpkg</a>), <div class="fragment"><div class="line">$ vcpkg install gperftools mimalloc</div>
-</div><!-- fragment --> You can set any of the <span class="tt">jemalloc</span>, <span class="tt">tcmalloc</span>, or <span class="tt">mimalloc</span> tools to <span class="tt">TRUE</span> in the CMake config file (<span class="tt">CMakeLists.txt</span>), but the build will fail if you try to use more than one. <br  />
-<br  />
- </li>
+</div><!-- fragment --> You can set any of the <span class="tt">jemalloc</span>, <span class="tt">tcmalloc</span>, or <span class="tt">mimalloc</span> tools to <span class="tt">TRUE</span> in the CMake config file (<span class="tt">CMakeLists.txt</span>), but the build will fail if you try to use more than one.</li>
 </ul>
-</details>
 </dd></dl>
 <p><a class="anchor" id="Usage"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>

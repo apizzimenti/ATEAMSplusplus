@@ -118,8 +118,7 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 	```
 
 > [!NOTE]
-> **jemalloc is _not_ required to use this software, but it is recommended:** after extensive testing on machines with 4 (macOS M2), 36 (Intel Xeon W-2295), and 192 (AMD Ryzen Threadripper PRO 7995WX) logical cores, **jemalloc provides the best multi-threaded performance** when compared to no alternate memory allocator, mimalloc, and tcmalloc. If you don't want to use it, set the `jemalloc` variable in the CMake config file (`CMakeLists.txt`) to `FALSE` and it will be excluded. If you want to use another memory allocator like [mimalloc](https://github.com/microsoft/mimalloc) or [tcmalloc](https://github.com/google/tcmalloc)... <details>
-> install it in the same way as jemalloc:
+> **jemalloc is _not_ required to use this software, but it is recommended:** after extensive testing on machines with 4 (macOS M2), 36 (Intel Xeon W-2295), and 192 (AMD Ryzen Threadripper PRO 7995WX) logical cores, **jemalloc provides the best multi-threaded performance** when compared to no alternate memory allocator, mimalloc, and tcmalloc. If you don't want to use it, set the `jemalloc` variable in the CMake config file (`CMakeLists.txt`) to `FALSE` and it will be excluded. If you want to use another memory allocator like [mimalloc](https://github.com/microsoft/mimalloc) or [tcmalloc](https://github.com/google/tcmalloc), install it in the same way as jemalloc:
 > * **on macOS**,
 > 	```bash
 > 	$ brew install gperftools mimalloc
@@ -134,8 +133,6 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 > 	$ vcpkg install gperftools mimalloc
 >	```
 > You can set any of the `jemalloc`, `tcmalloc`, or `mimalloc` tools to `TRUE` in the CMake config file (`CMakeLists.txt`), but the build will fail if you try to use more than one.
-> 
-> </details>
 
 <a id="Usage"></a>
 ## Usage
