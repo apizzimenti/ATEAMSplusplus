@@ -5,7 +5,11 @@
 [![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Algebraic Topology-Enabled AlgorithMs for Spin systems
-<p align="center">[Prerequisites](#Prerequisites) $`\longrightarrow`$ [Installation](#Installation) $`\longrightarrow`$ [Demo](#Usage) $`\longrightarrow`$ [Contributing](#Contributing)</p>
+<div align=center>
+
+[Prerequisites](#Prerequisites) $`\longrightarrow`$ [Installation](#Installation) $`\longrightarrow`$ [Demo](#Usage) $`\longrightarrow`$ [Contributing](#Contributing)
+
+</div>
 
 ATEAMS++ is a high-performance C++ library for simulating
 [generalized Potts, random-cluster, and percolation models](https://arxiv.org/abs/2507.13503) at scale. It depends directly on [SparseRREF](https://github.com/munuxi/SparseRREF) and PHAT [[1](https://www.sciencedirect.com/science/article/pii/S0747717116300098),[2](https://bitbucket.org/phat-code/phat/src/master/)] for fast linear algebra over finite fields and both [`BS::thread_pool`](https://github.com/bshoshany/thread-pool) and OpenMP for massive parallelism.
@@ -19,6 +23,7 @@ ATEAMS++ is a high-performance C++ library for simulating
 
 The only real prerequisite is **a compiler that supports the C++23 standard.** GCC 15 is the oldest cross-compatible compiler that supports all ATEAMS++'s features. Newer versions of GCC (e.g. 16) work as well.
 
+<details>
 * **on macOS**,
 	Install [GCC 15](https://formulae.brew.sh/formula/gcc@15) [(or 16)](https://formulae.brew.sh/formula/gcc) through Homebrew. After installation, test that you have the correct version by running
 	```bash
@@ -56,17 +61,17 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 
 * **on Windows**,
 	[Try MinGW](https://www.mingw-w64.org/getting-started/msys2/); it should come with a recent version of GCC.
-		
+</details>
 
 
 <a id="Installation"></a>
 ## Installation
 
-1. **Clone the repository.** In your favorite shell, navigate to a sensible directory and run
+1. **Clone the repository.** <details> In your favorite shell, navigate to a sensible directory and run
 	```bash
 	$ git clone --recursive https://github.com/apizzimenti/ATEAMSplusplus.git
 	```
-	The `--recursive` flag ensures that SparseRREF is actually cloned, not just referenced.
+	The `--recursive` flag ensures that SparseRREF is actually cloned, not just referenced.</details>
 
 2. **Install dependencies.** ATEAMS++ requires
 
@@ -77,6 +82,7 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 
 	which are all available through most package managers. [Make sure your compiler complies with the C++23 standard](https://en.cppreference.com/cpp/compiler_support/23); GCC ≥ 15 is a good bet.
 
+	<details>
 	To install the dependencies...
 	* **on macOS**,
 		```bash
@@ -92,25 +98,25 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 		$ vcpkg install flint tbb jemalloc
 		```
 
-
-> [!NOTE]
-> **jemalloc is _not_ required to use this software, but it is recommended:** after extensive testing on machines with 4 (macOS M2), 36 (Intel Xeon W-2295), and 192 (AMD Ryzen Threadripper PRO 7995WX) logical cores, **jemalloc provides the best multi-threaded performance** when compared to no alternate memory allocator, mimalloc, and tcmalloc. If you don't want to use it, set the `jemalloc` variable in the CMake config file (`CMakeLists.txt`) to `FALSE` and it will be excluded.
->
-> If you want to use another memory allocator like [mimalloc](https://github.com/microsoft/mimalloc) or [tcmalloc](https://github.com/google/tcmalloc), install it in the same way as jemalloc:
-> * **on macOS**,
-> 	```bash
-> 	$ brew install gperftools mimalloc
-> 	```
-> * **on Linux (Ubuntu)**,
-> 	```bash
-> 	$ sudo apt update
-> 	$ sudo apt install libgoogle-perftools-dev libmimalloc-dev
-> 	```
-> * **on Windows** (using [vcpkg](https://vcpkg.io/en/)),
-> 	```bash
-> 	$ vcpkg install gperftools mimalloc
->	```
-> You can set any of the `jemalloc`, `tcmalloc`, or `mimalloc` tools to `TRUE` in the CMake config file (`CMakeLists.txt`), but the build will fail if you try to use more than one.
+	> [!NOTE]
+	> **jemalloc is _not_ required to use this software, but it is recommended:** after extensive testing on machines with 4 (macOS M2), 36 (Intel Xeon W-2295), and 192 (AMD Ryzen Threadripper PRO 7995WX) logical cores, **jemalloc provides the best multi-threaded performance** when compared to no alternate memory allocator, mimalloc, and tcmalloc. If you don't want to use it, set the `jemalloc` variable in the CMake config file (`CMakeLists.txt`) to `FALSE` and it will be excluded.
+	>
+	> If you want to use another memory allocator like [mimalloc](https://github.com/microsoft/mimalloc) or [tcmalloc](https://github.com/google/tcmalloc), install it in the same way as jemalloc:
+	> * **on macOS**,
+	> 	```bash
+	> 	$ brew install gperftools mimalloc
+	> 	```
+	> * **on Linux (Ubuntu)**,
+	> 	```bash
+	> 	$ sudo apt update
+	> 	$ sudo apt install libgoogle-perftools-dev libmimalloc-dev
+	> 	```
+	> * **on Windows** (using [vcpkg](https://vcpkg.io/en/)),
+	> 	```bash
+	> 	$ vcpkg install gperftools mimalloc
+	>	```
+	> You can set any of the `jemalloc`, `tcmalloc`, or `mimalloc` tools to `TRUE` in the CMake config file (`CMakeLists.txt`), but the build will fail if you try to use more than one.
+	</details>
 
 </br>
 
