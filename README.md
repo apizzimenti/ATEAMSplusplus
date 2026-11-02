@@ -7,7 +7,7 @@
 # Algebraic Topology-Enabled AlgorithMs for Spin systems
 <div align=center>
 
-[Prerequisites](#Prerequisites) $`\longrightarrow`$ [Installation](#Installation) $`\longrightarrow`$ [Demo](#Usage) $`\longrightarrow`$ [Contributing](#Contributing)
+[**Prerequisites**](#Prerequisites) $`\longrightarrow`$ [**Installation**](#Installation) $`\longrightarrow`$ [**Demo**](#Usage) $`\longrightarrow`$ [**Contributing**](#Contributing)
 
 </div>
 
