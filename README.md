@@ -82,10 +82,7 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 	3. [TBB](https://github.com/uxlfoundation/onetbb), and
 	4. (optionally) [jemalloc](https://jemalloc.net/),
 
-	which are all available through most package managers. [Make sure your compiler complies with the C++23 standard](https://en.cppreference.com/cpp/compiler_support/23); GCC ≥ 15 is a good bet.
-
-	<details>
-
+	which are all available through most package managers. [Make sure your compiler complies with the C++23 standard](https://en.cppreference.com/cpp/compiler_support/23); GCC ≥ 15 is a good bet. <details>
 	To install the dependencies...
 	* **on macOS**,
 		```bash
@@ -100,8 +97,8 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 		```bash
 		$ vcpkg install flint tbb jemalloc
 		```
-
-		</details>
+	
+	</details>
 
 3. **Build and install the library.** In your favorite shell, running
 	```bash
@@ -152,6 +149,7 @@ Most experiments follow a straightforward template:
 2. create a Model that consumes the Complex;
 3. run a Chain on the Model.
 
+<details><summary>Demo</summary>
 The below example samples $`2`$-dimensional plaquette Bernoulli percolation 1,000 times on the scale-$`6`$ $`4`$-fold torus $`\mathbb T_6^4`$:
 
 ```cpp
@@ -219,6 +217,7 @@ This takes ~8 seconds on my 2022 MacBook Air with an Apple M2 processor.
 
 > [!TIP]
 > If you plan to run large-scale simulations on an external machine, the [`magnetizationplusplus` workflow](https://github.com/apizzimenti/magnetizationplusplus) may be of use to you.
+</details>
 
 
 ## Known issues

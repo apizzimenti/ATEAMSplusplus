@@ -194,11 +194,9 @@ Details</summary>
 <li><a href="https://github.com/uxlfoundation/onetbb">TBB</a>, and</li>
 <li>(optionally) <a href="https://jemalloc.net/">jemalloc</a>,</li>
 </ol>
-<p class="startli">which are all available through most package managers. <a href="https://en.cppreference.com/cpp/compiler_support/23">Make sure your compiler complies with the C++23 standard</a>; GCC ≥ 15 is a good bet.</p>
-<details >
+<p class="startli">which are all available through most package managers. <a href="https://en.cppreference.com/cpp/compiler_support/23">Make sure your compiler complies with the C++23 standard</a>; GCC ≥ 15 is a good bet. </p><details >
 <summary >
 Details</summary>
-<p></p>
 <p>To install the dependencies...</p><ul>
 <li><b>on macOS</b>, <div class="fragment"><div class="line">$ brew install flint tbb jemalloc</div>
 </div><!-- fragment --></li>
@@ -209,6 +207,7 @@ Details</summary>
         $ vcpkg install flint tbb jemalloc
         </span></li>
 </ul>
+<p></p>
 </details>
 </li>
 <li><b>Build and install the library.</b> In your favorite shell, running <div class="fragment"><div class="line">$ cd ATEAMSplusplus</div>
@@ -244,6 +243,9 @@ Usage</h2>
 <li>create a Model that consumes the Complex;</li>
 <li>run a Chain on the Model.</li>
 </ol>
+<details >
+<summary >
+Demo</summary>
 <p>The below example samples \(2\)-dimensional plaquette Bernoulli percolation 1,000 times on the scale- \(6\) \(4\)-fold torus \(\mathbb T_6^4\):</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;ATEAMS++.h&gt;</span></div>
 <div class="line"> </div>
@@ -305,7 +307,8 @@ Usage</h2>
 <div class="line">$ ./main</div>
 <div class="line">expected rank is 2.988 :: took 8.842 seconds :: ATEAMS++ v1.0.0</div>
 </div><!-- fragment --><p>This takes ~8 seconds on my 2022 MacBook Air with an Apple M2 processor.</p>
-<dl class="section remark"><dt>Remarks</dt><dd>If you plan to run large-scale simulations on an external machine, the <a href="https://github.com/apizzimenti/magnetizationplusplus"><span class="tt">magnetizationplusplus</span> workflow</a> may be of use to you.</dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd>If you plan to run large-scale simulations on an external machine, the <a href="https://github.com/apizzimenti/magnetizationplusplus"><span class="tt">magnetizationplusplus</span> workflow</a> may be of use to you. </dd></dl>
+</details>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
 Known issues</h2>
 <ul>
