@@ -169,6 +169,9 @@ namespace ATEAMS::arithmetic {
 	 * 
 	 * @var ParallelContainers::enabled
 	 * 	Is parallel computing enabled? Defaults to `true`.
+	 * 
+	 * @var ParallelContainers::phat
+	 * 	Reusable containers for PHAT.
 	 */
 	struct ParallelContainers {
 		public:
@@ -177,7 +180,26 @@ namespace ATEAMS::arithmetic {
 			std::vector<bool> zeroed;
 			std::vector<int> remapping;
 
-			struct {
+			/**
+			 * @struct PHATContainers
+			 * @brief Reusable containers for PHAT.
+			 * 
+			 * @var PHATContainers::boundary
+			 * 	Full boundary matrix.
+			 * 
+			 * @var PHATContainers::column
+			 * 	Column.
+			 * 
+			 * @var PHATContainers::pairs
+			 *  PHAT persistence pairs.
+			 * 
+			 * @var PHATContainers::ground
+			 * 	Ground-truth vector.
+			 * 
+			 * @var PHATContainers::all
+			 * 	Set for in/excluding birth/death times.
+			 */
+			struct PHATContainers {
 				PHATBoundaryMatrix boundary;
 				PHATColumn column;
 				PHATPairs pairs;

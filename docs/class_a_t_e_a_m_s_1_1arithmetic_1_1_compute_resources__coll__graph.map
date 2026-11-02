@@ -1,9 +1,11 @@
 <map id="ComputeResources&lt; RingLike &gt;" name="ComputeResources&lt; RingLike &gt;">
-<area shape="rect" id="Node000001" title="Convenience class for managing Flint and multithreading. See Chain; not something users should need." alt="" coords="104,102,317,128"/>
-<area shape="rect" id="Node000002" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers.html" title="Reusable containers for serial persistence computation. See twist." alt="" coords="5,5,123,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,37,194,100,189,103,94,42"/>
-<area shape="rect" id="Node000003" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html" title="Reusable containers for parallel persistence computation. See JIT." alt="" coords="147,5,274,31"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="213,45,213,103,208,100,209,48"/>
-<area shape="rect" id="Node000004" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_randomness.html" title="For quickly sampling lots of floats. See Bernoulli." alt="" coords="299,5,397,31"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="322,39,267,80,231,104,228,99,264,76,317,41"/>
+<area shape="rect" id="Node000001" title="Convenience class for managing Flint and multithreading. See Chain; not something users should need." alt="" coords="104,199,317,224"/>
+<area shape="rect" id="Node000002" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_serial_containers.html" title="Reusable containers for serial persistence computation. See twist." alt="" coords="5,102,123,128"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,134,194,197,189,199,94,139"/>
+<area shape="rect" id="Node000003" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html" title="Reusable containers for parallel persistence computation. See JIT." alt="" coords="147,102,274,128"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="213,141,213,199,208,197,209,145"/>
+<area shape="rect" id="Node000004" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers_1_1_p_h_a_t_containers.html" title="Reusable containers for PHAT." alt="" coords="151,5,270,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="212,44,213,102,208,100,209,48"/>
+<area shape="rect" id="Node000005" href="$struct_a_t_e_a_m_s_1_1arithmetic_1_1_randomness.html" title="For quickly sampling lots of floats. See Bernoulli." alt="" coords="299,102,397,128"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="322,136,267,177,231,201,228,196,264,172,317,138"/>
 </map>

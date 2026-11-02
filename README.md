@@ -4,7 +4,7 @@
 [![docs](https://img.shields.io/badge/%E2%93%98-Documentation-red)](https://apizzimenti.github.io/ATEAMSplusplus/)
 [![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++
+# Algebraic Topology-Enabled AlgorithMs for Spin systems
 
 ATEAMS++ is a high-performance C++ library for simulating
 [generalized Potts, random-cluster, and percolation models](https://arxiv.org/abs/2507.13503) at scale. It depends directly on [SparseRREF](https://github.com/munuxi/SparseRREF) and PHAT [[1](https://www.sciencedirect.com/science/article/pii/S0747717116300098),[2](https://bitbucket.org/phat-code/phat/src/master/)] for fast linear algebra over finite fields and both [`BS::thread_pool`](https://github.com/bshoshany/thread-pool) and OpenMP for massive parallelism.
@@ -49,7 +49,7 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 	compilation terminated.
 	```
 
-* **on Linux**,
+* **on Linux**
 	(Ubuntu 22.04/24.04), use the same [installation steps as on macOS](#macOS) (adjusting your shell if you're using bash), or by following [these instructions](https://askubuntu.com/a/1518433) (adjusting the version from 14 to 15).
 
 * **on Windows**,
@@ -224,7 +224,7 @@ We welcome contributions. A few housekeeping rules:
 ```bibtex
 @software{ATEAMS++,
 	title={{ATEAMS++: Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++}},
-	author={Pizzimenti, Anthony E. and Eldridge, Summer and Schweinhart, Ben and Duncan, Paul},
+	author={Pizzimenti, Anthony E. and Schweinhart, Ben and Duncan, Paul},
 	url={github.com/apizzimenti/ATEAMSplusplus},
 	version={1.0.1},
 	doi={10.5281/zenodo.20817889}

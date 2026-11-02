@@ -1,6 +1,5 @@
 var hierarchy =
 [
-    [ "ATEAMS::arithmetic::ParallelContainers::[struct].phat", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers_1_1_0fstruct_0e_8phat.html", null ],
     [ "BoundaryData&lt; RingLike &gt;", "struct_a_t_e_a_m_s_1_1complexes_1_1_boundary_data.html", null ],
     [ "Chain&lt; ModelType &gt;", "class_a_t_e_a_m_s_1_1statistics_1_1_chain.html", null ],
     [ "Complex&lt; RingLike &gt;", "class_a_t_e_a_m_s_1_1complexes_1_1_complex.html", [
@@ -24,6 +23,7 @@ var hierarchy =
     [ "ModelParameters", "struct_a_t_e_a_m_s_1_1models_1_1_model_parameters.html", null ],
     [ "ModelState&lt; RingLike, VectorLike &gt;", "struct_a_t_e_a_m_s_1_1models_1_1_model_state.html", null ],
     [ "ParallelContainers", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers.html", null ],
+    [ "ParallelContainers::PHATContainers", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_parallel_containers_1_1_p_h_a_t_containers.html", null ],
     [ "Randomness", "struct_a_t_e_a_m_s_1_1arithmetic_1_1_randomness.html", null ],
     [ "Ring", "struct_a_t_e_a_m_s_1_1_ring.html", [
       [ "Q", "struct_a_t_e_a_m_s_1_1_q.html", null ],
