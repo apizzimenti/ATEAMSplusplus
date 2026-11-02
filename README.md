@@ -9,8 +9,11 @@
 ATEAMS++ is a high-performance C++ library for simulating
 [generalized Potts, random-cluster, and percolation models](https://arxiv.org/abs/2507.13503) at scale. It depends directly on [SparseRREF](https://github.com/munuxi/SparseRREF) and PHAT [[1](https://www.sciencedirect.com/science/article/pii/S0747717116300098),[2](https://bitbucket.org/phat-code/phat/src/master/)] for fast linear algebra over finite fields and both [`BS::thread_pool`](https://github.com/bshoshany/thread-pool) and OpenMP for massive parallelism.
 
+[Prerequisites](#Prerequisites) $`\longrightarrow`$ [Installation](#Installation) $`\longrightarrow`$ [Demo](#Usage) $`\longrightarrow`$ [Contributing](#Contributing)
+
 
 ## Prerequisites
+<a id="Prerequisites"></a>
 
 > [!TIP]
 > The [Homebrew](https://brew.sh/) package manager is strongly recommended for users running macOS, any flavor of Linux, or Windows Subsystem for Linux (WSL).
