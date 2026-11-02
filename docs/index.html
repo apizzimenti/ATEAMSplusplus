@@ -143,13 +143,16 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <p><a href="https://arxiv.org/abs/2507.13503"><img src="https://img.shields.io/badge/arXiv-2507.13503-green.svg" alt="arXiv" style="pointer-events: none;" class="inline"/></a> <a href="https://doi.org/10.5281/zenodo.20817889"><img src="https://img.shields.io/badge/DOI-10.5281/zenodo.20817889-blue" alt="DOI" class="inline"/></a> <a href="https://apizzimenti.github.io/ATEAMSplusplus/"><img src="https://img.shields.io/badge/%E2%93%98-Documentation-red" alt="docs" class="inline"/></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License:MIT" style="pointer-events: none;" class="inline"/></a></p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
 Algebraic Topology-Enabled AlgorithMs for Spin systems</h1>
-<p><a class="el" href="#Prerequisites" title="Prerequisites">Prerequisites</a> \(\longrightarrow\) <a class="el" href="#Installation" title="Installation">Installation</a> \(\longrightarrow\) <a class="el" href="#Usage" title="Usage">Demo</a> \(\longrightarrow\) <a class="el" href="#Contributing" title="Contributing">Contributing</a></p>
-<p>ATEAMS++ is a high-performance C++ library for simulating <a href="https://arxiv.org/abs/2507.13503">generalized Potts, random-cluster, and percolation models</a> at scale. It depends directly on <a href="https://github.com/munuxi/SparseRREF">SparseRREF</a> and PHAT [<a href="https://www.sciencedirect.com/science/article/pii/S0747717116300098">1</a>,<a href="https://bitbucket.org/phat-code/phat/src/master/">2</a>] for fast linear algebra over finite fields and both <a href="https://github.com/bshoshany/thread-pool"><span class="tt">BS::thread_pool</span></a> and OpenMP for massive parallelism.</p>
+<div align="center"></div><div align="center"><a class="el" href="#Prerequisites" title="Prerequisites">Prerequisites</a> \(\longrightarrow\) <a class="el" href="#Installation" title="Installation">Installation</a> \(\longrightarrow\) <a class="el" href="#Usage" title="Usage">Demo</a> \(\longrightarrow\) <a class="el" href="#Contributing" title="Contributing">Contributing</a></div><div align="center"></div><p>ATEAMS++ is a high-performance C++ library for simulating <a href="https://arxiv.org/abs/2507.13503">generalized Potts, random-cluster, and percolation models</a> at scale. It depends directly on <a href="https://github.com/munuxi/SparseRREF">SparseRREF</a> and PHAT [<a href="https://www.sciencedirect.com/science/article/pii/S0747717116300098">1</a>,<a href="https://bitbucket.org/phat-code/phat/src/master/">2</a>] for fast linear algebra over finite fields and both <a href="https://github.com/bshoshany/thread-pool"><span class="tt">BS::thread_pool</span></a> and OpenMP for massive parallelism.</p>
 <p><a class="anchor" id="Prerequisites"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 Prerequisites</h2>
 <dl class="section remark"><dt>Remarks</dt><dd>The <a href="https://brew.sh/">Homebrew</a> package manager is strongly recommended for users running macOS, any flavor of Linux, or Windows Subsystem for Linux (WSL).</dd></dl>
 <p>The only real prerequisite is <b>a compiler that supports the C++23 standard.</b> GCC 15 is the oldest cross-compatible compiler that supports all ATEAMS++'s features. Newer versions of GCC (e.g. 16) work as well.</p>
+<details >
+<summary >
+Details</summary>
+<p></p>
 <ul>
 <li><p class="startli"><b>on macOS</b>, Install <a href="https://formulae.brew.sh/formula/gcc@15">GCC 15</a> <a href="https://formulae.brew.sh/formula/gcc">(or 16)</a> through Homebrew. After installation, test that you have the correct version by running </p><div class="fragment"><div class="line">$ g++-15 --version</div>
 <div class="line"> </div>
@@ -172,12 +175,19 @@ Prerequisites</h2>
 <li><b>on Linux</b> (Ubuntu 22.04/24.04), use the same installation steps as on macOS (adjusting your shell if you're using bash), or by following <a href="https://askubuntu.com/a/1518433">these instructions</a> (adjusting the version from 14 to 15).</li>
 <li><b>on Windows</b>, <a href="https://www.mingw-w64.org/getting-started/msys2/">Try MinGW</a>; it should come with a recent version of GCC.</li>
 </ul>
+<p></p>
+</details>
 <p><a class="anchor" id="Installation"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
 Installation</h2>
 <ol type="1">
-<li><b>Clone the repository.</b> In your favorite shell, navigate to a sensible directory and run <div class="fragment"><div class="line">$ git clone --recursive https://github.com/apizzimenti/ATEAMSplusplus.git</div>
-</div><!-- fragment --> The <span class="tt">--recursive</span> flag ensures that SparseRREF is actually cloned, not just referenced.</li>
+<li><b>Clone the repository.</b> <details >
+<summary >
+Details</summary>
+<p>In your favorite shell, navigate to a sensible directory and run </p><div class="fragment"><div class="line">$ git clone --recursive https://github.com/apizzimenti/ATEAMSplusplus.git</div>
+</div><!-- fragment --><p> The <span class="tt">--recursive</span> flag ensures that SparseRREF is actually cloned, not just referenced.</p>
+</details>
+</li>
 <li><p class="startli"><b>Install dependencies.</b> ATEAMS++ requires</p><ol type="a">
 <li><a href="https://github.com/openmp">OpenMP</a> (which comes prepackaged with GCC compilers),</li>
 <li><a href="https://flintlib.org/">FLINT</a>,</li>
@@ -185,7 +195,11 @@ Installation</h2>
 <li>(optionally) <a href="https://jemalloc.net/">jemalloc</a>,</li>
 </ol>
 <p class="startli">which are all available through most package managers. <a href="https://en.cppreference.com/cpp/compiler_support/23">Make sure your compiler complies with the C++23 standard</a>; GCC ≥ 15 is a good bet.</p>
-<p class="startli">To install the dependencies...</p><ul>
+<details >
+<summary >
+Details</summary>
+<p></p>
+<p>To install the dependencies...</p><ul>
 <li><b>on macOS</b>, <div class="fragment"><div class="line">$ brew install flint tbb jemalloc</div>
 </div><!-- fragment --></li>
 <li><b>on Linux (Ubuntu)</b>, <div class="fragment"><div class="line">$ sudo apt update</div>
@@ -195,21 +209,8 @@ Installation</h2>
         $ vcpkg install flint tbb jemalloc
         </span></li>
 </ul>
+</details>
 </li>
-</ol>
-<dl class="section note"><dt>Note</dt><dd><b>jemalloc is <em>not</em> required to use this software, but it is recommended:</b> after extensive testing on machines with 4 (macOS M2), 36 (Intel Xeon W-2295), and 192 (AMD Ryzen Threadripper PRO 7995WX) logical cores, <b>jemalloc provides the best multi-threaded performance</b> when compared to no alternate memory allocator, mimalloc, and tcmalloc. If you don't want to use it, set the <span class="tt">jemalloc</span> variable in the CMake config file (<span class="tt">CMakeLists.txt</span>) to <span class="tt">FALSE</span> and it will be excluded. <br  />
-<br  />
- If you want to use another memory allocator like <a href="https://github.com/microsoft/mimalloc">mimalloc</a> or <a href="https://github.com/google/tcmalloc">tcmalloc</a>, install it in the same way as jemalloc:<ul>
-<li><b>on macOS</b>, <div class="fragment"><div class="line">$ brew install gperftools mimalloc</div>
-</div><!-- fragment --></li>
-<li><b>on Linux (Ubuntu)</b>, <div class="fragment"><div class="line">$ sudo apt update</div>
-<div class="line">$ sudo apt install libgoogle-perftools-dev libmimalloc-dev</div>
-</div><!-- fragment --></li>
-<li><b>on Windows</b> (using <a href="https://vcpkg.io/en/">vcpkg</a>), <div class="fragment"><div class="line">$ vcpkg install gperftools mimalloc</div>
-</div><!-- fragment --> You can set any of the <span class="tt">jemalloc</span>, <span class="tt">tcmalloc</span>, or <span class="tt">mimalloc</span> tools to <span class="tt">TRUE</span> in the CMake config file (<span class="tt">CMakeLists.txt</span>), but the build will fail if you try to use more than one.</li>
-</ul>
-</dd></dl>
-<ol type="1">
 <li><b>Build and install the library.</b> In your favorite shell, running <div class="fragment"><div class="line">$ cd ATEAMSplusplus</div>
 <div class="line">$ make build test install</div>
 </div><!-- fragment --> will build ATEAMS++'s tests to the <span class="tt">build</span> directory, run those tests, then install its headers and bundled dependencies (SparseRREF, PHAT) to your system's default install location. If you want to install it somewhere else, <div class="fragment"><div class="line">$ sudo cmake --install build --prefix &quot;somewhere/else&quot;</div>
@@ -218,6 +219,22 @@ Installation</h2>
 </div><!-- fragment --> should give something like <div class="fragment"><div class="line">-I/usr/local/include -std=c++23 -fopenmp -Ofast -march=native -flto -funroll-loops -fprefetch-loop-arrays -fomit-frame-pointer -fno-rtti -L/usr/local/lib -lflint -L/opt/homebrew/lib -ltbb -ljemalloc</div>
 </div><!-- fragment --></li>
 </ol>
+<dl class="section note"><dt>Note</dt><dd><b>jemalloc is <em>not</em> required to use this software, but it is recommended:</b> after extensive testing on machines with 4 (macOS M2), 36 (Intel Xeon W-2295), and 192 (AMD Ryzen Threadripper PRO 7995WX) logical cores, <b>jemalloc provides the best multi-threaded performance</b> when compared to no alternate memory allocator, mimalloc, and tcmalloc. If you don't want to use it, set the <span class="tt">jemalloc</span> variable in the CMake config file (<span class="tt">CMakeLists.txt</span>) to <span class="tt">FALSE</span> and it will be excluded. If you want to use another memory allocator like <a href="https://github.com/microsoft/mimalloc">mimalloc</a> or <a href="https://github.com/google/tcmalloc">tcmalloc</a>... <details >
+<summary >
+Details</summary>
+<p>install it in the same way as jemalloc:</p><ul>
+<li><b>on macOS</b>, <div class="fragment"><div class="line">$ brew install gperftools mimalloc</div>
+</div><!-- fragment --></li>
+<li><b>on Linux (Ubuntu)</b>, <div class="fragment"><div class="line">$ sudo apt update</div>
+<div class="line">$ sudo apt install libgoogle-perftools-dev libmimalloc-dev</div>
+</div><!-- fragment --></li>
+<li><b>on Windows</b> (using <a href="https://vcpkg.io/en/">vcpkg</a>), <div class="fragment"><div class="line">$ vcpkg install gperftools mimalloc</div>
+</div><!-- fragment --> You can set any of the <span class="tt">jemalloc</span>, <span class="tt">tcmalloc</span>, or <span class="tt">mimalloc</span> tools to <span class="tt">TRUE</span> in the CMake config file (<span class="tt">CMakeLists.txt</span>), but the build will fail if you try to use more than one. <br  />
+<br  />
+ </li>
+</ul>
+</details>
+</dd></dl>
 <p><a class="anchor" id="Usage"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Usage</h2>

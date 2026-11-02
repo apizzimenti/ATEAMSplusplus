@@ -24,6 +24,7 @@ ATEAMS++ is a high-performance C++ library for simulating
 The only real prerequisite is **a compiler that supports the C++23 standard.** GCC 15 is the oldest cross-compatible compiler that supports all ATEAMS++'s features. Newer versions of GCC (e.g. 16) work as well.
 
 <details>
+
 * **on macOS**,
 	Install [GCC 15](https://formulae.brew.sh/formula/gcc@15) [(or 16)](https://formulae.brew.sh/formula/gcc) through Homebrew. After installation, test that you have the correct version by running
 	```bash
@@ -61,6 +62,7 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 
 * **on Windows**,
 	[Try MinGW](https://www.mingw-w64.org/getting-started/msys2/); it should come with a recent version of GCC.
+
 </details>
 
 
@@ -99,28 +101,7 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 		$ vcpkg install flint tbb jemalloc
 		```
 
-	> [!NOTE]
-	> **jemalloc is _not_ required to use this software, but it is recommended:** after extensive testing on machines with 4 (macOS M2), 36 (Intel Xeon W-2295), and 192 (AMD Ryzen Threadripper PRO 7995WX) logical cores, **jemalloc provides the best multi-threaded performance** when compared to no alternate memory allocator, mimalloc, and tcmalloc. If you don't want to use it, set the `jemalloc` variable in the CMake config file (`CMakeLists.txt`) to `FALSE` and it will be excluded.
-	>
-	> If you want to use another memory allocator like [mimalloc](https://github.com/microsoft/mimalloc) or [tcmalloc](https://github.com/google/tcmalloc), install it in the same way as jemalloc:
-	> * **on macOS**,
-	> 	```bash
-	> 	$ brew install gperftools mimalloc
-	> 	```
-	> * **on Linux (Ubuntu)**,
-	> 	```bash
-	> 	$ sudo apt update
-	> 	$ sudo apt install libgoogle-perftools-dev libmimalloc-dev
-	> 	```
-	> * **on Windows** (using [vcpkg](https://vcpkg.io/en/)),
-	> 	```bash
-	> 	$ vcpkg install gperftools mimalloc
-	>	```
-	> You can set any of the `jemalloc`, `tcmalloc`, or `mimalloc` tools to `TRUE` in the CMake config file (`CMakeLists.txt`), but the build will fail if you try to use more than one.
-	
-	</details>
-
-</br>
+		</details>
 
 3. **Build and install the library.** In your favorite shell, running
 	```bash
@@ -141,6 +122,26 @@ The only real prerequisite is **a compiler that supports the C++23 standard.** G
 	```bash
 	-I/usr/local/include -std=c++23 -fopenmp -Ofast -march=native -flto -funroll-loops -fprefetch-loop-arrays -fomit-frame-pointer -fno-rtti -L/usr/local/lib -lflint -L/opt/homebrew/lib -ltbb -ljemalloc
 	```
+
+> [!NOTE]
+> **jemalloc is _not_ required to use this software, but it is recommended:** after extensive testing on machines with 4 (macOS M2), 36 (Intel Xeon W-2295), and 192 (AMD Ryzen Threadripper PRO 7995WX) logical cores, **jemalloc provides the best multi-threaded performance** when compared to no alternate memory allocator, mimalloc, and tcmalloc. If you don't want to use it, set the `jemalloc` variable in the CMake config file (`CMakeLists.txt`) to `FALSE` and it will be excluded. If you want to use another memory allocator like [mimalloc](https://github.com/microsoft/mimalloc) or [tcmalloc](https://github.com/google/tcmalloc)... <details>
+> install it in the same way as jemalloc:
+> * **on macOS**,
+> 	```bash
+> 	$ brew install gperftools mimalloc
+> 	```
+> * **on Linux (Ubuntu)**,
+> 	```bash
+> 	$ sudo apt update
+> 	$ sudo apt install libgoogle-perftools-dev libmimalloc-dev
+> 	```
+> * **on Windows** (using [vcpkg](https://vcpkg.io/en/)),
+> 	```bash
+> 	$ vcpkg install gperftools mimalloc
+>	```
+> You can set any of the `jemalloc`, `tcmalloc`, or `mimalloc` tools to `TRUE` in the CMake config file (`CMakeLists.txt`), but the build will fail if you try to use more than one.
+> 
+> </details>
 
 <a id="Usage"></a>
 ## Usage
