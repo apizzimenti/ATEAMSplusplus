@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ATEAMS++: ATEAMS++</title>
+<title>ATEAMS++: Algebraic Topology-Enabled AlgorithMs for Spin systems</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <meta name="doxygen-page-layout" content="1" />
 <script type="text/javascript" src="dynsections.js"></script>
@@ -136,17 +136,16 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">ATEAMS++ </div></div>
+  <div class="headertitle"><div class="title">Algebraic Topology-Enabled AlgorithMs for Spin systems </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e_8friendly"></a></p>
-<p><a href="https://arxiv.org/abs/2507.13503"><img src="https://img.shields.io/badge/arXiv-2507.13503-green.svg" alt="arXiv" style="pointer-events: none;" class="inline"/></a> <a href="https://doi.org/10.5281/zenodo.20817889"><img src="https://img.shields.io/badge/DOI-10.5281/zenodo.20817889-blue" alt="DOI" class="inline"/></a> <a href="https://apizzimenti.github.io/ATEAMSplusplus/"><img src="https://img.shields.io/badge/%E2%93%98-Documentation-red" alt="docs" class="inline"/></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License:MIT" style="pointer-events: none;" class="inline"/></a></p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
-Algebraic Topology-Enabled AlgorithMs for Spin systems</h1>
-<div align="center"></div><div align="center"><a class="el" href="#Prerequisites" title="Prerequisites">**Prerequisites**</a> \(\longrightarrow\) <a class="el" href="#Installation" title="Installation">**Installation**</a> \(\longrightarrow\) <a class="el" href="#Usage" title="Usage">**Demo**</a> \(\longrightarrow\) <a class="el" href="#Contributing" title="Contributing">**Contributing**</a></div><div align="center"></div><p>ATEAMS++ is a high-performance C++ library for simulating <a href="https://arxiv.org/abs/2507.13503">generalized Potts, random-cluster, and percolation models</a> at scale. It depends directly on <a href="https://github.com/munuxi/SparseRREF">SparseRREF</a> and PHAT [<a href="https://www.sciencedirect.com/science/article/pii/S0747717116300098">1</a>,<a href="https://bitbucket.org/phat-code/phat/src/master/">2</a>] for fast linear algebra over finite fields and both <a href="https://github.com/bshoshany/thread-pool"><span class="tt">BS::thread_pool</span></a> and OpenMP for massive parallelism.</p>
+<p><a href="https://arxiv.org/abs/2507.13503"><img src="https://img.shields.io/badge/arXiv-2507.13503-green.svg" alt="arXiv" style="pointer-events: none;" class="inline"/></a> <a href="https://doi.org/10.5281/zenodo.20817889"><img src="https://img.shields.io/badge/DOI-10.5281/zenodo.20817889-blue" alt="DOI" class="inline"/></a> <a href="https://random-geometry-lab.github.io/ATEAMSplusplus/"><img src="https://img.shields.io/badge/%E2%93%98-Documentation-red" alt="docs" class="inline"/></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License:MIT" style="pointer-events: none;" class="inline"/></a></p>
+<p>ATEAMS++ is a high-performance C++ library for simulating <a href="https://arxiv.org/abs/2507.13503">generalized Potts, random-cluster, and percolation models</a> at scale. It depends directly on <a href="https://github.com/munuxi/SparseRREF">SparseRREF</a> and PHAT [<a href="https://www.sciencedirect.com/science/article/pii/S0747717116300098">1</a>,<a href="https://bitbucket.org/phat-code/phat/src/master/">2</a>] for fast linear algebra over finite fields and both <a href="https://github.com/bshoshany/thread-pool"><span class="tt">BS::thread_pool</span></a> and OpenMP for massive parallelism.</p>
+<p><b>ToC:</b> <a class="el" href="#Prerequisites" title="Prerequisites">**Prerequisites**</a> \(\longrightarrow\) <a class="el" href="#Installation" title="Installation">**Installation**</a> \(\longrightarrow\) <a class="el" href="#Usage" title="Usage">**Demo**</a> \(\longrightarrow\) <a class="el" href="#Contributing" title="Contributing">**Contributing**</a></p>
 <p><a class="anchor" id="Prerequisites"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
-Prerequisites</h2>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+Prerequisites</h1>
 <p>The only real prerequisite is <b>a compiler that supports the C++23 standard.</b> GCC 15 is the oldest cross-compatible compiler that supports all ATEAMS++'s features. Newer versions of GCC (e.g. 16) work as well.</p>
 <details >
 <summary >
@@ -177,8 +176,8 @@ Details</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="Installation"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
-Installation</h2>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Installation</h1>
 <ol type="1">
 <li><b>Clone the repository.</b> <details >
 <summary >
@@ -228,8 +227,8 @@ Details</summary>
 </ul>
 </dd></dl>
 <p><a class="anchor" id="Usage"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
-Usage</h2>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+Usage</h1>
 <p>Most experiments follow a straightforward template:</p>
 <ol type="1">
 <li>create a Complex;</li>
@@ -302,22 +301,22 @@ Demo</summary>
 </div><!-- fragment --><p>This takes ~8 seconds on my 2022 MacBook Air with an Apple M2 processor.</p>
 <dl class="section remark"><dt>Remarks</dt><dd>If you plan to run large-scale simulations on an external machine, the <a href="https://github.com/apizzimenti/magnetizationplusplus"><span class="tt">magnetizationplusplus</span> workflow</a> may be of use to you. </dd></dl>
 </details>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
-Known issues</h2>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Known issues</h1>
 <ul>
 <li><span class="tt">InvadedCluster</span> and <span class="tt">Invasion</span> perform \(\mathbb Z/3\mathbb Z\) persistence when using rational coefficients.</li>
 <li>Some models don't have complete debugging information.</li>
 </ul>
 <p><a class="anchor" id="Contributing"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
-Contributing</h2>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Contributing</h1>
 <p>We welcome contributions. A few housekeeping rules:</p>
 <ol type="1">
 <li><b>Use the fork + branch + PR flow.</b> Fork + clone this repository, then create a new branch for each new feature you add. Once it's camera-ready, open a pull request on the main repository page, and we'll review it.</li>
 <li><b>Test!</b> Please write unit tests (like the ones in <span class="tt">tests/</span>) for any significant features (e.g. new Models, arithmetic functions, parallelization) you add. <b><em>Pull requests without accompanying unit tests will be automatically closed.</em></b></li>
 </ol>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
-Citing</h2>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Citing</h1>
 <div class="fragment"><div class="line">@software{ATEAMS++,</div>
 <div class="line">    title={{ATEAMS++: Algebraic Topology-Enabled AlgorithMs for Spin systems, in C++}},</div>
 <div class="line">    author={Pizzimenti, Anthony E. and Schweinhart, Ben and Duncan, Paul},</div>

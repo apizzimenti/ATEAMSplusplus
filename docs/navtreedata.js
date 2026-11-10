@@ -25,14 +25,7 @@
 var NAVTREE =
 [
   [ "ATEAMS++", "index.html", [
-    [ "Algebraic Topology-Enabled AlgorithMs for Spin systems", "index.html#autotoc_md0", [
-      [ "Prerequisites", "index.html#autotoc_md1", null ],
-      [ "Installation", "index.html#autotoc_md2", null ],
-      [ "Usage", "index.html#autotoc_md3", null ],
-      [ "Known issues", "index.html#autotoc_md4", null ],
-      [ "Contributing", "index.html#autotoc_md5", null ],
-      [ "Citing", "index.html#autotoc_md6", null ]
-    ] ],
+    [ "Algebraic Topology-Enabled AlgorithMs for Spin systems", "index.html", "index" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [

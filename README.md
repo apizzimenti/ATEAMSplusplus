@@ -1,19 +1,15 @@
 
+
+# Algebraic Topology-Enabled AlgorithMs for Spin systems
 [![arXiv](https://img.shields.io/badge/arXiv-2507.13503-green.svg)](https://arxiv.org/abs/2507.13503)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.20817889-blue)](https://doi.org/10.5281/zenodo.20817889)
 [![docs](https://img.shields.io/badge/%E2%93%98-Documentation-red)](https://random-geometry-lab.github.io/ATEAMSplusplus/)
 [![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# Algebraic Topology-Enabled AlgorithMs for Spin systems
-<div align=center>
-
-[**Prerequisites**](#Prerequisites) $`\longrightarrow`$ [**Installation**](#Installation) $`\longrightarrow`$ [**Demo**](#Usage) $`\longrightarrow`$ [**Contributing**](#Contributing)
-
-</div>
-
 ATEAMS++ is a high-performance C++ library for simulating
 [generalized Potts, random-cluster, and percolation models](https://arxiv.org/abs/2507.13503) at scale. It depends directly on [SparseRREF](https://github.com/munuxi/SparseRREF) and PHAT [[1](https://www.sciencedirect.com/science/article/pii/S0747717116300098),[2](https://bitbucket.org/phat-code/phat/src/master/)] for fast linear algebra over finite fields and both [`BS::thread_pool`](https://github.com/bshoshany/thread-pool) and OpenMP for massive parallelism.
 
+**ToC:** [**Prerequisites**](#Prerequisites) $`\longrightarrow`$ [**Installation**](#Installation) $`\longrightarrow`$ [**Demo**](#Usage) $`\longrightarrow`$ [**Contributing**](#Contributing)
 
 <a id="Prerequisites"></a>
 ## Prerequisites
