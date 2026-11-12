@@ -88,7 +88,7 @@ namespace ATEAMS::models {
 		std::for_each(essential.begin(), essential.end(), [offset](int &k) { k -= offset; });
 		std::erase_if(essential, [included](int &t) { return t > included; });
 
-		state.includes = include; 
+		state.includes = std::vector<int>(include.begin(), include.begin()+included);
 		state.essential = essential;
 		state.rank = essential.size();
 		state.t = t;
